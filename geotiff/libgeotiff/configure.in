@@ -72,6 +72,24 @@ else
 fi
 
 dnl
+dnl Add option to include libz in library list for use of libtiff.
+dnl
+AC_ARG_WITH(zip, [  --with-zip=dir          Use ZIP library in directory dir],[ZIP=$withval],[ZIP=yes])
+if test "$ZIP" = "yes" ; then
+  AC_CHECK_LIB(z,inflateInit_,,,-lm)
+  AC_CHECK_HEADERS(zlib.h,,)
+  AC_DEFINE(HAVE_ZIP)
+else
+  if test "$ZIP" != "no" ; then 
+    LIBS="${LIBS} -L${ZIP}/lib -lz"       
+    ZIP_INC="-I${ZIP}/include"            
+    AC_SUBST(ZIP_INC,$ZIP_INC)
+    AC_DEFINE(HAVE_ZIP)
+    echo "Using user supplied libzip directory: "$ZIP
+  fi
+fi
+
+dnl
 dnl Has the user requested "incode" EPSG tables, overriding the
 dnl default use of EPSG tables in csv files?
 dnl
