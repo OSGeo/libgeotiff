@@ -40,6 +40,7 @@
 /*	Standard include files.						*/
 /* ==================================================================== */
 
+#include "geo_config.h"
 #include "geotiff.h"
 #include "geo_tiffp.h"
 
@@ -91,21 +92,6 @@
 #  define EQUALN(a,b,n)           (strncasecmp(a,b,n)==0)
 #  define EQUAL(a,b)              (strcasecmp(a,b)==0)
 #endif
-#endif
-
-/*---------------------------------------------------------------------
- *                         CPL_LSB and CPL_MSB
- * Only one of these 2 macros should be defined and specifies the byte 
- * ordering for the current platform.  
- * This should be defined in the Makefile, but if it is not then
- * the default is CPL_LSB (Intel ordering, LSB first).
- *--------------------------------------------------------------------*/
-#if defined(WORDS_BIGENDIAN) && !defined(CPL_MSB) && !defined(CPL_LSB)
-#  define CPL_MSB
-#endif
-
-#if ! ( defined(CPL_LSB) || defined(CPL_MSB) )
-#define CPL_LSB
 #endif
 
 /* ==================================================================== */
