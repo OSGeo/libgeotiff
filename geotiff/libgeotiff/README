@@ -6,11 +6,16 @@ This library is designed to permit the extraction and parsing of the
 of GeoTIFF keys in new files. For more information about GeoTIFF
 specifications, projection codes and use, see the WWW web page at:
 
-   http://www-mipl.jpl.nasa.gov/cartlab/geotiff/geotiff.html
+   http://www.remotesensing.com/geotiff/geotiff.html
    
 or the FTP archive at:
 
-   ftp://mtritter.jpl.nasa.gov/pub/tiff/geotiff
+   ftp://ftp.remotesensing.org/pub/lib
+
+or the older FTP archive at:
+
+   ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/
+
 
 Configuration:
 --------------
@@ -82,5 +87,5 @@ changed. Also, whatever software package you use will have to
 recognize the GeoTIFF tags listed in the include files, and permit
 variable-length arrays to be passed in to those tags.
 
-
-  --Niles Ritter (ritter@earthlink.net,  ndr@tazboy.jpl.nasa.gov).
+  
+  --Frank Warmerdam (warmerda@home.com)
