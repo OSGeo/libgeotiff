@@ -45,24 +45,18 @@ ALL=	makegeo$(EXEEXT) listgeo$(EXEEXT) geotifcp$(EXEEXT)
   
 all:	${ALL} 
   
-makegeo$(EXEEXT): makegeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
+makegeo$(EXEEXT): makegeo.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} makegeo.o -L${libdir} ${LIBS} -o $@
   
-geotifcp$(EXEEXT): geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a prep
+geotifcp$(EXEEXT): geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} geotifcp.o -L${libdir} ${LIBS} -o $@
   
-listgeo$(EXEEXT): listgeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
+listgeo$(EXEEXT): listgeo.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} listgeo.o -L${libdir} ${LIBS} -o $@
   
-csv2html$(EXEEXT): csv2html.o  ${GEOTIFFDIR}/libgeotiff.a prep
+csv2html$(EXEEXT): csv2html.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} csv2html.o -L${libdir} ${LIBS} -o $@
 
-.PHONY: prep
-prep:
-	-if [ -f ${DEPTH}/${GEOTIFF_SO} ] ; then \
-	  cp ${DEPTH}/${GEOTIFF_SO} ${GEOTIFF_SO} ; \
-	fi
-  
 clean:
 	rm -f ${ALL} ${OBJS} core a.out newgeo.tif ${GEOTIFF_SO}
 
