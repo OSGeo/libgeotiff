@@ -23,6 +23,8 @@ OBJS    = \
 	geo_set.obj \
 	geo_tiffp.obj \
 	geo_write.obj \
+	geo_extra.obj \
+	geo_trans.obj \
 	geo_normalize.obj \
 	cpl_csv.obj \
 	cpl_serv.obj
@@ -78,6 +80,12 @@ geo_tiffp.obj: geo_tiffp.c
 
 geo_write.obj: geo_write.c
 	$(CC) -c $(CFLAGS) geo_write.c
+
+geo_trans.obj: geo_trans.c
+	$(CC) -c $(CFLAGS) geo_trans.c
+
+geo_extra.obj: geo_extra.c
+	$(CC) -c $(CFLAGS) geo_extra.c
 
 geo_normalize.obj: geo_normalize.c
 	$(CC) -c $(CFLAGS) geo_normalize.c
