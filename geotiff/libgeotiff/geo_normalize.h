@@ -1,7 +1,41 @@
-
-/*
- * Note: This file should be merged into geotiff.h eventually.
+/******************************************************************************
+ * $Id$
+ *
+ * Project:  libgeotiff
+ * Purpose:  Include file related to geo_normalize.c containing Code to
+ *           normalize PCS and other composite codes in a GeoTIFF file.
+ * Author:   Frank Warmerdam, warmerda@home.com
+ *
+ ******************************************************************************
+ * Copyright (c) 1999, Frank Warmerdam
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ ******************************************************************************
+ *
+ * $Log$
+ * Revision 1.2  1999/03/10 18:24:06  geotiff
+ * corrected to use int'
+ *
  */
+
+#ifndef GEO_NORMALIZE_H_INCLUDED
+#define GEO_NORMALIZE_H_INCLUDED
 
 #include "geotiff.h"
 
@@ -12,26 +46,28 @@ extern "C" {
 #define MAX_GTIF_PROJPARMS 	10
 
 typedef struct {
-    int		Model;		/* ModelTypeGeographic or ModelTypeProjected */
-    int		PCS;		/* code */
-    int		GCS;		/* code */
+    short	Model;		/* GTModelTypeGeoKey:
+                                   ModelTypeGeographic or ModelTypeProjected */
+    short	PCS;		/* ProjectedCSTypeGeoKey */
+    short	GCS;		/* GeographicTypeGeoKey (Datum+PM) */
 
-    int		UOMLength;	/* code */
+    short	UOMLength;	/* ProjLinearUnitsGeoKey (eg. Linear_Meter) */
     double	UOMLengthInMeters;  /* one UOM = UOMLengthInMeters meters*/
 
-    int		Datum;		/* code */
+    short	Datum;		/* GeogGeodeticDatumGeoKey */
 
-    int		PM;		/* prime meridian code */
+    short	PM;		/* GeogPrimeMeridianGeoKey */
     double	PMLongToGreenwich; /* dec. deg (Long of PM rel.to Green)*/
 
-    int		Ellipsoid;
+    short	Ellipsoid;	/* GeogEllipsoidGeoKey */
     double	SemiMajor;	/* in meters */
     double	SemiMinor;	/* in meters */
 
-    int		ProjCode;	/* ProjectionGeoKey ... eg. Proj_UTM_11S */
+    short	ProjCode;	/* ProjectionGeoKey ... eg. Proj_UTM_11S */
 
-    int		Projection;	/* EPSG code from TRF_METHOD */
-    int		CTProjection;   /* GeoTIFF CT_* code from geo_ctrans.inc
+    short	Projection;	/* EPSG code from TRF_METHOD */
+    short	CTProjection;   /* ProjCoordTransGeoKey:
+                                   GeoTIFF CT_* code from geo_ctrans.inc
                                    eg. CT_TransverseMercator */
 
     int		nParms;
@@ -42,14 +78,15 @@ typedef struct {
 } GTIFDefn;
 
 int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
-                    int *pnUOMLengthCode, int *pnUOMAngleCode,
-                    int *pnGeogCS, int *pnProjectionCSCode );
+                    short *pnUOMLengthCode, short *pnUOMAngleCode,
+                    short *pnGeogCS, short *pnProjectionCSCode );
 int GTIFGetProjTRFInfo( int nProjTRFCode,
                         char ** ppszProjTRFName,
-                        int * pnProjMethod,
+                        short * pnProjMethod,
                         double * padfProjParms );
-int GTIFGetGCSInfo( int nGCSCode, char **ppszName, int * pnDatum, int * pnPM );
-int GTIFGetDatumInfo( int nDatumCode, char **ppszName, int * pnEllipsoid );
+int GTIFGetGCSInfo( int nGCSCode, char **ppszName,
+                    short *pnDatum, short *pnPM );
+int GTIFGetDatumInfo( int nDatumCode, char **ppszName, short * pnEllipsoid );
 int GTIFGetEllipsoidInfo( int nEllipsoid, char ** ppszName,
                           double * pdfSemiMajor, double * pdfSemiMinor );
 int GTIFGetPMInfo( int nPM, char **ppszName, double * pdfLongToGreenwich );
@@ -71,3 +108,4 @@ void SetCSVFilenameHook( const char *(*)(const char *) );
 }
 #endif
     
+#endif /* ndef GEO_NORMALIZE_H_INCLUDED */

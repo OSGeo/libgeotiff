@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  1999/03/10 18:24:06  geotiff
+ * corrected to use int'
+ *
  * Revision 1.1  1999/03/09 15:57:04  geotiff
  * New
  *
@@ -52,8 +55,16 @@
 #include "geo_normalize.h"
 
 #include <math.h>
-#include <string.h>
-#include <stdlib.h>
+
+#ifdef HAVE_STRING_H
+#  include <string.h>
+#endif
+#if defined(HAVE_STRINGS_H) && !defined(HAVE_STRING_H)
+#  include <strings.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#  include <stdlib.h>
+#endif
 
 #ifndef KvUserDefined
 #  define KvUserDefined 32767
@@ -68,8 +79,8 @@
 /************************************************************************/
 
 int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
-                    int *pnUOMLengthCode, int *pnUOMAngleCode,
-                    int *pnGeogCS, int *pnTRFCode )
+                    short *pnUOMLengthCode, short *pnUOMAngleCode,
+                    short *pnGeogCS, short *pnTRFCode )
 
 {
     char	**papszRecord;
@@ -270,7 +281,8 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
 /*      GCS.                                                            */
 /************************************************************************/
 
-int GTIFGetGCSInfo( int nGCSCode, char ** ppszName, int * pnDatum, int * pnPM )
+int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
+                    short * pnDatum, short * pnPM )
 
 {
     char	szSearchKey[24];
@@ -461,7 +473,7 @@ int GTIFGetPMInfo( int nPMCode, char ** ppszName, double *pdfOffset )
 /*      Fetch the ellipsoid, and name for a datum.                      */
 /************************************************************************/
 
-int GTIFGetDatumInfo( int nDatumCode, char ** ppszName, int * pnEllipsoid )
+int GTIFGetDatumInfo( int nDatumCode, char ** ppszName, short * pnEllipsoid )
 
 {
     char	szSearchKey[24];
@@ -646,7 +658,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
 
 int GTIFGetProjTRFInfo( int nProjTRFCode,
                         char **ppszProjTRFName,
-                        int * pnProjMethod,
+                        short * pnProjMethod,
                         double * padfProjParms )
 
 {
@@ -1176,7 +1188,8 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
 {
-    int		i, nGeogUOMAngle, nGeogUOMLinear;
+    int		i;
+    short	nGeogUOMAngle, nGeogUOMLinear;
     
 /* -------------------------------------------------------------------- */
 /*      Initially we default all the information we can.                */
@@ -1207,7 +1220,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
 /*	Try to get the overall model type.				*/
 /* -------------------------------------------------------------------- */
-    GTIFKeyGet(psGTIF,ProjectedCSTypeGeoKey,&(psDefn->Model),0,1);
+    GTIFKeyGet(psGTIF,GTModelTypeGeoKey,&(psDefn->Model),0,1);
 
 /* -------------------------------------------------------------------- */
 /*	Extract the Geog units.  					*/
@@ -1224,7 +1237,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     if( GTIFKeyGet(psGTIF,ProjectedCSTypeGeoKey, &(psDefn->PCS),0,1) == 1
         && psDefn->PCS != KvUserDefined )
     {
-        int		nUOMAngle;
+        short		nUOMAngle;
         
         /*
          * Translate this into useful information.
