@@ -31,6 +31,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.2  2004/03/20 07:52:44  warmerda
+# use local paths
+#
 # Revision 1.1  2003/06/20 21:28:24  warmerda
 # New
 #
@@ -43,10 +46,10 @@ sys.path.append( '/home/warmerda/osrs/geotiff/libgeotiff/csv' )
 import csv_tools
 
 gcs_table = csv_tools.CSVTable()
-gcs_table.read_from_csv( '/home/warmerda/gdal/data/gcs.csv' )
+gcs_table.read_from_csv( 'gcs.csv' )
 
 datum_table = csv_tools.CSVTable()
-datum_table.read_from_csv( '/home/warmerda/gdal/data/datum.csv' )
+datum_table.read_from_csv( 'datum.csv' )
 
 print '%d GCS defined.', len(gcs_table.data.keys())
 
@@ -97,7 +100,7 @@ for datum_code in datum_table.data.keys():
 
     datum_table.set_record( datum_code, datum_rec )
 
-datum_table.write_to_csv( '/home/warmerda/datum_new.csv' )
+datum_table.write_to_csv( 'gdal_datum.csv' )
 
 
 
