@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.4  1999/03/18 21:35:42  geotiff
+ * Added reprojection functions
+ *
  * Revision 1.3  1999/03/10 18:11:17  geotiff
  * Removed comment about this not being the master ... now it is.
  *
@@ -40,8 +43,7 @@
  *
  */
 
-#include <stdio.h>
-
+#include "cpl_serv.h"
 #include "geotiff.h"
 #include "geo_normalize.h"
 #include "geovalues.h"
@@ -405,4 +407,142 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 
     return( strdup( szProjection ) );
 }
+
+#if !defined(HAVE_LIBPROJ) || !defined(HAVE_PROJECTS_H)
+
+int GTIFProj4ToLatLong( GTIFDefn * psDefn, int nPoints,
+                        double *padfX, double *padfY )
+{
+    printf( "GTIFProj4ToLatLong() - PROJ.4 support not compiled in.\n" );
+    return FALSE;
+}
+
+int GTIFProj4FromLatLong( GTIFDefn * psDefn, int nPoints,
+                          double *padfX, double *padfY )
+{
+    printf( "GTIFProj4FromLatLong() - PROJ.4 support not compiled in.\n" );
+    return FALSE;
+}
+#else
+
+#include "projects.h"
+
+/************************************************************************/
+/*                        GTIFProj4FromLatLong()                        */
+/*                                                                      */
+/*      Convert lat/long values to projected coordinate for a           */
+/*      particular definition.                                          */
+/************************************************************************/
+
+int GTIFProj4FromLatLong( GTIFDefn * psDefn, int nPoints,
+                          double *padfX, double *padfY )
+
+{
+    char	*pszProjection, **papszArgs;
+    PJ		*psPJ;
+    int		i;
+    
+/* -------------------------------------------------------------------- */
+/*      Get a projection definition.                                    */
+/* -------------------------------------------------------------------- */
+    pszProjection = GTIFGetProj4Defn( psDefn );
+
+    if( pszProjection == NULL )
+        return FALSE;
+
+/* -------------------------------------------------------------------- */
+/*      Parse into tokens for pj_init(), and initialize the projection. */
+/* -------------------------------------------------------------------- */
+    
+    papszArgs = CSLTokenizeStringComplex( pszProjection, " +", TRUE, FALSE );
+    free( pszProjection );
+
+    psPJ = pj_init( CSLCount(papszArgs), papszArgs );
+
+    CSLDestroy( papszArgs );
+
+    if( psPJ == NULL )
+    {
+        return FALSE;
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Process each of the points.                                     */
+/* -------------------------------------------------------------------- */
+    for( i = 0; i < nPoints; i++ )
+    {
+        UV	sUV;
+
+        sUV.u = padfX[i] * DEG_TO_RAD;
+        sUV.v = padfY[i] * DEG_TO_RAD;
+
+        sUV = pj_fwd( sUV, psPJ );
+
+        padfX[i] = sUV.u;
+        padfY[i] = sUV.v;
+    }
+
+    return TRUE;
+}
+
+/************************************************************************/
+/*                         GTIFProj4ToLatLong()                         */
+/*                                                                      */
+/*      Convert projection coordinates to lat/long for a particular     */
+/*      definition.                                                     */
+/************************************************************************/
+
+int GTIFProj4ToLatLong( GTIFDefn * psDefn, int nPoints,
+                        double *padfX, double *padfY )
+
+{
+    char	*pszProjection, **papszArgs;
+    PJ		*psPJ;
+    int		i;
+    
+/* -------------------------------------------------------------------- */
+/*      Get a projection definition.                                    */
+/* -------------------------------------------------------------------- */
+    pszProjection = GTIFGetProj4Defn( psDefn );
+
+    if( pszProjection == NULL )
+        return FALSE;
+
+/* -------------------------------------------------------------------- */
+/*      Parse into tokens for pj_init(), and initialize the projection. */
+/* -------------------------------------------------------------------- */
+    
+    papszArgs = CSLTokenizeStringComplex( pszProjection, " +", TRUE, FALSE );
+    free( pszProjection );
+
+    psPJ = pj_init( CSLCount(papszArgs), papszArgs );
+
+    CSLDestroy( papszArgs );
+
+    if( psPJ == NULL )
+    {
+        return FALSE;
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Process each of the points.                                     */
+/* -------------------------------------------------------------------- */
+    for( i = 0; i < nPoints; i++ )
+    {
+        UV	sUV;
+
+        sUV.u = padfX[i];
+        sUV.v = padfY[i];
+
+        sUV = pj_inv( sUV, psPJ );
+
+        padfX[i] = sUV.u * RAD_TO_DEG;
+        padfY[i] = sUV.v * RAD_TO_DEG;
+    }
+
+    return TRUE;
+}
+
+
+#endif /* has projects.h and -lproj */
 
