@@ -1,3 +1,8 @@
+2003-07-08  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c, geo_print.c, geo_set.c, geo_tiffp.c, geo_trans.c, 
+	geo_write.c, geotiff_proj4.c: fix various warnings.
+
 2003-06-20  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* bin/Makefile.in: Removed the "prep" target for copying the geotiff
