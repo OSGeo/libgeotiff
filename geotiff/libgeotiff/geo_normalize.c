@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.18  1999/12/10 21:28:12  warmerda
+ * fixed Stereographic to look for ProjCenterLat/Long
+ *
  * Revision 1.17  1999/12/10 20:06:58  warmerda
  * fixed up scale geokey used for a couple of projections
  *
@@ -986,10 +989,48 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
     switch( psDefn->CTProjection )
     {
 /* -------------------------------------------------------------------- */
+      case CT_Stereographic:
+/* -------------------------------------------------------------------- */
+        if( GTIFKeyGet(psGTIF, ProjNatOriginLongGeoKey, 
+                       &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjFalseOriginLongGeoKey, 
+                          &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjCenterLongGeoKey, 
+                          &dfNatOriginLong, 0, 1 ) == 0 )
+            dfNatOriginLong = 0.0;
+
+        if( GTIFKeyGet(psGTIF, ProjNatOriginLatGeoKey, 
+                       &dfNatOriginLat, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjFalseOriginLatGeoKey, 
+                          &dfNatOriginLat, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjCenterLatGeoKey, 
+                          &dfNatOriginLat, 0, 1 ) == 0 )
+            dfNatOriginLat = 0.0;
+
+        if( GTIFKeyGet(psGTIF, ProjScaleAtNatOriginGeoKey,
+                       &dfNatOriginScale, 0, 1 ) == 0 )
+            dfNatOriginScale = 1.0;
+            
+        /* notdef: should transform to decimal degrees at this point */
+
+        psDefn->ProjParm[0] = dfNatOriginLat;
+        psDefn->ProjParmId[0] = ProjCenterLatGeoKey;
+        psDefn->ProjParm[1] = dfNatOriginLong;
+        psDefn->ProjParmId[1] = ProjCenterLongGeoKey;
+        psDefn->ProjParm[4] = dfNatOriginScale;
+        psDefn->ProjParmId[4] = ProjScaleAtNatOriginGeoKey;
+        psDefn->ProjParm[5] = dfFalseEasting;
+        psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
+        psDefn->ProjParm[6] = dfFalseNorthing;
+        psDefn->ProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        psDefn->nParms = 7;
+        break;
+
+/* -------------------------------------------------------------------- */
       case CT_LambertConfConic_1SP:
       case CT_Mercator:
       case CT_ObliqueStereographic:
-      case CT_Stereographic:
       case CT_TransverseMercator:
       case CT_TransvMercator_SouthOriented:
 /* -------------------------------------------------------------------- */
