@@ -535,7 +535,7 @@ fi
 
 VERSION_MAJOR=1
 VERSION_MINOR=1
-VERSION_POINT=4
+VERSION_POINT=5
 
 
 
@@ -1373,9 +1373,9 @@ EOF
   fi
 fi
 
-# Check whether --with-zip or --without-zip was given.
-if test "${with_zip+set}" = set; then
-  withval="$with_zip"
+# Check whether --with-jpeg or --without-jpeg was given.
+if test "${with_jpeg+set}" = set; then
+  withval="$with_jpeg"
   JPEG=$withval
 else
   JPEG=yes
