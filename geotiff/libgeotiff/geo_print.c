@@ -18,6 +18,9 @@
  *    29  Sep,  1995      NDR                  Fixed matrix printing.
  *
  * $Log$
+ * Revision 1.7  2003/10/21 19:19:53  warmerda
+ * fixed bug with large message texts sometimes causing a crash
+ *
  * Revision 1.6  2003/09/23 18:27:30  warmerda
  * fixed bug with long datum names: bug 399
  *
@@ -191,7 +194,7 @@ static void PrintKey(GeoKey *key, GTIFPrintMethod print, void *aux)
                   message[out_char++] = ch;
 
               /* flush message if buffer full */
-              if( out_char == sizeof(message)-3 )
+              if( out_char >= sizeof(message)-3 )
               {
                   message[out_char] = '\0';
                   print(message,aux);
