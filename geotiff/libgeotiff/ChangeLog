@@ -1,8 +1,9 @@
-==============================================================================
-
 2001-01-17  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Prepare 1.1.4 final release.
+
+	* Modified csv search code to include a search of 
+	share/epsg_csv and /usr/share/epsg_csv
 
 2001-01-02  Frank Warmerdam  <warmerdam@pobox.com>
 
