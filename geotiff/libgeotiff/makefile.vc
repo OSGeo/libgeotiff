@@ -26,6 +26,7 @@ OBJS    = \
 	geo_extra.obj \
 	geo_trans.obj \
 	geo_normalize.obj \
+	geotiff_proj4.obj \
 	cpl_csv.obj \
 	cpl_serv.obj
 
@@ -89,6 +90,9 @@ geo_extra.obj: geo_extra.c
 
 geo_normalize.obj: geo_normalize.c
 	$(CC) -c $(CFLAGS) geo_normalize.c
+
+geotiff_proj4.obj: geotiff_proj4.c
+	$(CC) -c $(CFLAGS) geotiff_proj4.c
 
 cpl_csv.obj: cpl_csv.c
 	$(CC) -c $(CFLAGS) cpl_csv.c
