@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.7  1999/05/04 03:14:59  warmerda
+ * fixed use of foot instead of ft for units
+ *
  * Revision 1.6  1999/05/03 17:50:31  warmerda
  * avoid warnings on IRIX
  *
@@ -79,7 +82,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     }
     else if( psDefn->UOMLength == Linear_Foot )
     {
-        strcpy( szUnits, "+units=foot " );
+        strcpy( szUnits, "+units=ft " );
     }
     else if( psDefn->UOMLength == Linear_Foot_US_Survey )
     {
