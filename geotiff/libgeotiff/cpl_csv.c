@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.2  1999/03/10 16:54:42  geotiff
+ * Added use of the GEOTIFF_CSV environment variable to locate CSV files.
+ *
  * Revision 1.1  1999/03/09 15:57:04  geotiff
  * New
  *
@@ -35,6 +38,10 @@
  */
 
 #include "cpl_csv.h"
+
+#ifdef HAVE_STDLIB_H
+#  include <stdlib.h>
+#endif
 
 /* ==================================================================== */
 /*      The CSVTable is a persistant set of info about an open CSV      */
@@ -485,7 +492,11 @@ const char * CSVFilename( const char *pszBasename )
 
     if( pfnCSVFilenameHook == NULL )
     {
-        sprintf( szPath, "csv/%s", pszBasename );
+        if( getenv("GEOTIFF_CSV") == NULL )
+            sprintf( szPath, "csv/%s", pszBasename );
+        else
+            sprintf( szPath, "%s/%s", getenv("GEOTIFF_CSV"), pszBasename );
+        
         return( szPath );
     }
     else
