@@ -1295,7 +1295,7 @@ elif test -d ../proj ; then
 fi
 
 if test "$PROJ_HOME" != "" ; then
-  PROJ_LIB=$TIFF_HOME/libproj.a
+  PROJ_LIB=$PROJ_HOME/libproj.a
   LIBS="$PROJ_LIB $LIBS"
 
   PROJ_INC=-I$PROJ_HOME
