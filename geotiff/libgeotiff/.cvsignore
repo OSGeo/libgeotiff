@@ -7,5 +7,7 @@ Makefile
 *.ilk
 *.pdb
 *.exp
+*.dll
 libgeotiff-*.so
 libgeotiff.so*
+
