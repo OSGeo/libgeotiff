@@ -53,6 +53,9 @@ OBJS    = \
 	geo_set.o \
 	geo_tiffp.o \
 	geo_write.o \
+	geo_normalize.o \
+	cpl_csv.o \
+	cpl_serv.o \
 	${NULL}
 TARGETS = libgeotiff.a
 
@@ -65,7 +68,7 @@ libgeotiff.a: ${OBJS}
 Progs:
 	${CD} ${BIN};\
 	${MAKE}
-	
+
 ${OBJS}: ${SRCDIR}/geotiff.h ${SRCDIR}/geotiffio.h
 
 ${XTIFFINC}:
@@ -98,6 +101,15 @@ geo_tiffp.o: ${SRCDIR}/geo_tiffp.c
 
 geo_write.o: ${SRCDIR}/geo_write.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/geo_write.c
+
+geo_normalize.o: ${SRCDIR}/geo_normalize.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_normalize.c
+
+cpl_csv.o: ${SRCDIR}/cpl_csv.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/cpl_csv.c
+
+cpl_serv.o: ${SRCDIR}/cpl_serv.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/cpl_serv.c
 
 clean:
 	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out
