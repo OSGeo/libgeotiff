@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.11  2001/03/05 04:49:56  warmerda
+ * try to clear CPLReadLine buffer on deaccess
+ *
  * Revision 1.10  2001/01/17 15:32:19  warmerda
  * Include /usr/share/epsg_csv and share/epsg_csv in csv search path.
  *
@@ -200,6 +203,11 @@ void CSVDeaccess( const char * pszFilename )
     CPLFree( psTable->pszFilename );
 
     CPLFree( psTable );
+
+/* -------------------------------------------------------------------- */
+/*      Free working buffer in CPLReadLine().                           */
+/* -------------------------------------------------------------------- */
+    CPLReadLine( NULL );
 }
 
 /************************************************************************/
