@@ -21,8 +21,9 @@
     indicate the new current release.
 
  7) If possible build windows, and linux binaries of listgeo, and geotifcp
-    for distribution.  Binary distributions should include the csv files,
-    and the geotifcp.html and listgeo.html files from geotiff-ht.
+    for distribution.  Unix versions can be built (and potentially put on 
+    ftp site) with a command like "mkbindist.sh 1.1.5 linux -install".
+
 
 
 
