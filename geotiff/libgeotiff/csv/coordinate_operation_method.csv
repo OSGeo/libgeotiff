@@ -1,61 +1,4 @@
 "COORD_OP_METHOD_CODE","COORD_OP_METHOD_NAME","REVERSE_OP","FORMULA","EXAMPLE","REMARKS","INFORMATION_SOURCE","DATA_SOURCE","REVISION_DATE","CHANGE_ID","DEPRECATED"
-9613,NADCON,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US Coast and geodetic Survey - http://www.ngs.noaa.gov,EPSG,1996-09-18 00:00:00,,0
-9614,NTv1,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Superseded in 1997 by NTv2 (transformation method code 9615).   Input expects longitudes to be positive west.,Geomatics Canada - Geodetic Survey Division.,EPSG,1997-11-13 00:00:00,,0
-9615,NTv2,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Supersedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,http://www.geod.nrcan.gc.ca/products/html-public/GSDapps/English/NTv2_Fact_Sheet.html,EPSG,1997-11-13 00:00:00,,0
-9616,Vertical Offset,1,"Xt = [(Xs * Us) + (A * Ua)] * (m / Ut)
-
-where 
-Xt = value in the target vertical coordinate reference system.
-
-Xs = value in the source vertical coordinate reference system; 
-
-A is the value of the origin of the target system in the source system.
-
-m is unit direction multiplier (m=1 if both systems are height or both are depth; m = –1 if one system is height and the other system is depth; the value of m is implied through the vertical coordinate reference system type attribute).
-
-Us Ut and Ua are unit conversion ratios to metres for the source and target systems and the offset value A respectively.",,This transformation allows calculation of height (or depth) in the target system by adding the parameter value to the height (or depth)-value of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
-9617,Madrid to ED50,0,"The polynomial expressions are:
-
-      dLat seconds = A0 + (A1*lat) + (A2*lon) + (A3*H)
-      dLon seconds = B00 + B0 + (B1*lat) + (B2*lon) + (B3*H)
-
-where latitude lat and longitude lon are in decimal degrees referred to the Madrid 1870 (Madrid) geographic coordinate reference system and H is gravity-related height in metres.  B00 is the longitude (in seconds) of the Madrid meridian measured from the Greenwich meridian; it is the value to be applied to a longitude relative to the Madrid meridian to transform it to a longitude relative to the Greenwich meridan.
-
-The results of these expressions are applied through the formulae:
-Lat(ED50) = Lat(M1870(M))  + dLat
-and Lon(ED50) = Lon(M1870(M))  + dLon.","Input point coordinate system: Madrid 1870 (Madrid) (geographic 3D)
-   Latitude    =  42 deg 38 min 52.77 sec N 
-                    = 42.647992 degrees
-   Longitude  =    3 deg 39 min 34.57 sec E of Madrid
-                     = +3.659603 degrees from the Madrid meridian.
-   Height        =  0 m
-
-For the north zone transformation:
-A1 = 11.328779
-A2 = -0.1674
-A3 = -0.03852
-A4 = 0.0000379
-B0 = -13276.58
-B1 = 2.5079425
-B2 = 0.8352
-B3 = -0.00864
-B4 = -0.0000038
-
-dLat = +4.05 seconds
-
-Then ED50 latitude = 42 deg 38 min 52.77 sec N + 4.05sec
-                               = 42 deg 38 min 56.82 sec N
-
-
-dLon = -13270.54 seconds  = -3 deg 41 min 10.54 sec
-
-Then ED50 longitude = 3 deg 39 min 34.57 sec E - 3 deg 41 min 10.54 sec
-                                  = 0 deg 01 min 35.97 sec W of Greenwich.",,"EPSG guidance note #7, after Institut de Geomatica; Barcelona.",EPSG,2000-03-07 00:00:00,99.284  99.82  99.64,0
-9618,Geographical and Height Offsets,1,"Lat_T = Lat_S + latitude_offset 
-Lon_T = Lon_S + longitude_offset 
-EllipsoidHeight_T = GravityHeight_S + gravity-related_to_ellipsoid_height_offset.",,This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
-9619,Geographical Offsets,1,"Lat_T = Lat_S + latitude_offset 
-Lon_T = Lon_S + longitude_offset.",,This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
 9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,,This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
 9602,Geographic/geocentric conversions,1,"Latitude, P, and Longitude, L, in terms of Geographic Coordinate Reference System A may 
 be expressed in terms of a geocentric (earth centred) Cartesian coordinate reference system X, Y, Z 
@@ -250,6 +193,63 @@ RZ ("") = -0.554
 Scale (ppm) = +0.219
 
 Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",Note the analogy with the Position Vector transformation (code 9606) but beware of the differences!  The Position Vector convention is used by IAG and recommended by ISO 19111.,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,,0
+9613,NADCON,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US Coast and geodetic Survey - http://www.ngs.noaa.gov,EPSG,1996-09-18 00:00:00,,0
+9614,NTv1,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Superseded in 1997 by NTv2 (transformation method code 9615).   Input expects longitudes to be positive west.,Geomatics Canada - Geodetic Survey Division.,EPSG,1997-11-13 00:00:00,,0
+9615,NTv2,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Supersedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,http://www.geod.nrcan.gc.ca/products/html-public/GSDapps/English/NTv2_Fact_Sheet.html,EPSG,1997-11-13 00:00:00,,0
+9616,Vertical Offset,1,"Xt = [(Xs * Us) + (A * Ua)] * (m / Ut)
+
+where 
+Xt = value in the target vertical coordinate reference system.
+
+Xs = value in the source vertical coordinate reference system; 
+
+A is the value of the origin of the target system in the source system.
+
+m is unit direction multiplier (m=1 if both systems are height or both are depth; m = –1 if one system is height and the other system is depth; the value of m is implied through the vertical coordinate reference system type attribute).
+
+Us Ut and Ua are unit conversion ratios to metres for the source and target systems and the offset value A respectively.",,This transformation allows calculation of height (or depth) in the target system by adding the parameter value to the height (or depth)-value of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
+9617,Madrid to ED50,0,"The polynomial expressions are:
+
+      dLat seconds = A0 + (A1*lat) + (A2*lon) + (A3*H)
+      dLon seconds = B00 + B0 + (B1*lat) + (B2*lon) + (B3*H)
+
+where latitude lat and longitude lon are in decimal degrees referred to the Madrid 1870 (Madrid) geographic coordinate reference system and H is gravity-related height in metres.  B00 is the longitude (in seconds) of the Madrid meridian measured from the Greenwich meridian; it is the value to be applied to a longitude relative to the Madrid meridian to transform it to a longitude relative to the Greenwich meridan.
+
+The results of these expressions are applied through the formulae:
+Lat(ED50) = Lat(M1870(M))  + dLat
+and Lon(ED50) = Lon(M1870(M))  + dLon.","Input point coordinate system: Madrid 1870 (Madrid) (geographic 3D)
+   Latitude    =  42 deg 38 min 52.77 sec N 
+                    = 42.647992 degrees
+   Longitude  =    3 deg 39 min 34.57 sec E of Madrid
+                     = +3.659603 degrees from the Madrid meridian.
+   Height        =  0 m
+
+For the north zone transformation:
+A1 = 11.328779
+A2 = -0.1674
+A3 = -0.03852
+A4 = 0.0000379
+B0 = -13276.58
+B1 = 2.5079425
+B2 = 0.8352
+B3 = -0.00864
+B4 = -0.0000038
+
+dLat = +4.05 seconds
+
+Then ED50 latitude = 42 deg 38 min 52.77 sec N + 4.05sec
+                               = 42 deg 38 min 56.82 sec N
+
+
+dLon = -13270.54 seconds  = -3 deg 41 min 10.54 sec
+
+Then ED50 longitude = 3 deg 39 min 34.57 sec E - 3 deg 41 min 10.54 sec
+                                  = 0 deg 01 min 35.97 sec W of Greenwich.",,"EPSG guidance note #7, after Institut de Geomatica; Barcelona.",EPSG,2000-03-07 00:00:00,99.284  99.82  99.64,0
+9618,Geographical and Height Offsets,1,"Lat_T = Lat_S + latitude_offset 
+Lon_T = Lon_S + longitude_offset 
+EllipsoidHeight_T = GravityHeight_S + gravity-related_to_ellipsoid_height_offset.",,This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
+9619,Geographical Offsets,1,"Lat_T = Lat_S + latitude_offset 
+Lon_T = Lon_S + longitude_offset.",,This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
 9620,Norway Offshore Interpolation,0,See information source.,,,"Norwegian Mapping Authority note of 13-Feb-1991 ""Om Transformasjon mellom Geodetiske Datum i Norge"".",EPSG,1999-04-22 00:00:00,,0
 9621,Similarity transformation,0,"The similarity transformation in algebraic form is:
 
@@ -632,7 +632,7 @@ and for longitude  H = 1 if lonhem = E and H = -1 if lonhem = W","Source CRS = W
 Latitude = 35.75255, longitude = -85.20415
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9638,Degree representation conversion: degH to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -659,7 +659,7 @@ adeg = (ideg + imin/60 + sec/3600)","Source CRS = WGS 84 (degH) (CRS code 632664
 Latitude = 35.75255N, longitude = 85.20415W
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9639,Degree representation conversion: Hdeg to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -696,7 +696,7 @@ to       lathem, lat_adeg   and    lonhem, lon_adeg","Source CRS = WGS 84 (Hdeg)
 Latitude = N35.75255, longitude = W85.20415
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9640,Degree representation conversion: DM to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -730,7 +730,7 @@ min = imin + (sec / 60)","Source CRS = WGS 84 (DM) (CRS code 63266408).
 Latitude = 35°45.153’, longitude = -85°12.249’
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9641,Degree representation conversion: DMH to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -754,7 +754,7 @@ min = imin + (sec / 60)","Source CRS = WGS 84 (DMH) (CRS code 63266409).
 Latitude = 35°45.153’ N, longitude = 85°12.249’ W
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9642,Degree representation conversion: HDM to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -780,7 +780,7 @@ Then re-order fields from ideg, min, hem to hem, ideg, min.","Source CRS = WGS 8
 Latitude = N35°45.153’, longitude =  W85°12.249’
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9643,Degree representation conversion: DMS to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -808,7 +808,7 @@ and for longitude  H = 1 if lonhem = E and H = -1 if lonhem = W","Source CRS = W
 Latitude = 35°45’09.18”, longitude = -85°12’14.94”
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9644,Degree representation conversion: HDMS to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -833,7 +833,7 @@ For the reverse calculation from DMSH representation to HDMS representation, for
 Latitude = N35°45’09.18”, longitude =  W85°12’14.94”
 
 Target CRS in DMSH = WGS 84 (CRS code 4326)
-Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,0
+Latitude = 35°45’09.18”N, longitude =  85°12’14.94”W",Applies to 2D and the horizontal component of 3D ellipsoidal  systems.,EPSG guidance note #7.,EPSG,2002-11-22 00:00:00,,1
 9645,General polynomial of degree 2,0,"The simplest of all polynomials is the general polynomial function. In order to avoid problems of numerical instability this type of polynomial should be used after reducing the coordinate values in both the source and the target coordinate reference system to ‘manageable’ numbers, between –10 and +10 at most.  This is achieved by working with offsets relative to a central evaluation point, scaled to the desired number range by applying a scaling factor to the coordinate offsets.
 
 Hence an evaluation point is chosen in the source coordinate reference system (XS0, YS0) and in the target coordinate reference system (XT0, YT0).  Often these two sets of coordinates do not refer to the same physical point but two points are chosen that have the same coordinate values in both the source and the target coordinate reference system.  (When the two points have identical coordinates, these parameters are conveniently eliminated from the formulas, but the general case where the coordinates differ is given here).
@@ -2195,8 +2195,8 @@ then e = 0.081819191
 
 Latitude of natural origin (latO): 53°00'00.000""N =0.925024504  rad
 Longitude of natural origin (lonO): 9°00'00.000""E = 0.157079633 rad
-False easting (FE): 6000000.00 metres
-False northing (FN) 6000000.00 metres
+False easting (FE): 4321000.00 metres
+False northing (FN) 3210000.00 metres
 
 Forward calculation for: 
 Latitude (lat) =  50°00'00.000""N = 0.872664626 rad
@@ -2223,7 +2223,7 @@ C = 0.068140987
 beta' = 0.870458708
 
 Then Latitude = 50°00'00.000""N
-        Longitude = 5°00'00.000""E",This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2001-06-05 00:00:00,,0
+        Longitude = 5°00'00.000""E",This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2003-12-14 00:00:00,2003.35,0
 9821,Lambert Azimuthal Equal Area (Spherical),1,See information source.,See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Azimuthal Equal Area (code 9820) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2001-06-05 00:00:00,,0
 9822,Albers Equal Area,1,"To derive the projected coordinates of a point, geodetic latitude (lat) is converted to authalic latitude (ß). The formulas to convert geodetic latitude and longitude (lat, lon) to Easting (E) and Northing (N) are: 
 Easting (E)     =  EF + (rho . sin(theta)) 

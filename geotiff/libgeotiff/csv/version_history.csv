@@ -22,4 +22,5 @@
 2002-09-05 00:00:00,6.2.1,v6.2 data; purged redundant Visual Basic code behind forms.,6.2.2,6.2
 2002-09-16 00:00:00,6.2.2,v6.2 data; purged further redundant Visual Basic code behind forms.,6.3,6.2.1
 2003-02-26 00:00:00,6.3,Version 6.3 release.,6.4,6.2.2
-2003-10-15 00:00:00,6.4,Version 6.4 release.,,6.3
+2003-10-15 00:00:00,6.4,Version 6.4 release.,6.5,6.3
+2004-01-13 00:00:00,6.5,Version 6.5 release.,,6.4

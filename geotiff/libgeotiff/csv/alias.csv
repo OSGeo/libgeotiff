@@ -221,7 +221,7 @@
 228,Coordinate Reference System,2294,7302,ATS77 / MTM NS zone 4,
 229,Coordinate Reference System,2295,7302,ATS77 / MTM NS zone 5,
 230,Coordinate Reference System,2393,7302,KKJ / Finland zone 3,
-231,Coordinate Reference System,2600,7302,LKS94,This same alias is used for both geographical and projected CRSs.
+231,Coordinate Reference System,2600,7302,LKS94,This alias is also used for geographical and geocentric CRSs.
 232,Coordinate Reference System,3561,7302,Old Hawaiian / SP zone 1,
 233,Coordinate Reference System,3562,7302,Old Hawaiian / SP zone 2,
 234,Coordinate Reference System,3563,7302,Old Hawaiian / SP zone 3,
@@ -2273,4 +2273,28 @@
 2308,Coordinate Reference System,25884,7301,EST97 / TM Baltic93,Alias used in Estonia.
 2309,Coordinate Reference System,3300,7301,EST92,This same alias is used for both geographical and projected CRSs.
 2310,Coordinate Reference System,3301,7301,EST97,This same alias is used for both geographical and projected CRSs.
-2311,Coordinate Reference System,3059,7301,LKS92,This same alias is used for both geographical and projected CRSs.
+2311,Coordinate Reference System,3059,7301,LKS92,This alias is used for both geographical and projected CRSs.
+2312,Coordinate_Operation,1997,7302,DLx to ETRS89 (2),
+2313,Coordinate_Operation,1997,7301,Lisbon 1937 to ETRS89 (2),
+2314,Datum,6668,7302,ED79,
+2315,Datum,6131,7301,Indian (DMA Reduced),
+2316,Coordinate Reference System,4131,7301,Indian (DMA Reduced),
+2317,Coordinate Reference System,61316405,7301,Indian (DMA Reduced) (deg),
+2318,Coordinate Reference System,3176,7301,Indian (DMA Reduced) / TM 106 NE,
+2319,Coordinate Reference System,3148,7301,Indian (DMA Reduced) / UTM zone 48N,
+2320,Coordinate Reference System,3149,7301,Indian (DMA Reduced) / UTM zone 49N,
+2321,Coordinate Reference System,4930,7302,AAD98,
+2322,Coordinate Reference System,4936,7301,ETRF89,
+2323,Coordinate Reference System,4936,7301,EUREF89,
+2324,Coordinate Reference System,4960,7301,National Geodetic System [Argentina],see http://www.igm.gov.ar/posgar.html
+2325,Coordinate Reference System,4978,7311,DGN-95,Datum Geodesi Nasional 1995 (DGN-95) is a synonym for WGS 84 in Indonesia.
+2326,Coordinate Reference System,4950,7301,LKS94 (ETRS89),
+2327,Coordinate Reference System,4931,7302,AAD98,
+2328,Coordinate Reference System,4937,7301,ETRF89,
+2329,Coordinate Reference System,4937,7301,EUREF89,
+2330,Coordinate Reference System,4951,7301,LKS94 (ETRS89),
+2331,Coordinate Reference System,4961,7301,National Geodetic System [Argentina],see http://www.igm.gov.ar/posgar.html
+2332,Coordinate Reference System,4979,7311,DGN-95,Datum Geodesi Nasional 1995 (DGN-95) is a synonym for WGS 84 in Indonesia.
+2333,Datum,6265,7301,Rome 1940,
+2334,Datum,6806,7301,Rome 1940 (Rome),
+2335,Datum,6670,7302,IGM95,

@@ -11,7 +11,7 @@ Detailed information on the EPSG database can be found at:
 
   http://www.petroconsultants.com/products/geodetic.htm
 
-The current version of the EPSG database dumped is 6.2.2.
+The current version of the EPSG database dumped is 6.5.
 
 All EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
 are intended to be "true" csv files.  In particular quotes within quoted

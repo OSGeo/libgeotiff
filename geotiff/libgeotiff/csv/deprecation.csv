@@ -369,3 +369,404 @@
 523,2003-08-14 00:00:00,2003.25,Coordinate_Operation,1933,1964,Incorrect spelling of transformation name.
 524,2003-08-14 00:00:00,2003.23,Coordinate_Operation,1945,1987,Approximation replaced by tfm derived from observed data.
 525,2003-08-14 00:00:00,2003.23,Coordinate_Operation,1944,1988,Approximation replaced by tfm derived from observed data.
+526,2003-11-28 00:00:00,2003.34,Coordinate_Operation,1789,1995,Incorrect spelling of transformation name
+527,2003-12-23 00:00:00,2003.23,Coordinate_Operation,1792,1992,Error in dZ parameter value.
+528,2003-12-23 00:00:00,2003.23,Coordinate_Operation,1790,1997,Error in rX parameter value.
+529,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4340,4930,Name changed to omit CRS kind and thereby reflect that in common usage.
+530,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4344,4932,Name changed to omit CRS kind and thereby reflect that in common usage.
+531,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4342,4934,Name changed to omit CRS kind and thereby reflect that in common usage.
+532,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4346,4936,Name changed to omit CRS kind and thereby reflect that in common usage.
+533,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4348,4938,Name changed to omit CRS kind and thereby reflect that in common usage.
+534,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4350,4940,Name changed to omit CRS kind and thereby reflect that in common usage.
+535,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4352,4942,Name changed to omit CRS kind and thereby reflect that in common usage.
+536,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4387,4944,Name changed to omit CRS kind and thereby reflect that in common usage.
+537,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4385,4919,Name changed to omit CRS kind and thereby reflect that in common usage.
+538,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4330,4910,Name changed to omit CRS kind and thereby reflect that in common usage.
+539,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4331,4911,Name changed to omit CRS kind and thereby reflect that in common usage.
+540,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4332,4912,Name changed to omit CRS kind and thereby reflect that in common usage.
+541,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4333,4913,Name changed to omit CRS kind and thereby reflect that in common usage.
+542,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4334,4914,Name changed to omit CRS kind and thereby reflect that in common usage.
+543,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4335,4915,Name changed to omit CRS kind and thereby reflect that in common usage.
+544,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4336,4916,Name changed to omit CRS kind and thereby reflect that in common usage.
+545,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4337,4917,Name changed to omit CRS kind and thereby reflect that in common usage.
+546,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4338,4918,Name changed to omit CRS kind and thereby reflect that in common usage.
+547,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4354,4946,Name changed to omit CRS kind and thereby reflect that in common usage.
+548,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4389,4948,Name changed to omit CRS kind and thereby reflect that in common usage.
+549,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4356,4950,Name changed to omit CRS kind and thereby reflect that in common usage.
+550,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4358,4952,Name changed to omit CRS kind and thereby reflect that in common usage.
+551,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4360,4954,Name changed to omit CRS kind and thereby reflect that in common usage.
+552,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4362,4956,Name changed to omit CRS kind and thereby reflect that in common usage.
+553,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4364,4958,Name changed to omit CRS kind and thereby reflect that in common usage.
+554,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4366,4960,Name changed to omit CRS kind and thereby reflect that in common usage.
+555,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4368,4962,Name changed to omit CRS kind and thereby reflect that in common usage.
+556,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4370,4964,Name changed to omit CRS kind and thereby reflect that in common usage.
+557,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4372,4966,Name changed to omit CRS kind and thereby reflect that in common usage.
+558,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4382,4968,Name changed to omit CRS kind and thereby reflect that in common usage.
+559,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4374,4970,Name changed to omit CRS kind and thereby reflect that in common usage.
+560,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4384,4972,Name changed to omit CRS kind and thereby reflect that in common usage.
+561,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4376,4974,Name changed to omit CRS kind and thereby reflect that in common usage.
+562,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4378,4976,Name changed to omit CRS kind and thereby reflect that in common usage.
+563,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4328,4978,Name changed to omit CRS kind and thereby reflect that in common usage.
+564,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4380,4980,Name changed to omit CRS kind and thereby reflect that in common usage.
+567,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4388,4949,Name changed to omit CRS kind and thereby reflect that in common usage.
+568,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4386,4945,Name changed to omit CRS kind and thereby reflect that in common usage.
+569,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4383,4973,Name changed to omit CRS kind and thereby reflect that in common usage.
+570,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4381,4969,Name changed to omit CRS kind and thereby reflect that in common usage.
+571,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4379,4981,Name changed to omit CRS kind and thereby reflect that in common usage.
+572,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4377,4977,Name changed to omit CRS kind and thereby reflect that in common usage.
+573,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4375,4975,Name changed to omit CRS kind and thereby reflect that in common usage.
+574,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4373,4971,Name changed to omit CRS kind and thereby reflect that in common usage.
+575,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4371,4967,Name changed to omit CRS kind and thereby reflect that in common usage.
+576,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4369,4965,Name changed to omit CRS kind and thereby reflect that in common usage.
+577,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4367,4963,Name changed to omit CRS kind and thereby reflect that in common usage.
+578,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4365,4961,Name changed to omit CRS kind and thereby reflect that in common usage.
+579,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4363,4959,Name changed to omit CRS kind and thereby reflect that in common usage.
+580,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4361,4957,Name changed to omit CRS kind and thereby reflect that in common usage.
+581,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4359,4955,Name changed to omit CRS kind and thereby reflect that in common usage.
+582,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4357,4953,Name changed to omit CRS kind and thereby reflect that in common usage.
+583,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4355,4951,Name changed to omit CRS kind and reference to ETRS89 and thereby reflect that in common usage.
+584,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4353,4947,Name changed to omit CRS kind and thereby reflect that in common usage.
+585,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4351,4943,Name changed to omit CRS kind and thereby reflect that in common usage.
+586,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4349,4941,Name changed to omit CRS kind and thereby reflect that in common usage.
+587,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4347,4939,Name changed to omit CRS kind and thereby reflect that in common usage.
+588,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4345,4937,Name changed to omit CRS kind and thereby reflect that in common usage.
+589,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4343,4933,Name changed to omit CRS kind and thereby reflect that in common usage.
+590,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4341,4935,Name changed to omit CRS kind and thereby reflect that in common usage.
+591,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4339,4931,Name changed to omit CRS kind and thereby reflect that in common usage.
+592,2004-01-05 00:00:00,2003.38,Coordinate Reference System,4329,4979,Name changed to omit CRS kind and thereby reflect that in common usage.
+593,2004-01-06 00:00:00,2003.38,Coordinate Reference System,4126,4669,Name changed to omit reference to ETRS89.
+594,2004-01-07 00:00:00,2003.39,Coordinate Reference System,69046405,,EPSG no longer supports this system.
+595,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61206405,,EPSG no longer supports this system.
+596,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61216405,,EPSG no longer supports this system.
+597,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61226405,,EPSG no longer supports this system.
+598,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61236405,,EPSG no longer supports this system.
+599,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61246405,,EPSG no longer supports this system.
+600,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61266405,,EPSG no longer supports this system.
+601,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61266413,,EPSG no longer supports this system.
+602,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61276405,,EPSG no longer supports this system.
+603,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61286405,,EPSG no longer supports this system.
+604,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61296405,,EPSG no longer supports this system.
+605,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61306405,,EPSG no longer supports this system.
+606,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61306413,,EPSG no longer supports this system.
+607,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61316405,,EPSG no longer supports this system.
+608,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61326405,,EPSG no longer supports this system.
+609,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61336405,,EPSG no longer supports this system.
+610,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61346405,,EPSG no longer supports this system.
+611,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61356405,,EPSG no longer supports this system.
+612,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61366405,,EPSG no longer supports this system.
+613,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61376405,,EPSG no longer supports this system.
+614,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61386405,,EPSG no longer supports this system.
+615,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61396405,,EPSG no longer supports this system.
+616,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61406405,,EPSG no longer supports this system.
+617,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61406413,,EPSG no longer supports this system.
+618,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61416405,,EPSG no longer supports this system.
+620,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61426405,,EPSG no longer supports this system.
+621,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61436405,,EPSG no longer supports this system.
+622,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61446405,,EPSG no longer supports this system.
+623,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61456405,,EPSG no longer supports this system.
+624,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61466405,,EPSG no longer supports this system.
+625,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61476405,,EPSG no longer supports this system.
+626,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61486405,,EPSG no longer supports this system.
+627,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61486413,,EPSG no longer supports this system.
+628,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61496405,,EPSG no longer supports this system.
+629,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61506405,,EPSG no longer supports this system.
+630,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61516405,,EPSG no longer supports this system.
+631,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61516413,,EPSG no longer supports this system.
+632,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61526405,,EPSG no longer supports this system.
+633,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61526413,,EPSG no longer supports this system.
+634,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61536405,,EPSG no longer supports this system.
+635,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61546405,,EPSG no longer supports this system.
+636,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61556405,,EPSG no longer supports this system.
+637,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61566405,,EPSG no longer supports this system.
+638,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61576405,,EPSG no longer supports this system.
+639,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61586405,,EPSG no longer supports this system.
+640,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61596405,,EPSG no longer supports this system.
+641,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61606405,,EPSG no longer supports this system.
+642,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61616405,,EPSG no longer supports this system.
+643,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61626405,,EPSG no longer supports this system.
+644,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61636405,,EPSG no longer supports this system.
+645,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61636413,,EPSG no longer supports this system.
+646,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61646405,,EPSG no longer supports this system.
+647,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61656405,,EPSG no longer supports this system.
+648,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61666405,,EPSG no longer supports this system.
+649,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61676405,,EPSG no longer supports this system.
+650,2004-01-07 00:00:00,2003.38,Coordinate Reference System,61676413,,EPSG no longer supports this system.
+651,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61686405,,EPSG no longer supports this system.
+652,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61696405,,EPSG no longer supports this system.
+653,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61706405,,EPSG no longer supports this system.
+654,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61706413,,EPSG no longer supports this system.
+655,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61716405,,EPSG no longer supports this system.
+656,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61716413,,EPSG no longer supports this system.
+657,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61736405,,EPSG no longer supports this system.
+658,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61736413,,EPSG no longer supports this system.
+659,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61746405,,EPSG no longer supports this system.
+660,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61756405,,EPSG no longer supports this system.
+661,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61766405,,EPSG no longer supports this system.
+662,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61766413,,EPSG no longer supports this system.
+663,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61786405,,EPSG no longer supports this system.
+664,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61796405,,EPSG no longer supports this system.
+665,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61806405,,EPSG no longer supports this system.
+666,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61806413,,EPSG no longer supports this system.
+667,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61816405,,EPSG no longer supports this system.
+668,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61826405,,EPSG no longer supports this system.
+669,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61836405,,EPSG no longer supports this system.
+670,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61846405,,EPSG no longer supports this system.
+671,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61886405,,EPSG no longer supports this system.
+672,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61896405,,EPSG no longer supports this system.
+673,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61896413,,EPSG no longer supports this system.
+674,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61906405,,EPSG no longer supports this system.
+675,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61906413,,EPSG no longer supports this system.
+676,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61916405,,EPSG no longer supports this system.
+677,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61926405,,EPSG no longer supports this system.
+678,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61936405,,EPSG no longer supports this system.
+679,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61946405,,EPSG no longer supports this system.
+680,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61956405,,EPSG no longer supports this system.
+681,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61966405,,EPSG no longer supports this system.
+682,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61976405,,EPSG no longer supports this system.
+683,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61986405,,EPSG no longer supports this system.
+684,2004-01-07 00:00:00,2003.39,Coordinate Reference System,61996405,,EPSG no longer supports this system.
+685,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62006405,,EPSG no longer supports this system.
+686,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62016405,,EPSG no longer supports this system.
+687,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62026405,,EPSG no longer supports this system.
+688,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62036405,,EPSG no longer supports this system.
+689,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62046405,,EPSG no longer supports this system.
+690,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62056405,,EPSG no longer supports this system.
+691,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62066405,,EPSG no longer supports this system.
+692,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62076405,,EPSG no longer supports this system.
+693,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62086405,,EPSG no longer supports this system.
+694,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62096405,,EPSG no longer supports this system.
+695,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62106405,,EPSG no longer supports this system.
+696,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62116405,,EPSG no longer supports this system.
+697,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62126405,,EPSG no longer supports this system.
+698,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62136405,,EPSG no longer supports this system.
+699,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62146405,,EPSG no longer supports this system.
+700,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62156405,,EPSG no longer supports this system.
+701,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62166405,,EPSG no longer supports this system.
+702,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62186405,,EPSG no longer supports this system.
+703,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62196405,,EPSG no longer supports this system.
+704,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62206405,,EPSG no longer supports this system.
+705,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62216405,,EPSG no longer supports this system.
+706,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62226405,,EPSG no longer supports this system.
+707,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62236405,,EPSG no longer supports this system.
+708,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62246405,,EPSG no longer supports this system.
+709,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62256405,,EPSG no longer supports this system.
+710,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62276405,,EPSG no longer supports this system.
+711,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62296405,,EPSG no longer supports this system.
+713,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62306405,,EPSG no longer supports this system.
+715,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62316405,,EPSG no longer supports this system.
+716,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62326405,,EPSG no longer supports this system.
+717,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62336405,,EPSG no longer supports this system.
+718,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62366405,,EPSG no longer supports this system.
+719,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62376405,,EPSG no longer supports this system.
+720,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62386405,,EPSG no longer supports this system.
+721,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62396405,,EPSG no longer supports this system.
+722,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62406405,,EPSG no longer supports this system.
+723,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62416405,,EPSG no longer supports this system.
+724,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62426405,,EPSG no longer supports this system.
+725,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62436405,,EPSG no longer supports this system.
+726,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62446405,,EPSG no longer supports this system.
+727,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62456405,,EPSG no longer supports this system.
+728,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62466405,,EPSG no longer supports this system.
+729,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62476405,,EPSG no longer supports this system.
+730,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62486405,,EPSG no longer supports this system.
+731,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62496405,,EPSG no longer supports this system.
+732,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62506405,,EPSG no longer supports this system.
+733,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62516405,,EPSG no longer supports this system.
+734,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62526405,,EPSG no longer supports this system.
+735,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62536405,,EPSG no longer supports this system.
+736,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62546405,,EPSG no longer supports this system.
+737,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62556405,,EPSG no longer supports this system.
+738,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62566405,,EPSG no longer supports this system.
+739,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62576405,,EPSG no longer supports this system.
+740,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62586405,,EPSG no longer supports this system.
+741,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62586413,,EPSG no longer supports this system.
+742,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62596405,,EPSG no longer supports this system.
+743,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62616405,,EPSG no longer supports this system.
+744,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62626405,,EPSG no longer supports this system.
+745,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62636405,,EPSG no longer supports this system.
+746,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62646405,,EPSG no longer supports this system.
+747,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62656405,,EPSG no longer supports this system.
+748,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62666405,,EPSG no longer supports this system.
+749,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62676405,,EPSG no longer supports this system.
+750,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62686405,,EPSG no longer supports this system.
+751,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62696405,,EPSG no longer supports this system.
+752,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62706405,,EPSG no longer supports this system.
+753,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62716405,,EPSG no longer supports this system.
+754,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62726405,,EPSG no longer supports this system.
+755,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62736405,,EPSG no longer supports this system.
+756,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62746405,,EPSG no longer supports this system.
+757,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62756405,,EPSG no longer supports this system.
+758,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62766405,,EPSG no longer supports this system.
+759,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62776405,,EPSG no longer supports this system.
+760,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62786405,,EPSG no longer supports this system.
+761,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62796405,,EPSG no longer supports this system.
+762,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62806405,,EPSG no longer supports this system.
+764,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62816405,,EPSG no longer supports this system.
+765,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62826405,,EPSG no longer supports this system.
+766,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62836405,,EPSG no longer supports this system.
+767,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62846405,,EPSG no longer supports this system.
+768,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62836413,,EPSG no longer supports this system.
+769,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62856405,,EPSG no longer supports this system.
+770,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62866405,,EPSG no longer supports this system.
+771,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62886405,,EPSG no longer supports this system.
+772,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62896405,,EPSG no longer supports this system.
+773,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62926405,,EPSG no longer supports this system.
+774,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62936405,,EPSG no longer supports this system.
+775,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62956405,,EPSG no longer supports this system.
+776,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62976405,,EPSG no longer supports this system.
+777,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62986405,,EPSG no longer supports this system.
+778,2004-01-07 00:00:00,2003.39,Coordinate Reference System,62996405,,EPSG no longer supports this system.
+779,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63006405,,EPSG no longer supports this system.
+780,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63016405,,EPSG no longer supports this system.
+781,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63026405,,EPSG no longer supports this system.
+782,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63036405,,EPSG no longer supports this system.
+783,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63046405,,EPSG no longer supports this system.
+784,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63066405,,EPSG no longer supports this system.
+785,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63076405,,EPSG no longer supports this system.
+786,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63086405,,EPSG no longer supports this system.
+787,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63096405,,EPSG no longer supports this system.
+788,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63106405,,EPSG no longer supports this system.
+789,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63116405,,EPSG no longer supports this system.
+790,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63126405,,EPSG no longer supports this system.
+791,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63136405,,EPSG no longer supports this system.
+792,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63146405,,EPSG no longer supports this system.
+793,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63156405,,EPSG no longer supports this system.
+794,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63166405,,EPSG no longer supports this system.
+795,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63176405,,EPSG no longer supports this system.
+796,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63186405,,EPSG no longer supports this system.
+797,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63196405,,EPSG no longer supports this system.
+798,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63226405,,EPSG no longer supports this system.
+799,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63246405,,EPSG no longer supports this system.
+800,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266405,,EPSG no longer supports this system.
+801,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266406,,EPSG no longer supports this system.
+802,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266407,,EPSG no longer supports this system.
+803,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266408,,EPSG no longer supports this system.
+804,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266409,,EPSG no longer supports this system.
+805,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266410,,EPSG no longer supports this system.
+806,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266411,,EPSG no longer supports this system.
+807,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266412,,EPSG no longer supports this system.
+808,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266413,,EPSG no longer supports this system.
+809,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266414,,EPSG no longer supports this system.
+810,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266415,,EPSG no longer supports this system.
+811,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266416,,EPSG no longer supports this system.
+812,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266417,,EPSG no longer supports this system.
+813,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266418,,EPSG no longer supports this system.
+814,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266419,,EPSG no longer supports this system.
+815,2004-01-07 00:00:00,2003.39,Coordinate Reference System,63266420,,EPSG no longer supports this system.
+816,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66006405,,EPSG no longer supports this system.
+817,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66016405,,EPSG no longer supports this system.
+818,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66026405,,EPSG no longer supports this system.
+819,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66036405,,EPSG no longer supports this system.
+820,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66046405,,EPSG no longer supports this system.
+821,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66056405,,EPSG no longer supports this system.
+822,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66066405,,EPSG no longer supports this system.
+823,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66076405,,EPSG no longer supports this system.
+824,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66086405,,EPSG no longer supports this system.
+825,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66096405,,EPSG no longer supports this system.
+826,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66106405,,EPSG no longer supports this system.
+827,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66116405,,EPSG no longer supports this system.
+828,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66126405,,EPSG no longer supports this system.
+829,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66126413,,EPSG no longer supports this system.
+830,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66136405,,EPSG no longer supports this system.
+831,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66146405,,EPSG no longer supports this system.
+832,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66156405,,EPSG no longer supports this system.
+833,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66166405,,EPSG no longer supports this system.
+834,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66186405,,EPSG no longer supports this system.
+835,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66196405,,EPSG no longer supports this system.
+836,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66196413,,EPSG no longer supports this system.
+837,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66206405,,EPSG no longer supports this system.
+838,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66216405,,EPSG no longer supports this system.
+839,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66226405,,EPSG no longer supports this system.
+840,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66236405,,EPSG no longer supports this system.
+841,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66246405,,EPSG no longer supports this system.
+842,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66246413,,EPSG no longer supports this system.
+843,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66256405,,EPSG no longer supports this system.
+844,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66266405,,EPSG no longer supports this system.
+845,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66276405,,EPSG no longer supports this system.
+846,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66276413,,EPSG no longer supports this system.
+847,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66286405,,EPSG no longer supports this system.
+848,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66296405,,EPSG no longer supports this system.
+849,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66306405,,EPSG no longer supports this system.
+850,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66316405,,EPSG no longer supports this system.
+851,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66326405,,EPSG no longer supports this system.
+852,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66336405,,EPSG no longer supports this system.
+853,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66346405,,EPSG no longer supports this system.
+854,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66356405,,EPSG no longer supports this system.
+855,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66366405,,EPSG no longer supports this system.
+856,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66376405,,EPSG no longer supports this system.
+857,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66386405,,EPSG no longer supports this system.
+858,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66396405,,EPSG no longer supports this system.
+859,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66406405,,EPSG no longer supports this system.
+860,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66406413,,EPSG no longer supports this system.
+861,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66416405,,EPSG no longer supports this system.
+862,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66426405,,EPSG no longer supports this system.
+863,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66436405,,EPSG no longer supports this system.
+864,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66446405,,EPSG no longer supports this system.
+865,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66456405,,EPSG no longer supports this system.
+866,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66456413,,EPSG no longer supports this system.
+867,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66466405,,EPSG no longer supports this system.
+868,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66576405,,EPSG no longer supports this system.
+869,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66586405,,EPSG no longer supports this system.
+870,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66596405,,EPSG no longer supports this system.
+871,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66596413,,EPSG no longer supports this system.
+872,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66606405,,EPSG no longer supports this system.
+873,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66616405,,EPSG no longer supports this system.
+874,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66616413,,EPSG no longer supports this system.
+875,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66636405,,EPSG no longer supports this system.
+876,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66646405,,EPSG no longer supports this system.
+877,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66656405,,EPSG no longer supports this system.
+878,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66666405,,EPSG no longer supports this system.
+879,2004-01-07 00:00:00,2003.39,Coordinate Reference System,66676405,,EPSG no longer supports this system.
+881,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68016405,,EPSG no longer supports this system.
+882,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68026405,,EPSG no longer supports this system.
+883,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68036405,,EPSG no longer supports this system.
+884,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68046405,,EPSG no longer supports this system.
+885,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68056405,,EPSG no longer supports this system.
+886,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68066405,,EPSG no longer supports this system.
+887,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68086405,,EPSG no longer supports this system.
+888,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68096405,,EPSG no longer supports this system.
+889,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68136405,,EPSG no longer supports this system.
+890,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68146405,,EPSG no longer supports this system.
+891,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68156405,,EPSG no longer supports this system.
+892,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68186405,,EPSG no longer supports this system.
+893,2004-01-07 00:00:00,2003.39,Coordinate Reference System,68206405,,EPSG no longer supports this system.
+894,2004-01-07 00:00:00,2003.39,Coordinate Reference System,69036405,,EPSG no longer supports this system.
+895,2004-01-07 00:00:00,2004.02,Coordinate_Operation,1961,1999,Error in rZ parameter value.
+896,2004-01-06 00:00:00,2003.39,Coordinate_Operation,101,,No longer supported by EPSG.
+897,2004-01-06 00:00:00,2003.39,Coordinate_Operation,102,,No longer supported by EPSG.
+898,2004-01-06 00:00:00,2003.39,Coordinate_Operation,103,,No longer supported by EPSG.
+899,2004-01-06 00:00:00,2003.39,Coordinate_Operation,104,,No longer supported by EPSG.
+900,2004-01-06 00:00:00,2003.38,Coordinate_Operation,105,,No longer supported by EPSG.
+901,2004-01-06 00:00:00,2003.39,Coordinate_Operation,106,,No longer supported by EPSG.
+902,2004-01-06 00:00:00,2003.39,Coordinate_Operation,107,,No longer supported by EPSG.
+903,2004-01-06 00:00:00,2003.39,Coordinate_Operation,108,,No longer supported by EPSG.
+904,2004-01-08 00:00:00,2003.365,Coordinate Reference System,4819,,System used in degrees with respect to Greenwich (code 4307).
+906,2004-01-08 00:00:00,2003.365,Datum,6819,,System used in degrees with respect to Greenwich (code 6307).
+907,2004-01-08 00:00:00,2004.03,Coordinate_Operation,1770,1095,Error in transformation variant and name.
+908,2004-01-08 00:00:00,2004.03,Coordinate_Operation,1772,1096,Error in transformation variant and name.
+909,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9637,,No longer supported by EPSG.
+910,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9638,,No longer supported by EPSG.
+911,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9639,,No longer supported by EPSG.
+912,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9640,,No longer supported by EPSG.
+913,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9641,,No longer supported by EPSG.
+914,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9642,,No longer supported by EPSG.
+915,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9643,,No longer supported by EPSG.
+916,2004-01-06 00:00:00,2003.39,Coordinate_Operation Method,9644,,No longer supported by EPSG.
+917,2004-01-06 00:00:00,2003.39,Coordinate System,6401,,No longer supported by EPSG.
+918,2004-01-06 00:00:00,2003.39,Coordinate System,6402,,No longer supported by EPSG.
+919,2004-01-06 00:00:00,2003.39,Coordinate System,6406,,No longer supported by EPSG.
+920,2004-01-06 00:00:00,2003.39,Coordinate System,6405,,No longer supported by EPSG.
+921,2004-01-06 00:00:00,2003.39,Coordinate System,6407,,No longer supported by EPSG.
+922,2004-01-06 00:00:00,2003.39,Coordinate System,6408,,No longer supported by EPSG.
+923,2004-01-06 00:00:00,2003.39,Coordinate System,6409,,No longer supported by EPSG.
+924,2004-01-06 00:00:00,2003.39,Coordinate System,6410,,No longer supported by EPSG.
+925,2004-01-06 00:00:00,2003.39,Coordinate System,6411,,No longer supported by EPSG.
+926,2004-01-06 00:00:00,2003.39,Coordinate System,6412,,No longer supported by EPSG.
+927,2004-01-06 00:00:00,2003.39,Coordinate System,6413,,No longer supported by EPSG.
+928,2004-01-06 00:00:00,2003.39,Coordinate System,6414,,No longer supported by EPSG.
+929,2004-01-06 00:00:00,2003.39,Coordinate System,6415,,No longer supported by EPSG.
+930,2004-01-06 00:00:00,2003.39,Coordinate System,6416,,No longer supported by EPSG.
+931,2004-01-06 00:00:00,2003.39,Coordinate System,6417,,No longer supported by EPSG.
+932,2004-01-06 00:00:00,2003.39,Coordinate System,6418,,No longer supported by EPSG.
+933,2004-01-06 00:00:00,2003.39,Coordinate System,6419,,No longer supported by EPSG.
+934,2004-01-06 00:00:00,2003.39,Coordinate System,6420,,No longer supported by EPSG.
