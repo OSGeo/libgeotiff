@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.42  2005/02/17 01:21:38  fwarmerdam
+ * fixed handling of ProjFalseOrigin{Easting,Northing}GeoKey
+ *
  * Revision 1.41  2004/12/01 22:06:42  fwarmerdam
  * bug 698: GTIFGetGCSInfo should not fail on missing pm if pm info not req.
  *
@@ -1345,11 +1348,15 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
     if( !GTIFKeyGet(psGTIF, ProjFalseEastingGeoKey, &dfFalseEasting, 0, 1)
         && !GTIFKeyGet(psGTIF, ProjCenterEastingGeoKey,
+                       &dfFalseEasting, 0, 1) 
+        && !GTIFKeyGet(psGTIF, ProjFalseOriginEastingGeoKey,
                        &dfFalseEasting, 0, 1) )
         dfFalseEasting = 0.0;
         
     if( !GTIFKeyGet(psGTIF, ProjFalseNorthingGeoKey, &dfFalseNorthing,0,1)
         && !GTIFKeyGet(psGTIF, ProjCenterNorthingGeoKey,
+                       &dfFalseNorthing, 0, 1)
+        && !GTIFKeyGet(psGTIF, ProjFalseOriginNorthingGeoKey,
                        &dfFalseNorthing, 0, 1) )
         dfFalseNorthing = 0.0;
         
