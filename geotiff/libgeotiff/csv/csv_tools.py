@@ -30,6 +30,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.5  2004/05/04 00:31:00  warmerda
+# add support for # comment character in first column
+#
 # Revision 1.4  2004/03/20 07:31:41  warmerda
 # split merge_split_lines() into its own function
 #
@@ -115,6 +118,9 @@ class CSVTable:
 
         # Build lines into an indexed hash table. 
         for line in rest_of_lines:
+            if line[0] == '#':
+                continue
+            
             if len(line) > 2:
                 key, rest = string.split(line,',', 1 )
                 key = int(key)
