@@ -1,0 +1,42 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(geotiff.h)
+AC_CONFIG_HEADER(geo_config.h)
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_RANLIB
+
+dnl Checks for libraries.
+AC_CHECK_LIB(m,exp,,,)
+
+if test "$TIFF_HOME" != "" ; then
+  echo Using predefined TIFF_HOME=$TIFF_HOME
+elif test -d ../libtiff ; then
+  TIFF_HOME=`pwd`/../libtiff
+  echo Found local TIFF_HOME=$TIFF_HOME
+fi
+
+if test "$TIFF_HOME" != "" ; then
+  TIFF_LIB=$TIFF_HOME/libtiff.a
+  LIBS="$TIFF_LIB $LIBS"
+
+  TIFF_INC=-I$TIFF_HOME
+  AC_SUBST(TIFF_INC,$TIFF_INC)
+  
+else
+  AC_CHECK_LIB(tiff,TIFFOpen,,
+               AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
+build libgeotiff without libtiff]),m)
+  AC_CHECK_HEADERS(tiffiop.h,,AC_MSG_ERROR("tiffiop.h not found - cannot build libxtiff"))
+fi
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(string.h strings.h stdlib.h)
+
+dnl Checks for library functions.
+AC_C_BIGENDIAN
+
+AC_OUTPUT(Makefile bin/Makefile)
