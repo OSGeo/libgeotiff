@@ -28,6 +28,11 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.5  1999/04/28 20:04:51  warmerda
+ * Added doxygen style documentation.
+ * Use GTIFPCSToMapSys() and related functions to partially normalize
+ * projections when we don't have the CSV files.
+ *
  * Revision 1.4  1999/03/18 21:34:59  geotiff
  * added GTIFDecToDMS
  *
@@ -215,7 +220,7 @@ double GTIFAngleToDD( double dfAngle, int nUOMAngle )
 }
 
 /************************************************************************/
-/*                           GTIFAngleToDD()                            */
+/*                        GTIFAngleStringToDD()                         */
 /*                                                                      */
 /*      Convert an angle in the specified units to decimal degrees.     */
 /************************************************************************/
@@ -1174,10 +1179,123 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
 /************************************************************************/
 /*                            GTIFGetDefn()                             */
-/*                                                                      */
-/*      Try and read, and build a fully normalized set of               */
-/*      information about the files projection.                         */
 /************************************************************************/
+
+/**
+@param psGTIF GeoTIFF information handle as returned by GTIFNew.
+@param psDefn Pointer to an existing GTIFDefn structure.  This structure
+does not need to have been pre-initialized at all.
+
+@return TRUE if the function has been successful, otherwise FALSE.
+
+This function reads the coordinate system definition from a GeoTIFF file,
+and <i>normalizes</i> it into a set of component information using 
+definitions from CSV (Comma Seperated Value ASCII) files derived from 
+EPSG tables.  This function is intended to simplify correct support for
+reading files with defined PCS (Projected Coordinate System) codes that
+wouldn't otherwise be directly known by application software by reducing
+it to the underlying projection method, parameters, datum, ellipsoid, 
+prime meridian and units.<p>
+
+The application should pass a pointer to an existing uninitialized 
+GTIFDefn structure, and GTIFGetDefn() will fill it in.  The fuction 
+currently always returns TRUE but in the future will return FALSE if 
+CSV files are not found.  In any event, all geokeys actually found in the
+file will be copied into the GTIFDefn.  However, if the CSV files aren't
+found codes implied by other codes will not be set properly.<p>
+
+GTIFGetDefn() will not generally work if the EPSG derived CSV files cannot
+be found.  By default a modest attempt will be made to find them, but 
+in general it is necessary for the calling application to override the
+logic to find them.  This can be done by calling the 
+SetCSVFilenameHook() function to
+override the search method based on application knowledge of where they are
+found.<p>
+
+The normalization methodology operates by fetching tags from the GeoTIFF
+file, and then setting all other tags implied by them in the structure.  The
+implied relationships are worked out by reading definitions from the 
+various EPSG derived CSV tables.<p>
+
+For instance, if a PCS (ProjectedCSTypeGeoKey) is found in the GeoTIFF file
+this code is used to lookup a record in the <tt>horiz_cs.csv</tt> CSV
+file.  For example given the PCS 26746 we can find the name
+(NAD27 / California zone VI), the GCS 4257 (NAD27), and the ProjectionCode
+10406 (California CS27 zone VI).  The GCS, and ProjectionCode can in turn
+be looked up in other tables until all the details of units, ellipsoid, 
+prime meridian, datum, projection (LambertConfConic_2SP) and projection
+parameters are established.  A full listgeo dump of a file 
+for this result might look like the following, all based on a single PCS
+value:<p>
+
+<pre>
+% listgeo -norm ~/data/geotiff/pci_eg/spaf27.tif
+Geotiff_Information:
+   Version: 1
+   Key_Revision: 1.0
+   Tagged_Information:
+      ModelTiepointTag (2,3):
+         0                0                0                
+         1577139.71       634349.176       0                
+      ModelPixelScaleTag (1,3):
+         195.509321       198.32184        0                
+      End_Of_Tags.
+   Keyed_Information:
+      GTModelTypeGeoKey (Short,1): ModelTypeProjected
+      GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
+      ProjectedCSTypeGeoKey (Short,1): PCS_NAD27_California_VI
+      End_Of_Keys.
+   End_Of_Geotiff.
+
+PCS = 26746 (NAD27 / California zone VI)
+Projection = 10406 (California CS27 zone VI)
+Projection Method: CT_LambertConfConic_2SP
+   ProjStdParallel1GeoKey: 33.883333
+   ProjStdParallel2GeoKey: 32.766667
+   ProjFalseOriginLatGeoKey: 32.166667
+   ProjFalseOriginLongGeoKey: -116.233333
+   ProjFalseEastingGeoKey: 609601.219202
+   ProjFalseNorthingGeoKey: 0.000000
+GCS: 4267/NAD27
+Datum: 6267/North American Datum 1927
+Ellipsoid: 7008/Clarke 1866 (6378206.40,6356583.80)
+Prime Meridian: 8901/Greenwich (0.000000)
+Projection Linear Units: 9003/US survey foot (0.304801m)
+</pre>
+
+Note that GTIFGetDefn() does not inspect or return the tiepoints and scale.
+This must be handled seperately as it normally would.  It is intended to
+simplify capture and normalization of the coordinate system definition.  
+Note that GTIFGetDefn() also does the following things:
+
+<ol>
+<li> Convert all angular values to decimal degrees.
+<li> Convert all linear values to meters. 
+<li> Return the linear units and conversion to meters for the tiepoints and
+scale (though the tiepoints and scale remain in their native units). 
+<li> When reading projection parameters a variety of differences between
+different GeoTIFF generators are handled, and a normalized set of parameters
+for each projection are always returned.
+</ol>
+
+Code fields in the GTIFDefn are filled with KvUserDefined if there is not
+value to assign.  The parameter lists for each of the underlying projection
+transform methods can be found at the
+<a href="http://www.remotesensing.org/geotiff/proj_list">Projections</a>
+page.  Note that nParms will be set based on the maximum parameter used.
+Some of the parameters may not be used in which case the
+GTIFDefn::ProjParmId[] will
+be zero.  This is done to retain correspondence to the EPSG parameter
+numbering scheme.<p>
+
+The 
+<a href="http://www.remotesensing.org/cgi-bin/cvsweb.cgi/~checkout~/osrs/geotiff/libgeotiff/geotiff_proj4.c">geotiff_proj4.c</a> module distributed with libgeotiff can 
+be used as an example of code that converts a GTIFDefn into another projection
+system.<p>
+
+@see GTIFKeySet(), SetCSVFilenameHook()
+
+*/
 
 int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
@@ -1211,6 +1329,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
         psDefn->ProjParmId[i] = 0;
     }
 
+    psDefn->MapSys = KvUserDefined;
+    psDefn->Zone = 0;
+
 /* -------------------------------------------------------------------- */
 /*	Try to get the overall model type.				*/
 /* -------------------------------------------------------------------- */
@@ -1237,8 +1358,26 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
          * Translate this into useful information.
          */
         GTIFGetPCSInfo( psDefn->PCS, NULL,
-                            &(psDefn->UOMLength), &(nUOMAngle),
-                            &(psDefn->GCS), &(psDefn->ProjCode) );
+                        &(psDefn->UOMLength), &(nUOMAngle),
+                        &(psDefn->GCS), &(psDefn->ProjCode) );
+    }
+
+/* -------------------------------------------------------------------- */
+/*       If we have the PCS code, but didn't find it in the CSV files   */
+/*      (likely because we can't find them) we will try some ``jiffy    */
+/*      rules'' for UTM and state plane.                                */
+/* -------------------------------------------------------------------- */
+    if( psDefn->PCS != KvUserDefined && psDefn->ProjCode == KvUserDefined )
+    {
+        int	nMapSys, nZone;
+        int	nGCS = psDefn->GCS;
+
+        nMapSys = GTIFPCSToMapSys( psDefn->PCS, &nGCS, &nZone );
+        if( nMapSys != KvUserDefined )
+        {
+            psDefn->ProjCode = GTIFMapSysToProj( nMapSys, nZone );
+            psDefn->GCS = nGCS;
+        }
     }
 
 /* -------------------------------------------------------------------- */
@@ -1344,6 +1483,42 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
                    &(psDefn->CTProjection),0,1) == 1)
     {
         GTIFFetchProjParms( psGTIF, psDefn );
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Try to set the zoned map system information.                    */
+/* -------------------------------------------------------------------- */
+    psDefn->MapSys = GTIFProjToMapSys( psDefn->ProjCode, &(psDefn->Zone) );
+
+/* -------------------------------------------------------------------- */
+/*      If this is UTM, and we were unable to extract the projection    */
+/*      parameters from the CSV file, just set them directly now,       */
+/*      since it's pretty easy, and a common case.                      */
+/* -------------------------------------------------------------------- */
+    if( (psDefn->MapSys == MapSys_UTM_North
+         || psDefn->MapSys == MapSys_UTM_South)
+        && psDefn->CTProjection == KvUserDefined )
+    {
+        psDefn->CTProjection = CT_TransverseMercator;
+        psDefn->nParms = 7;
+        psDefn->ProjParmId[0] = ProjNatOriginLatGeoKey;
+        psDefn->ProjParm[0] = 0.0;
+            
+        psDefn->ProjParmId[1] = ProjNatOriginLongGeoKey;
+        psDefn->ProjParm[1] = psDefn->Zone*6 - 183.0;
+        
+        psDefn->ProjParmId[4] = ProjScaleAtNatOriginGeoKey;
+        psDefn->ProjParm[4] = 0.9996;
+        
+        psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
+        psDefn->ProjParm[5] = 500000.0;
+        
+        psDefn->ProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        if( psDefn->MapSys == MapSys_UTM_North )
+            psDefn->ProjParm[6] = 0.0;
+        else
+            psDefn->ProjParm[6] = 10000000.0;
     }
 
     return TRUE;
