@@ -95,6 +95,19 @@ In Geosoft GXF format it is known by the name "*Equidistant Conic"
 indicating that it isn't an EPSG projection.  The GXF definition also
 refers to the origin as the false origin rather than the natural origin.<p>
 
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=eqdc  +lat_1=<i>Latitude of first standard parallel</i>
+              +lat_2=<i>Latitude of second standard parallel</i>
+              +lat_0=<i>Latitude of center</i> 
+              +lon_0=<i>Longitude of center</i>
+              +x_0=<i>False Origin Easting</i>
+              +y_0=<i>False Origin Northing</i>
+</pre>
+</b>
+
 
 
 </body>
