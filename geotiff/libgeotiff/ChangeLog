@@ -1,3 +1,11 @@
+Tue Jan  4 10:59:48 2000  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Fixed inclusion of geoparms in object file list at Derricks
+	  suggestion.
+
+	* Added --with-zip support to configure and makefiles at the 
+	  suggestion of Derrick Brashear.
+
 Fri Dec 10 13:24:21 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Upgraded .csv and .c files to EPSG 4.4.
