@@ -10,6 +10,9 @@
  *  notice accompanies any products derived therefrom.
  *
  * $Log$
+ * Revision 1.7  2001/05/02 16:48:22  warmerda
+ * fixed a couple bugs in delete code
+ *
  * Revision 1.6  2001/05/02 13:54:34  warmerda
  * updated geo_set.c to support deleting tags
  *
@@ -115,7 +118,7 @@ int GTIFKeySet(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)
             if( index < 1 )
                 return 0;
 
-            while( index < gtif->gt_num_keys-1 )
+            while( index < gtif->gt_num_keys )
             {
                 _GTIFmemcpy( gtif->gt_keys + index, 
                              gtif->gt_keys + index + 1, 
@@ -125,6 +128,8 @@ int GTIFKeySet(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)
             }
 
             gtif->gt_num_keys--;
+            gtif->gt_nshorts -= sizeof(KeyEntry)/sizeof(pinfo_t);
+            gtif->gt_keyindex[keyID] = 0;
             gtif->gt_flags |= FLAG_FILE_MODIFIED;
 
             return 1;
