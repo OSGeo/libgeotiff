@@ -21,7 +21,7 @@ static const char *CSVDirName = NULL;
 void Usage()
 
 {
-    printf( "Usage: listgeo [-tfw] [-no_norm] [-t tabledir] [filename]\n" );
+    printf( "Usage: listgeo [-tfw] [-proj4] [-no_norm] [-t tabledir] [filename]\n" );
     exit( 1 );
 }
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     char	*fname = NULL;
     TIFF 	*tif=(TIFF*)0;  /* TIFF-level descriptor */
     GTIF	*gtif=(GTIF*)0; /* GeoKey-level descriptor */
-    int		i, norm_print_flag = 1;
+    int		i, norm_print_flag = 1, proj4_print_flag = 0;
     int		tfw_flag = 0;
 
     /*
@@ -48,6 +48,10 @@ int main(int argc, char *argv[])
         else if( strcmp(argv[i],"-tfw") == 0 )
         {
             tfw_flag = 1;
+        }
+        else if( strcmp(argv[i],"-proj4") == 0 )
+        {
+            proj4_print_flag = 1;
         }
         else if( fname == NULL && argv[i][0] != '-' )
             fname = argv[i];
@@ -100,15 +104,17 @@ int main(int argc, char *argv[])
             printf( "\n" );
             GTIFPrintDefn( &defn, stdout );
 
-#ifdef notdef
-            printf( "PROJ.4 Definition: %s\n", GTIFGetProj4Defn(&defn));
-#endif            
-
+            if( proj4_print_flag )
+            {
+                printf( "\n" );
+                printf( "PROJ.4 Definition: %s\n", GTIFGetProj4Defn(&defn));
+            }
             
             TIFFGetField( tif, TIFFTAG_IMAGEWIDTH, &xsize );
             TIFFGetField( tif, TIFFTAG_IMAGELENGTH, &ysize );
             GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize );
         }
+
     }
 
   Success:
