@@ -1,3 +1,7 @@
+2000-08-22  Frank Warmerdam  <warmerda@cs46980-c>
+
+	* Added libjpeg to configure, and fixed up libjpeg/libz ordering.
+
 2000-08-21  Frank Warmerdam  <warmerda@cs46980-c>
 
 	* Removed the GTIFTiepointTranslate() code because it it badly

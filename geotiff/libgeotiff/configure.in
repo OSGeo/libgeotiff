@@ -18,6 +18,39 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS(string.h strings.h stdlib.h)
  
 dnl
+dnl Add option to include libz in library list for use of libtiff.
+dnl
+AC_ARG_WITH(zip, [  --with-zip=dir          Use ZIP library in directory dir],[ZIP=$withval],[ZIP=yes])
+if test "$ZIP" = "yes" ; then
+  AC_CHECK_LIB(z,inflateInit_,,,-lm)
+  AC_CHECK_HEADERS(zlib.h,,)
+  AC_DEFINE(HAVE_ZIP)
+else
+  if test "$ZIP" != "no" ; then 
+    LIBS="${LIBS} -L${ZIP}/lib -lz"       
+    ZIP_INC="-I${ZIP}/include"            
+    AC_SUBST(ZIP_INC,$ZIP_INC)
+    AC_DEFINE(HAVE_ZIP)
+    echo "Using user supplied libzip directory: "$ZIP
+  fi
+fi
+
+dnl
+dnl Add option to include libjpeg in library list for use of libtiff.
+dnl
+AC_ARG_WITH(zip, [  --with-jpeg=dir         Use JPEG library in directory dir],[JPEG=$withval],[JPEG=yes])
+if test "$JPEG" = "yes" ; then
+  AC_CHECK_LIB(jpeg,jinit_compress_master,,,-lm)
+  AC_DEFINE(HAVE_JPEG)
+else
+  if test "$JPEG" != "no" ; then 
+    LIBS="${LIBS} -L${JPEG} -ljpeg"       
+    AC_DEFINE(HAVE_JPEG)
+    echo "Using user supplied libjpeg directory: "$JPEG
+  fi
+fi
+
+dnl
 dnl Special logic to try and find a user specified libtiff tree.  If not
 dnl available check if the system directories have the library, _and_ the
 dnl required private include files.  Normally these private include files
@@ -69,24 +102,6 @@ if test "$PROJ_HOME" != "" ; then
 else
   AC_CHECK_LIB(proj,pj_init,,,-lm)
   AC_CHECK_HEADERS(projects.h,,)
-fi
-
-dnl
-dnl Add option to include libz in library list for use of libtiff.
-dnl
-AC_ARG_WITH(zip, [  --with-zip=dir          Use ZIP library in directory dir],[ZIP=$withval],[ZIP=yes])
-if test "$ZIP" = "yes" ; then
-  AC_CHECK_LIB(z,inflateInit_,,,-lm)
-  AC_CHECK_HEADERS(zlib.h,,)
-  AC_DEFINE(HAVE_ZIP)
-else
-  if test "$ZIP" != "no" ; then 
-    LIBS="${LIBS} -L${ZIP}/lib -lz"       
-    ZIP_INC="-I${ZIP}/include"            
-    AC_SUBST(ZIP_INC,$ZIP_INC)
-    AC_DEFINE(HAVE_ZIP)
-    echo "Using user supplied libzip directory: "$ZIP
-  fi
 fi
 
 dnl
