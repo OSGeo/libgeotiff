@@ -17,11 +17,21 @@ RANLIB  = @RANLIB@
 INSTALL = @INSTALL@
 RM      = rm -f
 MAKE    = make
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir	= @bindir@
+libdir	= @libdir@
+includedir = @includedir@
+datadir = @datadir@/epsg_csv
 
 BIN=${SRCDIR}/bin
 LIB_XTIFF=${SRCDIR}/libxtiff
 XTIFF=xtiff.o
 XTIFFINC= xtiffio.h xtiffiop.h
+
+GT_INCLUDE_FILES = xtiffio.h xtiffiop.h geotiff.h geotiffio.h geovalues.h \
+	geonames.h geokeys.h geo_tiffp.h geo_config.h geo_keyp.h \
+	geo_normalize.h cpl_serv.h cpl_csv.h 
 
 #
 IPATH   = -I. -I${SRCDIR} @TIFF_INC@ @PROJ_INC@
@@ -166,3 +176,14 @@ dox:
 
 configure:	configure.in aclocal.m4
 	autoconf
+
+install:
+	$(INSTALL) -d $(libdir)
+	$(INSTALL) libgeotiff.a ${libdir}
+	$(INSTALL) -d $(includedir)
+	$(INSTALL) $(GT_INCLUDE_FILES) $(includedir)
+	$(INSTALL) -d $(datadir)
+	$(INSTALL) csv/*.csv $(datadir)
+	$(INSTALL) -d $(bindir)
+	$(INSTALL) bin/listgeo bin/geotifcp $(bindir)
+
