@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.39  2004/06/07 12:57:13  warmerda
+ * fallback to using gdal_datum.csv if datum.csv not found
+ *
  * Revision 1.38  2004/03/19 12:20:40  dron
  * Initialize projection parameters in GTIFFetchProjParms() before using.
  *
@@ -709,6 +712,16 @@ int GTIFGetDatumInfo( int nDatumCode, char ** ppszName, short * pnEllipsoid )
     char	szSearchKey[24];
     int		nEllipsoid;
     const char *pszFilename = CSVFilename( "datum.csv" );
+    FILE       *fp;
+
+/* -------------------------------------------------------------------- */
+/*      If we can't find datum.csv then gdal_datum.csv is an            */
+/*      acceptable fallback.  Mostly this is for GDAL.                  */
+/* -------------------------------------------------------------------- */
+    if( (fp = VSIFOpen(pszFilename,"r")) == NULL )
+        pszFilename = CSVFilename( "gdal_datum.csv" );
+    else
+        VSIFClose( fp );
 
 /* -------------------------------------------------------------------- */
 /*      Search the database for the corresponding datum code.           */
