@@ -4,6 +4,8 @@ config.cache
 config.status
 Makefile
 *.lib
+*.ilk
+*.pdb
 *.exp
 libgeotiff-*.so
 libgeotiff.so*
