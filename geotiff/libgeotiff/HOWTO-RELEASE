@@ -20,11 +20,15 @@
     ftp.remotesensing.org).  Update the README file in that directory to 
     indicate the new current release.
 
- 7) If possible build windows, and linux binaries of listgeo, and geotifcp
-    for distribution.  Unix versions can be built (and potentially put on 
-    ftp site) with a command like "mkbindist.sh 1.1.5 linux -install".
+ 7) Build binary distributions of libgeotiff, and utilities for various
+    Unix platforms (usually Linux, Solaris and IRIX).  This can be accomplished
+    using a command like "mkbindist.sh 1.1.5 linux -install".  The -install
+    option only works if you have scp locally, and a matching account on 
+    remotesensing.org.
 
+ 8) Build binary distribution for Windows.  Normally prepared by downloading
+    the last distribution, and overlaying the most recent .exe files, and 
+    csv files over the ones from the last distribution, and renaming things
+    based on the version number.
 
-
-
-
+ 9) Announce on GeoTIFF mailing list: geotiff@remotesensing.org
