@@ -29,6 +29,10 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  2001/06/28 17:53:20  warmerda
+ * Use EQUAL instead of strcasecmp() to ensure code builds on windows.
+ * As per http://bugzilla.remotesensing.org/show_bug.cgi?id=59
+ *
  * Revision 1.1  1999/12/10 18:00:58  warmerda
  * New
  *
@@ -119,11 +123,11 @@ static int CSVCompare( const char * pszFieldValue, const char * pszTarget,
 {
     if( eCriteria == CC_ExactString )
     {
-        return( strcmp( pszFieldValue, pszTarget ) == 0 );
+        return( !EQUAL( pszFieldValue, pszTarget ) == 0 );
     }
     else if( eCriteria == CC_ApproxString )
     {
-        return( strcasecmp( pszFieldValue, pszTarget ) );
+        return( !EQUAL( pszFieldValue, pszTarget ) );
     }
     else if( eCriteria == CC_Integer )
     {
@@ -176,7 +180,7 @@ int CSVGetFileFieldId( const char * pszFilename, const char * pszFieldName)
     if (!strncmp(csvfile->name,pszFilename,(strlen(pszFilename)-4)))
     {
         for (i = 0; csvfile->rows[0][i]; i++) 
-            if (!strcasecmp(pszFieldName, csvfile->rows[0][i]))
+            if (EQUAL(pszFieldName, csvfile->rows[0][i]))
                 return i;
     }
 
