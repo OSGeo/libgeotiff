@@ -83,6 +83,8 @@
 
 <h3>Notes</h3>
 
+From the EPSG notes:<p>
+<i>
 The difference between 1SP and 2SP formulations is that the initial 
 parameters are different: in 1SP
 you start from the longitude of natural origin and the scale factor,
@@ -91,20 +93,24 @@ latitude of one of the standard parallels (the other is symmetrical
 in relation to the equator). So, the formulas of 2SP are just those
 for 1SP after calculating the scale factor from the absolute value of
 the latitude of the standard parallels and the "e" parameter of the
-datum.<p>
+datum.</i><p>
 
 
 <h3>PROJ.4 Organization</h3>
 
+PROJ.4 does not support a latitude of natural origin other than the equator.   
 <b>
 <pre>
-  +proj=merc  +lat_ts=<i>Latitude of natural origin</i> 
-              +lon_0=<i>Longitude of natural origin</i>
+  +proj=merc  +lon_0=<i>Longitude of natural origin</i>
               +k_0=<i>Scale factor at natural origin</i> 
               +x_0=<i>False Easting</i>
               +y_0=<i>False Northing</i>
 </pre>
 </b>
+
+A more common formulation for Mercator is to drop the +k_0, and instead to
+provide a latitude of true scale using the +lat_ts parameter, which is the 
+latitude at which the scale is 0.<p>
 
 <h3>EPSG Notes</h3>
 
