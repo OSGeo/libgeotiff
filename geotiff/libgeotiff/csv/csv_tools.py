@@ -30,6 +30,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.2  2002/11/29 04:37:48  warmerda
+# upgraded to 'true' csv support
+#
 # Revision 1.1  2002/11/28 16:11:47  warmerda
 # New
 #
@@ -42,19 +45,22 @@ def SplitCSVLine( line ):
     l = len(line)
     cur_token = ''
     in_quotes = 0
-    escapted = 0
+    escaped = 0
     for i in range(l):
         c = line[i]
-        if c == '\\':
-            escaped = 1
-        elif c == '"' and not escaped:
-            in_quotes = not in_quotes
-        elif c == ',' and not in_quotes and not escaped:
+        if c == '"':
+            if escaped == 0 and in_quotes and i < l-1 and line[i+1] == '"':
+                escaped = 1
+            elif escaped == 1:
+                cur_token = cur_token + '"'
+                escaped = 0
+            else:
+                in_quotes = not in_quotes
+        elif c == ',' and not in_quotes:
             tokens.append( cur_token )
             cur_token = ''
         else:
             cur_token = cur_token + c
-            escaped = 0
             
     tokens.append(cur_token)
 
@@ -81,8 +87,21 @@ class CSVTable:
         for field in tokens:
             self.fields.append( string.replace( field, '"', '' ) )
 
-        # Process the rest of the file.
-        rest_of_lines = fd.readlines()
+        # Load the rest of the files, merging records split by newlines
+        # within quotes.
+        raw_lines = fd.readlines()
+        rest_of_lines = []
+        cur_line = ''
+        for line in raw_lines:
+            cur_line = cur_line + line
+            quote_count = string.count(cur_line,'"')
+            if quote_count % 2 == 0:
+                rest_of_lines.append( cur_line )
+                cur_line = ''
+        if cur_line != '':
+            rest_of_lines.append( cur_line )
+
+        # Build lines into an indexed hash table. 
         for line in rest_of_lines:
             if len(line) > 2:
                 key, rest = string.split(line,',', 1 )
@@ -114,17 +133,21 @@ class CSVTable:
         fd.close()
 
     def escape_field( self, in_text ):
-        safe_chars = string.ascii_letters + string.digits + '.-'
+        safe_chars = string.ascii_letters + string.digits + '.- '
         
         out_field = ''
         need_quotes = 0
         for c in in_text:
             if c not in safe_chars:
                 need_quotes = 1
-            if c == '"' or ord(c) == 92:
-                out_field = out_field + chr(92)
+
+            if c == '"':
+                # add extra quote for quotes.
+                out_field = out_field + '"'
+                need_quotes = 1
             
             out_field = out_field + c
+
         if need_quotes:
             out_field = '"' + out_field + '"'
 
@@ -134,6 +157,10 @@ class CSVTable:
         tokens = SplitCSVLine( line )
         if len(tokens) != len(self.fields):
             print 'CSV lines field count does not match'
+            print line
+            print len(tokens)
+            print len(self.fields)
+            print tokens
 
         record = {}
         for i in range(len(self.fields)):
