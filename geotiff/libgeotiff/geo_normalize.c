@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.10  1999/09/15 16:35:15  warmerda
+ * Fixed the fractions of second handling properly in GTIFAngleStringToDD().
+ *
  * Revision 1.9  1999/09/15 14:24:17  warmerda
  * Fixed serious bug in geo_normalize.c with translation of
  * DD.MMSSsss values.  Return value was seriously off if any
@@ -271,7 +274,7 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
                 {
                     szSeconds[1] = pszDecimal[4];
                     szSeconds[2] = '.';
-                    strcpy( szSeconds+3, pszDecimal + 4 );
+                    strcpy( szSeconds+3, pszDecimal + 5 );
                 }
                 else
                 {
