@@ -85,7 +85,7 @@
 #endif
 
 #ifndef EQUAL
-#ifdef WIN32
+#if defined(WIN32) && !defined(__CYGWIN__)
 #  define EQUALN(a,b,n)           (strnicmp(a,b,n)==0)
 #  define EQUAL(a,b)              (stricmp(a,b)==0)
 #else
