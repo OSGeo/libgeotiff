@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.23  2001/02/23 13:49:48  warmerda
+ * Fixed GTIFPrintDefn() to use fprintf( fp ), instead of printf().
+ *
  * Revision 1.22  2000/10/13 14:30:57  warmerda
  * fixed LCC parm order when parameters read directly from geotiff file
  *
@@ -1950,7 +1953,7 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         if( pszName == NULL )
             pszName = "(unknown)";
             
-        printf( "Projection Method: %s\n", pszName );
+        fprintf( fp, "Projection Method: %s\n", pszName );
                 
         for( i = 0; i < psDefn->nParms; i++ )
         {
@@ -1972,14 +1975,14 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
                 else
                     pszAxisName = "?";
                 
-                printf( "   %s: %f (%s)\n",
-                        pszName, psDefn->ProjParm[i],
-                        GTIFDecToDMS( psDefn->ProjParm[i], pszAxisName, 2 ) );
+                fprintf( fp, "   %s: %f (%s)\n",
+                         pszName, psDefn->ProjParm[i],
+                         GTIFDecToDMS( psDefn->ProjParm[i], pszAxisName, 2 ) );
             }
             else if( i == 4 )
-                printf( "   %s: %f\n", pszName, psDefn->ProjParm[i] );
+                fprintf( fp, "   %s: %f\n", pszName, psDefn->ProjParm[i] );
             else
-                printf( "   %s: %f m\n", pszName, psDefn->ProjParm[i] );
+                fprintf( fp, "   %s: %f m\n", pszName, psDefn->ProjParm[i] );
         }
     }
 
@@ -1991,7 +1994,7 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         char	*pszName = "(unknown)";
 
         GTIFGetGCSInfo( psDefn->GCS, &pszName, NULL, NULL, NULL );
-        printf( "GCS: %d/%s\n", psDefn->GCS, pszName );
+        fprintf( fp, "GCS: %d/%s\n", psDefn->GCS, pszName );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2002,7 +2005,7 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         char	*pszName = "(unknown)";
 
         GTIFGetDatumInfo( psDefn->Datum, &pszName, NULL );
-        printf( "Datum: %d/%s\n", psDefn->Datum, pszName );
+        fprintf( fp, "Datum: %d/%s\n", psDefn->Datum, pszName );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2013,9 +2016,9 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         char	*pszName = "(unknown)";
 
         GTIFGetEllipsoidInfo( psDefn->Ellipsoid, &pszName, NULL, NULL );
-        printf( "Ellipsoid: %d/%s (%.2f,%.2f)\n",
-                psDefn->Ellipsoid, pszName,
-                psDefn->SemiMajor, psDefn->SemiMinor );
+        fprintf( fp, "Ellipsoid: %d/%s (%.2f,%.2f)\n",
+                 psDefn->Ellipsoid, pszName,
+                 psDefn->SemiMajor, psDefn->SemiMinor );
     }
     
 /* -------------------------------------------------------------------- */
@@ -2026,10 +2029,10 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         char	*pszName = NULL;
 
         GTIFGetPMInfo( psDefn->PM, &pszName, NULL );
-        printf( "Prime Meridian: %d/%s (%f/%s)\n",
-                psDefn->PM, pszName,
-                psDefn->PMLongToGreenwich,
-                GTIFDecToDMS( psDefn->PMLongToGreenwich, "Long", 2 ) );
+        fprintf( fp, "Prime Meridian: %d/%s (%f/%s)\n",
+                 psDefn->PM, pszName,
+                 psDefn->PMLongToGreenwich,
+                 GTIFDecToDMS( psDefn->PMLongToGreenwich, "Long", 2 ) );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2041,8 +2044,8 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         char	*pszName = NULL;
 
         GTIFGetUOMLengthInfo( psDefn->UOMLength, &pszName, NULL );
-        printf( "Projection Linear Units: %d/%s (%fm)\n",
-                psDefn->UOMLength, pszName, psDefn->UOMLengthInMeters );
+        fprintf( fp, "Projection Linear Units: %d/%s (%fm)\n",
+                 psDefn->UOMLength, pszName, psDefn->UOMLengthInMeters );
     }
 }
 
