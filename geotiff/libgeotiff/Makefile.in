@@ -43,6 +43,7 @@ OBJS    = \
 	geo_set.o \
 	geo_tiffp.o \
 	geo_write.o \
+	geo_trans.o \
 	geo_normalize.o \
 	geotiff_proj4.o \
 	geo_extra.o \
@@ -94,6 +95,9 @@ geo_tiffp.o: ${SRCDIR}/geo_tiffp.c
 geo_write.o: ${SRCDIR}/geo_write.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/geo_write.c
 
+geo_trans.o: ${SRCDIR}/geo_trans.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_trans.c
+
 geo_normalize.o: ${SRCDIR}/geo_normalize.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/geo_normalize.c
 
@@ -114,3 +118,6 @@ clean:
 
 dox:
 	doxygen
+
+configure:	configure.in aclocal.m4
+	autoconf
