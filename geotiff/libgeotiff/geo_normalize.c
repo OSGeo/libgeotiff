@@ -28,6 +28,11 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.20  2000/09/15 18:21:07  warmerda
+ * Fixed order of parameters for LCC 2SP.  When parameters
+ * were read from EPSG CSV files the standard parallels and origin
+ * were mixed up.  This affects alot of state plane zones!
+ *
  * Revision 1.19  2000/06/09 14:05:43  warmerda
  * added default knowledge of NAD27/NAD83/WGS72/WGS84
  *
@@ -1068,10 +1073,10 @@ static int SetGTParmIds( GTIFDefn * psDefn )
         return TRUE;
 
       case CT_LambertConfConic_2SP:
-        psDefn->ProjParmId[0] = ProjStdParallel1GeoKey;
-        psDefn->ProjParmId[1] = ProjStdParallel2GeoKey;
-        psDefn->ProjParmId[2] = ProjFalseOriginLatGeoKey;
-        psDefn->ProjParmId[3] = ProjFalseOriginLongGeoKey;
+        psDefn->ProjParmId[0] = ProjFalseOriginLatGeoKey;
+        psDefn->ProjParmId[1] = ProjFalseOriginLongGeoKey;
+        psDefn->ProjParmId[2] = ProjStdParallel1GeoKey;
+        psDefn->ProjParmId[3] = ProjStdParallel2GeoKey;
         psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
         psDefn->ProjParmId[6] = ProjFalseNorthingGeoKey;
         return TRUE;

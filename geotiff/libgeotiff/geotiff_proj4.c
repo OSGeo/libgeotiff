@@ -29,6 +29,11 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.12  2000/09/15 18:21:07  warmerda
+ * Fixed order of parameters for LCC 2SP.  When parameters
+ * were read from EPSG CSV files the standard parallels and origin
+ * were mixed up.  This affects alot of state plane zones!
+ *
  * Revision 1.11  2000/06/06 17:39:45  warmerda
  * Modify to work with projUV version of library.
  *
@@ -359,7 +364,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     else if( psDefn->CTProjection == CT_LambertConfConic_2SP )
     {
         sprintf( szProjection+strlen(szProjection),
-                 "+proj=lcc +lat_1=%.9f +lat_2=%.9f +lat_0=%.9f +lon_0=%.9f"
+                 "+proj=lcc +lat_0=%.9f +lon_0=%.9f +lat_1=%.9f +lat_2=%.9f "
                  " +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
