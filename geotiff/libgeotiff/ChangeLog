@@ -1,3 +1,8 @@
+Tue Sep  7 15:57:47 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Fixed count/tiepoint_count mixup in GTIFPCSToImage().  Thanks
+	  to Eric Brown of Universal Systems.
+
 Mon Jul 12 12:56:51 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Made scale a parameter of CT_Stereographic.
