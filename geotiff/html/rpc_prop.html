@@ -268,8 +268,8 @@ that the ERR_BIAS and ERR_RAND fields in GeoTIFF should be the same as
 the values in the NITF; however, a more detailed explanation of the
 meaning, and rules for populating these fields would be very desirable.<p>
 
-If no ERR_BIAS or ERR_RAND values are available, the special value of 
--1.0 will be used.  This should be interpreted as "no error estimates 
+If no ERR_BIAS or ERR_RAND values are available, the special value of -999.0 
+will be used.  Any negative value should be interpreted as "no error estimates 
 available". <p>
 
 <h2>Outstanding Issues</h2>
