@@ -20,7 +20,7 @@ INSTALL	= @INSTALL@
 PROGS=${BIN}/makegeo ${BIN}/listgeo ${BIN}/geotifcp
 
 #
-IPATH	= -I. -I${TOP} -I${GEOTIFFDIR}  -I${TIFFDIR}
+IPATH	= -I. -I${GEOTIFFDIR} @TIFF_INC@
 #
 
 COPTS	= @CFLAGS@
