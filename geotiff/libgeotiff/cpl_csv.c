@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.8  2000/08/22 04:33:33  warmerda
+ * added support for /usr/local/shared/epsg_csv
+ *
  * Revision 1.7  1999/12/03 14:42:59  warmerda
  * Passing a NULL filename into CSVAccess() now results in a graceful
  * failure to open the file.
@@ -537,8 +540,7 @@ const char *CSVGetField( const char * pszFilename,
 /************************************************************************/
 /*                            CSVFilename()                             */
 /*                                                                      */
-/*      Return the full path to a particular CSV file.  This will       */
-/*      eventually be something the application can override.           */
+/*      Return the full path to a particular CSV file.			*/
 /************************************************************************/
 
 static const char *(*pfnCSVFilenameHook)(const char *) = NULL;
@@ -550,10 +552,23 @@ const char * CSVFilename( const char *pszBasename )
 
     if( pfnCSVFilenameHook == NULL )
     {
-        if( getenv("GEOTIFF_CSV") == NULL )
-            sprintf( szPath, "csv/%s", pszBasename );
-        else
+        FILE	*fp = NULL;
+
+        if( getenv("GEOTIFF_CSV") != NULL )
+        {
             sprintf( szPath, "%s/%s", getenv("GEOTIFF_CSV"), pszBasename );
+        }
+        else if( (fp = fopen( "csv/horiz_cs.csv", "rt" )) != NULL )
+        {
+            sprintf( szPath, "csv/%s", pszBasename );
+        }
+        else
+        {
+            sprintf( szPath, "/usr/local/share/epsg_csv/%s", pszBasename );
+        }
+
+        if( fp != NULL )
+            fclose( fp );
         
         return( szPath );
     }
