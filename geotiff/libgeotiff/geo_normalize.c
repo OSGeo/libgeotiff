@@ -28,6 +28,10 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.15  1999/12/10 19:39:26  warmerda
+ * Fixed bug setting the false northing for files with
+ * ProjCenterNorthingGeoKey set in GTIFGetDefn().
+ *
  * Revision 1.14  1999/09/17 14:58:37  warmerda
  * Added ProjRectifiedGridAngleGeoKey(3096) and support for it's
  * use with Oblique Mercator in geo_normalize.c.
@@ -969,7 +973,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         
     if( !GTIFKeyGet(psGTIF, ProjFalseNorthingGeoKey, &dfFalseNorthing,0,1)
         && !GTIFKeyGet(psGTIF, ProjCenterNorthingGeoKey,
-                       &dfFalseEasting, 0, 1) )
+                       &dfFalseNorthing, 0, 1) )
         dfFalseNorthing = 0.0;
         
     switch( psDefn->CTProjection )
