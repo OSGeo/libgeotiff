@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  1999/03/17 20:42:40  geotiff
+ * Dont export the CSV functions from the DLL
+ *
  * Revision 1.1  1999/03/09 15:57:04  geotiff
  * New
  *
@@ -50,21 +53,23 @@ typedef enum {
     CC_Integer
 } CSVCompareCriteria;
 
-const char CPL_DLL *CSVFilename( const char * );
+const char  *CSVFilename( const char * );
 
-char CPL_DLL **CSVReadParseLine( FILE * );
-char CPL_DLL **CSVScanLines( FILE *, int, const char *, CSVCompareCriteria );
-char CPL_DLL **CSVScanFile( const char *, int, const char *,
+char  **CSVReadParseLine( FILE * );
+char  **CSVScanLines( FILE *, int, const char *, CSVCompareCriteria );
+char  **CSVScanFile( const char *, int, const char *,
                             CSVCompareCriteria );
-char CPL_DLL **CSVScanFileByName( const char *, const char *, const char *,
+char  **CSVScanFileByName( const char *, const char *, const char *,
                                   CSVCompareCriteria );
-int CPL_DLL CSVGetFieldId( FILE *, const char * );
-int CPL_DLL CSVGetFileFieldId( const char *, const char * );
+int  CSVGetFieldId( FILE *, const char * );
+int  CSVGetFileFieldId( const char *, const char * );
 
-void CPL_DLL CSVDeaccess( const char * );
+void  CSVDeaccess( const char * );
 
-const char CPL_DLL *CSVGetField( const char *, const char *, const char *,
+const char  *CSVGetField( const char *, const char *, const char *,
                                  CSVCompareCriteria, const char * );
+
+void CPL_DLL SetCSVFilenameHook( const char *(*)(const char *) );
 
 CPL_C_END
 
