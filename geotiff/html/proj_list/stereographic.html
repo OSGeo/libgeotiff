@@ -49,6 +49,13 @@
 <td>
 
 <tr>
+<td>Scale factor at natural origin
+<td>5
+<td>ScaleAtNatOrigin
+<td>Unitless
+<td>Defaults to 1.0 when not available.
+
+<tr>
 <td>False Easting
 <td>6
 <td>FalseEasting
@@ -68,8 +75,12 @@
 
 I don't know whether this is really fundamentally different than
 Oblique Stereographic.  See <a href="oblique_stereographic.html">Oblique
-Stereographic</a> for more information.  The GeoTIFF formula doesn't
-include a scale, but I don't see why it shouldn't.<p>
+Stereographic</a> for more information.<p>
+
+The GeoTIFF formula doesn't
+include a scale, but I don't see why it shouldn't.
+Mapinfo, and GCTP seem to include a scale, so I am adding it to the
+official formulation even though GeoTIFF hasn't normally included it. <p>
 
 <h3>PROJ.4 Organization</h3>
 
