@@ -101,5 +101,8 @@ cpl_csv.o: ${SRCDIR}/cpl_csv.c
 cpl_serv.o: ${SRCDIR}/cpl_serv.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/cpl_serv.c
 
+geotiff_proj4.o: ${SRCDIR}/geotiff_proj4.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geotiff_proj4.c
+
 clean:
 	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out
