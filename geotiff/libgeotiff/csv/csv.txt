@@ -1,0 +1,166 @@
+-------------------------------------------------------------------
+CSV file format
+-------------------------------------------------------------------
+
+The CSV format is supposedly one of the most 'standard' interchange
+formats between data based programs.  Almost all data based applications
+seem to be able to export CSV formatted data, and almost all have
+a way to import it.
+
+However, the format is anything BUT standard.  There are quite a
+few variations that are very important to understand.
+
+-------------------------------------------------------------------
+DATA ENCAPSULATION
+-------------------------------------------------------------------
+Data is either 'naked' (without encapsulating doublequotes), or quoted.
+Quoted data is used to protect imbedded carriage returns, imbedded
+commas, odd characters and of course, the quote character itself.  
+Quotes that are 'data' are doubled up.  
+
+-------------------------------------------------------------------
+UNQUOTED ENCAPSULATION
+-------------------------------------------------------------------
+Data that does NOT contain newlines, carriage returns, comma's or
+quotes (or ASCII data below 0x20 or above 0x7f) stands on its
+own:
+
+  data <1234> followed by <The Big Ol' Bear>  
+
+becomes:
+
+  1234,The Big Ol' Bear{CR}
+
+
+-------------------------------------------------------------------
+QUOTED ENCAPSULATION
+-------------------------------------------------------------------
+Data that contains double quotes, commas, returns or other odd
+characters outside the 7-bit ASCII character set is quoted.  
+
+  data <1234 Harrington St, Northwest> followed by <Suite 17 Stop 3>
+
+becomes:
+
+  "1234 Harrington St, Northwest",Suite 17 Stop 3
+
+Note that the second chunk of data does not have the protection
+of the quotes: it doesn't need it, having no odd characters within.
+   <1234 West "Q" St.>
+
+
+-------------------------------------------------------------------
+QUOTED ENCAPSULATION OF DOUBLE QUOTE
+-------------------------------------------------------------------
+Data that contains double quotes is a special case, and oddly 
+interpreted by all nature of commercial programs.  Consider the 
+data:
+
+   <1234 West "Q" St.>
+
+It should become:
+
+   "1234 West ""Q"" St."	<<< RIGHT WAY
+
+Where each internal DATA quote is doubled up.  However, some 
+programs (such as Paradox) don't do so nicely.  They would represent
+the data as:
+
+   "1234 West "Q" St.",....	<<< WRONG WAY
+
+Where they feel that a doublequote with no comma following is part of
+the data. This turns out to be rather bogus, as it can be painful under
+various common circumstances (e.g.:
+
+   <1234 West "Q" St. (for "Quantum", or "Quality")>
+
+becomes
+
+   "1234 West "Q" St. (for "Quantum", or "Quality")",
+
+Which of course is entirely ambiguous as to the placement of data in 
+the field.
+
+
+-------------------------------------------------------------------
+QUOTED ENCAPSULATION OF CARRIAGE RETURNS
+-------------------------------------------------------------------
+Often times data has imbedded carriage returns.  YOU MUST MAKE SURE
+YOUR ROUTES HANDLE THIS CORRECTLY, as it is a VERY common case:
+
+   <Thomas Aquinus, Esq.{CR}
+    Prosecutor for the Pope{CR}
+    St. Luke's Dungeon{CR}
+    Somewhere in Italy>
+
+becomes
+
+   "Thomas Aquinus, Esq.{CR}
+    Prosecutor for the Pope{CR}
+    St. Luke's Dungeon{CR}
+    Somewhere in Italy"
+
+What makes this so blasted difficult is that at the 'outer level', 
+most CSV parsing code is trying to evaluate LINES, not fields. However,
+the imbedded CR louses up the logic.  OPTIMALLY, you should code 
+your CSV reader to have a 'field-by-field' read logic.  If this is
+impossible (or awkward, as in PERL), you may want to have conditional
+logic looking for a trailing and unmatched doublequote.
+
+-------------------------------------------------------------------
+EMPTY DATA CONVENTIONS
+-------------------------------------------------------------------
+When data is 'empty' (either the empty string, or the numeric
+value '0', or FALSE if boolean), you have the option of either
+writing out:
+
+   ""
+
+or writing nothing at all.  Therefore, it is common to see CSV files
+that look like both of these examples:
+
+  "","Thos.","","Aquinus","Esq.","Pros.forPope","","Somewhere..."
+  ,Thos.,,Aquinus,Esq,Pros.forPope,,Somewhere...
+
+They're both equivalent, and do not violate the spirit of the CSV
+standard.
+
+-------------------------------------------------------------------
+REMOVING PADDING
+-------------------------------------------------------------------
+Though not strictly required, it is conventional to remove empty 
+space padding before and after data.  Likewise, it is conventional
+to remove empty padding when READING data [on the off chance that
+someone forgot to remove it when writing the data out!]
+
+
+
+-------------------------------------------------------------------
+THE FIELD-DESCRIPTION HEADER
+-------------------------------------------------------------------
+Surprisingly there is absolutly no part of the standard that either
+calls for the first record to consist of the names of the fields
+in the data following, or, that identifies the first record uniquely
+as such should it exist!  
+
+However, it is both common AND EXPECTED that the first line should
+consist of the names of the fields for the records that follow.
+
+
+-------------------------------------------------------------------
+VARIABLY FORMATTED CSV's
+-------------------------------------------------------------------
+Some programmers have abandonded the very precept of a regularly
+formatted CSV file and have added their own twists.  Groupwise
+CSV export is one of these programs.  They "enhance" the CSV
+output format so that the first field of the record determines
+the structure of the rest of the record.  This is hopelessly 
+hard to cope with.  DON'T DO IT IF YOU WANT TO REMAIN ALIVE.
+
+
+This document was created in a fit of disgust with the complete
+lack of CSV documentation found on the Internet.
+
+Author: Robert J. Lynch
+rlynch@lynchmarks.com
+Copyright (c) 2001
