@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.3  2004/04/27 20:42:57  warmerda
+# fixed up C version
+#
 # Revision 1.2  2004/03/20 07:31:16  warmerda
 # improved filename handling
 #
@@ -75,7 +78,7 @@ def convert_csv_table( csv_filename ):
         if i != 0:
             c_fd.write(' ,')
         c_fd.write( '%s_row_%d' % (varname, i) )
-    c_fd.write( '};\n' )
+    c_fd.write( ',NULL};\n' )
     c_fd = None
 
 ###############################################################################
