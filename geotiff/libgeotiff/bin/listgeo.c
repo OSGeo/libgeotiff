@@ -9,15 +9,18 @@
 #include "geotiff.h"
 #include "xtiffio.h"
 #include "geo_normalize.h"
+#include "geovalues.h"
+#include "tiffio.h"
 #include <stdio.h>
 
+static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int );
 static const char *CSVFileOverride( const char * );
 static const char *CSVDirName = NULL;
 
 void Usage()
 
 {
-    printf( "Usage: listgeo [-norm] [-t tabledir] [filename]\n" );
+    printf( "Usage: listgeo [-no_norm] [-t tabledir] [filename]\n" );
     exit( 1 );
 }
 
@@ -26,15 +29,15 @@ int main(int argc, char *argv[])
     char	*fname = NULL;
     TIFF 	*tif=(TIFF*)0;  /* TIFF-level descriptor */
     GTIF	*gtif=(GTIF*)0; /* GeoKey-level descriptor */
-    int		i, norm_print_flag = 0;
+    int		i, norm_print_flag = 1;
 
     /*
      * Handle command line options.
      */
     for( i = 1; i < argc; i++ )
     {
-        if( strcmp(argv[i],"-norm") == 0 )
-            norm_print_flag = 1;
+        if( strcmp(argv[i],"-no_norm") == 0 )
+            norm_print_flag = 0;
         else if( strcmp(argv[i],"-t") == 0 )
         {
             CSVDirName = argv[++i];
@@ -79,13 +82,19 @@ int main(int argc, char *argv[])
         
         if( GTIFGetDefn( gtif, &defn ) )
         {
+            int		xsize, ysize;
+            
             printf( "\n" );
             GTIFPrintDefn( &defn, stdout );
 
 #ifdef notdef
-            printf( "PROJ.4 String = `%s'\n",
-                    GTIFGetProj4Defn( &sDefn ) );
-#endif
+            printf( "PROJ.4 Definition: %s\n", GTIFGetProj4Defn(&defn));
+#endif            
+
+            
+            TIFFGetField( tif, TIFFTAG_IMAGEWIDTH, &xsize );
+            TIFFGetField( tif, TIFFTAG_IMAGELENGTH, &ysize );
+            GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize );
         }
     }
     
@@ -112,4 +121,56 @@ static const char *CSVFileOverride( const char * pszInput )
 #endif    
 
     return( szPath );
+}
+
+/*
+ * Report the file(s) corner coordinates in projected coordinates, and
+ * if possible lat/long.
+ */
+
+static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
+                              const char * corner_name,
+                              double x, double y )
+
+{
+    /* Try to transform the coordinate into PCS space */
+    if( !GTIFImageToPCS( gtif, &x, &y ) )
+        return FALSE;
+    
+    fprintf( fp_out, "%-13s ", corner_name );
+
+    if( defn->Model == ModelTypeGeographic )
+    {
+        fprintf( fp_out, "(%s,", GTIFDecToDMS( x, "Long", 2 ) );
+        fprintf( fp_out, "%s)\n", GTIFDecToDMS( y, "Lat", 2 ) );
+        return TRUE;
+    }
+
+    fprintf( fp_out, "(%11.3f,%11.3f)", x, y );
+
+    if( GTIFProj4ToLatLong( defn, 1, &x, &y ) )
+    {
+        fprintf( fp_out, "  (%s,", GTIFDecToDMS( x, "Long", 2 ) );
+        fprintf( fp_out, "%s)", GTIFDecToDMS( y, "Lat", 2 ) );
+    }
+
+    fprintf( fp_out, "\n" );
+    return TRUE;
+}
+
+static void GTIFPrintCorners( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
+                              int xsize, int ysize )
+
+{
+    printf( "\nCorner Coordinates:\n" );
+    if( !GTIFReportACorner( gtif, defn, fp_out,
+                            "Upper Left", 0.0, 0.0 ) )
+    {
+        printf( " ... unable to transform points between pixel/line and PCS space\n" );
+        return;
+    }
+
+    GTIFReportACorner( gtif, defn, fp_out, "Lower Left", 0.0, ysize );
+    GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xsize, 0.0 );
+    GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xsize, ysize );
 }
