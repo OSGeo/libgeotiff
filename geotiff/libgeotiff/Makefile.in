@@ -49,7 +49,7 @@ IPATH   = -I. -I${SRCDIR} @TIFF_INC@ @PROJ_INC@
 #
 CONF_LIBRARY=\
 	${NULL}
-COPTS	= @CFLAGS@
+COPTS	= @CFLAGS@ -DCSV_DATA_DIR=\"$(datadir)\"
 CFLAGS  = ${COPTS} ${IPATH} ${CONF_LIBRARY}
 #
 SRCS    = \
@@ -96,7 +96,7 @@ CSV_INCODE_OBJS = \
 CSV_FILE_OBJS = \
 	cpl_csv.o
 
-# @CSV_SOURCE@ can be either $(CSV_FILE_OBJS) or $(CSV_INCODE_OBJS)
+# CSV_SOURCE can be either $(CSV_FILE_OBJS) or $(CSV_INCODE_OBJS)
 OBJS  =	$(CORE_OBJS) @CSV_SOURCE@
 
 TARGETS = libgeotiff.a
@@ -178,14 +178,14 @@ dist-clean: clean
 	rm -rf config.* geo_config.h
 
 config.status:	configure
-	configure
+	./configure
 
 geo_config.h: geo_config.h.in config.status
-	config.status
+	./config.status
 	touch geo_config.h
 
 Makefile:	Makefile.in config.status
-	config.status
+	./config.status
 
 dox:
 	doxygen
