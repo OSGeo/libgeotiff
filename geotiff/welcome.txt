@@ -1,0 +1,80 @@
+GeoTIFF Information:
+
+FTP Archive:
+------------
+This is an anonymous ftp archive available for use of the 
+GeoTIFF mailing list; located at:
+
+  ftp://mtritter.jpl.nasa.gov/pub/tiff/geotiff/
+
+and is mirrored at:
+
+  ftp://ftpmcmc.cr.usgs.gov/release/geotiff/
+
+and contains proposals, documentation, and software 
+implementations.
+
+The server is visible worldwide, but if you don't have FTP, 
+you can also access it by e-mail, Gopher or WWW; the gopher-path is:
+
+Type=1
+Port=70
+Path=1ftp:pub:tiff:geotiff:
+Host=mtritter.jpl.nasa.gov
+
+or if you are using e-mail, just send the above four lines
+to gopher@calvin.edu, and it will access the directory and mail a
+listing of its contents back to you. 
+
+Via WWW (World-Wide-Web) the URL for this Archive is:
+
+  gopher://mtritter.jpl.nasa.gov/11ftp:pub:tiff:geotiff:
+
+When all else fails, contact me at ndr@tazboy.jpl.nasa.gov.
+
+GeoTIFF Mailing list:
+---------------------
+
+Subscription:
+------------
+To get on this list, send email to
+
+    geotiff-request@tazboy.jpl.nasa.gov
+
+with the body of the message reading:
+
+    subscribe geotiff  Your-Name-Here
+
+To unsubscribe send the message:
+
+    unsubscribe geotiff
+
+
+Posting
+-------
+To post to the list send e-mail to
+
+     geotiff-list@tazboy.jpl.nasa.gov
+
+
+Mailing-List Archive:
+---------------------
+The GeoTIFF mailing list messages are automatically archived.
+To access and search these lists, you may send e-mail to 
+geotiff-request@tazboy.jpl.nasa.gov, with the message:
+
+index geotiff
+help
+
+and you will receive back a list of the geotiff archive, and help
+on how to search, download, etc.
+
+WWW GeoTIFF Web Page:
+----------------------------
+    http://www-mipl.jpl.nasa.gov/cartlab/geotiff/geotiff.html
+
+This contains a hypertext version of the GeoTIFF spec.
+
+
+  --Niles Ritter (administrator, geotiff-list).
+

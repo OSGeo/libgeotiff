@@ -1,0 +1,39 @@
+Revision History:
+1 June 1995:
+--------------
+  Original Document.
+  
+15 June 1995:
+--------------
+  Changed line:
+
+	<C0262,NAD27 / North Carolina ,,United States - North Carolina,G177,NAD27,P0299,North Carolina CS83,North Carolina ,,,27-Jan-95
+	
+	>C0262,NAD83 / North Carolina ,,United States - North Carolina,G178,NAD83,P0299,North Carolina CS83,North Carolina ,,,27-Jan-95
+
+End of Changes.
+
+20 June 1995:
+--------------
+  Changed line:
+  
+  <C0086,OSGB 1936 / British National Grid,...P0489
+  
+  >C0086,OSGB 1936 / British National Grid,...P0488
+  
+
+13 July 1995
+----------------
+  EPSG Version 2.1:
+  New coding system from EPSG.
+  errata stored in separate file.
+
+21 July 1995
+----------------
+  EPSG Version 2.1.1:
+  Minor typos corrected in PROJCS.CSV.
+  
+8 August 1995
+-------------  
+  EPSG Version 2.1.2:
+  More minor typos corrected in PROJCS.CSV.
