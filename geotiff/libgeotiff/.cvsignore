@@ -6,3 +6,4 @@ Makefile
 *.lib
 *.exp
 libgeotiff-*.so
+libgeotiff.so*
