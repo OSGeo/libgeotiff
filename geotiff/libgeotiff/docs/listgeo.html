@@ -8,7 +8,7 @@
 <h1>listgeo - Dump GeoTIFF Metadata</h1>
 
 <pre><b>
-Usage: listgeo [-tfw] [-no_norm] [-t tabledir] inputfile
+Usage: listgeo [-tfw] [-no_norm] [-proj4] [-t tabledir] inputfile
 </b></pre>
 
 The program listgeo takes a GeoTIFF file as input and dumps to
@@ -23,6 +23,9 @@ exists already it will be overwritten.<p>
 
 The <b>-no_norm</b> flag will supress reporting of normalized parameters, and
 reporting of corner points. <p>
+
+The <b>-proj4</b> flag forces listgeo to report the PROJ.4 projection
+string it uses for reprojecting corners to lat/long.<p>
 
 The <b>-t tabledir</b> flag overrides the programs concept of how to file the
 EPSG CSV files, causing it to look in directory "tabledir".  <p>
