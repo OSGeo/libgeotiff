@@ -1,3 +1,8 @@
+2001-07-09  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* cpl_serv.c: Another bug with pszRLBuffer being freed but not set
+	to NULL.  
+
 2001-06-28  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* cpl_csv_incode.c: Use EQUAL instead of strcasecmp() to ensure code 
