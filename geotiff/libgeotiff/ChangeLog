@@ -1,3 +1,9 @@
+2004-12-01  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: GTIFGetGCSInfo() changed to work even if an 
+	illegal PM code encountered ... as long as pm info not requested.
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=698
+
 2004-11-21  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* configure.in: bug 649 - add LDFLAGS into LIBS, and ensure we

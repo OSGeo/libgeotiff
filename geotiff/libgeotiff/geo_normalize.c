@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.41  2004/12/01 22:06:42  fwarmerdam
+ * bug 698: GTIFGetGCSInfo should not fail on missing pm if pm info not req.
+ *
  * Revision 1.40  2004/07/09 17:27:37  warmerda
  * Added 9122 as an alias for simple degrees.
  *
@@ -472,21 +475,23 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
         return TRUE;
     }
 
-/* -------------------------------------------------------------------- */
-/*      Get the PM.                                                     */
-/* -------------------------------------------------------------------- */
     if( pnDatum != NULL )
         *pnDatum = (short) nDatum;
     
-    nPM = atoi(CSVGetField( CSVFilename("gcs.csv" ),
+/* -------------------------------------------------------------------- */
+/*      Get the PM.                                                     */
+/* -------------------------------------------------------------------- */
+    if( pnPM != NULL )
+    {
+        nPM = atoi(CSVGetField( CSVFilename("gcs.csv" ),
                             "COORD_REF_SYS_CODE", szSearchKey, CC_Integer,
                             "PRIME_MERIDIAN_CODE" ) );
 
-    if( nPM < 1 )
-        return FALSE;
+        if( nPM < 1 )
+            return FALSE;
 
-    if( pnPM != NULL )
         *pnPM = (short) nPM;
+    }
 
 /* -------------------------------------------------------------------- */
 /*      Get the angular units.                                          */
