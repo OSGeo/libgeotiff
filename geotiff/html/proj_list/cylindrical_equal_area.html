@@ -1,0 +1,118 @@
+<head>
+<title>Cylindrical Equal Area</title>
+</head>
+<body>
+
+<h1>Cylindrical Equal Area</h1>
+
+<table border>
+
+<td>Name
+<td>Cylindrical Equal Area
+<tr>
+
+<td>Alias
+<td>Normal Authalic Cylindrical (FME)
+<tr>
+
+<td>Alias
+<td>Lambert Cylindrical Equal Area
+<tr>
+
+<td>Alias
+<td>Behrmann (standard parallel = 30)
+<tr>
+
+<td>Alias
+<td>Gall Orthographic (standard parallel = 45)
+<tr>
+
+<td>Alias
+<td>Peters (approximated by Gall Orthographic)
+<tr>
+
+<td>EPSG Code
+<td>-
+<tr>
+
+<td>GeoTIFF Code
+<td> -
+<tr>
+
+<td>OGC WKT Name
+<td>Cylindrical_Equal_Area
+<tr>
+
+<td>Supported By
+<td>OGC WKT (unofficial), PROJ.4, Mapinfo
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>OGC WKT
+<th>Units
+<th>Notes
+<tr>
+
+<td> Central Meridian
+<td> 
+<td> 
+<td> central_meridian
+<td> Angular
+<td>
+<tr>
+
+<td> Standard Parallel
+<td> 
+<td> 
+<td> standard_parallel_1
+<td> Angular
+<td> Defaults to zero. 
+<tr> Known as latitude of true scale in PROJ.4
+
+<td>False Easting
+<td>
+<td>
+<td>false_easting
+<td>Linear
+<td>
+<tr>
+
+<td>False Northing
+<td>
+<td>
+<td>false_northing
+<td>Linear
+<td>
+<tr>
+</table>
+
+<h3>Notes</h3>
+
+This is classified as a cylindrical and equal area projection, as one might
+expect from the name.  
+
+<h3>PROJ.4 Organization</h3>
+
+<pre>
+  +proj=cea +lon_0=<i>Central Meridian</i>
+            +lat_ts=<i>Standard Parallel</i>
+            +x_0=<i>False Easting</i>
+            +y_0=<i>False Northing</i>
+</pre>
+
+</b>
+
+
+</body>
+
+
+
+
+
