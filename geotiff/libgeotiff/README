@@ -6,7 +6,7 @@ This library is designed to permit the extraction and parsing of the
 of GeoTIFF keys in new files. For more information about GeoTIFF
 specifications, projection codes and use, see the WWW web page at:
 
-   http://www.remotesensing.com/geotiff/geotiff.html
+   http://www.remotesensing.org/geotiff/geotiff.html
 
 or at:
 
