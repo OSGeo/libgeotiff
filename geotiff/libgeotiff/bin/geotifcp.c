@@ -193,7 +193,7 @@ bad:
 static void
 processG3Options(char* cp)
 {
-	if (cp = strchr(cp, ':')) {
+	if( (cp = strchr(cp, ':')) != NULL ) {
 		if (defg3opts == (uint32) -1)
 			defg3opts = 0;
 		do {
@@ -206,7 +206,7 @@ processG3Options(char* cp)
 				defg3opts |= GROUP3OPT_FILLBITS;
 			else
 				usage();
-		} while (cp = strchr(cp, ':'));
+		} while( (cp = strchr(cp, ':')) != NULL );
 	}
 }
 
@@ -422,6 +422,8 @@ cpOtherTags(TIFF* in, TIFF* out)
 				CopyField(p->tag, doubleav);
 			}
 			break;
+                default:
+	                break;
 		}
 }
 
