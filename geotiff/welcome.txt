@@ -16,7 +16,7 @@ implementations.
 
 See the GeoTIFF web page for more information.
 
-  http://www.remotesensing.org/geotiff/
+  http://www.remotesensing.org/geotiff/geotiff.html
 
 
 
