@@ -1,5 +1,10 @@
 2003-01-20  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* cpl_csv_incode.c, Makefile.in, csv/*: Reincorporated "incode"
+	support as per patches from Derrick. 
+
+	* cpl_serv.h: added #define for gtGetFileFieldId.
+
 	* cpl_csv.c: changed CSVFilename() to search for pcs.csv, not
 	horiz_cs.csv.
 	
