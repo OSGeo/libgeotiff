@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.45  2005/03/15 16:01:18  fwarmerdam
+ * zero inv flattening interpreted as sphere
+ *
  * Revision 1.44  2005/03/04 04:32:37  fwarmerdam
  * added cylindricalequalarea support
  *
@@ -2064,6 +2067,8 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
         if( dfInvFlattening != 0.0 )
             psDefn->SemiMinor = 
                 psDefn->SemiMajor * (1 - 1.0/dfInvFlattening);
+        else
+            psDefn->SemiMinor = psDefn->SemiMajor;
     }
     
 /* -------------------------------------------------------------------- */
