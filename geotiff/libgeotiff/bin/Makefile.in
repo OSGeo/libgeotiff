@@ -20,10 +20,14 @@ INSTALL	= @INSTALL@
 
 EXEEXT=@EXEEXT@
 
+prefix = /usr/local
+libdir  = ${exec_prefix}/lib
+
 PROGS=${BIN}/makegeo$(EXEEXT) ${BIN}/listgeo$(EXEEXT) ${BIN}/geotifcp$(EXEEXT)
 
 #
 IPATH	= -I. -I${GEOTIFFDIR} @TIFF_INC@ @ZIP_INC@
+
 #
 
 COPTS	= @CFLAGS@
@@ -42,16 +46,16 @@ ALL=	makegeo$(EXEEXT) listgeo$(EXEEXT) geotifcp$(EXEEXT)
 all:	${ALL} 
   
 makegeo$(EXEEXT): makegeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} makegeo.o ${LIBS} -o $@
+	${CC} ${COPTS} makegeo.o -L${libdir} ${LIBS} -o $@
   
 geotifcp$(EXEEXT): geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} geotifcp.o ${LIBS} -o $@
+	${CC} ${COPTS} geotifcp.o -L${libdir} ${LIBS} -o $@
   
 listgeo$(EXEEXT): listgeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} listgeo.o ${LIBS} -o $@
+	${CC} ${COPTS} listgeo.o -L${libdir} ${LIBS} -o $@
   
 csv2html$(EXEEXT): csv2html.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} csv2html.o ${LIBS} -o $@
+	${CC} ${COPTS} csv2html.o -L${libdir} ${LIBS} -o $@
 
 .PHONY: prep
 prep:
