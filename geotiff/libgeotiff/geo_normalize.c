@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.12  1999/09/15 18:51:31  warmerda
+ * Map 9808 to TM South Oriented, not TM Modified Alaska.
+ *
  * Revision 1.11  1999/09/15 16:44:06  warmerda
  * Change meter to metre to match EPSG database in GTIFGetUOMLengthInfo()
  * shortcut.
@@ -662,7 +665,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
         return( CT_TransverseMercator );
 
       case 9808:
-        return( CT_TransvMercator_Modified_Alaska );
+        return( CT_TransvMercator_SouthOriented );
 
       case 9809:
         return( CT_ObliqueStereographic );
