@@ -49,6 +49,7 @@ ValuePair(GCSE_Sphere,	4035)
 
 /* New GCS */
 ValuePair(GCS_Greek,4120)
+ValuePair(GCS_GGRS87,4121)
 ValuePair(GCS_KKJ,4123)
 ValuePair(GCS_RT90,4124)
 ValuePair(GCS_EST92,4133)
