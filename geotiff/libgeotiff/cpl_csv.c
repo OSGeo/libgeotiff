@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.5  1999/05/04 03:07:24  warmerda
+ * avoid warning
+ *
  * Revision 1.4  1999/04/28 19:59:56  warmerda
  * added some doxygen style documentation
  *
@@ -44,6 +47,7 @@
  */
 
 #include "cpl_csv.h"
+#include "geo_tiffp.h"
 
 /* ==================================================================== */
 /*      The CSVTable is a persistant set of info about an open CSV      */
