@@ -47,6 +47,9 @@ geotifcp: geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a
 listgeo: listgeo.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} listgeo.o ${LIBS} -o listgeo
 
+csv2html: csv2html.o  ${GEOTIFFDIR}/libgeotiff.a
+	${CC} ${COPTS} csv2html.o ${LIBS} -o csv2html
+
 
 clean:
 	rm -f ${ALL} ${OBJS} core a.out newgeo.tif
