@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.29  2002/06/19 03:51:15  warmerda
+ * migrated cpl_csv.h into cpl_serv.h
+ *
  * Revision 1.28  2002/01/03 21:28:25  warmerda
  * call CSVDeaccess(NULL) at end of GTIFPrintDefn()
  *
@@ -136,7 +139,7 @@
  *
  */
  
-#include "cpl_csv.h"
+#include "cpl_serv.h"
 #include "geo_tiffp.h"
 #include "geovalues.h"
 #include "geo_normalize.h"

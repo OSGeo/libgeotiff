@@ -220,6 +220,34 @@ char  **CSLAddNameValue(char **papszStrList,
 char  **CSLSetNameValue(char **papszStrList, 
                         const char *pszName, const char *pszValue);
 
+/* ==================================================================== */
+/*      .csv file related functions (from cpl_csv.c)                    */
+/* ==================================================================== */
+
+typedef enum {
+    CC_ExactString,
+    CC_ApproxString,
+    CC_Integer
+} CSVCompareCriteria;
+
+const char  *CSVFilename( const char * );
+
+char  **CSVReadParseLine( FILE * );
+char  **CSVScanLines( FILE *, int, const char *, CSVCompareCriteria );
+char  **CSVScanFile( const char *, int, const char *,
+                            CSVCompareCriteria );
+char  **CSVScanFileByName( const char *, const char *, const char *,
+                                  CSVCompareCriteria );
+int  CSVGetFieldId( FILE *, const char * );
+int  CSVGetFileFieldId( const char *, const char * );
+
+void  CSVDeaccess( const char * );
+
+const char  *CSVGetField( const char *, const char *, const char *,
+                                 CSVCompareCriteria, const char * );
+
+void CPL_DLL SetCSVFilenameHook( const char *(*)(const char *) );
+
 CPL_C_END
 
 #endif /* ndef CPL_SERV_H_INCLUDED */

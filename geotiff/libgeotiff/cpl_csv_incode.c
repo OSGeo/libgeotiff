@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.4  2002/06/19 03:51:15  warmerda
+ * migrated cpl_csv.h into cpl_serv.h
+ *
  * Revision 1.3  2002/02/11 14:22:22  warmerda
  * Added stub CSVDeaccess().
  *
@@ -41,8 +44,7 @@
  *
  */
 
-#include <stdio.h>
-#include "cpl_csv.h"
+#include "cpl_serv.h"
 
 #include "defs.h"
 

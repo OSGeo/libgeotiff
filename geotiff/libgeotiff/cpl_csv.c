@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.12  2002/06/19 03:51:15  warmerda
+ * migrated cpl_csv.h into cpl_serv.h
+ *
  * Revision 1.11  2001/03/05 04:49:56  warmerda
  * try to clear CPLReadLine buffer on deaccess
  *
@@ -65,7 +68,7 @@
  *
  */
 
-#include "cpl_csv.h"
+#include "cpl_serv.h"
 #include "geo_tiffp.h"
 
 /* ==================================================================== */
