@@ -7,7 +7,7 @@ configure and build follow the following steps:
  o Edit makefile.vc, updating the TIFF_LIB and TIFF_INC variables to point
    to the location of the tiff include files, and library.  
 
- o Rename the geo_config.h.vc file to geo_config.h.
-
  o Build using the command ``nmake -f makefile.vc''
 
+If you don't use makefile.vc, you will need to copy geo_config.h.vc to
+geo_config.h by hand. 
