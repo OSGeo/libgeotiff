@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  1999/09/07 20:00:40  warmerda
+ * Fixed count/tiepoint_count bug in GTIFPCSToImage().
+ *
  * Revision 1.1  1999/05/04 03:07:57  warmerda
  * New
  *
@@ -106,7 +109,7 @@ int GTIFPCSToImage( GTIF *gtif, double *x, double *y )
 /* -------------------------------------------------------------------- */
 /*      For now we require one tie point, and a valid pixel scale.      */
 /* -------------------------------------------------------------------- */
-    if( count < 6 || tiepoint_count < 3 )
+    if( count < 3 || tiepoint_count < 6 )
         return FALSE;
 
     *x = (*x - tiepoints[3]) / pixel_scale[0] + tiepoints[0];
