@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.31  2002/11/30 15:44:35  warmerda
+ * fixed GetCTParms EPSG code mappings
+ *
  * Revision 1.30  2002/11/28 22:27:42  warmerda
  * preliminary upgrade to EPSG 6.2.2 tables
  *
@@ -1034,8 +1037,8 @@ static int SetGTParmIds( int nCTProjection,
 
         panEPSGCodes[0] = EPSGNatOriginLat;
         panEPSGCodes[1] = EPSGNatOriginLong;
-        panEPSGCodes[2] = EPSGFalseEasting;
-        panEPSGCodes[3] = EPSGFalseNorthing;
+        panEPSGCodes[5] = EPSGFalseEasting;
+        panEPSGCodes[6] = EPSGFalseNorthing;
         return TRUE;
 
       case CT_ObliqueMercator:
@@ -1086,9 +1089,9 @@ static int SetGTParmIds( int nCTProjection,
 
         panEPSGCodes[0] = EPSGNatOriginLat;
         panEPSGCodes[1] = EPSGNatOriginLong;
-        panEPSGCodes[2] = EPSGNatOriginScaleFactor;
-        panEPSGCodes[3] = EPSGFalseEasting;
-        panEPSGCodes[4] = EPSGFalseNorthing;
+        panEPSGCodes[4] = EPSGNatOriginScaleFactor;
+        panEPSGCodes[5] = EPSGFalseEasting;
+        panEPSGCodes[6] = EPSGFalseNorthing;
         return TRUE;
 
       case CT_LambertConfConic_2SP:
@@ -1224,7 +1227,7 @@ int GTIFGetProjTRFInfo( /* COORD_OP_CODE from coordinate_operation.csv */
         /* Transform according to the UOM */
         if( nUOM >= 9100 && nUOM < 9200 )
             adfProjParms[i] = GTIFAngleStringToDD( pszValue, nUOM );
-        else if( nUOM > 9000 )
+        else if( nUOM > 9000 && nUOM < 9100 )
         {
             double dfInMeters;
 
