@@ -5,7 +5,7 @@
 <h1>
 The GeoTIFF Web Page</h1> <p>
 
-<i>Last Updated: 10 March, 1999</i><p>
+<i>Last Updated: 11 March, 1999</i><p>
 
 GeoTIFF represents an effort by over 160 different remote sensing,
 GIS, cartographic, and surveying related companies and organizations
@@ -13,59 +13,67 @@ to establish a <a href="http://home.earthlink.net/~ritter/tiff">TIFF</a>
 based interchange format for georeferenced raster imagery.<p>
 
 <!------------------------------------------------------------------------->
-<hr>
-<h1>
-GeoTIFF Specification</h1> <p>
-
-<a href="spec/geotiffhome.html">GeoTIFF Revision 1.0</a><p>
-
-<b> Official Release Version:</b>
-This is the official version of the GeoTIFF spec, and is the product of substantial
-review by the GeoTIFF community.  This represents Revision 1.0 of the GeoTIFF format.
-
-<p>
-
-<!------------------------------------------------------------------------->
 <HR><p>
 <h1>Information and Support:</h1><p>
 
-The most recent version of the GeoTIFF spec, EPSG/POSC tables, and 
-<a href="api/index.html">libgeotiff</a> source code is available 
-via anonymous FTP at the USGS site:
-<pre>
-        <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/</a>
-</pre>
+<ul>
+<li> <a href="spec/geotiffhome.html">GeoTIFF Revision 1.0 Specification</a>:
+This is the <b>official release version</b> of the GeoTIFF spec.<p>
 
-<p>The USGS also has an archive of prototype GeoTIFF images at:<p>
+<li> <a href="http://www.remotesensing.org/geotiff/geotiff.html">http://www.remotesensing.org/geotiff/geotiff.html</a>: Primary GeoTIFF web site (this 
+page).<p>
 
-<pre>
-        <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/images/">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/images/</a>
-</pre>
+<li> <a href="http://home.earthlink.net/~ritter/geotiff/geotiff.html">http://home.earthlink.net/~ritter/geotiff/geotiff.html</a>: 
+Original (now slightly out of date) GeoTIFF Web Site.<p>
 
-Information and a hypertext version of the GeoTIFF spec is available via 
-WWW at the following site:
-<pre>
-        <a href="http://www.remotesensing.org/geotiff/geotiff.html">http://www.remotesensing.org/geotiff/geotiff.html</a>
-</pre>
+<li> <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/</a>: Old archive of
+GeoTIFF spec, EPSG/POSC tables, and old libgeotiff source code.<p>
 
-<p>The original (now somewhat out of date) GeoTIFF web site is at:
-<pre>
-        <a href="http://home.earthlink.net/~ritter/geotiff/geotiff.html">http://home.earthlink.net/~ritter/geotiff/geotiff.html</a>
-</pre>
+<li> <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/images/">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/images/</a>: Various sample GeoTIFF files.<p>
 
-<p>SPOT Image, USA has an additional GeoTIFF Archive at:<p>
-<pre>
-	<a href="ftp://www.spot.com/ftp/pub/outgoing/GeoTIFF/">ftp://www.spot.com/ftp/pub/outgoing/GeoTIFF/</a>
-</pre>
+<li> <a href="faq.html">GeoTIFF FAQ</a> written by Mike Ruth.<p>
 
-<p>Frank Warmerdam maintains some notes, and sample files at:<p>
-<pre>
-	<a href="http://gdal.velocet.ca/projects/tiff/gt_index.html">http://gdal.velocet.ca/projects/tiff/gt_index.html</a>
-</pre>
+<li> Unofficial <a href="proj_list/">Catalog of Projections</a>
+and their parameters.<p>
+
+<li> <a href="ftp://www.spot.com/ftp/pub/outgoing/GeoTIFF/">ftp://www.spot.com/ftp/pub/outgoing/GeoTIFF/</a>: 
+An additional GeoTIFF archive maintained by SPOT Image, USA.<p>
+
+<li> <a href="http://gdal.velocet.ca/projects/tiff/gt_index.html">http://gdal.velocet.ca/projects/tiff/gt_index.html</a>: Frank Warmerdam's GeoTIFF notes, and
+sample files.<p>
+
+<li><a href="providers.html">GeoTIFF Data Providers</a> (out of date)
 <p>
-There is also now a <a href="faq.html">GeoTIFF FAQ</a> written by Mike Ruth 
-then of
-<!--a href="http://www.spot.com/"-->Spot Image<!--/a-->.<p>
+
+<li><a href="software.html">GeoTIFF-Compatible Software</a> (out of date)<p>
+
+</ul>
+
+<hr>
+
+<!------------------------------------------------------------------------->
+									
+<h2>libgeotiff</h2>
+
+Libgeotiff is a public domain library normally hosted on top of 
+libtiff for reading, and writing GeoTIFF information tags.  Work is underway
+to create a new libgeotiff release.  Please contact 
+<a href="mailto:warmerda@home.com">warmerda@home.com</a> for more 
+information, or to get involved.<p>
+
+<ul>
+
+<li> <a href="api/index.html">Libgeotiff API</a>: Partial documentation.<p>
+
+<li> <a href="http://www.remotesensing.org/cgi-bin/cvsweb.cgi/osrs/geotiff/">
+libgeotiff CVS Web Access</a>
+
+<li> <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/code/libgeotiff.1.02.tar.gz">libgeotiff.1.02.tar.gz</a>: Released libgeotiff source 
+code.<p>
+
+</ul>
+
+<hr>
 
 <!------------------------------------------------------------------------->
 <h2> GeoTIFF Mailing List</h2>
@@ -91,21 +99,6 @@ A threaded
 mail-archive</a> of the GeoTIFF mailing-list discussions
 is online and available, courtesy of 
 <a href="http://members.home.com/warmerda">Frank Warmerdam</a>.<p>
-
-<!------------------------------------------------------------------------->
-<hr>
- <h1>GeoTIFF Software and Providers</h1><p>
-<p>
-The following organizations are now or will soon be providing
-GeoTIFF-compatible software and/or raster data products.  Note these lists
-are quite out of date.
-<p>
-<ul>
-<li><a href="providers.html">GeoTIFF Data Providers</a>
-<p>
-<li><a href="software.html">GeoTIFF-Compatible Software</a>
-</ul>
-<p>
 
 <!------------------------------------------------------------------------->
 <hr>
