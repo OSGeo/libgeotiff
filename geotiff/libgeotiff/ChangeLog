@@ -1,3 +1,9 @@
+2003-06-19  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c: Fixed bug that can corrupt memory when an invalid 
+	GeoTIFF file with a zero length ascii parms strings is read (like 
+	bruce.tif).
+
 2003-06-03  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* bin/Makefile: added -L${libdir} before $(LIBS) per suggestion by
