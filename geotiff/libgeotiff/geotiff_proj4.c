@@ -6,11 +6,6 @@
  *           (OGDI) compatible projection string.
  * Author:   Frank Warmerdam, warmerda@home.com
  *
- * This module is provided as a sample of code used to convert a GTIFDefn
- * into another projection system. The real master of this module is
- * still maintained elsewhere.  Please contact the author if updates are
- * required.
- *
  ******************************************************************************
  * Copyright (c) 1999, Frank Warmerdam
  *
@@ -34,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.3  1999/03/10 18:11:17  geotiff
+ * Removed comment about this not being the master ... now it is.
+ *
  * Revision 1.2  1999/03/10 18:10:27  geotiff
  * Avoid use of cpl_serv.h and CPLStrdup().
  *
