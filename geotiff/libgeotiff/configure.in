@@ -28,11 +28,13 @@ AC_LD_SHARED
 GEOTIFF_SO=
 GEOTIFF_DLL=
 GEOTIFF_IMP=
+EXEEXT=
 if test "$LD_SHARED" != "/bin/true" ; then
   case $host in
-    *-pc-cygwin*) GEOTIFF_SO=cyggeotiff-1.dll
-	               GEOTIFF_DLL=cyggeotiff-1.dll
-	               GEOTIFF_IMP=libgeotiff.dll.a
+    *-pc-cygwin*) EXEEXT=.exe
+		  GEOTIFF_SO=cyggeotiff-1.dll
+	          GEOTIFF_DLL=cyggeotiff-1.dll
+	          GEOTIFF_IMP=libgeotiff.dll.a
                   LD_SHARED="gcc -shared -Wl,--export-all -Wl,--out-implib=\$(GEOTIFF_IMP)" ;;
     *) GEOTIFF_SO=libgeotiff.so.$VERSION_MAJOR.$VERSION_MINOR.$VERSION_POINT ;;
   esac
@@ -40,6 +42,7 @@ fi
 AC_SUBST(GEOTIFF_SO,$GEOTIFF_SO)
 AC_SUBST(GEOTIFF_IMP,$GEOTIFF_IMP)
 AC_SUBST(GEOTIFF_DLL,$GEOTIFF_DLL)
+AC_SUBST(EXEEXT,$EXEEXT)
 
 
 #
@@ -107,14 +110,6 @@ else
                AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
 build libgeotiff without libtiff]),-lm)
   TIFF_INC=
-  AC_CHECK_HEADERS(tiffiop.h,,TIFF_INC=-Ilibtiff_private)
-  if test ! -z "$TIFF_INC" ; then
-    AC_MSG_WARN([Using local copy of libtiff private include files.])
-    AC_MSG_WARN([It would be safer to install libtiff private include])
-    AC_MSG_WARN([files with the install-private target of libtiff, or])
-    AC_MSG_WARN([use --with-libtiff when configuring libgeotiff to build])
-    AC_MSG_WARN([against a libtiff build tree.])
-  fi
 fi
 
 AC_SUBST(TIFF_INC,$TIFF_INC)
