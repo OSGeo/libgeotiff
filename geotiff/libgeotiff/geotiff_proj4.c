@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.16  2000/12/05 19:21:45  warmerda
+ * added cassini support
+ *
  * Revision 1.15  2000/12/05 17:44:41  warmerda
  * Use +R_A for Miller and VanDerGrinten
  *
@@ -186,6 +189,19 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[4],
+                 dfFalseEasting,
+                 dfFalseNorthing );
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Cassini/Soldner                                                 */
+/* -------------------------------------------------------------------- */
+    else if( psDefn->CTProjection == CT_CassiniSoldner )
+    {
+        sprintf( szProjection+strlen(szProjection),
+                 "+proj=cass +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
+                 psDefn->ProjParm[0],
+                 psDefn->ProjParm[1],
                  dfFalseEasting,
                  dfFalseNorthing );
     }

@@ -1,5 +1,7 @@
 2000-12-05  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* Added cassini support in geotiff_proj4.c.
+
 	* modified geotiff_proj4.c to use +R_A to use spherical radius
 	of equal area, similar to other systems like GCTP for the
 	Miller Cylindrical and VanDerGrinten.  Should also do for any
