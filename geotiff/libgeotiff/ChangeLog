@@ -1,6 +1,12 @@
 2000-11-23  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Updated notes for building PROJ_HOME set in README.
+	* Based loosely on suggestions from Curt Archer, I have reworked
+	the configure.in logic for PROJ.4.  I add -I/usr/local/include to 
+	CFLAGS and -L/usr/local/lib to LIBS right off the start so /usr/local
+	is included in the default search path.  The user no longer 
+	specifies the PROJ_HOME environment variable, and instead uses
+	the --with-proj configure switch.  Updated notes for building 
+	PROJ_HOME set in README.
 
 2000-10-13  Frank Warmerdam  <warmerda@cs46980-c>
 
