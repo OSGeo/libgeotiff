@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<title>XTIFFOpen() - Open GeoTIFF File</title>
+</head>
+
+<body>
+<h1>XTIFFOpen - Open GeoTIFF File</h1>
+
+<b>
+<pre>
+    #include &lt;xtiffio.h&gt;
+    TIFF* XTIFFOpen( const char * name, const char * mode );
+</pre>
+</b>
+
+This function is used to open GeoTIFF files instead of TIFFOpen() from
+libtiff.  Internally it calls TIFFOpen(), but sets up some extra hooks
+so that GeoTIFF tags can be extracted from the file.  If XTIFFOpen() isn't
+used, <a href="GTIFNew.html">GTIFNew()</a> won't work properly.  Files opened
+with XTIFFOpen() should be closed with 
+<a href="XTIFFClose.html">XTIFFClose()</a>.<p>
+
+The name of the file to be opened should be passed as <b>name</b>, and an
+opening mode ("r", "w" or "a") acceptable to TIFFOpen() should be passed as the
+<b>mode</b>.<p>
+
+If XTIFFOpen() fails it will return NULL.  Otherwise, normal TIFFOpen()
+error reporting steps will have already taken place.<p>
+
+<b>See Also:</b> 
+
+<a href="XTIFFClose.html">XTIFFClose()</a>, TIFFOpen(), 
+<a href="GTIFNew.html">GTIFNew()</a>
+
+</body>
+</html>
