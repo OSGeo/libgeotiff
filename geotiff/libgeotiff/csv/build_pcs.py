@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.4  2004/03/20 07:52:28  warmerda
+# more escape clauses for EPSG 6.5
+#
 # Revision 1.3  2003/03/31 14:27:21  warmerda
 # added collection of GREENWICH_DATUM gcs column and related shift fix
 #
@@ -175,7 +178,12 @@ for key in op_keys:
     powp_rec['COORD_OP_NAME'] = co_rec['COORD_OP_NAME']
     powp_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
 
-    parm_recs = co_value.get_records( key )
+    try:
+        parm_recs = co_value.get_records( key )
+    except:
+        # this happens for parameterless methods like DMSH conversions.
+        parm_recs = []
+        
     if len(parm_recs) > max_parms:
         print 'COORD_OP_CODE %d has %d values.' % (key, len(parm_recs))
         
@@ -254,8 +262,12 @@ for key in gcs_keys:
     gcs_rec['DATUM_CODE']         = crs_rec['DATUM_CODE']
 
     gcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, ca )
-                                             
-    datum_id = int(crs_rec['DATUM_CODE'])
+
+    try:
+        datum_id = int(crs_rec['DATUM_CODE'])
+    except:
+        print 'No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME']
+        continue
     
     datum_rec = datums.get_record( datum_id )
     gcs_rec['DATUM_NAME'] = datum_rec['DATUM_NAME']
