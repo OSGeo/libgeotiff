@@ -37,3 +37,6 @@
     Include a summary of the ChangeLog items for the most recent release.
 
 11) Update entry at http://www.freshmeat.net/projects/libgeotiff
+
+12) Update html/geotiff.html to point to most recent release, including
+    the most recent release version number.
