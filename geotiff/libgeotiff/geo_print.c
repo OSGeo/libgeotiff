@@ -18,6 +18,9 @@
  *    29  Sep,  1995      NDR                  Fixed matrix printing.
  *
  * $Log$
+ * Revision 1.6  2003/09/23 18:27:30  warmerda
+ * fixed bug with long datum names: bug 399
+ *
  * Revision 1.5  2003/07/08 17:31:30  warmerda
  * cleanup various warnings
  *
@@ -220,8 +223,8 @@ static void PrintKey(GeoKey *key, GTIFPrintMethod print, void *aux)
         sptr = (pinfo_t *)data;
         if (count==1)
         {
-            sprintf(message,"%s\n",GTIFValueName(keyid,*sptr));
-            print(message,aux);
+            print( GTIFValueName(keyid,*sptr), aux );
+            print( "\n", aux );
         }
         else
             for (; count > 0; count-= vals_now)
