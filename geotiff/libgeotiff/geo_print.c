@@ -18,6 +18,9 @@
  *    29  Sep,  1995      NDR                  Fixed matrix printing.
  *
  * $Log$
+ * Revision 1.8  2004/04/27 21:31:31  warmerda
+ * avoid crash if gt_tif is NULL
+ *
  * Revision 1.7  2003/10/21 19:19:53  warmerda
  * fixed bug with large message texts sometimes causing a crash
  *
@@ -111,6 +114,9 @@ static void PrintGeoTags(GTIF *gt, GTIFPrintMethod print,void *aux)
 	double *data;
 	int count;
 	tiff_t *tif=gt->gt_tif;
+
+        if( tif == NULL )
+            return;
 
 	if ((gt->gt_methods.get)(tif, GTIFF_TIEPOINTS, &count, &data ))
 		PrintTag(GTIFF_TIEPOINTS,count/3, data, 3, print, aux);
