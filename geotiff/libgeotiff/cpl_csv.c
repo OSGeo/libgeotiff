@@ -23,6 +23,10 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.7  1999/12/03 14:42:59  warmerda
+ * Passing a NULL filename into CSVAccess() now results in a graceful
+ * failure to open the file.
+ *
  * Revision 1.6  1999/06/26 17:28:51  warmerda
  * Fixed reading of records with newlines embedded in quoted strings.
  *
@@ -88,6 +92,9 @@ static CSVTable *CSVAccess( const char * pszFilename )
 {
     CSVTable	*psTable;
     FILE	*fp;
+
+    if( pszFilename == NULL )
+        return NULL;
 
 /* -------------------------------------------------------------------- */
 /*      Is the table already in the list.                               */
