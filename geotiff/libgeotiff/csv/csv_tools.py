@@ -30,6 +30,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.4  2004/03/20 07:31:41  warmerda
+# split merge_split_lines() into its own function
+#
 # Revision 1.3  2003/06/20 21:25:55  warmerda
 # allow adding a field to a loaded table
 #
@@ -69,6 +72,20 @@ def SplitCSVLine( line ):
 
     return tokens
 
+# Merge records split by newlines within quotes.
+def merge_split_lines( raw_lines ):
+    rest_of_lines = []
+    cur_line = ''
+    for line in raw_lines:
+        cur_line = cur_line + line
+        quote_count = string.count(cur_line,'"')
+        if quote_count % 2 == 0:
+            rest_of_lines.append( cur_line )
+            cur_line = ''
+    if cur_line != '':
+        rest_of_lines.append( cur_line )
+    return rest_of_lines
+    
 class CSVTable:
 
     def __init__( self ):
@@ -94,17 +111,7 @@ class CSVTable:
 
         # Load the rest of the files, merging records split by newlines
         # within quotes.
-        raw_lines = fd.readlines()
-        rest_of_lines = []
-        cur_line = ''
-        for line in raw_lines:
-            cur_line = cur_line + line
-            quote_count = string.count(cur_line,'"')
-            if quote_count % 2 == 0:
-                rest_of_lines.append( cur_line )
-                cur_line = ''
-        if cur_line != '':
-            rest_of_lines.append( cur_line )
+        rest_of_lines = merge_split_lines( fd.readlines() )
 
         # Build lines into an indexed hash table. 
         for line in rest_of_lines:
