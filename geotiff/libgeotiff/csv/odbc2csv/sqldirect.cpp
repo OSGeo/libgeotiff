@@ -172,11 +172,12 @@ const char * CSQLDirect::GetCol( int nCol )
 
    if( nIndex==-1 ) {
       // Get the column from the SQL cursor.
-      char svData[8192];
+      char svData[8193];
       SDWORD cbDataLen;
 
+      svData[0] = '\0';
       SQLGetData( m_hStmt,nCol,GetColumnType( nCol ),&svData,8192,&cbDataLen );
-	
+      svData[cbDataLen] = '\0';
       svValue=svData;
       MyTrimRight( svValue );
 
