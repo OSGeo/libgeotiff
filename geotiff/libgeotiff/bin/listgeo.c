@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 		
   failure:
     fprintf(stderr,"failure in listgeo\n");
-    if (tif) TIFFClose(tif);
+    if (tif) XTIFFClose(tif);
     if (gtif) GTIFFree(gtif);
     return 1;
 }
