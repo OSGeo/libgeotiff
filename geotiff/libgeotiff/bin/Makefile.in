@@ -61,4 +61,6 @@ prep:
   
 clean:
 	rm -f ${ALL} ${OBJS} core a.out newgeo.tif ${GEOTIFF_SO}
+
+dist-clean: clean
 	rm -f Makefile

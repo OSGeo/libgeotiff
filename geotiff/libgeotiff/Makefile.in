@@ -179,7 +179,7 @@ clean:
 	rm -f ${GEOTIFF_IMP} ${GEOTIFF_SO}
 
 dist-clean: clean
-	(cd bin; $(MAKE) clean)
+	(cd bin; $(MAKE) dist-clean)
 	rm -rf config.log config.status config.cache geo_config.h
 	rm -f Makefile
 
