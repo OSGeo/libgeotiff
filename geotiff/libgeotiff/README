@@ -121,6 +121,11 @@ but indicating the correct path to the CSV directory (libgeotiff/csv).
 
   % bin/listgeo -t csv -norm newgeo.tif
 
+To convert a projection metafile, an ESRI world file, and a raw TIFF file
+into a GeoTIFF file do something like the following:
+
+  % bin/tiffcp -g metadata.txt -e abc.tfw abc.tif geo_abc.tif
+
 
  
 Non-Standard Configuration:

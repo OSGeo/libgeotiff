@@ -425,12 +425,14 @@ Geotiff_Information:
 -------------------------------------------------------------
 2.2 geotifcp  - Copy a TIFF file and install GeoTIFF info from metadata.
 
-Syntax:   geotifcp [options] -g metadata  input  output
+Syntax:   geotifcp [options] [-e esri_worldfile] [-g metadata] input output
 
 The program geotifcp is identical in function to the LIBTIFF program
 "tiffcp", with the additional feature that if the "-g <metadata>"
 option is used the GeoTIFF information from the file <metadata> 
-will be installed into the output file.
+will be installed into the output file.  The "-e worldfile" option will 
+override the tiepoint and scale information from the metadata file based
+on the contents of the ESRI worldfile. 
 
 If the "-g" option is not used, the opposite effect occurs: all 
 GeoTIFF information is filtered out of the input file before being
