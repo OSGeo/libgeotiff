@@ -45,7 +45,7 @@
 <td>NatOriginLat
 <td>latitude_of_origin
 <td>Angular
-<td>I think this is restricted to 90 or -90
+<td>
 
 <tr>
 <td>Longitude of natural origin
@@ -61,8 +61,7 @@
 <td>ScaleAtNatOrigin
 <td>scale_factor
 <td>Unitless
-<td>Not in original GeoTIFF ... I added for similarity
-with EPSG.
+<td>Not in original GeoTIFF ... I added for similarity with EPSG. Defaults to 1.0.
 
 <tr>
 <td>False Easting
@@ -87,13 +86,39 @@ with EPSG.
 There are substantial questions about Stereographic projections in
 <a href="random_issues.html#stereographic">Random Issues</a>. <p>
 
+<h3>Examples</h3>
+
+Latitude of natural origin: 71N <br>
+Longitude of natural origin: 96W<br>
+Scale factor at natural origin: 1.0<p>
+
+<table border>
+<th>Projected X<th>Projected Y<th>Longitude<th>Latitude<tr>
+<td>-2529570<td>-5341800<td>121d20'22.38"W<td>39d6'4.508"N<tr>
+</table>
+
+
 <h3>PROJ.4 Organization</h3>
 
+North Pole (NatOriginLat > 0):
 <b>
 <pre>
-  +proj=stere +lat_0=<i>Latitude at projection center</i> 
-              +lon_0=<i>Longitude at projection center</i>
-	      +k_0=<i>Scale factor at natural origin</i>
+  +proj=stere +lat_ts=<i>Latitude at natural origin</i> 
+              +lat_0=90
+              +lon_0=<i>Longitude at natural origin</i>
+	      +k_0=<i>Scale factor at natural origin</i> (normally 1.0)
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+South Pole (NatOriginLat < 0):
+<b>
+<pre>
+  +proj=stere +lat_ts=<i>Latitude at natural origin</i> 
+              +lat_0=-90
+              +lon_0=<i>Longitude at natural origin</i>
+	      +k_0=<i>Scale factor at natural origin</i> (normally 1.0)
               +x_0=<i>False Easting</i>
               +y_0=<i>False Northing</i>
 </pre>
