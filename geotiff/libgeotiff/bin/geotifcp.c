@@ -247,6 +247,11 @@ static void InstallGeoTIFF(TIFF *out)
 
     /* Install keys and tags */
     fd = fopen(geofile,"r");
+    if( fd == NULL )
+    {
+        perror( geofile );
+        exit( -1 );
+    }
     if (!GTIFImport(gtif,0,fd)) goto bad;
     fclose(fd);
     GTIFWriteKeys(gtif);
