@@ -189,6 +189,10 @@ Makefile:	Makefile.in config.status
 
 dox:
 	doxygen
+	if test -d ../../geotiff-ht/api ; then \
+	  cp docs/api/*.* ../../geotiff-ht/api; \
+	  cp docs/*.html ../../geotiff-ht; \
+	fi
 
 configure:	configure.in aclocal.m4
 	autoconf

@@ -31,7 +31,7 @@ OUTPUT_DIRECTORY     =
 # If a relative path is entered the value of OUTPUT_DIRECTORY will be
 # put in front of it. If left blank `html' will be used as the default path.
 
-HTML_OUTPUT          =
+HTML_OUTPUT          = docs/api
 
 # The LATEX_OUTPUT tag is used to specify where the LaTeX docs will be put.
 # If a relative path is entered the value of OUTPUT_DIRECTORY will be
@@ -115,7 +115,7 @@ FULL_PATH_NAMES = NO
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT            =	. libxtiff/xtiff.c
+INPUT            =	. libxtiff/xtiff.c docs/index.dox
 
 # If the value of the INPUT tag contains directories, you can use the 
 # FILE_PATTERNS tag to specify one or more wildcard patterns (like *.cpp 
