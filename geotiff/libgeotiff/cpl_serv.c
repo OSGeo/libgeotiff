@@ -23,6 +23,9 @@
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
  * $Log$
+ * Revision 1.7  2001/04/17 13:40:43  warmerda
+ * fixed freeing of line buffer in CPLReadLine(), init ptr to NULL
+ *
  * Revision 1.6  2001/03/05 04:56:17  warmerda
  * make it possible to deallocate CPLReadLine buffer
  *
@@ -173,6 +176,7 @@ const char *CPLReadLine( FILE * fp )
     if( fp == NULL )
     {
         CPLFree( pszRLBuffer );
+        pszRLBuffer = NULL;
         nRLBufferSize = 0;
         return NULL;
     }
