@@ -12,7 +12,7 @@ ac_help=
 ac_default_prefix=/usr/local
 # Any additions from configure.in:
 ac_help="$ac_help
-  --enable-incode-epsg	Use C code EPSG tables"
+  --enable-incode-epsg	  Use C code EPSG tables"
 
 # Initialize some variables set by options.
 # The variables have the same names as the options, with
