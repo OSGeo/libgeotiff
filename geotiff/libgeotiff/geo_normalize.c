@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.28  2002/01/03 21:28:25  warmerda
+ * call CSVDeaccess(NULL) at end of GTIFPrintDefn()
+ *
  * Revision 1.27  2001/04/17 13:41:10  warmerda
  * fix memory leaks in GTIFPrintDefn()
  *
@@ -2112,4 +2115,6 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
                  psDefn->UOMLength, pszName, psDefn->UOMLengthInMeters );
         CPLFree( pszName );
     }
+
+    CSVDeaccess( NULL );
 }
