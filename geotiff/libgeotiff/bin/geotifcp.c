@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <getopt.h>
 #include <ctype.h>
 
 /* GeoTIFF overrides */
@@ -33,6 +32,8 @@
 
 #define	TRUE	1
 #define	FALSE	0
+
+int getopt();
 
 static  int outtiled = -1;
 static  uint32 tilewidth;
