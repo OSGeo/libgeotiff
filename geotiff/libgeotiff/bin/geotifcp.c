@@ -177,7 +177,7 @@ static void ApplyWorldFile(const char *worldfilename, TIFF *out)
 
 {
     FILE	*tfw;
-    double	pixsize[3], xoff, yoff, tiepoint[6], dummy;
+    double	pixsize[3], xoff, yoff, tiepoint[6], x_rot, y_rot;
 
     /* 
      * Read the world file.  Note we currently ignore rotational coefficients!
@@ -190,8 +190,8 @@ static void ApplyWorldFile(const char *worldfilename, TIFF *out)
     }
 
     fscanf( tfw, "%lf", pixsize + 0 );
-    fscanf( tfw, "%lf", &dummy );
-    fscanf( tfw, "%lf", &dummy );
+    fscanf( tfw, "%lf", &y_rot );
+    fscanf( tfw, "%lf", &x_rot );
     fscanf( tfw, "%lf", pixsize + 1 );
     fscanf( tfw, "%lf", &xoff );
     fscanf( tfw, "%lf", &yoff );
@@ -201,17 +201,36 @@ static void ApplyWorldFile(const char *worldfilename, TIFF *out)
     /*
      * Write out pixel scale, and tiepoint information.
      */
-    pixsize[1] = ABS(pixsize[1]);
-    pixsize[2] = 0.0;
-    TIFFSetField(out, GTIFF_PIXELSCALE, 3, pixsize);
+    if( x_rot == 0.0 && y_rot == 0.0 )
+    {
+        pixsize[1] = ABS(pixsize[1]);
+        pixsize[2] = 0.0;
+        TIFFSetField(out, GTIFF_PIXELSCALE, 3, pixsize);
 
-    tiepoint[0] = 0.5;
-    tiepoint[1] = 0.5;
-    tiepoint[2] = 0.0;
-    tiepoint[3] = xoff;
-    tiepoint[4] = yoff;
-    tiepoint[5] = 0.0;
-    TIFFSetField(out, GTIFF_TIEPOINTS, 6, tiepoint);
+        tiepoint[0] = 0.5;
+        tiepoint[1] = 0.5;
+        tiepoint[2] = 0.0;
+        tiepoint[3] = xoff;
+        tiepoint[4] = yoff;
+        tiepoint[5] = 0.0;
+        TIFFSetField(out, GTIFF_TIEPOINTS, 6, tiepoint);
+    }
+    else
+    {
+        double	adfMatrix[16];
+        
+        memset(adfMatrix,0,sizeof(double) * 16);
+        
+        adfMatrix[0] = pixsize[0];
+        adfMatrix[1] = x_rot;
+        adfMatrix[3] = xoff - (pixsize[0]+x_rot) * 0.5;
+        adfMatrix[4] = y_rot;
+        adfMatrix[5] = pixsize[1];
+        adfMatrix[7] = yoff - (pixsize[1]+y_rot) * 0.5;
+        adfMatrix[15] = 1.0;
+        
+        TIFFSetField( out, TIFFTAG_GEOTRANSMATRIX, 16, adfMatrix );
+    }
 }
 
 static void InstallGeoTIFF(TIFF *out)
