@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.6  1999/05/03 17:50:31  warmerda
+ * avoid warnings on IRIX
+ *
  * Revision 1.5  1999/04/29 23:02:24  warmerda
  * added mapsys utm test.
  *
@@ -118,7 +121,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     if( psDefn->MapSys == MapSys_UTM_North )
     {
         sprintf( szProjection+strlen(szProjection),
-                 "+proj=utm +zone=",
+                 "+proj=utm +zone=%d",
                  psDefn->Zone );
     }
     

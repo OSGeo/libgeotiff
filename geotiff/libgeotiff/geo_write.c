@@ -121,7 +121,6 @@ static int WriteKey(GTIF* gt, KeyEntry* entptr,GeoKey* keyptr)
 			break;
 		default:
 			return 0; /* failure */
-			break;
 	}
 	
 	return 1; /* success */
@@ -142,7 +141,8 @@ static int SortKeys(GTIF* gt,int *sortkeys)
 	int *index = gt->gt_keyindex;
 	GeoKey* keys=gt->gt_keys;
 	
-	kmin = gt->gt_keymin; kmax=gt->gt_keymax;
+	kmin = (geokey_t) gt->gt_keymin;
+        kmax = (geokey_t) gt->gt_keymax;
 	for (key=kmin; key<=kmax; key++)
 	{
 		if (loc=index[key])

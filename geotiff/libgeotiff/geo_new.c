@@ -186,7 +186,6 @@ static int ReadKey(GTIF* gt, KeyEntry* entptr,GeoKey* keyptr)
 			break;
 		default:
 			return 0; /* failure */
-			break;
 	}
 	keyptr->gk_size = _gtiff_size[keyptr->gk_type];
 	

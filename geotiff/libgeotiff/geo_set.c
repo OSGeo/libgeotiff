@@ -10,6 +10,9 @@
  *  notice accompanies any products derived therefrom.
  *
  * $Log$
+ * Revision 1.4  1999/05/03 17:50:31  warmerda
+ * avoid warnings on IRIX
+ *
  * Revision 1.3  1999/04/28 19:59:38  warmerda
  * added some doxygen style documentation
  *
@@ -157,7 +160,6 @@ int GTIFKeySet(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)
 	    default:
 			va_end(ap);
 	    	return 0;
-	    	break;
 	  }
 	   gtif->gt_nshorts += sizeof(KeyEntry)/sizeof(pinfo_t);
 	}
@@ -183,7 +185,6 @@ int GTIFKeySet(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)
                         break;
             default:
                 return 0;
-                break;
           }
 
         }

@@ -227,7 +227,6 @@ _XTIFFVSetField(TIFF* tif, ttag_t tag, va_list ap)
 	default:
 		/* call the inherited method */
 		return (PARENT(xt,vsetfield))(tif,tag,ap);
-		break;
 	}
 	if (status) {
 		/* we have to override the print method here,
@@ -293,7 +292,6 @@ _XTIFFVGetField(TIFF* tif, ttag_t tag, va_list ap)
 	default:
 		/* return inherited method */
 		return (PARENT(xt,vgetfield))(tif,tag,ap);
-		break;
 	}
 	return (1);
 }

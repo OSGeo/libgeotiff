@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.6  1999/05/03 17:50:31  warmerda
+ * avoid warnings on IRIX
+ *
  * Revision 1.5  1999/04/28 20:04:51  warmerda
  * Added doxygen style documentation.
  * Use GTIFPCSToMapSys() and related functions to partially normalize
@@ -1617,7 +1620,7 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
             if( psDefn->ProjParmId[i] == 0 )
                 continue;
 
-            pszName = GTIFKeyName(psDefn->ProjParmId[i]);
+            pszName = GTIFKeyName((geokey_t) psDefn->ProjParmId[i]);
             if( pszName == NULL )
                 pszName = "(unknown)";
 
