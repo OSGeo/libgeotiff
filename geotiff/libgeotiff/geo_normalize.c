@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.4  1999/03/18 21:34:59  geotiff
+ * added GTIFDecToDMS
+ *
  * Revision 1.3  1999/03/17 19:53:15  geotiff
  * sys includes moved to cpl_serv.h
  *
@@ -1347,6 +1350,47 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 }
 
 /************************************************************************/
+/*                            GTIFDecToDMS()                            */
+/*                                                                      */
+/*      Convenient function to translate decimal degrees to DMS         */
+/*      format for reporting to a user.                                 */
+/************************************************************************/
+
+const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
+                          int nPrecision )
+
+{
+    int		nDegrees, nMinutes;
+    double	dfSeconds;
+    char	szFormat[30];
+    static char szBuffer[50];
+    const char	*pszHemisphere;
+    
+
+    nDegrees = (int) ABS(dfAngle);
+    nMinutes = (int) ((ABS(dfAngle) - nDegrees) * 60);
+    dfSeconds = (ABS(dfAngle) * 3600 - nDegrees*3600 - nMinutes*60);
+
+    if( EQUAL(pszAxis,"Long") && dfAngle < 0.0 )
+        pszHemisphere = "W";
+    else if( EQUAL(pszAxis,"Long") )
+        pszHemisphere = "E";
+    else if( EQUAL(pszAxis,"Lat") && dfAngle < 0.0 )
+        pszHemisphere = "S";
+    else if( EQUAL(pszAxis,"Lat") )
+        pszHemisphere = "N";
+    else if( dfAngle < 0.0 )
+        pszAxis = "-";
+    else
+        pszAxis = "+";
+
+    sprintf( szFormat, "%%3dd%%2d\'%%.%df\"%s", nPrecision, pszHemisphere );
+    sprintf( szBuffer, szFormat, nDegrees, nMinutes, dfSeconds );
+
+    return( szBuffer );
+}
+
+/************************************************************************/
 /*                           GTIFPrintDefn()                            */
 /*                                                                      */
 /*      Report the contents of a GTIFDefn structure ... mostly for      */
@@ -1401,8 +1445,24 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
             pszName = GTIFKeyName(psDefn->ProjParmId[i]);
             if( pszName == NULL )
                 pszName = "(unknown)";
-            
-            printf( "   %s: %f\n", pszName, psDefn->ProjParm[i] );
+
+            if( i < 4 )
+            {
+                char	*pszAxisName;
+                
+                if( strstr(pszName,"Long") != NULL )
+                    pszAxisName = "Long";
+                else if( strstr(pszName,"Lat") != NULL )
+                    pszAxisName = "Lat";
+                else
+                    pszAxisName = "?";
+                
+                printf( "   %s: %f (%s)\n",
+                        pszName, psDefn->ProjParm[i],
+                        GTIFDecToDMS( psDefn->ProjParm[i], pszAxisName, 2 ) );
+            }
+            else
+                printf( "   %s: %f\n", pszName, psDefn->ProjParm[i] );
         }
     }
 
@@ -1449,8 +1509,10 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         char	*pszName = NULL;
 
         GTIFGetPMInfo( psDefn->PM, &pszName, NULL );
-        printf( "Prime Meridian: %d/%s (%f)\n",
-                psDefn->PM, pszName, psDefn->PMLongToGreenwich );
+        printf( "Prime Meridian: %d/%s (%f/%s)\n",
+                psDefn->PM, pszName,
+                psDefn->PMLongToGreenwich,
+                GTIFDecToDMS( psDefn->PMLongToGreenwich, "Long", 2 ) );
     }
 
 /* -------------------------------------------------------------------- */
