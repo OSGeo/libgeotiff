@@ -9,15 +9,10 @@
  * and a lot of legal stuff denying liability for anything.
  */
 
-//#if defined(unix) || defined(__unix)
-//#include "port.h"
-//#else
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef	unsigned char u_char;
-//#endif
+#include <getopt.h>
 #include <ctype.h>
 
 /* GeoTIFF overrides */
@@ -632,20 +627,20 @@ static int x(TIFF* in, TIFF* out, \
 
 #define	DECLAREreadFunc(x) \
 static void x(TIFF* in, \
-    u_char* buf, uint32 imagelength, uint32 imagewidth, tsample_t spp)
-typedef void (*readFunc)(TIFF*, u_char*, uint32, uint32, tsample_t);
+    unsigned char* buf, uint32 imagelength, uint32 imagewidth, tsample_t spp)
+typedef void (*readFunc)(TIFF*, unsigned char*, uint32, uint32, tsample_t);
 
 #define	DECLAREwriteFunc(x) \
 static int x(TIFF* out, \
-    u_char* buf, uint32 imagelength, uint32 imagewidth, tsample_t spp)
-typedef int (*writeFunc)(TIFF*, u_char*, uint32, uint32, tsample_t);
+    unsigned char* buf, uint32 imagelength, uint32 imagewidth, tsample_t spp)
+typedef int (*writeFunc)(TIFF*, unsigned char*, uint32, uint32, tsample_t);
 
 /*
  * Contig -> contig by scanline for rows/strip change.
  */
 DECLAREcpFunc(cpContig2ContigByRow)
 {
-	u_char *buf = (u_char *)_TIFFmalloc(TIFFScanlineSize(in));
+	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
 	uint32 row;
 
 	(void) imagewidth; (void) spp;
@@ -668,8 +663,8 @@ bad:
  */
 DECLAREcpFunc(cpContig2ContigByRow_8_to_4)
 {
-    u_char *buf_in = (u_char *)_TIFFmalloc(TIFFScanlineSize(in));
-    u_char *buf_out = (u_char *)_TIFFmalloc(TIFFScanlineSize(out));
+    unsigned char *buf_in = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
+    unsigned char *buf_out = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(out));
     uint32 row;
 
     printf( "Downsample\n" );
@@ -708,7 +703,7 @@ DECLAREcpFunc(cpContig2ContigByRow_8_to_4)
 DECLAREcpFunc(cpDecodedStrips)
 {
 	tsize_t stripsize  = TIFFStripSize(in);
-	u_char *buf = (u_char *)_TIFFmalloc(stripsize);
+	unsigned char *buf = (unsigned char *)_TIFFmalloc(stripsize);
 
 	(void) imagewidth; (void) spp;
 	if (buf) {
@@ -736,7 +731,7 @@ DECLAREcpFunc(cpDecodedStrips)
  */
 DECLAREcpFunc(cpSeparate2SeparateByRow)
 {
-	u_char *buf = (u_char *)_TIFFmalloc(TIFFScanlineSize(in));
+	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
 	uint32 row;
 	tsample_t s;
 
@@ -762,9 +757,9 @@ bad:
  */
 DECLAREcpFunc(cpContig2SeparateByRow)
 {
-	u_char *inbuf = (u_char *)_TIFFmalloc(TIFFScanlineSize(in));
-	u_char *outbuf = (u_char *)_TIFFmalloc(TIFFScanlineSize(out));
-	register u_char *inp, *outp;
+	unsigned char *inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
+	unsigned char *outbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(out));
+	register unsigned char *inp, *outp;
 	register uint32 n;
 	uint32 row;
 	tsample_t s;
@@ -799,9 +794,9 @@ bad:
  */
 DECLAREcpFunc(cpSeparate2ContigByRow)
 {
-	u_char *inbuf = (u_char *)_TIFFmalloc(TIFFScanlineSize(in));
-	u_char *outbuf = (u_char *)_TIFFmalloc(TIFFScanlineSize(out));
-	register u_char *inp, *outp;
+	unsigned char *inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
+	unsigned char *outbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(out));
+	register unsigned char *inp, *outp;
 	register uint32 n;
 	uint32 row;
 	tsample_t s;
@@ -832,7 +827,7 @@ bad:
 }
 
 static void
-cpStripToTile(u_char* out, u_char* in,
+cpStripToTile(unsigned char* out, unsigned char* in,
 	uint32 rows, uint32 cols, int outskew, int inskew)
 {
 	while (rows-- > 0) {
@@ -845,7 +840,7 @@ cpStripToTile(u_char* out, u_char* in,
 }
 
 static void
-cpContigBufToSeparateBuf(u_char* out, u_char* in,
+cpContigBufToSeparateBuf(unsigned char* out, unsigned char* in,
 	uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp)
 {
 	while (rows-- > 0) {
@@ -858,7 +853,7 @@ cpContigBufToSeparateBuf(u_char* out, u_char* in,
 }
 
 static void
-cpSeparateBufToContigBuf(u_char* out, u_char* in,
+cpSeparateBufToContigBuf(unsigned char* out, unsigned char* in,
 	uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp)
 {
 	while (rows-- > 0) {
@@ -875,7 +870,7 @@ cpImage(TIFF* in, TIFF* out, readFunc fin, writeFunc fout,
 	uint32 imagelength, uint32 imagewidth, tsample_t spp)
 {
 	int status = FALSE;
-	u_char* buf = (u_char *)
+	unsigned char* buf = (unsigned char *)
 	    _TIFFmalloc(TIFFRasterScanlineSize(in) * imagelength);
 	if (buf) {
 		(*fin)(in, buf, imagelength, imagewidth, spp);
@@ -888,7 +883,7 @@ cpImage(TIFF* in, TIFF* out, readFunc fin, writeFunc fout,
 DECLAREreadFunc(readContigStripsIntoBuffer)
 {
 	tsize_t scanlinesize = TIFFScanlineSize(in);
-     	u_char *bufp = buf;
+     	unsigned char *bufp = buf;
 	uint32 row;
 
 	(void) imagewidth; (void) spp;
@@ -902,19 +897,19 @@ DECLAREreadFunc(readContigStripsIntoBuffer)
 DECLAREreadFunc(readSeparateStripsIntoBuffer)
 {
 	tsize_t scanlinesize = TIFFScanlineSize(in);
-	u_char* scanline = (u_char *) _TIFFmalloc(scanlinesize);
+	unsigned char* scanline = (unsigned char *) _TIFFmalloc(scanlinesize);
 
 	(void) imagewidth;
 	if (scanline) {
-		u_char *bufp = buf;
+		unsigned char *bufp = buf;
 		uint32 row;
 		tsample_t s;
 
 		for (row = 0; row < imagelength; row++) {
 			/* merge channels */
 			for (s = 0; s < spp; s++) {
-				u_char* sp = scanline;
-				u_char* bp = bufp + s;
+				unsigned char* sp = scanline;
+				unsigned char* bp = bufp + s;
 				tsize_t n = scanlinesize;
 
 				if (TIFFReadScanline(in, sp, row, s) < 0 && !ignore)
@@ -931,11 +926,11 @@ done:
 
 DECLAREreadFunc(readContigTilesIntoBuffer)
 {
-	u_char* tilebuf = (u_char *) _TIFFmalloc(TIFFTileSize(in));
+	unsigned char* tilebuf = (unsigned char *) _TIFFmalloc(TIFFTileSize(in));
 	uint32 imagew = TIFFScanlineSize(in);
 	uint32 tilew  = TIFFTileRowSize(in);
 	int iskew = imagew - tilew;
-	u_char *bufp = buf;
+	unsigned char *bufp = buf;
 	uint32 tw, tl;
 	uint32 row;
 
@@ -976,8 +971,8 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 	uint32 imagew = TIFFScanlineSize(in);
 	uint32 tilew = TIFFTileRowSize(in);
 	int iskew  = imagew - tilew;
-	u_char* tilebuf = (u_char *) _TIFFmalloc(TIFFTileSize(in));
-	u_char *bufp = buf;
+	unsigned char* tilebuf = (unsigned char *) _TIFFmalloc(TIFFTileSize(in));
+	unsigned char *bufp = buf;
 	uint32 tw, tl;
 	uint32 row;
 
@@ -1035,7 +1030,7 @@ DECLAREwriteFunc(writeBufferToContigStrips)
 
 DECLAREwriteFunc(writeBufferToSeparateStrips)
 {
-	u_char *obuf = (u_char *) _TIFFmalloc(TIFFScanlineSize(out));
+	unsigned char *obuf = (unsigned char *) _TIFFmalloc(TIFFScanlineSize(out));
 	tsample_t s;
 
 	if (obuf == NULL)
@@ -1043,8 +1038,8 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 	for (s = 0; s < spp; s++) {
 		uint32 row;
 		for (row = 0; row < imagelength; row++) {
-			u_char* inp = buf + s;
-			u_char* outp = obuf;
+			unsigned char* inp = buf + s;
+			unsigned char* outp = obuf;
 			uint32 n = imagewidth;
 
 			while (n-- > 0)
@@ -1065,8 +1060,8 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 	uint32 imagew = TIFFScanlineSize(out);
 	uint32 tilew  = TIFFTileRowSize(out);
 	int iskew = imagew - tilew;
-	u_char* obuf = (u_char *) _TIFFmalloc(TIFFTileSize(out));
-	u_char* bufp = buf;
+	unsigned char* obuf = (unsigned char *) _TIFFmalloc(TIFFTileSize(out));
+	unsigned char* bufp = buf;
 	uint32 tl, tw;
 	uint32 row;
 
@@ -1110,8 +1105,8 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 	uint32 imagew = TIFFScanlineSize(out);
 	tsize_t tilew  = TIFFTileRowSize(out);
 	int iskew = imagew - tilew;
-	u_char *obuf = (u_char*) _TIFFmalloc(TIFFTileSize(out));
-	u_char *bufp = buf;
+	unsigned char *obuf = (unsigned char*) _TIFFmalloc(TIFFTileSize(out));
+	unsigned char *bufp = buf;
 	uint32 tl, tw;
 	uint32 row;
 
