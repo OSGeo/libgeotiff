@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.8  1999/05/04 12:27:01  geotiff
+ * only emit proj unsupported warning if DEBUG defined
+ *
  * Revision 1.7  1999/05/04 03:14:59  warmerda
  * fixed use of foot instead of ft for units
  *
@@ -433,14 +436,20 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 int GTIFProj4ToLatLong( GTIFDefn * psDefn, int nPoints,
                         double *padfX, double *padfY )
 {
-    printf( "GTIFProj4ToLatLong() - PROJ.4 support not compiled in.\n" );
+#ifdef DEBUG    
+    fprintf( stderr,
+             "GTIFProj4ToLatLong() - PROJ.4 support not compiled in.\n" );
+#endif    
     return FALSE;
 }
 
 int GTIFProj4FromLatLong( GTIFDefn * psDefn, int nPoints,
                           double *padfX, double *padfY )
 {
-    printf( "GTIFProj4FromLatLong() - PROJ.4 support not compiled in.\n" );
+#ifdef DEBUG    
+    fprintf( stderr,
+             "GTIFProj4FromLatLong() - PROJ.4 support not compiled in.\n" );
+#endif    
     return FALSE;
 }
 #else
