@@ -101,7 +101,7 @@ The elements of this tag are:<p>
 <tr>
   <td> ERR_BIAS
   </td><td> Error - Bias. The RMS bias error
-in meters per horizontal axis of all points in the image
+in meters per horizontal axis of all points in the image (-1.0 if unknown)
   </td><td> >= 0
   </td><td> meters
   </td>
@@ -110,7 +110,7 @@ in meters per horizontal axis of all points in the image
 <tr>
   <td> ERR_RAND
   </td><td> Error - Random. RMS random error in meters per
-horizontal axis of each point in the image.
+horizontal axis of each point in the image (-1.0 if unknown)
   </td><td> >= 0
   </td><td> meters
   </td>
@@ -250,17 +250,22 @@ geographic coordinate system might be described in the coordinate system
 description tags of the GeoTIFF file.  It is also possible to have only
 the RPCCoefficientTag tag and no other GeoTIFF tags.<p>
 
-<h2>Outstanding Issues</h2>
+<h2>Error Bias And Error Random</h2>
 
-<ol>
-
-<li> Error Bias and Random:  The STDI-0002 describes ERR_BIAS as "Error - 
-Bias. 68% non time-varying error 
+The STDI-0002 describes ERR_BIAS as "Error - Bias. 68% non time-varying error 
 estimate assumes correlated images." and ERR_RAND as "Error - Random. 68% 
 time-varying error estimate assumes uncorrelated images."  It is the intent
 that the ERR_BIAS and ERR_RAND fields in GeoTIFF should be the same as
 the values in the NITF; however, a more detailed explanation of the
 meaning, and rules for populating these fields would be very desirable.<p>
+
+If no ERR_BIAS or ERR_RAND values are available, the special value of 
+-1.0 will be used.  This should be interpreted as "no error estimates 
+available". <p>
+
+<h2>Outstanding Issues</h2>
+
+<ol>
 
 <li> It would be very desirable to provide sample file(s) demonstrating
 this format.  I have a variety of NITF datasets with RPCs, but none
