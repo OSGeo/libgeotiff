@@ -3,12 +3,13 @@
 # TIFF include files, and library.  However, you may want to add optimization
 # options to the CFLAGS macro as well. 
 #
-TIFF_INC = C:\usr\local\include
+TIFF_INC = ..\libtiff
 TIFF_LIB = C:\usr\local\lib\tiff.lib
 #
 CC      = cl
 INCL	= -I. -Ilibxtiff -I$(TIFF_INC)
 LIBS    = $(TIFF_LIB)
+
 #
 CFLAGS  = $(INCL)
 #
@@ -26,16 +27,30 @@ OBJS    = \
 	cpl_csv.obj \
 	cpl_serv.obj
 
-all:    geotiff.lib listgeo.exe geotifcp.exe
+all:    geo_config.h geotiff.lib listgeo.exe geotifcp.exe
 
-listgeo.exe:	bin\listgeo.c
+listgeo.exe:	bin\listgeo.c geotiff.lib
 	$(CC) $(CFLAGS) bin\listgeo.c geotiff.lib $(LIBS)
 	
-geotifcp.exe:	bin\geotifcp.c
+geotifcp.exe:	bin\geotifcp.c geotiff.lib
 	$(CC) $(CFLAGS) bin\geotifcp.c geotiff.lib $(LIBS)
 	
 geotiff.lib:	$(OBJS)
 	lib /out:geotiff.lib $(OBJS)
+
+#
+#	Note: Building a DLL is OK as far as libgeotiff is concerned, 
+#	but tiff.lib will get linked into geotiff.dll without actually
+#	exporting it's interface.  This means another copy will get
+#	pulled into the application and this could lead to much confusion.
+#	Only build geotiff.dll if you are also ensuring that TIFF symbols
+#	get exported.
+#
+#geotiff.dll:    $(OBJS)
+#	link /dll /out:geotiff.dll /implib:geotiff.lib $(OBJS) $(LIBS) 
+
+geo_config.h:	geo_config.h.vc
+	copy geo_config.h.vc geo_config.h
 
 xtiff.obj: libxtiff\xtiff.c
 	$(CC) -c $(CFLAGS) libxtiff\xtiff.c
@@ -74,4 +89,4 @@ cpl_serv.obj: cpl_serv.c
 	$(CC) -c $(CFLAGS) cpl_serv.c
 
 clean:
-	rm *.obj *.exe *.lib *.dll
+	rm -f *.obj *.exe *.lib *.dll
