@@ -96,6 +96,8 @@ WWW Homepage</A>.
 <li>
     <A HREF="#Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A>
 <li>
+    <A HREF="#EPSGVersion">What EPSG Version does GeoTIFF Use?</A>
+<li>
     <A HREF="#Where can I get a copy of the GeoTIFF spec to review?">Where can I get a copy of the GeoTIFF spec to review?</A>
 <li>
     <A HREF="#What can I do to support GeoTIFF ...">What can I do to support GeoTIFF ...</A>
@@ -540,11 +542,22 @@ encoding system which is international
 in scope, hierarchical in structure and inclusive of many 
 cartographic options and variables.  The geodesy system and tables
 are created and supported by the 
-<a href="http://www.petroconsultants.com/products/geodetic.html">European 
-Petrotechnical Survey Group (EPSG)</a>.
+<a href="http://www.epsg.org">European Petrotechnical Survey Group (EPSG)</a>.
 The POSC tables (maintained
 by EPSG) are the most comprehensive and TIFF compatible tables
 of cartographic inforamation available in the public domain today. 
+<P></P>
+
+<!--------------------------------------------------------------------------->
+<H3><A NAME="EPSGVersion">What EPSG Version does GeoTIFF Use?</A></H3>     
+
+The GeoTIFF 1.0 Specification references the EPSG 2.1 database.  Without
+a specification revision this remains the case; however, it is common practice
+amoung vendors producing and consuming GeoTIFF files to support recent
+versions of the EPSG database, currently 6.4 or higher.  The libgeotiff
+reference implementation is distributed with .csv files from a recent release
+of the EPSG database (used by normalization code); however, the names 
+enumerated in the various .inc files have not been kept up to date. 
 <P></P>
 
 <!--------------------------------------------------------------------------->
