@@ -16,7 +16,7 @@ ac_help="$ac_help
 ac_help="$ac_help
   --with-jpeg=dir         Use JPEG library in directory dir"
 ac_help="$ac_help
-  --with-proj[=ARG]          Use PROJ.4 library (ARG=no or path)"
+  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)"
 ac_help="$ac_help
   --enable-incode-epsg	  Use C code EPSG tables"
 
