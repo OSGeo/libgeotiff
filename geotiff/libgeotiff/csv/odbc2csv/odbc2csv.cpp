@@ -19,7 +19,29 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  ******************************************************************************
+ *
+ * The output format is ``Comma Separated Value'' format.
+ *
+ *  o There is always exactly one line per record.
+ *  o The first line is a record with the column titles instead of column
+ *    values.
+ *  o Fields are separated by commas.
+ *  o Some fields are enclosed in double quotes.  When reading the double
+ *    quotes should be stripped off the field.
+ *  o Quoted fields may contain escape sequences that should be interpreted
+ *    specially:
+ *            \"   should map to    "
+ *            \\   should map to    \
+ *            \n   should map to a CR or CR/LF
+ *
+ * Note that error checking in this program is weak.  Fields are read as
+ * simple strings.  Anything that doesn't translate well to strings may not
+ * work (does ODBC support raw binary data?).
+ * 
  * $Log$
+ * Revision 1.2  1999/03/12 13:47:28  geotiff
+ * added docs on csv format
+ *
  * Revision 1.1  1999/03/09 03:28:43  geotiff
  * New
  *
