@@ -20,7 +20,7 @@ fi
 #	Prepare tree.
 #
 
-DIST_DIR=libgeotiff-bin-${VERSION}
+DIST_DIR=libgeotiff-${PLATFORM}-bin.${VERSION}
 
 rm -rf $DIST_DIR
 mkdir $DIST_DIR
@@ -57,7 +57,7 @@ gzip -9 ${DIST_DIR}.tar
 
 echo "Prepared: "${DIST_DIR}.tar.gz
 
-TARGETDIR=remotesensing.org:/var/ftp/remotesensing/pub/geotiff/libgeotiff
+TARGETDIR=remotesensing.org:/ftp/remotesensing/pub/geotiff/libgeotiff
 
 if test "$3" = "-install" ; then
   scp ${DIST_DIR}.tar.gz $TARGETDIR
