@@ -1,5 +1,10 @@
 2001-04-17  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* geo_normalize.c: fixed memory leaks in GTIFGetDefn().
+
+	* cpl_serv.c: Fixed failure to set pointer to NULL when freeing
+	line buffer in CPLReadLine(). 
+
 	* geo_normalize.c: added support for reading custom ellipsoid 
 	definitions.
 	

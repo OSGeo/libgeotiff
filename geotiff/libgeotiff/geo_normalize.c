@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.27  2001/04/17 13:41:10  warmerda
+ * fix memory leaks in GTIFPrintDefn()
+ *
  * Revision 1.26  2001/04/17 13:23:07  warmerda
  * added support for reading custom ellipsoid definitions
  *
@@ -1955,9 +1958,12 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->PCS != KvUserDefined )
     {
-        char	*pszPCSName = CPLStrdup("name unknown");
+        char	*pszPCSName = NULL;
     
         GTIFGetPCSInfo( psDefn->PCS, &pszPCSName, NULL, NULL, NULL, NULL );
+        if( pszPCSName == NULL )
+            pszPCSName = CPLStrdup("name unknown");
+        
         fprintf( fp, "PCS = %d (%s)\n", psDefn->PCS, pszPCSName );
         CPLFree( pszPCSName );
     }
@@ -1967,9 +1973,12 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->ProjCode != KvUserDefined )
     {
-        char	*pszTRFName = CPLStrdup("");
+        char	*pszTRFName = NULL;
 
         GTIFGetProjTRFInfo( psDefn->ProjCode, &pszTRFName, NULL, NULL );
+        if( pszTRFName == NULL )
+            pszTRFName = CPLStrdup("");
+                
         fprintf( fp, "Projection = %d (%s)\n",
                  psDefn->ProjCode, pszTRFName );
 
@@ -2026,9 +2035,12 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->GCS != KvUserDefined )
     {
-        char	*pszName = CPLStrdup("(unknown)");
+        char	*pszName = NULL;
 
         GTIFGetGCSInfo( psDefn->GCS, &pszName, NULL, NULL, NULL );
+        if( pszName == NULL )
+            pszName = CPLStrdup("(unknown)");
+        
         fprintf( fp, "GCS: %d/%s\n", psDefn->GCS, pszName );
         CPLFree( pszName );
     }
@@ -2038,9 +2050,12 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->Datum != KvUserDefined )
     {
-        char	*pszName = CPLStrdup("(unknown)");
+        char	*pszName = NULL;
 
         GTIFGetDatumInfo( psDefn->Datum, &pszName, NULL );
+        if( pszName == NULL )
+            pszName = CPLStrdup("(unknown)");
+        
         fprintf( fp, "Datum: %d/%s\n", psDefn->Datum, pszName );
         CPLFree( pszName );
     }
@@ -2050,9 +2065,12 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->Ellipsoid != KvUserDefined )
     {
-        char	*pszName = CPLStrdup("(unknown)");
+        char	*pszName = NULL;
 
         GTIFGetEllipsoidInfo( psDefn->Ellipsoid, &pszName, NULL, NULL );
+        if( pszName == NULL )
+            pszName = CPLStrdup("(unknown)");
+        
         fprintf( fp, "Ellipsoid: %d/%s (%.2f,%.2f)\n",
                  psDefn->Ellipsoid, pszName,
                  psDefn->SemiMajor, psDefn->SemiMinor );
@@ -2064,9 +2082,13 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->PM != KvUserDefined )
     {
-        char	*pszName = CPLStrdup("(unknown)");
+        char	*pszName = NULL;
 
         GTIFGetPMInfo( psDefn->PM, &pszName, NULL );
+
+        if( pszName == NULL )
+            pszName = CPLStrdup("(unknown)");
+        
         fprintf( fp, "Prime Meridian: %d/%s (%f/%s)\n",
                  psDefn->PM, pszName,
                  psDefn->PMLongToGreenwich,
@@ -2080,9 +2102,12 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->UOMLength != KvUserDefined )
     {
-        char	*pszName = CPLStrdup( "(unknown)" );
+        char	*pszName = NULL;
 
         GTIFGetUOMLengthInfo( psDefn->UOMLength, &pszName, NULL );
+        if( pszName == NULL )
+            pszName = CPLStrdup( "(unknown)" );
+        
         fprintf( fp, "Projection Linear Units: %d/%s (%fm)\n",
                  psDefn->UOMLength, pszName, psDefn->UOMLengthInMeters );
         CPLFree( pszName );
