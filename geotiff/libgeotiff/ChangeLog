@@ -1,3 +1,8 @@
+2002-07-09  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geotiff_proj4.c: Fixed translation of polar stereographic to PROJ.4
+	as per http://bugzilla.remotesensing.org/show_bug.cgi?id=172.
+
 2002-06-18  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* cpl_csv.h, cpl_serv.h, cpl_csv.c, cpl_csv_incode.c, geo_normalize.c:
