@@ -13,6 +13,9 @@
  *    7 July,  1995      Greg Martin             Fix index
  *
  * $Log$
+ * Revision 1.9  2003/06/19 20:04:11  warmerda
+ * fix memory underwrite if ascii parameter string is zero length
+ *
  * Revision 1.8  2003/06/05 14:20:45  warmerda
  * cosmetic formatting changes
  *
@@ -204,10 +207,10 @@ static int ReadKey(GTIF* gt, TempKeyData* tempData,
             if (offset + count > tempData->tk_asciiParamsLength)
                 return (0);
 
-            keyptr->gk_data = (char *) _GTIFcalloc (count);
+            keyptr->gk_data = (char *) _GTIFcalloc (MAX(1,count));
             _GTIFmemcpy (keyptr->gk_data,
                          tempData->tk_asciiParams + offset, count);
-            keyptr->gk_data[count-1] = '\0';
+            keyptr->gk_data[MAX(0,count-1)] = '\0';
             break;
         default:
             return 0; /* failure */
