@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.6  1999/05/04 03:13:42  warmerda
+ * Added prototype
+ *
  * Revision 1.5  1999/04/29 23:02:55  warmerda
  * added docs, and MapSys related stuff
  *
@@ -180,6 +183,7 @@ const char CPL_DLL *GTIFDecToDMS( double, const char *, int );
 #define MapSys_State_Plane_83	-9004
 
 int CPL_DLL   GTIFMapSysToPCS( int MapSys, int Datum, int nZone );
+int CPL_DLL   GTIFMapSysToProj( int MapSys, int nZone );
 int CPL_DLL   GTIFPCSToMapSys( int PCSCode, int * pDatum, int * pZone );
 int CPL_DLL   GTIFProjToMapSys( int ProjCode, int * pZone );
 
