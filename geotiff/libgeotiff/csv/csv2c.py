@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.2  2004/03/20 07:31:16  warmerda
+# improved filename handling
+#
 # Revision 1.1  2004/03/20 07:10:21  warmerda
 # New
 #
@@ -37,6 +40,7 @@
 import string
 import sys
 import csv_tools
+import os.path
 
 ###############################################################################
 def emit_token_line( fd, field_list, counter, varname ):
@@ -49,8 +53,11 @@ def emit_token_line( fd, field_list, counter, varname ):
     
 ###############################################################################
 def convert_csv_table( csv_filename ):
-    c_filename = csv_filename[0:-3] + 'c'
-    varname = csv_filename[0:-4]
+
+    without_ext, ext = os.path.splitext( csv_filename )
+    c_filename = without_ext + '.c'
+    csv_filename = without_ext + '.csv'
+    varname = os.path.basename(without_ext)
 
     lines = csv_tools.merge_split_lines(open(csv_filename).readlines())
 
