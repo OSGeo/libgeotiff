@@ -37,6 +37,9 @@
  * work (does ODBC support raw binary data?).
  * 
  * $Log$
+ * Revision 1.6  2004/02/24 17:19:10  warmerda
+ * fixed error in c generation case
+ *
  * Revision 1.5  2002/11/28 15:34:33  warmerda
  * corrected to use standard CSV quoting mechanisms
  *
@@ -127,7 +130,7 @@ int main( int argc, char ** argv )
             }
          
             fprintf( fp, "%s\n", "#include \"defs.h\"" );
-            sprintf( szQuery, "SELECT * FROM %s", argv[i] );
+            sprintf( szQuery, "SELECT * FROM \"%s\"", argv[i] );
             if( oDB.ExecuteSQL( szQuery ) == SQL_SUCCESS )
             {
                 ODBC2CSV( &oDB, fp, bGenerateC, argv[i] );
