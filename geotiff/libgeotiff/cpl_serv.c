@@ -23,6 +23,9 @@
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
  * $Log$
+ * Revision 1.5  2000/09/30 03:35:05  warmerda
+ * Fixed CPLReadLine() to use avoid calling VSIRealloc() on a NULL pointer.
+ *
  * Revision 1.4  1999/06/25 04:35:26  warmerda
  * Fixed to actually support long lines.
  *
@@ -174,7 +177,10 @@ const char *CPLReadLine( FILE * fp )
         if( nRLBufferSize-nReadSoFar < 128 )
         {
             nRLBufferSize = nRLBufferSize*2 + 128;
-            pszRLBuffer = (char *) VSIRealloc(pszRLBuffer, nRLBufferSize);
+            if( pszRLBuffer == NULL )
+                pszRLBuffer = (char *) VSIMalloc(nRLBufferSize);
+            else
+                pszRLBuffer = (char *) VSIRealloc(pszRLBuffer, nRLBufferSize);
             if( pszRLBuffer == NULL )
             {
                 nRLBufferSize = 0;
