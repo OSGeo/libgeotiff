@@ -1,3 +1,12 @@
+2001-03-04  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* GTIFGetDefn() now calls CSVDeaccess() to avoid memory/file leaks.
+
+	* Added docs/api, and related for Doxygen generated API docs.
+
+	* Fixed memory leaks in GTIFPrintDefn() (geo_normalize.c), and
+	GTIFImageToPCS(), GTIFPCSToImage() (geo_trans.c).  
+
 2001-03-01  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Added PCS_GGRS87_Greek_Grid for Dr. Irwin Scollar.
