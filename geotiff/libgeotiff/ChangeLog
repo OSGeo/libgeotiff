@@ -1,3 +1,13 @@
+2002-05-31  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_print.c: modified to using backslash escaping for backslashes,
+	and newlines handle newlines in citations (as occur in Erdas generated
+	files, for instance).  Also resolved some problems with processing
+	long string values though very long strings will still blow up
+	GTIFImport().
+
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=139
+
 2002-02-25  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* configure.in: added setting of EXEEXT macro - allow .exe files on
