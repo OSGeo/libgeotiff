@@ -1,5 +1,8 @@
 2004-12-16  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* aclocal.m4, Makefile.in: added MacOSX/Darwin related logic for
+	shared libraries.
+
 	* bin/Makefile.in: fixed problem in setting libdir.
 
 2004-12-01  Frank Warmerdam  <warmerdam@pobox.com>

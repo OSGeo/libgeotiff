@@ -39,6 +39,7 @@ GEOTIFF_SO=@GEOTIFF_SO@
 GEOTIFF_DLL=@GEOTIFF_DLL@
 GEOTIFF_IMP=@GEOTIFF_IMP@
 LD_SHARED=@LD_SHARED@
+SO_EXT=@SO_EXT@
 
 GT_INCLUDE_FILES = xtiffio.h geotiff.h geotiffio.h geovalues.h \
 	geonames.h geokeys.h geo_tiffp.h geo_config.h geo_keyp.h \
@@ -100,8 +101,8 @@ libgeotiff.a: ${OBJS}
 
 $(GEOTIFF_SO): ${OBJS}
 	${LD_SHARED} ${OBJS} ${LIBS} -o $(GEOTIFF_SO)
-	rm -f libgeotiff.so
-	${LN} $(GEOTIFF_SO) libgeotiff.so
+	rm -f libgeotiff.$(SO_EXT)
+	${LN} $(GEOTIFF_SO) libgeotiff.$(SO_EXT)
 
 Progs:
 	${CD} ${BIN};\
@@ -163,7 +164,7 @@ ${SRCDIR}/csv/%.o:	${SRCDIR}/csv/%.c
 
 clean:
 	(cd bin; $(MAKE) clean)
-	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out libgeotiff.so*
+	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out libgeotiff.$(SO_EXT)*
 	rm -f ${GEOTIFF_IMP} ${GEOTIFF_SO}
 
 dist-clean: clean
@@ -206,13 +207,13 @@ install:
 		else \
 			$(INSTALL) $(GEOTIFF_SO) $(DESTDIR)${libdir}; \
 			(cd $(DESTDIR)${libdir} ; \
-			rm -f libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
-			${LN} $(GEOTIFF_SO) libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
-			rm -f libgeotiff.so.$(VERSION_MAJOR); \
-			${LN} libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR) \
-			libgeotiff.so.$(VERSION_MAJOR); \
-			rm -f libgeotiff.so; \
-			${LN} libgeotiff.so.$(VERSION_MAJOR) libgeotiff.so; );\
+			rm -f libgeotiff.$(SO_EXT).$(VERSION_MAJOR).$(VERSION_MINOR); \
+			${LN} $(GEOTIFF_SO) libgeotiff.$(SO_EXT).$(VERSION_MAJOR).$(VERSION_MINOR); \
+			rm -f libgeotiff.$(SO_EXT).$(VERSION_MAJOR); \
+			${LN} libgeotiff.$(SO_EXT).$(VERSION_MAJOR).$(VERSION_MINOR) \
+			libgeotiff.$(SO_EXT).$(VERSION_MAJOR); \
+			rm -f libgeotiff.$(SO_EXT); \
+			${LN} libgeotiff.$(SO_EXT).$(VERSION_MAJOR) libgeotiff.$(SO_EXT); );\
 		fi;\
 	fi
 
