@@ -1,0 +1,103 @@
+#
+# GeoTIFF Library source for Makefile
+#
+DEPTH   = .
+
+SRCDIR  = ${DEPTH}/@SRCDIR@
+
+TOP = ${DEPTH}/@DIR_LIBTIFF@
+TIFFDIR = ${TOP}/libtiff
+PORT    = ${TOP}/port
+
+#
+# VERSION:      @VERSION@
+# DATE:         @DATE@
+# TARGET:       @TARGET@
+# CCOMPILER:    @CCOMPILER@
+#
+SHELL   = /bin/sh
+NULL    =
+CD      = cd
+CC      = @CCOMPILER@
+AR      = @AR@
+LN      = @LN@ @LN_S@
+AROPTS  = @AROPTS@
+RANLIB  = @RANLIB@
+INSTALL = @INSTALL@
+RM      = rm -f
+MAKE    = make
+
+BIN=${SRCDIR}/bin
+LIB_XTIFF=${SRCDIR}/libxtiff
+XTIFF=xtiff.o
+XTIFFINC= xtiffio.h xtiffiop.h
+
+#
+IPATH   = -I. -I${TOP} -I${SRCDIR}  -I${TIFFDIR}
+#
+CONF_LIBRARY=\
+	${NULL}
+COPTS   = @GCOPTS@
+OPTIMIZER=-O
+CFLAGS  = @ENVOPTS@ ${COPTS} ${OPTIMIZER} ${IPATH} ${CONF_LIBRARY}
+#
+SRCS    = \
+	${NULL}
+OBJS    = \
+	${XTIFF} \
+	geo_free.o \
+	geo_get.o \
+	geo_names.o \
+	geo_new.o \
+	geo_print.o \
+	geo_set.o \
+	geo_tiffp.o \
+	geo_write.o \
+	${NULL}
+TARGETS = libgeotiff.a
+
+all:    ${TARGETS} Progs
+
+libgeotiff.a: ${OBJS}
+	${AR} ${AROPTS} libgeotiff.a $?
+	${RANLIB} libgeotiff.a
+
+Progs:
+	${CD} ${BIN};\
+	${MAKE}
+	
+${OBJS}: ${SRCDIR}/geotiff.h ${SRCDIR}/geotiffio.h
+
+${XTIFFINC}:
+	${RM} ${XTIFFINC}
+	${LN} ${LIB_XTIFF}/*.h .
+
+${XTIFF}: ${LIB_XTIFF}/xtiff.c  ${XTIFFINC}
+	${CC} -c ${CFLAGS}  ${LIB_XTIFF}/xtiff.c
+
+geo_free.o: ${SRCDIR}/geo_free.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_free.c
+
+geo_get.o: ${SRCDIR}/geo_get.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_get.c
+
+geo_names.o: ${SRCDIR}/geo_names.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_names.c
+
+geo_new.o: ${SRCDIR}/geo_new.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_new.c
+
+geo_print.o: ${SRCDIR}/geo_print.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_print.c
+
+geo_set.o: ${SRCDIR}/geo_set.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_set.c
+
+geo_tiffp.o: ${SRCDIR}/geo_tiffp.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_tiffp.c
+
+geo_write.o: ${SRCDIR}/geo_write.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_write.c
+
+clean:
+	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out

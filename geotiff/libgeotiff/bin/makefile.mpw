@@ -1,0 +1,58 @@
+#***********************************************************************
+#
+#  MPW build file for example GeoTIFF utilities
+#
+#  written by Niles D. Ritter.
+#
+CC = c
+AR = lib -o
+RM = delete -y
+LN = duplicate -y
+
+#debug option
+#DEBUG= -sym full
+DEBUG=
+
+# data/code model options
+#MODEL=
+MODEL= -model far
+
+TIFFLIB = :::libtiff:
+GEOTIFFLIB = ::
+PORT = :::port:
+
+LINK.c = Link   {LDFLAGS}
+.o Ä .c
+	{CC} {DEBUG} {CFLAGS} {CPPFLAGS}     {Default}.c -o {Default}.o
+LDFLAGS = {DEBUG} {MODEL} -c 'MPS ' -t MPST -w 
+CFLAGS = {MODEL}
+CPPFLAGS =  -I {TIFFLIB}  -I {GEOTIFFLIB}               
+OBJS = makegeo.o  listgeo.o geotifcp.o
+CLEANOBJS = makegeo.o      
+CLEANOTHER = newtif.tif 
+CLEANINC =
+LIBS =          {TIFFLIB}libtiff.o ¶
+		{GEOTIFFLIB}libgeotiff.o ¶
+		"{CLibraries}"StdClib.o ¶
+		"{Libraries}"Stubs.o ¶
+		"{Libraries}"Runtime.o ¶
+		"{Libraries}"Interface.o
+
+ALL = makegeo listgeo geotifcp
+
+all Ä {ALL} 
+
+compile Ä  {OBJS}
+
+makegeo Ä  makegeo.o {GEOTIFFLIB}libgeotiff.o
+	{LINK.c} -o makegeo makegeo.o {LIBS}
+	
+listgeo Ä  listgeo.o {GEOTIFFLIB}libgeotiff.o
+	{LINK.c} -o listgeo listgeo.o {LIBS}
+
+geotifcp Ä  geotifcp.o {GEOTIFFLIB}libgeotiff.o {PORT}libport.o
+	{LINK.c} -o geotifcp geotifcp.o {LIBS} {PORT}libport.o
+
+clean Ä 
+	{RM} {ALL} {CLEANOBJS} {CLEANOTHER}
+	

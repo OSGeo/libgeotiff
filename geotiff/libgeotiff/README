@@ -1,0 +1,86 @@
+About LIBGEOTIFF:
+-----------------
+
+This library is designed to permit the extraction and parsing of the
+"GeoTIFF" Key directories, as well as definition and installation
+of GeoTIFF keys in new files. For more information about GeoTIFF
+specifications, projection codes and use, see the WWW web page at:
+
+   http://www-mipl.jpl.nasa.gov/cartlab/geotiff/geotiff.html
+   
+or the FTP archive at:
+
+   ftp://mtritter.jpl.nasa.gov/pub/tiff/geotiff
+
+Configuration:
+--------------
+
+The default configuration assumes that the public-domain LIBTIFF
+package for reading and writing TIFF files has been acquired and
+built. The latest version of libtiff may be found at:
+
+   ftp://ftp.sgi.com/graphics/tiff
+   
+and is in compressed tar format. For this build to work you must
+use libtiff version v3.4beta018 or newer. Uncompress and untar 
+the file, and build the library using the documented methods.
+
+Once the libtiff package has been built, install the "libgeotiff"
+directory into the top-level libtiff directory (so that "libgeotiff" is
+at the same level as "libtiff"). You may now skip down to the section
+"Building LIBGEOTIFF".
+
+
+
+Building LIBGEOTIFF:
+--------------------
+Assuming that whatever TIFF library you use has been built, you
+may now build the rest of the geotiff library with:
+
+   % cd libgeotiff
+   % configure
+   % make 
+
+There are two demonstration test programs "makegeo" and "listgeo"
+that create and list-out the GeoTIFF tags and keys associated 
+with a small TIFF file, as well as a full-featured utility called
+"geotifcp". These will all be built in the bin/ directory as a matter of 
+course, though may require modification if you are not using LIBTIFF, as they
+make explicit calls to LIBTIFF for opening the files and setting the
+tags. To run them simply call:
+
+  % bin/makegeo
+  % bin/listgeo newgeo.tif
+
+to generate and list an example GeoTIFF file. To see the
+"geotifcp" utility in action, first call:
+
+  %  bin/listgeo newgeo.tif > metadata.txt
+ 
+to create a GeoTIFF metadata file "metadata.txt", and then
+
+  %  bin/geotifcp  -g  metadata.txt  newgeo.tif  newer.tif
+ 
+to copy the TIFF file newgeo.tif to newer.tif, using the
+GeoTIFF metadata as stored in "metadata.txt". See "docs/manual.txt"
+for further uses of geotifcp.
+ 
+Non-Standard Configuration:
+---------------------------
+
+If you are using a TIFF software package other than libtiff, then you
+must override the TIFF file methods used in LIBGEOTIFF. To do this, 
+go into directory libgeotiff and edit the files:
+
+    "geo_tiffp.h"
+    "geo_tiffp.c"
+    
+which contain all of the TIFF externals. You will need to define your
+own versions of the TIFF tag reading, writing, and memory allocation
+calls. See the comments of those two files to see what needs to be
+changed. Also, whatever software package you use will have to 
+recognize the GeoTIFF tags listed in the include files, and permit
+variable-length arrays to be passed in to those tags.
+
+
+  --Niles Ritter (ritter@earthlink.net,  ndr@tazboy.jpl.nasa.gov).

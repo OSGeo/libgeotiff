@@ -1,0 +1,65 @@
+#
+# GeoTIFF Library source for Makefile
+#
+DEPTH	= ..
+
+GEOTIFFDIR	= ${DEPTH}/@SRCDIR@
+
+TOP = ${DEPTH}/@DIR_LIBTIFF@
+TIFFDIR = ${TOP}/libtiff
+PORT    = ${TOP}/port
+LIBPORT = @LIBPORT@
+
+#
+# VERSION:	@VERSION@
+# DATE:		@DATE@
+# TARGET:	@TARGET@
+# CCOMPILER:	@CCOMPILER@
+#
+SHELL	= /bin/sh
+NULL	=
+CC	= @CCOMPILER@
+AR	= @AR@
+LN	= @LN@
+AROPTS	= @AROPTS@
+RANLIB	= @RANLIB@
+INSTALL	= @INSTALL@
+
+PROGS=${BIN}/makegeo ${BIN}/listgeo ${BIN}/geotifcp
+
+#
+IPATH	= -I. -I${TOP} -I${GEOTIFFDIR}  -I${TIFFDIR}
+#
+CONF_LIBRARY=\
+	${NULL}
+COPTS	= @GCOPTS@
+OPTIMIZER=-O
+CFLAGS	= @ENVOPTS@ ${COPTS} ${OPTIMIZER} ${IPATH} ${CONF_LIBRARY}
+#
+SRCS	= \
+	${NULL}
+OBJS	= \
+	makegeo.o \
+	listgeo.o \
+	geotifcp.o \
+	${NULL}
+
+LIBS=   -L${GEOTIFFDIR} -L${TIFFDIR} -L${PORT}  -lgeotiff -ltiff ${LIBPORT}
+
+ALL=	makegeo listgeo geotifcp
+
+all:	${ALL} 
+
+makegeo: makegeo.o  ${GEOTIFFDIR}/libgeotiff.a
+	${CC} ${COPTS} makegeo.o ${LIBS} -o makegeo
+
+geotifcp: geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a
+	${CC} ${COPTS} geotifcp.o ${LIBS} -o geotifcp
+
+listgeo: listgeo.o  ${GEOTIFFDIR}/libgeotiff.a
+	${CC} ${COPTS} listgeo.o ${LIBS} -o listgeo
+
+
+clean:
+	rm -f ${ALL} ${OBJS} core a.out newgeo.tif
+

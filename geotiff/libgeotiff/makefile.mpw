@@ -1,0 +1,49 @@
+# MPW C Makefile for libgeotiff
+
+.o Ä .c
+	C -o {default}.o -I ::libtiff:  {default}.c
+
+XTIFF = :libxtiff:xtiff.o
+
+CLEANINC= xtiffio.h xtiffiop.h
+
+OBJECTS = ¶
+	{XTIFF} ¶
+	geo_free.o ¶
+	geo_get.o ¶
+	geo_new.o ¶
+	geo_names.o ¶
+	geo_print.o ¶
+	geo_set.o ¶
+	geo_tiffp.o ¶
+	geo_write.o
+
+INCLUDES = ¶
+	geo_keyp.h ¶
+	geo_tiffp.h ¶
+	geokeys.h ¶
+	geovalues.h ¶
+	geonames.h ¶
+	geotiff.h
+
+
+ALL = libgeotiff.o
+
+all Ä {ALL}
+
+XINCLUDES ÄÄ
+	cd :libxtiff:
+	cp -y Å.h ::
+	cd ::
+
+
+{OBJECTS} ÄÄ {INCLUDES}
+
+{ALL} Ä  XINCLUDES {OBJECTS}
+	lib -o {ALL} {OBJECTS}
+
+clean Ä
+	rm -i {ALL}
+	rm -i {CLEANINC}
+	rm -i {OBJECTS}
+
