@@ -1,3 +1,19 @@
+2000-12-12  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Fix geotifcp.c to avoid u_char problems, include getopt.h.
+
+	* Made configure use "-L... -llibname" for libproj and libtiff
+	so we will use the shared library when possible.
+
+	* Fixed up Makefile.in so it works if . is not in the path.
+
+	* Added CSV_DATA_DIR define to control where to look for csv files.
+
+	Todays fixes courtesy of Dave Johnson, ddj@cascv.brown.edu and 
+	are summarized in:
+	
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=29
+
 2000-12-05  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Added cassini support in geotiff_proj4.c.

@@ -1452,7 +1452,7 @@ fi
 
 
 if test "$with_libtiff" != "" ; then
-  TIFF_LIB=$TIFF_HOME/libtiff.a
+  TIFF_LIB="-L$TIFF_HOME -ltiff"
   LIBS="-L$with_libtiff -ltiff $LIBS"
 
   TIFF_INC=-I$with_libtiff
@@ -1583,7 +1583,7 @@ if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
     PROJ_INC=$PROJ_HOME
 
     elif test -f $PROJ_HOME/lib/libproj.a -a -f $PROJ_HOME/include/projects.h ; then
-    PROJ_LIB=$PROJ_HOME/lib/libproj.a
+    PROJ_LIB="-L$PROJ_HOME/lib -lproj"
     PROJ_INC=$PROJ_HOME/include 
   else
     echo "PROJ_HOME=$PROJ_HOME, but either projects.h or libproj.a not found!"
