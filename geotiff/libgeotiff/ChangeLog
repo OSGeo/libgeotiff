@@ -1,3 +1,9 @@
+Mon Jul 12 12:56:51 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Made scale a parameter of CT_Stereographic.
+
+	* geotifcp modified to copy existing geotiff information by default.
+
 Tue May  4 09:25:12 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Prepared Version 1.1.1 release.
