@@ -1,3 +1,8 @@
+2003-06-03  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* bin/Makefile: added -L${libdir} before $(LIBS) per suggestion by
+	Tommy Andreassen.
+
 2003-02-25  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* bin/Makefile.in: Replace $< with the object file names.  Apparently
