@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.16  2003/07/10 18:03:28  warmerda
+ * don't crash if NULL passed to gtCSVAccess()
+ *
  * Revision 1.15  2003/01/20 06:46:35  warmerda
  * search for pcs.csv, not horiz_cs.csv
  *
@@ -124,6 +127,9 @@ static CSVTable *gtCSVAccess( const char * pszFilename )
 {
     CSVTable    *psTable;
     FILE        *fp;
+
+    if( pszFilename == NULL )
+        return NULL;
 
 /* -------------------------------------------------------------------- */
 /*      Is the table already in the list.                               */
