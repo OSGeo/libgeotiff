@@ -1,0 +1,11 @@
+    Windows Build
+    -------------
+
+Most of the notes in the README apply on Windows as well; however, to 
+configure and build follow the following steps:
+
+ o Edit makefile.vc, updating the TIFF_LIB and TIFF_INC variables to point
+   to the location of the tiff include files, and library.  
+
+ o Build using the command ``nmake -f makefile.vc''
+
