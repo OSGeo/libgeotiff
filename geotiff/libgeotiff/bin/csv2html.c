@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  1999/07/28 22:11:31  warmerda
+ * lots more changes
+ *
  * Revision 1.1  1999/06/25 05:50:24  warmerda
  * New
  *
@@ -36,7 +39,8 @@
 #include "cpl_csv.h"
 
 static void
-CSV2HTML( const char * pszFilename, int nColumns, int * panColumns, char** );
+CSV2HTML( const char * pszFilename, int nColumns, int * panColumns, char**,
+          int );
 
 /************************************************************************/
 /*                                main()                                */
@@ -50,7 +54,7 @@ int main( int nArgc, char ** papszArgv )
     const char *pszTablePath = "/home/warmerda/libgeotiff/csv";
     char	**papszOptions = NULL;
     char	szFilename[1024];
-    int		i;
+    int		i, bSingletons = FALSE;
 
     printf( "Content-type: text/html\n\n" );
     
@@ -95,6 +99,16 @@ int main( int nArgc, char ** papszArgv )
         {
             pszTable = papszOptions[i] + 6;
         }
+
+        else if( EQUALN(papszOptions[i],"CODE=",5) )
+        {
+            bSingletons = TRUE;
+        }
+
+        else if( EQUALN(papszOptions[i],"SINGLETON",6) )
+        {
+            bSingletons = TRUE;
+        }
     }
 
 /* -------------------------------------------------------------------- */
@@ -105,7 +119,8 @@ int main( int nArgc, char ** papszArgv )
 /* -------------------------------------------------------------------- */
 /*      Call function to translate to HTML.                             */
 /* -------------------------------------------------------------------- */
-    CSV2HTML( szFilename, nColumns, panColumnList, papszOptions );
+    CSV2HTML( szFilename, nColumns, panColumnList, papszOptions,
+              bSingletons );
 
     return 0;
 }
@@ -118,7 +133,7 @@ int main( int nArgc, char ** papszArgv )
 
 static void
 CSV2HTML( const char * pszFilename, int nColumns, int * panColumns,
-          char ** papszOptions )
+          char ** papszOptions, int bSingletons )
 
 {
     FILE	*fp;
@@ -151,15 +166,18 @@ CSV2HTML( const char * pszFilename, int nColumns, int * panColumns,
     }
 
     printf( "<table border>\n" );
-    
-    for( iCol = 0; iCol < nColumns; iCol++ )
+
+    if( !bSingletons )
     {
-        if( panColumns[iCol] < nColCount )
+        for( iCol = 0; iCol < nColumns; iCol++ )
         {
-            printf( "<th>%s\n", papszFieldNames[panColumns[iCol]] );
+            if( panColumns[iCol] < nColCount )
+            {
+                printf( "<th>%s\n", papszFieldNames[panColumns[iCol]] );
+            }
         }
+        printf( "<tr>\n" );
     }
-    printf( "<tr>\n" );
 
 /* -------------------------------------------------------------------- */
 /*      Read and emit normal records.                                   */
@@ -198,41 +216,53 @@ CSV2HTML( const char * pszFilename, int nColumns, int * panColumns,
         {
             for( iCol = 0; iCol < nColumns; iCol++ )
             {
-                if( panColumns[iCol] < nColCount )
+                const char	*pszSubTable = NULL;
+                const char  *pszFieldName;
+                
+                if( panColumns[iCol] < 0
+                    || panColumns[iCol] >= nColCount )
+                    continue;
+                
+                pszFieldName = papszFieldNames[panColumns[iCol]];
+
+                if( bSingletons )
                 {
-                    const char	*pszSubTable = NULL;
-                    const char  *pszFieldName;
-
-                    pszFieldName = papszFieldNames[panColumns[iCol]];
-
-                    if( EQUAL(pszFieldName,"PRIME_MERIDIAN_CODE") )
-                        pszSubTable = "p_meridian";
-                    else if( EQUAL(pszFieldName,"GEOD_DATUM_CODE") )
-                        pszSubTable = "geod_datum";
-                    else if( EQUAL(pszFieldName,"UOM_LENGTH_CODE") )
-                        pszSubTable = "uom_length";
-                    else if( EQUAL(pszFieldName,"UOM_ANGLE_CODE") )
-                        pszSubTable = "uom_angle";
-                    else if( EQUAL(pszFieldName,"SOURCE_GEOGCS_CODE") )
-                        pszSubTable = "horiz_cs";
-                    else if( EQUAL(pszFieldName,"PROJECTION_TRF_CODE") )
-                        pszSubTable = "trf_nonpolynomial";
-                    else if( EQUAL(pszFieldName,"ELLIPSOID_CODE") )
-                        pszSubTable = "ellipsoid";
-                    else if( EQUAL(pszFieldName,"COORD_TRF_METHOD_CODE") )
-                        pszSubTable = "trf_method";
-
-                    if( pszSubTable != NULL )
-                        printf( "<td><a href="
-                                "\"/cgi-bin/csv2html/TABLE=%s/CODE=%s/\">"
-                                "%s</a>\n",
-                                pszSubTable,papszFields[panColumns[iCol]],
-                                papszFields[panColumns[iCol]] );
-                    else
-                        printf( "<td>%s\n", papszFields[panColumns[iCol]] );
+                    printf( "<td>%s\n", pszFieldName );
                 }
+                
+
+                if( EQUAL(pszFieldName,"PRIME_MERIDIAN_CODE") )
+                    pszSubTable = "p_meridian";
+                else if( EQUAL(pszFieldName,"GEOD_DATUM_CODE") )
+                    pszSubTable = "geod_datum";
+                else if( EQUAL(pszFieldName,"UOM_LENGTH_CODE") )
+                    pszSubTable = "uom_length";
+                else if( EQUAL(pszFieldName,"UOM_ANGLE_CODE") )
+                    pszSubTable = "uom_angle";
+                else if( EQUAL(pszFieldName,"SOURCE_GEOGCS_CODE") )
+                    pszSubTable = "horiz_cs";
+                else if( EQUAL(pszFieldName,"PROJECTION_TRF_CODE") )
+                    pszSubTable = "trf_nonpolynomial";
+                else if( EQUAL(pszFieldName,"ELLIPSOID_CODE") )
+                    pszSubTable = "ellipsoid";
+                else if( EQUAL(pszFieldName,"COORD_TRF_METHOD_CODE") )
+                    pszSubTable = "trf_method";
+                
+                if( pszSubTable != NULL )
+                    printf( "<td><a href="
+                            "\"/cgi-bin/csv2html/TABLE=%s/CODE=%s/\">"
+                            "%s</a>\n",
+                            pszSubTable,papszFields[panColumns[iCol]],
+                            papszFields[panColumns[iCol]] );
+                else
+                    printf( "<td>%s\n", papszFields[panColumns[iCol]] );
+
+                if( bSingletons )
+                    printf( "<tr>\n" );
             }
-            printf( "<tr>\n" );
+
+            if( !bSingletons )
+                printf( "<tr>\n" );
         }
 
         CSLDestroy( papszFields );
