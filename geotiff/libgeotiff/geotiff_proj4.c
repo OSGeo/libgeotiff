@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.10  1999/07/06 15:05:51  warmerda
+ * Fixed up LCC_1SP notes.
+ *
  * Revision 1.9  1999/05/04 16:24:49  warmerda
  * Fixed projection string formating with zones.
  *
@@ -366,9 +369,15 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
 /*      LambertConfConic_1SP                                            */
 /* -------------------------------------------------------------------- */
-    else if( psDefn->CTProjection == CT_LambertConfConic_2SP )
+    else if( psDefn->CTProjection == CT_LambertConfConic_1SP )
     {
         /* this appears to be an unsupported formulation with PROJ.4 */
+
+        /* to at least some degree this can be treated similarly to
+         * the 2SP case.
+         *
+         * See http://www.mentorsoftwareinc.com/CC/asknorm/ASK0699.HTM#Q2
+         */
     }
     
 /* -------------------------------------------------------------------- */
