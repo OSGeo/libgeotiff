@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.25  2001/03/05 04:55:26  warmerda
+ * CVSDeaccess at end of GTIFGetDefn to avoid file leak
+ *
  * Revision 1.24  2001/03/05 03:26:29  warmerda
  * fixed memory leaks in GTIFPrintDefn()
  *
@@ -1864,6 +1867,13 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
         else
             psDefn->ProjParm[6] = 10000000.0;
     }
+
+/* -------------------------------------------------------------------- */
+/*      For now we forceable deaccess all CSV files to reduce the       */
+/*      chance of "leakage".  Really, this should be application        */
+/*      controlled.                                                     */
+/* -------------------------------------------------------------------- */
+    CSVDeaccess( NULL );
 
     return TRUE;
 }
