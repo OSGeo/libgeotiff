@@ -29,8 +29,8 @@
 #******************************************************************************
 # 
 # $Log$
-# Revision 1.2  2002/11/29 04:37:27  warmerda
-# added projop_wparm.csv support
+# Revision 1.3  2003/03/31 14:27:21  warmerda
+# added collection of GREENWICH_DATUM gcs column and related shift fix
 #
 #
 
@@ -197,6 +197,7 @@ powp_table.write_to_csv( 'projop_wparm.csv' )
 
 op_keys = co.data.keys()
 to_wgs84_ops = {}
+greenwich_equiv = {}
 
 for key in op_keys:
     co_rec = co.get_record(key)
@@ -215,6 +216,12 @@ for key in op_keys:
         else:
             to_wgs84_ops[source_crs] = key
 
+    # Does this operation relate this GCS with a Greenwich meridian
+    # equivelent?
+    if co_rec['COORD_OP_METHOD_CODE'] == '9601':
+        greenwich_equiv[int(co_rec['SOURCE_CRS_CODE'])] = \
+                                            int(co_rec['TARGET_CRS_CODE'])
+
 ##############################################################################
 # Setup GCS table fields.
 
@@ -223,6 +230,7 @@ gcs_table.add_field('COORD_REF_SYS_CODE')        # GCS #
 gcs_table.add_field('COORD_REF_SYS_NAME')        # GCS Name
 gcs_table.add_field('DATUM_CODE')                # Datum #
 gcs_table.add_field('DATUM_NAME')                # 
+gcs_table.add_field('GREENWICH_DATUM')           # Greenwich equiv datum
 gcs_table.add_field('UOM_CODE')                  # Angular units for GCS.
 gcs_table.add_field('ELLIPSOID_CODE')            # 
 gcs_table.add_field('PRIME_MERIDIAN_CODE')       #
@@ -253,9 +261,17 @@ for key in gcs_keys:
     gcs_rec['DATUM_NAME'] = datum_rec['DATUM_NAME']
     gcs_rec['ELLIPSOID_CODE'] = datum_rec['ELLIPSOID_CODE']
     gcs_rec['PRIME_MERIDIAN_CODE'] = datum_rec['PRIME_MERIDIAN_CODE']
+
+    if greenwich_equiv.has_key(key):
+        towgs84_gcs = greenwich_equiv[key]
+        crs_rec_base = crs.get_record( towgs84_gcs )
+        gcs_rec['GREENWICH_DATUM'] = crs_rec_base['DATUM_CODE']
+    else:
+        gcs_rec['GREENWICH_DATUM'] = crs_rec['DATUM_CODE']
+        towgs84_gcs = key
     
-    if to_wgs84_ops.has_key(key) and to_wgs84_ops[key] is not None:
-        co_rec = co.get_record( to_wgs84_ops[key] )
+    if to_wgs84_ops.has_key(towgs84_gcs) and to_wgs84_ops[towgs84_gcs] is not None:
+        co_rec = co.get_record( to_wgs84_ops[towgs84_gcs] )
         gcs_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
 
         parms = co_value.get_records( int(co_rec['COORD_OP_CODE']) )
