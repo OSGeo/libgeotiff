@@ -1,3 +1,8 @@
+2000-06-09    <warmerda@CS46980-B>
+
+	* Added knowledge of NAD27, NAD83, WGS72, WGS84, their datums,
+	  and ellipsoids. 
+
 2000-05-21  Frank Warmerdam  <warmerda@cs46980-c>
 
 	* Added -e option to geotifcp to intialize tiepoint+pixelscale
