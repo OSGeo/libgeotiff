@@ -102,10 +102,18 @@ if test "$with_libtiff" != "" ; then
     LIBS="-L$with_libtiff -ltiff $LIBS"
     TIFF_INC=-I$with_libtiff
   fi
+  AC_CHECK_LIB(tiff,TIFFOpen,,
+               AC_MSG_ERROR([failed to link with -ltiff to find TIFFOpen]),-lm)
+  AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,,
+               AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
+libgeotiff. Please upgrade or use an older version of libgeotiff.]),-lm)
 else
   AC_CHECK_LIB(tiff,TIFFOpen,,
                AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
 build libgeotiff without libtiff]),-lm)
+  AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,,
+               AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
+libgeotiff. Please upgrade libtiff or use an older version of libgeotiff.]),-lm)
   TIFF_INC=
 fi
 
@@ -118,7 +126,7 @@ dnl
 AC_ARG_WITH(proj, [  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)],[PROJ_HOME=$withval],[PROJ_HOME=])
 
 if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
-  if test -d $PROJ_HOME/src ; then
+  if test -d $PROJ_HOME/src/pj_init.c ; then
     PROJ_HOME=$PROJ_HOME/src
   fi
 
