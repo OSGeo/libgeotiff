@@ -53,7 +53,7 @@
 
 2000-11-23  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Based loosely on suggestions from Curt Archer, I have reworked
+	* Based loosely on suggestions from Curt Mills, I have reworked
 	the configure.in logic for PROJ.4.  I add -I/usr/local/include to 
 	CFLAGS and -L/usr/local/lib to LIBS right off the start so /usr/local
 	is included in the default search path.  The user no longer 
