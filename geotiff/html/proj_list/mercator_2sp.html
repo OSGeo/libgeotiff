@@ -83,9 +83,16 @@
 
 <h3>Notes</h3>
 
-I don't understand how this is distinct from <a href="mercator_1sp.html">
-Mercator (1SP)</a>.  The OGC WKT form doesn't include a scale factor for
-the 2SP form.<p>
+The difference between 1SP and 2SP formulations is that the initial 
+parameters are different: in 1SP
+you start from the longitude of natural origin and the scale factor,
+while in 2SP you start from the longitude of natural origin and the
+latitude of one of the standard parallels (the other is symmetrical
+in relation to the equator). So, the formulas of 2SP are just those
+for 1SP after calculating the scale factor from the absolute value of
+the latitude of the standard parallels and the "e" parameter of the
+datum.<p>
+
 
 <h3>PROJ.4 Organization</h3>
 
