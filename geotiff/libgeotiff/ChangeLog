@@ -102,6 +102,8 @@
 
 	* Makefile.in, bin/Makefile.in: added dist-clean target.
 
+==============================================================================
+
 2003-01-15  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Preparing 1.2.0 libgeotiff release.
