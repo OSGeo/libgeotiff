@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.17  2001/11/23 19:53:56  warmerda
+ * free PROJ.4 definitions after use
+ *
  * Revision 1.16  2000/12/05 19:21:45  warmerda
  * added cassini support
  *
@@ -584,6 +587,8 @@ int GTIFProj4FromLatLong( GTIFDefn * psDefn, int nPoints,
         padfY[i] = sUV.v;
     }
 
+    pj_free( psPJ );
+
     return TRUE;
 }
 
@@ -641,6 +646,8 @@ int GTIFProj4ToLatLong( GTIFDefn * psDefn, int nPoints,
         padfX[i] = sUV.u * RAD_TO_DEG;
         padfY[i] = sUV.v * RAD_TO_DEG;
     }
+
+    pj_free( psPJ );
 
     return TRUE;
 }
