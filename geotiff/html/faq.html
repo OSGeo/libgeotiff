@@ -462,6 +462,33 @@ become entirely public domain, unlike tags withheld for
 private implementations.
 <P></P>
 
+The contents of the worldfile are six numbers (each on their own line):
+<pre>
+A
+B
+C
+D
+E
+F
+</pre>
+
+The georeferenced location of a pixel center can be computed as:
+
+<pre>
+Xgeo = E + Xpixel * A + Ypixel * C
+Ygeo = F + Ypixel * D + Ypixel * B
+</pre>
+
+So, a typical (north up) arrangement would be:
+<pre>
+pixel width in geounits
+pixel height in geounits
+0
+0
+top left X geo location
+top left Y geo location
+</pre>
+
 <!--------------------------------------------------------------------------->
 
 <H3><A NAME="WorldFile2">How do I convert between ESRI world files, and GeoTIFF?</A></H3>
