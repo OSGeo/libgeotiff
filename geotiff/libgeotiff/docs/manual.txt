@@ -130,8 +130,8 @@ is closed. A GeoTIFF file cannot be opened for updating; only
 pure read or write is supported.
 
 
-1.2.1.4 GTIFFDirectoryInfo
-	void      GTIFFDirectoryInfo(GTIF *gtif, int *versions, int *keycount);
+1.2.1.4 GTIFDirectoryInfo
+	void      GTIFDirectoryInfo(GTIF *gtif, int *versions, int *keycount);
 
 Returns header information about the GeoTIFF file directory. The <versions>
 is an array of 3 integers, giving the GeoTIFF Version, followed by
@@ -287,7 +287,7 @@ While a typical use of the code for reading tags is:
 		if (!gtif) goto failure;
 
 		/* Get the GeoTIFF directory info */
-		GTIFFDirectoryInfo(gtif,versions,0);
+		GTIFDirectoryInfo(gtif,versions,0);
 		if (versions[MAJOR] > 1)
 		{
 			printf("this file is too new for me\n"); goto failure;
