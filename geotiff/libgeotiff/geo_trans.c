@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.6  2001/03/04 22:37:39  warmerda
+ * fixed memory leak for fields fetched with gt_methods.get - Alan Gray
+ *
  * Revision 1.5  2000/08/22 03:32:46  warmerda
  * removed GTIFTiepointTranslate code
  *
@@ -86,14 +89,23 @@ int GTIFTiepointTranslate( int gcp_count, double * gcps_in, double * gcps_out,
  * or it is in a form unsupported by this function.
  */
 
+static double *tiepoints   = 0;
+static double *pixel_scale = 0;
+static double *transform   = 0;
+
+static void cleanup()
+{
+  if(tiepoints)   { _GTIFFree(tiepoints);    tiepoints   = 0; }
+  if(pixel_scale) { _GTIFFree(pixel_scale);  pixel_scale = 0; }
+  if(transform)   { _GTIFFree(transform);    transform   = 0; }
+}
+
 int GTIFImageToPCS( GTIF *gtif, double *x, double *y )
 
 {
-    double 	*tiepoints;
-    int 	tiepoint_count, count, transform_count;
-    double	*pixel_scale;
+    int     res = FALSE;
+    int     tiepoint_count, count, transform_count;
     tiff_t *tif=gtif->gt_tif;
-    double      *transform;
 
     if (!(gtif->gt_methods.get)(tif, GTIFF_TIEPOINTS,
                               &tiepoint_count, &tiepoints ))
@@ -110,36 +122,44 @@ int GTIFImageToPCS( GTIF *gtif, double *x, double *y )
 /*      If the pixelscale count is zero, but we have tiepoints use      */
 /*      the tiepoint based approach.                                    */
 /* -------------------------------------------------------------------- */
-    if( tiepoint_count > 6 && count == 0 )
-    {
-        return GTIFTiepointTranslate( tiepoint_count / 6,
-                                      tiepoints, tiepoints + 3,
-                                      *x, *y, x, y );
-    }
+
+    if( tiepoint_count > 6 && count == 0 ) {
+
+        res = GTIFTiepointTranslate( tiepoint_count / 6,
+                                     tiepoints, tiepoints + 3,
+                                     *x, *y, x, y );
+
+    } else if( transform_count == 16 ) {
     
 /* -------------------------------------------------------------------- */
 /*	If we have a transformation matrix, use it. 			*/
 /* -------------------------------------------------------------------- */
-    if( transform_count == 16 )
-    {
-        double		x_in = *x, y_in = *y;
+
+        double x_in = *x, y_in = *y;
 
         *x = x_in * transform[0] + y_in * transform[1] + transform[3];
         *y = x_in * transform[4] + y_in * transform[5] + transform[7];
         
-        return TRUE;
-    }
+        res = TRUE;
+
+    } else if( count < 3 || tiepoint_count < 6 ) {
 
 /* -------------------------------------------------------------------- */
 /*      For now we require one tie point, and a valid pixel scale.      */
 /* -------------------------------------------------------------------- */
-    if( count < 3 || tiepoint_count < 6 )
-        return FALSE;
 
-    *x = (*x - tiepoints[0]) * pixel_scale[0] + tiepoints[3];
-    *y = (*y - tiepoints[1]) * (-1 * pixel_scale[1]) + tiepoints[4];
+        res = FALSE;
 
-    return TRUE;
+    } else {
+
+        *x = (*x - tiepoints[0]) * pixel_scale[0] + tiepoints[3];
+        *y = (*y - tiepoints[1]) * (-1 * pixel_scale[1]) + tiepoints[4];
+
+        res = TRUE;
+    }
+    cleanup();
+
+    return res;
 }
 
 /************************************************************************/
