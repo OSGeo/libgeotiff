@@ -121,26 +121,42 @@
 #define VSIFTell        ftell
 #define VSIFRead        fread
 
+#ifndef notdef
 #define VSICalloc(x,y)	_GTIFcalloc(x*y)
 #define VSIMalloc	_GTIFcalloc
 #define VSIFree	        _GTIFFree
 #define VSIRealloc      _GTIFrealloc
+#else
+#define VSICalloc(x,y)	(((char *) _GTIFcalloc(x*y+4)) + 4)
+#define VSIMalloc(x)	(((char *) _GTIFcalloc((x)+4)) + 4)
+#define VSIFree(x)      _GTIFFree(((char *) (x)) - 4)
+#define VSIRealloc(p,n) (((char *) _GTIFrealloc(((char *)p)-4,(n)+4)) + 4)
+#endif
 
 /* -------------------------------------------------------------------- */
 /*      Safe malloc() API.  Thin cover over VSI functions with fatal    */
 /*      error reporting if memory allocation fails.                     */
 /* -------------------------------------------------------------------- */
 CPL_C_START
+
+#define CPLMalloc  gtCPLMalloc
+#define CPLCalloc  gtCPLCalloc
+#define CPLRealloc gtCPLRealloc
+#define CPLStrdup  gtCPLStrdup
+
 void  *CPLMalloc( int );
 void  *CPLCalloc( int, int );
 void  *CPLRealloc( void *, int );
 char  *CPLStrdup( const char * );
 
-#define CPLFree	VSIFree
+#define CPLFree(x)	{ if( x != NULL ) VSIFree(x); }
 
 /* -------------------------------------------------------------------- */
 /*      Read a line from a text file, and strip of CR/LF.               */
 /* -------------------------------------------------------------------- */
+
+#define CPLReadLine gtCPLReadLine
+
 const char *CPLReadLine( FILE * );
 
 /*=====================================================================
@@ -154,12 +170,18 @@ typedef enum
     CE_Warning = 2,
     CE_Failure = 3,
     CE_Fatal = 4
-  
 } CPLErr;
+
+#define CPLError      gtCPLError
+#define CPLErrorReset gtCPLErrorReset
+#define CPLGetLastErrorNo gtCPLGetLastErrorNo
+#define CPLGetLastErrorMsg gtCPLGetLastErrorMsg
+#define CPLSetErrorHandler gtCPLSetErrorHandler
+#define _CPLAssert    gt_CPLAssert
 
 void  CPLError(CPLErr eErrClass, int err_no, const char *fmt, ...);
 void  CPLErrorReset();
-int  CPLGetLastErrorNo();
+int   CPLGetLastErrorNo();
 const char  * CPLGetLastErrorMsg();
 void  CPLSetErrorHandler(void(*pfnErrorHandler)(CPLErr,int,
                                                        const char *));
@@ -191,6 +213,14 @@ CPL_C_END
  =====================================================================*/
 CPL_C_START
 
+#define CSLAddString gtCSLAddString
+#define CSLCount     gtCSLCount
+#define CSLGetField  gtCSLGetField
+#define CSLDestroy   gtCSLDestroy
+#define CSLDuplicate gtCSLDuplicate
+#define CSLTokenizeString gtCSLTokenizeString
+#define CSLTokenizeStringComplex gtCSLTokenizeStringComplex
+
 char    **CSLAddString(char **papszStrList, const char *pszNewString);
 int     CSLCount(char **papszStrList);
 const char *CSLGetField( char **, int );
@@ -202,27 +232,6 @@ char    **CSLTokenizeStringComplex(const char *pszString,
                                    const char *pszDelimiter,
                                    int bHonourStrings, int bAllowEmptyTokens );
 
-int     CSLPrint(char **papszStrList, FILE *fpOut);
-char    **CSLLoad(const char *pszFname);
-int     CSLSave(char **papszStrList, const char *pszFname);
-
-char  **CSLInsertStrings(char **papszStrList, int nInsertAtLineNo, 
-                         char **papszNewLines);
-char  **CSLInsertString(char **papszStrList, int nInsertAtLineNo, 
-                        char *pszNewLine);
-char  **CSLRemoveStrings(char **papszStrList, int nFirstLineToDelete,
-                         int nNumToRemove, char ***ppapszRetStrings);
-
-const char *CPLSPrintf(char *fmt, ...);
-char  **CSLAppendPrintf(char **papszStrList, char *fmt, ...);
-
-const char *CSLFetchNameValue(char **papszStrList, const char *pszName);
-char  **CSLFetchNameValueMultiple(char **papszStrList, const char *pszName);
-char  **CSLAddNameValue(char **papszStrList, 
-                        const char *pszName, const char *pszValue);
-char  **CSLSetNameValue(char **papszStrList, 
-                        const char *pszName, const char *pszValue);
-
 /* ==================================================================== */
 /*      .csv file related functions (from cpl_csv.c)                    */
 /* ==================================================================== */
@@ -232,6 +241,16 @@ typedef enum {
     CC_ApproxString,
     CC_Integer
 } CSVCompareCriteria;
+
+#define CSVFilename gtCSVFilename
+#define CSVReadParseLine gtCSVReadParseLine
+#define CSVScanLines gtCSVScanLines
+#define CSVScanFile gtCSVScanFile
+#define CSVScanFileByName gtCSVScanFileByName
+#define CSVGetFieldId gtCSVGetFieldId
+#define CSVDeaccess gtCSVDeaccess
+#define CSVGetField gtCSVGetField
+#define SetCSVFilenameHook gtSetCSVFilenameHook
 
 const char  *CSVFilename( const char * );
 
