@@ -36,6 +36,14 @@ If you are building it yourself, and have libtiff 3.5.6 or later, you
 should use the "install-private" make target of libtiff instead of "install" 
 to install some private include files required by libgeotiff.
 
+PLEASE NOTE: Use of libgeotiff with a version of libtiff (as a shared
+library for instance) other than what it was compiled for is likely to 
+result in crashes as libgeotiff depends on knowledge of the size and offsets
+into libtiff data structures that do change from time to time.  In particular
+use of a libgeotiff compiled with libtiff 3.5.x include files will not
+work properly with libtiff 3.4.x. 
+
+
 Building LIBGEOTIFF:
 --------------------
 
