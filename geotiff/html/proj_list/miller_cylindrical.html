@@ -1,0 +1,92 @@
+<head>
+<title>Miller Cylindrical</title>
+</head>
+<body>
+
+<h1>Miller Cylindrical</h1>
+
+<table border>
+
+<td>Name
+<td>Miller Cylindrical
+<tr>
+
+<td>EPSG Code
+<td>
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_MillerCylindrical (20)
+<tr>
+
+<td>Supported By
+<td> GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td> Latitude of projection center
+<td> 1
+<td> ProjCenterLat
+<td> Angular
+<td> This is normally zero and optional in GeoTIFF.
+
+<tr>
+<td>Longitude of projection center
+<td>2
+<td>ProjCenterLong
+<td>Angular
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+The spec indicates that there should only be a center longitude, not a 
+center latitude.  Intergraph includes a latitude, so I have included it
+here, but if not specified it should be taken as zero. <p>
+
+Intergraph uses NatOriginLat and NatOriginLong instead of ProjCenterLat/Long.
+<p>
+
+Intergraph also supplies a scale at the origin, which isn't in the spec.
+I am ignoring this for now, but eventually a pass should be made adding
+scale as an option for any projection it can be made to work for as per
+Peter Laskowski's suggestion.<p>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=mill  +lat_0=<i>Latitude at projection center</i> 
+              +lon_0=<i>Longitude at projection center</i>
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+</body>

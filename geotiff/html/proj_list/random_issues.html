@@ -1,0 +1,198 @@
+<head>
+<title>Random Outstanding Issues</title>
+</head>
+
+<body>
+
+<h1>Random Outstanding Issues</h1>
+
+Various outstanding issues with these projections, EPSG, GeoTIFF, PROJ.4
+and OpenGIS in no particular order.  This is also not a comprehensive list
+of outstanding issues.<p>
+
+<h2><a name="stereographic">Stereographic</a></h2>
+
+<ol>
+<li> Are Stereographic, Polar Stereographic, and Oblique Stereographic 
+really all the same projection?
+
+<li> Is the latitute of natural origin for Polar Stereographic required
+to be 90 or -90?  Shouldn't this be mentioned?
+
+<li> Shouldn't all the sterographic projections include a scale at the
+origin?
+
+<li> Why does the EPSG tables have a scale for Oblique Stereographic, but
+the (old) GeoTIFF definition doesn't?
+
+<li> Why do the GeoTIFF parameters have such variable names for the different
+stereographic projections?  PS uses StraightVertPoleLong and NatOriginLat, 
+OS uses NatOrigin, and Stereographic uses ProjCenterLat/Long. 
+
+<li> In PJ_stere.c for PROJ.4 in function INVERSE(e_inverse) the calculation
+of phi_l should likely test for a rho of zero (at the origin when xy.x and xy.y
+are zero. Verify doing an inverse translation of position (0,0) with 
+pci_eg/sg.tif.
+
+<pre>
+  if( rho == 0.0 )
+    phi_l = asin(cosphi * P->sinX1);
+  else
+    phi_l = asin(cosphi * P->sinX1 + (xy.y * sinphi * P->cosX1 / rho));
+</pre>
+
+<li> The PCI ps.tif file has a ProjNatOriginLatGeoKey.  In PCI's PROJ.HLP
+this number is called the latitude of true scale, but it carried through
+to PROJ.4 as the +lat_0 value, not as +lat_ts (which it should perhaps be). 
+The Intergraph stereo_np.tif file has two lattitudes.  One is the 
+ProjNatOriginLatGeoKey and the other is ProjCenterLatGeoKey.  I imagine
+that the ProjScaleAtNatOriginGeoKey and ProjNatOriginLatGeoKey are really
+supposed to be equivelent to giving a latitude of true scale that isn't
+the north pole (necessarily) if the scale is 1.0.<p>
+
+The current formulation includes a scale at the origin, but suggests
+that the origin must be either the north or south pole.  Perhaps this is
+mixing up use of ProjCenterLatGeoKey to mark the pole with the use of
+an origin to establish the position of true scale (or alternatively to 
+just give the scale at the origin).  Is the solution to provide two 
+formulations of polar stereographic, or to expect translators to boil
+their internal forumulations down to a pole indicator, and scale at the
+pole?<p>
+
+</ol>
+
+<h2>ObliqueMercator</h2>
+
+The EPSG definition of Oblique Mercator includes an angle from rectified
+to skewed grid.  This isn't included for GeoTIFF, and doesn't appear to 
+be supported by any system I have seen.  Is this equivelent to what Peter
+Laskowski calls pre or post transformation rotation (that could be applied
+to most projections)?<p>
+
+<h2>Polyconic</h2>
+
+Should Polyconic use NatOriginLat/Long, or ProjCenterLat/Long?  Different
+vendors do different things.  I have indicated NatOrigin in the
+<a href="polyconic.html">Polyconic</a> definition, but this is at odds
+with previous thoughts on geotiff-l, and the implementations of some
+companies. <p>
+
+<h2>Azimuthal Equidistant</h2>
+
+The PCI and PROJ.4 results for reprojection don't match very closely
+with the PCI ae.tif sample:<p>
+
+<pre>
+PCI:
+Upper Left  Corner             :    117d38'28.22" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+Origin (long/lat) = (-117.641,33.904) (117d38'26.91"W,  33d54'14.34"N)
+</pre>
+
+This amounts to approximately sixty meters of error in about 20000 meters. 
+I don't know if this is a fundamental difference between GCTP and PROJ.4 
+or what.  This should be reviewed at some point.<p>
+
+<h2>Miller Cylindrical</h2>
+
+The PCI (GCTP) and PROJ.4 results for this projection are also not
+matching very closely.  It appears to be a problem similar to the above.
+<p>
+
+<pre>
+PCI:
+ Upper Left  Corner             :    117d38'28.21" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+ Origin (long/lat) = (-117.641,33.8682) (117d38'27.53"W,  33d52'5.42"N)
+</pre>
+
+<h2><a name="robinson">Robinson</a></h2>
+
+The PCI (GCTP) and PROJ.4 results for this projection are also not
+matching very closely.  It appears to be a problem similar to the above.
+The problem might relate to the distance from the origin but this is
+commonly used as a world projection, so I am surprised at the huge
+difference (6 degrees in ns direction!)<p>
+
+<pre>
+PCI:
+ Upper Left  Corner             :    117d38'28.21" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+  Origin (long/lat) = (-117.672,39.2717) (117d40'20.81"W,  39d16'18.19"N)
+</pre>
+
+I gather from the GCTP and PROJ.4 documentation that Robinson is only available
+as a spherical projection, and yet above was used with Clark 1866, which is
+not spherical.  I would suggest that the problem might relate to different
+handling of non-spherical worlds, but this shouldn't account for the large
+difference.  In general shouldn't we be keeping track of spherical projections
+and warning of use of non-spherical ellipsoids?<p>
+
+<h2><a name="equirectangular">Equirectangular</a></h2>
+
+The PCI (GCTP) and PROJ.4 results for this projection are also not
+matching very closely.  It appears to be a problem similar to the above.
+<p>
+
+<pre>
+PCI:
+ Upper Left  Corner             :    117d38'28.21" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+ Origin (long/lat) = (-117.641,33.8653) (117d38'27.53"W,  33d51'55.12"N)
+</pre>
+
+<h2><a name="gnomonic">Gnomonic</a></h2>
+
+The PCI (GCTP) and PROJ.4 results for this projection are also not
+matching very closely.  It appears to be a problem similar to the above.
+<p>
+
+<pre>
+PCI:
+ Upper Left  Corner             :    117d38'28.22" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+ Origin (long/lat) = (-117.641,33.9035) (117d38'27.54"W,  33d54'12.51"N)
+</pre>
+
+<h2><a name="laea">Lambert Azimuthal Equal Area</a></h2>
+
+The PCI (GCTP) and PROJ.4 results for this projection are also not
+matching very closely.  It appears to be a problem similar to the above.
+<p>
+
+<pre>
+PCI:
+ Upper Left  Corner             :    117d38'28.22" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+ Origin (long/lat) = (-117.641,33.904) (117d38'26.91"W,  33d54'14.34"N)
+</pre>
+
+<b>A more detailed examination suggests that GCTP always uses a radius
+of 6370997 (E019 - Normal Sphere) for spherical projections.  For at least
+LAEA the PROJ.4 and GCTP results were the same if the PROJ.4 radius was
+overridden to be 6370997 - I would need to verify that this is true of
+other problems above as well.</b><p>
+
+<h2><a name="orthographic">Orthographic</a></h2>
+
+The PCI (GCTP) and PROJ.4 results for this projection are also not
+matching very closely.  It appears to be a problem similar to the above.
+<p>
+
+<pre>
+PCI:
+ Upper Left  Corner             :    117d38'28.22" W  Lon   33d54'13.08" N  Lat
+
+gdalinfo:
+Origin (long/lat) = (-117.641,33.9035) (117d38'27.54"W,  33d54'12.51"N)
+
+</pre>
+
+
+</body>

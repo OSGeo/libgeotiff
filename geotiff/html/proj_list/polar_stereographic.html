@@ -1,0 +1,118 @@
+<head>
+<title>Polar Stereographic</title>
+</head>
+<body>
+
+<h1>Polar Stereographic</h1>
+
+<table border>
+
+<td>Name
+<td>Polar Stereographic
+<tr>
+
+<td>EPSG Code
+<td>9810
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_PolarStereographic (15)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of natural origin
+<td>1
+<td>NatOriginLat
+<td>Angular
+<td>I think this is restricted to 90 or -90
+
+<tr>
+<td>Longitude of natural origin
+<td>2
+<td>StraightVertPoleLong
+<td>Angular
+<td>
+
+<tr>
+<td>Scale factor at natural origin
+<td>5
+<td>ScaleAtNatOrigin
+<td>Unitless
+<td>Not in original GeoTIFF ... I added for similarity
+with EPSG.
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+There are substantial questions about Stereographic projections in
+<a href="random_issues.html#stereographic">Random Issues</a>. <p>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=stere +lat_0=<i>Latitude at projection center</i> 
+              +lon_0=<i>Longitude at projection center</i>
+	      +k=<i>Scale factor at natural origin</i>
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+<h3>EPSG Notes</h3>
+
+Polar Stereographic Formula<p>
+
+For the forward transformation from latitude and longitude,
+<p>
+<pre>
+	E = FE + * sin (* - *o)
+	N = FN - * cos (* - *o)
+where
+	* = 2 a ko t /{[(1+e)(1+e) (1-e)(1-e)]0.5}
+	t = tan (*/4 - */2) / [(1-esin* ) / (1 + e sin*)]e/2
+
+For the reverse transformation,
+
+	* = * 	+ (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) 
+		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)
+		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)
+
+	* = *o	+ arctan [(E-FE) / (FN-N)]
+
+where 	*  = */2 - 2 arctan t
+	t   =  * [(1+e)(1+e) (1-e)1-e]0.5} / 2 a ko
+	* = [(E-FE)2  + (N - FN)2]0.5
+</pre>
+
+</body>

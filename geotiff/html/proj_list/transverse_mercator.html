@@ -1,0 +1,250 @@
+<head>
+<title>Transverse Mercator</title>
+</head>
+<body>
+
+<h1>Transverse Mercator</h1>
+
+<table border>
+
+<td>Name
+<td>Transverse Mercator
+<tr>
+
+<td>
+<td>Gauss-Kruger
+<tr>
+
+<td>EPSG Code
+<td>9807
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_TransverseMercator (1)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of natural origin
+<td>1
+<td>NatOriginLat
+<td>Angular
+<td>
+
+<tr>
+<td>Longitude of natural origin
+<td>2
+<td>NatOriginLong
+<td>Angular
+<td>
+
+<tr>
+<td>Scale factor at natural origin
+<td>5
+<td>ScaleAtNatOrigin
+<td>Unitless
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=tmerc +lat_0=<i>Latitude of natural origin</i> 
+              +lon_0=<i>Longitude of natural origin</i>
+              +k=<i>Scale factor at natural origin</i> 
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+<h3>EPSG Notes</h3>
+
+The Transverse Mercator projection in its various forms is the most widely used projected 
+coordinate system for world topographical and offshore mapping. All versions have the 
+same basic characteristics and formulas. The differences which distinguish the different 
+forms of the projection which are applied in different countries arise from variations in the 
+choice of the coordinate transformation parameters, namely the latitude of the origin, the 
+longitude of the origin (central meridian), the scale factor at the origin (on the central 
+meridian), and the values of False Easting and False Northing, which embody the units of 
+measurement, given to the origin. Additionally there are variations in the width of the 
+longitudinal zones for the projections used in different territories. 
+
+The following table indicates the variations in the projection parameters which distinguish 
+the different forms of the Transverse Mercator projection and are used in the Epicentre 
+Transverse Mercator projection method:
+<p>
+
+ 
+<pre>
+TABLE 2
+Transverse Mercator
+
+Name	Areas used	Central 
+meridian(s)	Latitude 
+of origin	CM 
+Scale 
+Factor	Zone width	False 
+Easting at 
+origin	False 
+Northing at 
+origin
+Transverse 
+Mercator	Various, 
+world wide 	Various	Various	Various	Usually less 
+than 6*	Various	Various
+							
+Transverse 
+Mercator 
+south oriented	South Africa	2* intervals 
+E of 11*E	0*	1.000000	2*	0m	0m
+							
+UTM North 
+hemisphere	World wide	6* intervals 
+E & W of 
+3* E & W	Always 0*	Always 
+0.9996	Always 6*	500000m	0m
+UTM South 
+hemisphere	World wide	6* intervals 
+E & W of  
+3* E  & W	Always 0*	Always 
+0.9996	Always 6*	500000m	10000000m
+Gauss-Kruger	Former USSR 
+Yugoslavia, 
+Germany,
+S. America	Various, 
+according to 
+area of cover	Usually 0*	Usually
+1.000000	Usually less 
+than 6*, 
+often less 
+than 4*	Various but 
+often 500000 
+prefixed by 
+zone number	Various
+Gauss Boaga	Italy	Various	Various	0.9996	6*	Various	0m
+
+</pre>
+
+The most familiar and commonly used Transverse Mercator is the Universal Transverse 
+Mercator (UTM) whose natural origin lies on the equator. However, some territories use 
+a Transverse Mercator with a natural origin at a latitude closer to that territory.  
+
+In Epicentre the coordinate transformation method is the same for all forms of the 
+Transverse Mercator projection. The formulas to derive the projected Easting and 
+Northing coordinates are in the form of a series as follows:
+<p>
+
+<pre>
+
+	Easting, E =  FE + k0*[A + (1 - T + C)A3/6 + (5 - 18T + T2 + 72C - 58e'2)A5/120]	
+
+	Northing, N =  FN + k0{M - M0 + *tan*[A2/2 + (5 - T + 9C + 4C2)A4/24 + 
+				(61 - 58T + T2 + 600C - 330e'2)A6/720]} 
+where	T = tan2*
+	C = e2 cos2*/(1 - e2) = e'2 cos2*
+	A = (* - *0)cos*, with * and *0 in radians
+	M = a[(1 - e2/4 - 3e4/64 - 5e6/256 -....)* - (3e2/8 + 3e4/32 + 45e6/1024+....)sin2* 
+		+ (15e4/256 + 45e6/1024 +.....)sin4* - (35e6/3072 + ....)sin6* + .....]
+	with * in radians and M0 for *0, the latitude of the origin, derived in the same way.
+</pre>
+
+The reverse formulas to convert Easting and Northing projected coordinates to latitude 
+and longitude are:
+<p>
+
+<pre>
+	
+	* = *1 - (*1tan*1/*1)[D2/2 - (5 + 3T1 + 10C1 - 4C12 - 9e'2)D4/24
+			+ (61 + 90T1 + 298C1 + 45T12 - 252e'2 - 3C12)D6/720]
+	* = *0 + [D - (1 + 2T1 + C1)D3/6 + (5 - 2C1 + 28T1 - 3C12 + 8e'2  			
+			+ 24T12)D5/120] / cos*1
+where *1 may be found as for the Cassini projection from:
+		
+	*1 = *1 + (3e1/2 - 27e13/32 +.....)sin2*1 + (21e12/16 -55e14/32 + ....)sin4*1
+		+ (151e13/96 +.....)sin6*1 + (1097e14/512 - ....)sin8*1 + ......
+and where
+	e1 = [1- (1 - e2)1/2]/[1 + (1 - e2)1/2]
+	*1 = M1/[a(1 - e2/4 - 3e4/64 - 5e6/256 - ....)]
+	M1 = M0 + (N - FN)/k0
+	T1 = tan2*1
+	C1 = e'2cos2*1
+	D = (E - FE)/(*1k0), with *1 = * for *1
+</pre>
+
+For areas south of the equator the value of latitude * will be negative and the formulas 
+above, to compute the E and N,  will automatically result in the correct values. Note that 
+the false northings of the origin, if the equator, will need to be large to avoid negative 
+northings and for the UTM projection is in fact 10,000,000m. Alternatively, as in the case 
+of Argentina's Transverse Mercator (Gauss-Kruger) zones, the origin is at the south pole 
+with a northings of zero. However each zone central meridian takes a false easting of 
+500000m prefixed by an identifying zone number. This ensures that instead of points in 
+different zones having the same eastings, every point in the country, irrespective of its 
+projection zone, will have a unique set of projected system coordinates. Strict application 
+of the above formulas, with south latitudes negative, will result in the derivation of the 
+correct Eastings and Northings. 
+
+Similarly, in applying the reverse formulas to determine a latitude south of the equator, a 
+negative sign for * results from a negative *1 which in turn results from a negative M1.","For Projected Coordinate System OSGB 1936 / British National Grid
+<p>
+<pre>
+Parameters:
+Ellipsoid  Airy 1830  a = 6377563.396 m  1/f = 299.32496
+then e'^2 = 0.00671534 and e^2 = 0.00667054
+
+Latitude Natural Origin         49o00'00""N   = 0.85521133 rad
+Longitude Natural Origin        2o00'00""W  = -0.03490659 rad
+Scale factor ko                     0.9996013                                                                                              False Eastings FE                 400000.00 m
+False Northings FN              -100000.00 m
+
+Forward calculation for: 
+Latitude       50o30'00.00""N  = 0.88139127 rad
+Longitude    00o30'00.00""E  = 0.00872665 rad
+A  = 0.02775415       C = 0.00271699
+T =  1.47160434       M = 5596050.46
+M0 = 5429228.60     nu  = 6390266.03
+
+Then Easting E =        577274.99 m
+          Northing N =       69740.50 m
+
+Reverse calculations for same easting and northing first gives :
+e1 =    0.00167322      mu1 = 0.87939562
+M1 = 5599036.80        nu1 = 6390275.88
+phi1  = 0.88185987      D = 0.02775243
+rho1 =6372980.21       C1 =  0.00271391
+T1 = 1.47441726
+
+Then Latitude       = 50o30'00.000""N
+         Longitude    = 00o30'00.000""E"
+</pre>
+
+</body>

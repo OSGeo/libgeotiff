@@ -1,0 +1,96 @@
+<head>
+<title>Transverse Mercator (South Oriented)</title>
+</head>
+<body>
+
+<h1>Transverse Mercator (South Oriented)</h1>
+
+<table border>
+
+<td>Name
+<td>Transverse Mercator  (South Oriented)
+<tr>
+
+<td>EPSG Code
+<td>9808
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_TransvMercator_SouthOriented (27)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of natural origin
+<td>1
+<td>NatOriginLat
+<td>Angular
+<td>
+
+<tr>
+<td>Longitude of natural origin
+<td>2
+<td>NatOriginLong
+<td>Angular
+<td>
+
+<tr>
+<td>Scale factor at natural origin
+<td>5
+<td>ScaleAtNatOrigin
+<td>Unitless
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>EPSG Notes</h3>
+
+For the mapping of southern Africa a south oriented Transverse Mercator projection is 
+used. Here the coordinate axes are called Westings and Southings and increment to the 
+West and South from the origin respectively.  The Transverse Mercator formulas need to 
+be modified to cope with this arrangement with<p>
+<pre>
+	Westing, W = k0 *[A + (1 - T + C)A3/6 + (5 - 18T + T2 + 72C - 58e'2)A5/120] - 
+FE
+
+	Southing, S = k0{M - M0 + *tan*[A2/2 + (5 - T + 9C + 4C2)A4/24 + 
+				(61 - 58T + T2 + 600C - 330e'2)A6/720]}- FN
+</pre>
+In these formulas the terms FE and FN have been retained for consistency of the
+terminology.  For the reverse formulas, those for the standard Transverse 
+Mercator above apply, with the exception that:<p>
+
+<pre>
+	M1 = M0 + (S + FN)/k0
+and	D = (W + FE)/(*1k0), with *1 = * for *1
+</pre>
+
+</body>

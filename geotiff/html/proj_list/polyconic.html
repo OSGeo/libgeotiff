@@ -1,0 +1,96 @@
+<head>
+<title>Polyconic</title>
+</head>
+<body>
+
+<h1>Polyconic</h1>
+
+<table border>
+
+<td>Name
+<td>Polyconic
+<tr>
+
+<td>EPSG Code
+<td>
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_Polyconic (22)
+<tr>
+
+<td> Supported By
+<td> GeoTIFF, GXF
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td> Latitude of false origin
+<td> 1
+<td> NatOriginLat
+<td> Angular
+<td>
+
+<tr>
+<td> Longitude of false origin
+<td> 2
+<td> NatOriginLong
+<td> Angular
+<td>
+
+<tr>
+<td> Scale factor at natural origin
+<td> 5
+<td> ScaleAtNatOrigin
+<td> Unitless
+<td>
+
+<tr>
+<td> Easting of false origin
+<td> 6
+<td> FalseEasting
+<td> Linear
+<td>
+
+<tr>
+<td> Northing of false origin
+<td> 7
+<td> FalseNorthing
+<td> Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+In Geosoft GXF format it is known by the name "*Polyconic"
+indicating that it isn't an EPSG projection.<p>
+
+Discussions on the GeoTIFF mailing list a few years suggested that this
+projection should use ProjCenterLat and ProjCenterLong instead of 
+NatOriginLat and NatOriginLong.  Intergraph uses natural origin, and PCI
+uses ProjCenter as I believe does Erdas.<p>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=stere +lat_0=<i>Latitude at natural origin</i> 
+              +lon_0=<i>Longitude at natural origin</i>
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+
+</body>

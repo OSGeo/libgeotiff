@@ -1,0 +1,215 @@
+<head>
+<title>Lambert Conic Conformal (2SP)</title>
+</head>
+<body>
+
+<h1>Lambert Conic Conformal (2SP)</h1>
+
+<table border>
+
+<td>Name
+<td>Lambert Conic Conformal (2SP)
+<tr>
+
+<td>EPSG Code
+<td>9802
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_LambertConfConic_2SP (9)
+<tr>
+
+<td>
+<td>CT_LambertConfConic (9)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of first standard parallel
+<td>1
+<td> StdParallel1
+<td>Angular
+<td>
+
+<tr>
+<td>Latitude of second standard parallel
+<td>2
+<td> StdParallel2
+<td>Angular
+<td>
+
+<tr>
+<td>Latitude of false origin
+<td> 3
+<td> FalseOriginLat
+<td> Angular
+<td>
+
+<tr>
+<td> Longitude of false origin
+<td> 4
+<td> FalseOriginLong
+<td> Angular
+<td>
+
+<tr>
+<td>Easting of false origin
+<td>6
+<td>FalseOriginEasting
+<td>Linear
+<td>
+
+<tr>
+<td>Northing of false origin
+<td>7
+<td>FalseOriginNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=lcc   +lat_1=<i>Latitude of first standard parallel</i>
+              +lat_2=<i>Latitude of second standard parallel</i>
+              +lat_0=<i>Latitude of false origin</i> 
+              +lon_0=<i>Longitude of false origin</i>
+              +x_0=<i>False Origin Easting</i>
+              +y_0=<i>False Origin Northing</i>
+</pre>
+</b>
+
+<h3>EPSG Notes</h3>
+
+Conical projections with one standard parallel are normally considered to maintain the 
+nominal map scale along the parallel of latitude which is the line of contact between the 
+imagined cone and the ellipsoid. For a one standard parallel Lambert the natural origin of 
+the projected coordinate system is the intersection of the standard parallel with the 
+longitude of origin (central meridian). See Figure 5. To maintain the conformal property 
+the spacing of the parallels is variable and increases with increasing distance from the 
+standard parallel, while the meridians are all straight lines radiating from a point on the 
+prolongation of the ellipsoid's minor axis. <p>
+
+Sometimes however, although a one standard parallel Lambert is normally 
+considered to have unity scale factor on the standard parallel, a scale factor of 
+slightly less than unity is introduced on this parallel. This is a regular feature of the 
+mapping of some former French territories and has the effect of making the scale 
+factor unity on two other parallels either side of the standard parallel. The projection 
+thus, strictly speaking, becomes a Lambert Conic Conformal projection with two 
+standard parallels. From the one standard parallel and its scale factor it is possible to 
+derive the equivalent two standard parallels and then treat the projection as a two 
+standard parallel Lambert conical conformal, but this procedure is seldom adopted. 
+Since the two parallels obtained in this way will generally not have integer values of 
+degrees or degrees and minutes it is instead usually preferred to select two specific 
+parallels on which the scale factor is to be unity, - as for several State Plane 
+Coordinate systems in the United States.<p>
+	
+ The choice of the two standard parallels will usually be made according to the latitudinal 
+extent of the area which it is wished to map, the parallels usually being chosen so that they 
+each lie a proportion inboard of the north and south margins of the mapped area. Various 
+schemes and formulas have been developed to make this selection such that the maximum 
+scale distortion within the mapped area is minimised, e.g. Kavraisky in 1934, but whatever 
+two standard parallels are adopted the formulas for the projected coordinates are the same. <p>
+
+For territories with limited latitudinal extent but wide longitudinal width it may 
+sometimes be preferred to use a single projection  rather than several bands or zones 
+of a Transverse Mercator. If the latitudinal extent is also large there may still be a 
+need to use two or more zones if the scale distortion at the extremities of the one 
+zone becomes too large to be tolerable.<p>
+
+To derive the projected Easting and Northing coordinates of a point with 
+geographical coordinates (*,*) the formulas for the two standard parallel case are:<p>
+
+<pre>
+	Easting, E = EF + r sin *
+	Northing, N = NF + rF - r cos *	 
+
+where 	m = cos*/(1 - e2sin2*)1/2     for m1, *1, and m2, *2 where *1 and *2  are the latitudes 
+of 			the standard parallels
+	t  = tan(*/4 - */2)/[(1 - e sin*)/(1 + e sin*)]e/2   for t1, t2, tF and t using *1,*2,*
+F and * 			respectively
+	n = (loge m1 - loge m2)/(loge t1 - loge t2)
+	F = m1/(nt1n)
+	r =  a F tn         for rF and r, where rF is the radius of the parallel of latitude of the 
+false origin
+	* = n(* - *0)
+
+The reverse formulas to derive the latitude and longitude of a point from its Easting and 
+Northing values are:
+
+	* = */2 - 2arctan{t'[(1 - esin*)/(1 + esin*)]e/2}
+	* = *'/n +*0
+where
+	r' = *[(E - EF)2 + {rF - (N - NF)}2]1/2 , taking the sign of n
+	t' = (r'/aF)1/n
+	*' = arctan [(E- EF)/(rF - (N- NF))]
+and n, F, and rF are derived as for the forward calculation.
+
+With minor modifications these formulas can be used for the single standard parallel 
+case. Then
+	E = FE + r sin*
+	N = FN + r0 - r cos*,  using the natural origin rather than the false origin.
+where
+	n = sin *0
+	r = aFtn k0     	for r0, and r
+	t is found for  t0, *0 and t, * and m, F, and * are found as for the two standard 
+parallel case
+	The reverse formulas for * and * are as for the two standard parallel case above, 
+with n, F and r0 as before and
+
+	*' = arctan[(E - FE)/{r0 -(N - FN)}]
+	r' = *[(E - FE)2 + {r0 - (N - FN)}2]1/2
+	t' = (r'/ak0F)1/n","For Projected Coordinate System NAD27 / Texas South Central
+
+Parameters:
+Ellipsoid  Clarke 1866, a = 6378206.400 metres = 20925832.16 US survey feet
+                                   1/f = 294.97870
+then e = 0.08227185 and e^2 = 0.00676866
+
+First Standard Parallel          28o23'00""N  =   0.49538262 rad
+Second Standard Parallel    30o17'00""N  =   0.52854388 rad
+Latitude False Origin            27o50'00""N  =   0.48578331 rad
+Longitude False Origin         99o00'00""W = -1.72787596 rad
+Easting at false origin           2000000.00  US survey feet
+Northing at false origin          0.00  US survey feet
+
+Forward calculation for: 
+Latitude       28o30'00.00""N  =  0.49741884 rad
+Longitude    96o00'00.00""W = -1.67551608 rad
+
+first gives :
+m1    = 0.88046050      m2 = 0.86428642
+t        = 0.59686306      tF  = 0.60475101
+t1      = 0.59823957      t2 = 0.57602212
+n       = 0.48991263       F = 2.31154807
+r        = 37565039.86    rF = 37807441.20
+theta = 0.02565177
+
+Then Easting E =      2963503.91 US survey feet
+         Northing N =      254759.80 US survey feet
+
+Reverse calculation for same easting and northing first gives:
+theta' = 0.025651765     r' = 37565039.86
+t'        = 0.59686306
+
+Then Latitude     	= 28o30'00.000""N
+         Longitude   = 96o00'00.000""W
+</pre>
+
+</body>

@@ -1,0 +1,115 @@
+<head>
+<title>Tunisia Mining Grid</title>
+</head>
+<body>
+
+<h1>Tunisia Mining Grid</h1>
+
+<table border>
+
+<td>Name
+<td>Tunisia Mining Grid
+<tr>
+
+<td>EPSG Code
+<td>9816
+<tr>
+
+<td>GeoTIFF Code
+<td> (unsupported)
+<tr>
+
+<td>Supported By
+<td>EPSG
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+<tr>
+
+<td> Latitude of origin
+<td> 1
+<td> -
+<td> Angular
+<td>
+<tr>
+
+<td> Longitude of origin
+<td> 2
+<td> -
+<td> Angular
+<td>
+<tr>
+
+<td> False Easting
+<td> 6
+<td> -
+<td> Linear
+<td>
+<tr>
+
+<td> False Northing
+<td> 7
+<td> -
+<td> Linear
+<td>
+<tr>
+
+</table>
+
+<h3>EPSG Notes</h3>
+
+This grid is used as the basis for mineral leasing in Tunsia.  Lease areas are approximately 2 x 2 km or 400 hectares.  The corners of these blocks are defined through a six figure grid reference where the first three digits are an easting in kilometres and the last three digits are a northing.  The latitudes and longitudes for block corners at 2 km intervals are tabulated in a mining decree dated 1st January 1953.  From this tabulation in which geographical coordinates are given to 5 decimal places it can be seen that:
+<p>
+
+<pre>
+a)  the minimum easting is 94 km, on which the longitude is 5.68989 grads east of Paris.
+b)  the maximum easting is 490 km, on which the longitude is 10.51515 grads east of Paris.
+c)  each 2 km grid easting interval equals 0.02437 grads.
+d)  the minimum northing is 40 km, on which the latitude is 33.39 grads.
+e)  the maximum northing is 860 km, on which the latitude is 41.6039 grads.
+f)  between 40 km N and 360 km N, each 2 km grid northing interval equals 0.02004 grads.
+g)  between 360 km N and 860 km N, each 2 km grid northing interval equals 0.02003 grads.
+
+This grid could be considered to be two equidistant cylindrical projection zones, north and south of the 360 northing line.  However this would require the introduction of two sphere of unique dimensions.  EPSG has therefore implemented the Tunisia mining grid as transformation method in its own right.  Formulae are:
+
+Grads from Paris
+
+Lat (grads) = 36.5964 + [(N - 360) * A] 
+where N is in kilometres and A = 0.010015 if N > 360, else A = 0.01002.
+
+LonParis (grads) = 7.83445 + [(E - 270) * 0.01285], where E is in kilometres.
+
+The reverse formulae are:
+
+E (km) = 270 + [(LonParis - 7.83445) / 0.01285] where LonParis is in grads.
+
+N (km) = 360 + [(Lat - 36.5964) / B] 
+where Lat is in grads and B = 0.010015 if N > 36.5964, else B = 0.01002.
+
+Degrees from Greenwich.
+
+Modern practice in Tunisia is to quote latitude and longitude in degrees with longitudes referenced to the Greenwich meridian.  The formulae required in addition to the above are:
+
+Lat (degrees) =  (Latg * 0.9) where Latg is in grads.
+LonGreenwich (degrees) = [(LonParis + 2.5969213) * 0.9] where LonParis is in grads.
+
+
+Lat (grads) =  (Latd / 0.9) where Latd is in decimal degrees.
+LonParis (grads) = [(LonGreenwich / 0.9) - 2.5969213)] where LonGreenwich is in decimal degrees.","For grid location 302598,
+Latitude = 36.5964 + [(598 - 360) * A].  As N > 360, A = 0.01005.
+Latitude = 38.97997 grads = 35.08197 degrees.
+
+Longitude  = 7.83445 + [(E - 270) * 0.01285, where E = 302.
+Longitude  = 8.22437 grads east of Paris = 9.73916 degrees east of Greenwich.
+</pre>
+
+</body>

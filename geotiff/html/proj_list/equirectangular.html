@@ -1,0 +1,94 @@
+<head>
+<title>Equirectangular</title>
+</head>
+<body>
+
+<h1>Equirectangular</h1>
+
+<table border>
+
+<td>Name
+<td>Equirectangular
+<tr>
+
+<td>Alias
+<td>Plate Caree
+<tr>
+
+<td>Alias
+<td>Equidistant Cylindrical
+<tr>
+
+<td>EPSG Code
+<td>
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_Equirectangular (17)
+<tr>
+
+<td>Supported By
+<td> GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of projection center
+<td>1
+<td>ProjCenterLat
+<td>Angular
+<td>
+
+<tr>
+<td>Longitude of projection center
+<td>2
+<td>ProjCenterLong
+<td>Angular
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+I get very substantially different results from PROJ.4, and PCI (GCTP)'s 
+results as noted in 
+<a href="random_issues.html#equirectangular">Random Issues</a>.<p>
+
+
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=eqc   +lat_ts=<i>Latitude at projection center</i> 
+              +lon_0=<i>Longitude at projection center</i>
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+</body>

@@ -1,0 +1,335 @@
+<head>
+<title>Hotine Oblique Mercator</title>
+</head>
+<body>
+
+<h1>Hotine Oblique Mercator</h1>
+
+<table border>
+
+<td>Name
+<td>Hotine Oblique Mercator
+<tr>
+
+<td>EPSG Code
+<td>9812
+<tr>
+
+<td>GeoTIFF Code
+<td> CT_ObliqueMercator (3)
+<tr>
+
+<td>
+<td> CT_ObliqueMercator_Hotine (3)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+<tr>
+
+<td> Latitude of projection center
+<td> 1
+<td> CenterLat
+<td> Angular
+<td>
+<tr>
+
+<td>Longitude of projection center
+<td>2
+<td>CenterLong
+<td>Angular
+<td>
+<tr>
+
+<td>Azimuth of initial line
+<td>3
+<td>AzimuthAngle
+<td>Angular
+<td>
+<tr>
+
+<td>Angle from Rectified to Skew Grid
+<td>4
+<td>(missing in GeoTIFF)
+<td>Angular
+<td>
+<tr>
+
+<td>Scale factor on initial line
+<td>5
+<td>ScaleAtCenter
+<td>Unitless
+<td>
+<tr>
+
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+<tr>
+
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+<tr>
+
+</table>
+
+<h3>Notes</h3>
+
+The EPSG Projection <a href="oblique_mercator.html">Oblique Mercator</a> 
+with code 9815 indicates that
+it's formula is really just that of Hotine Oblique Mercator despite the 
+slightly different naming of the false easting and northing.  I am treating
+that projection as an alias for this one, but with a page of it's own since
+it has it's own codes, at least in EPSG.<p>
+
+Most packages do not support the angle from rectified to skewed grid, and
+GeoTIFF doesn't have a tag to carry it.  I am not sure what the
+significance of this is.<p>
+
+<h3>PROJ.4 Organization</h3>
+
+While PROJ.4 dosn't have a <i>Angle from Rectified to Skew Grid</i>
+I think the +no_rot flag is related to this parameter.<p>
+
+<b>
+<pre>
+  +proj=omerc +lat_0=<i>Latitude of projection center</i> 
+              +lonc=<i>Longitude of projection center</i>
+              +alpha=<i>Azimuth of initial line</i>
+              +k=<i>Scale factor on initial line</i> 
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+The PROJ.4 initialization function fails if Azimuth is zero (or 90 degrees).
+I am not clear if this is fundamental to the oblique mercator projection
+or a peculiarity of PROJ.4.  It is inconvenient because some of the 
+GeotIFF sample files have an azimuth of zero.<p>
+
+<h3>EPSG Notes</h3>
+
+It has been noted that the Transverse Mercator projection is employed for the topographical mapping of longitudinal bands of territories, limiting the amount of scale distortion by limiting the extent of the projection either side of the central meridian. Sometimes the shape, general trend and extent of some countries makes it preferable to apply a single zone of the same kind of projection but with its central line aligned with the trend of the territory concerned rather than with a meridian. So, instead of a meridian forming this true scale central line for one of the various forms of Transverse Mercator, or the equator forming the line for the Mercator, a line with a particular azimuth traversing the territory is chosen and the same principles of construction are applied to derive what is now an Oblique Mercator. Such a single zone projection suits areas which have a large extent in one direction but limited extent in the perpendicular direction and whose trend is oblique to the bisecting meridian - such as East and West Malaysia (Hotine Oblique Mercator), Madagascar (Laborde Oblique Mercator) and the Alaskan panhandle. It was also originally applied to Hungary in the 1970's and, at the beginning of the 20th century, by Rosenmund to the mapping of Switzerland. This projection is sometimes referred to as the Rectified Skew Orthomorphic projection or the Hotine Oblique Mercator. Hotine projected the ellipsoid conformally onto a sphere of constant total curvature, called the `aposhere', before projection onto the plane. Alternative formulae derived by projecting the ellipsoid onto the `conformal' sphere give identical results within the practical limits of the use of the formulae.
+<p>
+
+The co-ordinate system is defined by:
+<p>
+
+An initial line central to the map area of given azimuth  ac  passes through a defined centre of the projection (jc , lc ) . The point where the projection of this line cuts the equator on the aposphere is the origin of the (u , v) co-ordinate system The u axis is parallel to the centre line and the v axis is perpendicular to this line.
+<p>
+
+The projection's initial line may be selected as a line with a particular azimuth through a single point, - normally at the centre of the mapped area - or as the geodesic line (the shortest line between two points on the ellipsoid) between two selected points. The latter approach is not currently followed in Epicentre. It has been applied to mapping space imagery or, more frequently, for applying a geographical graticule to the imagery. However, the repeated path of the imaging satellite does not actually follow the centre lines of successive oblique cylindrical projections so a projection was derived whose centre line does follow the satellite path. This is known as the Space Oblique Mercator Projection and although it closely resembles an oblique cylindrical it is not quite conformal and has no other application than for space imagery.
+<p>
+
+In applying the formulae for the Hotine Oblique Mercator the first set of co-ordinates computed are referred to the (u, v) co-ordinate axes defined with respect to the azimuth of the centre line. These co-ordinates are then `rectified' to the usual Easting and Northing by applying an orthogonal transformation. Hence the alternative name as the Rectified Skew Orthomorphic. In the special case of the projection covering the Alaskan panhandle the azimuth of the line at the natural origin is taken to be identical to the azimuth of the initial line at the projection centre.  This results in grid and true north coinciding at the projection centre rather than at the natural origin as is more usual.
+<p>
+
+To ensure that all co-ordinates in the map area have positive grid values, false co-ordinates are applied. These may be given values (Ec , Nc) if applied at the projection centre or be applied as false easting (FE) and false northing (FN) at the natural origin.
+<p>
+	
+Formulas for the oblique Mercator, involving hyperbolic functions, were derived by Hotine. Snyder adapted these formula using exponential functions, thus avoiding use of Hotine's hyperbolic expressions. As in the case of the several varieties of Transverse Mercator, the choice of the co-ordinate transformation parameters distinguish the co-ordinate transformation within the Oblique Mercator Co-ordinate Transformation method. The formulae can be used for  the following cases:
+<p>
+
+<pre>
+	Alaska Zone 1
+	Hungary EOV
+	Madagascar
+	East and West Malaysia
+	Switzerland 
+</pre>
+	
+The Swiss and Hungarian systems are a special case where the azimuth of the line through the projection centre is 90 degrees. This therefore gives similar but not exactly the same results as a conventional transverse mercator. <p>
+
+Epicentre supports the formulae to cover the co-ordinate transformation methods for the following versions of the Oblique Mercator:
+<p>
+
+<ol>
+<li>	USGS (Snyder) formulae where the false origin is defined at the natural origin
+<li>	USGS (Snyder) formulae where the false origin is defined at the centre of the projection
+<li>	Swiss Oblique Cylindrical, using polynomial equations developed by Bolliger.
+</ol>
+
+The two versions of the Snyder formulae could be unified by introducing an extra parameter to define which origin is used for the application of false co-ordinates. The Swiss Oblique Cylindrical is a special case, as the equations given by Bolliger may deviate from the rigorous formulae for points at some distance from the origin.  Throughout Switzerland the differences are always less than one metre. 
+<p>
+
+Specific references for the formulae originally used in the individual cases of these projections are:
+<p>
+
+<pre>
+Switzerland:
+	""Die Žnderung des Projektionssystems der schweizerischen Landesvermessung."" M. Rosenmund 1903.
+	""Die projecktionen der Schweizerischen Plan und Kartenwerke."" J. Bollinger 1967.
+Madagascar:
+	""La nouvelle projection du Service Geographique de Madagascar"". J. Laborde 1928.
+Malaysia:
+	Series of Articles in numbers 62-66 of the Empire Survey Review of 1946 and 1947 by 	M. Hotine.
+</pre>
+
+
+The defining parameters for the oblique mercator projection are:
+<p>
+
+<pre>
+fc 	= latitude of centre of the projection
+lc 	= longitude of centre of the projection
+ac 	= azimuth (true) of the centre line passing through the centre of the projection
+gc 	= rectified bearing of the centre line
+kc	= scale factor at the centre of the projection
+and either
+Ec	= False Easting at the centre of projection
+Nc	= False Northing at the centre of projection
+or
+FE	= False Easting at the natural origin
+FN	= False Northing at the natural origin
+</pre>
+From these the following constants for the projection may be calculated :
+<p>
+
+<pre>
+B	=	(1 + e2 cos4(fc) / (1 - e2 ))0.5
+A	=	a B kc (1 - e2 )0.5 / ( 1 - e2 sin2 (fc))
+t0	=	tan(p / 4 - fc / 2) / ((1 - e sin (fc)) / (1 + e sin (fc)))e/2
+D	=	B (1 - e2 )0.5  / (cos(fc) ( 1 - e2 sin2 (fc))0.5)
+Dsq	=	D2  = 1 if D*D < 1 to avoid problems with computation of F
+F	=	D + (Dsq - 1)0.5 . SIGN(fc)
+H	=	F t0B
+G	=	(F - 1 / F) / 2
+g0	=	asin(sin (ac) / D)
+l0	=	lc - (asin(G tan(g0))) / B
+</pre>
+Then compute the (uc , vc) co-ordinates for the centre point (fc , lc).  In general<p>
+<pre>
+
+uc	=	(A / B) atan((Dsq - 1)0.5 / cos (ac) ). SIGN(fc)
+vc	=	0
+</pre>
+
+But note that for the special cases where ac = 90 degrees (e.g. Hungary, Switzerland) then 
+<p>
+
+<pre>
+uc	=	A (lc - l0 )  
+vc	=	0
+</pre>
+
+Forward case:	To compute (E,N) from a given (f,l) :
+<p>
+
+<pre>
+t	=	tan(p / 4 - f / 2) / ((1 - e sin (f)) / (1 + e sin (f)))e/2
+Q	=	H / tB
+S	=	(Q - 1 / Q) / 2
+T	=	(Q + 1 / Q) / 2
+V	=	sin(B (l - l0))
+U	=	(- V cos(g0) + S sin(g0)) / T
+v	=	A ln((1 - U) / (1 + U)) / 2 B
+u	=	A atan((S cos(g0) + V sin(g0)) / cos(B (l - l0 ))) / B
+</pre>
+
+The value of u from the above equation assumes that  the FE and FN values have been specified with respect to the origin of the (u , v) axes - see diagram.
+<p>
+
+For projection parameters where the false easting and northing values (Ec , Nc) have been specified with respect to the centre of the projection (fc , lc) then :<p>
+
+<pre>
+u = u - uc   
+</pre>
+For the special cases where   ac = 90 degrees care must be taken with the sign of uc in this formula because the centre of the projection is equidistant from the two points at which the centre line cuts the equator on the aposphere.
+
+<p>
+
+The rectified skew co-ordinates are then derived from:
+<p>
+
+<pre>
+E	= v cos(gc) + u sin(gc) + (FE or Ec)
+N 	= u cos(gc) - v sin(gc) + (FN or Nc)
+</pre>
+Reverse case:	Compute (f,l)  from a given (E,N)  :
+<p>
+<pre>
+v'	=	(E - (FE or Ec)) cos(gc) - (N - (FN or Nc)) sin(gc)
+u'	=	(N - (FN or Nc)) cos(gc) + (E - (FE or Ec)) sin(gc)
+</pre>
+For projection parameters where the false easting and northing values (Ec , Nc) have been specified with respect to the centre of the projection (fc , lc) then :
+<p>
+
+<pre>
+u'	=	u' + uc
+
+Q'	=	e- (B v `/ A)  where e is the base of natural logarithms.
+S'	=	(Q' - 1 / Q') / 2
+T'	=	(Q' + 1 / Q') / 2
+V'	=	sin (B u' / A)
+U'	=	(V' cos(gc) + S' sin(gc)) / T'
+t'	=	(H / ((1 + U') / (1 - U'))0.5)1 / B
+
+c	= p / 2 - 2 atan(t')
+
+f	= c + sin(2c).( e2 / 2 + 5 e4 / 24 + e6 / 12 + 13 e8 / 360) + 
+	   sin(4c).( 7 e4 /48 + 29 e6 / 240 + 811 e8 / 11520) +  sin(6c).( 7 e6 / 120 + 81 e8 / 1120) + 	   sin(8c).(4279 e8 / 161280)
+
+l	=  l0  - atan ((S' cos(gc) - V' sin(gc)) / cos(B u' / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
+
+Parameters:
+	Ellipsoid:  Everest 1830 (1967 Definition)
+				a = 6377298.556 metres 	1/f = 300.8017
+				then	e = 0.081472981	e2 = 0.006637847
+					
+	Latitude Projection Centre	fc  	4o00'00""N		=	0.069813170 rad
+	Longitude Projection Centre	lc  	115o00'00""E	=	2.007128640 rad
+	Azimuth of central line	ac	53o18'56.9537""	=	0.930536611 rad
+	Rectified to skew	gc	53o07'48.3685""	=	0.927295218 rad
+	Scale factor	ko	 0.99984
+	False Eastings	FE	 0.00 m
+	False Northings	FN	 0.00 m
+
+Forward calculation for: 
+	Latitude		f	4o39'20.783""N		=	0.081258569 rad
+	Longitude		l	114o28'10.539""E	=	1.997871312 rad
+		
+B = 	1.003303209		F =	1.07212156
+A =	6376278.686		H = 	1.00000299
+		to = 	0.932946976		g0 = 	0.92729522
+		D = 	1.002425787		l0 = 	1.91437347
+		D2 =	1.004857458
+	
+		uc =	738096.09		vc =	0.00
+		t =	0.922369529		Q =	1.084456854
+		S =	0.081168129		T = 	1.003288725
+		V =	0.83675700		U =	0.014680803
+		v =	-93307.40		u =	734236.558
+						u-uc =	-3859.536
+
+	Then	Easting		E =  	531404.81 m
+		Northing	N =      515187.85 m
+
+Reverse calculations for same easting and northing first gives :
+		v' =   	-93307.40		u' =	734236.558
+		u'+uc = 1472332.652		Q' =	1.014790165
+		S'  =	0.014682385		T' =	1.000107780	
+		V' =	0.115274794		U' = 	0.080902065
+		t' = 	0.922369529		c =	0.080721539		
+				
+Then	Latitude    	 f  =	4o39'20.783""N		
+	Longitude	l   =	114o28'10.539""E"
+</pre>
+
+</body>

@@ -1,0 +1,148 @@
+<head>
+<title>Cassini-Soldner</title>
+</head>
+<body>
+
+<h1>Cassini-Soldner</h1>
+
+<table border>
+
+<td>Name
+<td>Cassini-Soldner
+<tr>
+
+<td>EPSG Code
+<td>9806
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_CassiniSoldner (18)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of natural origin
+<td>1
+<td>NatOriginLat
+<td>Angular
+<td>
+
+<tr>
+<td>Longitude of natural origin
+<td>2
+<td>NatOriginLong
+<td>Angular
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+The Intergraph sample files include a non 1.0 scale at the natural origin;
+however, this isn't currently an official part of the spec.  However, if you
+can handle a scale parameter, you should look for ScaleAtNatOrigin. <p>
+
+<h3>EPSG Notes</h3>
+
+Cassini-Soldner Formula<p>
+
+The Cassini-Soldner projection is the ellipsoidal version of the Cassini projection for the 
+sphere. It is not conformal but as it is relatively simple to construct it was extensively used 
+in the last century and is still useful for mapping areas with limited longitudinal extent. It 
+has now largely been replaced by the conformal Transverse Mercator which it resembles. 
+Like this, it has a straight central meridian along which the scale is true, all other meridians 
+and parallels are curved, and the scale distortion increases rapidly with increasing distance 
+from the central meridian.<p>
+
+The formulas to derive projected Easting and Northing coordinates are:<p>
+<pre>
+	Easting, E = FE + *[A - TA3/6 -(8 - T + 8C)TA5/120]
+
+	Northing, N = FN + M - M0 + *tan*[A2/2 + (5 - T + 6C)A4/24]		
+
+where	A = (* - *0)cos*
+	T = tan2*
+	C = e2 cos2*/(1 - e2) 
+and M, the distance along the meridian from equator to latitude *, is given by
+	M = a[1 - e2/4 - 3e4/64 - 5e6/256 -....)* - (3e2/8 + 3e4/32 + 45e6/1024 +....)sin2* 
+		+ (15e4/256 + 45e6/1024 +.....)sin4* - (35e6/3072 + ....)sin6* + .....]
+with * in radians.
+
+M0 is the value of M calculated for the latitude of the chosen origin. This may not 
+necessarily be chosen as the equator.
+
+To compute latitude and longitude from Easting and Northing the reverse formulas are:
+	* = *1 - (*1tan*1/*1)[D2/2 - (1 + 3T1)D4/24]
+	* =  *0 + [D - T1D3/3 + (1 + 3T1)T1D5/15]/cos*1
+
+where	*1 is the latitude of the point on the central meridian which has the same Northing 
+as the point whose coordinates are sought, and is found from:
+
+	*1 = *1 + (3e1/2 - 27e13/32 +.....)sin2*1 + (21e12/16 - 55e14/32 + ....)sin4*1
+		+ (151e13/96 +.....)sin6*1 + (1097e14/512 - ....)sin8*1 + ......
+where
+	e1 = [1- (1 - e2)1/2]/[1 + (1 - e2)1/2]
+	*1 = M1/[a(1 - e2/4 - 3e4/64 - 5e6/256 - ....)]
+	M1 = M0 + (N - FN)
+	T1 = tan2*1
+	D = (E - FE)/*1","For Projected Coordinate System Trinidad 1903 / Trinidad Grid 
+Parameters:
+Ellipsoid   Clarke 1858     a = 20926348 ft    = 31706587.88 links
+                                        b = 20855233 ft
+
+then 1/f = 294.97870 and e^2 = 0.00676866
+
+Latitude Natural Origin       10o26'30""N  =  0.182241463 rad
+Longitude Natural Origin    61o20'00""W = -1.07046861 rad
+False Eastings FE              430000.00 links
+False Northings FN            325000.00 links
+
+Forward calculation for: 
+Latitude       10o00'00.00"" N = 0.17453293 rad
+Longitude    62o00'00.00""W = -1.08210414 rad
+
+A = -0.01145876      C = 0.00662550
+T = 0.03109120      M = 5496860.24    nu = 31709831.92     M0 = 5739691.12
+
+Then Easting E    =  66644.94 links
+          Northing N =  82536.22 links
+
+Reverse calculation for same easting and northing first gives :
+e1    =   0.00170207       D  =     -0.01145875
+T1   = 0.03109544         M1 =      5497227.34
+nu1  = 31709832.34       mu1 =    0.17367306
+phi1 = 0.17454458         rho1 =    31501122.40
+
+
+Then Latitude     = 10o00'00.000""N
+         Longitude  =  62o00'00.000""W
+</pre>
+</body>

@@ -1,0 +1,166 @@
+<head>
+<title>Mercator (1SP)</title>
+</head>
+<body>
+
+<h1>Mercator (1SP)</h1>
+
+<table border>
+
+<td>Name
+<td>Mercator
+<tr>
+
+<td>EPSG Code
+<td>9804
+<tr>
+
+<td>GeoTIFF Code
+<td>CT_Mercator (7)
+<tr>
+
+<td>Supported By
+<td>EPSG, GeoTIFF, PROJ.4
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>Units
+<th>Notes
+
+<tr>
+<td>Latitude of natural origin
+<td>1
+<td>NatOriginLat
+<td>Angular
+<td>
+
+<tr>
+<td>Longitude of natural origin
+<td>2
+<td>NatOriginLong
+<td>Angular
+<td>
+
+<tr>
+<td>Scale factor at natural origin
+<td>5
+<td>ScaleAtNatOrigin
+<td>Unitless
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+I believe the formula (EPSG) notes are exactly the same for Mercator (1SP)
+and Mercator (2SP).  There is only one projection in GeoTIFF for straight 
+Mercator.<p>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=merc  +lat_ts=<i>Latitude of natural origin</i> 
+              +lon_0=<i>Longitude of natural origin</i>
+              +k=<i>Scale factor at natural origin</i> 
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+<h3>EPSG Notes</h3>
+
+Mercator<p>
+	
+The Mercator projection is a special case of the Lambert Conic Conformal projection  
+with the equator as the single standard parallel. All other parallels of latitude are straight 
+lines and the meridians are also straight lines at right angles to the equator, equally spaced. 
+It is little used for land mapping purposes but is in universal use for navigation charts and 
+is the basis for the transverse and oblique forms of the Mercator. As well as being 
+conformal, it has the particular property that straight lines drawn on it are lines of constant 
+bearing. Thus navigators may derive their course  from the angle the straight course line 
+makes with the meridians.
+<p>
+
+In the few cases in which the Mercator projection is used for terrestrial applications or 
+land mapping, such as in Indonesia prior to the introduction of the Universal Transverse 
+Mercator, a scale factor may be applied to the projection. This has the same effect as 
+choosing two standard parallels on which the true scale is maintained at equal north and 
+south latitudes either side of the equator.
+<p>
+
+<pre>
+The formulas to derive projected Easting and Northing coordinates are:
+
+For the two standard parallel case, k0 is first calculated from
+
+k0 = cos*1/(1 - e2sin2*1)1/2 
+ 
+where *1 is the absolute value of the first standard parallel (i.e. positive).  
+
+Then, for both one and two standard parallel cases, 
+
+	E = FE + ak0(* - *0)              
+	N = FN + ak0 logn{tan(*/4 + */2)[(1 - esin*)(1 + esin*)]e/2 }                     
+           		where symbols are as listed above and logarithms are natural.
+	
+The reverse formulas to derive latitude and longitude from E and N values are:
+	
+	* = * + (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) 
+		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)
+		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)
+
+where 		* = */2 - 2 arctan t
+		t = B (FN-N)/ak0   		
+		B = base of the natural logarithm, 2.7182818...
+		and  for the 2 SP Case, k0 is calculated as for the forward transformation 
+above.
+ 
+	* =  ((E - FE)/ak0)  + *0","For Projected Coordinate System Makassar / NEIEZ
+
+Parameters:
+Ellipsoid   Bessel 1841  a = 6377397.155 m   1/f = 299.15281
+then e = 0.08169683
+
+Latitude Natural Origin         00o00'00""N  = 0.0000000 rad
+Longitude Natural Origin    110o00'00""E  = 1.91986218 rad
+Scale factor ko                  0.997
+False Eastings FE              3900000.00 m
+False Northings FN              900000.00 m
+
+Forward calculation for: 
+Latitude            3o00'00.00""S   = -0.05235988 rad
+Longitude     120o00'00.00""E   =  2.09439510 rad
+gives
+Easting  E   =      5009726.58 m
+Northing N  =        569150.82 m
+
+Reverse calculation for same easting and northing first gives :
+t    = 1.0534121
+chi = -0.0520110
+
+Then Latitude     =   3o00'00.000""S
+         Longitude  = 120o00'00.000""E
+</pre>
+</body>
