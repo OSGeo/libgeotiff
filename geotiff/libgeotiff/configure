@@ -1500,12 +1500,12 @@ fi
 
 
 if test "$with_libtiff" != "" ; then
-  if test -d $with_libtiff/include/tiffio.h -a -d $with_libtiff/lib ; then
-    TIFF_LIB="-L$TIFF_HOME/lib -ltiff"
+  if test -f $with_libtiff/include/tiffio.h -a -d $with_libtiff/lib ; then
+    TIFF_LIB="-L$with_libtiff/lib -ltiff"
     LIBS="-L$with_libtiff/lib -ltiff $LIBS"
     TIFF_INC=-I$with_libtiff/include
   else
-    TIFF_LIB="-L$TIFF_HOME -ltiff"
+    TIFF_LIB="-L$with_libtiff -ltiff"
     LIBS="-L$with_libtiff -ltiff $LIBS"
     TIFF_INC=-I$with_libtiff
   fi
