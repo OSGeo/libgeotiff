@@ -199,12 +199,21 @@ bad:
 static void CopyGeoTIFF(TIFF * in, TIFF *out)
 {
     GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
+    double *d_list = NULL;
+    int16   d_list_count;
 
     /* read definition from source file. */
     gtif = GTIFNew(in);
     if (!gtif)
         return;
 
+    if (TIFFGetField(in, GTIFF_TIEPOINTS, &d_list_count, &d_list))
+        TIFFSetField(out, GTIFF_TIEPOINTS, d_list_count, d_list);
+    if (TIFFGetField(in, GTIFF_PIXELSCALE, &d_list_count, &d_list))
+        TIFFSetField(out, GTIFF_PIXELSCALE, d_list_count, d_list);
+    if (TIFFGetField(in, GTIFF_TRANSMATRIX, &d_list_count, &d_list))
+        TIFFSetField(out, GTIFF_TRANSMATRIX, d_list_count, d_list);
+            
     /* Here we violate the GTIF abstraction to retarget on another file.
        We should just have a function for copying tags from one GTIF object
        to another. */
