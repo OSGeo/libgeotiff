@@ -18,6 +18,7 @@ ValuePair(PCS_KKJ_Finland_zone_4,2394)
 ValuePair(PCS_RT90_2_5_gon_W,2400)
 ValuePair(PCS_Lietuvos_Koordinoei_Sistema_1994,2600)
 ValuePair(PCS_Estonian_Coordinate_System_of_1992,3300)
+ValuePair(PCS_HD72_EOV,23700)
 
 ValuePair(PCS_Adindan_UTM_zone_37N,	20137)
 ValuePair(PCS_Adindan_UTM_zone_38N,	20138)
