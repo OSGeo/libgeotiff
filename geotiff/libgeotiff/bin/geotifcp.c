@@ -9,20 +9,22 @@
  * and a lot of legal stuff denying liability for anything.
  */
 
-#if defined(unix) || defined(__unix)
-#include "port.h"
-#else
+//#if defined(unix) || defined(__unix)
+//#include "port.h"
+//#else
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 typedef	unsigned char u_char;
-#endif
+//#endif
 #include <ctype.h>
 
 /* GeoTIFF overrides */
 
 #include "geotiff.h"
+#include "geo_tiffp.h"
+#include "geo_keyp.h"
 #include "xtiffio.h"
 #define TIFFOpen XTIFFOpen
 #define TIFFClose XTIFFClose
@@ -40,6 +42,7 @@ typedef	unsigned char u_char;
 static  int outtiled = -1;
 static  uint32 tilewidth;
 static  uint32 tilelength;
+static  int convert_8_to_4 = 0;
 
 static	uint16 config;
 static	uint16 compression;
@@ -76,10 +79,13 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:g:aist")) != -1)
+	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:g:aistd")) != -1)
 		switch (c) {
 		case 'a':		/* append to output */
 			mode = "a";
+			break;
+		case 'd':		/* down cast 8bit to 4bit */
+                        convert_8_to_4 = 1;
 			break;
 		case 'c':		/* compression scheme */
 			if (!processCompressOptions(optarg))
@@ -190,6 +196,27 @@ bad:
 	exit (-1);
 }
 
+static void CopyGeoTIFF(TIFF * in, TIFF *out)
+{
+    GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
+
+    /* read definition from source file. */
+    gtif = GTIFNew(in);
+    if (!gtif)
+        return;
+
+    /* Here we violate the GTIF abstraction to retarget on another file.
+       We should just have a function for copying tags from one GTIF object
+       to another. */
+    gtif->gt_tif = out;
+    gtif->gt_flags |= FLAG_FILE_MODIFIED;
+
+    /* Install keys and tags */
+    GTIFWriteKeys(gtif);
+    GTIFFree(gtif);
+    return;
+}
+
 static void
 processG3Options(char* cp)
 {
@@ -255,6 +282,7 @@ char* stuff[] = {
 " -s		write output in strips",
 " -t		write output in tiles",
 " -i		ignore read errors",
+" -d		truncate 8 bitspersample to 4bitspersample",
 "",
 " -r #		make each strip have no more than # rows",
 " -w #		set output tile width (pixels)",
@@ -440,7 +468,14 @@ tiffcp(TIFF* in, TIFF* out)
 
 	CopyField(TIFFTAG_IMAGEWIDTH, w);
 	CopyField(TIFFTAG_IMAGELENGTH, l);
-	CopyField(TIFFTAG_BITSPERSAMPLE, bitspersample);
+        if( convert_8_to_4 )
+        {
+            TIFFSetField(out, TIFFTAG_BITSPERSAMPLE, 4);
+        }
+        else
+        {
+            CopyField(TIFFTAG_BITSPERSAMPLE, bitspersample);
+        }
 	if (compression != (uint16)-1)
 		TIFFSetField(out, TIFFTAG_COMPRESSION, compression);
 	else
@@ -520,7 +555,10 @@ tiffcp(TIFF* in, TIFF* out)
 	}
 	cpOtherTags(in, out);
 
-	if (geofile) InstallGeoTIFF(out);
+	if (geofile)
+            InstallGeoTIFF(out);
+        else
+            CopyGeoTIFF(in,out);
 
 	cf = pickCopyFunc(in, out, bitspersample, samplesperpixel);
 	return (cf ? (*cf)(in, out, l, w, samplesperpixel) : FALSE);
@@ -564,6 +602,45 @@ done:
 bad:
 	_TIFFfree(buf);
 	return (FALSE);
+}
+
+/*
+ * Contig -> contig by scanline for rows/strip change.
+ */
+DECLAREcpFunc(cpContig2ContigByRow_8_to_4)
+{
+    u_char *buf_in = (u_char *)_TIFFmalloc(TIFFScanlineSize(in));
+    u_char *buf_out = (u_char *)_TIFFmalloc(TIFFScanlineSize(out));
+    uint32 row;
+
+    printf( "Downsample\n" );
+
+    (void) imagewidth; (void) spp;
+    for (row = 0; row < imagelength; row++) {
+        int i_in, i_out_byte;
+            
+        if (TIFFReadScanline(in, buf_in, row, 0) < 0 && !ignore)
+            goto done;
+
+        for( i_in = 0, i_out_byte = 0;
+             i_in < imagewidth;
+             i_in += 2, i_out_byte++ )
+        {
+            buf_out[i_out_byte] =
+                (buf_in[i_in] & 0xf)*16 + (buf_in[i_in+1] & 0xf);
+        }
+        
+        if (TIFFWriteScanline(out, buf_out, row, 0) < 0)
+            goto bad;
+    }
+  done:
+    _TIFFfree(buf_in);
+    _TIFFfree(buf_out);
+    return (TRUE);
+  bad:
+    _TIFFfree(buf_in);
+    _TIFFfree(buf_out);
+    return (FALSE);
 }
 
 /*
@@ -1232,9 +1309,16 @@ pickCopyFunc(TIFF* in, TIFF* out, uint16 bitspersample, uint16 samplesperpixel)
 		return cpSeparateTiles2SeparateStrips;
 /* Strips -> Strips */
 	case pack(PLANARCONFIG_CONTIG,   PLANARCONFIG_CONTIG,   F,F,F):
-		return cpContig2ContigByRow;
+          if( convert_8_to_4 )
+              return cpContig2ContigByRow_8_to_4;
+          else
+              return cpContig2ContigByRow;
+          
 	case pack(PLANARCONFIG_CONTIG,   PLANARCONFIG_CONTIG,   F,F,T):
-		return cpDecodedStrips;
+          if( convert_8_to_4 )
+              return cpContig2ContigByRow_8_to_4;
+          else
+              return cpDecodedStrips;
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_SEPARATE,   F,F,F):
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_SEPARATE,   F,F,T):
 		return cpContig2SeparateByRow;
