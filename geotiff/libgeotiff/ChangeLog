@@ -1,5 +1,10 @@
 2002-09-27  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* libxtiff/{xtiff.c,xtiffio.h}: Added XTIFFClientOpen() function
+	as per supplied implementation from John Novak.
+
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=204
+
 	* geo_free.c, geo_names.c, geo_keyp.h, geo_new.c, geo_set.c, 
 	geo_write.c: Rainer Wiesenfarth (wiesi at ngi dot de) submitted
 	patches to support deletion, and changes to ascii tags.  To accomplish
