@@ -1,3 +1,9 @@
+Wed Sep 15 10:19:34 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Fixed serious bug in geo_normalize.c with translation of
+	DD.MMSSsss values.  Return value was seriously off if any 
+	fraction of a second was included in the string.
+
 Tue Sep  7 15:57:47 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Fixed count/tiepoint_count mixup in GTIFPCSToImage().  Thanks
