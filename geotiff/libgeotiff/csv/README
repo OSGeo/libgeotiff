@@ -31,6 +31,10 @@ are present:
           projection parameters into one fast access file. 
  gcs.csv: An attempt to collect most information about a GCS, including
           the WGS84 shift parameters (if there is only one path in EPSG).
+ projop_wparm.csv: Projection operations with projection parameters.  
+          Essentially the coordinate_operation.csv table with the parameters
+          from coordinate_operation_parameter_values.csv appended to each 
+          record.
  build_pcs.py: a python script to build pcs.csv and gcs.csv from the other
                EPSG files. 
  csv_tools.py: supportting python functions for build_pcs.py.
@@ -43,3 +47,5 @@ Libgeotiff uses the following tables.  The rest are present for completeness.
  ellipsoid.csv
  prime_meridian.csv
  unit_of_measure.csv
+ datum.csv
+ projop_wparm.csv
