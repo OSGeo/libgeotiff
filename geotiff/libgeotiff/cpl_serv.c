@@ -23,6 +23,9 @@
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
  * $Log$
+ * Revision 1.3  1999/03/17 20:43:03  geotiff
+ * Avoid use of size_t keyword
+ *
  * Revision 1.2  1999/03/10 18:22:39  geotiff
  * Added string.h, fixed backslash escaping
  *
@@ -32,6 +35,7 @@
  */
 
 #include "cpl_serv.h"
+#include "geo_tiffp.h"
 
 #ifdef HAVE_STRING_H
 #  include <string.h>
@@ -44,7 +48,7 @@
 /*                             CPLCalloc()                              */
 /************************************************************************/
 
-void *CPLCalloc( size_t nCount, size_t nSize )
+void *CPLCalloc( int nCount, int nSize )
 
 {
     void	*pReturn;
@@ -67,7 +71,7 @@ void *CPLCalloc( size_t nCount, size_t nSize )
 /*                             CPLMalloc()                              */
 /************************************************************************/
 
-void *CPLMalloc( size_t nSize )
+void *CPLMalloc( int nSize )
 
 {
     void	*pReturn;
@@ -90,7 +94,7 @@ void *CPLMalloc( size_t nSize )
 /*                             CPLRealloc()                             */
 /************************************************************************/
 
-void * CPLRealloc( void * pData, size_t nNewSize )
+void * CPLRealloc( void * pData, int nNewSize )
 
 {
     void	*pReturn;
