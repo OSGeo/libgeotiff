@@ -103,6 +103,11 @@ int   CPL_DLL  GTIFValueCode(geokey_t key,char *value);
 int   CPL_DLL  GTIFTypeCode(char *type);
 int   CPL_DLL  GTIFTagCode(char *tag);
 
+/* Translation between image/PCS space */
+
+int CPL_DLL    GTIFImageToPCS( GTIF *gtif, double *x, double *y );
+int CPL_DLL    GTIFPCSToImage( GTIF *gtif, double *x, double *y );
+
 #if defined(__cplusplus)
 }
 #endif
