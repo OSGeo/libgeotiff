@@ -1,6 +1,11 @@
+
+==============================================================================
+
 2000-12-28  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Prepare 1.1.4 release.
+
+	* Removed getopt.h from geotifcp.c to build on windows.
 
 2000-12-12  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -78,6 +83,8 @@
 	were read from EPSG CSV files the standard parallels and origin
 	were mixed up.  This affects alot of state plane zones!
 
+==============================================================================
+
 2000-08-22  Frank Warmerdam  <warmerda@cs46980-c>
 
 	* Prepare 1.1.3 release.
@@ -100,6 +107,8 @@
 
 	* Added -e option to geotifcp to intialize tiepoint+pixelscale
 	based on an ESRI world file. 
+
+==============================================================================
 
 Sun Feb 20 16:43:03 2000  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
@@ -157,6 +166,8 @@ Mon Jul 12 12:56:51 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* geotifcp modified to copy existing geotiff information by default.
 
+==============================================================================
+
 Tue May  4 09:25:12 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Prepared Version 1.1.1 release.
@@ -193,6 +204,8 @@ March 18
 	* Added support for PROJ.4 in configure.  Added cover functions
 	for Proj.4 in geotiff_proj.c, added lat/long reporting to listgeo.c. 
 
+
+==============================================================================
 
 -- 1.1.0a Release (circa March 10, 1999) --
 
