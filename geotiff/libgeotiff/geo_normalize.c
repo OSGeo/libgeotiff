@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.21  2000/09/15 19:30:14  warmerda
+ * report units of linear proj parms
+ *
  * Revision 1.20  2000/09/15 18:21:07  warmerda
  * Fixed order of parameters for LCC 2SP.  When parameters
  * were read from EPSG CSV files the standard parallels and origin
@@ -1970,8 +1973,10 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
                         pszName, psDefn->ProjParm[i],
                         GTIFDecToDMS( psDefn->ProjParm[i], pszAxisName, 2 ) );
             }
-            else
+            else if( i == 4 )
                 printf( "   %s: %f\n", pszName, psDefn->ProjParm[i] );
+            else
+                printf( "   %s: %f m\n", pszName, psDefn->ProjParm[i] );
         }
     }
 
