@@ -3,10 +3,10 @@
 #
 DEPTH	= ..
 
-GEOTIFFDIR	= ${DEPTH}
+GEOTIFFDIR	= $(DEPTH)
 GEOTIFF_SO=@GEOTIFF_SO@
 
-LIBS=   -L${GEOTIFFDIR} -lgeotiff @LIBS@
+LIBS=   -L$(GEOTIFFDIR) -lgeotiff @LIBS@
 
 #
 SHELL	= /bin/sh
@@ -21,7 +21,7 @@ INSTALL	= @INSTALL@
 EXEEXT=@EXEEXT@
 
 prefix = /usr/local
-libdir  = ${exec_prefix}/lib
+libdir  = ${prefix}/lib
 
 PROGS=${BIN}/makegeo$(EXEEXT) ${BIN}/listgeo$(EXEEXT) ${BIN}/geotifcp$(EXEEXT)
 
