@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.3  1999/03/17 20:44:04  geotiff
+ * added CPL_DLL related support
+ *
  * Revision 1.2  1999/03/10 18:24:06  geotiff
  * corrected to use int'
  *
@@ -77,32 +80,35 @@ typedef struct {
 
 } GTIFDefn;
 
-int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
-                    short *pnUOMLengthCode, short *pnUOMAngleCode,
-                    short *pnGeogCS, short *pnProjectionCSCode );
-int GTIFGetProjTRFInfo( int nProjTRFCode,
-                        char ** ppszProjTRFName,
-                        short * pnProjMethod,
-                        double * padfProjParms );
-int GTIFGetGCSInfo( int nGCSCode, char **ppszName,
-                    short *pnDatum, short *pnPM );
-int GTIFGetDatumInfo( int nDatumCode, char **ppszName, short * pnEllipsoid );
-int GTIFGetEllipsoidInfo( int nEllipsoid, char ** ppszName,
-                          double * pdfSemiMajor, double * pdfSemiMinor );
-int GTIFGetPMInfo( int nPM, char **ppszName, double * pdfLongToGreenwich );
+int CPL_DLL GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
+                            short *pnUOMLengthCode, short *pnUOMAngleCode,
+                            short *pnGeogCS, short *pnProjectionCSCode );
+int CPL_DLL GTIFGetProjTRFInfo( int nProjTRFCode,
+                                char ** ppszProjTRFName,
+                                short * pnProjMethod,
+                                double * padfProjParms );
+int CPL_DLL GTIFGetGCSInfo( int nGCSCode, char **ppszName,
+                            short *pnDatum, short *pnPM );
+int CPL_DLL GTIFGetDatumInfo( int nDatumCode, char **ppszName,
+                              short * pnEllipsoid );
+int CPL_DLL GTIFGetEllipsoidInfo( int nEllipsoid, char ** ppszName,
+                                  double * pdfSemiMajor,
+                                  double * pdfSemiMinor );
+int CPL_DLL GTIFGetPMInfo( int nPM, char **ppszName,
+                           double * pdfLongToGreenwich );
 
-double GTIFAngleStringToDD( const char *pszAngle, int nUOMAngle );
-int GTIFGetUOMLengthInfo( int nUOMLengthCode,
-                          char **ppszUOMName,
-                          double * pdfInMeters );
+double CPL_DLL GTIFAngleStringToDD( const char *pszAngle, int nUOMAngle );
+int CPL_DLL GTIFGetUOMLengthInfo( int nUOMLengthCode,
+                                  char **ppszUOMName,
+                                  double * pdfInMeters );
 
-int GTIFGetDefn( GTIF *, GTIFDefn * );
-void GTIFPrintDefn( GTIFDefn *, FILE * );
-void GTIFFreeDefn( GTIF * );
+int CPL_DLL GTIFGetDefn( GTIF *, GTIFDefn * );
+void CPL_DLL GTIFPrintDefn( GTIFDefn *, FILE * );
+void CPL_DLL GTIFFreeDefn( GTIF * );
 
-char * GTIFGetProj4Defn( GTIFDefn * );
+char CPL_DLL * GTIFGetProj4Defn( GTIFDefn * );
 
-void SetCSVFilenameHook( const char *(*)(const char *) );
+void CPL_DLL SetCSVFilenameHook( const char *(*)(const char *) );
 
 #ifdef __cplusplus
 }
