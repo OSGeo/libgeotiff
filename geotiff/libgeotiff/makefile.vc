@@ -6,7 +6,7 @@
 #
 # You may want to add optimization options to the CFLAGS macro as well. 
 #
-TIFF_DIR = ..\..\libtiff\libtiff
+TIFF_DIR = ..\libtiff\libtiff
 
 TIFF_INC = -I$(TIFF_DIR)
 TIFF_LIB = $(TIFF_DIR)\libtiff.lib
@@ -16,7 +16,7 @@ INCL	= -I. -Ilibxtiff $(TIFF_INC)
 LIBS    = $(TIFF_LIB)
 
 #
-CFLAGS  = $(INCL)
+CFLAGS  = $(INCL) /W4 /nologo
 #
 OBJS    = \
 	xtiff.obj \
