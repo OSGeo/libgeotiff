@@ -30,15 +30,16 @@
  *    quotes should be stripped off the field.
  *  o Quoted fields may contain escape sequences that should be interpreted
  *    specially:
- *            \"   should map to    "
- *            \\   should map to    \
- *            \n   should map to a CR or CR/LF
+ *            ""   should map to    "
  *
  * Note that error checking in this program is weak.  Fields are read as
  * simple strings.  Anything that doesn't translate well to strings may not
  * work (does ODBC support raw binary data?).
  * 
  * $Log$
+ * Revision 1.5  2002/11/28 15:34:33  warmerda
+ * corrected to use standard CSV quoting mechanisms
+ *
  * Revision 1.4  2002/11/25 20:28:28  warmerda
  * quote table name
  *
@@ -58,11 +59,14 @@
 #include <windows.h>
 #include <sql.h>
 #include <errno.h>
+#include <ctype.h>
 
 #include "sqldirect.h"
 
 static void ODBC2CSV( CSQLDirect *, FILE * fp, int bGenerateC,
                       const char * pszTableName );
+
+static const char *SanitizeName( const char *pszInputName );
 
 int main( int argc, char ** argv )
 
@@ -91,7 +95,7 @@ int main( int argc, char ** argv )
             char            szQuery[1024], szFilename[1024];
             FILE            *fp;
 
-            sprintf( szFilename, "%s.csv", argv[i] );
+            sprintf( szFilename, "%s.csv", SanitizeName(argv[i]) );
             fp = fopen( szFilename, "w" );
             if( fp == NULL )
             {
@@ -114,7 +118,7 @@ int main( int argc, char ** argv )
             char            szQuery[1024], szFilename[1024];
             FILE            *fp;
 
-            sprintf( szFilename, "%s.c", argv[i] );
+            sprintf( szFilename, "%s.c", SanitizeName(argv[i]) );
             fp = fopen( szFilename, "w" );
             if( fp == NULL )
             {
@@ -137,6 +141,22 @@ int main( int argc, char ** argv )
     return 0;
 }
 
+static const char *SanitizeName( const char *pszInputName )
+
+{
+    static char szSafeName[1000];
+    int i;
+
+    strcpy( szSafeName, pszInputName );
+    for( i = 0; szSafeName[i] != '\0'; i++ )
+    {
+        if( szSafeName[i] == ' ' )
+            szSafeName[i] = '_';
+        szSafeName[i] = tolower(szSafeName[i]);
+    }
+
+    return szSafeName;
+}
 static const char *CSVEscapeString( const char * pszInput )
 
 {
@@ -164,7 +184,7 @@ static const char *CSVEscapeString( const char * pszInput )
     if( strchr( pszInput, '\"' ) == NULL
         && strchr( pszInput, ',') == NULL
         && strchr( pszInput, 10) == NULL 
-        && strchr( pszInput, 10) == NULL )
+        && strchr( pszInput, 13) == NULL )
         return( pszInput );
 
     /*
@@ -191,18 +211,8 @@ static const char *CSVEscapeString( const char * pszInput )
         switch( pszInput[i] )
         {
             case '\"':
-                pszStaticBuf[iOut++] = '\\';
                 pszStaticBuf[iOut++] = '\"';
-                break;
-
-            case '\\':
-                pszStaticBuf[iOut++] = '\\';
-                pszStaticBuf[iOut++] = '\\';
-                break;
-
-            case 10:
-                pszStaticBuf[iOut++] = '\\';
-                pszStaticBuf[iOut++] = '\n';
+                pszStaticBuf[iOut++] = '\"';
                 break;
 
             case 13:
