@@ -25,6 +25,9 @@ dnl (tiffiop.h) are not installed with the public interface.
 dnl
 if test "$TIFF_HOME" != "" ; then
   echo Using predefined TIFF_HOME=$TIFF_HOME
+elif test -d ../../libtiff/libtiff ; then
+  TIFF_HOME=`pwd`/../../libtiff/libtiff
+  echo Found local TIFF_HOME=$TIFF_HOME
 elif test -d ../libtiff ; then
   TIFF_HOME=`pwd`/../libtiff
   echo Found local TIFF_HOME=$TIFF_HOME
