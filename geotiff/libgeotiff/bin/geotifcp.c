@@ -208,8 +208,8 @@ static void ApplyWorldFile(const char *worldfilename, TIFF *out)
     pixsize[2] = 0.0;
     TIFFSetField(out, GTIFF_PIXELSCALE, 3, pixsize);
 
-    tiepoint[0] = 0.0;
-    tiepoint[1] = 0.0;
+    tiepoint[0] = 0.5;
+    tiepoint[1] = 0.5;
     tiepoint[2] = 0.0;
     tiepoint[3] = xoff;
     tiepoint[4] = yoff;
