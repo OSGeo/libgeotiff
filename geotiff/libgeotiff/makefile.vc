@@ -3,8 +3,8 @@
 # TIFF include files, and library.  However, you may want to add optimization
 # options to the CFLAGS macro as well. 
 #
-TIFF_INC = ..\libtiff
-TIFF_LIB = C:\usr\local\lib\tiff.lib
+TIFF_INC = ..\..\libtiff\libtiff
+TIFF_LIB = ..\..\libtiff\libtiff\libtiff.lib
 #
 CC      = cl
 INCL	= -I. -Ilibxtiff -I$(TIFF_INC)
@@ -36,7 +36,7 @@ listgeo.exe:	bin\listgeo.c geotiff.lib
 	$(CC) $(CFLAGS) bin\listgeo.c geotiff.lib $(LIBS)
 	
 geotifcp.exe:	bin\geotifcp.c geotiff.lib
-	$(CC) $(CFLAGS) bin\geotifcp.c geotiff.lib $(LIBS)
+	$(CC) $(CFLAGS) bin\geotifcp.c bin\getopt.c geotiff.lib $(LIBS)
 	
 geotiff.lib:	$(OBJS)
 	lib /out:geotiff.lib $(OBJS)
