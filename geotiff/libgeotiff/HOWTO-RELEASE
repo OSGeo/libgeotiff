@@ -3,33 +3,35 @@
 
  1) Update the VERSION_MAJOR/MINOR/POINT information in configure.in.
 
- 2) Add a note to the ChangeLog that a new release is being issued, and what
+ 2) Update the LIBGEOTIFF_VERSION macro in geotiff.h.
+
+ 3) Add a note to the ChangeLog that a new release is being issued, and what
     the release number is.
 
- 3) Tag the release with a command like "cvs tag libgeotiff_1_1_4" from the
+ 4) Tag the release with a command like "cvs tag libgeotiff_1_1_4" from the
     libgeotiff directory.
 
- 4) Prepare a zip and tar.gz file using a command like "mkdist.sh 1.1.5" 
+ 5) Prepare a zip and tar.gz file using a command like "mkdist.sh 1.1.5" 
     from within the geotiff/libgeotiff directory. 
 
- 5) Test build and install on at least one Unix platform.  Test build on a
+ 6) Test build and install on at least one Unix platform.  Test build on a
     Windows system.
 
- 6) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff115.zip) 
+ 7) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff115.zip) 
     should be copied to the distribution directory (geotiff/libgeotiff on 
     ftp.remotesensing.org).  Update the README file in that directory to 
     indicate the new current release.
 
- 7) Build binary distributions of libgeotiff, and utilities for various
+ 8) Build binary distributions of libgeotiff, and utilities for various
     Unix platforms (usually Linux, Solaris and IRIX).  This can be accomplished
     using a command like "mkbindist.sh 1.1.5 linux -install".  The -install
     option only works if you have scp locally, and a matching account on 
     remotesensing.org.
 
- 8) Build binary distribution for Windows.  Normally prepared by downloading
+ 9) Build binary distribution for Windows.  Normally prepared by downloading
     the last distribution, and overlaying the most recent .exe files, and 
     csv files over the ones from the last distribution, and renaming things
     based on the version number.
 
- 9) Announce on GeoTIFF mailing list: geotiff@remotesensing.org
+10) Announce on GeoTIFF mailing list: geotiff@remotesensing.org
     Include a summary of the ChangeLog items for the most recent release.

@@ -27,7 +27,7 @@
  */
 #define GvCurrentVersion   1
 
-#define LIBGEOTIFF_VERSION 1160
+#define LIBGEOTIFF_VERSION 1200
 
 #include "geo_config.h"
 #include "geokeys.h"
