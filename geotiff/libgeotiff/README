@@ -86,9 +86,6 @@ Common Configuration Issues:
    resulting executables substantially larger (~600K), but will avoid any 
    configuration issues with finding the .csv files. 
 
-   NOTE: This option unavailable in libgeotiff 1.2.0 ... it may be reintroduced
-   in the future.
-   
    % rm config.status
    % ./configure --with-incode-epsg
    % make clean
