@@ -11,6 +11,7 @@
 #endif /* OLD Codes */
 
 /* New PCS */
+ValuePair(PCS_GGRS87_Greek_Grid,2100)
 ValuePair(PCS_KKJ_Finland_zone_1,2391)
 ValuePair(PCS_KKJ_Finland_zone_2,2392)
 ValuePair(PCS_KKJ_Finland_zone_3,2393)

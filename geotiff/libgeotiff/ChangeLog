@@ -1,3 +1,7 @@
+2001-03-01  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Added PCS_GGRS87_Greek_Grid for Dr. Irwin Scollar.
+
 2001-02-28  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Added PCS_HD72_EOV to epsg_pcs.inc, and added GCS_GGRS87 to 
