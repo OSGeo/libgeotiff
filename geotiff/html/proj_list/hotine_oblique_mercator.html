@@ -62,7 +62,7 @@
 
 <td>Angle from Rectified to Skew Grid
 <td>4
-<td>(missing in GeoTIFF)
+<td>RectifiedGridAngle
 <td>Angular
 <td>
 <tr>
@@ -100,8 +100,8 @@ that projection as an alias for this one, but with a page of it's own since
 it has it's own codes, at least in EPSG.<p>
 
 Most packages do not support the angle from rectified to skewed grid, and
-GeoTIFF doesn't have a tag to carry it.  I am not sure what the
-significance of this is.<p>
+GeoTIFF didn't used to have a tag to carry it (I have added it for 
+libgeotiff 1.1.2).  I am not sure what the significance of this is.<p>
 
 <h3>PROJ.4 Organization</h3>
 
