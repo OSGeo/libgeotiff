@@ -36,6 +36,7 @@
 
 #include "geotiff.h"
 #include "xtiffio.h"
+#include "cpl_serv.h"
 
 /*
  * dblparam_t is the type that a double precision

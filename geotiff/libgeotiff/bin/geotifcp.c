@@ -20,6 +20,8 @@
 #include "geo_tiffp.h"
 #include "geo_keyp.h"
 #include "xtiffio.h"
+#include "cpl_serv.h"
+
 #define TIFFOpen XTIFFOpen
 #define TIFFClose XTIFFClose
 

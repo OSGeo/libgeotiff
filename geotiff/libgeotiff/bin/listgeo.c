@@ -11,6 +11,7 @@
 #include "geo_normalize.h"
 #include "geovalues.h"
 #include "tiffio.h"
+#include "cpl_serv.h"
 #include <stdio.h>
 
 static void WriteTFWFile( GTIF * gtif, const char * tif_filename );
