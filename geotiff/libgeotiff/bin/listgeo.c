@@ -187,6 +187,7 @@ static void GTIFPrintCorners( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     GTIFReportACorner( gtif, defn, fp_out, "Lower Left", 0.0, ysize );
     GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xsize, 0.0 );
     GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xsize, ysize );
+    GTIFReportACorner( gtif, defn, fp_out, "Center", xsize/2.0, ysize/2.0 );
 }
 
 /*
