@@ -64,14 +64,6 @@
 <td>
 
 <tr>
-<td> Latitude of first standard parallel
-<td> 
-<td> StdParallel1
-<td> standard_parallel_1
-<td> Angular
-<td> (normally zero)
-
-<tr>
 <td>False Easting
 <td>6
 <td>FalseEasting
@@ -95,19 +87,12 @@ I get very substantially different results from PROJ.4, and PCI (GCTP)'s
 results as noted in 
 <a href="random_issues.html#equirectangular">Random Issues</a>.<p>
 
-The standard parallel does not seem to be widely used, but it is supported
-by PROJ.4, and is required by the "AUTO" WMS projection 42004.  See
-<a href="http://bugzilla.remotesensing.org/show_bug.cgi?id=257">OGR Bug 257</a>
-for details discussing this parameter.<p>
-
-
 <h3>PROJ.4 Organization</h3>
 
 <b>
 <pre>
   +proj=eqc   +lat_ts=<i>Latitude at projection center</i> 
               +lon_0=<i>Longitude at projection center</i>
-              +lon_ts=<i>Latitude of first standard parallel</i>
               +x_0=<i>False Easting</i>
               +y_0=<i>False Northing</i>
 </pre>
