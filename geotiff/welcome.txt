@@ -5,7 +5,7 @@ FTP Archive:
 This is an anonymous ftp archive available for use of the 
 GeoTIFF mailing list; located at:
 
-  ftp://mtritter.jpl.nasa.gov/pub/tiff/geotiff/
+  ftp://ftp.remotesensing.org/geotiff
 
 and is mirrored at:
 
@@ -77,4 +77,5 @@ This contains a hypertext version of the GeoTIFF spec.
 
 
   --Niles Ritter (administrator, geotiff-list).
+
 
