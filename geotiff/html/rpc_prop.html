@@ -250,6 +250,13 @@ geographic coordinate system might be described in the coordinate system
 description tags of the GeoTIFF file.  It is also possible to have only
 the RPCCoefficientTag tag and no other GeoTIFF tags.<p>
 
+The NITF RPC00B format uses limited prevision ascii encoded numbers for
+coefficients.  Serializing internal "double precision IEEE" values to this
+format can result in a number of precision problems.  The GeoTIFF 
+representation stores all values as 64 bit IEEE double precision floating
+point values in the file, and should be more compatible with internal 
+software representations of the model.<p>
+
 <h2>Error Bias And Error Random</h2>
 
 The STDI-0002 describes ERR_BIAS as "Error - Bias. 68% non time-varying error 
