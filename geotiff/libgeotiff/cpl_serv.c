@@ -23,6 +23,9 @@
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
  * $Log$
+ * Revision 1.2  1999/03/10 18:22:39  geotiff
+ * Added string.h, fixed backslash escaping
+ *
  * Revision 1.1  1999/03/09 15:57:04  geotiff
  * New
  *
@@ -30,7 +33,12 @@
 
 #include "cpl_serv.h"
 
-#include <string.h>
+#ifdef HAVE_STRING_H
+#  include <string.h>
+#endif
+#if defined(HAVE_STRINGS_H) && !defined(HAVE_STRING_H)
+#  include <strings.h>
+#endif
 
 /************************************************************************/
 /*                             CPLCalloc()                              */
@@ -388,6 +396,13 @@ char ** CSLTokenizeStringComplex( const char * pszString,
             /* Within string constants we allow for escaped quotes, but
                in processing them we will unescape the quotes */
             if( bInString && pszString[0] == '\\' && pszString[1] == '"' )
+            {
+                pszString++;
+            }
+
+            /* Within string constants a \\ sequence reduces to \ */
+            else if( bInString
+                     && pszString[0] == '\\' && pszString[1] == '\\' )
             {
                 pszString++;
             }
