@@ -5,3 +5,4 @@ config.status
 Makefile
 *.lib
 *.exp
+libgeotiff-*.so
