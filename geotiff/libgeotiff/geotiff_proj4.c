@@ -34,12 +34,16 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  1999/03/10 18:10:27  geotiff
+ * Avoid use of cpl_serv.h and CPLStrdup().
+ *
  * Revision 1.1  1999/03/10 15:20:43  geotiff
  * New
  *
  */
 
-#include "cpl_serv.h"
+#include <stdio.h>
+
 #include "geotiff.h"
 #include "geo_normalize.h"
 #include "geovalues.h"
@@ -401,6 +405,6 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 
     strcat( szProjection, szUnits );
 
-    return( CPLStrdup( szProjection ) );
+    return( strdup( szProjection ) );
 }
 
