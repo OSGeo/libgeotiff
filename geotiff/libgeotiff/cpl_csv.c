@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.10  2001/01/17 15:32:19  warmerda
+ * Include /usr/share/epsg_csv and share/epsg_csv in csv search path.
+ *
  * Revision 1.9  2000/12/12 19:34:36  warmerda
  * Use CSV_DATA_DIR if defined.
  *
@@ -561,18 +564,33 @@ const char * CSVFilename( const char *pszBasename )
         {
             sprintf( szPath, "%s/%s", getenv("GEOTIFF_CSV"), pszBasename );
         }
+#ifdef CSV_DATA_DIR
+        else 
+        {
+            sprintf( szPath, "%s/%s", CSV_DATA_DIR, pszBasename );
+        }
+#else
+        else if( (fp = fopen( "/usr/local/share/epsg/csv/horiz_cs.csv", "rt" )) != NULL )
+        {
+            sprintf( szPath, "/usr/local/share/epsg/csv/%s", pszBasename );
+        }
         else if( (fp = fopen( "csv/horiz_cs.csv", "rt" )) != NULL )
         {
             sprintf( szPath, "csv/%s", pszBasename );
         }
+        else if( (fp = fopen( "share/epsg_csv/horiz_cs.csv", "rt" )) != NULL )
+        {
+            sprintf( szPath, "share/epsg_csv/%s", pszBasename );
+        }
+        else if( (fp = fopen( "/usr/share/epsg_csv/horiz_cs.csv", "rt" )) != NULL )
+        {
+            sprintf( szPath, "/usr/share/epsg_csv/%s", pszBasename );
+        }
         else
         {
-#ifdef CSV_DATA_DIR
-            sprintf( szPath, "%s/%s", CSV_DATA_DIR, pszBasename );
-#else
             sprintf( szPath, "/usr/local/share/epsg_csv/%s", pszBasename );
-#endif
         }
+#endif
 
         if( fp != NULL )
             fclose( fp );
