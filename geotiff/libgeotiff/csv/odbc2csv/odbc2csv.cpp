@@ -39,6 +39,9 @@
  * work (does ODBC support raw binary data?).
  * 
  * $Log$
+ * Revision 1.3  1999/12/10 17:43:55  warmerda
+ * updated to support C Source output
+ *
  * Revision 1.2  1999/03/12 13:47:28  geotiff
  * added docs on csv format
  *
@@ -55,173 +58,238 @@
 
 #include "sqldirect.h"
 
-static void ODBC2CSV( CSQLDirect *, FILE * fp );
+static void ODBC2CSV( CSQLDirect *, FILE * fp, int bGenerateC,
+                      const char * pszTableName );
 
 int main( int argc, char ** argv )
 
 {
-   int            i;
-   char           szDataSrc[128];
+    int            i;
+    char           szDataSrc[128];
+    int            bGenerateC = 0;
 
-   if( argc < 2 ) 
-   {
-      printf("Usage: odbc2csv [-ds odbc_data_source] tablename ...\n" );
-      exit( 1 );
-   }
+    if( argc < 2 ) 
+    {
+        printf("Usage: odbc2csv [-ds odbc_data_source] [-c] tablename ...\n" );
+        exit( 1 );
+    }
 
-   strcpy( szDataSrc, "EPSG" );
+    strcpy( szDataSrc, "EPSG" );
 
-   for( i = 1; i < argc; i++ )
-   {
-      if( strcmp(argv[i],"-ds") == 0 && i < argc-1 )
-         strcpy( szDataSrc, argv[++i] );
-      else
-      {
-         CSQLDirect      oDB( szDataSrc );
-         char            szQuery[1024], szFilename[1024];
-         FILE            *fp;
+    for( i = 1; i < argc; i++ )
+    {
+        if( strcmp(argv[i],"-ds") == 0 && i < argc-1 )
+            strcpy( szDataSrc, argv[++i] );
+        else if( strcmp(argv[i],"-c") == 0 )
+            bGenerateC = 1;
+        else if( !bGenerateC )
+        {
+            CSQLDirect      oDB( szDataSrc );
+            char            szQuery[1024], szFilename[1024];
+            FILE            *fp;
 
-         sprintf( szFilename, "%s.csv", argv[i] );
-         fp = fopen( szFilename, "w" );
-         if( fp == NULL )
-         {
-            perror( "fopen" );
-            exit( 1 );
-         }
+            sprintf( szFilename, "%s.csv", argv[i] );
+            fp = fopen( szFilename, "w" );
+            if( fp == NULL )
+            {
+                perror( "fopen" );
+                exit( 1 );
+            }
          
-         sprintf( szQuery, "SELECT * FROM %s", argv[i] );
-         if( oDB.ExecuteSQL( szQuery ) == SQL_SUCCESS )
-         {
-            ODBC2CSV( &oDB, fp );
-            fclose( fp );
-         }
-         else
-            exit( 1 );
-      }
-   }
+            sprintf( szQuery, "SELECT * FROM %s", argv[i] );
+            if( oDB.ExecuteSQL( szQuery ) == SQL_SUCCESS )
+            {
+                ODBC2CSV( &oDB, fp, bGenerateC, argv[i] );
+                fclose( fp );
+            }
+            else
+                exit( 1 );
+        }
+        else if( bGenerateC )
+        {
+            CSQLDirect      oDB( szDataSrc );
+            char            szQuery[1024], szFilename[1024];
+            FILE            *fp;
 
-   return 0;
+            sprintf( szFilename, "%s.c", argv[i] );
+            fp = fopen( szFilename, "w" );
+            if( fp == NULL )
+            {
+                perror( "fopen" );
+                exit( 1 );
+            }
+         
+            fprintf( fp, "%s\n", "#include \"defs.h\"" );
+            sprintf( szQuery, "SELECT * FROM %s", argv[i] );
+            if( oDB.ExecuteSQL( szQuery ) == SQL_SUCCESS )
+            {
+                ODBC2CSV( &oDB, fp, bGenerateC, argv[i] );
+                fclose( fp );
+            }
+            else
+                exit( 1 );
+        }
+    }
+
+    return 0;
 }
 
 static const char *CSVEscapeString( const char * pszInput )
 
 {
-   static char    *pszStaticBuf = NULL;
-   static int     nStaticBufSize = 0;
-   int            i, iOut;
+    static char    *pszStaticBuf = NULL;
+    static int     nStaticBufSize = 0;
+    int            i, iOut;
 
-   /*
-    * Passing in a NULL just cleans up the internal buffer.
-    */
-   if( pszInput == NULL )
-   {
-      if( pszStaticBuf != NULL )
-         free( pszStaticBuf );
-      pszStaticBuf = NULL;
-      nStaticBufSize = 0;
+    /*
+     * Passing in a NULL just cleans up the internal buffer.
+     */
+    if( pszInput == NULL )
+    {
+        if( pszStaticBuf != NULL )
+            free( pszStaticBuf );
+        pszStaticBuf = NULL;
+        nStaticBufSize = 0;
 
-      return NULL;
-   }
+        return NULL;
+    }
 
-   /*
-    * If there are no double quotes, newlines, or commas we don't have
-    * to do anything special.
-    */
-   if( strchr( pszInput, '\"' ) == NULL
-       && strchr( pszInput, ',') == NULL
-       && strchr( pszInput, 10) == NULL 
-       && strchr( pszInput, 10) == NULL )
-      return( pszInput );
+    /*
+     * If there are no double quotes, newlines, or commas we don't have
+     * to do anything special.
+     */
+    if( strchr( pszInput, '\"' ) == NULL
+        && strchr( pszInput, ',') == NULL
+        && strchr( pszInput, 10) == NULL 
+        && strchr( pszInput, 10) == NULL )
+        return( pszInput );
 
-   /*
-    * Make sure the output buffer is big enough to hold anything the
-    * input buffer could permute into.
-    */
+    /*
+     * Make sure the output buffer is big enough to hold anything the
+     * input buffer could permute into.
+     */
 
-   if( nStaticBufSize < strlen(pszInput) * 2 + 10 )
-   {
-      nStaticBufSize = strlen(pszInput) * 2 + 20;
-      if( pszStaticBuf != NULL )
-         free( pszStaticBuf );
+    if( nStaticBufSize < strlen(pszInput) * 2 + 10 )
+    {
+        nStaticBufSize = strlen(pszInput) * 2 + 20;
+        if( pszStaticBuf != NULL )
+            free( pszStaticBuf );
 
-      pszStaticBuf = (char *) malloc( nStaticBufSize );
-   }
+        pszStaticBuf = (char *) malloc( nStaticBufSize );
+    }
 
-   /*
-    * Copy characters, adding double quotes, and escaping anything odd.
-    */
-   pszStaticBuf[0] = '\"';
-   iOut = 1;
-   for( i = 0; pszInput[i] != '\0'; i++ )
-   {
-      switch( pszInput[i] )
-      {
-         case '\"':
-            pszStaticBuf[iOut++] = '\\';
-            pszStaticBuf[iOut++] = '\"';
-            break;
+    /*
+     * Copy characters, adding double quotes, and escaping anything odd.
+     */
+    pszStaticBuf[0] = '\"';
+    iOut = 1;
+    for( i = 0; pszInput[i] != '\0'; i++ )
+    {
+        switch( pszInput[i] )
+        {
+            case '\"':
+                pszStaticBuf[iOut++] = '\\';
+                pszStaticBuf[iOut++] = '\"';
+                break;
 
-         case '\\':
-            pszStaticBuf[iOut++] = '\\';
-            pszStaticBuf[iOut++] = '\\';
-            break;
+            case '\\':
+                pszStaticBuf[iOut++] = '\\';
+                pszStaticBuf[iOut++] = '\\';
+                break;
 
-         case 10:
-            pszStaticBuf[iOut++] = '\\';
-            pszStaticBuf[iOut++] = '\n';
-            break;
+            case 10:
+                pszStaticBuf[iOut++] = '\\';
+                pszStaticBuf[iOut++] = '\n';
+                break;
 
-         case 13:
-            /* don't carry through DOS LF */
-            break;
+            case 13:
+                /* don't carry through DOS LF */
+                break;
 
-         default:
-            pszStaticBuf[iOut++] = pszInput[i];
-            break;
-      }
-   }
+            default:
+                pszStaticBuf[iOut++] = pszInput[i];
+                break;
+        }
+    }
 
-   pszStaticBuf[iOut++] = '\"';
-   pszStaticBuf[iOut++] = '\0';
+    pszStaticBuf[iOut++] = '\"';
+    pszStaticBuf[iOut++] = '\0';
 
-   return( pszStaticBuf );
+    return( pszStaticBuf );
 }
 
-static void ODBC2CSV( CSQLDirect * poDB, FILE * fp )
+static void ODBC2CSV( CSQLDirect * poDB, FILE * fp, int bGenerateC,
+                      const char * pszTableName )
 
 {
-   int            nFields, iField;
-   
-   /*
-    * The first step is to capture, and emit all the record names.
-    */
-   nFields = poDB->GetColumnCount();
-   for( iField = 1; iField <= nFields; iField++ )
-   {
-      if( iField > 1 )
-         fprintf( fp, "," );
+    int            nFields, iField;
+    int            iRow = 0;
+    /*
+     * The first step is to capture, and emit all the record names.
+     */
+    if( bGenerateC )
+        fprintf( fp, "datafile_rows_t %s_row_%d[] = {", 
+                 pszTableName, ++iRow );
 
-      fprintf( fp, "\"%s\"", poDB->GetColumnName( iField ) );
-   }
-   fprintf( fp, "\n" );
-
-   /*
-    * Loop over all the records, fetching them and writing one
-    * field at a time.
-    */
-
-   while( poDB->Fetch() == SQL_SUCCESS )
-   {
-      for( iField = 1; iField <= nFields; iField++ )
-      {
-         const char      *pszValue;
-         
-         if( iField > 1 )
+    nFields = poDB->GetColumnCount();
+    for( iField = 1; iField <= nFields; iField++ )
+    {
+        if( iField > 1 )
             fprintf( fp, "," );
 
-         pszValue = poDB->GetCol( iField );
-         fprintf( fp, "%s", CSVEscapeString( pszValue ) );
-      }
-      fprintf( fp, "\n" );
-   }
+        fprintf( fp, "\"%s\"", poDB->GetColumnName( iField ) );
+    }
+    if( bGenerateC )
+        fprintf( fp, ",NULL};");
+    fprintf( fp, "\n" );
+
+    /*
+     * Loop over all the records, fetching them and writing one
+     * field at a time.
+     */
+
+    while( poDB->Fetch() == SQL_SUCCESS )
+    {
+        if( bGenerateC )
+            fprintf( fp, "datafile_rows_t %s_row_%d[] = {", 
+                     pszTableName, ++iRow );
+
+        for( iField = 1; iField <= nFields; iField++ )
+        {
+            const char      *pszValue;
+         
+            if( iField > 1 )
+                fprintf( fp, "," );
+
+            pszValue = poDB->GetCol( iField );
+            if( strlen(pszValue) > 256 && bGenerateC )
+                ((char *)pszValue)[256] = '\0';
+
+            const char *      pszEscapedField = CSVEscapeString( pszValue );
+
+            if( bGenerateC && pszEscapedField[0] != '\"' )
+                fprintf( fp, "\"%s\"", pszEscapedField );
+            else
+                fprintf( fp, "%s", pszEscapedField );
+        }
+
+        if( bGenerateC )
+            fprintf( fp, ",NULL};");
+
+        fprintf( fp, "\n" );
+    }
+
+    if( bGenerateC )
+    {
+        int            i;
+
+        fprintf( fp, "\ndatafile_rows_t *%s_rows[] = {", 
+                 pszTableName );
+
+        for( i = 0; i < iRow; i++ )
+        {
+            fprintf( fp, "%s_row_%d,", pszTableName, i+1 );
+        }
+        fprintf( fp, "NULL};\n" );
+    }
 }
