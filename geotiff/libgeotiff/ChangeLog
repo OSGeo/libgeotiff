@@ -1,3 +1,9 @@
+2003-09-02  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c: various hacks so that with improperly terminated ascii
+	parameters such as "34737 (0x87b1) ASCII (2) 9<Mercator\0>" will 
+	still work.  
+
 2003-07-08  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c, geo_print.c, geo_set.c, geo_tiffp.c, geo_trans.c, 
