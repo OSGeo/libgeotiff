@@ -18,6 +18,9 @@
  *    29  Sep,  1995      NDR                  Fixed matrix printing.
  *
  * $Log$
+ * Revision 1.3  1999/05/04 03:14:35  warmerda
+ * avoid warnings
+ *
  * Revision 1.2  1999/05/03 17:50:31  warmerda
  * avoid warnings on IRIX
  *
@@ -39,7 +42,7 @@
 #define FMT_KEYS    "Keyed_Information:"
 #define FMT_KEYEND  "End_Of_Keys."
 #define FMT_GEOEND  "End_Of_Geotiff."
-#define FMT_DOUBLE  "%-17.9lg"
+#define FMT_DOUBLE  "%-17.9g"
 #define FMT_SHORT   "%-11hd"
 
 static void DefaultPrint(char *string, void *aux);
@@ -63,32 +66,32 @@ static char message[1024];
  
 void GTIFPrint(GTIF *gtif, GTIFPrintMethod print,void *aux)
 {
-	int i;
-	int numkeys = gtif->gt_num_keys;
-	GeoKey *key = gtif->gt_keys;
+    int i;
+    int numkeys = gtif->gt_num_keys;
+    GeoKey *key = gtif->gt_keys;
 	
-	if (!print) print = (GTIFPrintMethod) &DefaultPrint;
-	if (!aux) aux=stdout;	
+    if (!print) print = (GTIFPrintMethod) &DefaultPrint;
+    if (!aux) aux=stdout;	
 
-	sprintf(message,FMT_GEOTIFF "\n"); 
-	print(message,aux);
-	sprintf(message, "Version: %hd" ,gtif->gt_version);
-	sprintf(message, FMT_VERSION,gtif->gt_version);
-	print("   ",aux); print(message,aux); print("\n",aux);
-	sprintf(message, FMT_REV,gtif->gt_rev_major,
-               gtif->gt_rev_minor); 
-	print("   ",aux); print(message,aux); print("\n",aux);
+    sprintf(message,FMT_GEOTIFF "\n"); 
+    print(message,aux);
+    sprintf(message, "Version: %hd" ,gtif->gt_version);
+    sprintf(message, FMT_VERSION,gtif->gt_version);
+    print("   ",aux); print(message,aux); print("\n",aux);
+    sprintf(message, FMT_REV,gtif->gt_rev_major,
+            gtif->gt_rev_minor); 
+    print("   ",aux); print(message,aux); print("\n",aux);
 
-	sprintf(message,"   %s\n",FMT_TAGS); print(message,aux);
+    sprintf(message,"   %s\n",FMT_TAGS); print(message,aux);
     PrintGeoTags(gtif,print,aux);
-	sprintf(message,"      %s\n",FMT_TAGEND); print(message,aux);
+    sprintf(message,"      %s\n",FMT_TAGEND); print(message,aux);
 
-	sprintf(message,"   %s\n",FMT_KEYS); print(message,aux);
-	for (i=0; i<numkeys; i++)
-		PrintKey(++key,print,aux);
-	sprintf(message,"      %s\n",FMT_KEYEND); print(message,aux);
+    sprintf(message,"   %s\n",FMT_KEYS); print(message,aux);
+    for (i=0; i<numkeys; i++)
+        PrintKey(++key,print,aux);
+    sprintf(message,"      %s\n",FMT_KEYEND); print(message,aux);
 
-	sprintf(message,"   %s\n",FMT_GEOEND); print(message,aux);
+    sprintf(message,"   %s\n",FMT_GEOEND); print(message,aux);
 }
 
 static void PrintGeoTags(GTIF *gt, GTIFPrintMethod print,void *aux)
@@ -223,8 +226,6 @@ static void DefaultPrint(char *string, void *aux)
 int GTIFImport(GTIF *gtif, GTIFReadMethod scan,void *aux)
 {
     int status;
-    int numkeys = gtif->gt_num_keys;
-    GeoKey *key = gtif->gt_keys;
 	
     if (!scan) scan = (GTIFReadMethod) &DefaultRead;
     if (!aux) aux=stdin;	
@@ -267,7 +268,6 @@ static int ReadTag(GTIF *gt,GTIFReadMethod scan,void *aux)
     char tagname[100];
     double data[100],*dptr=data;
     int count,nrows,ncols,num;
-    tiff_t *tif=gt->gt_tif;
 
     scan(message,aux);
     if (!strncmp(message,FMT_TAGEND,8)) return 0;
