@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.7  2004/03/23 18:21:56  warmerda
+ * Added CSVReadParseLine() stub
+ *
  * Revision 1.6  2003/01/20 21:42:52  warmerda
  * Ensure CSVGetField() does not crash if record not found.
  *
@@ -205,4 +208,12 @@ const char *CSVGetField( const char * pszFilename,
 void SetCSVFilenameHook( const char *(*pfnNewHook)( const char * ) )
 
 {
+}
+
+/* dummy function */
+
+char **CSVReadParseLine( FILE * fp )
+
+{
+    return NULL;
 }
