@@ -282,6 +282,14 @@ appear to be publishable information.  If anyone can provide an NITF
 dataset appropriate for redistribution, with an RPC00B TRE, I would be
 happy to translate it into GeoTIFF format as a demonstrator.<p>
 
+
+<li> It has been suggested that we carry the CETAG value from NITF
+along as well, and allow selection of either RPC00A or RPC00B coefficient
+ordering (by Albert Zobrista / JPL) but I don't see much point in supporting
+both options.  Instead I have tried to specifically select the ordering
+of RPC00B and stick with just that.  It is trivial for a translator to 
+reorder coefficients if needed internally but having two orders in the file
+seems unnecessary.<p>
 </ol>
 
 </body>
