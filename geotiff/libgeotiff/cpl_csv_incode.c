@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.3  2002/02/11 14:22:22  warmerda
+ * Added stub CSVDeaccess().
+ *
  * Revision 1.2  2001/06/28 17:53:20  warmerda
  * Use EQUAL instead of strcasecmp() to ensure code builds on windows.
  * As per http://bugzilla.remotesensing.org/show_bug.cgi?id=59
@@ -134,6 +137,10 @@ static int CSVCompare( const char * pszFieldValue, const char * pszTarget,
         return( atoi(pszFieldValue) == atoi(pszTarget) );
     }
     return FALSE;
+}
+
+void CSVDeaccess( const char *pszFilename )
+{
 }
 
 static int __CSVGetFileId( const char * pszFilename)
