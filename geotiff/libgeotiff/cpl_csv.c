@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.9  2000/12/12 19:34:36  warmerda
+ * Use CSV_DATA_DIR if defined.
+ *
  * Revision 1.8  2000/08/22 04:33:33  warmerda
  * added support for /usr/local/shared/epsg_csv
  *
@@ -564,7 +567,11 @@ const char * CSVFilename( const char *pszBasename )
         }
         else
         {
+#ifdef CSV_DATA_DIR
+            sprintf( szPath, "%s/%s", CSV_DATA_DIR, pszBasename );
+#else
             sprintf( szPath, "/usr/local/share/epsg_csv/%s", pszBasename );
+#endif
         }
 
         if( fp != NULL )
