@@ -1,3 +1,8 @@
+2000-09-29  Frank Warmerdam  <warmerda@cs46980-c>
+
+	* Fixed bug in CPLReadLine() that primarily affects windows, and
+	SunOS 4.x.  Bug fix courtesy of shumilin@scanex.ru.
+
 2000-09-15  Frank Warmerdam  <warmerda@cs46980-c>
 
 	* Added the -proj4 option to listgeo to report it's selected
