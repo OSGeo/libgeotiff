@@ -1,3 +1,8 @@
+2002-02-04  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* configure.in: fixed up zip/jpeg arg so that --with-jpeg will work
+	as reported by Julien Demaria.
+
 2002-01-03  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Prepare 1.1.5 release.
