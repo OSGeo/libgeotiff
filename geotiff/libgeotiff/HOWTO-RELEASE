@@ -17,7 +17,8 @@
 
  6) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff115.zip) 
     should be copied to the distribution directory (geotiff/libgeotiff on 
-    ftp.remotesensing.org).
+    ftp.remotesensing.org).  Update the README file in that directory to 
+    indicate the new current release.
 
  7) If possible build windows, and linux binaries of listgeo, and geotifcp
     for distribution.  Binary distributions should include the csv files,
