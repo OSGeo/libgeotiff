@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.14  2000/10/13 18:06:51  warmerda
+ * added econic support for PROJ.4 translation
+ *
  * Revision 1.13  2000/09/15 19:30:48  warmerda
  * *** empty log message ***
  *
@@ -324,6 +327,22 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     {
         sprintf( szProjection+strlen(szProjection),
                  "+proj=aea +lat_1=%.9f +lat_2=%.9f +lat_0=%.9f +lon_0=%.9f"
+                 " +x_0=%.3f +y_0=%.3f ",
+                 psDefn->ProjParm[0],
+                 psDefn->ProjParm[1],
+                 psDefn->ProjParm[2],
+                 psDefn->ProjParm[3],
+                 dfFalseEasting,
+                 dfFalseNorthing );
+    }
+    
+/* -------------------------------------------------------------------- */
+/*      EquidistantConic                                                */
+/* -------------------------------------------------------------------- */
+    else if( psDefn->CTProjection == CT_EquidistantConic )
+    {
+        sprintf( szProjection+strlen(szProjection),
+                 "+proj=eqdc +lat_1=%.9f +lat_2=%.9f +lat_0=%.9f +lon_0=%.9f"
                  " +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],

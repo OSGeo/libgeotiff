@@ -1,5 +1,7 @@
 2000-10-13  Frank Warmerdam  <warmerda@cs46980-c>
 
+	* Added EquidistantConic support in PROJ.4 translation.
+
 	* Fixed order of parameters for LCC when read directly from a 
 	file to match that when read from EPSG tables.  This is now
 	always: 0-NatOriginLat, 1-NatOriginLong, 2-StdParallel1, 3-StdParallel2
