@@ -24,7 +24,7 @@
 #DEFAULT (echo ""; id; echo %s; date; cat) >> $CVSROOT/CVSROOT/commitlog
 # or
 #DEFAULT (echo ""; id; echo %{sVv}; date; cat) >> $CVSROOT/CVSROOT/commitlog
-^chameleon	mail -s "[chameleon-cvs] %s" chameleon-cvs@dmsolutions.ca
-^studio		mail -s "[studio-cvs] %s" maplab-cvs@dmsolutions.ca
-^php_utils  	mail -s "[php-utils-cvs] %s" chameleon-cvs@dmsolutions.ca,maplab-cvs@dmsolutions.ca
-^CVSROOT	mail -s "[MapTools CVSROOT] %s" root@dmsolutions.ca
+^chameleon	mail -s '[chameleon-cvs] %s' chameleon-cvs@dmsolutions.ca
+^studio		mail -s '[studio-cvs] %s' maplab-cvs@dmsolutions.ca
+^php_utils  	mail -s '[php-utils-cvs] %s' chameleon-cvs@dmsolutions.ca,maplab-cvs@dmsolutions.ca
+^CVSROOT	mail -s '[MapTools CVSROOT] %s' root@dmsolutions.ca
