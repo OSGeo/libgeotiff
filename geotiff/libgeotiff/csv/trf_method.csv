@@ -1,4 +1,8 @@
 "COORD_TRF_METHOD_CODE","CTRF_METHOD_EPSG_NAME","CTRF_METHOD_USER_NAME","DESCRIPTION","PARAM_1_NAME","PARAM_2_NAME","PARAM_3_NAME","PARAM_4_NAME","PARAM_5_NAME","PARAM_6_NAME","PARAM_7_NAME","PARAM_8_NAME","PARAM_9_NAME","PARAM_10_NAME","PARAM_11_NAME","PARAM_12_NAME","PARAM_13_NAME","PARAM_14_NAME","PARAM_15_NAME","PARAM_16_NAME","PARAM_17_NAME","PARAM_18_NAME","PARAM_19_NAME","PARAM_20_NAME","PARAM_21_NAME","PARAM_22_NAME","PARAM_23_NAME","PARAM_24_NAME","PARAM_25_NAME","PARAM_26_NAME","PARAM_27_NAME","PARAM_28_NAME","PARAM_29_NAME","PARAM_30_NAME","PARAM_31_NAME","PARAM_32_NAME","PARAM_33_NAME","PARAM_34_NAME","PARAM_35_NAME","PARAM_36_NAME","PARAM_37_NAME","FORMULA","EXAMPLE","REVISION_DATE","INFORMATION_SOURCE","DATA_SOURCE","REMARKS","CHANGE_ID"
+9610,2nd-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9611,3rd-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,A7 * mmm,A8 * mmn,A9 * mnn,A10 * nnn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,B7 * mmm,B8 * mmn,B9 * mnn,B10 * nnn,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9612,4th-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,A7 * mmm,A8 * mmn,A9 * mnn,A10 * nnn,A11 * mmmm,A12 * mmmn,A13 * mmnn,A14 * mnnn,A15 * nnnn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,B7 * mmm,B8 * mmn,B9 * mnn,B10 * nnn,B11 * mmmm,B12 * mmmn,B13 * mmnn,B14 * mnnn,B15 * nnnn,,,,"For TRF_POLYNOMIAL 1000, m=Latitude (degrees) of Source Evaluation Point  - 55, and n=longitude of Source Evaluation Point  (degrees east of Greenwich)",,1996-09-18 00:00:00,,EPSG,,
+9613,NADCON,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Used specifically for some NAD27<->NAD83 transformations in USA.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Latitude difference gridded binary file,Longitude difference gridded binary file,,,,1996-09-18 00:00:00,US Coast and geodetic Survey - http://www.ngs.noaa.gov,EPSG,Input expects longitudes to be positive west.,
 9601,Longitude rotation,,The value of the origin of longitude system 2 in longitude system 1.,Longitude rotation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
 9602,Geodetic/geocentric conversions,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Latitude, P, and Longitude, L, in terms of Geographic Coordinate System (GCS) A may \
 be expressed in terms of a geocentric (earth centred) cartesian coordinate system X, Y, Z \
@@ -85,20 +89,19 @@ to ED50:\
 \
    XB = 3771 878.84m\
    YB =   140 349.83m\
-   ZB = 5124 421.30m",1996-09-18 00:00:00,POSC 2.2.1,EPSG,,
+   ZB = 5124 421.30m",1996-09-18 00:00:00,POSC Epicentre 2.2.1,EPSG,,
 9604,Molodenski,,,X-axis translation,Y-axis translation,Z-axis translation,Semi-major axis length difference,Flattening difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
-9605,Abridged Molodenski,,,X-axis translation,Y-axis translation,Z-axis translation,Semi-major axis length difference,Flattening difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"As an alternative to the above computation of the new latitude, longitude and height above ellipsoid in discrete steps, the changes in these coordinates may be derived directly by formulas derived by Molodenski. Abridged versions of these formulas, which are quite satisfactory for three parameter transformations, are as follows:\
-	\
- 	Dj \" =	 206265 (-dXsinjcosl - dYsinjsinl + dZcosj + [aDf  + fDa ]sin2j)		   	       r\
+9605,Abridged Molodenski,,,X-axis translation,Y-axis translation,Z-axis translation,Semi-major axis length difference,Flattening difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"As an alternative to the computation of the new latitude, longitude and height above ellipsoid in discrete steps through geocentric coordinates, the changes in these coordinates may be derived directly by formulas derived by Molodenski. Abridged versions of these formulas, which are quite satisfactory for three parameter transformations, are as follows:\
 \
-	Dl \" = 	206265 (-dXsinl + dYcosj)\
-		      n\
+Dlat \" = [(-dX*sin(lat)*cos(lon)) - (dY*sin(lat)*sin(lon)) + (dZ*cos(lat)) + (((a*Df) + (f*Da))*sin(2*lat))] / (rho * sin(1\"))\
 \
-	 Dh = dXcosjcosl + dYcosjsinl + dZsinj + (aDf + fDa)sin2j - Da\
+Dlon \" = (-dX*sin(lon) + dY*cos(lon)) / ((nu*cos(lat)) * sin(1\"))\
 \
-where the dX, dY and dZ terms are as before, and r and n are the meridian and prime vertical radii of curvature at the given latitude j on the first ellipsoid (see section 1.4), Da is the difference in the semi-major axes (a1 - a2) of the first and econd ellipsoids and Df  is the difference in the flatteing of the two ellipsoids.\
+Dh = (dX*cos(lat)*cos(lon)) + (dY*cos(lat)*sin(lon)) + (dZ*sin(lat)) + ((a*Df + f*Da)*(sin(lat)^2)) - Da\
 \
-The formulas for Dj and Dl indicate changes in j and l in arc-seconds.",,1996-09-18 00:00:00,,EPSG,,
+where the dX, dY and dZ terms are as before, and rho and nu are the meridian and prime vertical radii of curvature at the given latitude (lat) on the first ellipsoid (see section 1.4), Da is the difference in the semi-major axes (a1 - a2) of the first and second ellipsoids and Df  is the difference in the flattening of the two ellipsoids.\
+\
+The formulas for Dlat and Dlon indicate changes in latitude and longitude in arc-seconds.",,1999-04-22 00:00:00,,EPSG,,99.01
 9606,Position Vector 7-param. transformation,,,X-axis translation,Y-axis translation,Z-axis translation,X-axis rotation,Y-axis rotation,Z-axis rotation,Scale difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Transformation of coordinates from one geographic coordinate system into another (also known as a \"datum transformation\") is usually carried out as an implicit concatenation of three transformations:\
 [geographical to geocentric >> geocentric to geocentric >> geocentric to geographic]\
 \
@@ -143,7 +146,7 @@ This converts into:\
    Latitude =   55 deg 00 min 00.090 sec\
    Longitude =  4 deg 00 min 00.554 sec\
    Ellipsoidal height =  +3.22 m",1996-09-18 00:00:00,,EPSG,,98.16
-9607,Coordinate Frame 7-param. transformation,,,X-axis translation,Y-axis translation,Z-axis translation,X-axis rotation,Y-axis rotation,Z-axis rotation,Scale difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"<<<<<This text is continued from the description of the Position Vector Transformation formula>>>>>\
+9607,Coordinate Frame rotation,,,X-axis translation,Y-axis translation,Z-axis translation,X-axis rotation,Y-axis rotation,Z-axis rotation,Scale difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"<<<<<This text is continued from the description of the Position Vector Transformation formula>>>>>\
 \
 Although being common practice in particularly the European E&P industry Position Vector Transformation sign convention is not universally accepted.  A variation on this formula is also used, particularly in the USA E&P industry.  That formula is based on the same definition of translation and scale parameters, but a different definition of the rotation parameters.  The associated convention is known as the \"Coordinate Frame Rotation\" convention. \
 The formula is:\
@@ -176,14 +179,10 @@ Scale (ppm) = +0.219\
 Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",1996-09-18 00:00:00,,EPSG,,
 9608,Similarity transform,,,A1,A2 * m,A3 * n,B1,B2 * m,B3 * n,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
 9609,2-dimensional Affine transformation,,,A1,A2 * m,A3 * n,B1,B2 * m,B3 * n,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
-9610,2nd-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
-9611,3rd-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,A7 * mmm,A8 * mmn,A9 * mnn,A10 * nnn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,B7 * mmm,B8 * mmn,B9 * mnn,B10 * nnn,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
-9612,4th-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,A7 * mmm,A8 * mmn,A9 * mnn,A10 * nnn,A11 * mmmm,A12 * mmmn,A13 * mmnn,A14 * mnnn,A15 * nnnn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,B7 * mmm,B8 * mmn,B9 * mnn,B10 * nnn,B11 * mmmm,B12 * mmmn,B13 * mmnn,B14 * mnnn,B15 * nnnn,,,,"For TRF_POLYNOMIAL 1000, m=Latitude (degrees) of Source Evaluation Point  - 55, and n=longitude of Source Evaluation Point  (degrees east of Greenwich)",,1996-09-18 00:00:00,,EPSG,,
-9613,NADCON,,NAD27-NAD83 geodetic transformation for United States.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Latitude difference gridded binary file,Longitude difference gridded binary file,,,,1996-09-18 00:00:00,US Coast and geodetic Survey - http://www.ngs.noaa.gov,EPSG,Input expects longitudes to be positive west.,
-9614,Canada NTv1,,NAD27-NAD83 geodetic transformation for Canada.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-11-13 00:00:00,Geomatics Canada - Geodetic Survey Division.,EPSG,Superceded in 1997 by NTv2 (transformation method code 9615).   Input expects longitudes to be positive west.,
-9615,Canada NTv2,,NAD27-NAD83 geodetic transformation for Canada.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-11-13 00:00:00,www.geod.emr.ca/html-public/GSDapps/English/NTv2_Fact_Sheet.html,EPSG,Supercedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,
+9614,NTv1,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Used specifically for some NAD27<->NAD83 transformations in Canada.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Latitude and longitude difference file,,,,,1997-11-13 00:00:00,Geomatics Canada - Geodetic Survey Division.,EPSG,Superceded in 1997 by NTv2 (transformation method code 9615).   Input expects longitudes to be positive west.,
+9615,NTv2,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Latitude and longitude difference file,,,,,1997-11-13 00:00:00,www.geod.emr.ca/html-public/GSDapps/English/NTv2_Fact_Sheet.html,EPSG,Supercedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,
 9616,Vertical Offset,,The value of the origin of vertical coordinate system 2 in vertical coordinate system 1.,Vertical offset,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,V2 = [(V1 * U1) - (O12 * Uoff)] * (m / U2) where V2 = value in second vertical coordinate system; V1 = value in first system; O12 is the value of the the origin of system 2 in system 1; m is unit direction multiplier (m=1if both systems are height or both are depth; m=-1 if one system is height and the other system is depth; the value of m is implied through the vertical coordinate system type attbribute); U1 U2 and Uoff are unit conversion ratios to metres for systems 1 2 and the offset value respectively.,,1997-11-13 00:00:00,,EPSG,,
-9617,Madrid to ED50,,,A,B,C,D,E,F,G,H,J,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"The original geographic coordinate system for the Spanish mainland was based on Madrid 1870 datum, Struve 1860 ellipsoid, with longitudes related to the Madrid meridian.  Three polynomial expressions have been empirically derived by El Servicio Geográfico del Ejército to convert geographical coordinates based on this system to equivalent values based on the European Datum of 1950 (ED50).  The polynomial coefficients derived can be used to convert from Madrid 1870 to ED50.  Three pairs of expressions have been derived: each pair is used to calculate the shift in latitude and longitude respectively for (i) a mean for all Spain, (ii) a better fit for the north of Spain, (iii) a better fit for the south of Spain.\
+9617,Madrid to ED50,,,,,,,A,B,C,D,E,F,G,H,J,,,,,,,,,,,,,,,,,,,,,,,,,"The original geographic coordinate system for the Spanish mainland was based on Madrid 1870 datum, Struve 1860 ellipsoid, with longitudes related to the Madrid meridian.  Three polynomial expressions have been empirically derived by El Servicio Geográfico del Ejército to convert geographical coordinates based on this system to equivalent values based on the European Datum of 1950 (ED50).  The polynomial coefficients derived can be used to convert from Madrid 1870 to ED50.  Three pairs of expressions have been derived: each pair is used to calculate the shift in latitude and longitude respectively for (i) a mean for all Spain, (ii) a better fit for the north of Spain, (iii) a better fit for the south of Spain.\
 \
 The polynomial expressions transformations are:\
 \
@@ -206,7 +205,10 @@ dLat = +4.05\
 ED50 Latitude = 42 deg 38 min 56.82 sec N\
 \
 dLon = -13330.54 seconds  = -3 deg 41 min 10.54 sec\
-ED50 Longitude = 0 deg 01 min 35.97 sec W of Greenwich.",1998-11-11 00:00:00,Institut de Geomatica; Barcelona,EPSG,,
+ED50 Longitude = 0 deg 01 min 35.97 sec W of Greenwich.",1999-04-22 00:00:00,Institut de Geomatica; Barcelona,EPSG,,99.284
+9618,Geographical and Height Offsets,,The value of the origin of geographical coordinate system 2 in geographical coordinate system 1.  Lat2 = Lat1 + dLat;  Lon2 = Lon1 + dLon; EllipsoidHeight2 = GravityHeight1 + dHeight.,Latitude offset,Longitude offset,Gravity-related to ellipsoid height,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1998-12-12 00:00:00,,EPSG,,
+9619,Geographical Offsets,,The value of the origin of geographical coordinate system 2 in geographical coordinate system 1.  Lat2 = Lat1 + dLat;  Lon2 = Lon1 + dLon.,Latitude offset,Longitude offset,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1999-04-22 00:00:00,,EPSG,,
+9620,Norway Offshore Interpolation,,,,,,,,Geod. tfm. code for northern boundary,Geod. tfm. code for southern boundary,,,,,,,,,,,,,,,,,,,,,,,,,,,,Geod. tfm. name for northern boundary,Geod. tfm. name for southern boundary,,,,1999-04-22 00:00:00,"Norwegian Mapping Authority note of 13-Feb-1991 \"Om Transformasjon mellom Geodetiske Datum i Norge\".",EPSG,,
 9801,Lambert Conic Conformal (1SP),,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Lambert Conic Conformal\
 \
 Conical projections with one standard parallel are normally considered to maintain the nominal map scale along the parallel of latitude which is the line of contact between the imagined cone and the ellipsoid. For a one standard parallel Lambert the natural origin of the projected coordinate system is the intersection of the standard parallel with the longitude of origin (central meridian). See Figure 5. To maintain the conformal property the spacing of the parallels is variable and increases with increasing distance from the standard parallel, while the meridians are all straight lines radiating from a point on the prolongation of the ellipsoid's minor axis. \
@@ -294,8 +296,8 @@ m0     =  0.95136402\
 r'        =  19643955.26\
 \
 Then Latitude     = 17 deg 55 min 55.800 sec N\
-         Longitude  = 76 deg 56 min 37.260 sec W",1996-09-18 00:00:00,POSC 1.4.1,EPSG,,
-9802,Lambert Conic Conformal (2SP),,,Latitude of first standard parallel,Latitude of second standard parallel,Latitude of false origin,Longitude of false origin,,Easting at false origin,Northing at false origin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Lambert Conic Conformal\
+         Longitude  = 76 deg 56 min 37.260 sec W",1996-09-18 00:00:00,POSC Epicentre 1.4.1,EPSG,,
+9802,Lambert Conic Conformal (2SP),,,Latitude of false origin,Longitude of false origin,Latitude of 1st standard parallel,Latitude of 2nd standard parallel,,Easting at false origin,Northing at false origin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Lambert Conic Conformal\
 		\
 Conical projections with one standard parallel are normally considered to maintain the \
 nominal map scale along the parallel of latitude which is the line of contact between the \
@@ -409,8 +411,8 @@ theta' = 0.025651765     r' = 37565039.86\
 t'        = 0.59686306\
 \
 Then Latitude     	= 28o30'00.000\"N\
-         Longitude   = 96o00'00.000\"W",1996-09-18 00:00:00,POSC 1.4.1,EPSG,,
-9803,Lambert Conic Conformal (2SP Belgium),,,Latitude of first standard parallel,Latitude of second standard parallel,Latitude of false origin,Longitude of false origin,,Easting at false origin,Northing at false origin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Since 1972 a modified form of the two standard parallel case has been used in Belgium.  \
+         Longitude   = 96o00'00.000\"W",1999-04-22 00:00:00,POSC Epicentre 1.4.1,EPSG,,99.281
+9803,Lambert Conic Conformal (2SP Belgium),,,Latitude of false origin,Longitude of false origin,Latitude of 1st standard parallel,Latitude of 2nd standard parallel,,Easting at false origin,Northing at false origin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Since 1972 a modified form of the two standard parallel case has been used in Belgium.  \
 For the Lambert Conic Conformal (2 SP Belgium), the formulas for the standard two \
 standard parallel case given above are used except for: \
 	Easting, E = EF + r sin (* - a)\
@@ -450,7 +452,7 @@ Reverse calculation for same easting and northing first gives:\
 theta' = 0.01939192      r' = 548041.03\
 t' = 0.35913403\
 Then Latitude   =    50o40'46.461\"N\
-         Longitude =     5o48'26.533\"E",1996-09-18 00:00:00,POSC 1.4.1,EPSG,,
+         Longitude =     5o48'26.533\"E",1999-04-22 00:00:00,POSC Epicentre 1.4.1,EPSG,,99.281
 9804,Mercator (1SP),,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Mercator\
 	\
 The Mercator projection is a special case of the Lambert Conic Conformal projection  \
@@ -518,8 +520,8 @@ t    = 1.0534121\
 chi = -0.0520110\
 \
 Then Latitude     =   3o00'00.000\"S\
-         Longitude  = 120o00'00.000\"E",1996-09-18 00:00:00,POSC 1.4.2,EPSG,,
-9805,Mercator (2SP),,,Latitude of first standard parallel,Longitude of natural origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Mercator\
+         Longitude  = 120o00'00.000\"E",1996-09-18 00:00:00,POSC Epicentre 1.4.2,EPSG,,
+9805,Mercator (2SP),,,Latitude of 1st standard parallel,Longitude of natural origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Mercator\
 	\
 The Mercator projection is a special case of the Lambert Conic Conformal projection  \
 with the equator as the single standard parallel. All other parallels of latitude are straight \
@@ -586,7 +588,7 @@ Reverse calculation for same easting and northing first gives :\
 t = 0.33639129    chi = 0.92179596\
 \
 Then Latitude     =  53o00'00.000\"N\
-          Longitude  =  53o00'00.000\"E",1996-09-18 00:00:00,POSC 1.4.2,EPSG,,
+          Longitude  =  53o00'00.000\"E",1996-09-18 00:00:00,POSC Epicentre 1.4.2,EPSG,,
 9806,Cassini-Soldner,,,Latitude of natural origin,Longitude of natural origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Cassini-Soldner Formula\
 \
 The Cassini-Soldner projection is the ellipsoidal version of the Cassini projection for the \
@@ -658,7 +660,7 @@ phi1 = 0.17454458         rho1 =    31501122.40\
 \
 \
 Then Latitude     = 10o00'00.000\"N\
-         Longitude  =  62o00'00.000\"W",1996-09-18 00:00:00,POSC 1.4.3,EPSG,,
+         Longitude  =  62o00'00.000\"W",1996-09-18 00:00:00,POSC Epicentre 1.4.3,EPSG,,
 9807,Transverse Mercator,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Transverse Mercator Formula\
 \
 The Transverse Mercator projection in its various forms is the most widely used projected \
@@ -803,7 +805,7 @@ rho1 =6372980.21       C1 =  0.00271391\
 T1 = 1.47441726\
 \
 Then Latitude       = 50o30'00.000\"N\
-         Longitude    = 00o30'00.000\"E",1996-09-18 00:00:00,POSC 1.4.4,EPSG,,
+         Longitude    = 00o30'00.000\"E",1996-09-18 00:00:00,POSC Epicentre 1.4.4,EPSG,,
 9808,Transverse Mercator (South Orientated),,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"For the mapping of southern Africa a south oriented Transverse Mercator projection is \
 used. Here the coordinate axes are called Westings and Southings and increment to the \
 West and South from the origin respectively.  The Transverse Mercator formulas need to \
@@ -820,7 +822,7 @@ terminology.  For the reverse formulas, those for the standard Transverse Mercat
 apply, with the exception that:\
 	\
 	M1 = M0 + (S + FN)/k0\
-and	D = (W + FE)/(*1k0), with *1 = * for *1",,1996-09-18 00:00:00,POSC 1.4.4,EPSG,,
+and	D = (W + FE)/(*1k0), with *1 = * for *1",,1996-09-18 00:00:00,POSC Epicentre 1.4.4,EPSG,,
 9809,Oblique Stereographic,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Stereographic\
 \
 The Stereographic projection may be imagined to be a projection of the earth's surface \
@@ -979,7 +981,7 @@ phi3 = 0.925024504       psi3 = 1.089495505\
 phi4 = 0.925024504\
 \
 Then Latitude      = 53o00'00.000\"N\
-          Longitude   =   6o00'00.000\"E",1996-09-18 00:00:00,POSC 1.4.6,EPSG,,
+          Longitude   =   6o00'00.000\"E",1996-09-18 00:00:00,POSC Epicentre 1.4.6,EPSG,,
 9810,Polar Stereographic,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Polar Stereographic Formula\
 \
 For the forward transformation from latitude and longitude,\
@@ -1099,7 +1101,9 @@ U	=	(- V cos(g0) + S sin(g0)) / T\
 v	=	A ln((1 - U) / (1 + U)) / 2 B\
 u	=	A atan((S cos(g0) + V sin(g0)) / cos(B (l - l0 ))) / B\
 \
-The value of u from the above equation assumes that  the FE and FN values have been spzÏ÷wÿÿÿÿ0õ","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)\
+The value of u from the above equation assumes that  the FE and FN values have been specified with respect to the origin of the (u , v) axes - see diagram.\
+\
+For projection parameters where the false easting and northing values (Ec ,","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)\
 \
 Parameters:\
 	Ellipsoid:  Everest 1830 (1967 Definition)\
@@ -1142,10 +1146,10 @@ Reverse calculations for same easting and northing first gives :\
 		t’ = 	0.922369529		c =	0.080721539		\
 				\
 Then	Latitude    	 f  =	4o39'20.783\"N		\
-	Longitude	l   =	114o28'10.539\"E",1997-11-13 00:00:00,POSC 1.4.5,EPSG,,97.62
+	Longitude	l   =	114o28'10.539\"E",1997-11-13 00:00:00,POSC Epicentre 1.4.5,EPSG,,97.62
 9813,Laborde Oblique Mercator,,,Latitude of projection centre,Longitude of projection centre,Azimuth of initial line,,Scale factor on initial line,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,"\"La nouvelle projection du Service Geographique de Madagascar\"; J. Laborde; 1928",EPSG,Can be accomodated by Oblique Mercator method (code 9815).,97.613
 9814,Swiss Oblique Cylindrical,,,Latitude of projection centre,Longitude of projection centre,,,,Easting at projection centre,Northing at projection centre,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,"\"Die projecktionen der Schweizerischen Plan und Kartenwerke\"; J Bollinger; 1967",EPSG,Can be accomodated by Oblique Mercator method (code 9815).,97.612
-9815,Oblique Mercator,,,Latitude of projection centre,Longitude of projection centre,Azimuth of initial line,Angle from Rectified to Skew Grid,Scale factor on initial line,Easting at projection centre,Northing at projection centre,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-07-22 00:00:00,POSC 1.4.5,EPSG,,
+9815,Oblique Mercator,,,Latitude of projection centre,Longitude of projection centre,Azimuth of initial line,Angle from Rectified to Skew Grid,Scale factor on initial line,Easting at projection centre,Northing at projection centre,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-07-22 00:00:00,POSC Epicentre 1.4.5,EPSG,,
 9816,Tunisia Mining Grid,,,Latitude of origin,Longitude of origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"This grid is used as the basis for mineral leasing in Tunsia.  Lease areas are approximately 2 x 2 km or 400 hectares.  The corners of these blocks are defined through a six figure grid reference where the first three digits are an easting in kilometres and the last three digits are a northing.  The latitudes and longitudes for block corners at 2 km intervals are tabulated in a mining decree dated 1st January 1953.  From this tabulation in which geographical coordinates are given to 5 decimal places it can be seen that:\
 a)  the minimum easting is 94 km, on which the longitude is 5.68989 grads east of Paris.\
 b)  the maximum easting is 490 km, on which the longitude is 10.51515 grads east of Paris.\
@@ -1185,4 +1189,6 @@ Latitude = 36.5964 + [(598 - 360) * A].  As N > 360, A = 0.01005.\
 Latitude = 38.97997 grads = 35.08197 degrees.\
 \
 Longitude  = 7.83445 + [(E - 270) * 0.01285, where E = 302.\
-Longitude  = 8.22437 grads east of Paris = 9.73916 degrees east of Greenwich.",1998-11-11 00:00:00,,EPSG,,
+Longitude  = 8.22437 grads east of Paris = 9.73916 degrees east of Greenwich.",1998-11-11 00:00:00,POSC Epicentre 1.4.8,EPSG,,
+9817,Lambert Conic Near-Conformal,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1999-04-22 00:00:00,POSC Epicentre 1.4.1,EPSG,,
+9818,American Polyconic,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1999-04-22 00:00:00,POSC Epicentre 1.4.9,EPSG,,
