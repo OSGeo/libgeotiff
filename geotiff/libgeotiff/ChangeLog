@@ -1,5 +1,10 @@
 Fri Dec 10 13:24:21 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
+	* Upgraded .csv and .c files to EPSG 4.4.
+
+	* Fixed bug setting the false northing for files with 
+	ProjCenterNorthingGeoKey set in GTIFGetDefn().
+
 	* Added "--with-incode-epsg" support to configure, added 
 	cpl_csv_incode.c and csv/*.c tables.
 
