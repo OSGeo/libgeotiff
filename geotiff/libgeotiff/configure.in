@@ -11,6 +11,17 @@ AC_PROG_RANLIB
 dnl Checks for libraries.
 AC_CHECK_LIB(m,exp,,,)
 
+dnl We check for headers
+AC_HEADER_STDC
+AC_CHECK_HEADERS(string.h strings.h stdlib.h)
+
+
+dnl
+dnl Special logic to try and find a user specified libtiff tree.  If not
+dnl available check if the system directories have the library, _and_ the
+dnl required private include files.  Normally these private include files
+dnl (tiffiop.h) are not installed with the public interface.
+dnl
 if test "$TIFF_HOME" != "" ; then
   echo Using predefined TIFF_HOME=$TIFF_HOME
 elif test -d ../libtiff ; then
@@ -31,10 +42,6 @@ else
 build libgeotiff without libtiff]),-lm)
   AC_CHECK_HEADERS(tiffiop.h,,AC_MSG_ERROR("tiffiop.h not found - cannot build libxtiff"))
 fi
-
-dnl Checks for header files.
-AC_HEADER_STDC
-AC_CHECK_HEADERS(string.h strings.h stdlib.h)
 
 dnl Checks for library functions.
 AC_C_BIGENDIAN
