@@ -1,3 +1,10 @@
+2001-06-28  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* cpl_csv_incode.c: Use EQUAL instead of strcasecmp() to ensure code 
+	builds on windows.  As per 
+
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=59
+
 2001-05-02  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_set.c: modified so that a count of -1 means to delete
