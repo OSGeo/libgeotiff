@@ -31,17 +31,7 @@ be found at:
 
    http://www.libtiff.org/
    
-For this build to work you must use libtiff version v3.4beta018 or newer.
-If you are building it yourself, and have libtiff 3.5.6 or later, you
-should use the "install-private" make target of libtiff instead of "install" 
-to install some private include files required by libgeotiff.
-
-PLEASE NOTE: Use of libgeotiff with a version of libtiff (as a shared
-library for instance) other than what it was compiled for is likely to 
-result in crashes as libgeotiff depends on knowledge of the size and offsets
-into libtiff data structures that do change from time to time.  In particular
-use of a libgeotiff compiled with libtiff 3.5.x include files will not
-work properly with libtiff 3.4.x. 
+For this build to work you must use libtiff version v3.6.0 alpha or newer.
 
 
 Building LIBGEOTIFF:
@@ -75,11 +65,19 @@ Common Configuration Issues:
    % make clean 
    % make
 
- o If the system can't find libtiff, you can use the --with-libtiff option
-   variable to point to it
+ o If you want to force use of a locally built libtiff that was never 
+   "installed" you can point to the directory like this:
 
    % rm config.status
-   % ./configure --with-libtiff=/u/contrib/libtiff-3.5.5/libtiff
+   % ./configure --with-libtiff=/u/contrib/libtiff-3.6.0/libtiff
+   % make clean 
+   % make
+
+ o If you have installed libtiff in a location other than /usr, then you can
+   point to the install tree like this:
+
+   % rm config.status
+   % ./configure --with-libtiff=/usr/local
    % make clean 
    % make
 
@@ -87,6 +85,9 @@ Common Configuration Issues:
    --with-incode-epsg configure switch.  It will make the library and
    resulting executables substantially larger (~600K), but will avoid any 
    configuration issues with finding the .csv files. 
+
+   NOTE: This option unavailable in libgeotiff 1.2.0 ... it may be reintroduced
+   in the future.
    
    % rm config.status
    % ./configure --with-incode-epsg
@@ -107,7 +108,7 @@ Common Configuration Issues:
  o The logic to build shared libraries is pretty weak, and is likely to
    only work on systems with the GNU tool chain (gcc, and ld) installed. 
    On other systems you can try hacking on Makefile after running configure.
-   It may be necessary to set the GEOTIFF_SO macro to "libgeotiff.1.1.x"
+   It may be necessary to set the GEOTIFF_SO macro to "libgeotiff.1.2.x"
    as it is made empty by default on systems configure doesn't think can 
    build shared libraries.
 
@@ -184,6 +185,9 @@ Credits
 
  o Eric Brown of Universal Systems, who contributed a bug fix to 
    GTIFPCSToImage().
+
+ o Safe Software (www.safe.com) who supported by upgrade to use the 
+   EPSG 6.2.2 database for libgeotiff 1.2.0.
 
  o Many others who contributed before it occured to me to maintain credits.
 
