@@ -164,15 +164,15 @@ dnl Has the user requested "incode" EPSG tables, overriding the
 dnl default use of EPSG tables in csv files?  Temporarily unvailable.
 dnl
 
-dnl AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg	  Use C code EPSG tables],, enable_incode_epsg=no)
+AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg	  Use C code EPSG tables],, enable_incode_epsg=no)
 
-dnl if test "$enable_incode_epsg" != "yes" ; then
+if test "$enable_incode_epsg" != "yes" ; then
    echo "EPSG tables will be read from .csv files."
    CSV_SOURCE="\$(CSV_FILE_OBJS)"
-dnl else
-dnl   echo "EPSG tables will be linked into library."
-dnl   CSV_SOURCE="\$(CSV_INCODE_OBJS)"
-dnl fi
+else
+   echo "EPSG tables will be linked into library."
+   CSV_SOURCE="\$(CSV_INCODE_OBJS)"
+fi
 AC_SUBST(CSV_SOURCE,$CSV_SOURCE)
 
 
