@@ -1,3 +1,12 @@
+2001-04-06  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* listgeo.c: added -i flag to report inverse transformation results,
+	testing the PCSToImage() function.  Not documented for user though.
+
+	* GTIFPCSToImage(): added support for inverting matrix transformations.
+
+	* Fixed GTIFGetDefn() to support custom ellipsoid definition.
+
 2001-03-04  Frank Warmerdam  <warmerdam@pobox.com>
 
 	Fixed various memory leaks bugs thanks to Alan Gray. 
