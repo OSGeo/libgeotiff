@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<title>GTIFKeySet() - Write GeoTIFF GeoKey</title>
+</head>
+
+<body>
+<h1>GTIFKeySet() - Write GeoTIFF GeoKey</h1>
+
+<h3>Usage:</h3>
+
+<b>
+<pre>
+    #include &lt;geotiff.h&gt;
+    int GTIFKeySet( GTIF *gtif, geokey_t key, tagtype_t type, 
+                    int count, ... );
+</pre>
+</b>
+
+<h3>Details:</h3>
+
+This function writes a geokey_t value to a GeoTIFF file.<p>
+
+The <b>key</b> indicates the key name to be written to the
+file and should from the geokey_t enumeration 
+(eg. <tt>ProjectedCSTypeGeoKey</tt>).  The full list of possible geokey_t
+values can be found in geokeys.inc, or in the online documentation for
+<a href="GTIFKeySet.html">GTIFKeySet()</a>.<p>
+
+The <b>type</b> should be one of TYPE_SHORT, TYPE_ASCII, or TYPE_DOUBLE and
+will indicate the type of value being passed at the end of the argument
+list (the key value).  The <b>count</b> should be one except for strings
+when it should be the length of the string (or zero to for this to be
+computed internally).<p>
+
+The actual value is passed at the end of the argument list, and should be
+a short, a double, or a char * value.  Note that short and double values
+are passed as is, not as pointers.<p>
+
+Note that key values aren't actually flushed to the file untill
+<a href="GTIFWriteKeys.html">GTIFWriteKeys()</a> is called.  Till then 
+the new values are just kept with the GTIF structure.<p>
+
+<h3>Example:</h3>
+
+<pre>
+    GTIFKeySet(gtif, GTRasterTypeGeoKey, TYPE_SHORT, 1, 
+               RasterPixelIsArea);
+    GTIFKeySet(gtif, GTCitationGeoKey, TYPE_ASCII, 0, 
+               "UTM 11 North / NAD27" );
+</pre>
+
+<b>See Also:</b> 
+
+<a href="GTIFKeyGet.html">GTIFKeyGet()</a>,
+<a href="GTIFWriteKeys.html">GTIFWriteKeys()</a>
+
+</body>
+</html>
+
+
