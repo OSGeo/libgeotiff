@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.4  1999/09/17 01:19:51  warmerda
+ * Fixed bug in use of transform matrix.
+ *
  * Revision 1.3  1999/09/16 21:25:40  warmerda
  * Added tiepoint, and transformation matrix based translation.  Note
  * that we don't try to invert the transformation matrix for
@@ -172,7 +175,7 @@ int GTIFImageToPCS( GTIF *gtif, double *x, double *y )
         double		x_in = *x, y_in = *y;
 
         *x = x_in * transform[0] + y_in * transform[1] + transform[3];
-        *y = y_in * transform[4] + y_in * transform[5] + transform[7];
+        *y = x_in * transform[4] + y_in * transform[5] + transform[7];
         
         return TRUE;
     }
