@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.15  2000/12/05 17:44:41  warmerda
+ * Use +R_A for Miller and VanDerGrinten
+ *
  * Revision 1.14  2000/10/13 18:06:51  warmerda
  * added econic support for PROJ.4 translation
  *
@@ -300,7 +303,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     else if( psDefn->CTProjection == CT_MillerCylindrical )
     {
         sprintf( szProjection+strlen(szProjection),
-           "+proj=mill +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
+           "+proj=mill +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f +R_A ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
                  dfFalseEasting,
@@ -370,7 +373,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     else if( psDefn->CTProjection == CT_VanDerGrinten )
     {
         sprintf( szProjection+strlen(szProjection),
-                 "+proj=vandg +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
+                 "+proj=vandg +lon_0=%.9f +x_0=%.3f +y_0=%.3f +R_A ",
                  psDefn->ProjParm[1],
                  dfFalseEasting,
                  dfFalseNorthing );
