@@ -24,7 +24,7 @@ The default configuration assumes that the public-domain LIBTIFF
 package for reading and writing TIFF files has been acquired and
 built. The latest version of libtiff may be found at:
 
-   ftp://ftp.sgi.com/graphics/tiff
+   http://www.libtiff.org/
    
 and is in compressed tar format. For this build to work you must
 use libtiff version v3.4beta018 or newer. Uncompress and untar 
