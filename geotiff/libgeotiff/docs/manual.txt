@@ -7,6 +7,9 @@
 Documentation Author: Niles Ritter
 Last Modified: 31 Jul 95
   
+See: http://www.remotesensing.org/geotiff/api/index.html 
+  for up to date API documentation
+  
 -------------------------------------------------------------
 Contents:
 
