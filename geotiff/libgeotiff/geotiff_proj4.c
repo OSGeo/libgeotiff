@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.11  2000/06/06 17:39:45  warmerda
+ * Modify to work with projUV version of library.
+ *
  * Revision 1.10  1999/07/06 15:05:51  warmerda
  * Fixed up LCC_1SP notes.
  *
@@ -467,6 +470,10 @@ int GTIFProj4FromLatLong( GTIFDefn * psDefn, int nPoints,
 #else
 
 #include "projects.h"
+
+#ifdef USE_PROJUV
+#  define UV projUV
+#endif
 
 /************************************************************************/
 /*                        GTIFProj4FromLatLong()                        */
