@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.44  2005/03/04 04:32:37  fwarmerdam
+ * added cylindricalequalarea support
+ *
  * Revision 1.43  2005/03/04 04:02:40  fwarmerdam
  * Fixed initialization of dfStdParallel2 for AEA and EC.
  *
@@ -1731,6 +1734,35 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         psDefn->ProjParmId[2] = ProjNatOriginLatGeoKey;
         psDefn->ProjParm[3] = dfNatOriginLong;
         psDefn->ProjParmId[3] = ProjNatOriginLongGeoKey;
+        psDefn->ProjParm[5] = dfFalseEasting;
+        psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
+        psDefn->ProjParm[6] = dfFalseNorthing;
+        psDefn->ProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        psDefn->nParms = 7;
+        break;
+
+/* -------------------------------------------------------------------- */
+      case CT_CylindricalEqualArea:
+/* -------------------------------------------------------------------- */
+        if( GTIFKeyGet(psGTIF, ProjStdParallel1GeoKey, 
+                       &dfStdParallel1, 0, 1 ) == 0 )
+            dfStdParallel1 = 0.0;
+
+        if( GTIFKeyGet(psGTIF, ProjNatOriginLongGeoKey, 
+                       &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjFalseOriginLongGeoKey, 
+                          &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjCenterLongGeoKey, 
+                          &dfNatOriginLong, 0, 1 ) == 0 )
+            dfNatOriginLong = 0.0;
+
+        /* notdef: should transform to decimal degrees at this point */
+
+        psDefn->ProjParm[0] = dfStdParallel1;
+        psDefn->ProjParmId[0] = ProjStdParallel1GeoKey;
+        psDefn->ProjParm[1] = dfNatOriginLong;
+        psDefn->ProjParmId[1] = ProjNatOriginLongGeoKey;
         psDefn->ProjParm[5] = dfFalseEasting;
         psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
         psDefn->ProjParm[6] = dfFalseNorthing;

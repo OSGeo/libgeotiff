@@ -1,3 +1,11 @@
+2005-03-03  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geotiff_proj4.c: added CT_CylindricalEqualArea support.
+
+	* geo_normalize.c: Added CT_CylindricalEqualArea support.
+
+	* geo_ctrans.c: added CT_CyldricalEqualArea.
+
 2005-02-16  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: check for ProjFalseOriginEastingGeoKey and
