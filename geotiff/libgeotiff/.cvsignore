@@ -3,3 +3,5 @@ geo_config.h
 config.cache
 config.status
 Makefile
+*.lib
+*.exp
