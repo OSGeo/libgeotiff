@@ -5,7 +5,7 @@
 9104,arc-second,,sec,,9101,3.14159265358979,648000.0,1996-10-18 00:00:00,,EPSG,(pi/180) / 3600,96.22
 9105,grad,,,,9101,3.14159265358979,200.0,1996-10-18 00:00:00,,EPSG,pi/200,96.22
 9106,gon,,,,9101,3.14159265358979,200.0,1996-10-18 00:00:00,,EPSG,pi/200,96.22
-9107,DMS,,,degree minute second,9101,9101,9101,1996-10-18 00:00:00,,EPSG,Format: degrees space minutes space seconds,96.19
-9108,DMSH,,,degree minute second hemisphere,9101,9101,9101,1996-10-18 00:00:00,,EPSG,Format: degrees space minutes space seconds  hemisphere,96.19
+9107,DMS,,,degree minute second,9101,,,1996-10-18 00:00:00,,EPSG,Format: degrees space minutes space seconds,96.19
+9108,DMSH,,,degree minute second hemisphere,9101,,,1996-10-18 00:00:00,,EPSG,Format: degrees space minutes space seconds  hemisphere,96.19
 9109,microradian,,,rad * 10E-6,9101,1.0,1000000.0,1996-10-18 00:00:00,,EPSG,,
-9110,DDD.MMSSsss,,,sexagesimal degrees,9101,9101,9101,1996-10-18 00:00:00,,EPSG,Format: degrees - decimal place - minutes (two digits) - integer seconds (two digits) - fraction of seconds.  Must include leading zero in minutes and seconds.  Must exclude decimal place for seconds.,
+9110,DDD.MMSSsss,,,sexagesimal degrees,9101,,,1996-10-18 00:00:00,,EPSG,Format: degrees - decimal place - minutes (two digits) - integer seconds (two digits) - fraction of seconds.  Must include leading zero in minutes and seconds.  Must exclude decimal place for seconds.,

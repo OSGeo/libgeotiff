@@ -1099,7 +1099,7 @@ U	=	(- V cos(g0) + S sin(g0)) / T\
 v	=	A ln((1 - U) / (1 + U)) / 2 B\
 u	=	A atan((S cos(g0) + V sin(g0)) / cos(B (l - l0 ))) / B\
 \
-The value of u from the above equation assumes that  the FE and FN values have beezÏ÷wÿÿÿÿ0õ","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)\
+The value of u from the above equation assumes that  the FE and FN values have been spzÏ÷wÿÿÿÿ0õ","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)\
 \
 Parameters:\
 	Ellipsoid:  Everest 1830 (1967 Definition)\
