@@ -1,3 +1,8 @@
+Fri Dec 10 13:24:21 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Added "--with-incode-epsg" support to configure, added 
+	cpl_csv_incode.c and csv/*.c tables.
+
 Wed Sep 29 10:10:39 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Upgraded CSV files to EPSG 4.3 from EPSG 4.2.  
