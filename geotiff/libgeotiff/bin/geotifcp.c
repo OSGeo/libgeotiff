@@ -57,7 +57,9 @@ static	int jpegcolormode = JPEGCOLORMODE_RGB;
 static	uint16 defcompression = (uint16) -1;
 static	uint16 defpredictor = (uint16) -1;
 static 	char *geofile=(char *)0;
+static  char *worldfile=(char *)0;
 
+static  void ApplyWorldFile(const char *worldfile, TIFF *out);
 static	int tiffcp(TIFF*, TIFF*);
 static	int processCompressOptions(char*);
 static	void usage(void);
@@ -79,7 +81,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:g:aistd")) != -1)
+	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:aistd")) != -1)
 		switch (c) {
 		case 'a':		/* append to output */
 			mode = "a";
@@ -91,6 +93,9 @@ main(int argc, char* argv[])
 			if (!processCompressOptions(optarg))
 				usage();
 			break;
+                case 'e':
+                        worldfile = optarg;
+                        break;
 		case 'f':		/* fill order */
 			if (streq(optarg, "lsb2msb"))
 				deffillorder = FILLORDER_LSB2MSB;
@@ -172,28 +177,68 @@ main(int argc, char* argv[])
 	return (0);
 }
 
+static void ApplyWorldFile(const char *worldfilename, TIFF *out)
+
+{
+    FILE	*tfw;
+    double	pixsize[3], xoff, yoff, tiepoint[6], dummy;
+
+    /* 
+     * Read the world file.  Note we currently ignore rotational coefficients!
+     */
+    tfw = fopen( worldfilename, "rt" );
+    if( tfw == NULL )
+    {
+        perror( worldfilename );
+        return;
+    }
+
+    fscanf( tfw, "%lf", pixsize + 0 );
+    fscanf( tfw, "%lf", &dummy );
+    fscanf( tfw, "%lf", &dummy );
+    fscanf( tfw, "%lf", pixsize + 1 );
+    fscanf( tfw, "%lf", &xoff );
+    fscanf( tfw, "%lf", &yoff );
+
+    fclose( tfw );
+
+    /*
+     * Write out pixel scale, and tiepoint information.
+     */
+    pixsize[2] = 0.0;
+    TIFFSetField(out, GTIFF_PIXELSCALE, 3, pixsize);
+
+    tiepoint[0] = 0.0;
+    tiepoint[1] = 0.0;
+    tiepoint[2] = 0.0;
+    tiepoint[3] = xoff;
+    tiepoint[4] = yoff;
+    tiepoint[5] = 0.0;
+    TIFFSetField(out, GTIFF_TIEPOINTS, 6, tiepoint);
+}
+
 static void InstallGeoTIFF(TIFF *out)
 {
-	GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
-	FILE *fd;
+    GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
+    FILE *fd;
 
-	gtif = GTIFNew(out);
-	if (!gtif)
-	{
-		printf("failed in GTIFNew\n");
-		return;
-	}
+    gtif = GTIFNew(out);
+    if (!gtif)
+    {
+        printf("failed in GTIFNew\n");
+        return;
+    }
 
-	/* Install keys and tags */
-	fd = fopen(geofile,"r");
-	if (!GTIFImport(gtif,0,fd)) goto bad;
-	fclose(fd);
-	GTIFWriteKeys(gtif);
-	GTIFFree(gtif);
-	return;
-bad:
-	fprintf(stderr,"Failure in GTIFImport\n");
-	exit (-1);
+    /* Install keys and tags */
+    fd = fopen(geofile,"r");
+    if (!GTIFImport(gtif,0,fd)) goto bad;
+    fclose(fd);
+    GTIFWriteKeys(gtif);
+    GTIFFree(gtif);
+    return;
+  bad:
+    fprintf(stderr,"Failure in GTIFImport\n");
+    exit (-1);
 }
 
 static void CopyGeoTIFF(TIFF * in, TIFF *out)
@@ -229,61 +274,62 @@ static void CopyGeoTIFF(TIFF * in, TIFF *out)
 static void
 processG3Options(char* cp)
 {
-	if( (cp = strchr(cp, ':')) != NULL ) {
-		if (defg3opts == (uint32) -1)
-			defg3opts = 0;
-		do {
-			cp++;
-			if (strneq(cp, "1d", 2))
-				defg3opts &= ~GROUP3OPT_2DENCODING;
-			else if (strneq(cp, "2d", 2))
-				defg3opts |= GROUP3OPT_2DENCODING;
-			else if (strneq(cp, "fill", 4))
-				defg3opts |= GROUP3OPT_FILLBITS;
-			else
-				usage();
-		} while( (cp = strchr(cp, ':')) != NULL );
-	}
+    if( (cp = strchr(cp, ':')) != NULL ) {
+        if (defg3opts == (uint32) -1)
+            defg3opts = 0;
+        do {
+            cp++;
+            if (strneq(cp, "1d", 2))
+                defg3opts &= ~GROUP3OPT_2DENCODING;
+            else if (strneq(cp, "2d", 2))
+                defg3opts |= GROUP3OPT_2DENCODING;
+            else if (strneq(cp, "fill", 4))
+                defg3opts |= GROUP3OPT_FILLBITS;
+            else
+                usage();
+        } while( (cp = strchr(cp, ':')) != NULL );
+    }
 }
 
 static int
 processCompressOptions(char* opt)
 {
-	if (streq(opt, "none"))
-		defcompression = COMPRESSION_NONE;
-	else if (streq(opt, "packbits"))
-		defcompression = COMPRESSION_PACKBITS;
-	else if (strneq(opt, "jpeg", 4)) {
-		char* cp = strchr(opt, ':');
-		if (cp && isdigit(cp[1]))
-			quality = atoi(cp+1);
-		if (cp && strchr(cp, 'r'))
-			jpegcolormode = JPEGCOLORMODE_RAW;
-		defcompression = COMPRESSION_JPEG;
-	} else if (strneq(opt, "g3", 2)) {
-		processG3Options(opt);
-		defcompression = COMPRESSION_CCITTFAX3;
-	} else if (streq(opt, "g4"))
-		defcompression = COMPRESSION_CCITTFAX4;
-	else if (strneq(opt, "lzw", 3)) {
-		char* cp = strchr(opt, ':');
-		if (cp)
-			defpredictor = atoi(cp+1);
-		defcompression = COMPRESSION_LZW;
-	} else if (strneq(opt, "zip", 3)) {
-		char* cp = strchr(opt, ':');
-		if (cp)
-			defpredictor = atoi(cp+1);
-		defcompression = COMPRESSION_DEFLATE;
-	} else
-		return (0);
-	return (1);
+    if (streq(opt, "none"))
+        defcompression = COMPRESSION_NONE;
+    else if (streq(opt, "packbits"))
+        defcompression = COMPRESSION_PACKBITS;
+    else if (strneq(opt, "jpeg", 4)) {
+        char* cp = strchr(opt, ':');
+        if (cp && isdigit(cp[1]))
+            quality = atoi(cp+1);
+        if (cp && strchr(cp, 'r'))
+            jpegcolormode = JPEGCOLORMODE_RAW;
+        defcompression = COMPRESSION_JPEG;
+    } else if (strneq(opt, "g3", 2)) {
+        processG3Options(opt);
+        defcompression = COMPRESSION_CCITTFAX3;
+    } else if (streq(opt, "g4"))
+        defcompression = COMPRESSION_CCITTFAX4;
+    else if (strneq(opt, "lzw", 3)) {
+        char* cp = strchr(opt, ':');
+        if (cp)
+            defpredictor = atoi(cp+1);
+        defcompression = COMPRESSION_LZW;
+    } else if (strneq(opt, "zip", 3)) {
+        char* cp = strchr(opt, ':');
+        if (cp)
+            defpredictor = atoi(cp+1);
+        defcompression = COMPRESSION_DEFLATE;
+    } else
+        return (0);
+    return (1);
 }
 
 char* stuff[] = {
 "usage: gtiffcp [options] input... output",
 "where options are:",
-" -g file   install GeoTIFF metadata from <file>",
+" -g file	install GeoTIFF metadata from <file>",
+" -e file	install positioning info from ESRI Worldfile <file>",
 " -a		append to output instead of overwriting",
 " -o offset	set initial directory offset",
 " -p contig	pack samples contiguously (e.g. RGBRGB...)",
@@ -568,6 +614,9 @@ tiffcp(TIFF* in, TIFF* out)
             InstallGeoTIFF(out);
         else
             CopyGeoTIFF(in,out);
+
+        if( worldfile )
+            ApplyWorldFile( worldfile, out);
 
 	cf = pickCopyFunc(in, out, bitspersample, samplesperpixel);
 	return (cf ? (*cf)(in, out, l, w, samplesperpixel) : FALSE);
