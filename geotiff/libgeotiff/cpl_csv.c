@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.15  2003/01/20 06:46:35  warmerda
+ * search for pcs.csv, not horiz_cs.csv
+ *
  * Revision 1.14  2003/01/15 04:39:58  warmerda
  * change internal name of CSVAccess
  *
@@ -918,19 +921,19 @@ const char * CSVFilename( const char *pszBasename )
             sprintf( szPath, "%s/%s", CSV_DATA_DIR, pszBasename );
         }
 #else
-        else if( (fp = fopen( "/usr/local/share/epsg/csv/horiz_cs.csv", "rt" )) != NULL )
+        else if( (fp = fopen( "/usr/local/share/epsg/csv/pcs.csv", "rt" )) != NULL )
         {
             sprintf( szPath, "/usr/local/share/epsg/csv/%s", pszBasename );
         }
-        else if( (fp = fopen( "csv/horiz_cs.csv", "rt" )) != NULL )
+        else if( (fp = fopen( "csv/pcs.csv", "rt" )) != NULL )
         {
             sprintf( szPath, "csv/%s", pszBasename );
         }
-        else if( (fp = fopen( "share/epsg_csv/horiz_cs.csv", "rt" )) != NULL )
+        else if( (fp = fopen( "share/epsg_csv/pcs.csv", "rt" )) != NULL )
         {
             sprintf( szPath, "share/epsg_csv/%s", pszBasename );
         }
-        else if( (fp = fopen( "/usr/share/epsg_csv/horiz_cs.csv", "rt" )) != NULL )
+        else if( (fp = fopen( "/usr/share/epsg_csv/pcs.csv", "rt" )) != NULL )
         {
             sprintf( szPath, "/usr/share/epsg_csv/%s", pszBasename );
         }
