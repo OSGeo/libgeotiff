@@ -1,6 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(geotiff.h)
 AC_CONFIG_HEADER(geo_config.h)
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
 
 VERSION_MAJOR=1
 VERSION_MINOR=1
@@ -24,10 +26,20 @@ AC_LD_SHARED
 # 	the libgeotiff.so
 
 GEOTIFF_SO=
+GEOTIFF_DLL=
+GEOTIFF_IMP=
 if test "$LD_SHARED" != "/bin/true" ; then
-  GEOTIFF_SO=libgeotiff.so.$VERSION_MAJOR.$VERSION_MINOR.$VERSION_POINT
+  case $host in
+    *-pc-cygwin*) GEOTIFF_SO=cyggeotiff-1.dll
+	               GEOTIFF_DLL=cyggeotiff-1.dll
+	               GEOTIFF_IMP=libgeotiff.dll.a
+                  LD_SHARED="gcc -shared -Wl,--export-all -Wl,--out-implib=\$(GEOTIFF_IMP)" ;;
+    *) GEOTIFF_SO=libgeotiff.so.$VERSION_MAJOR.$VERSION_MINOR.$VERSION_POINT ;;
+  esac
 fi
 AC_SUBST(GEOTIFF_SO,$GEOTIFF_SO)
+AC_SUBST(GEOTIFF_IMP,$GEOTIFF_IMP)
+AC_SUBST(GEOTIFF_DLL,$GEOTIFF_DLL)
 
 
 #

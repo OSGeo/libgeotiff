@@ -4,6 +4,7 @@
 DEPTH	= ..
 
 GEOTIFFDIR	= ${DEPTH}
+GEOTIFF_SO=@GEOTIFF_SO@
 
 LIBS=   -L${GEOTIFFDIR} -lgeotiff @LIBS@
 
@@ -17,7 +18,9 @@ AROPTS	= r
 RANLIB	= @RANLIB@
 INSTALL	= @INSTALL@
 
-PROGS=${BIN}/makegeo ${BIN}/listgeo ${BIN}/geotifcp
+EXEEXT=@EXEEXT@
+
+PROGS=${BIN}/makegeo$(EXEEXT) ${BIN}/listgeo$(EXEEXT) ${BIN}/geotifcp$(EXEEXT)
 
 #
 IPATH	= -I. -I${GEOTIFFDIR} @TIFF_INC@ @ZIP_INC@
@@ -34,26 +37,28 @@ OBJS	= \
 	geotifcp.o \
 	${NULL}
 
-ALL=	makegeo listgeo geotifcp
-
+ALL=	makegeo$(EXEEXT) listgeo$(EXEEXT) geotifcp$(EXEEXT)
+  
 all:	${ALL} 
+  
+makegeo$(EXEEXT): makegeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
+	${CC} ${COPTS} $< ${LIBS} -o $@
+  
+geotifcp$(EXEEXT): geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a prep
+	${CC} ${COPTS} $< ${LIBS} -o $@
+  
+listgeo$(EXEEXT): listgeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
+	${CC} ${COPTS} $< ${LIBS} -o $@
+  
+csv2html$(EXEEXT): csv2html.o  ${GEOTIFFDIR}/libgeotiff.a prep
+	${CC} ${COPTS} $< ${LIBS} -o $@
 
-makegeo: makegeo.o  ${GEOTIFFDIR}/libgeotiff.a
-	${CC} ${COPTS} makegeo.o ${LIBS} -o makegeo
-
-geotifcp: geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a
-	${CC} ${COPTS} geotifcp.o ${LIBS} -o geotifcp
-
-gt_update: gt_update.o  ${GEOTIFFDIR}/libgeotiff.a
-	${CC} ${COPTS} gt_update.o ${LIBS} -o gt_update
-
-listgeo: listgeo.o  ${GEOTIFFDIR}/libgeotiff.a
-	${CC} ${COPTS} listgeo.o ${LIBS} -o listgeo
-
-csv2html: csv2html.o  ${GEOTIFFDIR}/libgeotiff.a
-	${CC} ${COPTS} csv2html.o ${LIBS} -o csv2html
-
-
+.PHONY: prep
+prep:
+	-if [ -f ${DEPTH}/${GEOTIFF_SO} ] ; then \
+	  cp ${DEPTH}/${GEOTIFF_SO} ${GEOTIFF_SO} ; \
+	fi
+  
 clean:
-	rm -f ${ALL} *.o core a.out newgeo.tif csv2html gt_update
-
+	rm -f ${ALL} ${OBJS} core a.out newgeo.tif ${GEOTIFF_SO}
+	rm -f Makefile

@@ -28,6 +28,7 @@ BIN=${SRCDIR}/bin
 LIB_XTIFF=${SRCDIR}/libxtiff
 XTIFF=xtiff.o
 XTIFFINC= xtiffio.h xtiffiop.h
+EXEEXT=@EXEEXT@
 
 VERSION_MAJOR	=	@VERSION_MAJOR@
 VERSION_MINOR	=	@VERSION_MINOR@
@@ -35,6 +36,8 @@ VERSION_POINT	=	@VERSION_POINT@
 
 LIBS=   @LIBS@
 GEOTIFF_SO=@GEOTIFF_SO@
+GEOTIFF_DLL=@GEOTIFF_DLL@
+GEOTIFF_IMP=@GEOTIFF_IMP@
 LD_SHARED=@LD_SHARED@
 
 GT_INCLUDE_FILES = xtiffio.h xtiffiop.h geotiff.h geotiffio.h geovalues.h \
@@ -107,7 +110,7 @@ libgeotiff.a: ${OBJS}
 	${AR} ${AROPTS} libgeotiff.a $?
 	${RANLIB} libgeotiff.a
 
-libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_POINT): ${OBJS}
+$(GEOTIFF_SO): ${OBJS}
 	${LD_SHARED} ${OBJS} ${LIBS} -o $(GEOTIFF_SO)
 	rm -f libgeotiff.so
 	${LN} $(GEOTIFF_SO) libgeotiff.so
@@ -173,10 +176,12 @@ ${SRCDIR}/csv/%.o:	${SRCDIR}/csv/%.c
 clean:
 	(cd bin; $(MAKE) clean)
 	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out libgeotiff.so*
+	rm -f ${GEOTIFF_IMP} ${GEOTIFF_SO}
 
 dist-clean: clean
 	(cd bin; $(MAKE) clean)
-	rm -rf config.* geo_config.h
+	rm -rf config.log config.status config.cache geo_config.h
+	rm -f Makefile
 
 config.status:	configure
 	./configure
@@ -199,24 +204,28 @@ configure:	configure.in aclocal.m4
 	autoconf
 
 install:
-	$(INSTALL) -d $(libdir)
-	$(INSTALL) libgeotiff.a ${libdir}
-	$(INSTALL) -d $(includedir)
-	$(INSTALL) $(GT_INCLUDE_FILES) $(includedir)
-	$(INSTALL) -d $(datadir)
-	$(INSTALL) csv/*.csv $(datadir)
-	$(INSTALL) -d $(bindir)
-	$(INSTALL) bin/listgeo bin/geotifcp $(bindir)
+	$(INSTALL) -d $(DESTDIR)$(libdir)
+	$(INSTALL) libgeotiff.a $(GEOTIFF_IMP) $(DESTDIR)${libdir}
+	$(INSTALL) -d $(DESTDIR)$(includedir)
+	$(INSTALL) $(GT_INCLUDE_FILES) $(DESTDIR)$(includedir)
+	$(INSTALL) -d $(DESTDIR)$(datadir)
+	$(INSTALL) csv/*.csv $(DESTDIR)$(datadir)
+	$(INSTALL) -d $(DESTDIR)$(bindir)
+	$(INSTALL) bin/listgeo$(EXEEXT) bin/geotifcp$(EXEEXT) $(DESTDIR)$(bindir)
 	if test ! -z "$(GEOTIFF_SO)" ; then \
-	   $(INSTALL) $(GEOTIFF_SO) ${libdir}; \
-	   rm -f ${libdir}/libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
-	   ${LN} ${libdir}/$(GEOTIFF_SO) ${libdir}/libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
-	   rm -f ${libdir}/libgeotiff.so.$(VERSION_MAJOR); \
-	   ${LN} ${libdir}/libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR) \
-		${libdir}/libgeotiff.so.$(VERSION_MAJOR); \
-	   rm -f ${libdir}/libgeotiff.so; \
-	   ${LN} ${libdir}/libgeotiff.so.$(VERSION_MAJOR) \
-		${libdir}/libgeotiff.so; \
+		if test ! -z "$(GEOTIFF_DLL)" ; then \
+			$(INSTALL) $(GEOTIFF_SO) $(DESTDIR)${bindir}; \
+		else \
+			$(INSTALL) $(GEOTIFF_SO) $(DESTDIR)${libdir}; \
+			(cd $(DESTDIR)${libdir} ; \
+			rm -f libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
+			${LN} $(GEOTIFF_SO) libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
+			rm -f libgeotiff.so.$(VERSION_MAJOR); \
+			${LN} libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR) \
+			libgeotiff.so.$(VERSION_MAJOR); \
+			rm -f libgeotiff.so; \
+			${LN} libgeotiff.so.$(VERSION_MAJOR) libgeotiff.so; );\
+		fi;\
 	fi
 
 
