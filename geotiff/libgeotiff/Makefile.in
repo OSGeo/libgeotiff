@@ -171,6 +171,7 @@ ${SRCDIR}/csv/%.o:	${SRCDIR}/csv/%.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/csv/$*.c -o ${SRCDIR}/csv/$*.o
 
 clean:
+	(cd bin; $(MAKE) clean)
 	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out libgeotiff.so*
 
 dist-clean: clean
