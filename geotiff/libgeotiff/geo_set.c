@@ -9,6 +9,10 @@
  *  Permission granted to use this software, so long as this copyright
  *  notice accompanies any products derived therefrom.
  *
+ * $Log$
+ * Revision 1.2  1999/03/11 17:39:38  geotiff
+ * Added fix for case where a key is being overwritten.
+ *
  **********************************************************************/
 
 #include "geotiff.h"   /* public interface        */
@@ -97,7 +101,32 @@ int GTIFKeySet(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)
 	   gtif->gt_nshorts += sizeof(KeyEntry)/sizeof(pinfo_t);
 	}
 
-	
+        /* this fixes a bug where if a request is made to write a duplicate
+           key, we must initialize the data to a valid value.
+           Bryan Wells (bryan@athena.bangor.autometric.com) */
+        
+        else /* no new values, but still have something to write */
+        {
+           switch (type)
+           {
+            case TYPE_SHORT:  
+                        if (count > 1) return 0;
+                        data = (char *)&key->gk_data; /* store value *in* data */
+                        break;
+            case TYPE_DOUBLE:
+                        data = key->gk_data;
+                        break;
+            case TYPE_ASCII:
+                        data = key->gk_data;
+                        data[--count] = '|'; /* replace NULL with '|' */
+                        break;
+            default:
+                return 0;
+                break;
+          }
+
+        }
+        
 	_GTIFmemcpy(data, val, count*key->gk_size);
 	
 	gtif->gt_flags |= FLAG_FILE_MODIFIED;
