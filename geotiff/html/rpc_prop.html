@@ -1,0 +1,248 @@
+<html>
+<head>
+<title>RPCs in GeoTIFF</title>
+</head>
+<body>
+<h1>RPCs in GeoTIFF</h1>
+
+This technical note is a proposed extension to the GeoTIFF 1.0 
+specification to incorporate support for a ratio of polynomials to
+relate (lat,long,height) locations with (row,column) locations in the
+image.  This geometric model is often referred to as RPCs.<p>
+
+This extension proposes to stored essentially the same information as
+is stored in the RPC00B segment of an NITF file, but within a GeoTIFF
+tag.  The RPC00B elment of NITF is defined in the 
+<a href="STDI-0002_v2.1.pdf">STDI-0002 2.1 (16Nov2000)</a>
+specification document.  The mathematical model is defined in 8.2.4 of
+that document, and the disk layout of the information is defined in 
+8.3.12 of that document.<p>
+
+<h2>Mathematical Model</h2>
+
+The following is taken verbatim from STDI-0002 2.1 (8.2.4).<p>
+
+The geometric sensor model describing the precise relationship between image 
+coordinates and ground coordinate is known as a Rigorous Projection Model. A 
+Rigorous Projection Model expresses the mapping of the image space coordinates 
+of rows and columns (r,c) onto the object space reference surface geodetic 
+coordinates ( &phi;, &lambda;, h ).<p>
+
+RPC00 supports a common approximation to the Rigorous Projection Models. The 
+approximation used by RPC00 is a set of rational polynomials exp ressing the 
+normalized row and column values, (r<sub>n</sub> , c<sub>n</sub>), as a function of normalized 
+geodetic latitude, longitude, and height, ( P , L , H ), given a set of 
+normalized polynomial coefficients (LINE_NUM_COEF_n, LINE_DEN_COEF_n, 
+SAMP_NUM_COEF_n, SAMP_DEN_COEF_n). Normalized values, rather than actual 
+values are used in order to minimize introduction of errors during the 
+calculations. The transformation between row and column values (r,c), and 
+normalized row and column values (r<sub>n</sub>, c<sub>n</sub>), and between the geodetic 
+latitude, longitude, and height ( &phi;, &lambda;, h ), and normalized 
+geodetic latitude, longitude, and height ( P , L , H ), is defined by a set 
+of normalizing translations (offsets) and scales that ensure all values are 
+contained i the range -1 to +1.
+<pre>
+           P = (Latitude     - LAT_OFF)    / LAT_SCALE
+           L = (Longitude    - LONG_OFF)   / LONG_SCALE
+           H = (Height       - HEIGHT_OFF) / HEIGHT_SCALE
+           rn = (Row         - LINE_OFF)   / LINE_SCALE
+           cn = (Column      - SAMP_OFF)   / SAMP_SCALE
+</pre>
+
+The rational function polynomial equations are defined as:<p>
+
+<img src="rpc_eq1.gif"><p>
+
+The rational function polynomial equation numerators and denominators each 
+are 20-term cubic polynomial functions of the form:<p>
+
+<img src="rpc_eq2.gif"><p>
+
+where coefficients C<SUB>1</SUB> ... C<SUB>20</SUB> represent the following 
+sets of coefficients:
+LINE_NUM_COEF_n, LINE_DEN_COEF_n, SAMP_NUM_COEF_n, SAMP_DEN_COEF_n<p>
+
+The image coordinates are in units of pixels. The ground coordinates are 
+latitude and longitude in units of decimal degrees and the geodetic elevation 
+in units of meters. The ground coordinates are referenced to WGS-84.<p>
+
+Note: The order of terms differs between different applications. This order is
+used with RPC00B and the Digital Point Positioning Data Base. 
+RPC00A uses a different term order.<p>
+
+<h2>Encoding in GeoTIFF</h2>
+
+The full set of NITF RPC00B values (excepting the CETAG, CEL and SUCCESS
+values) are encoded in a new TIFF tag, RPCCoefficientTag as 92 double
+precision values.<p>
+
+<pre>
+RPCCoefficientTag:
+       Tag = (yet to be allocated)
+       Type = DOUBLE (IEEE Double precision)
+       N = 92
+       Owner: ? 
+</pre>
+
+The elements of this tag are:<p>
+
+<table border>
+<th>Name
+<th>Description
+<th>Value Range
+<th>Units
+
+<tr>
+  <td> ERR_BIAS
+  </td><td> Error - Bias. 68% non time-varying error estimate
+assumes correlated images.
+  </td><td> >= 0
+  </td><td> meters
+  </td>
+</tr>
+
+<tr>
+  <td> ERR_RAND
+  </td><td> Error - Random. 68% time-varying error estimate assumes 
+uncorrelated images.
+  </td><td> >= 0
+  </td><td> meters
+  </td>
+</tr>
+
+<tr>
+  <td> LINE_OFF
+  </td><td> Line Offset
+  </td><td> >= 0
+  </td><td> pixels
+  </td>
+</tr>
+
+<tr>
+  <td> SAMP_OFF
+  </td><td> Sample Offset
+  </td><td> >= 0
+  </td><td> pixels
+  </td>
+</tr>
+
+<tr>
+  <td> LAT_OFF
+  </td><td> Geodetic Latitude Offset
+  </td><td> -90 to +90
+  </td><td> degrees
+  </td>
+</tr>
+
+<tr>
+  <td> LONG_OFF
+  </td><td> Geodetic Longitude Offset
+  </td><td> -180 to +180
+  </td><td> degrees
+  </td>
+</tr>
+
+<tr>
+  <td> HEIGHT_OFF
+  </td><td> Geodetic Height Offset
+  </td><td> unlimited
+  </td><td> meters
+  </td>
+</tr>
+
+<tr>
+  <td> LINE_SCALE 
+  </td><td> Line Scale
+  </td><td> > 0
+  </td><td> pixels
+  </td>
+</tr>
+
+<tr>
+  <td> SAMP_SCALE 
+  </td><td> Sample Scale
+  </td><td> > 0
+  </td><td> pixels
+  </td>
+</tr>
+
+<tr>
+  <td> LAT_SCALE
+  </td><td> Geodetic Latitude Scale 
+  </td><td> -90 to 90, (cannot be 0)
+  </td><td> degrees
+  </td>
+</tr>
+
+<tr>
+  <td> LONG_SCALE
+  </td><td> Geodetic Longitude Scale 
+  </td><td> -180 to 180, (cannot be 0)
+  </td><td> degrees
+  </td>
+</tr>
+
+<tr>
+  <td> HEIGHT_SCALE
+  </td><td> Geodetic Height Scale
+  </td><td> cannot be 0
+  </td><td> meters
+  </td>
+</tr>
+
+<tr>
+  <td> LINE_NUM_COEFF (1-20)
+  </td><td>Line Numerator Coefficients. Twenty coefficients for the 
+polynomial in the Numerator of the r<sub>n</sub> equation.
+  </td><td> unlimited
+  </td><td> 
+  </td>
+</tr>
+
+<tr>
+  <td> LINE_DEN_COEFF (1-20)
+  </td><td>Line Denominator Coefficients. Twenty coefficients for the 
+polynomial in the Denominator of the r<sub>n</sub> equation.
+  </td><td> unlimited
+  </td><td> 
+  </td>
+</tr>
+
+<tr>
+  <td> SAMP_NUM_COEFF (1-20)
+  </td><td>Sample Numerator Coefficients. Twenty coefficients for the 
+polynomial in the Numerator of the c<sub>n</sub> equation.
+  </td><td> unlimited
+  </td><td> 
+  </td>
+</tr>
+
+<tr>
+  <td> SAMP_DEN_COEFF (1-20)
+  </td><td>Sample Denominator Coefficients. Twenty coefficients for the 
+polynomial in the Denominator of the c<sub>n</sub> equation.
+  </td><td> unlimited
+  </td><td> 
+  </td>
+</tr>
+
+</table>
+
+
+<h2>Outstanding Issues</h2>
+
+<ol>
+<li> Do we want to be able to have RPCs and a geographic
+or projected coordinate system with another model (ie. tiepoint+scale)
+in the same file? <p>
+
+<li> Do we want to be able to tie RPCs to datums other than WGS84?
+<p>
+
+<li> What do we set error information to if we don't know anything?
+<p>
+
+</ol>
+
+</body>
+</html>
