@@ -65,7 +65,7 @@ fi
 dnl
 dnl Add option to include libjpeg in library list for use of libtiff.
 dnl
-AC_ARG_WITH(zip, [  --with-jpeg=dir         Use JPEG library in directory dir],[JPEG=$withval],[JPEG=yes])
+AC_ARG_WITH(jpeg, [  --with-jpeg=dir         Use JPEG library in directory dir],[JPEG=$withval],[JPEG=yes])
 if test "$JPEG" = "yes" ; then
   AC_CHECK_LIB(jpeg,jinit_compress_master,,,-lm)
   AC_DEFINE(HAVE_JPEG)
