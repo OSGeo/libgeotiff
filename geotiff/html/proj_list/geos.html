@@ -89,12 +89,14 @@ Satellites - LRIT/HRIT Global Specification).  Possibly availble at url
 http://www.eumetsat.int/en/area4/msg/news/us_doc/cgms_03_26.pdf</a>.  The 
 GEOS projection is detailed in section 4.4.3.2.<p>
 
-Note that the satellite height is in meters above the center of earth,
-not over the ellipsoid surface.  The document suggests 42164000m as a 
-reasonable value.<p>
+The document suggests a spheroid with a major axis of 
+6378169.0m and a semi minor axis of 6356583.8m.<p>
 
-The document also suggests a spheroid with a major axis of 
-6378169.0m and a semi minor axis of 6356583.8m. <p>
+The document describes the satellite height as distance from the
+satellite to the center of earth, but for various reasons I have chosen
+to specify it as height above the ellipsoid in the WKT (and in PROJ.4).  
+The document suggests a height of 42164000m which on the suggested
+ellipsoid translates to 35785831m above the ellipsoid.<p>
 
 <h3>PROJ.4 Organization</h3>
 
