@@ -14,9 +14,16 @@
 static const char *CSVFileOverride( const char * );
 static const char *CSVDirName = NULL;
 
+void Usage()
+
+{
+    printf( "Usage: listgeo [-norm] [-t tabledir] [filename]\n" );
+    exit( 1 );
+}
+
 int main(int argc, char *argv[])
 {
-    char	*fname = "newgeo.tif";
+    char	*fname = NULL;
     TIFF 	*tif=(TIFF*)0;  /* TIFF-level descriptor */
     GTIF	*gtif=(GTIF*)0; /* GeoKey-level descriptor */
     int		i, norm_print_flag = 0;
@@ -33,14 +40,16 @@ int main(int argc, char *argv[])
             CSVDirName = argv[++i];
             SetCSVFilenameHook( CSVFileOverride );
         }
-        else if( strcmp(fname,"newgeo.tif") == 0 )
+        else if( fname == NULL && argv[i][0] != '-' )
             fname = argv[i];
         else
         {
-            printf( "Usage: listgeo [-norm] [-t tabledir] [filename]\n" );
-            exit( 1 );
+            Usage();
         }
     }
+
+    if( fname == NULL )
+        Usage();
 
     /*
      * Open the file, read the GeoTIFF information, and print to stdout. 
