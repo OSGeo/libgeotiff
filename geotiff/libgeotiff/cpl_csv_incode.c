@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.5  2003/01/20 07:11:04  warmerda
+ * updated csv-incode support to 6.2.2
+ *
  * Revision 1.4  2002/06/19 03:51:15  warmerda
  * migrated cpl_csv.h into cpl_serv.h
  *
@@ -48,48 +51,24 @@
 
 #include "defs.h"
 
-extern const datafile_rows_t *compd_cs_rows[];
-extern const datafile_rows_t *ellips_alias_rows[];
+extern const datafile_rows_t *pcs_rows[];
+extern const datafile_rows_t *gcs_rows[];
 extern const datafile_rows_t *ellipsoid_rows[];
-extern const datafile_rows_t *gdatum_alias_rows[];
-extern const datafile_rows_t *geod_datum_rows[];
-extern const datafile_rows_t *geod_trf_rows[];
-extern const datafile_rows_t *horiz_cs_rows[];
-extern const datafile_rows_t *p_meridian_rows[];
-extern const datafile_rows_t *trf_nonpolynomial_rows[];
-extern const datafile_rows_t *trf_path_rows[];
-extern const datafile_rows_t *uom_an_alias_rows[];
-extern const datafile_rows_t *uom_angle_rows[];
-extern const datafile_rows_t *uom_le_alias_rows[];
-extern const datafile_rows_t *uom_length_rows[];
-extern const datafile_rows_t *uom_scale_rows[];
-extern const datafile_rows_t *uom_sc_alias_rows[];
-extern const datafile_rows_t *vert_cs_rows[];
-extern const datafile_rows_t *vert_datum_rows[];
-extern const datafile_rows_t *vert_offset_rows[];
+extern const datafile_rows_t *prime_meridian_rows[];
+extern const datafile_rows_t *datum_rows[];
+extern const datafile_rows_t *unit_of_measure_rows[];
+extern const datafile_rows_t *projop_wparm_rows[];
 
 
 /* Pointers to data */
 static const datafile_t files[] = {
-  { "compd_cs", compd_cs_rows },
-  { "ellips_alias", ellips_alias_rows },
+  { "pcs", pcs_rows },
+  { "gcs", gcs_rows },
   { "ellipsoid", ellipsoid_rows },
-  { "gdatum_alias", gdatum_alias_rows },
-  { "geod_datum", geod_datum_rows },
-  { "geod_trf", geod_trf_rows },
-  { "horiz_cs", horiz_cs_rows },
-  { "p_meridian", p_meridian_rows },
-  { "trf_nonpolynomial", trf_nonpolynomial_rows },
-  { "trf_path", trf_path_rows },
-  { "uom_an_alias", uom_an_alias_rows },
-  { "uom_angle", uom_angle_rows },
-  { "uom_le_alias", uom_le_alias_rows },
-  { "uom_length", uom_length_rows },
-  { "uom_sc_alias", uom_sc_alias_rows },
-  { "uom_scale", uom_scale_rows },
-  { "vert_cs", vert_cs_rows },
-  { "vert_datum", vert_datum_rows },
-  { "vert_offset", vert_offset_rows },
+  { "prime_meridian", prime_meridian_rows },
+  { "datum", datum_rows },
+  { "unit_of_measure", unit_of_measure_rows },
+  { "projop_wparm", projop_wparm_rows },
   { NULL, NULL }
 };
 

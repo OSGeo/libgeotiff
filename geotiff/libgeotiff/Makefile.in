@@ -76,25 +76,13 @@ CORE_OBJS    = \
 
 CSV_INCODE_OBJS = \
 	cpl_csv_incode.o \
-	csv/compd_cs.o \
-	csv/ellips_alias.o \
+	csv/pcs.o \
+	csv/gcs.o \
 	csv/ellipsoid.o \
-	csv/gdatum_alias.o \
-	csv/geod_datum.o \
-	csv/geod_trf.o \
-	csv/horiz_cs.o \
-	csv/p_meridian.o \
-	csv/trf_nonpolynomial.o \
-	csv/trf_path.o \
-	csv/uom_an_alias.o \
-	csv/uom_angle.o \
-	csv/uom_le_alias.o \
-	csv/uom_length.o \
-	csv/uom_sc_alias.o \
-	csv/uom_scale.o \
-	csv/vert_cs.o \
-	csv/vert_datum.o \
-	csv/vert_offset.o
+	csv/prime_meridian.o \
+	csv/datum.o \
+	csv/unit_of_measure.o \
+	csv/projop_wparm.o
 
 CSV_FILE_OBJS = \
 	cpl_csv.o
