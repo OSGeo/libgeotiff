@@ -1,9 +1,10 @@
-
 ==============================================================================
 
 2000-12-28  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Prepare 1.1.4 release.
+
+	* Added HOWTO-RELEASE file. 
 
 	* Removed getopt.h from geotifcp.c to build on windows.
 
