@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.3  2000/12/28 23:26:56  warmerda
+ * Changed to default csv path.
+ *
  * Revision 1.2  1999/07/28 22:11:31  warmerda
  * lots more changes
  *
@@ -51,7 +54,7 @@ int main( int nArgc, char ** papszArgv )
     int		nColumns = 0;
     int		*panColumnList = NULL;
     const char *pszTable = "horiz_cs";
-    const char *pszTablePath = "/home/warmerda/libgeotiff/csv";
+    const char *pszTablePath = "/usr/local/share/epsg_csv";
     char	**papszOptions = NULL;
     char	szFilename[1024];
     int		i, bSingletons = FALSE;
