@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.43  2005/03/04 04:02:40  fwarmerdam
+ * Fixed initialization of dfStdParallel2 for AEA and EC.
+ *
  * Revision 1.42  2005/02/17 01:21:38  fwarmerdam
  * fixed handling of ProjFalseOrigin{Easting,Northing}GeoKey
  *
@@ -1700,7 +1703,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
         if( GTIFKeyGet(psGTIF, ProjStdParallel2GeoKey, 
                        &dfStdParallel2, 0, 1 ) == 0 )
-            dfStdParallel1 = 0.0;
+            dfStdParallel2 = 0.0;
 
         if( GTIFKeyGet(psGTIF, ProjNatOriginLongGeoKey, 
                        &dfNatOriginLong, 0, 1 ) == 0
