@@ -27,7 +27,7 @@ datadir = @datadir@/epsg_csv
 BIN=${SRCDIR}/bin
 LIB_XTIFF=${SRCDIR}/libxtiff
 XTIFF=xtiff.o
-XTIFFINC= xtiffio.h xtiffiop.h
+XTIFFINC= xtiffio.h
 EXEEXT=@EXEEXT@
 
 VERSION_MAJOR	=	@VERSION_MAJOR@
@@ -40,7 +40,7 @@ GEOTIFF_DLL=@GEOTIFF_DLL@
 GEOTIFF_IMP=@GEOTIFF_IMP@
 LD_SHARED=@LD_SHARED@
 
-GT_INCLUDE_FILES = xtiffio.h xtiffiop.h geotiff.h geotiffio.h geovalues.h \
+GT_INCLUDE_FILES = xtiffio.h geotiff.h geotiffio.h geovalues.h \
 	geonames.h geokeys.h geo_tiffp.h geo_config.h geo_keyp.h \
 	geo_normalize.h cpl_serv.h cpl_csv.h \
 	epsg_datum.inc epsg_gcs.inc epsg_pm.inc epsg_units.inc geo_ctrans.inc\
