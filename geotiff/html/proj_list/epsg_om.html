@@ -1,0 +1,368 @@
+<p><font size="3"><b>1.4.7. 	</b></font><b><u>Oblique Mercator and Hotine Oblique Mercator</u></b></p>
+<font size="3"><p align="justify"></p>
+<p align="justify">It has been noted that the Transverse Mercator map
+projection method is employed for the topographical mapping of
+longitudinal bands of territories, limiting the amount of scale
+distortion by limiting the extent of the projection either side of the
+central meridian. Sometimes the shape, general trend and extent of some
+countries makes it preferable to apply a single zone of the same kind
+of projection but with its central line aligned with the trend of the
+territory concerned rather than with a meridian. So, instead of a
+meridian forming this true scale central line for one of the various
+forms of Transverse Mercator, or the equator forming the line for the
+Mercator, a line with a particular azimuth traversing the territory is
+chosen and the same principles of construction are applied to derive
+what is now an Oblique Mercator. Such a single zone projection suits
+areas which have a large extent in one direction but limited extent in
+the perpendicular direction and whose trend is oblique to the bisecting
+meridian - such as East and West Malaysia, Madagascar and the Alaskan
+panhandle. It was originally applied at the beginning of the 20<sup>th</sup>
+century by Rosenmund to the mapping of Switzerland, and in the 1970’s
+adopted in Hungary. The projection's initial line may be selected as a
+line with a particular azimuth through a single point,  normally at the
+centre of the mapped area, or as the geodesic line (the shortest line
+between two points on the ellipsoid) between two selected points.</p>
+<p align="justify"></p>
+<p align="justify">EPSG identifies two forms of the oblique Mercator
+projection, differentiated only by the point at which false grid
+coordinates are defined.  If the false grid coordinates are defined at
+the intersection of the initial line and the aposphere, that is at the
+natural origin of the coordinate system, the map projection method is
+known as the Hotine Oblique Mercator (EPSG coordinate operation method
+code 9812). If the false grid coordinates are defined at the projection
+centre the projection method is known as the Oblique Mercator (EPSG
+coordinate operation method code 9815).</p>
+<p align="justify"></p>
+<p align="justify">Hotine projected the ellipsoid conformally onto a
+sphere of constant total curvature, called the ‘aposphere’, before
+projection onto the plane. This projection is sometimes referred to as
+the Rectified Skew Orthomorphic. Formulas, involving hyperbolic
+functions, were derived by Hotine.  Snyder adapted these formulas to
+use exponential functions, thus avoiding use of Hotine's hyperbolic
+expressions.  Alternative formulas derived by projecting the ellipsoid
+onto the ‘conformal’ sphere give identical results within the practical
+limits of the use of the formulas.</p>
+<p align="justify"></p>
+<p align="justify">Snyder describes a variation of the Hotine Oblique
+Mercator where the initial line is defined by two points through which
+it passes. The latter approach is not currently followed by EPSG/POSC;
+it has been applied to mapping space imagery or, more frequently, for
+applying a geographical graticule to the imagery. However, the repeated
+path of the imaging satellite does not actually follow the centre lines
+of successive oblique cylindrical projections so a projection was
+derived whose centre line does follow the satellite path. This is known
+as the Space Oblique Mercator Projection and although it closely
+resembles an oblique cylindrical it is not quite conformal and has no
+application other than for space imagery.</p>
+
+<p>The oblique Mercator co-ordinate system is defined by:</p>
+</font>
+<p> </p>
+<p> </p>
+<font size="2"><p align="center"><img src="guid7_files/gn7-fig7.gif" width="491" height="382"></p>
+</font>
+<font face="Arial" size="1"><p align="center">Figure 7.  Key Diagram for Oblique Mercator 
+Projection  </p>
+</font><font size="3">
+</font><p><font size="3">The initial line central to the map area of given azimuth  <font face="Symbol">a</font>
+<sub>c</sub>  passes through a defined centre of the projection (<font face="Symbol">j</font>
+<sub>c</sub> , <font face="Symbol">l</font>
+<sub>c</sub> ) . The point where the projection of this line cuts the
+equator on the aposphere is the origin of the (u , v) co-ordinate
+system. The u axis is parallel to the centre line and the v axis is
+perpendicular to (90<font face="Symbol">°</font>
+ clockwise from) this line.</font></p>
+<p align="justify"></p>
+<p align="justify"><font size="3">In applying the formulas for the
+(Hotine) Oblique Mercator the first set of co-ordinates computed are
+referred to the (u, v) co-ordinate axes defined with respect to the
+azimuth of the centre line. These co-ordinates are then ‘rectified’ to
+the usual Easting and Northing by applying an orthogonal conversion.
+Hence the alternative name as the Rectified Skew Orthomorphic. In the
+special case of the projection covering the Alaskan panhandle the
+azimuth of the line at the natural origin is taken to be identical to
+the azimuth of the initial line at the projection centre.  This results
+in grid and true north coinciding at the projection centre rather than
+at the natural origin as is more usual.</font></p>
+
+<p><font size="3">To ensure that all co-ordinates in the map area have
+positive grid values, false co-ordinates are applied. These may be
+given values (E<sub>c</sub> , N<sub>c</sub>) if applied at the
+projection centre [EPSG Oblique Mercator method] or be applied as false
+easting (FE) and false northing (FN) at the natural origin [EPSG Hotine
+Oblique Mercator method].</font></p>
+<p><font size="3">	</font></p>
+<p align="justify"><font size="3">The formulas can be used for  the following cases:</font></p>
+
+<p><font size="3">	Alaska State Plane Zone 1</font></p>
+<p><font size="3">	Hungary EOV</font></p>
+<p><font size="3">	Madagascar Laborde Grid</font></p>
+<p><font size="3">	East and West Malaysia Rectified Skew Orthomorphic grids</font></p>
+<p><font size="3">	Swiss Cylindrical projection</font></p>
+<p><font size="3">	</font></p>
+<p align="justify"><font size="3">The Swiss and Hungarian systems are a
+special case where the azimuth of the line through the projection
+centre is 90 degrees. These therefore give similar but not exactly the
+same results as a conventional Transverse Mercator projection.</font></p>
+<font size="3"><b><p align="justify"></p>
+</b></font><p align="justify"><font size="3">Specific references for the formulas originally used in the individual cases of these projections are:</font></p><dir>
+<dir>
+<dir>
+<dir>
+
+<p><font size="3">Switzerland:  	"Die Änderung des Projektionssystems
+der schweizerischen Landesvermessung." M. Rosenmund 1903.  Also "Die
+projecktionen der Schweizerischen Plan und Kartenwerke." J. Bollinger
+1967.</font></p>
+<p><font size="3">Madagascar: 	 "La nouvelle projection du Service Geographique de Madagascar". J. Laborde 1928.</font></p>
+<p><font size="3">Malaysia:  	Series of Articles in numbers 62-66 of the Empire Survey Review of 1946 and 1947 by M. Hotine.</font></p>
+<b></b><p align="justify"></p>
+<p> </p></dir>
+</dir>
+</dir>
+</dir>
+
+<font size="3"></font><p><font size="3">The defining parameters for the [Hotine] Oblique Mercator projection are:</font></p>
+<p><font size="3"><font face="Symbol">j</font>
+<sub>c</sub> 	= latitude of centre of the projection</font></p>
+<p><font size="3"><font face="Symbol">l</font>
+<sub>c</sub> 	= longitude of centre of the projection</font></p>
+<p><font size="3"><font face="Symbol">a</font>
+<sub>c</sub> 	= azimuth (true) of the centre line passing through the centre of the projection</font></p>
+<p><font size="3"><font face="Symbol">g</font>
+<sub>c</sub> 	= rectified bearing of the centre line</font></p>
+<p><font size="3">k<sub>c	</sub>= scale factor at the centre of the projection</font></p>
+<p><font size="3">and either</font></p>
+<p><font size="3">for the Oblique Mercator</font></p>
+<p><font size="3">E<sub>c</sub>	= False Easting at the centre of projection</font></p>
+<p><font size="3">N<sub>c</sub>	= False Northing at the centre of projection</font></p>
+<p><font size="3">or for the Hotine Oblique Mercator:</font></p>
+<p><font size="3">FE	= False Easting at the natural origin</font></p>
+<p><font size="3">FN	= False Northing at the natural origin</font></p>
+
+<p><font size="3"> </font></p>
+<p><font size="3">From these defining parameters the following constants for the map projection may be calculated :</font></p>
+
+<p><font size="3">B	=	[1 + e<sup>2</sup> cos<sup>4<font face="Symbol">j</font>
+</sup><sub>c</sub> / (1 –  e<sup>2</sup> )]<sup>0.5</sup></font></p>
+<p><font size="3">A	=	a B k<sub>c</sub> (1 –  e<sup>2</sup> )<sup>0.5</sup> / (1 –  e<sup>2</sup> sin<sup>2</sup> <font face="Symbol">j</font>
+<sub>c</sub>)</font></p>
+<p><font size="3">t<sub>o</sub>	=	tan(<font face="Symbol">p</font>
+ / 4 – <font face="Symbol">j</font>
+<sub>c</sub> / 2) / [(1 –  e sin <font face="Symbol">j</font>
+<sub>c</sub>) / (1 + e sin <font face="Symbol">j</font>
+<sub>c</sub>)]<sup>e/2</sup></font></p>
+<p><font size="3">D	=	B (1 – e<sup>2</sup> )<sup>0.5  </sup>/ [cos<font face="Symbol">j</font>
+<sub>c</sub> (1 – e<sup>2</sup> sin<sup>2</sup> <font face="Symbol">j</font>
+<sub>c</sub>)<sup>0.5</sup>]</font></p>
+<p><font size="3">To avoid problems with computation of F, if D &lt; 1 make D<sup>2</sup>  = 1</font></p>
+<p><font size="3">F	=	D + (D<sup>2</sup> – 1)<sup>0.5</sup> . SIGN(<font face="Symbol">j</font>
+<sub>c</sub>)</font></p>
+<p><font size="3">H	=	F t<sub>o</sub><sup>B</sup></font></p>
+<p><font size="3">G	=	(F – 1/F) / 2</font></p>
+<p><font size="3"><font face="Symbol">g</font>
+<sub>o</sub>	=	asin[sin (<font face="Symbol">a</font>
+<sub>c</sub>) / D]</font></p>
+<p><font size="3"><font face="Symbol">l</font>
+<sub>o	</sub>=	<font face="Symbol">l</font>
+<sub>c</sub> – [asin(G tan<font face="Symbol">g</font>
+<sub>o</sub>)] / B</font></p>
+
+<p><font size="3">Then compute the (u<sub>c</sub> , v<sub>c</sub>) co-ordinates for the centre point (<font face="Symbol">j</font>
+<sub>c</sub> , <font face="Symbol">l</font>
+<sub>c</sub>).  </font></p>
+<p><font size="3">v<sub>c	</sub>=	0</font></p>
+
+<p><font size="3">In general</font></p>
+<p><font size="3">u<sub>c</sub>	=	(A / B) atan[(D<sup>2</sup> – 1)<sup>0.5</sup> / cos (<font face="Symbol">a</font>
+<sub>c</sub>) ]. SIGN(<font face="Symbol">j</font>
+<sub>c</sub>)</font></p>
+
+<p><font size="3">but for the special cases where <font face="Symbol">a</font>
+<sub>c</sub> = 90 degrees (e.g. Hungary, Switzerland) then </font></p>
+<p><font size="3">u<sub>c</sub>	=	A (<font face="Symbol">l</font>
+<sub>c</sub> – <font face="Symbol">l</font>
+<sub>o</sub> )  </font></p>
+
+<p><font size="3"> </font></p>
+<font size="3"><b></b></font><p><font size="3"><b>Forward case</b>:	To compute (E,N) from a given (<font face="Symbol">j</font>
+,<font face="Symbol">l</font>
+), for both the Hotine Oblique Mercator method and the Oblique Mercator method:</font></p>
+
+<p><font size="3">t	=	tan(<font face="Symbol">p</font>
+ / 4 –  <font face="Symbol">j</font>
+ / 2) / [(1 – e sin <font face="Symbol">j</font>
+) / (1 + e sin <font face="Symbol">j</font>
+)]<sup>e/2</sup></font></p>
+<p><font size="3">Q	=	H / t<sup>B</sup></font></p>
+<p><font size="3">S	=	(Q – 1/Q) / 2</font></p>
+<p><font size="3">T	=	(Q + 1/Q) / 2</font></p>
+<p><font size="3">V	=	sin(B (<font face="Symbol">l</font>
+ –  <font face="Symbol">l</font>
+<sub>o</sub>))</font></p>
+<p><font size="3">U	=	(– V cos(<font face="Symbol">g</font>
+<sub>o</sub>) + S sin(<font face="Symbol">g</font>
+<sub>o</sub>)) / T</font></p>
+<p><font size="3">v	=	A ln[(1 – U) / (1 + U)] / 2 B</font></p>
+
+<p><font size="3">Then </font></p>
+<p><font size="3">either (a) for the Hotine Oblique Mercator (where the
+FE and FN values have been specified with respect to the natural origin
+of the (u , v) axes):</font></p>
+<p><font size="3">u	=	A atan{(S cos<font face="Symbol">g</font>
+<sub>o</sub> + V sin<font face="Symbol">g</font>
+<sub>o</sub>) / cos[B (<font face="Symbol">l</font>
+ – <font face="Symbol">l</font>
+<sub>o</sub>)]} / B</font></p>
+
+<p><font size="3">The rectified skew co-ordinates are then derived from:</font></p>
+<p><font size="3">E	= v cos(<font face="Symbol">g</font>
+<sub>c</sub>) + u sin(<font face="Symbol">g</font>
+<sub>c</sub>) + FE</font></p>
+<p><font size="3">N 	= u cos(<font face="Symbol">g</font>
+<sub>c</sub>) – v sin(<font face="Symbol">g</font>
+<sub>c</sub>) + FN</font></p>
+
+<p><font size="3">or (b) for the Oblique Mercator (where the false easting and northing values (E<sub>c</sub> , N<sub>c</sub>) have been specified with respect to the centre of the projection (<font face="Symbol">j</font>
+<sub>c</sub> , <font face="Symbol">l</font>
+<sub>c</sub>) then :</font></p>
+<p><font size="3">u 	=  (A atan{(S cos<font face="Symbol">g</font>
+<sub>o</sub> + V sin<font face="Symbol">g</font>
+<sub>o</sub>) / cos[B (<font face="Symbol">l</font>
+ – <font face="Symbol">l</font>
+<sub>o</sub>)]} / B) – (u<sub>c</sub> . SIGN(<font face="Symbol">l</font>
+ – <font face="Symbol">l</font>
+<sub>c</sub>))</font></p>
+
+<p><font size="3">The rectified skew co-ordinates are then derived from:</font></p>
+<p><font size="3">E	= v cos(<font face="Symbol">g</font>
+<sub>c</sub>) + u sin(<font face="Symbol">g</font>
+<sub>c</sub>) + E<sub>c</sub></font></p>
+<p><font size="3">N 	= u cos(<font face="Symbol">g</font>
+<sub>c</sub>) – v sin(<font face="Symbol">g</font>
+<sub>c</sub>) + N<sub>c</sub></font></p>
+
+<font size="3"><b></b></font><p><font size="3"><b> </b></font></p>
+<p><font size="3"><b>Reverse case</b>:		To compute (<font face="Symbol">j</font>
+,<font face="Symbol">l</font>
+)  from a given (E,N)  :</font></p>
+
+<p><font size="3">For the Hotine Oblique Mercator:</font></p>
+<p><font size="3">v’	=	(E – FE) cos(<font face="Symbol">g</font>
+<sub>c</sub>) – (N – FN) sin(<font face="Symbol">g</font>
+<sub>c</sub>)</font></p>
+<p><font size="3">u’	=	(N – FN) cos(<font face="Symbol">g</font>
+<sub>c</sub>) + (E - FE) sin(<font face="Symbol">g</font>
+<sub>c</sub>)</font></p>
+
+<p><font size="3">or for the Oblique Mercator:</font></p>
+<p><font size="3">v’	=	(E – E<sub>c</sub>) cos(<font face="Symbol">g</font>
+<sub>c</sub>) – (N – N<sub>c</sub>) sin(<font face="Symbol">g</font>
+<sub>c</sub>)</font></p>
+<p><font size="3">u’	=	(N – N<sub>c</sub>) cos(<font face="Symbol">g</font>
+<sub>c</sub>) + (E – E<sub>c</sub>) sin(<font face="Symbol">g</font>
+<sub>c</sub>) + u<sub>c</sub></font></p>
+
+<p><font size="3">then for both cases:</font></p>
+<p><font size="3">Q’	=	</font><b><font face="Courier New" size="3">e</font></b><sup><font size="3">- (B v ‘/ A)</font></sup><font size="3">  where </font><b><font face="Courier New" size="3">e </font></b><font size="3">is the base of natural logarithms.</font></p>
+<p><font size="3">S’	=	(Q’ – 1 / Q’) / 2</font></p>
+<p><font size="3">T’	=	(Q’ + 1 / Q’) / 2</font></p>
+<p><font size="3">V’	=	sin (B u’ / A)</font></p>
+<p><font size="3">U’	=	(V’ cos(<font face="Symbol">g</font>
+<sub>o</sub>) + S’ sin(<font face="Symbol">g</font>
+<sub>o</sub>)) / T’</font></p>
+<p><font size="3">t’	=	{H / [(1 + U’) / (1 – U’)]<sup>0.5</sup>}<sup>1 / B</sup></font></p>
+
+<p><font size="3"><font face="Symbol">c</font>
+	= 	<font face="Symbol">p</font>
+ / 2 – 2 atan(t’)</font></p>
+
+
+<ul>
+<li><font size="3">= 	<font face="Symbol">c</font>
+ + sin(2<font face="Symbol">c</font>
+).( e<sup>2</sup> / 2 + 5 e<sup>4 </sup>/ 24 + e<sup>6</sup> / 12 + 13 e<sup>8</sup> / 360) </font></li></ul>
+<dir>
+<dir>
+
+<p><font size="3">+ sin(4<font face="Symbol">c</font>
+).( 7 e<sup>4</sup> /48 + 29 e<sup>6</sup> / 240 + 811 e<sup>8 </sup>/ 11520) </font></p>
+<p><font size="3">+  sin(6<font face="Symbol">c</font>
+).( 7 e<sup>6</sup> / 120 + 81 e<sup>8</sup> / 1120) + sin(8<font face="Symbol">c</font>
+).(4279 e<sup>8 </sup>/ 161280)</font></p>
+</dir>
+</dir>
+
+<p><font size="3"><font face="Symbol">l</font>
+	=  	<font face="Symbol">l</font>
+<sub>0 </sub> – atan [(S’ cos<font face="Symbol">g</font>
+<sub>c</sub> – V’ sin<font face="Symbol">g</font>
+<sub>c</sub>) / cos(B u’ / A)] / B</font></p>
+<font size="3"><b>
+<p>Examples:</p>
+</b></font><p><font size="3">For Projected Coordinate Reference System  Timbalai 1948 / R.S.O. Borneo (m) using the Oblique Mercator method.</font></p>
+
+<p><font size="3">Parameters:</font></p>
+<p><font size="3">	Ellipsoid:  Everest 1830 (1967 Definition)</font></p>
+<p><font size="3">				a = 6377298.556 metres 	1/f = 300.8017</font></p>
+<p><font size="3">				then	e = 0.081472981	e2 = 0.006637847</font></p>
+<p><font size="3">					</font></p>
+<p><font size="3">	Latitude of Projection Centre	<font face="Symbol">j</font>
+c  	4o00'00"N		=	0.069813170 rad</font></p>
+<p><font size="3">	Longitude of Projection Centre	<font face="Symbol">l</font>
+c  	115o00'00"E	=	2.007128640 rad</font></p>
+<p><font size="3">	Azimuth of central line	</font><font face="Symbol" size="3">a</font><font size="3">c	53o18'56.9537"	=	0.930536611 rad</font></p>
+<p><font size="3">	Rectified to skew	</font><font face="Symbol" size="3">g</font><font size="3">c	53o07'48.3685"	=	0.927295218 rad</font></p>
+<font size="3"><b></b></font><p><font size="3"><b>	</b>Scale factor	ko	 0.99984</font></p>
+<p><font size="3">	Easting at Projection Centre	Ec	 590476.87 m</font></p>
+<p><font size="3">	Northings at Projection Centre	Nc	 442857.65 m</font></p>
+
+<p><font size="3">Forward calculation for: </font></p>
+<p><font size="3">	Latitude		<font face="Symbol">j</font>
+	   5o 23' 14.1129"N	=	0.094025313 rad</font></p>
+<p><font size="3">	Longitude		<font face="Symbol">l</font>
+	115o 48' 19.8196"E	=	2.021187362 rad</font></p>
+<p><font size="3">		</font></p><dir>
+<dir>
+
+<p><font size="3">B = 	1.003303209		F =	1.072121256</font></p>
+<p><font size="3">A =	6376278.686		H = 	1.000002991</font></p></dir>
+</dir>
+
+<p><font size="3">		t<sub>o</sub> = 	0.932946976		</font><font face="Symbol" size="3">g</font><sub><font size="3">o</font></sub><font size="3"> = 	0.927295218</font></p>
+<p><font size="3">		D = 	1.002425787		</font><font face="Symbol" size="3">l</font><sub><font size="3">o</font></sub><font size="3"> = 	1.914373469</font></p>
+<p><font size="3">		D<sup>2</sup> =	1.004857458</font></p>
+<p><font size="3">		u<sub>c</sub> =	738096.09		v<sub>c</sub> =	0.00</font></p>
+<p><font size="3">		</font></p><dir>
+<dir>
+
+<p><font size="3">t =	0.910700729		Q =	1.098398182</font></p></dir>
+</dir>
+
+<p><font size="3">		S =	0.093990763		T = 	1.004407419</font></p>
+<p><font size="3">		V =	0.106961709		U =	0.010967247</font></p>
+<p><font size="3">		v =	-69702.787		u =	163238.163</font></p>
+
+<p><font size="3">	Then	Easting	 E 	=  	679245.73 m</font></p>
+<p><font size="3">		Northing N 	=          596562.78 m</font></p>
+
+<p><font size="3">Reverse calculations for same Easting and Northing first gives :</font></p>
+<p><font size="3">		v’ =   	-69702.787		u’ =	901334.257</font></p>
+<p><font size="3">		Q’ =	1.011028053</font></p>
+<p><font size="3">		S’  =	0.010967907		T’ =	1.000060146	</font></p>
+<p><font size="3">		V’ =	0.141349378		U’ = 	0.093578324</font></p>
+<p><font size="3">		t’ = 	0.910700729		<font face="Symbol">c</font>
+ =	0.093404829		</font></p>
+<p><font size="3">				</font></p>
+<p><font size="3">Then	Latitude    	<font face="Symbol">j</font>
+   =	5o23'14.113"N		</font></p>
+<p><font size="3">	Longitude	<font face="Symbol">l</font>
+   =	115o48'19.820"E	</font></p>
+
+<p><font size="3">If the same projection is defined using the Hotine Oblique Mercator method then:</font></p>
+<p><font size="3">	False Easting 	Ec	 0.00 m</font></p>
+<p><font size="3">	False Northing	Nc	 0.00 m</font></p>
+<p><font size="3">	u =	901334.257</font></p>
+<p><font size="3">and all other values are as for the Oblique Mercator method.</font></p>
+<font size="3"><sub>
+</sub></font><p><font size="3"> </font></p>
