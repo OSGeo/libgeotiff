@@ -28,6 +28,10 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.16  1999/12/10 19:50:21  warmerda
+ * Added EquidistantConic support, fixed return of StdParallel2GeoKey for
+ * LCC2, and Albers.
+ *
  * Revision 1.15  1999/12/10 19:39:26  warmerda
  * Fixed bug setting the false northing for files with
  * ProjCenterNorthingGeoKey set in GTIFGetDefn().
@@ -1247,7 +1251,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         psDefn->ProjParm[0] = dfStdParallel1;
         psDefn->ProjParmId[0] = ProjStdParallel1GeoKey;
         psDefn->ProjParm[1] = dfStdParallel2;
-        psDefn->ProjParmId[1] = ProjStdParallel1GeoKey;
+        psDefn->ProjParmId[1] = ProjStdParallel2GeoKey;
         psDefn->ProjParm[2] = dfNatOriginLat;
         psDefn->ProjParmId[2] = ProjFalseOriginLatGeoKey;
         psDefn->ProjParm[3] = dfNatOriginLong;
@@ -1262,6 +1266,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
 /* -------------------------------------------------------------------- */
       case CT_AlbersEqualArea:
+      case CT_EquidistantConic:
 /* -------------------------------------------------------------------- */
         if( GTIFKeyGet(psGTIF, ProjStdParallel1GeoKey, 
                        &dfStdParallel1, 0, 1 ) == 0 )
@@ -1292,7 +1297,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         psDefn->ProjParm[0] = dfStdParallel1;
         psDefn->ProjParmId[0] = ProjStdParallel1GeoKey;
         psDefn->ProjParm[1] = dfStdParallel2;
-        psDefn->ProjParmId[1] = ProjStdParallel1GeoKey;
+        psDefn->ProjParmId[1] = ProjStdParallel2GeoKey;
         psDefn->ProjParm[2] = dfNatOriginLat;
         psDefn->ProjParmId[2] = ProjNatOriginLatGeoKey;
         psDefn->ProjParm[3] = dfNatOriginLong;
