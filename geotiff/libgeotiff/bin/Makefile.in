@@ -42,16 +42,16 @@ ALL=	makegeo$(EXEEXT) listgeo$(EXEEXT) geotifcp$(EXEEXT)
 all:	${ALL} 
   
 makegeo$(EXEEXT): makegeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} $< ${LIBS} -o $@
+	${CC} ${COPTS} makegeo.o ${LIBS} -o $@
   
 geotifcp$(EXEEXT): geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} $< ${LIBS} -o $@
+	${CC} ${COPTS} geotifcp.o ${LIBS} -o $@
   
 listgeo$(EXEEXT): listgeo.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} $< ${LIBS} -o $@
+	${CC} ${COPTS} listgeo.o ${LIBS} -o $@
   
 csv2html$(EXEEXT): csv2html.o  ${GEOTIFFDIR}/libgeotiff.a prep
-	${CC} ${COPTS} $< ${LIBS} -o $@
+	${CC} ${COPTS} csv2html.o ${LIBS} -o $@
 
 .PHONY: prep
 prep:
