@@ -13,6 +13,7 @@
 #include "tiffio.h"
 #include <stdio.h>
 
+static void WriteTFWFile( GTIF * gtif, const char * tif_filename );
 static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int );
 static const char *CSVFileOverride( const char * );
 static const char *CSVDirName = NULL;
@@ -20,7 +21,7 @@ static const char *CSVDirName = NULL;
 void Usage()
 
 {
-    printf( "Usage: listgeo [-no_norm] [-t tabledir] [filename]\n" );
+    printf( "Usage: listgeo [-tfw] [-no_norm] [-t tabledir] [filename]\n" );
     exit( 1 );
 }
 
@@ -30,6 +31,7 @@ int main(int argc, char *argv[])
     TIFF 	*tif=(TIFF*)0;  /* TIFF-level descriptor */
     GTIF	*gtif=(GTIF*)0; /* GeoKey-level descriptor */
     int		i, norm_print_flag = 1;
+    int		tfw_flag = 0;
 
     /*
      * Handle command line options.
@@ -42,6 +44,10 @@ int main(int argc, char *argv[])
         {
             CSVDirName = argv[++i];
             SetCSVFilenameHook( CSVFileOverride );
+        }
+        else if( strcmp(argv[i],"-tfw") == 0 )
+        {
+            tfw_flag = 1;
         }
         else if( fname == NULL && argv[i][0] != '-' )
             fname = argv[i];
@@ -66,6 +72,13 @@ int main(int argc, char *argv[])
     {
         fprintf(stderr,"failed in GTIFNew\n");
         goto failure;
+    }
+
+    if( tfw_flag )
+    {
+        WriteTFWFile( gtif, fname );
+
+        goto Success;
     }
 	
     /* dump the GeoTIFF metadata to std out */
@@ -97,7 +110,8 @@ int main(int argc, char *argv[])
             GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize );
         }
     }
-    
+
+  Success:
     GTIFFree(gtif);
     XTIFFClose(tif);
     return 0;
@@ -173,4 +187,75 @@ static void GTIFPrintCorners( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     GTIFReportACorner( gtif, defn, fp_out, "Lower Left", 0.0, ysize );
     GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xsize, 0.0 );
     GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xsize, ysize );
+}
+
+/*
+ * Write the defining matrix for this file to a .tfw file with the same
+ * basename.
+ */
+
+static void WriteTFWFile( GTIF * gtif, const char * tif_filename )
+
+{
+    char	tfw_filename[1024];
+    int		i;
+    double	adfCoeff[6], x, y;
+    FILE	*fp;
+
+    /*
+     * form .tfw filename
+     */
+    strncpy( tfw_filename, tif_filename, sizeof(tfw_filename)-4 );
+    for( i = strlen(tfw_filename)-1; i > 0; i-- )
+    {
+        if( tfw_filename[i] == '.' )
+        {
+            strcpy( tfw_filename + i, ".tfw" );
+            break;
+        }
+    }
+
+    if( i <= 0 )
+        strcat( tfw_filename, ".tfw" );
+
+    /*
+     * Compute the coefficients.
+     */
+    x = 0.5;
+    y = 0.5;
+    if( !GTIFImageToPCS( gtif, &x, &y ) )
+        return;
+    adfCoeff[4] = x;
+    adfCoeff[5] = y;
+
+    x = 1.5;
+    y = 0.5;
+    if( !GTIFImageToPCS( gtif, &x, &y ) )
+        return;
+    adfCoeff[0] = x - adfCoeff[4];
+    adfCoeff[1] = y - adfCoeff[5];
+
+    x = 0.5;
+    y = 1.5;
+    if( !GTIFImageToPCS( gtif, &x, &y ) )
+        return;
+    adfCoeff[2] = x - adfCoeff[4];
+    adfCoeff[3] = y - adfCoeff[5];
+
+    /*
+     * Write out the coefficients.
+     */
+
+    fp = fopen( tfw_filename, "wt" );
+    if( fp == NULL )
+    {
+        perror( "fopen" );
+        fprintf( stderr, "Failed to open TFW file `%s'\n", tfw_filename );
+        return;
+    }
+
+    for( i = 0; i < 6; i++ )
+        fprintf( fp, "%24.10f\n", adfCoeff[i] );
+
+    fclose( fp );
 }
