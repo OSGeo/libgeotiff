@@ -10,6 +10,9 @@
  *  notice accompanies any products derived therefrom.
  *
  * $Log$
+ * Revision 1.5  1999/05/04 03:09:33  warmerda
+ * avoid warnings
+ *
  * Revision 1.4  1999/05/03 17:50:31  warmerda
  * avoid warnings on IRIX
  *
@@ -24,6 +27,8 @@
 #include "geotiff.h"   /* public interface        */
 #include "geo_tiffp.h" /* external TIFF interface */
 #include "geo_keyp.h"  /* private interface       */
+
+#include <assert.h>
 
 /**
 This function writes a geokey_t value to a GeoTIFF file.
@@ -105,6 +110,9 @@ int GTIFKeySet(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)
 			val=va_arg(ap, char*);
 			count = strlen(val) + 1; /* force = string length */
 			break;
+          default:
+            assert( FALSE );
+            break;
 	}
 	va_end(ap);
 	

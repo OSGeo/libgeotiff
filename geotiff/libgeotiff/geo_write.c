@@ -135,23 +135,22 @@ static int WriteKey(GTIF* gt, KeyEntry* entptr,GeoKey* keyptr)
 
 static int SortKeys(GTIF* gt,int *sortkeys)
 {
-	int loc;
-	int nkeys=0;
-	geokey_t key,kmin,kmax;
-	int *index = gt->gt_keyindex;
-	GeoKey* keys=gt->gt_keys;
+    int loc;
+    int nkeys=0;
+    geokey_t key,kmin,kmax;
+    int *index = gt->gt_keyindex;
 	
-	kmin = (geokey_t) gt->gt_keymin;
-        kmax = (geokey_t) gt->gt_keymax;
-	for (key=kmin; key<=kmax; key++)
-	{
-		if (loc=index[key])
-		{
-			sortkeys[nkeys] = loc;
-			nkeys++;
-		}
-	}
+    kmin = (geokey_t) gt->gt_keymin;
+    kmax = (geokey_t) gt->gt_keymax;
+    for (key=kmin; key<=kmax; key++)
+    {
+        if ( (loc=index[key]) != 0 )
+        {
+            sortkeys[nkeys] = loc;
+            nkeys++;
+        }
+    }
 	
-	return nkeys==gt->gt_num_keys;
+    return nkeys==gt->gt_num_keys;
 }
 

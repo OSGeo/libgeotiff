@@ -51,7 +51,6 @@ for new TIFF files that will have GeoTIFF tags written to them.<p>
 GTIF* GTIFNew(void *tif)
 {
 	GTIF* gt=(GTIF*)0;
-	int status=1;
 	int count,bufcount,index;
 	GeoKey *keyptr;
 	pinfo_t *data;

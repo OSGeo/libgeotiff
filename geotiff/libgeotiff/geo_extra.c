@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.2  1999/05/04 03:09:33  warmerda
+ * avoid warnings
+ *
  * Revision 1.1  1999/04/28 20:01:29  warmerda
  * new
  *
@@ -680,7 +683,7 @@ int GTIFPCSToMapSys( int PCSCode, int * pDatum, int * pZone )
 int GTIFProjToMapSys( int ProjCode, int * pZone )
 
 {
-    int		nZone = KvUserDefined, i;
+    int		nZone = KvUserDefined;
     int		MapSys = KvUserDefined;
 
 /* -------------------------------------------------------------------- */
