@@ -1,3 +1,14 @@
+2002-12-01  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* cpl_csv.c: rewritten to support in memory caching of tables, and
+	fast searches. 
+
+	* geo_extra.c: tweaked to favor fixed EPSG codes for Kentucky North
+	(NAD83), and Tennesse (NAD27).  The original entries have incorrect
+	values. Also modified epsg_pcs.inc and epsg_proj.inc.
+
+	* geo_normalize.c: Major restructuring to use EPSG 6.2.2 database.
+
 2002-11-23  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_free.c: don't read past end of keys list. Introduced by 
