@@ -24,7 +24,7 @@
 <tr>
 
 <td>Supported By
-<td>EPSG, GeoTIFF, OGC WKT
+<td>EPSG, PROJ.4
 <tr>
 
 </table>
@@ -83,6 +83,19 @@
 <h3>Notes</h3>
 
 OGC WKT doesn't seem to support the 1SP form of LCC.<p>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=lcc   +lat_0=<i>Latitude of natural origin</i> 
+              +lat_1=<i>Latitude of natural origin</i> 
+              +lon_1=<i>Longitude of natural origin</i>
+              +k_0=<i>Scale factor at natural origin</i>
+              +x_0=<i>False Origin Easting</i>
+              +y_0=<i>False Origin Northing</i>
+</pre>
+</b>
 
 
 <h3>EPSG Notes</h3>
@@ -174,6 +187,52 @@ r'        =  19643955.26
 
 Then Latitude     = 17 deg 55 min 55.800 sec N
          Longitude  = 76 deg 56 min 37.260 sec W
+</pre>
+
+<h3>Email from Gerald Evenden</h3>
+
+<pre>
+Frank Warmerdam says:
+> Gerald,
+>
+> I presume that what you call the tangent version of LCC is what EPSG calls
+> the 1SP form - is that right?  I am still confused trying to connect your
+> answer with the parameters EPSG lists for LCC 1SP.  EPSG indicates the
+> following parameters for LCC 1SP:
+
+Cartography is infamous for variations in terminology.  "Natural orgin,"
+indeed.  But I suspect that it is the tangency parallel, thus lat_1=18d00'. 
+Also lat_0 same.
+
+My definition for the following would be (sans ellipsoid parameters)
+
+proj=lcc lat_0=18 lat_1=18 lon_0=-77 k_0=1 x_0=250000 y_0=150000
+
+> Latitude Natural Origin         18 deg 00 min 00 sec N  =  0.31415927 rad
+> Longitude Natural Origin     77 deg 00 min 00 sec W = -1.34390352 rad
+> Scale factor at origin            1.000000
+> False Eastings  FE               250000.00 m
+> False Northings FN              150000.00 m
+
+Single latitude (I prefer "standard latitude") is tangent form, two standard
+parallels is the secant form.  Most US usage is the secant form.  There should
+be a few tangent forms in the world definition file in my distrubution for some
+central American countries.  The single parallel with k_0 < 1. can also be 
+computed with the secant parameters and, as I recall, there is a formula to 
+work from one to the other.  Not a matter of right or wrong way, just what 
+one feels comfortable using.
+
+BTW, I haven't tried it in a *long time* but I believe angular input can
+be made in radians by using the suffice r.  Thus lat_0=.31415927r (18d)
+Web site is the *first* time I've ever seen anyone spec radians!
+
+The second paragraph of the "EPSG Notes" has some questionable
+statements.  Two standard parallel may readily be integral degrees
+or with relatively simple fractional values (like 1/2).  The standard
+llc usage for the conterminous US map is an example.  The tangential
+form for llc in PROJ.4 was not developed until much later as it is
+rarely used in the US.  I don't think NMD's GCTP provides for it.
+Its inclusion was suggested by an "outsider."
 </pre>
 
 </body>
