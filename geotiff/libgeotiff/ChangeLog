@@ -1,3 +1,8 @@
+2004-04-27  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c, geo_write.c, geo_print.c: Make it possible to 
+	create a GTIF information object *without* an associated TIFF *. 
+
 2004-03-23  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* cpl_csv_incode.c: include dummy version on CPLReadParseLine().
