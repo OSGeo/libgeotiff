@@ -79,6 +79,15 @@ Common Configuration Issues:
    % make clean 
    % make
 
+ o If you want to use EPSG tables compiled into the code, use the
+   --with-incode-epsg configure switch.  It will make the library and
+   resulting executables substantially larger (~600K), but will avoid any 
+   configuration issues with finding the .csv files. 
+   
+   % rm config.status
+   % ./configure --with-incode-epsg
+   % make clean
+   % make
 
 Test Programs:
 
@@ -131,6 +140,24 @@ changed. Also, whatever software package you use will have to
 recognize the GeoTIFF tags listed in the include files, and permit
 variable-length arrays to be passed in to those tags.
 
-  
-  --Frank Warmerdam (warmerda@home.com)
+
+Credits
+-------
+
+ o This library was originally written by Niles Ritter (also the primary
+   author of the GeoTIFF specification).  
+
+ o It is currently being maintained by Frank Warmerdam (warmerda@home.com),
+   who also added the "normalization" capability of GTIFGetDefn() using 
+   EPSG CSV files. 
+
+ o Support for "incode" CSV files was submitted by Derrick J Brashear 
+   <shadow@dementia.org>. 
+
+ o Eric Brown of Universal Systems, who contributed a bug fix to 
+   GTIFPCSToImage().
+
+ o Many others who contributed before it occured to me to maintain credits.
+
+
 
