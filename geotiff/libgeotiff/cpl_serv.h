@@ -117,6 +117,9 @@
 #define VSIFPutc	fputc
 #define VSIFGets	fgets
 #define VSIRewind	rewind
+#define VSIFSeek        fseek
+#define VSIFTell        ftell
+#define VSIFRead        fread
 
 #define VSICalloc(x,y)	_GTIFcalloc(x*y)
 #define VSIMalloc	_GTIFcalloc
