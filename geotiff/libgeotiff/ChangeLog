@@ -1,3 +1,11 @@
+Wed Apr 28 14:12:25 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Added geo_extra.c, for special handling of UTM and state plane 
+	map systems. 
+
+	* Changed to have api help inline with the code, and extracted with 
+	doxygen.
+
 Thu Mar 25 23:25:22 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Added ChangeLog and LICENSE file to distribution.
