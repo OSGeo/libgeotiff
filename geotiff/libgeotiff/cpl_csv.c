@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.4  1999/04/28 19:59:56  warmerda
+ * added some doxygen style documentation
+ *
  * Revision 1.3  1999/03/17 19:53:15  geotiff
  * sys includes moved to cpl_serv.h
  *
@@ -508,6 +511,50 @@ const char * CSVFilename( const char *pszBasename )
 /*      Applications can use this to set a function that will           */
 /*      massage CSV filenames.                                          */
 /************************************************************************/
+
+/**
+ * Override CSV file search method.
+ *
+ * @param CSVFileOverride The pointer to a function which will return the
+ * full path for a given filename.
+  *
+
+This function allows an application to override how the GTIFGetDefn() and related function find the CSV (Comma Separated
+Value) values required. The pfnHook argument should be a pointer to a function that will take in a CSV filename and return a
+full path to the file. The returned string should be to an internal static buffer so that the caller doesn't have to free the result.
+
+<b>Example:</b><br>
+
+The listgeo utility uses the following override function if the user
+specified a CSV file directory with the -t commandline switch (argument
+put into CSVDirName).  <p>
+
+<pre>
+
+    ...
+
+
+    SetCSVFilenameHook( CSVFileOverride );
+
+    ...
+
+
+static const char *CSVFileOverride( const char * pszInput )
+
+{
+    static char         szPath[1024];
+
+#ifdef WIN32
+    sprintf( szPath, "%s\\%s", CSVDirName, pszInput );
+#else    
+    sprintf( szPath, "%s/%s", CSVDirName, pszInput );
+#endif    
+
+    return( szPath );
+}
+</pre>
+
+*/
 
 void SetCSVFilenameHook( const char *(*pfnNewHook)( const char * ) )
 

@@ -18,6 +18,17 @@
 static int WriteKey(GTIF* gt, KeyEntry* entptr,GeoKey* keyptr);
 static int SortKeys(GTIF* gt,int *sortkeys);
 
+/**
+This function flushes all the GeoTIFF keys that have been set with the 
+GTIFKeySet() function into the associated 
+TIFF file.
+
+@param gt The GeoTIFF handle returned by GTIFNew.
+
+GTIFKeySet() should be called before 
+GTIFFree() is used to deallocate a GeoTIFF access handle.
+ */
+
 int GTIFWriteKeys(GTIF *gt)
 {
 	int i;

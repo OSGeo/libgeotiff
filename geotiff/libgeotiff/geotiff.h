@@ -2,10 +2,6 @@
  *
  *  geotiff.h - Public interface for Geotiff tag parsing.
  *
- *   This is the defacto registry for valid GEOTIFF GeoKeys
- *   and their associated symbolic values. This is also the only file
- *   of the GeoTIFF library which needs to be included in client source
- *   code.
  *
  *   Written By: Niles D. Ritter
  *
@@ -14,6 +10,16 @@
 #ifndef __geotiff_h_
 #define __geotiff_h_
 
+/**
+ * \file geotiff.h
+ *
+ * Primary libgeotiff include file.
+ *
+ * This is the defacto registry for valid GEOTIFF GeoKeys
+ * and their associated symbolic values. This is also the only file
+ * of the GeoTIFF library which needs to be included in client source
+ * code.
+ */
 
 /* This Version code should only change if a drastic
  * alteration is made to the GeoTIFF key structure. Readers

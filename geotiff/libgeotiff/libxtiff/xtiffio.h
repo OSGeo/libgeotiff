@@ -10,6 +10,13 @@
 #include "cpl_serv.h"
 #include "tiffio.h"
 
+/**
+ * \file xtiffio.h
+ *
+ * Definitions relating GeoTIFF functions from geotiff.h to the TIFF
+ * library (usually libtiff).
+ */
+
 /* 
  *  Define public Tag names and values here 
  */
