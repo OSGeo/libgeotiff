@@ -19,8 +19,12 @@
 <td>CT_Mercator (7)
 <tr>
 
+<td>OGC WKT
+<td>Mercator_1SP
+<tr>
+
 <td>Supported By
-<td>EPSG, GeoTIFF, PROJ.4
+<td>EPSG, GeoTIFF, PROJ.4, OGC WKT
 <tr>
 
 </table>
@@ -31,6 +35,7 @@
 <th>Name
 <th>EPSG #
 <th>GeoTIFF ID
+<th>OGC WKT
 <th>Units
 <th>Notes
 
@@ -38,6 +43,7 @@
 <td>Latitude of natural origin
 <td>1
 <td>NatOriginLat
+<td>latitude_of_origin
 <td>Angular
 <td>
 
@@ -45,6 +51,7 @@
 <td>Longitude of natural origin
 <td>2
 <td>NatOriginLong
+<td>central_meridian
 <td>Angular
 <td>
 
@@ -52,6 +59,7 @@
 <td>Scale factor at natural origin
 <td>5
 <td>ScaleAtNatOrigin
+<td>scale_factor
 <td>Unitless
 <td>
 
@@ -59,6 +67,7 @@
 <td>False Easting
 <td>6
 <td>FalseEasting
+<td>false_easting
 <td>Linear
 <td>
 
@@ -66,6 +75,7 @@
 <td>False Northing
 <td>7
 <td>FalseNorthing
+<td>false_northing
 <td>Linear
 <td>
 
@@ -74,7 +84,7 @@
 <h3>Notes</h3>
 
 I believe the formula (EPSG) notes are exactly the same for Mercator (1SP)
-and Mercator (2SP).  There is only one projection in GeoTIFF for straight 
+and <a href="mercator_2sp.html">Mercator (2SP)</a>.  There is only one projection in GeoTIFF for straight 
 Mercator.<p>
 
 <h3>PROJ.4 Organization</h3>

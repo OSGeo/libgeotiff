@@ -19,8 +19,12 @@
 <td> CT_ObliqueMercator (3)
 <tr>
 
+<td>OGC WKT Name
+<td>Oblique_Mercator
+<tr>
+
 <td>Supported By
-<td>EPSG, GeoTIFF
+<td>EPSG, GeoTIFF, OGC WKT
 <tr>
 
 </table>
@@ -38,6 +42,7 @@
 <td> Latitude of projection center
 <td> 1
 <td> CenterLat
+<td> latitude_of_center
 <td> Angular
 <td>
 <tr>
@@ -45,6 +50,7 @@
 <td>Longitude of projection center
 <td>2
 <td>CenterLong
+<td>longitude_of_center
 <td>Angular
 <td>
 <tr>
@@ -52,6 +58,7 @@
 <td>Azimuth of initial line
 <td>3
 <td>AzimuthAngle
+<td>azimuth
 <td>Angular
 <td>
 <tr>
@@ -59,6 +66,7 @@
 <td>Angle from Rectified to Skew Grid
 <td>4
 <td>RectifiedGridAngle
+<td>recitified_grid_angle
 <td>Angular
 <td>
 <tr>
@@ -66,6 +74,7 @@
 <td>Scale factor on initial line
 <td>5
 <td>ScaleAtCenter
+<td>scale_factor
 <td>Unitless
 <td>
 <tr>
@@ -73,6 +82,7 @@
 <td>Easting at projection center
 <td>6
 <td>FalseEasting
+<td>false_easting
 <td>Linear
 <td>As far as I know this is just a normal false easting despite the 
 different EPSG name.
@@ -81,6 +91,7 @@ different EPSG name.
 <td>Northing at projection center
 <td>7
 <td>FalseNorthing
+<td>false_northing
 <td>Linear
 <td>As far as I know this is just a normal false northing despite the 
 different EPSG name.
@@ -94,5 +105,27 @@ The formula is exactly the same as for
 <a href="hotine_oblique_mercator.html">Hotine Oblique Mercator</a>.  I 
 consider this to be an alias for that projection.  See it for details on
 formula.<p>
+
+<h3>Notes From the EPSG</h3>
+
+Via email from Roger Lott of the EPSG working group:<p>
+
+EPSG considers the Oblique Mercator and Hotine Oblique Mercator projections
+as two very similar but separate methods because there is a subtle
+difference regarding the point at which the rectification from skew grid to
+map grid and where the false grid coordinates are applied.  It is possible
+to interchange the two possible points, but to do so requires that the three
+parameters (skew angle, false grid coordinates) have different values.
+Conversely, it is important that a set of published parameter values are
+applied at the correct point.  It is the method that determines this.  As
+always, parameters and method must be consistent with each other.  This is
+somewhat analogous to the Lambert Conic Conformal projection where it is
+possible to inter-relate parameters and appropriate parameter values between
+the 1- and 2-standard parallel cases.  In both cases EPSG publishes a single
+formula with if statements to accommodate the different methods where
+necessary.  An alternative approach would be to use two independent
+algorithms in which much code could or would be duplicated.   (Note: some
+folks call the Lambert 1SP case 'Lambert Tangential' which is only true if
+the scale factor value is unity - which it generally isn't).<p>
 
 </body>

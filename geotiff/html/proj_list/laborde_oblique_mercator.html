@@ -19,8 +19,12 @@
 <td> CT_ObliqueMercator_Laborde (4)
 <tr>
 
+<td>OGC WKT Name
+<td> Laborde_Oblique_Mercator
+<tr>
+
 <td>Supported By
-<td>EPSG, GeoTIFF
+<td>EPSG, GeoTIFF, OGC WKT
 <tr>
 
 </table>
@@ -31,6 +35,7 @@
 <th>Name
 <th>EPSG #
 <th>GeoTIFF ID
+<th>OGC WKT
 <th>Units
 <th>Notes
 <tr>
@@ -38,6 +43,7 @@
 <td> Latitude of projection center
 <td> 1
 <td> CenterLat
+<td> latitude_of_center
 <td> Angular
 <td>
 <tr>
@@ -45,6 +51,7 @@
 <td>Longitude of projection center
 <td>2
 <td>CenterLong
+<td>longitude_of_center
 <td>Angular
 <td>
 <tr>
@@ -52,13 +59,24 @@
 <td>Azimuth of initial line
 <td>3
 <td>AzimuthAngle
+<td>azimuth
 <td>Angular
 <td>
+<tr>
+
+<td>
+<td>
+<td>
+<td>rectified_grid_angle
+<td>Angular
+<td>Presumable this should be available for other sources in a manner
+similar to Oblique Mercator.  Defaults to 90.
 <tr>
 
 <td>Scale factor on initial line
 <td>5
 <td>ScaleAtCenter
+<td>scale_factor
 <td>Unitless
 <td>
 <tr>
@@ -66,6 +84,7 @@
 <td>False Easting
 <td>6
 <td>FalseEasting
+<td>false_easting
 <td>Linear
 <td>
 <tr>
@@ -73,6 +92,7 @@
 <td>False Northing
 <td>7
 <td>FalseNorthing
+<td>false_northing
 <td>Linear
 <td>
 <tr>
@@ -84,13 +104,12 @@
 When using the 
 <a href="hotine_oblique_mercator.html">Hotine Oblique Mercator</a>
 equations to evaluate this, I 
-imagine the angle from rectified to skewed grid would be zero, or perhaps
-the same as the azimuth?<p>
+imagine the angle from rectified to skewed grid would be 90.<p>
+
+I don't have information on what the OGC parameters should be.<p>
 
 <h3>EPSG Notes</h3>
 
 Can be accomodated by Oblique Mercator method (code 9815).<p>
-
-
 
 </body>

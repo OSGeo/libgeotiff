@@ -23,8 +23,12 @@
 <td> CT_ObliqueMercator_Hotine (3)
 <tr>
 
+<td> OGC WKT Name
+<td> hotine_oblique_mercator
+<tr>
+
 <td>Supported By
-<td>EPSG, GeoTIFF, PROJ.4
+<td>EPSG, GeoTIFF, PROJ.4, OGC WKT
 <tr>
 
 </table>
@@ -35,6 +39,7 @@
 <th>Name
 <th>EPSG #
 <th>GeoTIFF ID
+<th>OGC WKT
 <th>Units
 <th>Notes
 <tr>
@@ -42,6 +47,7 @@
 <td> Latitude of projection center
 <td> 1
 <td> CenterLat
+<td> latitude_of_center
 <td> Angular
 <td>
 <tr>
@@ -49,6 +55,7 @@
 <td>Longitude of projection center
 <td>2
 <td>CenterLong
+<td> longitude_of_center
 <td>Angular
 <td>
 <tr>
@@ -56,6 +63,7 @@
 <td>Azimuth of initial line
 <td>3
 <td>AzimuthAngle
+<td>azimuth
 <td>Angular
 <td>
 <tr>
@@ -63,6 +71,7 @@
 <td>Angle from Rectified to Skew Grid
 <td>4
 <td>RectifiedGridAngle
+<td>rectified_grid_angle
 <td>Angular
 <td>
 <tr>
@@ -70,6 +79,7 @@
 <td>Scale factor on initial line
 <td>5
 <td>ScaleAtCenter
+<td>scale_factor
 <td>Unitless
 <td>
 <tr>
@@ -77,6 +87,7 @@
 <td>False Easting
 <td>6
 <td>FalseEasting
+<td>false_easting
 <td>Linear
 <td>
 <tr>
@@ -84,6 +95,7 @@
 <td>False Northing
 <td>7
 <td>FalseNorthing
+<td>false_northing
 <td>Linear
 <td>
 <tr>
@@ -124,6 +136,28 @@ The PROJ.4 initialization function fails if Azimuth is zero (or 90 degrees).
 I am not clear if this is fundamental to the oblique mercator projection
 or a peculiarity of PROJ.4.  It is inconvenient because some of the 
 GeotIFF sample files have an azimuth of zero.<p>
+
+<h3>Clarification From the EPSG</h3>
+
+Via email from Roger Lott of the EPSG working group:<p>
+
+EPSG considers the Oblique Mercator and Hotine Oblique Mercator projections
+as two very similar but separate methods because there is a subtle
+difference regarding the point at which the rectification from skew grid to
+map grid and where the false grid coordinates are applied.  It is possible
+to interchange the two possible points, but to do so requires that the three
+parameters (skew angle, false grid coordinates) have different values.
+Conversely, it is important that a set of published parameter values are
+applied at the correct point.  It is the method that determines this.  As
+always, parameters and method must be consistent with each other.  This is
+somewhat analogous to the Lambert Conic Conformal projection where it is
+possible to inter-relate parameters and appropriate parameter values between
+the 1- and 2-standard parallel cases.  In both cases EPSG publishes a single
+formula with if statements to accommodate the different methods where
+necessary.  An alternative approach would be to use two independent
+algorithms in which much code could or would be duplicated.   (Note: some
+folks call the Lambert 1SP case 'Lambert Tangential' which is only true if
+the scale factor value is unity - which it generally isn't).<p>
 
 <h3>EPSG Notes</h3>
 

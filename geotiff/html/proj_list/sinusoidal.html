@@ -19,8 +19,12 @@
 <td>CT_Sinusoidal (24)
 <tr>
 
+<td>OGC WKT Name
+<td>Sinusoidal
+<tr>
+
 <td>Supported By
-<td> GeoTIFF, PROJ.4
+<td> GeoTIFF, PROJ.4, OGC WKT
 <tr>
 
 </table>
@@ -31,6 +35,7 @@
 <th>Name
 <th>EPSG #
 <th>GeoTIFF ID
+<th>OGC WKT
 <th>Units
 <th>Notes
 
@@ -38,6 +43,7 @@
 <td>Longitude of projection center
 <td>2
 <td>ProjCenterLong
+<td>longitude_of_center
 <td>Angular
 <td>
 
@@ -45,6 +51,7 @@
 <td>False Easting
 <td>6
 <td>FalseEasting
+<td>false_easting
 <td>Linear
 <td>
 
@@ -52,6 +59,7 @@
 <td>False Northing
 <td>7
 <td>FalseNorthing
+<td>false_northing
 <td>Linear
 <td>
 
@@ -63,12 +71,6 @@ Intergraph files use NatOriginLat/Long instead of CenterLat/Long.  Earlier
 discussions of Sinusoidal don't include a scale, and CenterLat, but 
 Intergraph's files do.  I have omitted them from the above list, but I 
 imagine they may be added back.<p>
-
-I also get very substantially different results from PROJ.4's Robinson
-support, and PCI (GCTP)'s results as noted in 
-<a href="random_issues.html#robinson">Random Issues</a>.<p>
-
-
 
 <h3>PROJ.4 Organization</h3>
 

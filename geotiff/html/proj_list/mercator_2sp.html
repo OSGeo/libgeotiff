@@ -19,6 +19,10 @@
 <td>CT_Mercator (7)
 <tr>
 
+<td>OGC WKT
+<td>Mercator_2SP
+<tr>
+
 <td>Supported By
 <td>EPSG, GeoTIFF, PROJ.4
 <tr>
@@ -31,13 +35,15 @@
 <th>Name
 <th>EPSG #
 <th>GeoTIFF ID
+<th>OGC WKT
 <th>Units
 <th>Notes
 
 <tr>
-<td>Latitude of first standard parallel
+<td>Latitude of natural origin
 <td>1
 <td>NatOriginLat
+<td>latitude_of_origin
 <td>Angular
 <td>
 
@@ -45,6 +51,7 @@
 <td>Longitude of natural origin
 <td>2
 <td>NatOriginLong
+<td>central_meridian
 <td>Angular
 <td>
 
@@ -52,6 +59,7 @@
 <td>Scale factor at natural origin
 <td>5
 <td>ScaleAtNatOrigin
+<td>
 <td>Unitless
 <td>
 
@@ -59,6 +67,7 @@
 <td>False Easting
 <td>6
 <td>FalseEasting
+<td>false_easting
 <td>Linear
 <td>
 
@@ -66,10 +75,17 @@
 <td>False Northing
 <td>7
 <td>FalseNorthing
+<td>false_northing
 <td>Linear
 <td>
 
 </table>
+
+<h3>Notes</h3>
+
+I don't understand how this is distinct from <a href="mercator_1sp.html">
+Mercator (1SP)</a>.  The OGC WKT form doesn't include a scale factor for
+the 2SP form.<p>
 
 <h3>PROJ.4 Organization</h3>
 
