@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.6  1999/06/26 17:28:51  warmerda
+ * Fixed reading of records with newlines embedded in quoted strings.
+ *
  * Revision 1.5  1999/05/04 03:07:24  warmerda
  * avoid warning
  *
@@ -194,17 +197,59 @@ char **CSVReadParseLine( FILE * fp )
 
 {
     const char	*pszLine;
+    char	*pszWorkLine;
+    char	**papszReturn;
 
     CPLAssert( fp != NULL );
     if( fp == NULL )
         return( NULL );
     
     pszLine = CPLReadLine( fp );
-
     if( pszLine == NULL )
         return( NULL );
 
-    return( CSLTokenizeStringComplex( pszLine, ",", TRUE, TRUE ) );
+/* -------------------------------------------------------------------- */
+/*      If there are no quotes, then this is the simple case.           */
+/*      Parse, and return tokens.                                       */
+/* -------------------------------------------------------------------- */
+    if( strchr(pszLine,'\"') == NULL )
+        return CSLTokenizeStringComplex( pszLine, ",", TRUE, TRUE );
+
+/* -------------------------------------------------------------------- */
+/*      We must now count the quotes in our working string, and as      */
+/*      long as it is odd, keep adding new lines.                       */
+/* -------------------------------------------------------------------- */
+    pszWorkLine = CPLStrdup( pszLine );
+
+    while( TRUE )
+    {
+        int		i, nCount = 0;
+
+        for( i = 0; pszWorkLine[i] != '\0'; i++ )
+        {
+            if( pszWorkLine[i] == '\"'
+                && (i == 0 || pszWorkLine[i-1] != '\\') )
+                nCount++;
+        }
+
+        if( nCount % 2 == 0 )
+            break;
+
+        pszLine = CPLReadLine( fp );
+        if( pszLine == NULL )
+            break;
+
+        pszWorkLine = (char *)
+            CPLRealloc(pszWorkLine,
+                       strlen(pszWorkLine) + strlen(pszLine) + 1);
+        strcat( pszWorkLine, pszLine );
+    }
+    
+    papszReturn = CSLTokenizeStringComplex( pszWorkLine, ",", TRUE, TRUE );
+
+    CPLFree( pszWorkLine );
+
+    return papszReturn;
 }
 
 /************************************************************************/
