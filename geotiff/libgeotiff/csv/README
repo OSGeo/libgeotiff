@@ -1,0 +1,38 @@
+	EPSG Tables
+	===========
+
+The .csv files in this directory are an extract of tables from the EPSG
+projection database in CSV (comma separated value) format.  These same
+files come with the source distribution in the libgeotiff/csv directory.
+Information and source to extract these tables from the EPSG database
+can be found in the source distribution libgeotiff/csv/odbc2csv directory.
+
+Detailed information on the EPSG database can be found at:
+
+  http://www.petroconsultants.com/products/geodetic.htm
+
+
+The tables containing the basic data are: 
+
+ compd_cs:	compound coordinate system data. 
+ ellipsoid:	ellipsoid data. 
+ ellips_alias:	ellipsoid alias data. 
+ geod_datum:	geodetic datum data. 
+ gdatum_alias:	geodetic datum alias data. 
+ geod_trf:	geodetic transformation data. 
+ horiz_cs:	geographic and projected coordinate system data (GCS/PCS codes)
+ p_meridian:	prime meridian data. 
+ trf_method:	transformation method and parameter data. 
+ trf_nonpolynomial: projection and 3- or 7-parameter geodetic
+                    transformation parameter values. 
+ trf_path:	geodetic transformation path data. 
+ uom_angle:	angle unit data. 
+ uom_an_alias:	angle unit alias data: currently not populated. 
+ uom_length:	length unit data. 
+ uom_le_alias:	length unit alias data. 
+ uom_scale:	scale unit data. 
+ uom_sc_alias:	scale unit alias data: currently not populated. 
+ vert_datum:	vertical datum data. 
+ vert_cs:	vertical coordinate system data. 
+ vert_offset:	vertical coordinate system transformation data.
+
