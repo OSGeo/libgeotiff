@@ -205,6 +205,7 @@ static void ApplyWorldFile(const char *worldfilename, TIFF *out)
     /*
      * Write out pixel scale, and tiepoint information.
      */
+    pixsize[1] = ABS(pixsize[1]);
     pixsize[2] = 0.0;
     TIFFSetField(out, GTIFF_PIXELSCALE, 3, pixsize);
 
