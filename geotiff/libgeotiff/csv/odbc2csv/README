@@ -8,7 +8,7 @@ do the following steps:
 
 1) Download the database:
 
-   http://www.petroconsultants.com/products/geodetic.html
+   http://www.epsg.org/
 
 2) In the ODBC manager (in the Windows Control Panel) add a datasource called
    EPSG for the EPSG .mdb file.
