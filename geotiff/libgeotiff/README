@@ -21,28 +21,21 @@ Use of LIBTIFF
 --------------
 
 The default configuration assumes that the public-domain LIBTIFF
-package for reading and writing TIFF files has been acquired and
-built. The latest version of libtiff may be found at:
+package for reading and writing TIFF files has been installed, with
+the development kit (include files).  The latest version of libtiff may 
+be found at:
 
    http://www.libtiff.org/
    
-and is in compressed tar format. For this build to work you must
-use libtiff version v3.4beta018 or newer. Uncompress and untar 
-the file, and build the library using the documented methods.
-
-Once the libtiff package has been built, install the "libgeotiff"
-directory into the top-level libtiff directory (so that "libgeotiff" is
-at the same level as "libtiff").  If libtiff is in some alternate location
-it should be possible to set the TIFF_HOME environment variable to point
-to the libtiff directory within the distribution, instead of colocating them
-before running configure.
-
+For this build to work you must use libtiff version v3.4beta018 or newer.
+If you are building it yourself, and have libtiff 3.5.6 or later, you
+should use the "install-private" target instead of "install" to install
+some private include files required by libgeotiff.
 
 Building LIBGEOTIFF:
 --------------------
 
-
-Assuming that whatever TIFF library you use has been built, you
+Assuming that whatever TIFF library you use has been built, and installed
 may now build the rest of the geotiff library with:
 
    % cd libgeotiff
@@ -70,12 +63,11 @@ Common Configuration Issues:
    % make clean 
    % make
 
- o If the system can't find libtiff, you can use the TIFF_HOME environment
-   variable to point to it.
+ o If the system can't find libtiff, you can use the --with-libtiff option
+   variable to point to it
 
-   % setenv TIFF_HOME /contrib/tiff-v3.4beta037/libtiff
    % rm config.status
-   % ./configure
+   % ./configure --with-libtiff=/u/contrib/libtiff-3.5.5/libtiff
    % make clean 
    % make
 
@@ -98,6 +90,14 @@ Common Configuration Issues:
    % ./configure --with-proj=/contrib/proj-4.4.1
    % make clean
    % make
+
+ o The logic to build shared libraries is pretty weak, and is likely to
+   only work on systems with the GNU tool chain (gcc, and ld) installed. 
+   On other systems you can try hacking on Makefile after running configure.
+   It may be necessary to set the GEOTIFF_SO macro to "libgeotiff.1.1.x"
+   as it is made empty by default on systems configure doesn't think can 
+   build shared libraries.
+
 
 Test Programs:
 

@@ -2,6 +2,13 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT(geotiff.h)
 AC_CONFIG_HEADER(geo_config.h)
 
+VERSION_MAJOR=1
+VERSION_MINOR=1
+VERSION_POINT=4
+AC_SUBST(VERSION_MAJOR,$VERSION_MAJOR)
+AC_SUBST(VERSION_MINOR,$VERSION_MINOR)
+AC_SUBST(VERSION_POINT,$VERSION_POINT)
+
 dnl Checks for programs.
 AC_PROG_CC
 AC_COMPILER_WFLAGS
@@ -9,6 +16,19 @@ AC_COMPILER_WFLAGS
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_RANLIB
+AC_COMPILER_PIC
+AC_LD_SHARED
+
+#
+#	If we have shared library support define that we want to build
+# 	the libgeotiff.so
+
+GEOTIFF_SO=
+if test "$LD_SHARED" != "/bin/true" ; then
+  GEOTIFF_SO=libgeotiff.so.$VERSION_MAJOR.$VERSION_MINOR.$VERSION_POINT
+fi
+AC_SUBST(GEOTIFF_SO,$GEOTIFF_SO)
+
 
 #
 # We always want to check /usr/local for stuff, since things like libproj
@@ -63,35 +83,35 @@ dnl available check if the system directories have the library, _and_ the
 dnl required private include files.  Normally these private include files
 dnl (tiffiop.h) are not installed with the public interface.
 dnl
-if test "$TIFF_HOME" != "" ; then
-  echo Using predefined TIFF_HOME=$TIFF_HOME
-elif test -d ../../libtiff/libtiff ; then
-  TIFF_HOME=`pwd`/../../libtiff/libtiff
-  echo Found local TIFF_HOME=$TIFF_HOME
-elif test -d ../libtiff ; then
-  TIFF_HOME=`pwd`/../libtiff
-  echo Found local TIFF_HOME=$TIFF_HOME
-fi
+AC_ARG_WITH(libtiff, [  --with-libtiff=dir      Use libtiff in directory dir],,)
 
-if test "$TIFF_HOME" != "" ; then
+if test "$with_libtiff" != "" ; then
   TIFF_LIB=$TIFF_HOME/libtiff.a
-  LIBS="$TIFF_LIB $LIBS"
+  LIBS="-L$with_libtiff -ltiff $LIBS"
 
-  TIFF_INC=-I$TIFF_HOME
-  AC_SUBST(TIFF_INC,$TIFF_INC)
-  
+  TIFF_INC=-I$with_libtiff
 else
   AC_CHECK_LIB(tiff,TIFFOpen,,
                AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
 build libgeotiff without libtiff]),-lm)
-  AC_CHECK_HEADERS(tiffiop.h,,AC_MSG_ERROR("tiffiop.h not found - cannot build libxtiff"))
+  TIFF_INC=
+  AC_CHECK_HEADERS(tiffiop.h,,TIFF_INC=-Ilibtiff_private)
+  if test ! -z "$TIFF_INC" ; then
+    AC_MSG_WARN([Using local copy of libtiff private include files.])
+    AC_MSG_WARN([It would be safer to install libtiff private include])
+    AC_MSG_WARN([files with the install-private target of libtiff, or])
+    AC_MSG_WARN([use --with-libtiff when configuring libgeotiff to build])
+    AC_MSG_WARN([against a libtiff build tree.])
+  fi
 fi
+
+AC_SUBST(TIFF_INC,$TIFF_INC)
 
 dnl
 dnl Try and find libproj.a, and projects.h
 dnl
 
-AC_ARG_WITH(proj, [  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)],[PROJ_HOME=$withval],[PROJ_HOME=yes])
+AC_ARG_WITH(proj, [  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)],[PROJ_HOME=$withval],[PROJ_HOME=])
 
 if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
   if test -d $PROJ_HOME/src ; then

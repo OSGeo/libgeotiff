@@ -29,6 +29,14 @@ LIB_XTIFF=${SRCDIR}/libxtiff
 XTIFF=xtiff.o
 XTIFFINC= xtiffio.h xtiffiop.h
 
+VERSION_MAJOR	=	@VERSION_MAJOR@
+VERSION_MINOR	=	@VERSION_MINOR@
+VERSION_POINT	=	@VERSION_POINT@
+
+LIBS=   @LIBS@
+GEOTIFF_SO=@GEOTIFF_SO@
+LD_SHARED=@LD_SHARED@
+
 GT_INCLUDE_FILES = xtiffio.h xtiffiop.h geotiff.h geotiffio.h geovalues.h \
 	geonames.h geokeys.h geo_tiffp.h geo_config.h geo_keyp.h \
 	geo_normalize.h cpl_serv.h cpl_csv.h 
@@ -90,11 +98,16 @@ OBJS  =	$(CORE_OBJS) @CSV_SOURCE@
 
 TARGETS = libgeotiff.a
 
-all:    Makefile ${TARGETS} Progs
+all:    Makefile ${TARGETS} ${GEOTIFF_SO} Progs
 
 libgeotiff.a: ${OBJS}
 	${AR} ${AROPTS} libgeotiff.a $?
 	${RANLIB} libgeotiff.a
+
+libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_POINT): ${OBJS}
+	${LD_SHARED} ${OBJS} ${LIBS} -o $(GEOTIFF_SO)
+	rm -f libgeotiff.so
+	${LN} $(GEOTIFF_SO) libgeotiff.so
 
 Progs:
 	${CD} ${BIN};\
@@ -186,4 +199,16 @@ install:
 	$(INSTALL) csv/*.csv $(datadir)
 	$(INSTALL) -d $(bindir)
 	$(INSTALL) bin/listgeo bin/geotifcp $(bindir)
+	if test ! -z "$(GEOTIFF_SO)" ; then \
+	   $(INSTALL) $(GEOTIFF_SO) ${libdir}; \
+	   rm -f ${libdir}/libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
+	   ${LN} ${libdir}/$(GEOTIFF_SO) ${libdir}/libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR); \
+	   rm -f ${libdir}/libgeotiff.so.$(VERSION_MAJOR); \
+	   ${LN} ${libdir}/libgeotiff.so.$(VERSION_MAJOR).$(VERSION_MINOR) \
+		${libdir}/libgeotiff.so.$(VERSION_MAJOR); \
+	   rm -f ${libdir}/libgeotiff.so; \
+	   ${LN} ${libdir}/libgeotiff.so.$(VERSION_MAJOR) \
+		${libdir}/libgeotiff.so; \
+	fi
+
 
