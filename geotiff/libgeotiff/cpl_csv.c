@@ -23,6 +23,9 @@
  * cpl_csv.c: Support functions for accessing CSV files.
  *
  * $Log$
+ * Revision 1.14  2003/01/15 04:39:58  warmerda
+ * change internal name of CSVAccess
+ *
  * Revision 1.13  2002/11/28 22:26:41  warmerda
  * upgraded to proper CSV formatting, and in-memory caching
  *
@@ -113,7 +116,7 @@ static CSVTable *psCSVTableList = NULL;
 /*      isn't done.                                                     */
 /************************************************************************/
 
-static CSVTable *CSVAccess( const char * pszFilename )
+static CSVTable *gtCSVAccess( const char * pszFilename )
 
 {
     CSVTable    *psTable;
@@ -346,7 +349,7 @@ static char *CSVFindNextLine( char *pszThisLine )
 static void CSVIngest( const char *pszFilename )
 
 {
-    CSVTable *psTable = CSVAccess( pszFilename );
+    CSVTable *psTable = gtCSVAccess( pszFilename );
     int       nFileLen, i, nMaxLineCount, iLine = 0;
     char *pszThisLine;
 
@@ -701,7 +704,7 @@ char **CSVScanFile( const char * pszFilename, int iKeyField,
     if( iKeyField < 0 )
         return NULL;
 
-    psTable = CSVAccess( pszFilename );
+    psTable = gtCSVAccess( pszFilename );
     if( psTable == NULL )
         return NULL;
     
@@ -794,7 +797,7 @@ int CSVGetFileFieldId( const char * pszFilename, const char * pszFieldName )
 /* -------------------------------------------------------------------- */
     CPLAssert( pszFilename != NULL );
 
-    psTable = CSVAccess( pszFilename );
+    psTable = gtCSVAccess( pszFilename );
     if( psTable == NULL )
         return -1;
 
@@ -861,7 +864,7 @@ const char *CSVGetField( const char * pszFilename,
 /* -------------------------------------------------------------------- */
 /*      Find the table.                                                 */
 /* -------------------------------------------------------------------- */
-    psTable = CSVAccess( pszFilename );
+    psTable = gtCSVAccess( pszFilename );
     if( psTable == NULL )
         return "";
 
