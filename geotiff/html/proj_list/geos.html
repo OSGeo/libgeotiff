@@ -1,0 +1,107 @@
+<head>
+<title>GEOS - Geostationary Satellite View</title>
+</head>
+<body>
+
+<h1>GEOS - Geostationary Satellite View</h1>
+
+<table border>
+
+<td>Name
+<td>Geostationary Satellite View
+<tr>
+
+<td>Alias
+<td>GEOS
+<tr>
+
+<td>Alias
+<td>Normalized Geostationary Projection
+<tr>
+
+<td>EPSG Code
+<td>(none)
+<tr>
+
+<td>GeoTIFF Code
+<td>
+<tr>
+
+<td>OGC WKT Name
+<td>GEOS
+<tr>
+
+<td>Supported By
+<td> PROJ.4, OGC WKT
+<tr>
+
+</table>
+
+<h3>Projection Parameters</h3>
+
+<table border>
+<th>Name
+<th>EPSG #
+<th>GeoTIFF ID
+<th>OGC WKT
+<th>Units
+<th>Notes
+
+<tr>
+<td>Longitude of natural origin
+<td>2
+<td>NatOriginLong
+<td>central_meridian
+<td>Angular
+<td>
+
+<tr>
+<td>Satellite Height
+<td>?
+<td>?
+<td>satellite_height
+<td>Linear
+<td>
+
+<tr>
+<td>False Easting
+<td>6
+<td>FalseEasting
+<td>false_easting
+<td>Linear
+<td>
+
+<tr>
+<td>False Northing
+<td>7
+<td>FalseNorthing
+<td>false_northing
+<td>Linear
+<td>
+
+</table>
+
+<h3>Notes</h3>
+
+Documented in document CGMS 03 (Coordinate Group for Meteorological
+Satellites - LRIT/HRIT Global Specification).  Possibly availble at url 
+<a href="http://www.eumetsat.int/en/area4/msg/news/us_doc/cgms_03_26.pdf">
+http://www.eumetsat.int/en/area4/msg/news/us_doc/cgms_03_26.pdf</a>.  The 
+GEOS projection is detailed in section 4.4.3.2.<p>
+
+Note that the satellite height is in meters above the center of earth,
+not over the ellipsoid surface.  The document suggests 42164000m as a 
+reasonable value.<p>
+
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=geos  +lon_0=<i>Central Meridian</i>
+              +h=<i>Satellite Height</i>
+              +x_0=<i>False Easting</i>
+              +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+</body>
