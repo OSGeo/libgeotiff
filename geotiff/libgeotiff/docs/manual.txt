@@ -329,12 +329,21 @@ While a typical use of the code for reading tags is:
 -------------------------------------------------------------
 2.1 listgeo   - dump a GeoTIFF metadata file
 
-Syntax:   listgeo  inputfile
+Syntax:   listgeo [-tfw] [-no_norm] [-t tabledir] inputfile
 
 The program listgeo takes a GeoTIFF file as input and dumps to
 the standard output a GeoTIFF "metadata" file, which is human
 readable, and may also be used as input to other programs which
 use the "GTIFImport" routine, such as geotifcp, below.
+
+The -tfw flag may be passed to force generation of an ESRI style .tfw
+file as well as the metadata file.  
+
+The -no_norm flag will supress reporting of normalized parameters, and
+reporting of corner points. 
+
+The "-t tabledir" flag overrides the programs concept of how to file the
+EPSG CSV files, causing it to look in directory "tabledir". 
 
 ------------------------
 GeoTIFF Metadata Format:
