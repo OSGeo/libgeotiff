@@ -96,7 +96,8 @@ Common Configuration Issues:
  o If you want to build in support for the PROJ.4 library, so that listgeo
    can report corner coordinates in lat/long, it may be necessary to 
    specify the directory containing the libproj include files, and library.
-   (PROJ.4 can also be disabled by passing --without-proj)
+   (PROJ.4 can also be disabled by passing --without-proj).  PROJ.4 info 
+   can be found at http://www.remotesensing.org/proj .
 
    % rm config.status
    % ./configure --with-proj=/contrib/proj-4.4.1
