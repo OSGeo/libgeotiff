@@ -28,6 +28,10 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.11  1999/09/15 16:44:06  warmerda
+ * Change meter to metre to match EPSG database in GTIFGetUOMLengthInfo()
+ * shortcut.
+ *
  * Revision 1.10  1999/09/15 16:35:15  warmerda
  * Fixed the fractions of second handling properly in GTIFAngleStringToDD().
  *
@@ -570,7 +574,7 @@ int GTIFGetUOMLengthInfo( int nUOMLengthCode,
     if( nUOMLengthCode == 9001 )
     {
         if( ppszUOMName != NULL )
-            *ppszUOMName = CPLStrdup( "meter" );
+            *ppszUOMName = CPLStrdup( "metre" );
         if( pdfInMeters != NULL )
             *pdfInMeters = 1.0;
 
