@@ -44,14 +44,6 @@ AC_SUBST(GEOTIFF_IMP,$GEOTIFF_IMP)
 AC_SUBST(GEOTIFF_DLL,$GEOTIFF_DLL)
 AC_SUBST(EXEEXT,$EXEEXT)
 
-
-#
-# We always want to check /usr/local for stuff, since things like libproj
-# are often there. 
-LIBS="$LIBS -L/usr/local/lib"
-CFLAGS="$CFLAGS -I/usr/local/include"
-CPPFLAGS="$CPPFLAGS -I/usr/local/include"
-
 dnl Checks for libraries.
 AC_CHECK_LIB(m,exp,,,)
 
@@ -164,19 +156,20 @@ fi
 
 dnl
 dnl Has the user requested "incode" EPSG tables, overriding the
-dnl default use of EPSG tables in csv files?
+dnl default use of EPSG tables in csv files?  Temporarily unvailable.
 dnl
 
-AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg	  Use C code EPSG tables],, enable_incode_epsg=no)
+dnl AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg	  Use C code EPSG tables],, enable_incode_epsg=no)
 
-if test "$enable_incode_epsg" != "yes" ; then
-  echo "EPSG tables will be read from .csv files."
-  CSV_SOURCE="\$(CSV_FILE_OBJS)"
-else
-  echo "EPSG tables will be linked into library."
-  CSV_SOURCE="\$(CSV_INCODE_OBJS)"
-fi
-AC_SUBST(CSV_SOURCE,$CSV_SOURCE)
+dnl if test "$enable_incode_epsg" != "yes" ; then
+dnl   echo "EPSG tables will be read from .csv files."
+dnl   CSV_SOURCE="\$(CSV_FILE_OBJS)"
+dnl else
+dnl   echo "EPSG tables will be linked into library."
+dnl   CSV_SOURCE="\$(CSV_INCODE_OBJS)"
+dnl fi
+dnl AC_SUBST(CSV_SOURCE,$CSV_SOURCE)
+
 
 
 
