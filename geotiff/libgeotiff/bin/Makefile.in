@@ -44,6 +44,9 @@ makegeo: makegeo.o  ${GEOTIFFDIR}/libgeotiff.a
 geotifcp: geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} geotifcp.o ${LIBS} -o geotifcp
 
+gt_update: gt_update.o  ${GEOTIFFDIR}/libgeotiff.a
+	${CC} ${COPTS} gt_update.o ${LIBS} -o gt_update
+
 listgeo: listgeo.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} listgeo.o ${LIBS} -o listgeo
 
@@ -52,5 +55,5 @@ csv2html: csv2html.o  ${GEOTIFFDIR}/libgeotiff.a
 
 
 clean:
-	rm -f ${ALL} ${OBJS} core a.out newgeo.tif
+	rm -f ${ALL} *.o core a.out newgeo.tif csv2html gt_update
 
