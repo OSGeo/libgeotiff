@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.8  2001/04/06 16:56:22  warmerda
+ * added support for PCSToImage with matrix
+ *
  * Revision 1.7  2001/03/05 03:25:23  warmerda
  * restructure cleanup, and apply to GTIFPCSToImage()
  *
@@ -58,6 +61,42 @@
 #include "geo_tiffp.h" /* external TIFF interface */
 #include "geo_keyp.h"  /* private interface       */
 #include "geokeys.h"
+
+/************************************************************************/
+/*                          inv_geotransform()                          */
+/*                                                                      */
+/*      Invert a 6 term geotransform style matrix.                      */
+/************************************************************************/
+
+static int inv_geotransform( double *gt_in, double *gt_out )
+
+{
+    double	det, inv_det;
+
+    /* we assume a 3rd row that is [0 0 1] */
+
+    /* Compute determinate */
+
+    det = gt_in[0] * gt_in[4] - gt_in[1] * gt_in[3];
+
+    if( fabs(det) < 0.000000000000001 )
+        return 0;
+
+    inv_det = 1.0 / det;
+
+    /* compute adjoint, and devide by determinate */
+
+    gt_out[0] =  gt_in[4] * inv_det;
+    gt_out[3] = -gt_in[3] * inv_det;
+
+    gt_out[1] = -gt_in[1] * inv_det;
+    gt_out[4] =  gt_in[0] * inv_det;
+
+    gt_out[2] = ( gt_in[1] * gt_in[5] - gt_in[2] * gt_in[4]) * inv_det;
+    gt_out[5] = (-gt_in[0] * gt_in[5] + gt_in[2] * gt_in[3]) * inv_det;
+
+    return 1;
+}
 
 /************************************************************************/
 /*                       GTIFTiepointTranslate()                        */
@@ -179,8 +218,8 @@ int GTIFImageToPCS( GTIF *gtif, double *x, double *y )
  * Translate a projection coordinate to pixel/line coordinates.
  *
  * At this time this function does not support PCS to image translations for
- * tiepoints-only, or transformation matrix based definitions, only pixelscale
- * and tiepoints formulations.
+ * tiepoints-only based definitions, only matrix and pixelscale/tiepoints 
+ * formulations are supposed.
  *
  * @param gtif The handle from GTIFNew() indicating the target file.
  * @param x A pointer to the double containing the pixel offset on input,
@@ -197,9 +236,10 @@ int GTIFPCSToImage( GTIF *gtif, double *x, double *y )
 
 {
     double 	*tiepoints;
-    int 	tiepoint_count, count;
+    int 	tiepoint_count, count, transform_count = 0;
     double	*pixel_scale;
-    tiff_t *tif=gtif->gt_tif;
+    double 	*transform   = 0;
+    tiff_t 	*tif=gtif->gt_tif;
     int		result = FALSE;
 
 /* -------------------------------------------------------------------- */
@@ -212,6 +252,10 @@ int GTIFPCSToImage( GTIF *gtif, double *x, double *y )
     if (!(gtif->gt_methods.get)(tif, GTIFF_PIXELSCALE, &count, &pixel_scale ))
         count = 0;
 
+    if (!(gtif->gt_methods.get)(tif, GTIFF_TRANSMATRIX,
+                                &transform_count, &transform ))
+        transform_count = 0;
+
 /* -------------------------------------------------------------------- */
 /*      If the pixelscale count is zero, but we have tiepoints use      */
 /*      the tiepoint based approach.                                    */
@@ -222,7 +266,34 @@ int GTIFPCSToImage( GTIF *gtif, double *x, double *y )
                                         tiepoints + 3, tiepoints,
                                         *x, *y, x, y );
     }
-    
+
+/* -------------------------------------------------------------------- */
+/*      Handle matrix - convert to "geotransform" format, invert and    */
+/*      apply.                                                          */
+/* -------------------------------------------------------------------- */
+    else if( transform_count == 16 )
+    {
+        double  x_in = *x, y_in = *y;
+        double	gt_in[6], gt_out[6];
+        
+        gt_in[0] = transform[0];
+        gt_in[1] = transform[1];
+        gt_in[2] = transform[3];
+        gt_in[3] = transform[4];
+        gt_in[4] = transform[5];
+        gt_in[5] = transform[7];
+
+        if( !inv_geotransform( gt_in, gt_out ) )
+            result = FALSE;
+        else
+        {
+            *x = x_in * gt_out[0] + y_in * gt_out[1] + gt_out[2];
+            *y = x_in * gt_out[3] + y_in * gt_out[4] + gt_out[5];
+            
+            result = TRUE;
+        }
+    }
+
 /* -------------------------------------------------------------------- */
 /*      For now we require one tie point, and a valid pixel scale.      */
 /* -------------------------------------------------------------------- */
