@@ -1,3 +1,21 @@
+2000-11-30  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Fixed Makefile.in to install all the .inc files with the include
+	files.
+
+2000-11-24  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Added configure/makefile logic to build a shared library, 
+	currently libgeotiff.so.1.1.5, and intall it with appropriate links.
+
+	* Modified configure to use --with-libtiff, and to ignore TIFF_HOME.
+	Now it is preferred to use an installed libtiff instead of one sitting
+	in a build directory.  
+
+	* Added libtiff_private directory with required libtiff include
+	files, to make it easier to build libgeotiff if only the standard
+	libtiff development environment was installed.
+
 2000-11-23  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Based loosely on suggestions from Curt Archer, I have reworked
