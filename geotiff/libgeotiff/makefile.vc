@@ -1,13 +1,18 @@
 #
 # Typically the only thing that needs to be changed are the paths to the
-# TIFF include files, and library.  However, you may want to add optimization
-# options to the CFLAGS macro as well. 
+# TIFF tree.  Note that we expect an existing build tree, in part because we
+# need private include files from libtiff, but also we need access to getopt.h.
+# in the ports directory.
 #
-TIFF_INC = ..\..\libtiff\libtiff
-TIFF_LIB = ..\..\libtiff\libtiff\libtiff.lib
+# You may want to add optimization options to the CFLAGS macro as well. 
+#
+TIFF_DIR = ..\..\libtiff\libtiff
+
+TIFF_INC = -I$(TIFF_DIR)
+TIFF_LIB = $(TIFF_DIR)\libtiff.lib
 #
 CC      = cl
-INCL	= -I. -Ilibxtiff -I$(TIFF_INC)
+INCL	= -I. -Ilibxtiff $(TIFF_INC)
 LIBS    = $(TIFF_LIB)
 
 #
