@@ -1,3 +1,8 @@
+Thu Sep 16 17:22:55 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Added support for pure tiepoints, and the transformation
+	matrix in GTIFImageToPCS(), and GTIFPCSToImage(). 
+
 Wed Sep 15 10:19:34 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* CT_TransvMercator_SouthOriented now CT_TransvMercator_SouthOrientated
