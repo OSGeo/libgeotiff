@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.5  2000/08/22 03:32:46  warmerda
+ * removed GTIFTiepointTranslate code
+ *
  * Revision 1.4  1999/09/17 01:19:51  warmerda
  * Fixed bug in use of transform matrix.
  *
@@ -59,62 +62,9 @@ int GTIFTiepointTranslate( int gcp_count, double * gcps_in, double * gcps_out,
                            double *x_out, double *y_out )
 
 {
-    int		i;
-    double	sum, epsilon = 1e-15;
-
-#define X_IN(i)  (gcps_in[(i) * 6])    
-#define Y_IN(i)  (gcps_in[(i) * 6 + 1])    
-#define X_OUT(i) (gcps_in[(i) * 6 + 3])    
-#define Y_OUT(i) (gcps_in[(i) * 6 + 4])    
-    
-/* -------------------------------------------------------------------- */
-/*      Compute a sum of the inverse distances to gcps so that we       */
-/*      can use them in a weighted average.  If we find an exact hit    */
-/*      we will just return it immediately to avoid divide by zero      */
-/*      errors.                                                         */
-/* -------------------------------------------------------------------- */
-    sum = 0.0;
-    for( i = 0; i < gcp_count; i++ )
-    {
-        double 		x_dist, y_dist, distance;
-        
-        x_dist = ABS(X_IN(i) - x_in);
-        y_dist = ABS(Y_IN(i) - y_in);
-        distance = sqrt( x_dist * x_dist + y_dist * y_dist );
-
-        if( distance < epsilon )
-        {
-            *x_out = X_OUT(i);
-            *y_out = Y_OUT(i);
-            return TRUE;
-        }
-
-        sum += 1.0 / distance;
-    }
-    
-/* -------------------------------------------------------------------- */
-/*      Apply the vector to each GCP in proportion to it's              */
-/*      contribution to the sum of inverse distances.                   */
-/* -------------------------------------------------------------------- */
-    *x_out = 0.0;
-    *y_out = 0.0;
-       
-    
-    for( i = 0; i < gcp_count; i++ )
-    {
-        double 		x_dist, y_dist, distance, ratio;
-        
-        x_dist = ABS(X_IN(i) - x_in);
-        y_dist = ABS(Y_IN(i) - y_in);
-        distance = sqrt( x_dist * x_dist + y_dist * y_dist );
-
-        ratio = (1.0/distance) / sum;
-
-        *x_out += X_OUT(i) * ratio;
-        *y_out += Y_OUT(i) * ratio;
-    }
-
-    return TRUE;
+    /* I would appreciate a _brief_ block of code for doing second order
+       polynomial regression here! */
+    return FALSE;
 }
 
 
