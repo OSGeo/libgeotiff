@@ -1,3 +1,18 @@
+Mon May  3 14:10:30 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Added corner coordinate reporting to listgeo, and made full
+	  report the default.
+
+	* Added geo_trans.c with image<->PCS transformations.
+
+	* Fixed serious bug with parsing DMSmmsss.ss coordinates from
+	  CSV files which could make many results wrong.
+
+	* Cleaned up warnings with gcc -Wall, and IRIX native compiler. 
+
+	* Added support for -Wall for GCC in when running configure. This
+	also resulted in the addition of aclocal.m4 to the dist.
+
 Wed Apr 28 14:12:25 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Added geo_extra.c, for special handling of UTM and state plane 
