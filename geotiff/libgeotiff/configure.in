@@ -49,8 +49,8 @@ dnl Try and find libproj.a, and projects.h
 dnl
 if test "$PROJ_HOME" != "" ; then
   echo Using predefined PROJ_HOME=$PROJ_HOME
-elif test -d ../proj ; then
-  PROJ_HOME=`pwd`/../proj
+elif test -d ../../proj/src ; then
+  PROJ_HOME=`pwd`/../../proj/src
   echo Found local PROJ_HOME=$PROJ_HOME
 fi
 
@@ -60,6 +60,8 @@ if test "$PROJ_HOME" != "" ; then
 
   PROJ_INC=-I$PROJ_HOME
   AC_SUBST(PROJ_INC,$PROJ_INC)
+  AC_DEFINE(HAVE_PROJECTS_H)
+  AC_DEFINE(HAVE_LIBPROJ)
   
 else
   AC_CHECK_LIB(proj,pj_init,,,-lm)
