@@ -23,6 +23,9 @@
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
  * $Log$
+ * Revision 1.8  2001/07/09 20:14:37  warmerda
+ * Another problem freeing pszRLBuffer and not setting to NULL.
+ *
  * Revision 1.7  2001/04/17 13:40:43  warmerda
  * fixed freeing of line buffer in CPLReadLine(), init ptr to NULL
  *
@@ -212,6 +215,7 @@ const char *CPLReadLine( FILE * fp )
             == NULL )
         {
             CPLFree( pszRLBuffer );
+            pszRLBuffer = NULL;
             nRLBufferSize = 0;
 
             return NULL;
