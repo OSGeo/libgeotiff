@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.8  1999/07/13 03:12:52  warmerda
+ * Make scale a parameter of CT_Stereographic.
+ *
  * Revision 1.7  1999/05/04 03:13:22  warmerda
  * fixed a serious bug in parsing DMSmmss.sss values, and a bug in forming DMS strings
  *
@@ -873,6 +876,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
       case CT_LambertConfConic_1SP:
       case CT_Mercator:
       case CT_ObliqueStereographic:
+      case CT_Stereographic:
       case CT_TransverseMercator:
       case CT_TransvMercator_SouthOriented:
 /* -------------------------------------------------------------------- */
@@ -994,7 +998,6 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         break;
 
 /* -------------------------------------------------------------------- */
-      case CT_Stereographic:
       case CT_AzimuthalEquidistant:
       case CT_MillerCylindrical:
       case CT_Equirectangular:
