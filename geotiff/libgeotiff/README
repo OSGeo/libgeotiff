@@ -89,6 +89,16 @@ Common Configuration Issues:
    % make clean
    % make
 
+ o If you want to build in support for the PROJ.4 library, so that listgeo
+   can report corner coordinates in lat/long, it may be necessary to 
+   specify the directory containing the libproj include files, and library.
+
+   % rm config.status
+   % setenv PROJ_HOME /contrib/proj-4.4.1/src
+   % ./configure
+   % make clean
+   % make
+
 Test Programs:
 
 There are two demonstration test programs "makegeo" and "listgeo"
