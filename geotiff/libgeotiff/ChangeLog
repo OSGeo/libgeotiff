@@ -1,3 +1,8 @@
+2004-07-09  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: added 9122 as a simple degree alias in 
+	GTIFGetUOMAngleInfo().
+
 2004-06-07  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: fallback to using gdal_datum.csv if datum.csv 
