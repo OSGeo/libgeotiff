@@ -23,6 +23,9 @@
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
  * $Log$
+ * Revision 1.6  2001/03/05 04:56:17  warmerda
+ * make it possible to deallocate CPLReadLine buffer
+ *
  * Revision 1.5  2000/09/30 03:35:05  warmerda
  * Fixed CPLReadLine() to use avoid calling VSIRealloc() on a NULL pointer.
  *
@@ -165,6 +168,16 @@ const char *CPLReadLine( FILE * fp )
     int		nLength, nReadSoFar = 0;
 
 /* -------------------------------------------------------------------- */
+/*      Cleanup case.                                                   */
+/* -------------------------------------------------------------------- */
+    if( fp == NULL )
+    {
+        CPLFree( pszRLBuffer );
+        nRLBufferSize = 0;
+        return NULL;
+    }
+
+/* -------------------------------------------------------------------- */
 /*      Loop reading chunks of the line till we get to the end of       */
 /*      the line.                                                       */
 /* -------------------------------------------------------------------- */
@@ -193,7 +206,12 @@ const char *CPLReadLine( FILE * fp )
 /* -------------------------------------------------------------------- */
         if( VSIFGets( pszRLBuffer+nReadSoFar, nRLBufferSize-nReadSoFar, fp )
             == NULL )
+        {
+            CPLFree( pszRLBuffer );
+            nRLBufferSize = 0;
+
             return NULL;
+        }
 
         nReadSoFar = strlen(pszRLBuffer);
 
