@@ -21,6 +21,8 @@ LIBS    = geotiff.lib $(TIFF_LIB)
 # Use the following to build exe's again libtiff and libgeotiff DLL
 #LIBS    = geotiff_i.lib $(TIFF_LIB_DLL)
 
+DLLNAME = geotiff.dll
+
 #
 CFLAGS  = $(INCL) /MD /Ox /nologo
 
@@ -42,7 +44,7 @@ OBJS    = \
 	cpl_csv.obj \
 	cpl_serv.obj
 
-all:    geo_config.h geotiff.lib geotiff.dll listgeo.exe geotifcp.exe
+all:    geo_config.h geotiff.lib $(DLLNAME) listgeo.exe geotifcp.exe
 
 listgeo.exe:	bin\listgeo.c geotiff.lib
 	$(CC) $(CFLAGS) bin\listgeo.c $(LIBS)
@@ -64,8 +66,8 @@ geotiff.lib:	$(OBJS)
 #	Only build geotiff.dll if you are also ensuring that TIFF symbols
 #	get exported.
 #
-geotiff.dll:    $(OBJS)
-	link /dll /out:geotiff.dll /implib:geotiff_i.lib $(OBJS) $(TIFF_LIB_DLL)
+$(DLLNAME):    $(OBJS)
+	link /dll /out:$(DLLNAME) /implib:geotiff_i.lib $(OBJS) $(TIFF_LIB_DLL)
 
 geo_config.h:	geo_config.h.vc
 	copy geo_config.h.vc geo_config.h
