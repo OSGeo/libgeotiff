@@ -1,7 +1,7 @@
 	EPSG Tables
 	===========
 
-The .csv files in this directory are an extract of tables from the EPSG
+The .csv files in this directory are an extract of tables from the EPSG 
 projection database in CSV (comma separated value) format.  These same
 files come with the source distribution in the libgeotiff/csv directory.
 Information and source to extract these tables from the EPSG database
@@ -11,28 +11,34 @@ Detailed information on the EPSG database can be found at:
 
   http://www.petroconsultants.com/products/geodetic.htm
 
+The current version of the EPSG database dumped is 6.2.2.
 
-The tables containing the basic data are: 
+All EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
+are intended to be "true" csv files.  In particular quotes within quoted
+strings are doubled to escape them, rather than using backslash quoting.  
+Newlines may appear within quoted field values (as real raw newline 
+characters).  All table names are converted to lower case, and spaces replaced
+with underscores to make them more easily worked with. 
 
- compd_cs:	compound coordinate system data. 
- ellipsoid:	ellipsoid data. 
- ellips_alias:	ellipsoid alias data. 
- geod_datum:	geodetic datum data. 
- gdatum_alias:	geodetic datum alias data. 
- geod_trf:	geodetic transformation data. 
- horiz_cs:	geographic and projected coordinate system data (GCS/PCS codes)
- p_meridian:	prime meridian data. 
- trf_method:	transformation method and parameter data. 
- trf_nonpolynomial: projection and 3- or 7-parameter geodetic
-                    transformation parameter values. 
- trf_path:	geodetic transformation path data. 
- uom_angle:	angle unit data. 
- uom_an_alias:	angle unit alias data: currently not populated. 
- uom_length:	length unit data. 
- uom_le_alias:	length unit alias data. 
- uom_scale:	scale unit data. 
- uom_sc_alias:	scale unit alias data: currently not populated. 
- vert_datum:	vertical datum data. 
- vert_cs:	vertical coordinate system data. 
- vert_offset:	vertical coordinate system transformation data.
+In addition to the EPSG tables dumped to csv, the following additional items
+are present:
 
+ stateplane.csv: my own effort to related "USGS" state plane numbers with their
+                 currently preferred EPSG coordinate reference system 
+                 counterpart. 
+
+ pcs.csv: An attempt to collect most information about a PCS, including the
+          projection parameters into one fast access file. 
+ gcs.csv: An attempt to collect most information about a GCS, including
+          the WGS84 shift parameters (if there is only one path in EPSG).
+ build_pcs.py: a python script to build pcs.csv and gcs.csv from the other
+               EPSG files. 
+ csv_tools.py: supportting python functions for build_pcs.py.
+ 
+Libgeotiff uses the following tables.  The rest are present for completeness.
+
+ pcs.csv
+ gcs.csv
+ ellipsoid.csv
+ prime_meridian.csv
+ unit_of_measure.csv
