@@ -1,0 +1,1513 @@
+"COORD_OP_METHOD_CODE","COORD_OP_METHOD_NAME","REVERSE_OP","FORMULA","EXAMPLE","REMARKS","INFORMATION_SOURCE","DATA_SOURCE","REVISION_DATE","CHANGE_ID","DEPRECATED"
+9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,,This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
+9602,Geographic/geocentric conversions,1,"Latitude, P, and Longitude, L, in terms of Geographic Coordinate Reference System A may 
+be expressed in terms of a geocentric (earth centred) Cartesian coordinate reference system X, Y, Z 
+with the Z axis corresponding with the Polar axis positive northwards, the X axis through 
+the intersection of the Greenwich meridian and equator, and the Y axis through the 
+intersection of the equator with longitude 90 degrees E. If the prime meridian for geogCRS A is not 
+Greewich, longitudes must first be transformed to their Greenwich equivalent. If the earth's 
+spheroidal semi major axis is a, semi minor axis  b, and inverse flattening 1/f,  then
+
+   XA=   (nu + hA) cos P cos L
+   YA=   (nu + hA) cos P sin L
+   ZA=  ((1 - e^2) nu + hA) sin P
+
+where nu is the prime vertical radius of curvature at latitude P and is equal to 
+   nu = a /(1 - e^2*sin^2(P))^0.5,
+   P and L are respectively the latitude and longitude (related to Greenwich) of the point 
+   h is height above the ellipsoid, (topographic height plus geoidal height), and
+   e is the eccentricity of the ellipsoid where e^2 = (a^2 -b^2)/a^2 = 2f -f^2
+                                                                                                                                                 
+Cartesian coordinates in geocentric coordinate reference system B may be used to derive geographical coordinates in terms of geographic coordinate reference system B by:
+   P   =  arctan (ZB + e^2* nu*sin P) / (XB^2 + YB^2)^0.5 by iteration
+   L   = arctan YB/XB
+   hB  =  XB sec L sec P  - nu
+
+where LB is relative to Greenwich. If the geographic system has a non Greenwich prime 
+meridian, the Greenwich value of the local prime meridian should be applied to longitude.
+
+(Note that h is the height above the ellipsoid. This is the height value which is 
+delivered by Transit and GPS satellite observations but is not the topographic 
+height value which is normally used for national mapping and levelling operations. 
+The topographic height is usually the height above mean sea level or an alternative 
+level reference for the country. If one starts with a topographic height,  it will be 
+necessary to convert it to an ellipsoid height before using the above transformation 
+formulas. h = N + H, where N is the geoid height above the ellipsoid at the point 
+and is sometimes negative, and H is the height of the point above the geoid. The 
+height above the geoid is often taken to be that above mean sea level, perhaps with 
+a constant correction applied. Geoid heights of points above the nationally used 
+ellipsoid may not be readily available. For the WGS84 ellipsoid the value of N, 
+representing the height of the geoid relative to the ellipsoid, can vary between 
+values of -100m in the Sri Lanka area to +60m in the North Atlantic.)","Consider a North Sea point with coordinates derived by GPS satellite in the WGS 84 geographical coordinate system with coordinates of:
+
+           latitude    53 deg 48 min 33.82 sec N, 
+           longitude 02 deg 07 min 46.38 sec E, 
+    and ellipsoidal height 73.0m, 
+
+whose coordinates are required in terms of the ED50 geographical coordinate system which takes the International 1924 ellipsoid. The three parameter datum shift from WGS 84 to ED50 for this North Sea area is given as dX = +84.87m, dY = +96.49m, dZ = +116.95m. 
+
+The WGS 84 geographical coordinates convert to the following geocentric values using the above formulas for X, Y, Z:
+
+   XA = 3771 793.97m
+   YA =   140 253.34m
+   ZA = 5124 304.35m
+
+Applying the quoted datum shifts to these, we obtain new geocentric values now related to ED50:
+
+   XB = 3771 878.84m
+   YB =   140 349.83m
+   ZB = 5124 421.30m
+
+These convert to ED50 values on the International 1924 ellipsoid as:
+           latitude    53 deg 48 min 36.565 sec N, 
+           longitude 02 deg 07 min 51.477 sec E, 
+    and ellipsoidal height 28.02 m, 
+
+Note that the derived height is referred to the International 1924 ellipsoidal surface and will need a further correction for the height of the geoid at this point in order to relate it to Mean Sea Level.","This is a parameter-less conversion.   It is often concatenated in applications with the 3- or 7-parameter transformations 9603, 9606 and 9607 to form a geographic to geographic transformation.","EPSG guidance note #7 from ""Transformation from spatial to geographical coordinates""; B. R. Bowring; Survey Review number 181; July 1976.",EPSG,2000-06-23 00:00:00,97.29  2002.51,0
+9603,Geocentric translations,1,Xt = Xs + dX;  Yt = Ys + dY;  Zt = Zs + dZ,"Given a three parameter datum shift from WGS 84 to ED50 for this North Sea area is given as 
+dX = +84.87m, dY = +96.49m, dZ = +116.95m. 
+
+The WGS84 geographical coordinates convert to the following WGS 84 geocentric values using 
+the above formulas for X, Y, Z:
+
+   XA = 3771 793.97m
+   YA =   140 253.34m
+   ZA = 5124 304.35m
+
+Applying the given datum shifts to these, we obtain new geocentric values now related 
+to ED50:
+
+   XB = 3771 878.84m
+   YB =   140 349.83m
+   ZB = 5124 421.30m",This transformation allows calculation of coordinates in the target system by adding the parameter value to the corresponding coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,,0
+9604,Molodenski,1,See information source.,See information source.,,,EPSG,1996-09-18 00:00:00,,0
+9605,Abridged Molodenski,1,"As an alternative to the computation of the new latitude, longitude and height above ellipsoid in discrete steps through geocentric coordinates, the changes in these geographic coordinates may be derived directly by formulas derived by Molodenski. Abridged versions of these formulas, which are quite satisfactory for three parameter transformations, are as follows:
+
+Dlat "" = [(-dX*sin(lat)*cos(lon)) - (dY*sin(lat)*sin(lon)) + (dZ*cos(lat)) + (((a*Df) + (f*Da))*sin(2*lat))] / (rho * sin(1""))
+
+Dlon "" = (-dX*sin(lon) + dY*cos(lon)) / ((nu*cos(lat)) * sin(1""))
+
+Dh = (dX*cos(lat)*cos(lon)) + (dY*cos(lat)*sin(lon)) + (dZ*sin(lat)) + ((a*Df + f*Da)*(sin(lat)^2)) - Da
+
+where the dX, dY and dZ terms are as before, and rho and nu are the meridian and prime vertical radii of curvature at the given latitude (lat) on the first ellipsoid, Da is the difference in the semi-major axes (a1 - a2) of the first and second ellipsoids and Df  is the difference in the flattening of the two ellipsoids.
+
+The formulas for Dlat and Dlon indicate changes in latitude and longitude in arc-seconds.",See information source.,"This transformation is a truncated Taylor series expansion of a transformation between two geographic coordinate systems, modelled as a set of geocentric translations.",EPSG guidance note #7.,EPSG,1999-04-22 00:00:00,99.01,0
+9606,Position Vector 7-param. transformation,1,"Transformation of coordinates from one geographic coordinate reference system into another (also known as a ""datum transformation"") is usually carried out as an implicit concatenation of three transformations:
+[geographical to geocentric >> geocentric to geocentric >> geocentric to geographic]
+
+The middle part of the concatenated transformation, from geocentric to geocentric, is usually described as a simplified 7-parameter Helmert transformation, expressed in matrix form with 7 parameters, in what is known as the ""Bursa-Wolf"" formula:
+
+   (Xt)             (  1       -Rz    +Ry)      (Xs)     (dX)
+   (Yt)  =  M *  ( +Rz      1      -Rx)  *  (Ys)  + (dY)
+   (Zt)              ( -Ry   +Rx       1 )      (Zs)      (dZ)
+
+The parameters are commonly referred to defining the transformation ""from source coordinate reference system to target coordinate reference system"", whereby (Xs, Ys, Zs) are the coordinates of the point in the source geocentric coordinate reference system and (Xt, Yt, Zt) are the coordinates of the point in the target geocentric coordinate reference system.  But that does not define the parameters uniquely; neither is the definition of the parameters implied in the formula, as is often believed.  However, the following definition, which is consistent with the “Position Vector Transformation” convention is common E&P survey practice, 
+
+(dX, dY, dZ)   :Translation vector, to be added to the point's position vector in the source coordinate reference system in order to transform from source system to target system; also: the coordinates of the origin of the source coordinate reference system in the target coordinate reference system.
+
+(Rx, Ry, Rz)   :Rotations to be applied to the point's vector.  The sign convention is such that a positive rotation about an axis is defined as a clockwise rotation of the position vector when viewed from the origin of the Cartesian coordinate reference system in the positive direction of that axis; e.g. a positive rotation about the Z-axis only from source system to target system will result in a larger longitude value for the point in the target system.  Although rotation angles may be quoted in any angular unit of measure, the formula as given here requires the angles to be provided in radians.
+
+M                  :The scale correction to be made to the position vector in the source coordinate reference system in order to obtain the correct scale in the target coordinate reference system. M = (1 + dS*10^-6), where dS is the scale correction expressed in parts per million. 
+
+<<<<<This text continues in the description of the Coordinate Frame Rotation formula>>>>>","Input point: 
+Coordinate reference system: WGS 72 (geographic 3D)
+  Latitude =   55 deg 00 min 00 sec 
+  Longitude =  4 deg 00 min 00 sec 
+  Ellipsoidal height =  0 m
+
+This transforms to Cartesian geocentric coords:
+    X = 3 657 660.66 (m)  
+    Y =    255 768.55 (m)
+    Z = 5 201 382.11 (m)
+
+Transformation parameters WGS 72 to WGS 84:
+   dX (m) = 0.000 
+   dY (m) = 0.000 
+   dZ (m) = +4.5
+   RX ("") = 0.000 
+   RY ("") = 0.000
+   RZ ("") = +0.554
+   Scale (ppm) = +0.219
+
+Application of the 7 parameter Position Vector Transformation results in WGS 84 coordinates of:
+   X = 3 657 660.78 (m)
+   Y =    255 778.43 (m)
+   Z = 5 201 387.75 (m)
+
+This converts into:
+   Latitude =   55 deg 00 min 00.090 sec
+   Longitude =  4 deg 00 min 00.554 sec
+   Ellipsoidal height =  +3.22 m
+on the WGS 84 geographic 3D coordinate reference system.",Note the analogy with the Coordinate Frame Rotation (code 9607) but beware of the differences!  The Position Vector convention is used by IAG and recommended by ISO 19111.,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,98.16,0
+9607,Coordinate Frame rotation,1,"<<<<<This text is continued from the description of the Position Vector Transformation formula>>>>>
+
+Although being common practice particularly in the European E&P industry, the Position Vector Transformation sign convention is not universally accepted.  A variation on this formula is also used, particularly in the USA E&P industry.  That formula is based on the same definition of translation and scale parameters, but a different definition of the rotation parameters.  The associated convention is known as the ""Coordinate Frame Rotation"" convention (EPSG coordinate operation method code 9607). 
+The formula is:
+
+   (X’)             (  1      +Rz      -Ry)     (X)      (dX)
+   (Y’)  =  M *  ( -Rz       1      +Rx)  * (Y)  +  (dY)
+   (Z’)              ( +Ry   -Rx        1 )     (Z)       (dZ)
+
+and the parameters are defined as:
+
+(dX, dY, dZ)   : Translation vector, to be added to the point's position vector in the source coordinate reference system in order to transform from source coordinate reference system to target coordinate reference system; also: the coordinates of the origin of source coordinate reference system in the target frame.
+
+(Rx, Ry, Rz)   : Rotations to be applied to the coordinate reference frame.  The sign convention is such that a positive rotation of the frame about an axis is defined as a clockwise rotation of the coordinate reference frame when viewed from the origin of the Cartesian coordinate reference system in the positive direction of that axis, that is a positive rotation about the Z-axis only from source coordinate reference system to target coordinate reference system will result in a smaller longitude value for the point in the target coordinate reference system. Although rotation angles may be quoted in any angular unit of measure, the formula as given here requires the angles to be provided in radians.
+
+M                  : The scale factor to be applied to the position vector in the source coordinate reference system  in order to obtain the correct scale of the target coordinate reference system. M = (1+dS*10^-6), where dS is the scale correction expressed in parts per million.
+
+In the absence of rotations the two formulas are identical; the difference is solely in the rotations. The name of the second method reflects this.
+
+Note that the same rotation that is defined as positive in the first method is consequently negative in the second and vice versa.  It is therefore crucial that the convention underlying the definition of the rotation parameters is clearly understood and is communicated when exchanging datum transformation parameters, so that the parameters may be associated with the correct coordinate transformation method (algorithm).","The same example as for the Position Vector Transformation (coordinate operation method 9606) can be calculated, however the following transformation parameters have to be applied to achieve the same input and output in terms of coordinate values:
+
+Transformation parameters Coordinate Frame Rotation convention:
+dX (m) = 0.000 
+dY (m) = 0.000 
+dZ (m) = +4.5 
+RX ("") = 0.000
+RY ("") = 0.000
+RZ ("") = -0.554
+Scale (ppm) = +0.219
+
+Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",Note the analogy with the Position Vector transformation (code 9606) but beware of the differences!  The Position Vector convention is used by IAG and recommended by ISO 19111.,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,,0
+9613,NADCON,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US Coast and geodetic Survey - http://www.ngs.noaa.gov,EPSG,1996-09-18 00:00:00,,0
+9614,NTv1,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Superseded in 1997 by NTv2 (transformation method code 9615).   Input expects longitudes to be positive west.,Geomatics Canada - Geodetic Survey Division.,EPSG,1997-11-13 00:00:00,,0
+9615,NTv2,1,See information source.,,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Supersedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,http://www.geod.nrcan.gc.ca/products/html-public/GSDapps/English/NTv2_Fact_Sheet.html,EPSG,1997-11-13 00:00:00,,0
+9616,Vertical Offset,1,"Xt = [(Xs * Us) + (A * Ua)] * (m / Ut)
+
+where 
+Xt = value in the target vertical coordinate reference system.
+
+Xs = value in the source vertical coordinate reference system; 
+
+A is the value of the origin of the target system in the source system.
+
+m is unit direction multiplier (m=1 if both systems are height or both are depth; m = –1 if one system is height and the other system is depth; the value of m is implied through the vertical coordinate reference system type attribute).
+
+Us Ut and Ua are unit conversion ratios to metres for the source and target systems and the offset value A respectively.",,This transformation allows calculation of height (or depth) in the target system by adding the parameter value to the height (or depth)-value of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
+9617,Madrid to ED50,0,"The polynomial expressions are:
+
+      dLat seconds = A0 + (A1*lat) + (A2*lon) + (A3*H)
+      dLon seconds = B00 + B0 + (B1*lat) + (B2*lon) + (B3*H)
+
+where latitude lat and longitude lon are in decimal degrees referred to the Madrid 1870 (Madrid) geographic coordinate reference system and H is gravity-related height in metres.  B00 is the longitude (in seconds) of the Madrid meridian measured from the Greenwich meridian; it is the value to be applied to a longitude relative to the Madrid meridian to transform it to a longitude relative to the Greenwich meridan.
+
+The results of these expressions are applied through the formulae:
+Lat(ED50) = Lat(M1870(M))  + dLat
+and Lon(ED50) = Lon(M1870(M))  + dLon.","Input point coordinate system: Madrid 1870 (Madrid) (geographic 3D)
+   Latitude    =  42 deg 38 min 52.77 sec N 
+                    = 42.647992 degrees
+   Longitude  =    3 deg 39 min 34.57 sec E of Madrid
+                     = +3.659603 degrees from the Madrid meridian.
+   Height        =  0 m
+
+For the north zone transformation:
+A1 = 11.328779
+A2 = -0.1674
+A3 = -0.03852
+A4 = 0.0000379
+B0 = -13276.58
+B1 = 2.5079425
+B2 = 0.8352
+B3 = -0.00864
+B4 = -0.0000038
+
+dLat = +4.05 seconds
+
+Then ED50 latitude = 42 deg 38 min 52.77 sec N + 4.05sec
+                               = 42 deg 38 min 56.82 sec N
+
+
+dLon = -13270.54 seconds  = -3 deg 41 min 10.54 sec
+
+Then ED50 longitude = 3 deg 39 min 34.57 sec E - 3 deg 41 min 10.54 sec
+                                  = 0 deg 01 min 35.97 sec W of Greenwich.",,"EPSG guidance note #7, after Institut de Geomatica; Barcelona.",EPSG,2000-03-07 00:00:00,99.284  99.82  99.64,0
+9618,Geographical and Height Offsets,1,"Lat_T = Lat_S + latitude_offset 
+Lon_T = Lon_S + longitude_offset 
+EllipsoidHeight_T = GravityHeight_S + gravity-related_to_ellipsoid_height_offset.",,This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
+9619,Geographical Offsets,1,"Lat_T = Lat_S + latitude_offset 
+Lon_T = Lon_S + longitude_offset.",,This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,EPSG guidance note #7.,EPSG,1999-11-12 00:00:00,99.79,0
+9620,Norway Offshore Interpolation,0,See information source.,,,"Norwegian Mapping Authority note of 13-Feb-1991 ""Om Transformasjon mellom Geodetiske Datum i Norge"".",EPSG,1999-04-22 00:00:00,,0
+9621,Similarity transformation,0,"The similarity transformation in algebraic form is:
+
+XT = XT0  + XS. dS. cos q  + YS. dS . sin q
+YT = YT0  – XS. dS. sin q  + YS. dS . cos q
+
+where:
+XT0 , YT0    =   the coordinates of the origin point of the source coordinate reference system expressed in the target coordinate reference system;
+1+dS           =  the length of one unit in the source coordinate reference system expressed in units of the target coordinate reference system;
+q                  = the angle about which the axes of the source coordinate reference system need to be rotated to coincide with the axes of the target coordinate reference system, counter-clockwise being positive. Alternatively, the bearing of the source coordinate reference system Y-axis measured relative to target coordinate reference system north.
+
+The similarity transformation can also be described as a special case of the parametric affine transformation where coefficients A1 = B2  and  A2 =  - B1.
+
+Reversibility
+In contrast with the affine transformation, the similarity transformation parameters are reversible, but only on the condition that the scale difference between the two coordinate systems is small (order of several parts per million).  Then dS is the deviation from unity of the ratio of the units of measure of the two coordinate reference systems. In these cases the reverse transformation would require a scale correction of 1/(1+dS) * (1-dS).  This enables usage of the same scale and rotation parameters, but with reversed sign, for the reverse transformation. (The rotation angle of +q becomes –q, which is valid for all q).   However for the reverse transformation the translation parameters, XT0’ and YT0’, take entirely different values. Thus for all practical purposes the similarity transformation is not reversible.","Source coordinate system:	Astra Minas Grid (local coordinate system)
+Target coordinate system:	Campo Inchauspe / Argentina 2 (projected 2D system)
+
+Note that for the Astra Minas Grid the coordinate axes are:
+X  (positive axis oriented north)
+Y  (positive axis oriented west)
+and coordinates are quoted in that order.
+
+whereas for Campo Inchauspe / Argentina 2 the axes are:
+X (positive axis oriented north)
+Y (positive axis oriented east)
+and coordinates are quoted in that order.
+
+Thus the Astra Minas grid X and Y axes map to the Campo Inchauspe / Argentina 2 Y and X-axes respectively.  With respect to the symbols in the formulas,
+XS  = Astra Minas X
+YS  = Astra Minas Y
+XT  = Campo Inchauspe / Argentina 2 Y
+YT  = Campo Inchauspe / Argentina 2 X
+
+Parameters of the similarity transformation:
+XT0	=	2610200.48 metre
+YT0	=	4905282.73 metre
+*	= 271o 05’ 30”  = 271.0916667 degrees
+k	= 0  whence (1+k)=1.0
+
+Forward calculation for Astra Minas point :  X (north) =10000 m, Y (west) =50000 m. 
+
+XS  = Astra Minas X = 10000
+YS  = Astra Minas Y = 50000
+
+Gauss-Kruger zone 2 Easting (Y) = XT = XT0  + XS. dS. cos q  + YS. dS . sin q
+					  = 2610200.48 + (50000 * 1.0 * cos(271.0916667deg)) 
+						+ (10000 * 1.0 * sin(271.0916667deg))
+					  = 2601154.90 m.
+
+Gauss-Kruger zone 2 Northing (X) =YT = YT0  – XS. dS. sin q  + YS. dS . cos q
+				    = 4905282.73 - (50000*1.0* sin(271.0916667deg))
+					+ (10000 * 1.0 * cos(271.0916667deg))
+						    = 4955464.17 m.",Defined for two-dimensional coordinate systems.,EPSG guidance note #7.,EPSG,2000-10-19 00:00:00,2000.83,0
+9622,Affine orthogonal geometric transformation,0,"XT = XT0   +   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
+YT = YT0   –   XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
+
+where:
+
+XT0 ,YT0  = the coordinates of the origin point of the source coordinate reference system, expressed in the target coordinate reference system;
+dSX , dSY  = the length of one unit of the source  axis, expressed in units of the target axis, for the X axes and the Y- axes respectively;
+k = point scale factor of the target coordinate reference system in a chosen reference point;
+q  = the angle through which the source coordinate reference system axes must be rotated to coincide with the target coordinate refderence system axes (counter-clockwise is positive). Alternatively, the bearing (clockwise positive) of the source coordinate reference system Y-axis measured relative to target coordinate reference system north.","Source coordinate system: imaginary 3D seismic acquisition bin grid.  The two axes are orthogonal, but the unit on the I-axis is 25 metres, whilst the unit on the J-axis is 12.5 metres.
+The target projected coordinate system is WGS 84 / UTM Zone 31N and the origin of the bin grid (centre of bin 0,0) is defined at E = 456781.0, N = 5836723.0.  The projected coordinate system point scale factor at the bin grid origin is 0.99984.
+The map grid bearing of the I and J axes are 110* and 20* respectively.  Thus the angle through which both the positive I and J axes need to be rotated to coincide with the positive Easting axis and Northing axis respectively is +20 degrees.
+
+Hence: 
+XT0 ,	=    456 781.0 m
+YT0	= 5 836 723.0 m
+dSX 	= 25
+dSY	= 12.5
+k 	= 0.99984
+q	= +20 degrees
+
+Forward calculation for centre of bin with coordinates: I = 300, J = 247:
+
+XT = Easting   = XT0   +   XS . k . dSX . cos q   +   YS . k . dSY  . sin q    = 464 855.62 m.
+
+YT = Northing = YT0   –   XS . k . dSX . sin q    +   YS . k . dSY  . cos q  = 5 837 055.90 m
+
+Reverse calculation for this point:
+XS = [( XT  – XT0) . cos qY  –  (YT – YT0) . sin qY ] / [k . dSX  . cos (qX – qY)] = 230 bins
+
+YS = [(XT   – XT0) . sin qX   +  (YT – YT0) . cos qX ] / [k . dSY . cos (qX – qY)]  = 162 bins",,EPSG guidance note #7.,EPSG,2000-06-10 00:00:00,,0
+9623,Affine general geometric transformation,0,"The geometric representation of the general affine transformation:
+XT = XT0   +  XS . k . dSX  . cos qX   +  YS . k . dSY  . sin qY
+YT = YT0  –  XS . k . dSX   . sin qX   +  YS . k. dSY  . cos qY 
+where:
+
+XT0 ,YT0  = the coordinates of the origin point of the source coordinate reference system, expressed in the target coordinate reference system;
+dSX , dSY  = the length of one unit of the source axis, expressed in units of the target axis, for the first and second source and target axis pairs respectively;
+qX , qY   = the angles about which the source coordinate reference system axes XS and YS must be rotated to coincide with the target coordinate reference system axes XT and YT respectively (counter-clockwise being positive).
+k = point scale factor of the target coordinate reference system in a chosen reference point;
+ 
+Comparing the algebraic representation with the parameters of the parameteric form (code 9624) it can be seen that the parametric and geometric forms of the affine transformation are related as follows:
+A0  =  XT0
+A1  = k . dSX . cos qX  
+A2  = k . dSY . sin qY
+B0  =  YT0
+B1  =   – k . dSX . sin qX
+B2  =   k . dSY . cos qY
+
+Reversibility
+The parameters for an affine transformation cannot be used for the reverse transformation.  However, the reverse transformation is another affine transformation using the same formulas but with different parameters.  The reverse parameter values can be calculated from from the formulae provided above and applying those to same algorithm.  Alternatively the reverse transformation can be described by a different formula, as shown below, using the same parameters as the forward transformation:
+
+XS = [( XT  – XT0) . cos qY  –  (YT – YT0) . sin qY ] / [k . dSX  . cos (qX – qY)]
+YS = [(XT   – XT0) . sin qX   +  (YT – YT0) . cos qX ] / [k . dSY . cos (qX – qY)]",,,EPSG guidance note #7.,EPSG,2000-06-10 00:00:00,,0
+9624,Affine general parametric transformation,0,"XT   =  A0  +  A1. XS  +  A2.YS
+YT   =  B0  +  B1. XS  +  B2.YS
+where
+XT , YT  are the coordinates of a point P in the target coordinate reference system;
+XS , YS   are the coordinates of P in the source coordinate reference system.
+
+Reversibility
+The parameter values for an affine transformation cannot be used for the reverse transformation.  However, the reverse transformation is another affine transformation using the same formulas but with different parameter values.  The reverse parameter values, indicated by a prime (’), can be calculated from those of the forward transformation as follows:
+
+D    = A1 . B2   –   A2 . B1
+A0’ = (A2 . B0   –   B2 . A0) / D
+B0’ = (B1 . A0   –   A1 . B0) / D
+A1’ = +B2 / D
+A2’ = – A2 / D
+B1’ = – B1 / D
+B2’ = +A1 / D",,,EPSG guidance note #7,EPSG,2000-06-10 00:00:00,,0
+9625,General polynomial (2nd-order),0,"The simplest of all polynomials is the general polynomial function. In order to avoid problems of numerical instability this type of polynomial should be used after reducing the input parameters, usually coordinate offsets U and V relative to a central evaluation point, to ‘manageable’ numbers, between –10 and +10 at most.
+
+U = XS - XS0 in defined units (which may not be those of the coordinate reference system),
+V = YS - YS0
+
+Then (XT - XT0) = (XS - XS0) + dX
+         (YT - YT0) = (YS - YS0) + dY 
+or
+XT  = XS - XS0 + XT0 + dX
+YT  = YS - YS0 + YT0 + dY
+
+where
+XT , YT   are coordinates in the target coordinate reference system,
+XS , YS  are coordinates in the source coordinate reference system,
+XS0 , YS0 are coordinates of the evaluation point in the source coordinate reference system,
+XT0 , YT0  are coordinates of the evaluation point in the target coordinate reference system.
+
+and where
+dX = A0 + A1.U + A2.V + A3.U2 + A4.U.V + A5.V2
+dY = B0 + B1.U + B2.V +B3.U2 +B4.U.V +B5.V2",,,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,,0
+9626,General polynomial (3rd-order),0,"The simplest of all polynomials is the general polynomial function. In order to avoid problems of numerical instability this type of polynomial should be used after reducing the input parameters, usually coordinate offsets U and V relative to a central evaluation point, to ‘manageable’ numbers, between –10 and +10 at most.
+
+U = XS - XS0 in defined units (which may not be those of the coordinate reference system),
+V = YS - YS0
+
+Then (XT - XT0) = (XS - XS0) + dX
+         (YT - YT0) = (YS - YS0) + dY 
+or
+XT  = XS - XS0 + XT0 + dX
+YT  = YS - YS0 + YT0 + dY
+
+where
+XT , YT   are coordinates in the target coordinate reference system,
+XS , YS  are coordinates in the source coordinate reference system,
+XS0 , YS0 are coordinates of the evaluation point in the source coordinate reference system,
+XT0 , YT0  are coordinates of the evaluation point in the target coordinate reference system.
+
+and where
+dX = A0 + A1.U + A2.V + A3.U2 + A4.U.V + A5.V2 + A6.U3 + A7.U2.V + A8.U.V2 + A9.V3
+dY = B0 + B1.U + B2.V +B3.U2 +B4.U.V +B5.V2 + B6.U3 +B7.U2.V +B8.U.V2 +B9.V3",,,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,,0
+9627,General polynomial (4th-order),0,"The simplest of all polynomials is the general polynomial function. In order to avoid problems of numerical instability this type of polynomial should be used after reducing the input parameters, usually coordinate offsets U and V relative to a central evaluation point, to ‘manageable’ numbers, between –10 and +10 at most.
+
+U = XS - XS0 in defined units (which may not be those of the coordinate reference system),
+V = YS - YS0
+
+Then (XT - XT0) = (XS - XS0) + dX
+         (YT - YT0) = (YS - YS0) + dY 
+or
+XT  = XS - XS0 + XT0 + dX
+YT  = YS - YS0 + YT0 + dY
+
+where
+XT , YT   are coordinates in the target coordinate reference system,
+XS , YS  are coordinates in the source coordinate reference system,
+XS0 , YS0 are coordinates of the evaluation point in the source coordinate reference system,
+XT0 , YT0  are coordinates of the evaluation point in the target coordinate reference system.
+
+and where
+dX = A0 + A1.U + A2.V + A3.U2 + A4.U.V + A5.V2 + A6.U3 + A7.U2.V + A8.U.V2 + A9.V3 + A10.U4 + A11.U3.V + A12.U2.V2 + A13.U.V3 + A14.V4
+
+dY = B0 + B1.U + B2.V +B3.U2 +B4.U.V +B5.V2 + B6.U3 +B7.U2.V +B8.U.V2 +B9.V3 + B10.U4 + B11.U3.V + B12.U2.V2 + B13.U.V3 + B14.V4",,,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,,0
+9628,Reversible polynomial (2nd-order),1,See EPSG Guidance Note 7.,,Reversibility is subject to constraints.  See Guidance Note 7 for clarification.,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,99.64,0
+9629,Reversible polynomial (3rd-order),1,See EPSG Guidance Note 7.,,Reversibility is subject to constraints.  See Guidance Note 7 for clarification.,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,99.64,0
+9630,Reversible polynomial (4th-order),1,See EPSG Guidance Note 7.,"For geodetic transformation ED50 to ED87 (1)
+
+Offset unit:  degree
+Ordinate 1 of evaluation point X0  =   55° 00' 00.000""N  = +55 degrees
+Ordinate 2 of evaluation point Y0  =     0° 00' 00.000""E   =   +0 degrees
+
+Parameters:
+A0 = -5.56098E-06   A1 = -1.55391E-06   ...   A14 = -4.01383E-09
+B0 = +1.48944E-05   B2 = +2.68191E-05  ...   B14 = +7.62236E-09
+
+Forward calculation for: 
+ED50 Latitude     = Xs =52* 30’30""N   =     +52.508333333 degrees
+ED50 Longitude  = Ys =  2*E=      +2.0 degrees   
+
+U = XS - X0 =  * ED50 - X0  = 52.508333333 - 55.0 = -2.491666667 degrees
+V = YS - Y0 =  * ED50 - Y0   = 2.0 - 0.0 = 2.0 degrees
+
+dX = A0 + A1.U + ... + A14.V4
+      = -5.56098E-06 + (-1.55391E-06 * -2.491666667) + ... + (-4.01383E-09 * 2.0^4)
+      = -3.12958E-06 degrees
+
+dY = B0 + B1.U + ... + B14.V4
+      = +1.48944E-05 + (2.68191E-05 * -2.491666667) + ... + (7.62236E-09 * 2.0^4)
+      = +9.80126E-06 degrees
+
+Then  ED87 Latitude  =   XT = XS + dX
+                                  =  52.508333333 - 3.12958E-06   degrees
+                                  = 52* 30’ 29.9887"" N
+
+ED87 Longitude  =   YT = YS + dY
+                           = 2* 00’ 00.0353"" E
+
+
+Reverse calculation for transformation ED50 to ED87 (1).
+The transformation method for the ED50 to ED87 (1) transformation, 4th-order reversible polynomial, is reversible. The same formulas may be applied for the reverse calculation, but coefficients A0 through A14 and B0 through B14 are applied with reversal of their signs. Sign reversal is not applied to the coordinates of the evaluation point. Thus:
+Ordinate 1 of evaluation point X0  =   55° 00' 00.000""N  = +55 degrees
+Ordinate 2 of evaluation point Y0  =     0° 00' 00.000""E   =   +0 degrees
+A0  = +5.56098E-06   A1 = +1.55391E-06   ...   A14 = +4.01383E-09
+B0  = -1.48944E-05    B1 = -2.68191E-05    ...   B14 = -7.62236E-09
+
+Reverse calculation for: 
+ED87 Latitude     = XS = 52° 30’29.9887""N   =     +52.5083301944 degrees
+ED87 Longitude  = YS =   2° 00’ 00.0353"" E   =     +2.0000098055 degrees   
+
+U = 52.5083301944 - 55.0 = -2.4916698056 degrees
+V = 2.0000098055 - 0.0 = 2.0000098055 degrees
+
+dX = A0 + A1.U + ... + A14.V4
+      = +5.56098E-06 + (1.55391E-06 * -2.491666667) + ... + (4.01383E-09 * 2.0000098055^4)
+      = +3.12957E-06 degrees
+
+dY = B0 + B1.U + ... + B14.V4
+      = -1.48944E-05 + (-2.68191E-05 * -2.491666667) + ... + (-7.62236E-09 * 2.0000098055^4)
+      = -9.80124E-06 degrees
+
+Then ED50 Latitude  =   XT = XS + dX
+                                 = 52.5083301944 + 3.12957E-06   degrees
+                                 = 52° 30’ 30.000"" N
+
+ED50 Longitude  =   YT = YS + dY
+                           = 2° 00’ 00.000"" E",Reversibility is subject to constraints.  See Guidance Note 7 for clarification.,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,99.64,0
+9631,Complex polynomial (3rd-order),0,"The relationship between two projected coordinate reference systems may be approximated more elegantly by a single polynomial regression formula written in terms of complex numbers. The advantage is that the dependence between the ‘A’ and ‘B’ coefficients (for U and V) is taken into account in the formula, resulting in fewer coefficients for the same order polynomial. A third-order polynomial in complex numbers is used in Belgium.  A fourth-order polynomial in complex numbers is used in The Netherlands for transforming coordinates referenced to the Amersfoort / RD system to and from ED50 / UTM.
+
+(dX + i. dY) = (A1 + i. A2).(U + i.V) + (A3 + i. A4).(U + i.V)^2 + (A5 + i. A6).(U + i.V)^3 
+
+where U = (XS - XS0).10-5
+and     V = (YS - YS0).10-5
+
+Then
+XT  = XS - XS0 + XT0 + dX
+YT  = YS - YS0 + YT0 + dY
+
+where
+XT , YT      are coordinates in the target coordinate reference system,
+XS , YS      are coordinates in the source coordinate reference system,
+XS0 , YS0   are coordinates of the evaluation point in the source coordinate reference system,
+XT0 , YT0   are coordinates of the evaluation point in the target coordinate reference system.
+
+Note that the zero order coefficients of the general polynomial, A0 and B0, have apparently disappeared.  In reality they are absorbed by the different coordinates of the source and of the target evaluation point, which in this case, are numerically very different because of the use of two different projected coordinate reference systems for source and target.
+
+The transformation parameter values (the coefficients) are not reversible.  For the reverse transformation a different set of parameter values are required, used within the same formulas as the forward direction","For transformation Belge Lambert 72 to ED50 / UTM zone 31N,
+
+Eo1 = 0
+No1 = 0
+Eo2 = 449681.702
+No2 = 5460505.326
+A1 = -71.3747
+A2 = 1858.8407
+A3 = -5.4504
+A4 = -16.9681
+A5 = 4.0783
+A6 = 0.2193
+
+For source coordinate system E1=200000  N1=100000, then
+E2 = 647737.377  N2 = 5564124.227.",Coordinate pairs treated as complex numbers.  This exploits the correlation between the polynomial coefficients and leads to a smaller number of coefficients than the regular 3rd-order polynomial.,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,,0
+9632,Complex polynomial (4th-order),0,"The relationship between two projected coordinate reference systems may be approximated more elegantly by a single polynomial regression formula written in terms of complex numbers. The advantage is that the dependence between the ‘A’ and ‘B’ coefficients (for U and V) is taken into account in the formula, resulting in fewer coefficients for the same order polynomial. A third-order polynomial in complex numbers is used in Belgium.  A fourth-order polynomial in complex numbers is used in The Netherlands for transforming coordinates referenced to the Amersfoort / RD system to and from ED50 / UTM.
+
+(dX + i. dY) = (A1 + i. A2).(U + i.V) + (A3 + i. A4).(U + i.V)^2 + (A5 + i. A6).(U + i.V)^3 + (A7 + i.A8).(U + i.V)^4
+
+where U = (XS - XS0).10-5
+and     V = (YS - YS0).10-5
+
+Then
+XT  = XS - XS0 + XT0 + dX
+YT  = YS - YS0 + YT0 + dY
+
+where
+XT , YT      are coordinates in the target coordinate reference system,
+XS , YS      are coordinates in the source coordinate reference system,
+XS0 , YS0   are coordinates of the evaluation point in the source coordinate reference system,
+XT0 , YT0   are coordinates of the evaluation point in the target coordinate reference system.
+
+Note that the zero order coefficients of the general polynomial, A0 and B0, have apparently disappeared.  In reality they are absorbed by the different coordinates of the source and of the target evaluation point, which in this case, are numerically very different because of the use of two different projected coordinate reference systems for source and target.
+
+The transformation parameter values (the coefficients) are not reversible.  For the reverse transformation a different set of parameter values are required, used within the same formulas as the forward direction.","For transformation RD / Netherlands New to ED50 / UTM zone 31N,
+
+Eo1 = 155000
+No1 = 463000
+Eo2 = 663395.607
+No2 = 5781194.380
+A1 = -51.681
+A2 = 3290.525
+A3 = 20.172
+A4 = 1.133
+A5 = 2.075
+A6 = 0.251
+A7 = 0.075
+A8 = -0.012
+
+For source coordinate system E1=200000  N1=500000, then
+E2 =707155.557  N2 = 5819663.128.",Coordinate pairs treated as complex numbers.  This exploits the correlation between the polynomial coefficients and leads to a smaller number of coefficients than the regular 4th-order polynomial.,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,,0
+9633,Ordnance Survey National Transformation,1,See information source.,See information source.,Geodetic transformation between ETRS89 (or WGS 84) and OSGB36 / National Grid.  Uses ETRS89 / National Grid as an intermediate coordinate system for bi-linear interpolation of gridded grid coordinate differences.,http://www.gps.gov.uk/gpssurveying.asp,EPSG,2000-10-19 00:00:00,,0
+9634,Maritime Provinces polynomial interpolation,0,"The transformation makes use of a residual file for each Canadian maritime province.  The process of residual interpolation accounts for local variations in the coordinate system and provides a transformation accuracy of +/- 5 cm.
+
+By using a second residual file, the transformation may be reversed.  Only one residual file is in use by the method during any given execution.",,This transformation is an executable module within the application NBGeocalc.  It is an adaptation of the ESTPM program developed by Geodetic Survey of Canada.,Survey of New Brunswick,EPSG,2000-10-19 00:00:00,,0
+9635,Geographic3D to Geographic2D+GravityRelatedHeight,1,"This is a complex, multi-step transformation, involving the application of a geoid height difference interpolated at a point in a ""geoid model"". The geoid model should be available as a regular grid of latitude and longitude with the height of the geoid above the ellipsoid at each grid node. Only the height is affected by this transformation; the geodetic latitude and longitude are not.
+
+The transformation involves the following sequence of steps:
+·  Selection of a subset of the geoid file covering the extent of the points to be transformed.
+·  If the geoid file is not based on the source or target CRS, it needs to be transformed first. This involves transformation of the chosen subset of the geoid file from its orignal Geographic 3D CRS to the Geographic 3D CRS that is the source or the target of this transformation.
+·  Calculation of the height of the geoid above the ellipsoid (""geoid undulation"") at the relevant point(s). This is achieved through a bi-linear interpolation of the geoid undulation, using the latitude and longitude to locate the point in the sub-grid.  This step results in the height of the geoid above the ellipsoid (N) of the Geographic 3D CRS, whether source or target.
+·  At each point, the application of the calculated geoid undulation to the height to be transformed.
+
+H=h-N for Geographic3D to Geographic2D+GravityRelatedHeight
+
+h=H+N for Geographic2D+GravityRelatedHeight to Geographic3D
+
+where h = the ellipsoidal height (height above the ellipsoid in a geographic 3D CRS)
+and H = the Gravity-Related Height component of the compound CRS.",,"Transformation from a Geographic 3D CRS to a Compound CRS consisting of a Geographic 2D CRS and a Vertical CRS, or vice versa. The Geographic 3D and the Geographic 2D CRS must be based on the same Geodetic Datum.",,EPSG,2001-06-05 00:00:00,,0
+9636,Molodenski-Badekas transformation,1,"To eliminate high correlation between the translations and rotations in the derivation of parameter values for the Helmert transformation methods (coordinate operation metghod codes 9606 and 9607), instead of the rotations being derived about the geocentric coordinate reference system origin they may be derived at a location within the points used in the determination. Three additional parameters, the coordinates of the rotation point, are then required. The formula is:
+
+   (Xt)             (  1       +Rz    -Ry)      (Xs - Xp)      (Xp)       (dX)
+   (Yt)  =  M *  ( -Rz      1      +Rx)  *  (Ys - Yp)  +  (Yp)  +  (dY)
+   (Zt)              ( +Ry   -Rx       1 )      (Zs - Zp)      (Zp)       (dZ)
+
+and the parameters are defined as:
+
+(dX, dY, dZ)   : Translation vector, to be added to the point's position vector in the source coordinate system in order to transform from source coordinate reference system to target coordinate reference system; also: the coordinates of the origin of source coordinate reference system in the target frame.
+
+(Rx, Ry, Rz)   : Rotations to be applied to the coordinate reference frame.  The sign convention is such that a positive rotation of the frame about an axis is defined as a clockwise rotation of the coordinate reference frame when viewed from the origin of the Cartesian coordinate system in the positive direction of that axis, that is a positive rotation about the Z-axis only from source coordinate reference system to target coordinate reference system will result in a smaller longitude value for the point in the target coordinate reference system. Although rotation angles may be quoted in any angular unit of measure, the formula as given here requires the angles to be provided in radians.
+
+(Xp, Yp, Zp)   : Coordinates of the point about which the coordinate reference frame is rotated, given in the source Cartesian coordinate reference system. 
+
+M                  : The scale factor to be applied to the position vector in the source coordinate reference system  in order to obtain the correct scale of the target coordinate reference system. M = (1+dS*10^-6), where dS is the scale correction expressed in parts per million.
+
+Reversibility.
+The Molodensky-Badekas transformation in a strict mathematical sense is not reversible, i.e. in principle the same parameter values cannot be used to execute the reverse transformation. This is because the evaluation point coordinates are in the forward direction source coordinate reference system and the rotations have been derived about this point. They should not be applied about the point having the same coordinate values in the target coordinate reference system, as is required for the reverse transformation. However, in practical application there are exceptions when applied to the approximation of small differences between the geometry of a set of points in two different coordinate reference systems. The typical vector difference in coordinate values is in the order of 6*10^1 to 6*10^2 metres, whereas the evaluation point on or near the surface of the earth is 6.3*10^6 metres from the origin of the coordinate systems at the Earth’s centre. This difference of four or five orders of magnitude allows the transformation in practice to be considered reversible. Note that in the reverse transformation, only the signs of the translations and rotation parameter values are reversed; the coordinates of the evaluation point remain unchanged.",,,EPSG guidance note #7.,EPSG,2001-11-06 00:00:00,2002.51,0
+9801,Lambert Conic Conformal (1SP),1,"To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
+
+E = FE + r sin(theta)
+N = FN + r0 - r cos(theta)
+where
+n = sin lat0
+r = a F t^n k0     for r0, and r
+m = cos(lat)/(1 - e^2 sin^2(lat))^0.5     for m0, lat0, and m2, lat2 where lat1 and lat2 are the latitudes of the standard parallels.
+t  = tan(pi/4 - lat/2)/[(1 - e sin(lat))/(1 + e sin(lat))]^(e/2)   for t0 and t using lat0 and lat respectively.
+F = m0/(n  t1^n)
+theta = n(lon - lon0)
+
+The reverse formulas to derive the latitude and longitude of a point from its Easting and Northing values are:
+
+lat = pi/2 - 2arctan{t'[(1 - esin(lat))/(1 + esin(lat))]^(e/2)}
+lon = theta'/n +lon0
+where
+theta' = arctan[(E - FE)/{r0 -(N - FN)}]
+r' = +/-[(E - FE)^2 + {r0 - (N - FN)}^2]^0.5
+t' = (r'/(a k0 F))^(1/n)
+and n, F, and rF are derived as for the forward calculation.","For Projected Coordinate System JAD69 / Jamaica National Grid
+
+Parameters:
+Ellipsoid:  Clarke 1866, a = 6378206.400 m., 1/f = 294.97870
+                                   then  e = 0.08227185 and e^2 = 0.00676866
+
+Latitude Natural Origin         18 deg 00 min 00 sec N  =  0.31415927 rad
+Longitude Natural Origin     77 deg 00 min 00 sec W = -1.34390352 rad
+Scale factor at origin            1.000000
+False Eastings  FE               250000.00 m
+False Northings FN              150000.00 m
+
+Forward calculation for: 
+Latitude:     17 deg 55 min 55.80 sec N  =  0.31297535 rad
+Longitude:  76 deg 56 min 37.26 sec W = -1.34292061 rad
+first gives
+m0    =  0.95136402        t0 =  0.72806411
+F       =  3.39591092        n  =  0.30901699
+r        =  19643955.26     r0  =  19636447.86
+theta =  0.00030374        t   =  0.728965259
+
+Then Easting E   =     255966.58 m
+         Northing N =      142493.51 m
+
+Reverse calculation for the same easting and northing first gives
+
+theta' =  0.000303736
+t'        =  0.728965259
+m0     =  0.95136402
+r'        =  19643955.26
+
+Then Latitude     = 17 deg 55 min 55.800 sec N
+         Longitude  = 76 deg 56 min 37.260 sec W",,EPSG guidance note #7.,EPSG,2001-06-05 00:00:00,2001.08,0
+9802,Lambert Conic Conformal (2SP),1,"To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
+
+E = EF + r sin(theta)
+N = NF + rF - r cos(theta)
+where
+m = cos(lat)/(1 - e^2 sin^2(lat))^0.5     for m1, lat1, and m2, lat2 where lat1 and lat2 are the latitudes of the standard parallels.
+t  = tan(pi/4 - lat/2)/[(1 - e sin(lat))/(1 + e sin(lat))]^(e/2)   for t1, t2, tF and t using lat1, lat2, latF and lat respectively.
+n = (loge(m1) - loge(m2))/(loge(t1) - loge(t2))
+F = m1/(n  t1^n)
+r =  a F t^n         for rF and r, where rF is the radius of the parallel of latitude of the false origin.
+theta = n(lon - lon0)
+
+The reverse formulas to derive the latitude and longitude of a point from its Easting and Northing values are:
+
+lat = pi/2 - 2arctan{t'[(1 - esin(lat))/(1 + esin(lat))]^(e/2)}
+lon = theta'/n +lon0
+where
+r' = +/-[(E - EF)^2 + {rF - (N - NF)}^2]^0.5 , taking the sign of n
+t' = (r'/(aF))^(1/n)
+theta' = arctan [(E- EF)/(rF - (N- NF))]
+and n, F, and rF are derived as for the forward calculation.","For Projected Coordinate System NAD27 / Texas South Central
+
+Parameters:
+Ellipsoid  Clarke 1866, a = 6378206.400 metres = 20925832.16 US survey feet
+                                   1/f = 294.97870
+then e = 0.08227185 and e^2 = 0.00676866
+
+First Standard Parallel          28o23'00""N  =   0.49538262 rad
+Second Standard Parallel    30o17'00""N  =   0.52854388 rad
+Latitude False Origin            27o50'00""N  =   0.48578331 rad
+Longitude False Origin         99o00'00""W = -1.72787596 rad
+Easting at false origin           2000000.00  US survey feet
+Northing at false origin          0.00  US survey feet
+
+Forward calculation for: 
+Latitude       28o30'00.00""N  =  0.49741884 rad
+Longitude    96o00'00.00""W = -1.67551608 rad
+
+first gives :
+m1    = 0.88046050      m2 = 0.86428642
+t        = 0.59686306      tF  = 0.60475101
+t1      = 0.59823957      t2 = 0.57602212
+n       = 0.48991263       F = 2.31154807
+r        = 37565039.86    rF = 37807441.20
+theta = 0.02565177
+
+Then Easting E =      2963503.91 US survey feet
+         Northing N =      254759.80 US survey feet
+
+Reverse calculation for same easting and northing first gives:
+theta' = 0.025651765     r' = 37565039.86
+t'        = 0.59686306
+
+Then Latitude     	= 28o30'00.000""N
+         Longitude   = 96o00'00.000""W",,EPSG guidance note #7.,EPSG,2001-06-05 00:00:00,99.281  2001.08,0
+9803,Lambert Conic Conformal (2SP Belgium),1,"For the Lambert Conic Conformal (2 SP Belgium), the formulas for the regular two standard parallel case (coordinate operation method code 9802) are used except for: 
+
+Easting, E = EF + r sin (theta - alpha)
+Northing, N = NF + rF - r cos (theta - alpha)
+
+and for the reverse formulas
+lon = ((theta' + alpha)/n) +lon0
+where alpha = 29.2985 seconds.","For Projected Coordinate System Belge 1972 / Belge Lambert 72
+
+Parameters:
+Ellipsoid  International 1924,  a = 6378388 metres
+                                              1/f = 297
+then e = 0.08199189 and e^2 = 0.006722670
+
+First Standard Parallel        49o50'00""N       =   0.86975574 rad
+Second Standard Parallel  51o10'00""N       =   0.89302680 rad
+Latitude False Origin          90o00'00""N       =   1.57079633 rad
+Longitude False Origin         4o21'24.983""E = 0.07604294 rad
+Easting at false origin EF        150000.01  metres
+Northing at false origin NF    5400088.44  metres
+
+Forward calculation for: 
+Latitude        50o40'46.461""N  =  0.88452540 rad
+Longitude       5o48'26.533""E   = 0.10135773 rad
+
+first gives :
+m1     = 0.64628304         m2 = 0.62834001
+t        = 0.59686306          tF  = 0.00000000
+t1      = 0.36750382           t2 = 0.35433583
+n       = 0.77164219            F = 1.81329763
+r        = 37565039.86         rF = 0.00
+alpha =	0.00014204     theta = 0.01953396
+
+Then Easting E  =      251763.20 metres
+         Northing N =      153034.13 metres
+
+Reverse calculation for same easting and northing first gives:
+theta' = 0.01939192      r' = 548041.03
+t' = 0.35913403
+Then Latitude   =    50o40'46.461""N
+         Longitude =     5o48'26.533""E",In 2000 this modification was replaced through use of the regular Lambert Conic Conformal (2SP) method [9802] with appropriately modified parameter values.,EPSG guidance note #7.,EPSG,1999-04-22 00:00:00,99.281,0
+9804,Mercator (1SP),1,"The formulas to derive projected Easting and Northing coordinates are:
+
+E = FE + a*k0(lon - lon0)              
+N = FN + a*k0* ln{tan(pi/4 + lat/2)[(1 - esin(lat))/(1 + esin(lat))]^e/2} where symbols are as listed above and logarithms are natural.
+
+The reverse formulas to derive latitude and longitude from E and N values are:
+
+lat = chi + (esq/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2chi) 
++ (7e^4/48 + 29e^6/240 + 811e^8/11520) sin(4chi)
++ (7e^6/120 +  81e^8/1120) sin(6chi)  + (4279e^8/161280) sin(8chi)
+
+where chi = pi/2 - 2 arctan t
+t = B^((FN-N)/(a*k0)) 
+B = base of the natural logarithm, 2.7182818...
+and  for the 2 SP Case, k0 is calculated as for the forward transformation above.
+lon  =  ((E - FE)/(a*k0))  + lon0","For Projected Coordinate System Makassar / NEIEZ
+
+Parameters:
+Ellipsoid   Bessel 1841  a = 6377397.155 m   1/f = 299.15281
+then e = 0.08169683
+
+Latitude Natural Origin         00o00'00""N  = 0.0000000 rad
+Longitude Natural Origin    110o00'00""E  = 1.91986218 rad
+Scale factor ko                  0.997
+False Eastings FE              3900000.00 m
+False Northings FN              900000.00 m
+
+Forward calculation for: 
+Latitude            3o00'00.00""S   = -0.05235988 rad
+Longitude     120o00'00.00""E   =  2.09439510 rad
+gives
+Easting  E   =      5009726.58 m
+Northing N  =        569150.82 m
+
+Reverse calculation for same easting and northing first gives :
+t    = 1.0534121
+chi = -0.0520110
+
+Then Latitude     =   3o00'00.000""S
+         Longitude  = 120o00'00.000""E",,EPSG guidance note #7.,EPSG,2001-06-05 00:00:00,2001.08,0
+9805,Mercator (2SP),1,"The formulas to derive projected Easting and Northing coordinates are:
+
+For the two standard parallel case, k0 is first calculated from
+
+k0 = cos(latSP1)/(1 - e^2*sin^2(latSP1))^0.5 
+ 
+where latSP1 is the absolute value of the first standard parallel (i.e. positive).  
+
+Then, for both one and two standard parallel cases, 
+
+E = FE + a*k0(lon - lon0)              
+N = FN + a*k0* ln{tan(pi/4 + lat/2)[(1 - esin(lat))(1 + esin(lat))]^e/2} where symbols are as listed above and logarithms are natural.
+
+The reverse formulas to derive latitude and longitude from E and N values are:
+
+lat = chi + (esq/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2chi) 
++ (7e^4/48 + 29e^6/240 + 811e^8/11520) sin(4chi)
++ (7e^6/120 +  81e^8/1120) sin(6chi)  + (4279e^8/161280) sin(8chi)
+
+where chi = pi/2 - 2 arctan t
+t = B^((FN-N)/a*k0) 
+B = base of the natural logarithm, 2.7182818...
+and  for the 2 SP Case, k0 is calculated as for the forward transformation above.
+lon  =  ((E - FE)/a*k0)  + lon0","For Projected Coordinate System Pulkovo 1942 / Mercator Caspian Sea
+
+Parameters:
+Ellipsoid  Krassowski 1940   a = 6378245.00m   1/f = 298.300
+then e = 0.08181333 and e^2 = 0.00669342
+
+Latitude first SP                             42o00'00""N = 0.73303829 rad
+Longitude Natural Origin                51o00'00""E = 0.89011792 rad
+False Eastings FE                          0.00 m
+False Northings (at equator) FN     0.00 m
+  
+then natural origin at latitude of 0oN has scale factor k0=  0.74426089
+
+Forward calculation for: 
+Latitude        53o00'00.00""N = 0.9250245 rad
+Longitude     53o00'00.00""E  = 0.9250245 rad
+
+gives Easting E   =     165704.29 m 
+          Northing N =   5171848.07 m
+
+Reverse calculation for same easting and northing first gives :
+t = 0.33639129    chi = 0.92179596
+
+Then Latitude     =  53o00'00.000""N
+          Longitude  =  53o00'00.000""E",,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,,0
+9806,Cassini-Soldner,1,"The formulas to derive projected Easting and Northing coordinates are:
+
+Easting E = FE + nu[A - TA^3/6 -(8 - T + 8C)TA^5/120]
+
+Northing N = FN + M - M0 + nu*tan(lat)*[A^2/2 + (5 - T + 6C)A^4/24]
+
+where A = (lon - lon0)cos(lat)
+T = tan^2(lat)
+C = e2 cos2*/(1 - e2)        nu = a /(1 - esq*sin^2(lat))^0.5 
+and M, the distance along the meridian from equator to latitude lat, is given by
+M = a[1 - e^2/4 - 3e^4/64 - 5e^6/256 -....)*lat - (3e^2/8 + 3e^4/32 + 45e^6/1024 +....)sin(2*lat) + (15e^4/256 + 45e^6/1024 +.....)sin(4*lat) - (35e^6/3072 + ....)sin(6*lat) + .....]
+with lat in radians.
+
+M0 is the value of M calculated for the latitude of the chosen origin. This may not necessarily be chosen as the equator.
+
+To compute latitude and longitude from Easting and Northing the reverse formulas are:
+lat = lat1 - (nu1tan(lat1)/rho1)[D2/2 - (1 + 3*T1)D^4/24]
+lon =  lon0 + [D - T1*D^3/3 + (1 + 3*T1)T1*D^5/15]/cos(lat1)
+
+where lat1 is the latitude of the point on the central meridian which has the same Northing as the point whose coordinates are sought, and is found from:
+lat1 = mu1 + (3*e1/2 - 27*e1^3/32 +.....)sin(2*mu1) + (21*e1^2/16 - 55*e1^4/32 + ....)sin(4*mu1)+ (151*e1^3/96 +.....)sin(6*mu1) + (1097*e1^4/512 - ....)sin(8*mu1) + ......
+where
+e1 = [1- (1 - esq)^0.5]/[1 + (1 - esq)^0.5]
+mu1 = M1/[a(1 - esq/4 - 3e^4/64 - 5e^6/256 - ....)]
+M1 = M0 + (N - FN)
+T1 = tan^2(lat1)
+D = (E - FE)/nu1","For Projected Coordinate System Trinidad 1903 / Trinidad Grid 
+Parameters:
+Ellipsoid   Clarke 1858     a = 20926348 ft    = 31706587.88 links
+                                        b = 20855233 ft
+
+then 1/f = 294.97870 and e^2 = 0.00676866
+
+Latitude Natural Origin       10o26'30""N  =  0.182241463 rad
+Longitude Natural Origin    61o20'00""W = -1.07046861 rad
+False Eastings FE              430000.00 links
+False Northings FN            325000.00 links
+
+Forward calculation for: 
+Latitude       10o00'00.00"" N = 0.17453293 rad
+Longitude    62o00'00.00""W = -1.08210414 rad
+
+A = -0.01145876      C = 0.00662550
+T = 0.03109120      M = 5496860.24    nu = 31709831.92     M0 = 5739691.12
+
+Then Easting E    =  66644.94 links
+          Northing N =  82536.22 links
+
+Reverse calculation for same easting and northing first gives :
+e1    =   0.00170207       D  =     -0.01145875
+T1   = 0.03109544         M1 =      5497227.34
+nu1  = 31709832.34       mu1 =    0.17367306
+phi1 = 0.17454458         rho1 =    31501122.40
+
+
+Then Latitude     = 10o00'00.000""N
+         Longitude  =  62o00'00.000""W",,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,,0
+9807,Transverse Mercator,1,"The formulas to derive the projected Easting and Northing coordinates are in the form of a series as follows:
+
+Easting, E =  FE + k0*nu[A + (1 - T + C)A^3/6 + (5 - 18T + T^2 + 72C - 58e'sq)A^5/120]	
+
+Northing, N =  FN + k0{M - M0 + nu*tan(lat)[A^2/2 + (5 - T + 9C + 4C^2)A^4/24 + (61 - 58T + T^2 + 600C - 330e'sq)A^6/720]} 
+where T = tan^2(lat)                nu = a /(1 - esq*sin^2(lat))^0.5
+C = esq*cos^2(lat)/(1 - esq)
+A = (lon - lon0)cos(lat), with lon and lon0 in radians.
+M = a[(1 - esq/4 - 3e^4/64 - 5e^6/256 -....)lat - (3esq/8 + 3e^4/32 + 45e^6/1024+....)sin(2*lat) + (15e^4/256 + 45e^6/1024 +.....)sin(4*lat) - (35e^6/3072 + ....)sin(6*lat) + .....]
+with lat in radians and M0 for lat0, the latitude of the origin, derived in the same way.
+
+The reverse formulas to convert Easting and Northing projected coordinates to latitude and longitude are:
+
+lat = lat1 - (nu1*tan(lat1)/rho1)[D^2/2 - (5 + 3*T1 + 10*C1 - 4*C1^2 - 9*e'^2)D^4/24 + (61 + 90*T1 + 298*C1 + 45*T1^2 - 252*e'^2 - 3*C1^2)D^6/720]
+lon = lon0 + [D - (1 + 2*T1 + C1)D^3/6 + (5 - 2*C1 + 28*T1 - 3*C1^2 + 8*e'^2 + 24*T1^2)D^5/120] / cos(lat1)
+where lat1 may be found as for the Cassini projection from:
+
+lat1 = mu1 + ((3*e1)/2 - 27*e1^3/32 +.....)sin(2*lat1) + (21*e1^2/16 -55*e1^4/32 + ....)sin(4*lat1)+ (151*e1^3/96 +.....)sin(6*lat1) + (1097*e1^4/512 - ....)sin(8*lat1) + ......
+and where  nu1 = a /(1 - esq*sin^2(lat1))^0.5                                     rho1 = a(1 - esq)/(1 - esq*sin^2(lat1))^1.5
+e1 = [1- (1 - esq)^0.5]/[1 + (1 - esq)^0.5]
+mu1 = M1/[a(1 - esq/4 - 3e^4/64 - 5e^6/256 - ....)]
+M1 = M0 + (N - FN)/k0
+T1 = tan^2(lat1)
+C1 = e'^2*cos^2(lat1)
+D = (E - FE)/(nu1*k0), with nu1 = nu for lat1
+
+For areas south of the equator the value of latitude lat will be negative and the formulas above, to compute the E and N,  will automatically result in the correct values. Note that the false northings of the origin, if the equator, will need to be large to avoid negative northings and for the UTM projection is in fact 10,000,000m. Alternatively, as in the case of Argentina's Transverse Mercator (Gauss-Kruger) zones, the origin is at the south pole with a northings of zero. However each zone central meridian takes a false easting of 500000m prefixed by an identifying zone number. This ensures that instead of points in 
+different zones having the same eastings, every point in the country, irrespective of its projection zone, will have a unique set of projected system coordinates. Strict application of the above formulas, with south latitudes negative, will result in the derivation of the correct Eastings and Northings. 
+
+Similarly, in applying the reverse formulas to determine a latitude south of the equator, a negative sign for lat results from a negative lat1 which in turn results from a negative M1.","For Projected Coordinate System OSGB 1936 / British National Grid
+
+Parameters:
+Ellipsoid  Airy 1830  a = 6377563.396 m  1/f = 299.32496
+then e'^2 = 0.00671534 and e^2 = 0.00667054
+
+Latitude Natural Origin         49o00'00""N   = 0.85521133 rad
+Longitude Natural Origin        2o00'00""W  = -0.03490659 rad
+Scale factor ko                     0.9996013                                                                                              False Eastings FE                 400000.00 m
+False Northings FN              -100000.00 m
+
+Forward calculation for: 
+Latitude       50o30'00.00""N  = 0.88139127 rad
+Longitude    00o30'00.00""E  = 0.00872665 rad
+A  = 0.02775415       C = 0.00271699
+T =  1.47160434       M = 5596050.46
+M0 = 5429228.60     nu  = 6390266.03
+
+Then Easting E =        577274.99 m
+          Northing N =       69740.50 m
+
+Reverse calculations for same easting and northing first gives :
+e1 =    0.00167322      mu1 = 0.87939562
+M1 = 5599036.80        nu1 = 6390275.88
+phi1  = 0.88185987      D = 0.02775243
+rho1 =6372980.21       C1 =  0.00271391
+T1 = 1.47441726
+
+Then Latitude       = 50o30'00.000""N
+         Longitude    = 00o30'00.000""E",,EPSG guidance note #7.,EPSG,1996-09-18 00:00:00,,0
+9808,Transverse Mercator (South Orientated),1,"For the mapping of southern Africa a south oriented Transverse Mercator projection is used. Here the coordinate axes are called Westings and Southings and increment to the West and South from the origin respectively.  The standard Transverse Mercator formulas (coordinate operation method code 9807) need to be modified to cope with this arrangement with
+
+Westing, W = FE - k0 nu[A + (1 - T + C)A^3/6 + (5 - 18*T + T^2 + 72*C - 58*e'^2)A^5/120]
+
+Southing, S = FN - k0{M - M0 + nu*tan(lat)*[A^2/2 + (5 - T + 9*C + 4*C^2)A^4/24 + (61 - 58*T + T^2 + 600*C - 330*e'^2)A^6/720]}
+
+In these formulas the terms FE and FN retain their definition, i.e. in the Transverse Mercator (South Orientated) method they increase the Westing and Southing value at the natural origin. In this method they are effectively false westing (FW) and false southing (FS) respectively.
+
+For the reverse formulas, those for the standard Transverse Mercator above apply, with the exception that:
+
+M1 = M0 - (S - FN)/k0
+and D = -(W - FE)/(nu1*k0), with nu1 = nu for lat1",,,EPSG guidance note #7.,EPSG,2002-07-31 00:00:00,2002.51,0
+9809,Oblique Stereographic,1,"Given the geodetic origin of the projection at the tangent point (lat0, lon0), the parameters defining the conformal sphere are:
+
+R= sqrt( rho0 * nu0)
+n=  sqrt{1+[(e2*cos^4(lat0))/(1-e2)}
+c=  [(n+sin(lat0)) (1-sin(chi0))]/[(n-sin(lat0)) (1+sin(chi0))]
+
+where:	sin(chi0) = (w1-1)/(w1+1)
+w1 = (S1.(S2)^e)^n
+S1 = (1+sin(lat0))/(1-sin(lat0))
+S2 = (1-e sin(lat0))/(1+e sin(lat0))
+
+The conformal latitude and longitude (chi0,lambda0) of the origin are then computed from :
+
+chi0 = asin[(w2-1)/(w2+1)]
+
+where S1 and S2 are as above and  w2 = c (S1(S2)^e)^n
+ 
+lambda0  = lon0
+
+For any point with geodetic coordinates (lat, lon) the equivalent conformal latitude and longitude (chi, lambda) are computed from 
+lambda = n(lon-lambda0) + lambda0
+chi = asin[(w-1)/(w+1)]
+
+where w = c (Ss (Sb)^e)^n
+Sa = (1+sin(lat))/(1-sin(lat))
+Sb = (1-e.sin(lat))/(1+e.sin(lat))
+ 
+Then B = [1+sin(chi) sin(chi0) + cos(chi) cos(chi0) cos(lambda-lambda0)]
+
+N = FN + 2 R k0 [sin(chi) cos(chi0) - cos(chi) sin(chi0) cos(lambda-lambda0)] / B
+
+E = FE + 2 R k0 cos(chi) sin(lambda-lambda0) / B
+
+
+The reverse formulae to compute the geodetic coordinates from the grid coordinates involves computing the conformal values, then the isometric latitude and finally the geodetic values.
+
+The parameters of the conformal sphere and conformal latitude and longitude at the origin are computed as above. Then for any point with Stereographic grid coordinates (E,N) :
+
+chi = chi0 + 2 atan[{(N-FN)-(E-FE) tan (j/2)} / (2 R k0)]
+
+lambda = j + 2 i + lambda0
+
+where g = 2 R k0 tan(pi/4 - chi0/2)
+h = 4 R k0 tan(chi0) + g
+i = atan[(E-FE) / {h+(N-FN)}]
+j = atan[(E-FE) / (g-(N-FN)] - i
+
+Geodetic longitude lon = (lambda-lambda0 ) / n +  lambda0
+
+Isometric latitude psi = 0.5 ln [(1+ sin(chi)) / { c (1-  sin(chi))}] / n
+
+First approximation lat1 = 2 atan(e^psi)  - pi/2  where e=base of natural logarithms.
+
+psii = isometric latitude at lati
+
+where psii= ln[{tan(lati/2 + pi/4}  {(1-e sin(lati))/(1+e sin(lati))}^(e/2)]
+ 
+Then iterate lat(i+1) = lati - ( psii - psi ) cos(lati) (1 -e^2 sin^2(lati)) / (1 - e^2)
+
+until the change in lat is sufficiently small.
+
+For Oblique Stereographic projections centred on points in the southern hemisphere,  the signs of E, N, lon0, lon,  must be reversed to be used in the equations and lat will be negative anyway as a southerly latitude.
+
+An alternative approach is given by Snyder, where, instead of defining a single conformal sphere at the origin point, the conformal latitude at each point on the ellipsoid is computed.  The conformal longitude is then always equivalent to the geodetic longitude.  This approach is a valid alternative to the above, but gives slightly different results away from the origin point. It is therefore considered by EPSG to be a different coordinate operation method to that described above.","For Projected Coordinate System RD / Netherlands New
+
+Parameters:
+Ellipsoid   Bessel 1841    a = 6377397.155 m    1/f = 299.15281
+then e = 0.08169683
+
+Latitude Natural Origin      52o09'22.178""N  = 0.910296727 rad
+Longitude Natural Origin     5o23'15.500""E  =  0.094032038 rad
+Scale factor k0                 0.9999079
+False Eastings FE             155000.00 m
+False Northings FN           463000.00 m
+
+Forward calculation for: 
+
+Latitude    53oN = 0.925024504 rad
+Longitude   6oE = 0.104719755 rad
+
+first gives the conformal sphere constants:
+
+rho0 = 6374588.71    nu0 = 6390710.613
+R = 6382644.571    n = 1.000475857    c  = 1.007576465
+
+where S1 = 8.509582274  S2 = 0.878790173  w1 = 8.428769183
+sin chi0 = 0.787883237
+
+w   = 8.492629457   chi0 = 0.909684757      D0 = d0 
+
+for the point  chi  = 0.924394997    D = 0.104724841
+
+hence B = 1.999870665    N = 557057.739    E = 196105.283
+
+reverse calculation for the same Easting and Northing first gives:
+
+g = 4379954.188    h = 37197327.96   i = 0.001102255   j = 0.008488122
+
+then  D = 0.10472467  Longitude = 0.104719584 rad =  6 deg E
+
+chi  = 0.924394767    psi = 1.089495123
+phi1 = 0.921804948       psi1 = 1.084170164
+phi2 = 0.925031162       psi2 = 1.089506925
+phi3 = 0.925024504       psi3 = 1.089495505
+phi4 = 0.925024504
+
+Then Latitude      = 53o00'00.000""N
+          Longitude   =   6o00'00.000""E","This is not the same as the projection method of the same name in USGS Professional Paper no. 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG guidance note #7.,EPSG,1999-11-15 00:00:00,99.811,0
+9810,Polar Stereographic,1,"For the forward transformation from latitude and longitude,
+
+E = FE + rho sin(lon - lon0)
+N = FN - rho cos(lon - lon0)
+where
+rho = 2 a ko t /{[((1+e)^(1+e)) ((1-e)^(1-e))]^0.5}
+t = tan (pi/4 - lat/2) / [(1-esin(lat) ) / (1 + e sin(lat))]^(e/2)
+
+For the reverse transformation,
+
+lat = chi+ (e^2/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2 chi) 
++ (7e^4/48 + 29e^6/240 + 811e^8/11520) sin(4 chi)
++ (7e^6/120 +  81e^8/1120) sin(6 chi)  + (4279e^8/161280) sin(8 chi)
+
+lon = lon0+ arctan [(E-FE) / (FN-N)]
+
+where chi  = pi/2 - 2 arctan t
+t   =  rho [((1+e)^(1+e)) ((1-e)^(1-e))]^0.5} / 2 a ko
+rho = [(E-FE)^2  + (N - FN)^2]^0.5",,,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder",EPSG,1996-09-18 00:00:00,,0
+9811,New Zealand Map Grid,1,b,,,New Zealand Department of Lands technical circular 1973/32,EPSG,1996-09-18 00:00:00,,0
+9812,Hotine Oblique Mercator,1,"The following constants for the projection may be calculated :
+
+B = (1 + esq * cos^4(latc) / (1 - esq ))^0.5
+A = a * B * kc *(1 - esq )^0.5 / ( 1 - esq * sin^2(latc))
+t0 = tan(pi/4 - latc/2) / ((1 - e*sin(latc)) / (1 + e*sin(latc)))^(e/2)
+D = B (1 - esq)^0.5  / (cos(latc) * ( 1 - esq*sin^2(latc))^0.5)
+if D < 1 to avoid problems with computation of F make D^2  = 1 
+F = D + (D^2 - 1)^0.5  * SIGN(latc)
+H = F* t0*B
+G = (F - 1/F) / 2
+gamma0 = asin(sin(alphac) / D)
+lon0 = lonc - (asin(G*tan(gamma0))) / B
+
+Then compute the (uc , vc) co-ordinates for the centre point (fc , lc).
+vc =0
+
+In general: uc = (A / B) atan((Dsq - 1)^0.5 / cos (alphac) ) * SIGN(latc)
+but for the special cases where alphac = 90 degrees then 
+uc = A*(lonc - lon0)  
+
+ 
+Forward case: To compute (E,N) from a given (lat,lon) :
+
+t = tan(pi/4 - lat/2) / ((1 - e sin (lat)) / (1 + e sin (lat)))^(e/2)
+Q = H / t^B
+S = (Q - 1 / Q) / 2
+T = (Q + 1 / Q) / 2
+V = sin(B (lon - lon0))
+U = (- V cos(gamma0) + S sin(gamma0)) / T
+v = A ln((1 - U) / (1 + U)) / 2 B
+u = A atan((S cos(gamma0) + V sin(gamma0)) / cos(B (lon - lon0 ))) / B
+
+The rectified skew co-ordinates are then derived from:
+E = v cos(gammac) + u sin(gammac) + FE
+N = u cos(gammac) - v sin(gammac) + FN
+
+Reverse case: Compute (lat,lon)  from a given (E,N)  :
+
+v’ = (E - FE) cos(gammac) - (N - FN) sin(gammac)
+u’ = (N - FN) cos(gammac) + (E - FE) sin(gammac)
+
+Q’ = e- (B v ‘/ A)  where e is the base of natural logarithms.
+S' = (Q’ - 1 / Q’) / 2
+T’ = (Q’ + 1 / Q’) / 2
+V’ = sin (B u’ / A)
+U’ = (V’ cos(gammac) + S’ sin(gammac)) / T’
+t’ = (H / ((1 + U’) / (1 - U’))^0.5)^(1 / B)
+
+chi = pi / 2 - 2 atan(t’)
+
+lat = chi + sin(2chi).( e^2 / 2 + 5*e^4 / 24 + e^6 / 12 + 13*e^8 / 360) +  sin(4*chi).( 7*e^4 /48 + 29*e^6 / 240 + 811*e8 / 11520) +  sin(6chi).( 7*e^6 / 120 + 81*e8 / 1120) +  sin(8chi).(4279 e^8 / 161280)
+
+lon=  lon0  - atan ((S’ cos(gammac) - V’ sin(gammac)) / cos(B*u’ / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
+
+Parameters:
+Ellipsoid:  Everest 1830 (1967 Definition)
+a = 6377298.556 metres 1/f = 300.8017
+then e = 0.081472981and e2 = 0.006637847
+
+Latitude Projection Centre fc = 4o00'00""N = 0.069813170 rad
+Longitude Projection Centre lc = 115o00'00""E = 2.007128640 rad
+Azimuth of central line ac = 53o18'56.9537"" = 0.930536611 rad
+Rectified to skew gc= 53o07'48.3685"" = 0.927295218 rad
+Scale factor ko= 0.99984
+False Eastings FE = 0.00 m
+False Northings FN = 0.00 m
+
+Forward calculation for: 
+Latitude lat = 5o23'14.1129""N = 0.094025313 rad
+Longitude lon = 115o48'19.8196""E = 2.021187362 rad
+
+B = 1.003303209            F = 1.072121256
+A =6376278.686            H = 1.000002991
+to = 0.932946976          g0 = 0.927295218
+D = 1.002425787           lon0 = 1.914373469
+D2 =1.004857458
+uc =738096.09              vc =0.00
+
+t =0.910700729             Q =1.098398182
+S =0.093990763            T = 1.004407419
+V =0.106961709            U = 0.010967247
+v =-69702.787                u =901334.257
+
+Then Easting E =      679245.73 m
+        Northing N =     596562.78 m
+
+Reverse calculations for same easting and northing first gives :
+v’ =   -69702.787              u’ =901334.257
+Q’ = 1.011028053
+S’  = 0.010967907          T’ = 1.000060146
+V’ = 0.141349378           U’ = 0.093578324
+t’ = 0.910700729             c = 0.093404829
+
+Then Latitude = 5o23'14.113""N
+         Longitude = 115o48'19.820""E",,EPSG guidance note #7.,EPSG,1999-11-15 00:00:00,97.62  99.811,0
+9813,Laborde Oblique Mercator,1,See information source.,See information source.,Can be accomodated by Oblique Mercator method (code 9815).,"""La nouvelle projection du Service Geographique de Madagascar""; J. Laborde; 1928",EPSG,1996-09-18 00:00:00,97.613,0
+9814,Swiss Oblique Cylindrical,1,See information source.,See information source.,Can be accomodated by Oblique Mercator method (code 9815).,"""Die projecktionen der Schweizerischen Plan und Kartenwerke""; J Bollinger; 1967",EPSG,1996-09-18 00:00:00,97.612,0
+9815,Oblique Mercator,1,"The following constants for the projection may be calculated :
+
+B = (1 + e^2 * cos^4(latc) / (1 - e^2 ))^0.5
+A = a * B * kc *(1 - e^2 )^0.5 / ( 1 - e^2 * sin^2(latc))
+t0 = tan(pi/4 - latc/2) / ((1 - e*sin(latc)) / (1 + e*sin(latc)))^(e/2)
+D = B (1 - e^2)^0.5  / (cos(latc) * ( 1 - e^2*sin^2(latc))^0.5)
+if D < 1 to avoid problems with computation of F make D^2  = 1 
+F = D + (D^2 - 1)^0.5  * SIGN(latc)
+H = F* t0*B
+G = (F - 1/F) / 2
+gamma0 = asin(sin(alphac) / D)
+lon0 = lonc - (asin(G*tan(gamma0))) / B
+vc =0
+In general: uc = (A / B) atan((Dsq - 1)^0.5 / cos (alphac) ) * SIGN(latc)
+but for the special cases where alphac = 90 degrees (e.g. Hungary, Switzerland) then 
+uc = A*(lonc - lon0)  
+
+ 
+Forward case: To compute (E,N) from a given (lat,lon) :
+
+t = tan(pi/4 - lat/2) / ((1 - e sin (lat)) / (1 + e sin (lat)))^(e/2)
+Q = H / t^B
+S = (Q - 1 / Q) / 2
+T = (Q + 1 / Q) / 2
+V = sin(B (lon - lon0))
+U = (- V cos(gamma0) + S sin(gamma0)) / T
+v = A ln((1 - U) / (1 + U)) / 2 B
+u = (A atan((S cos(gamma0) + V sin(gamma0)) / cos(B (lon - lon0 ))) / B) - (uc . SIGN(lon - lonc))
+
+The rectified skew co-ordinates are then derived from:
+E = v cos(gammac) + u sin(gammac) + Ec
+N = u cos(gammac) - v sin(gammac) + Nc
+
+Reverse case: Compute (lat,lon)  from a given (E,N)  :
+
+v’ = (E - Ec) cos(gammac) - (N - Nc) sin(gammac)
+u’ = (N - Nc) cos(gammac) + (E - Ec) sin(gammac) + uc
+
+Q’ = e- (B v ‘/ A)  where e is the base of natural logarithms.
+S' = (Q’ - 1 / Q’) / 2
+T’ = (Q’ + 1 / Q’) / 2
+V’ = sin (B u’ / A)
+U’ = (V’ cos(gammac) + S’ sin(gammac)) / T’
+t’ = (H / ((1 + U’) / (1 - U’))^0.5)^(1 / B)
+
+chi = pi / 2 - 2 atan(t’)
+
+lat = chi + sin(2chi).( e^2 / 2 + 5*e^4 / 24 + e^6 / 12 + 13*e^8 / 360) +  sin(4*chi).( 7*e^4 /48 + 29*e^6 / 240 + 811*e8 / 11520) +  sin(6chi).( 7*e^6 / 120 + 81*e8 / 1120) +  sin(8chi).(4279 e^8 / 161280)
+
+lon=  lon0  - atan ((S’ cos(gammac) - V’ sin(gammac)) / cos(B*u’ / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
+
+Parameters:
+Ellipsoid:  Everest 1830 (1967 Definition)
+a = 6377298.556 metres 1/f = 300.8017
+then e = 0.081472981and e2 = 0.006637847
+
+Latitude Projection Centre fc = 4o00'00""N = 0.069813170 rad
+Longitude Projection Centre lc = 115o00'00""E = 2.007128640 rad
+Azimuth of central line ac = 53o18'56.9537"" = 0.930536611 rad
+Rectified to skew gc= 53o07'48.3685"" = 0.927295218 rad
+Scale factor ko= 0.99984
+Easting at projection centre Ec = 590476.87 m
+Northing at projection centre Nc = 442857.65 m
+
+Forward calculation for: 
+Latitude lat = 5o23'14.1129""N = 0.094025313 rad
+Longitude lon = 115o48'19.8196""E = 2.021187362 rad
+
+B = 1.003303209            F = 1.072121256
+A =6376278.686            H = 1.000002991
+to = 0.932946976          g0 = 0.927295218
+D = 1.002425787           lon0 = 1.914373469
+D2 =1.004857458
+uc =738096.09              vc =0.00
+
+t =0.910700729             Q =1.098398182
+S =0.093990763            T = 1.004407419
+V =0.106961709            U = 0.010967247
+v =-69702.787                u =163238.163
+
+Then Easting E =      679245.73 m
+        Northing N =     596562.78 m
+
+Reverse calculations for same easting and northing first gives :
+v’ =   -69702.787              u’ =901334.257
+Q’ = 1.011028053
+S’  = 0.010967907          T’ = 1.000060146
+V’ = 0.141349378           U’ = 0.093578324
+t’ = 0.910700729             c = 0.093404829
+
+Then Latitude = 5o23'14.113""N
+         Longitude = 115o48'19.820""E",,EPSG guidance note #7.,EPSG,1999-11-15 00:00:00,99.811,0
+9816,Tunisia Mining Grid,1,"This grid is used as the basis for mineral leasing in Tunsia.  Lease areas are approximately 2 x 2 km or 400 hectares.  The corners of these blocks are defined through a six figure grid reference where the first three digits are an easting in kilometres and the last three digits are a northing.  The latitudes and longitudes for block corners at 2 km intervals are tabulated in a mining decree dated 1st January 1953.  From this tabulation in which geographical coordinates are given to 5 decimal places it can be seen that:
+a)  the minimum easting is 94 km, on which the longitude is 5.68989 grads east of Paris.
+b)  the maximum easting is 490 km, on which the longitude is 10.51515 grads east of Paris.
+c)  each 2 km grid easting interval equals 0.02437 grads.
+d)  the minimum northing is 40 km, on which the latitude is 33.39 grads.
+e)  the maximum northing is 860 km, on which the latitude is 41.6039 grads.
+f)  between 40 km N and 360 km N, each 2 km grid northing interval equals 0.02004 grads.
+g)  between 360 km N and 860 km N, each 2 km grid northing interval equals 0.02003 grads.
+
+Formulae are:
+
+Grads from Paris
+
+Lat (grads) = 36.5964 + [(N - 360) * A] 
+where N is in kilometres and A = 0.010015 if N > 360, else A = 0.01002.
+
+LonParis (grads) = 7.83445 + [(E - 270) * 0.012185], where E is in kilometres.
+
+The reverse formulae are:
+
+E (km) = 270 + [(LonParis - 7.83445) / 0.012185] where LonParis is in grads.
+
+N (km) = 360 + [(Lat - 36.5964) / B] 
+where Lat is in grads and B = 0.010015  if  lat>36.5964, else B = 0.01002.
+
+Degrees from Greenwich.
+
+Modern practice in Tunisia is to quote latitude and longitude in degrees with longitudes referenced to the Greenwich meridian.  The formulae required in addition to the above are:
+
+Lat (degrees) =  (Latg * 0.9) where Latg is in grads.
+LonGreenwich (degrees) = [(LonParis + 2.5969213) * 0.9] where LonParis is in grads.
+
+
+Lat (grads) =  (Latd / 0.9) where Latd is in decimal degrees.
+LonParis (grads) = [(LonGreenwich / 0.9) - 2.5969213)] where LonGreenwich is in decimal degrees.","For grid location 302598,
+Latitude = 36.5964 + [(598 - 360) * A].  As N > 360, A = 0.010015.
+Latitude = 38.97997 grads = 35.08197 degrees.
+
+Longitude  = 7.83445 + [(E - 270) * 0.012185, where E = 302.
+Longitude  = 8.22437 grads east of Paris = 9.73916 degrees east of Greenwich.",,EPSG guidance note #7.,EPSG,2000-03-07 00:00:00,99.811  2000.08,0
+9817,Lambert Conic Near-Conformal,1,"To compute the Lambert Conic Near-Conformal the following formulae are used;
+
+E = FE + r sin(theta)
+N = FN + M + r sin(theta) tan(theta/2) using the natural origin rather than the false origin.
+
+Compute constants for the ellipse:
+
+n = (a-b)/(a+b)  
+A’ = a [ 1- n + 5 (n^2 - n^3 ) / 4 + 81 ( n^4 - n^5 ) / 64]*pi /180 
+B’ = 3 a [ n - n^2 + 7 ( n^3 - n^4 ) / 8 + 55 n^5 / 64] / 2
+C’ = 15 a [ n^2 -n^3 + 3 ( n^4 - n^5 ) / 4 ] / 16
+D’ = 35 a [ n^3 - n^4 + 11 n^5 / 16 ] / 48
+E’ = 315 a [ n^4 - n^5 ] / 512
+
+Then compute the meridional arc from the equator to the parallel.
+s0 = A’ lat0 - B’ sin(2 lat0) + C’ sin(4 lat0) - D’ sin(6 lat0) + E’ sin(8 lat0) where lat0 in the first term is in degrees
+s0 = A’ lat - B’ sin(2 lat) + C’ sin(4 lat) - D’ sin(6 lat) + E’ sin(8 lat) where lat0 in the first term is in degrees
+m = s - s0
+A = 1 / (6 rho0 nu0) 
+M = ko ( m + A m^3.  This is the term that is truncated to the third order.
+Ms = M per second of arc = M / ((lat - lat0) * 3600)
+
+theta = (lon - lon0) sin(lat0)
+ro = ko nu0 / tan(lat0)
+r = ro - M
+
+The reverse formulas for lat and lon  from E and N with r0 and Ms as above:
+
+lat  = M’/ (Ms * 3600) + lat0   where lat0 and lat are in degrees
+lon  =  lon0 + theta‘ / sin(lat0)  where lont0 and lon are in radians
+
+where
+E’ = E - FE              N’ = N - FN
+theta‘ = arctan [E’ / (r0 - N’)]
+r’ = E’ / sin(theta‘) 
+M’ = r0 - r'","For Projected Coordinate System: Deir ez Zor / Levant Zone
+
+Parameters:
+Ellipsoid  Clarke 1880 (IGN)  a = 6378249.2 m  1/f = 293.46602
+then b = 6356515.000    n = 0.001706682563
+
+Latitude Natural Origin  = 34o 39'00"" N = 0.604756586 rad
+Longitude Natural Origin = 37o 21'00"" E=  0.651880476 rad
+Scale factor at origin ko = 0.99962560
+False Eastings FE  = 300000.00 m
+False Northings FN  = 300000.00 m
+
+Forward calculation for: 
+Latitude of 37d 31' 17.625"" N = 0.654874806 rad
+Longitude of 34d 08' 11.291"" E = 0.595793792 rad
+first gives
+A = 4.1067494 * 10e-15      A’=111131.8633
+B’= 16300.64407     C’= 17.38751     D’= 0.02308      E’= 0.000033
+so = 3835482.233    s  = 4154101.458     m = 318619.225
+M = 318632.72         Ms = 30.82262319
+q = -0.03188875       ro = 9235264.405     r = 8916631.685
+
+Then Easting E =   15707.96 m (c.f. E =   15708.00 using full formulae)
+         Northing N =      623165.96 m (c.f. N = 623167.20 using full formulae)
+
+Reverse calculation for the same easting and northing first gives
+
+q' = -0.03188875
+r’  =  8916631.685
+M’= 318632.72 
+
+Latitude =      0.654874806 rad = 37d 31' 17.625"" N
+Longitude = 0.595793792 rad =  34d 08' 11.291"" E",The Lambert Near-Conformal projection is derived from the Lambert Conformal Conic projection by truncating the series expansion of the projection formulae.,EPSG guidance note #7.,EPSG,1999-11-15 00:00:00,99.811,0
+9818,American Polyconic,1,See information source.,,See information source for formula and example.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder",EPSG,1999-10-20 00:00:00,99.55,0
+9819,Krovak Oblique Conic Conformal,1,"From the defining parameters the following constants for the projection may be calculated :
+
+B=((1 + e^2 cos^4(latC)) / (1 - e^2 ))^0.5
+A=a (1 - e^2 )^0.5 / ( 1 - e^2 sin^2 (latC))
+gamma0=asin(sin (latC) / B)
+t0 =tan(pi / 4 + gamma0 / 2) . ((1 + e sin(latC)) / (1 - e sin (latC)))^(e.B/2) / tan(pi / 4 + latC/ 2)^B
+n = sin lat1
+r0=kc  A / tan (lat1)
+
+To derive the projected Southing and Westing coordinates of a point with geographical coordinates (lat, lon) the formulas for the oblique conic conformal are:
+
+Southing:    X  = Ec + r cos theta
+Westing:     Y = Nc + r sin theta
+ 
+where
+
+U=2 (atan ( k tan^B (lat/2 + pi / 4 ) ((1 + e sin (lat)) / (1 - e sin (lat)))^(e.B/2 )) - pi / 4)
+V=B (lonc -  lon)
+S=asin ( cos (alphaC) sin ( U ) + sin (alphaC) cos (U) cos (V) )
+D=asin ( cos ( U ) sin ( V ) / cos ( S ) )
+theta=n D
+r=r0 tan(pi / 4 + gamma0/ 2) / tan^n ( S/2 + pi / 4 )
+
+The reverse formulas to derive the latitude and longitude of a point from its Southing and Westing values are:
+
+latj = 2*(atan(k^(-1/B) tan^(1/B) ( U’/2 + pi / 4 ) ((1 + e sin ( lat j-1) / (1 - e sin ( latj-1))^(e/2) ) - pi / 4) 
+where j = 1,2 and the latitude is found by iteration.
+lon = lonc - V' / B
+where
+r' =[(X - Ec)^2 + (Y - Nc)^2]^(1/2)  
+theta'=arctan [(X- Ec)/(Y- Nc)]
+D'=theta' / sin ( lat1)
+S'=2*(atan((r0 / r )^(1/n) tan(pi / 4 + lat0/ 2)) - pi / 4)
+U'=asin ( cos (alphaC) sin ( S' ) - sin (alphaC) cos (S') cos (D') )
+V'=asin ( cos (S') sin (D') / cos (U'))","For Projected Coordinate Reference System: S-JTSK (Ferro) / Krovak
+
+N.B. Krovak projection uses Ferro as the prime meridian. This has a longitude with reference to Greenwich of 17 deg 40 min West. To apply the formulae the defining longitudes must be corrected to the Greenwich meridian.
+
+Parameters:
+Ellipsoid  Bessel 1841   a = 6377397.155m  1/f = 299.15281
+    then    e = 0.081696831        e2 = 0.006674372
+
+Latitude of projection centre = 49o 30'00"" N =  0.604756586 rad
+Longitude of Origin = 42o 30'00"" East of Ferro
+Longitude of Ferro is 17o 40'00"" West of Greenwich
+Longitude of Origin = 24o 50'00"" East of Greenwich = 0.433423431   rad
+Latitude of pseudo standard parallel = 78o 30'00"" N
+Azimuth of centre line = 30o 17' 17.303""
+Scale factor on pseudo Standard Parallel (ko) = 0.99990
+Easting at projection centre (Ec) = 0.00 m
+Northing  at projection centre = 0.00 m
+
+Projection constants:
+B=1.000597498
+A=6380703.61
+*gamma0=0.863239103
+t0=1.003419164
+n= 0.979924705
+r0=1298039.005
+
+Forward calculation for: 
+Latitude = 50o 12' 32.4416"" N = 0.876312566 rad
+Longitude = 16o 50' 59.1790"" E = 0.294083999 rad
+
+Gives
+
+U=0.875596949
+V=0.139422687
+S=1.386275049
+D=0.506554623
+theta=0.496385389
+r0=1194731.014
+
+Then Southing X =  1050538.643 m
+         Westing  Y =    568990.997 m
+
+Reverse calculation for the same Southing and Westing gives
+
+r' =1194731.014
+theta' =0.496385389
+D'=0.506554623
+S'=1.386275049
+U'=0.875596949
+V'=0.139422687
+lat(iteration 1)=0.876310601 
+lat(iteration 2)=0.876312560
+lat(iteration3)=0.876312566
+
+Latitude = 0.876312566 rad = 50o 12' 32.4416"" N
+Longitude = 0.595793792 rad = 16o 50' 59.1790"" E",,Research Institute for Geodesy Topography and Cartography (VUGTK); Prague.,EPSG,2000-03-07 00:00:00,,0
+9820,Lambert Azimuthal Equal Area,1,See information source or EPSG Guidance Note 7.,See information source.,This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2001-06-05 00:00:00,,0
+9821,Lambert Azimuthal Equal Area (Spherical),1,See information source.,See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Azimuthal Equal Area (code 9820) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2001-06-05 00:00:00,,0
+9822,Albers Equal Area,1,See information source or EPSG Guidance Note 7.,See Information Source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2001-06-05 00:00:00,,0
+9823,Equidistant Cylindrical,1,"This method has one of the simplest formulas available. If the latitude of natural origin (*O) is at the equator the method is also known as Plate Carrée. It is not used for rigorous topographic mapping because its distortion characteristics are unsuitable. Formulas are included to distinguish this map projection method from an approach sometimes mistakenly called by the same name and used for simple computer display of geographic coordinates – see Pseudo Plate Carrée (coordinate operation method code 9825).
+
+For the forward calculation:
+
+X =  R . (lon - lonO) . cos(latO)
+Y =  R .  lat
+
+where R = [a^2 * (1 –  e^2)]^0.5
+and lat and lon are expressed in radians.
+
+For the reverse calculation:
+
+lat = Y / R  
+lon = lonO + (X / R cos(latO))
+
+where R is as for the forward method.",See information source.,"If the latitude of natural origin is at the equator, also known as Plate Carrée. See also Pseudo Plate Carree, method code 9825.","US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",EPSG,2001-11-06 00:00:00,,0
+9824,Transverse Mercator Zoned Grid System,1,"The standard Transverse Mercator formulas (coordinate operation method 9807) are modified as follows:
+
+Zone number, Z, = int((Long + LongI + W) / W)  with Long,  LongI and W in degrees. 
+where (LongI) is the Initial Longitude of the zoned grid system
+and W is the width of each zone of the zoned grid system.
+If Long < 0, Long = (Long + 360) degrees.
+
+Then,
+   Long0  = [Z * W] – [LongI + (W/2)]
+
+For the forward calculation,
+   Easting, E =  Z*10^6 + FE + k0.nu[A + (1 - T + C)A^3/6 + (5 - 18T + T^2 + 72C - 58e'^2)A^5/120]
+   
+and in the reverse calculation for longitude, 
+   D = (E – [FE + Z*10^6])/(nu1.k0)",,If locations fall outwith the fixed zones the general Transverse Mercator method (code 9807) must be used for each zone.,EPSG Guidance Note #7.,EPSG,2001-06-05 00:00:00,,0
+9825,Pseudo Plate Carree,1,"X = Lon
+Y = Lat
+
+Lat = Y
+Lon = X",,"Used only for depiction of graticule (latitude/longitude) coordinates on a computer display. The axes units are decimal degrees and of variable scale. The origin is at Lat = 0, Long = 0. See Equidistant Cylindrical, code 9823, for proper Plate Carrée.",EPSG,EPSG,2001-11-06 00:00:00,,0
+9826,Lambert Conic Conformal (West Orientated),1,"In older mapping of Denmark and Greenland the Lambert Conic Conformal is used with axes positive north and west. To derive the projected Westing and Northing coordinates of a point with geographical coordinates (Lat, Lon) the formulas are as for the standard Lambert Conic Conformal (1SP) case (coordinate operation method code 9801) except for:
+
+W =  FE – r.sin(theta)
+
+In this formula the term FE retains its definition, i.e. in the Lambert Conic Conformal (West Orientated) method it increases the Westing value at the natural origin. In this method it is effectively false westing (FW).
+
+The reverse formulas to derive the latitude and longitude of a point from its Westing and Northing values are as for the standard Lambert Conic Conformal (1SP) case except for:
+
+theta' = arctan[(FE – W)/{r0 – (N – FN)}]
+r' = +/-[(FE – W)^2 + {r0 – (N – FN)}^2]^0.5",,,EPSG guidance note #7.,EPSG,2002-01-16 00:00:00,,0
+9827,Bonne,1,See information source or EPSG Guidance Note 7.,See information source.,,"US Geological Survey Professional Paper 1395, ""Map Projections - A Working Manual"" by John P Snyder.",EPSG,2002-07-13 00:00:00,,0
+9828,Bonne (South Orientated),1,See EPSG Guidance Note 7.,,,EPSG Guidance Note number 7.,EPSG,2002-07-13 00:00:00,,0

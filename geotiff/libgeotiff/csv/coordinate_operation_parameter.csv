@@ -1,0 +1,99 @@
+"PARAMETER_CODE","PARAMETER_NAME","DESCRIPTION","INFORMATION_SOURCE","DATA_SOURCE","REVISION_DATE","CHANGE_ID","DEPRECATED"
+8601,Latitude offset,The difference between the latitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8602,Longitude offset,The difference between the longitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8603,Vertical Offset,The difference between the height or depth values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8604,Geoid undulation,"The height of the geoid above a specified ellipsoid.  Indicated by symbol N.  Usually interpolated within a geoid model.
+N = h - H, where h is the height above the ellipsoid and H is the gravity-related height.",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8605,X-axis translation,The difference between the X values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8606,Y-axis translation,The difference between the Y values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8607,Z-axis translation,The difference between the Z values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8608,X-axis rotation,"The angular difference between the Y and Z axes directions of target and source coordinate reference systems. This is a rotation about the X axis as viewed from the origin looking along that axis. The particular method defines which direction is positive, and what is being rotated (point or axis).",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8609,Y-axis rotation,"The angular difference between the X and Z axes directions of target and source coordinate reference systems. This is a rotation about theY axis as viewed from the origin looking along that axis. The particular method defines which direction is positive, and what is being rotated (point or axis).",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8610,Z-axis rotation,"The angular difference between the X and Y axes directions of target and source coordinate reference systems. This is a rotation about the Z axis as viewed from the origin looking along that axis. The particular method defines which direction is positive, and what is being rotated (point or axis).",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8611,Scale difference,"The scale difference increased by unity equals the ratio of an the length of an arbitrary distance between two points in target and source coordinate reference systems.  This is usually averaged for the intersection area of the two coordinate reference systems. 
+
+If a distance of 100 km in the source coordinate reference system translates into a distance of 100.001 km in the target coordinate reference system, the scale difference is 1 ppm (the ratio being 1.000001).",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8612,Scale factor for source coordinate reference system first axis,"The unit of measure of the source coordinate reference system first axis, expressed in the unit of measure of the target coordinate reference system.",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8613,Scale factor for source coordinate reference system second axis,"The unit of measure of the source coordinate reference system second axis, expressed in the unit of measure of the target coordinate reference system",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8614,Rotation angle of source coordinate reference system axes,"Angle (counter-clockwise positive) through which both of the source coordinate reference system axes need to rotated to coincide with the corresponding target coordinate reference system axes.  
+
+Alternatively, the bearing (clockwise positive) of the source coordinate reference system YS-axis measured relative to target coordinate reference system north.",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8615,Rotation angle of source coordinate reference system first axis,Angle (counter-clockwise positive) through which the source coordinate reference system's first axis needs to rotated to coincide with the corresponding axis of the target coordinate reference system.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8616,Rotation angle of source coordinate reference system second axis,Angle (counter-clockwise positive) through which the source coordinate reference system's second axis needs to rotated to coincide with the corresponding axis of the target coordinate reference system.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8617,Ordinate 1 of evaluation point,The value of the first ordinate value of the evaluation point.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8618,Ordinate 2 of evaluation point,The value of the second ordinate of the evaluation point.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8619,Ordinate 1 of evaluation point in source CRS,The value of the first ordinate of the evaluation point expressed in the source coordinate reference system.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8620,Ordinate 2 of evaluation point in source CRS,The value of the second ordinate of the evaluation point expressed in the source coordinate reference system.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8621,Ordinate 1 of evaluation point in target CRS,The value of the first ordinate of the evaluation point expressed in the target coordinate reference system.  In the case of an affine transformation the evaluation point is the origin of the source coordinate reference system.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8622,Ordinate 2 of evaluation point in target CRS,The value of the second ordinate of the evaluation point expressed in the target coordinate reference system.  In the case of an affine transformation the evaluation point is the origin of the source coordinate reference system.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8623,A0,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8624,A1,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8625,A2,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8626,A3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8627,A4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8628,A5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8629,A6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8630,A7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8631,A8,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8632,A9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8633,A10,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8634,A11,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8635,A12,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8636,A13,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8637,A14,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8638,B00,Coefficient used only in the Madrid to ED50 polynomial transformation method.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8639,B0,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8640,B1,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8641,B2,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8642,B3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8643,B4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8644,B5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8645,B6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8646,B7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8647,B8,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8648,B9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8649,B10,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8650,B11,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8651,B12,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8652,B13,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8653,B14,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8654,Semi-major axis length difference,The difference between the semi-major axis values of the ellipsoids used in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8655,Flattening difference,"The difference between the flattening values of the ellipsoids used in the target and source coordinate reference systems. 
+
+flattening  = 1 / (inverse_flattening).",EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8656,Latitude and longitude difference file,The name of the [path and] file containing latitude and longitude differences.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8657,Latitude difference file,The name of the [path and] file containing latitude differences.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8658,Longitude difference file,The name of the [path and] file containing longitude differences.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8659,Geod. tfm. code for northern boundary,The EPSG code for the geodetic transformation applied at the northern boundary of the interpolation area.  Applies to Norwegian offshore interpolation method.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8660,Geod. tfm. code for southern boundary,The EPSG code for the geodetic transformation applied at the southern boundary of the interpolation area.  Applies to Norwegian offshore interpolation method.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8661,Geod. tfm. name for northern boundary,The EPSG name for the geodetic transformation applied at the northern boundary of the interpolation area.  Applies to Norwegian offshore interpolation method.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8662,Geod. tfm. name for southern boundary,The EPSG name for the geodetic transformation applied at the southern boundary of the interpolation area.  Applies to Norwegian offshore interpolation method.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8663,Point scale factor,The point scale factor in a selected point of the target coordinate reference system. to be used as representative figure of the scale of the target coordinate reference system in a the area to which a coordinate transformation is defined.,EPSG guidance note number 7 (June 2000 Revision),EPSG,2000-06-29 00:00:00,,0
+8664,Easting and northing difference file,The name of the [path and] file containing easting and northing differences.,Ordnance Survey of Great Britain,EPSG,2000-10-19 00:00:00,,0
+8665,Maritime Province residual file,Coordinate differences at control points,Survey of New Brunswick,EPSG,2000-10-19 00:00:00,,0
+8666,Geoid model file,The name of the [path and] file containing geoid heights.,EPSG,EPSG,2001-06-05 00:00:00,,0
+8667,Ordinate 3 of evaluation point,The value of the third ordinate of the evaluation point.,EPSG guidance note number 7.,EPSG,2001-11-06 00:00:00,,0
+8801,Latitude of natural origin,"The latitude of the point from which the values of both the geographical coordinates on the ellipsoid and the grid coordinates on the projection are deemed to increment or decrement for computational purposes. Alternatively it may be considered as the latitude of the point which in the absence of application of false coordinates has grid coordinates of (0,0).",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8802,Longitude of natural origin,"The longitude of the point from which the values of both the geographical coordinates on the ellipsoid and the grid coordinates on the projection are deemed to increment or decrement for computational purposes. Alternatively it may be considered as the longitude of the point which in the absence of application of false coordinates has grid coordinates of (0,0).  Sometimes known as ""central meridian (CM)"".",EPSG guidance note number 7.,EPSG,2002-06-22 00:00:00,2002.39,0
+8805,Scale factor at natural origin,"The factor by which the map grid is reduced or enlarged during the projection process, defined by its value at the natural origin.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8806,False easting,"Since the natural origin may be at or near the centre of the projection and under normal coordinate circumstances would thus give rise to negative coordinates over parts of the mapped area, this origin is usually given false coordinates which are large enough to avoid this inconvenience. The False Easting, FE, is the value assigned to the abscissa (east or west) axis of the projection grid at the natural origin.",EPSG guidance note number 7.,EPSG,2002-07-31 00:00:00,2002.51,0
+8807,False northing,"Since the natural origin may be at or near the centre of the projection and under normal coordinate circumstances would thus give rise to negative coordinates over parts of the mapped area, this origin is usually given false coordinates which are large enough to avoid this inconvenience. The False Northing, FN, is the value assigned to the ordinate (north or south) axis of the projection grid at the natural origin.",EPSG guidance note number 7.,EPSG,2002-07-31 00:00:00,2002.51,0
+8811,Latitude of projection centre,"For an oblique projection, this is the latitude of the point at which the azimuth of the central line is defined.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8812,Longitude of projection centre,"For an oblique projection, this is the longitude of the point at which the azimuth of the central line is defined.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8813,Azimuth of initial line,"The azimuthal direction (north zero, east of north being positive) of the great circle which is the centre line of an oblique projection. The azimuth is given at the projection center.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8814,Angle from Rectified to Skew Grid,The angle at the natural origin of an oblique projection through which the natural coordinate reference system is rotated to make the projection north axis parallel with true north.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8815,Scale factor on initial line,"The factor by which the map grid is reduced or enlarged during the projection process, defined by its value at the projection center.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8816,Easting at projection centre,The easting value assigned to the projection centre.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8817,Northing at projection centre,The northing value assigned to the projection centre.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8818,Latitude of pseudo standard parallel,"Latitude of the parallel on which the conic or cylindrical projection is based.  This latitude is not geographic, but is defined on the conformal sphere AFTER its rotation to obtain the oblique aspect of the projection",EPSG guidance note number 7,EPSG,2000-03-07 00:00:00,,0
+8819,Scale factor on pseudo standard parallel,"The factor by which the map grid is reduced or enlarged during the projection process, defined by its value at the pseudo-standard parallel.",EPSG guidance note number 7.,EPSG,2000-03-07 00:00:00,,0
+8821,Latitude of false origin,The latitude of the point which is not the natural origin and at which grid coordinate values false easting and false northing are defined.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8822,Longitude of false origin,The longitude of the point which is not the natural origin and at which grid coordinate values false easting and false northing are defined.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8823,Latitude of 1st standard parallel,"For a conic projection with two standard parallels, this is the latitude of intersection of the cone with the ellipsoid that is nearest the pole.  Scale is true along this parallel.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8824,Latitude of 2nd standard parallel,"For a conic projection with two standard parallels, this is the latitude of intersection of the cone with the ellipsoid that is furthest from the pole.  Scale is true along this parallel.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8826,Easting at false origin,The easting value assigned to the false origin.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8827,Northing at false origin,The northing value assigned to the false origin.,EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
+8828,Spherical latitude of origin,The latitude of the point from which the values of both the geographical coordinates on the sphere and the grid coordinates on a spherical projection are deemed to increment or decrement for computational purposes.,EPSG guidance note number 7.,EPSG,2001-06-05 00:00:00,,0
+8829,Spherical longitude of origin,The longitude of the point from which the values of both the geographical coordinates on the sphere and the grid coordinates on a spherical projection are deemed to increment or decrement for computational purposes.,EPSG guidance note number 7.,EPSG,2001-06-05 00:00:00,,0
+8830,Initial longitude,The longitude of the western limit of the first zone of a Transverse Mercator zoned grid system.,EPSG,EPSG,2001-06-05 00:00:00,,0
+8831,Zone width,The longitude width of a zone of a Transverse Mercator zoned grid system.,EPSG,EPSG,2001-06-05 00:00:00,,0

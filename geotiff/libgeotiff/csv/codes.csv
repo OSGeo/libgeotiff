@@ -1,0 +1,84 @@
+"RECORD_ID","TABLE_NAME","TABLE_CONTENTS","CODE_MINIMUM","CODE_MAXIMUM","ALLOCATED_LOW","ALLOCATED_HIGH","REMARKS"
+0.01,Note: EPSG codes reserved range.,,0,32767,,,EPSG reserved code range 0-32766.  Users should allocated codes outside of this range.
+1.0,Alias,Aliases for data in all tables.,1,,1,2020,Autonumbered. Code range also used in other tables.
+2.0,Area,Area of use,1024,32767,1024,2784,Allocated sequentially - codes have no meaning. Code range also used in other tables.
+3.0,Change,Change records,,,,,Allocated sequentially with calendar year.
+4.0,Codes,EPSG codes,,,,,(This table)
+5.0,Coordinate Axis,Coordinate system attributes,,,,,No codes allocated - intersection table using dual key codes of related tables.
+6.0,Coordinate Axis Name,Coordinate system axis names,9900,9999,9901,9928,Allocated sequentially - codes have no meaning.
+7.0,Coordinate Reference System,Coordinate Reference System data,,,,,
+7.1,Coordinate Reference System,      Geographic coordinate reference systems,,,,,
+7.11,Coordinate Reference System,            geogCRS unspecified datum,4000,4099,4001,4047,
+7.12,Coordinate Reference System,            geogCRS non-WGS systems (1),4120,4139,4120,4139,Form ProjCRS 20yy to 39yy.  Range full.
+7.13,Coordinate Reference System,            geogCRS non-WGS systems (2),4140,4199,4140,4199,Added sequentially - codes have no meaning. Range full.
+7.14,Coordinate Reference System,            geogCRS non-WGS systems (3),4200,4319,4200,4319,Form ProjCRS 200yy to 319yy.  Range full.
+7.15,Coordinate Reference System,            geogCRS non-WGS systems (4),4600,4799,4600,4617,Added sequentially - codes have no meaning.
+7.16,Coordinate Reference System,            geogCRS NAD systems overflow,4320,4321,4320,4321,Form ProjCRS 320yy to 321yy.  Range full.
+7.17,Coordinate Reference System,            geogCRS WGS systems,4322,4327,4322,4327,Form ProjCRS 322yy to 327yy.  Range full.
+7.18,Coordinate Reference System,            geogCRS non-Greenwich prime meridian equivalent,4800,4899,4801,4820,Form ProjCRS 20yy to 39yy and 200yy to 319yy as in 6.12 and 6.14.
+7.19,Coordinate Reference System,            geogCRS no Greenwich prime meridian,4900,4999,4901,4904,
+7.3,Coordinate Reference System,      Projected coordinate reference systems,,,,,
+7.31,Coordinate Reference System,            projCRS (1a),2000,3999,2000,3992,Historically allocated from geogCRS 4120-4139. Now being infilled sequentially.
+7.32,Coordinate Reference System,            projCRS (1b),2000,3999,2000,2963,Now being allocated sequentially around codes previously allocated from geogCRS 4120-4139.
+7.35,Coordinate Reference System,            projCRS (2),20000,32766,20004,32766,Historically allocated from geogCRS 4200-4327. Will be infilled sequentially after range 2000-3999 full.
+7.4,Coordinate Reference System,      Vertical coordinate reference systems,,,,,
+7.41,Coordinate Reference System,            using ellipsoidal datum,,,,,Deleted in v3.2
+7.42,Coordinate Reference System,            using geoidal datum,5600,5799,5701,5739,
+7.5,Coordinate Reference System,      Engineering coordinate reference systems,5800,5999,5800,5816,
+7.6,Coordinate Reference System,      Compound coordinate reference systems,7400,7999,7401,7413,
+8.0,Coordinate System,Coordinate System descriptions,,,,,
+8.1,Coordinate System,    Cartesian coordinate systems used in geocentric CRSs,6500,6500,6500,6500,
+8.2,Coordinate System,    Cartesian coordinate systems used in projected CRSs,4400,4599,4400,4532,
+8.3,Coordinate System,    Cartesian coordinate systems used only in Engineering CRSs,6501,6599,,,
+8.4,Coordinate System,    Ellipsoidal and spherical coordinate systems,6400,6449,6401,6404,
+8.5,Coordinate System,    Gravity-related coordinate systems,6450,6499,6497,6499,
+9.0,Coordinate_Operation,Coordinate Operations,,,,,
+9.1,Coordinate_Operation,      Map Projections (Coordinate Conversions),,,,,Codes between 10000 and 19999.
+9.11,Coordinate_Operation,             US State Plane,10000,15999,10001,15917,non-continuous allocation due to semi-heirarchical coding by State.
+9.12,Coordinate_Operation,             global zoned systems,16000,16399,160,163,last two digits indicate zone number
+9.13,Coordinate_Operation,             TM (pseudo UTM) systems NE hem.,16400,16580,16400,16506,systems in the N and E hemispheres.  Digits indicate longitude of origin.
+9.14,Coordinate_Operation,             TM (pseudo UTM) systems SE hem.,16600,16780,16611,16732,systems in the S and E hemispheres.  Digits indicate longitude of origin.
+9.15,Coordinate_Operation,             TM (pseudo UTM) systems SW hem.,16800,16980,,,systems in the S and W hemispheres.  Digits indicate longitude of origin.
+9.16,Coordinate_Operation,             TM (pseudo UTM) systems NW hem.,17000,17180,17001,17054,systems in the N and W hemispheres.  Digits indicate longitude of origin.
+9.17,Coordinate_Operation,             large zoned systems,17200,17999,173,179,last two digits usually indicate zone number
+9.18,Coordinate_Operation,             small zoned systems,18000,18999,1801,1844,last digit indicates zone number
+9.19,Coordinate_Operation,             individual zones,19000,19999,19000,19979,
+9.3,Coordinate_Operation,      Coordinate Transformations,,,,,
+9.31,Coordinate_Operation,             Single-step geodetic transformations,1024,1099,1025,1038,
+9.32,Coordinate_Operation,             Single-step geodetic transformations,1100,1099,1025,1864,
+9.34,Coordinate_Operation,             Concatenated geodetic transformations,8000,8999,8046,8635,
+9.37,Coordinate_Operation,             Vertical offset data,5400,5599,5400,5405,
+10.0,Coordinate_Operation Method,Coordinate Operation methods and required parameter names,,,,,
+10.1,Coordinate_Operation Method,    transformation methods,9600,9699,9601,9636,
+10.2,Coordinate_Operation Method,    reserved for operation methods,9700,9799,,,
+10.3,Coordinate_Operation Method,    conversion (map projection) methods,9800,9899,9801,9828,
+11.0,Coordinate_Operation Parameter,Coordinate Operation parameter names and descriptions,8600,8899,,,
+11.1,Coordinate_Operation Parameter,    Parameters used in transformations,8600,8699,8601,8667,
+11.2,Coordinate_Operation Parameter,    reserved for operation parameters,8700,8799,,,
+11.3,Coordinate_Operation Parameter,    Parameters used in conversions,8880,8899,8801,8831,
+12.0,Coordinate_Operation Parameter Usage,Links parameters with operation methods,,,,,No codes allocated - intersection table using dual key codes of related tables.
+13.0,Coordinate_Operation Parameter Value,Values of transformation and conversion parameters,,,,,No codes allocated - intersection table using triple key codes of related tables.
+14.0,Coordinate_Operation Path,Concatenated transformation steps,,,,,No codes allocated - intersection table using dual key codes of related tables.
+15.1,Datum,Geodetic Datum data,,,,,
+15.11,Datum,    unspecified datum,6000,6099,6001,6047,Form GeogCRS 4000 to 4099.
+15.12,Datum,    WGS systems,6322,6327,6322,6327,Form GeogCRS 4322 to 4327.  Range full.
+15.13,Datum,    NAD systems overflow,6320,6321,6320,6321,Form GeogCRS 4320 to 4321.  Range full.
+15.14,Datum,    non-WGS systems (1),6120,6139,6120,6139,Form GeogCRS 4120 to 4139.  Range full.
+15.15,Datum,    non-WGS systems (2),6140,6199,6140,6199,Form GeogCRS 4140 to 4199.  Range full.
+15.16,Datum,    non-WGS systems (3),6200,6319,6200,6319,Form GeogCRS 4200 to 4319.  Range full.
+15.17,Datum,    non-WGS systems (4),6600,6799,6600,6617,Form GeogCRS 4600 to 4799.
+15.18,Datum,    non-Greenwich prime meridian equivalent,6800,6899,6801,6820,Form GeogCRS 4800 to 4899.
+15.19,Datum,    no Greenwich prime meridian,6900,6999,6901,6904,Form GeogCRS 4900 to 4999.
+15.3,Datum,Vertical datum data,,,,,
+15.31,Datum,    ellipsoidal datum,,,,,Deleted in v3.2
+15.32,Datum,    geoidal datum,5000,5199,5100,5137,
+15.4,Datum,Engineering Datum data,9300,9599,9300,9313,
+16.0,Deprecation,Deprecated records reasons and replacement trail,1,,2,426,Autonumbered. Code range also used in other tables.
+17.0,Ellipsoid,Ellipsoid data,7000,7299,7001,7049,
+18.0,Naming System,Naming System names,7300,7399,7300,7311,
+19.0,Prime Meridian,Prime Meridian data,8900,8999,8901,8913,
+20.0,Unit of Measure,,,,,,
+20.1,Unit of Measure,Angle unit data,9100,9199,9101,9115,
+20.2,Unit of Measure,Length unit data,9000,9099,9001,9094,
+20.3,Unit of Measure,Scale unit data,9200,9299,9201,9211,
+21.0,Version History,,,,,,
