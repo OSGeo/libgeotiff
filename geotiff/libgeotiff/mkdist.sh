@@ -40,18 +40,8 @@ zip -r ../libgeotiff${COMPRESSED_VERSION}.zip libgeotiff-${VERSION}
 cd ..
 rm -rf dist_wrk
 
-TARGETDIR=/ftp/remotesensing/pub/geotiff/libgeotiff
+TARGETDIR=remotesensing.org:/ftp/remotesensing/pub/geotiff/libgeotiff
 if test "$2" = "-install" ; then
-  if test \! -d $TARGETDIR ; then
-    echo "Can't find $TARGETDIR ... -install failed."
-    exit
-  fi
-
-  echo "Installing: " $TARGETDIR/libgeotiff-${VERSION}.tar.gz
-  rm -f $TARGETDIR/libgeotiff-${VERSION}.tar.gz
-  cp libgeotiff-${VERSION}.tar.gz $TARGETDIR
-
-  echo "Installing: " $TARGETDIR/libgeotiff${COMPRESSED_VERSION}.zip
-  rm -f $TARGETDIR/libgeotiff${COMPRESSED_VERSION}.zip
-  cp libgeotiff${COMPRESSED_VERSION}.zip $TARGETDIR
+  scp libgeotiff-${VERSION}.tar.gz libgeotiff${COMPRESSED_VERSION}.zip \
+	$TARGETDIR
 fi
