@@ -18,35 +18,40 @@ specification document.  The mathematical model is defined in 8.2.4 of
 that document, and the disk layout of the information is defined in 
 8.3.12 of that document.<p>
 
+This proposal is being developed in cooperation with the ASPRS
+Softcopy Photogrammetry Committee, and is not yet adopted as part of
+the GeoTIFF specification. <p>
+
 <h2>Mathematical Model</h2>
 
-The following is taken verbatim from STDI-0002 2.1 (8.2.4).<p>
+The following is adapted closely from STDI-0002 2.1 (8.2.4).<p>
 
-The geometric sensor model describing the precise relationship between image 
-coordinates and ground coordinate is known as a Rigorous Projection Model. A 
-Rigorous Projection Model expresses the mapping of the image space coordinates 
-of rows and columns (r,c) onto the object space reference surface geodetic 
-coordinates ( &phi;, &lambda;, h ).<p>
+The geometric sensor model describing the physical relationship between 
+image coordinates and ground coordinate is known as a Rigorous Projection 
+Model. A Rigorous Projection Model expresses the mapping of the image space 
+coordinates of rows and columns (r,c) onto the object space reference surface 
+geodetic coordinates ( &phi;, &lambda;, h ).<p>
 
-RPC00 supports a common approximation to the Rigorous Projection Models. The 
+RPC supports a generic description of the Rigorous Projection Models. The 
 approximation used by RPC00 is a set of rational polynomials exp ressing the 
-normalized row and column values, (r<sub>n</sub> , c<sub>n</sub>), as a function of normalized 
-geodetic latitude, longitude, and height, ( P , L , H ), given a set of 
-normalized polynomial coefficients (LINE_NUM_COEF_n, LINE_DEN_COEF_n, 
-SAMP_NUM_COEF_n, SAMP_DEN_COEF_n). Normalized values, rather than actual 
-values are used in order to minimize introduction of errors during the 
-calculations. The transformation between row and column values (r,c), and 
-normalized row and column values (r<sub>n</sub>, c<sub>n</sub>), and between the geodetic 
-latitude, longitude, and height ( &phi;, &lambda;, h ), and normalized 
-geodetic latitude, longitude, and height ( P , L , H ), is defined by a set 
-of normalizing translations (offsets) and scales that ensure all values are 
-contained i the range -1 to +1.
+normalized row and column values, (r<sub>n</sub> , c<sub>n</sub>), as a 
+function of normalized geodetic latitude, longitude, and height, (P, L, H), 
+given a set of normalized polynomial coefficients (LINE_NUM_COEF_n, 
+LINE_DEN_COEF_n, SAMP_NUM_COEF_n, SAMP_DEN_COEF_n). Normalized values, rather 
+than actual values are used in order to minimize introduction of errors during 
+the calculations. The transformation between row and column values (r,c), and 
+normalized row and column values (r<sub>n</sub>, c<sub>n</sub>), and between 
+the geodetic latitude, longitude, and height ( &phi;, &lambda;, h ), and 
+normalized geodetic latitude, longitude, and height (P, L, H), is defined by a 
+set of normalizing translations (offsets) and scales that ensure all values 
+are contained i the range -1 to +1.<p>
+
 <pre>
-           P = (Latitude     - LAT_OFF)    / LAT_SCALE
-           L = (Longitude    - LONG_OFF)   / LONG_SCALE
-           H = (Height       - HEIGHT_OFF) / HEIGHT_SCALE
-           rn = (Row         - LINE_OFF)   / LINE_SCALE
-           cn = (Column      - SAMP_OFF)   / SAMP_SCALE
+        P = (Latitude     - LAT_OFF)    / LAT_SCALE
+        L = (Longitude    - LONG_OFF)   / LONG_SCALE
+        H = (Height       - HEIGHT_OFF) / HEIGHT_SCALE
+        r<sub>n</sub> = (Row         - LINE_OFF)   / LINE_SCALE
+        c<sub>n</sub> = (Column      - SAMP_OFF)   / SAMP_SCALE
 </pre>
 
 The rational function polynomial equations are defined as:<p>
@@ -63,8 +68,9 @@ sets of coefficients:
 LINE_NUM_COEF_n, LINE_DEN_COEF_n, SAMP_NUM_COEF_n, SAMP_DEN_COEF_n<p>
 
 The image coordinates are in units of pixels. The ground coordinates are 
-latitude and longitude in units of decimal degrees and the geodetic elevation 
-in units of meters. The ground coordinates are referenced to WGS-84.<p>
+latitude and longitude in units of decimal degrees and the height above
+ellipsoid in units of meters. The ground coordinates are referenced to 
+WGS84.<p>
 
 Note: The order of terms differs between different applications. This order is
 used with RPC00B and the Digital Point Positioning Data Base. 
@@ -94,8 +100,8 @@ The elements of this tag are:<p>
 
 <tr>
   <td> ERR_BIAS
-  </td><td> Error - Bias. 68% non time-varying error estimate
-assumes correlated images.
+  </td><td> Error - Bias. The RMS bias error
+in meters per horizontal axis of all points in the image
   </td><td> >= 0
   </td><td> meters
   </td>
@@ -103,8 +109,8 @@ assumes correlated images.
 
 <tr>
   <td> ERR_RAND
-  </td><td> Error - Random. 68% time-varying error estimate assumes 
-uncorrelated images.
+  </td><td> Error - Random. RMS random error in meters per
+horizontal axis of each point in the image.
   </td><td> >= 0
   </td><td> meters
   </td>
@@ -169,7 +175,7 @@ uncorrelated images.
 <tr>
   <td> LAT_SCALE
   </td><td> Geodetic Latitude Scale 
-  </td><td> -90 to 90, (cannot be 0)
+  </td><td> 0 < LAT_SCALE <= 90
   </td><td> degrees
   </td>
 </tr>
@@ -177,7 +183,7 @@ uncorrelated images.
 <tr>
   <td> LONG_SCALE
   </td><td> Geodetic Longitude Scale 
-  </td><td> -180 to 180, (cannot be 0)
+  </td><td> 0 < LONG_SCALE <= 180
   </td><td> degrees
   </td>
 </tr>
@@ -228,19 +234,39 @@ polynomial in the Denominator of the c<sub>n</sub> equation.
 
 </table>
 
+<h2>Commentary</h2>
+
+The RPC model allows a row/column location to be computed for a given
+lat, long and height value.  It is not inherently invertable, though it
+is usually possible to compute at lat,long location from a row, column 
+and height value using iterative methods. <p>
+
+The RPC model in a GeoTIFF file is suplimentary to all other GeoTIFF tags
+and not directly related.  That is, it is possible to have a conventional
+set of GeoTIFF tags (such as a tiepoint + pixel scale + projected coordinate
+system description) along with the RPCCoefficientTag.  The RPCCoefficientTag
+is always describing a transformation to WGS84, regardless of what 
+geographic coordinate system might be described in the coordinate system
+description tags of the GeoTIFF file.  It is also possible to have only
+the RPCCoefficientTag tag and no other GeoTIFF tags.<p>
 
 <h2>Outstanding Issues</h2>
 
 <ol>
-<li> Do we want to be able to tie RPCs to datums other than WGS84?
-<p>
 
-<li> Do we want to be able to have RPCs and a geographic
-or projected coordinate system with another model (ie. tiepoint+scale)
-in the same file? <p>
+<li> Error Bias and Random:  The STDI-0002 describes ERR_BIAS as "Error - 
+Bias. 68% non time-varying error 
+estimate assumes correlated images." and ERR_RAND as "Error - Random. 68% 
+time-varying error estimate assumes uncorrelated images."  It is the intent
+that the ERR_BIAS and ERR_RAND fields in GeoTIFF should be the same as
+the values in the NITF; however, a more detailed explanation of the
+meaning, and rules for populating these fields would be very desirable.<p>
 
-<li> What do we set error information to if we don't know anything?
-<p>
+<li> It would be very desirable to provide sample file(s) demonstrating
+this format.  I have a variety of NITF datasets with RPCs, but none
+appear to be publishable information.  If anyone can provide an NITF
+dataset appropriate for redistribution, with an RPC00B TRE, I would be
+happy to translate it into GeoTIFF format as a demonstrator.<p>
 
 </ol>
 
