@@ -1,5 +1,8 @@
 Wed Sep 15 10:19:34 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
+	* CT_TransvMercator_SouthOriented now CT_TransvMercator_SouthOrientated
+	  to match EPSG.  SouthOriented name remains as an alias.
+
 	* Fixed serious bug in geo_normalize.c with translation of
 	DD.MMSSsss values.  Return value was seriously off if any 
 	fraction of a second was included in the string.
