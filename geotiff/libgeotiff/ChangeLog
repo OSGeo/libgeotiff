@@ -1,3 +1,12 @@
+2003-06-20  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* bin/Makefile.in: Removed the "prep" target for copying the geotiff
+	shared library ... not necessary with -L.. (I hope).
+
+	* configure.in: don't let -ltiff get added to LIBS multiple times. 
+
+	* Prepared 1.2.1 release
+
 2003-06-19  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_new.c: Fixed bug that can corrupt memory when an invalid 
