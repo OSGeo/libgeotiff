@@ -79,6 +79,22 @@ The Intergraph sample files include a non 1.0 scale at the natural origin;
 however, this isn't currently an official part of the spec.  However, if you
 can handle a scale parameter, you should look for ScaleAtNatOrigin. <p>
 
+<h3>PROJ.4 Organization</h3>
+
+<b>
+<pre>
+  +proj=cass +lat_0=<i>Latitude of natural origin</i> 
+             +lon_0=<i>Longitude of natural origin</i>
+             +x_0=<i>False Easting</i>
+             +y_0=<i>False Northing</i>
+</pre>
+</b>
+
+There does not appear to be any scaling support with PROJ.4's Cassini.  
+The documentation for PROJ.4 just calls the projection Cassini, but does
+indicate support for ellipical as well as spherical forms so I presume it
+is the same as Cassini-Soldner.<p>
+
 <h3>EPSG Notes</h3>
 
 Cassini-Soldner Formula<p>
