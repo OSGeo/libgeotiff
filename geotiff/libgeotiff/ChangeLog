@@ -1,0 +1,20 @@
+Thu Mar 25 23:25:22 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
+
+	* Added ChangeLog and LICENSE file to distribution.
+
+March 18
+	
+	* Added support for PROJ.4 in configure.  Added cover functions
+	for Proj.4 in geotiff_proj.c, added lat/long reporting to listgeo.c. 
+
+
+-- 1.1.0a Release (circa March 10, 1999) --
+
+	* This release is considered alpha (not release) quality. 
+	
+	* Includes new CSV files, ``geo_normalize'' support, and a new
+	configure script (using autoconf). 
+
+-- 1.02 Release (1995 or so) 	
+
+	
