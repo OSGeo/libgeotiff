@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.17  1999/12/10 20:06:58  warmerda
+ * fixed up scale geokey used for a couple of projections
+ *
  * Revision 1.16  1999/12/10 19:50:21  warmerda
  * Added EquidistantConic support, fixed return of StdParallel2GeoKey for
  * LCC2, and Albers.
@@ -1099,12 +1102,20 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
                           &dfNatOriginLat, 0, 1 ) == 0 )
             dfNatOriginLat = 0.0;
 
+        if( GTIFKeyGet(psGTIF, ProjScaleAtNatOriginGeoKey,
+                       &dfNatOriginScale, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjScaleAtCenterGeoKey,
+                          &dfNatOriginScale, 0, 1 ) == 0 )
+            dfNatOriginScale = 1.0;
+            
         /* notdef: should transform to decimal degrees at this point */
 
         psDefn->ProjParm[0] = dfNatOriginLat;
         psDefn->ProjParmId[0] = ProjNatOriginLatGeoKey;
         psDefn->ProjParm[1] = dfNatOriginLong;
         psDefn->ProjParmId[1] = ProjNatOriginLongGeoKey;
+        psDefn->ProjParm[4] = dfNatOriginScale;
+        psDefn->ProjParmId[4] = ProjScaleAtNatOriginGeoKey;
         psDefn->ProjParm[5] = dfFalseEasting;
         psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
         psDefn->ProjParm[6] = dfFalseNorthing;
@@ -1210,7 +1221,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         psDefn->ProjParm[1] = dfNatOriginLong;
         psDefn->ProjParmId[1] = ProjStraightVertPoleLongGeoKey;
         psDefn->ProjParm[4] = dfNatOriginScale;
-        psDefn->ProjParmId[4] = ProjScaleAtCenterGeoKey;
+        psDefn->ProjParmId[4] = ProjScaleAtNatOriginGeoKey;
         psDefn->ProjParm[5] = dfFalseEasting;
         psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
         psDefn->ProjParm[6] = dfFalseNorthing;
