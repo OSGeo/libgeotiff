@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.5  2004/05/04 00:29:31  warmerda
+# added gcs.override.csv support
+#
 # Revision 1.4  2004/03/20 07:52:28  warmerda
 # more escape clauses for EPSG 6.5
 #
@@ -231,6 +234,12 @@ for key in op_keys:
                                             int(co_rec['TARGET_CRS_CODE'])
 
 ##############################################################################
+# Read GCS Override table for manually assigned transformations.
+
+gcs_override_table = csv_tools.CSVTable()
+gcs_override_table.read_from_csv( 'gcs.override.csv' )
+
+##############################################################################
 # Setup GCS table fields.
 
 gcs_table = csv_tools.CSVTable()
@@ -255,6 +264,16 @@ gcs_table.add_field('DS')
 # Populate and write GCS table.
 
 for key in gcs_keys:
+
+    try:
+        o_rec = gcs_override_table.get_record( key )
+        
+        print 'GCS %d overridden from gcs.override.csv file' % key
+        gcs_table.add_record( key, o_rec )
+        continue
+    except:
+        pass
+    
     crs_rec = crs.get_record( key )
     gcs_rec = {}
     gcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
