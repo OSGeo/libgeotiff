@@ -24,7 +24,7 @@ XTIFF=xtiff.o
 XTIFFINC= xtiffio.h xtiffiop.h
 
 #
-IPATH   = -I. -I${SRCDIR} @TIFF_INC@
+IPATH   = -I. -I${SRCDIR} @TIFF_INC@ @PROJ_INC@
 #
 CONF_LIBRARY=\
 	${NULL}
@@ -44,6 +44,7 @@ OBJS    = \
 	geo_tiffp.o \
 	geo_write.o \
 	geo_normalize.o \
+	geotiff_proj4.o \
 	cpl_csv.o \
 	cpl_serv.o \
 	${NULL}

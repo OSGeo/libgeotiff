@@ -13,4 +13,7 @@
 /* Define if you have the <strings.h> header file.  */
 #undef HAVE_STRINGS_H
 
+#undef HAVE_LIBPROJ
+#undef HAVE_PROJECTS_H
+
 #endif /* ndef GEO_CONFIG_H */

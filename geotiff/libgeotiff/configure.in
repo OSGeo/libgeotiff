@@ -14,8 +14,7 @@ AC_CHECK_LIB(m,exp,,,)
 dnl We check for headers
 AC_HEADER_STDC
 AC_CHECK_HEADERS(string.h strings.h stdlib.h)
-
-
+ 
 dnl
 dnl Special logic to try and find a user specified libtiff tree.  If not
 dnl available check if the system directories have the library, _and_ the
@@ -43,7 +42,26 @@ build libgeotiff without libtiff]),-lm)
   AC_CHECK_HEADERS(tiffiop.h,,AC_MSG_ERROR("tiffiop.h not found - cannot build libxtiff"))
 fi
 
-dnl Checks for library functions.
-AC_C_BIGENDIAN
+dnl
+dnl Try and find libproj.a, and projects.h
+dnl
+if test "$PROJ_HOME" != "" ; then
+  echo Using predefined PROJ_HOME=$PROJ_HOME
+elif test -d ../proj ; then
+  PROJ_HOME=`pwd`/../proj
+  echo Found local PROJ_HOME=$PROJ_HOME
+fi
+
+if test "$PROJ_HOME" != "" ; then
+  PROJ_LIB=$TIFF_HOME/libproj.a
+  LIBS="$PROJ_LIB $LIBS"
+
+  PROJ_INC=-I$PROJ_HOME
+  AC_SUBST(PROJ_INC,$PROJ_INC)
+  
+else
+  AC_CHECK_LIB(proj,pj_init,,,-lm)
+  AC_CHECK_HEADERS(projects.h,,)
+fi
 
 AC_OUTPUT(Makefile bin/Makefile)
