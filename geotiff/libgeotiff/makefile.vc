@@ -10,6 +10,8 @@ TIFF_DIR = ..\libtiff\libtiff
 
 TIFF_INC = -I$(TIFF_DIR)
 TIFF_LIB = $(TIFF_DIR)\libtiff.lib
+TIFF_LIB_DLL = $(TIFF_DIR)\libtiff_i.lib
+
 #
 CC      = cl
 INCL	= -I. -Ilibxtiff $(TIFF_INC)
@@ -54,8 +56,8 @@ geotiff.lib:	$(OBJS)
 #	Only build geotiff.dll if you are also ensuring that TIFF symbols
 #	get exported.
 #
-#geotiff.dll:    $(OBJS)
-#	link /dll /out:geotiff.dll /implib:geotiff.lib $(OBJS) $(LIBS) 
+geotiff.dll:    $(OBJS)
+	link /dll /out:geotiff.dll /implib:geotiff_i.lib $(OBJS) $(TIFF_LIB_DLL)
 
 geo_config.h:	geo_config.h.vc
 	copy geo_config.h.vc geo_config.h
