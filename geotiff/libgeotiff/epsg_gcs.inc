@@ -53,6 +53,7 @@ ValuePair(GCS_GGRS87,4121)
 ValuePair(GCS_KKJ,4123)
 ValuePair(GCS_RT90,4124)
 ValuePair(GCS_EST92,4133)
+ValuePair(GCS_Dealul_Piscului_1970,4317)
 ValuePair(GCS_Greek_Athens,4815)
 
 /* Standard GCS */
