@@ -1,3 +1,10 @@
+2001-04-17  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: added support for reading custom ellipsoid 
+	definitions.
+	
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=42
+
 2001-04-06  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* listgeo.c: added -i flag to report inverse transformation results,

@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.26  2001/04/17 13:23:07  warmerda
+ * added support for reading custom ellipsoid definitions
+ *
  * Revision 1.25  2001/03/05 04:55:26  warmerda
  * CVSDeaccess at end of GTIFGetDefn to avoid file leak
  *
@@ -128,8 +131,7 @@
  */
  
 #include "cpl_csv.h"
-#include "geotiff.h"
-#include "xtiffio.h"
+#include "geo_tiffp.h"
 #include "geovalues.h"
 #include "geo_normalize.h"
 
@@ -1639,6 +1641,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 {
     int		i;
     short	nGeogUOMLinear;
+    double	dfInvFlattening;
     
 /* -------------------------------------------------------------------- */
 /*      Initially we default all the information we can.                */
@@ -1788,6 +1791,22 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     {
         GTIFGetEllipsoidInfo( psDefn->Ellipsoid, NULL,
                               &(psDefn->SemiMajor), &(psDefn->SemiMinor) );
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Check for overridden ellipsoid parameters.  It would be nice    */
+/*      to warn if they conflict with provided information, but for     */
+/*      now we just override.                                           */
+/* -------------------------------------------------------------------- */
+    GTIFKeyGet(psGTIF, GeogSemiMajorAxisGeoKey, &(psDefn->SemiMajor), 0, 1 );
+    GTIFKeyGet(psGTIF, GeogSemiMinorAxisGeoKey, &(psDefn->SemiMinor), 0, 1 );
+    
+    if( GTIFKeyGet(psGTIF, GeogInvFlatteningGeoKey, &dfInvFlattening, 
+                   0, 1 ) == 1 )
+    {
+        if( dfInvFlattening != 0.0 )
+            psDefn->SemiMinor = 
+                psDefn->SemiMajor * (1 - 1.0/dfInvFlattening);
     }
     
 /* -------------------------------------------------------------------- */
@@ -2069,4 +2088,3 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         CPLFree( pszName );
     }
 }
-
