@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.3  1999/03/17 19:53:15  geotiff
+ * sys includes moved to cpl_serv.h
+ *
  * Revision 1.2  1999/03/10 18:24:06  geotiff
  * corrected to use int'
  *
@@ -53,18 +56,6 @@
 #include "xtiffio.h"
 #include "geovalues.h"
 #include "geo_normalize.h"
-
-#include <math.h>
-
-#ifdef HAVE_STRING_H
-#  include <string.h>
-#endif
-#if defined(HAVE_STRINGS_H) && !defined(HAVE_STRING_H)
-#  include <strings.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#  include <stdlib.h>
-#endif
 
 #ifndef KvUserDefined
 #  define KvUserDefined 32767
