@@ -93,10 +93,15 @@ dnl
 AC_ARG_WITH(libtiff, [  --with-libtiff=dir      Use libtiff in directory dir],,)
 
 if test "$with_libtiff" != "" ; then
-  TIFF_LIB="-L$TIFF_HOME -ltiff"
-  LIBS="-L$with_libtiff -ltiff $LIBS"
-
-  TIFF_INC=-I$with_libtiff
+  if test -d $with_libtiff/include/tiffio.h -a -d $with_libtiff/lib ; then
+    TIFF_LIB="-L$TIFF_HOME/lib -ltiff"
+    LIBS="-L$with_libtiff/lib -ltiff $LIBS"
+    TIFF_INC=-I$with_libtiff/include
+  else
+    TIFF_LIB="-L$TIFF_HOME -ltiff"
+    LIBS="-L$with_libtiff -ltiff $LIBS"
+    TIFF_INC=-I$with_libtiff
+  fi
 else
   AC_CHECK_LIB(tiff,TIFFOpen,,
                AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
@@ -162,13 +167,13 @@ dnl
 dnl AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg	  Use C code EPSG tables],, enable_incode_epsg=no)
 
 dnl if test "$enable_incode_epsg" != "yes" ; then
-dnl   echo "EPSG tables will be read from .csv files."
-dnl   CSV_SOURCE="\$(CSV_FILE_OBJS)"
+   echo "EPSG tables will be read from .csv files."
+   CSV_SOURCE="\$(CSV_FILE_OBJS)"
 dnl else
 dnl   echo "EPSG tables will be linked into library."
 dnl   CSV_SOURCE="\$(CSV_INCODE_OBJS)"
 dnl fi
-dnl AC_SUBST(CSV_SOURCE,$CSV_SOURCE)
+AC_SUBST(CSV_SOURCE,$CSV_SOURCE)
 
 
 
