@@ -97,10 +97,58 @@ Detailed information is available from:<p>
 <a href="ftp://ftp.swisstopo.ch/pub/data/geo/refsyse.pdf">
 ftp://ftp.swisstopo.ch/pub/data/geo/refsyse.pdf</a><p>
 
+<h2>OGC WKT Variations</h2>
+
+GDAL/OGR Well Known Text representation for a Swiss Oblique Mercator
+coordinate system:<p>
+
+<pre>
+PROJCS["CH1903+ / LV95",
+    GEOGCS["CH1903+",
+        DATUM["CH1903",
+            SPHEROID["Bessel 1841",6377397.155,299.1528128],
+            TOWGS84[674.374,15.056,405.346,0,0,0,0]],
+        PRIMEM["Greenwich",0],
+        UNIT["degree",0.01745329251994328]],
+    PROJECTION["Hotine_Oblique_Mercator"],
+    PARAMETER["latitude_of_center",46.95240555555556],
+    PARAMETER["longitude_of_center",7.439583333333333],
+    PARAMETER["azimuth",90],
+    PARAMETER["rectified_grid_angle",90],
+    PARAMETER["scale_factor",1],
+    PARAMETER["false_easting",2600000],
+    PARAMETER["false_northing",1200000],
+    UNIT["metre",1]]
+</pre>
+
+The corresponding ESRI WKT definition follows.  Nnote no rectified_grid_angle
+is provided and the alternate name for the projection.<p>
+
+<pre>
+PROJCS["CH1903+_LV95",
+    GEOGCS["GCS_CH1903+",
+        DATUM["D_CH1903+",
+            SPHEROID["Bessel_1841",6377397.155,299.1528128]],
+        PRIMEM["Greenwich",0],
+        UNIT["Degree",0.017453292519943295]],
+    PROJECTION["Hotine_Oblique_Mercator_Azimuth_Center"],
+    PARAMETER["False_Easting",2600000],
+    PARAMETER["False_Northing",1200000],
+    PARAMETER["Scale_Factor",1],
+    PARAMETER["Azimuth",90],
+    PARAMETER["Longitude_Of_Center",7.439583333333333],
+    PARAMETER["Latitude_Of_Center",46.95240555555556],
+    UNIT["Meter",1]]
+</pre>
+
+
 <h3>EPSG Notes</h3>
 
 Detailed notes on Swiss Oblique Mercator and related projection methods
 can be found in <a href="epsg_om.html">section 1.4.7</a> of the EPSG
-<a href="guid7.html">Guidance Note # 7</a>.<p>
+<a href="guid7.html">Guidance Note # 7</a>.  However, in practice, now
+all swiss oblique mercator coordinate systems in EPSG are handled
+as Hotine Oblique Mercator with an azimuth of 90 and a rectified grid
+angle of 90.<p>  
 
 </body>
