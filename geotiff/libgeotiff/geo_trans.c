@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.9  2001/11/28 14:20:30  warmerda
+ * fixed transform memory leak in GTIFPCSToImage
+ *
  * Revision 1.8  2001/04/06 16:56:22  warmerda
  * added support for PCSToImage with matrix
  *
@@ -235,10 +238,10 @@ int GTIFImageToPCS( GTIF *gtif, double *x, double *y )
 int GTIFPCSToImage( GTIF *gtif, double *x, double *y )
 
 {
-    double 	*tiepoints;
+    double 	*tiepoints = NULL;
     int 	tiepoint_count, count, transform_count = 0;
-    double	*pixel_scale;
-    double 	*transform   = 0;
+    double	*pixel_scale = NULL;
+    double 	*transform   = NULL;
     tiff_t 	*tif=gtif->gt_tif;
     int		result = FALSE;
 
@@ -312,6 +315,8 @@ int GTIFPCSToImage( GTIF *gtif, double *x, double *y )
         _GTIFFree(tiepoints);
     if(pixel_scale)
         _GTIFFree(pixel_scale);
+    if(transform)  
+        _GTIFFree(transform);
 
     return result;
 }
