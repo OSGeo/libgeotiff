@@ -15,13 +15,15 @@ TIFF_LIB_DLL = $(TIFF_DIR)\libtiff_i.lib
 #
 CC      = cl
 INCL	= -I. -Ilibxtiff $(TIFF_INC)
+
 LIBS    = geotiff.lib $(TIFF_LIB)
 
 # Use the following to build exe's again libtiff and libgeotiff DLL
 #LIBS    = geotiff_i.lib $(TIFF_LIB_DLL)
 
 #
-CFLAGS  = $(INCL) /W4 /nologo
+CFLAGS  = $(INCL) /MD /Ox /nologo
+
 #
 OBJS    = \
 	xtiff.obj \
@@ -40,13 +42,16 @@ OBJS    = \
 	cpl_csv.obj \
 	cpl_serv.obj
 
-all:    geo_config.h geotiff.lib listgeo.exe geotifcp.exe geotiff.dll
+all:    geo_config.h geotiff.lib geotiff.dll listgeo.exe geotifcp.exe
 
 listgeo.exe:	bin\listgeo.c geotiff.lib
 	$(CC) $(CFLAGS) bin\listgeo.c $(LIBS)
 	
 geotifcp.exe:	bin\geotifcp.c geotiff.lib
 	$(CC) $(CFLAGS) bin\geotifcp.c bin\getopt.c $(LIBS)
+	
+gt_update.exe:	bin\gt_update.c geotiff.lib
+	$(CC) $(CFLAGS) bin\gt_update.c bin\getopt.c geotiff.lib $(LIBS)
 	
 geotiff.lib:	$(OBJS)
 	lib /out:geotiff.lib $(OBJS)
