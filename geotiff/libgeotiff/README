@@ -7,6 +7,10 @@ of GeoTIFF keys in new files. For more information about GeoTIFF
 specifications, projection codes and use, see the WWW web page at:
 
    http://www.remotesensing.com/geotiff/geotiff.html
+
+or at:
+
+   http://www.geotiff.org/
    
 or the FTP archive at:
 
@@ -29,8 +33,8 @@ be found at:
    
 For this build to work you must use libtiff version v3.4beta018 or newer.
 If you are building it yourself, and have libtiff 3.5.6 or later, you
-should use the "install-private" target instead of "install" to install
-some private include files required by libgeotiff.
+should use the "install-private" make target of libtiff instead of "install" 
+to install some private include files required by libgeotiff.
 
 Building LIBGEOTIFF:
 --------------------
@@ -162,7 +166,7 @@ Credits
  o This library was originally written by Niles Ritter (also the primary
    author of the GeoTIFF specification).  
 
- o It is currently being maintained by Frank Warmerdam (warmerda@home.com),
+ o It is currently being maintained by Frank Warmerdam (warmerdam@pobox.com),
    who also added the "normalization" capability of GTIFGetDefn() using 
    EPSG CSV files. 
 

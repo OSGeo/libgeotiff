@@ -1,3 +1,7 @@
+2000-12-28  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Prepare 1.1.4 release.
+
 2000-12-12  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Fix geotifcp.c to avoid u_char problems, include getopt.h.
