@@ -2703,6 +2703,8 @@ _ACEOF
 fi
 
 
+LIBS="$LDFLAGS $LIBS"
+
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -4048,19 +4050,19 @@ else
 fi;
 
 if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
-  if test -d $PROJ_HOME/src/pj_init.c ; then
+  if test -d "$PROJ_HOME/src/pj_init.c" ; then
     PROJ_HOME=$PROJ_HOME/src
   fi
 
-    if test -f $PROJ_HOME/libproj.a -a -f $PROJ_HOME/projects.h ; then
+    if test -f "$PROJ_HOME/libproj.a" -a -f "$PROJ_HOME/projects.h" ; then
     PROJ_LIB=$PROJ_HOME/libproj.a
     PROJ_INC=$PROJ_HOME
 
-    elif test -f $PROJ_HOME/.libs/libproj.a -a -f $PROJ_HOME/projects.h ; then
+    elif test -f "$PROJ_HOME/.libs/libproj.a" -a -f "$PROJ_HOME/projects.h" ; then
     PROJ_LIB=$PROJ_HOME/.libs/libproj.a
     PROJ_INC=$PROJ_HOME
 
-    elif test -f $PROJ_HOME/lib/libproj.a -a -f $PROJ_HOME/include/projects.h ; then
+    elif test \( -f "$PROJ_HOME/lib/libproj.a" -o -f "$PROJ_HOME/lib/libproj.so" \) -a -f "$PROJ_HOME/include/proj_api.h"; then
     PROJ_LIB="-L$PROJ_HOME/lib -lproj"
     PROJ_INC=$PROJ_HOME/include
   else

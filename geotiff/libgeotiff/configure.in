@@ -47,6 +47,9 @@ AC_SUBST(EXEEXT,$EXEEXT)
 dnl Checks for libraries.
 AC_CHECK_LIB(m,exp,,,)
 
+dnl We want to honor the users wishes with regard to linking.
+LIBS="$LDFLAGS $LIBS"
+
 dnl We check for headers
 AC_HEADER_STDC
 AC_CHECK_HEADERS(string.h strings.h stdlib.h)
@@ -128,22 +131,22 @@ dnl
 AC_ARG_WITH(proj, [  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)],[PROJ_HOME=$withval],[PROJ_HOME=])
 
 if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
-  if test -d $PROJ_HOME/src/pj_init.c ; then
+  if test -d "$PROJ_HOME/src/pj_init.c" ; then
     PROJ_HOME=$PROJ_HOME/src
   fi
 
   dnl Old PROJ.4 build tree, without automake
-  if test -f $PROJ_HOME/libproj.a -a -f $PROJ_HOME/projects.h ; then
+  if test -f "$PROJ_HOME/libproj.a" -a -f "$PROJ_HOME/projects.h" ; then
     PROJ_LIB=$PROJ_HOME/libproj.a
     PROJ_INC=$PROJ_HOME
 
   dnl New PROJ.4 build tree, with automake
-  elif test -f $PROJ_HOME/.libs/libproj.a -a -f $PROJ_HOME/projects.h ; then
+  elif test -f "$PROJ_HOME/.libs/libproj.a" -a -f "$PROJ_HOME/projects.h" ; then
     PROJ_LIB=$PROJ_HOME/.libs/libproj.a
     PROJ_INC=$PROJ_HOME
 
   dnl Installed tree in an odd place
-  elif test -f $PROJ_HOME/lib/libproj.a -a -f $PROJ_HOME/include/projects.h ; then
+  elif test \( -f "$PROJ_HOME/lib/libproj.a" -o -f "$PROJ_HOME/lib/libproj.so" \) -a -f "$PROJ_HOME/include/proj_api.h"; then
     PROJ_LIB="-L$PROJ_HOME/lib -lproj"
     PROJ_INC=$PROJ_HOME/include 
   else
