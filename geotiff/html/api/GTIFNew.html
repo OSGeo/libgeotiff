@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<title>GTIFNew() - Create GeoTIFF Access Handle</title>
+</head>
+
+<body>
+<h1>GTIFNew - Create GeoTIFF Access Handle</h1>
+
+<b>
+<pre>
+    #include &lt;geotiff.h&gt;
+    GTIF * GTIFNew(void * tif);
+</pre>
+</b>
+
+This function creates a GeoTIFF information interpretation handle
+(<tt>GTIF *</tt>) based on a passed in TIFF handle originally from 
+<a href="XTIFFOpen.html">XTIFFOpen()</a>.  Even though the argument 
+(<tt>tif</tt>) is shown as type <tt>void *</tt>, it is really normally
+of type <tt>TIFF *</tt>.<p>
+
+The returned GTIF handle can be used to read or write GeoTIFF tags 
+using the various GTIF functions.  The handle should be destroyed using
+<a href="GTIFFree.html">GTIFFree()</a> before the file is closed with
+<a href="XTIFFClose.html">XTIFFClose()</a>.<p>
+
+If the file accessed has no GeoTIFF keys, an valid (but empty) GTIF is
+still returned.  GTIFNew() is used both for existing files being read, and
+for new TIFF files that will have GeoTIFF tags written to them.<p>
+
+<b>See Also:</b> 
+
+<a href="XTIFFOpen.html">XTIFFOpen()</a>,
+<a href="GTIFFree.html">GTIFFree()</a>,
+<a href="GTIFKeyGet.html">GTIFKeyGet()</a>,
+<a href="GTIFKeySet.html">GTIFKeySet()</a>
+
+</body>
+</html>
