@@ -1,5 +1,8 @@
 2000-09-15  Frank Warmerdam  <warmerda@cs46980-c>
 
+	* Added the -proj4 option to listgeo to report it's selected
+	PROJ.4 string.
+
 	* Fixed order of parameters for LCC 2SP.  When parameters
 	were read from EPSG CSV files the standard parallels and origin
 	were mixed up.  This affects alot of state plane zones!

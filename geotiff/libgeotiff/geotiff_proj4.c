@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.13  2000/09/15 19:30:48  warmerda
+ * *** empty log message ***
+ *
  * Revision 1.12  2000/09/15 18:21:07  warmerda
  * Fixed order of parameters for LCC 2SP.  When parameters
  * were read from EPSG CSV files the standard parallels and origin
@@ -83,6 +86,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 {
     char	szProjection[512];
     char	szUnits[24];
+    double      dfFalseEasting, dfFalseNorthing;
 
     szProjection[0] = '\0';
     
@@ -129,6 +133,13 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     {
         sprintf( szUnits, "+to_meter=%.10f", psDefn->UOMLengthInMeters );
     }
+
+/* -------------------------------------------------------------------- */
+/*      false easting and northing are in meters and that is what       */
+/*      PROJ.4 wants regardless of the linear units.                    */
+/* -------------------------------------------------------------------- */
+    dfFalseEasting = psDefn->ProjParm[5];
+    dfFalseNorthing = psDefn->ProjParm[6];
     
 /* ==================================================================== */
 /*      Handle general projection methods.                              */
@@ -155,8 +166,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[4],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -169,8 +180,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[4],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -184,8 +195,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[4],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -197,8 +208,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
            "+proj=stere +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -211,8 +222,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[4],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -224,8 +235,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  "+proj=eqc +lat_ts=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -237,8 +248,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  "+proj=gnom +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -250,8 +261,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  "+proj=ortho +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -263,8 +274,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  "+proj=laea +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -276,8 +287,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
            "+proj=aeqd +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -289,8 +300,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
            "+proj=mill +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -302,8 +313,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
            "+proj=poly +lat_0=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
@@ -318,8 +329,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[2],
                  psDefn->ProjParm[3],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
     
 /* -------------------------------------------------------------------- */
@@ -330,8 +341,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
         sprintf( szProjection+strlen(szProjection),
                  "+proj=robin +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
     
 /* -------------------------------------------------------------------- */
@@ -342,8 +353,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
         sprintf( szProjection+strlen(szProjection),
                  "+proj=vandg +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
     
 /* -------------------------------------------------------------------- */
@@ -354,8 +365,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
         sprintf( szProjection+strlen(szProjection),
                  "+proj=sinu +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[1],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
     
 /* -------------------------------------------------------------------- */
@@ -370,8 +381,8 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
                  psDefn->ProjParm[1],
                  psDefn->ProjParm[2],
                  psDefn->ProjParm[3],
-                 psDefn->ProjParm[5],
-                 psDefn->ProjParm[6] );
+                 dfFalseEasting,
+                 dfFalseNorthing );
     }
     
 /* -------------------------------------------------------------------- */
