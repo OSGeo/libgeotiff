@@ -52,7 +52,7 @@ OBJS    = \
 	${NULL}
 TARGETS = libgeotiff.a
 
-all:    ${TARGETS} Progs
+all:    Makefile ${TARGETS} Progs
 
 libgeotiff.a: ${OBJS}
 	${AR} ${AROPTS} libgeotiff.a $?
@@ -62,7 +62,7 @@ Progs:
 	${CD} ${BIN};\
 	${MAKE}
 
-${OBJS}: ${SRCDIR}/geotiff.h ${SRCDIR}/geotiffio.h
+${OBJS}: ${SRCDIR}/geotiff.h ${SRCDIR}/geotiffio.h ${SRCDIR}/geo_config.h
 
 ${XTIFFINC}:
 	${RM} ${XTIFFINC}
@@ -115,6 +115,20 @@ geotiff_proj4.o: ${SRCDIR}/geotiff_proj4.c
 
 clean:
 	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out
+
+dist-clean: clean
+	(cd bin; $(MAKE) clean)
+	rm -rf config.* geo_config.h
+
+config.status:	configure
+	configure
+
+geo_config.h: geo_config.h.in config.status
+	config.status
+	touch geo_config.h
+
+Makefile:	Makefile.in config.status
+	config.status
 
 dox:
 	doxygen
