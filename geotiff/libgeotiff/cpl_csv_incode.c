@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.6  2003/01/20 21:42:52  warmerda
+ * Ensure CSVGetField() does not crash if record not found.
+ *
  * Revision 1.5  2003/01/20 07:11:04  warmerda
  * updated csv-incode support to 6.2.2
  *
@@ -182,11 +185,20 @@ const char *CSVGetField( const char * pszFilename,
                          const char * pszTargetField )
 {
   char **papszRecord;
+  int  iField;
 
   papszRecord = CSVScanFileByName( pszFilename, pszKeyFieldName,
 				   pszKeyFieldValue, CC_Integer );
 
-  return (papszRecord[CSVGetFileFieldId(pszFilename, pszTargetField)]);
+  if( papszRecord == NULL )
+      return NULL;
+
+  iField = CSVGetFileFieldId(pszFilename, pszTargetField);
+
+  if( iField == -1 )
+      return NULL;
+  else
+      return (papszRecord[iField]);
 }
 
 /* Dummy function */
