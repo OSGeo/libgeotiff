@@ -1,3 +1,8 @@
+2001-02-23  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Fixed GTIFPrintDefn() to use fprintf( fp ), instead of printf(), 
+	as per fixes from Alan Gray.
+
 2001-01-19  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Added tiffconf.h to libtiff_private.  Secretly reissue 1.1.4 source
