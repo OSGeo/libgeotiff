@@ -94,26 +94,28 @@ AC_ARG_WITH(libtiff, [  --with-libtiff=dir      Use libtiff in directory dir],,)
 
 if test "$with_libtiff" != "" ; then
   if test -f $with_libtiff/include/tiffio.h -a -d $with_libtiff/lib ; then
-    TIFF_LIB="-L$with_libtiff/lib -ltiff"
     LIBS="-L$with_libtiff/lib -ltiff $LIBS"
     TIFF_INC=-I$with_libtiff/include
   else
-    TIFF_LIB="-L$with_libtiff -ltiff"
     LIBS="-L$with_libtiff -ltiff $LIBS"
     TIFF_INC=-I$with_libtiff
   fi
+  LIBS_SAVED="$LIBS"
   AC_CHECK_LIB(tiff,TIFFOpen,,
                AC_MSG_ERROR([failed to link with -ltiff to find TIFFOpen]),-lm)
   AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,,
                AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
 libgeotiff. Please upgrade or use an older version of libgeotiff.]),-lm)
+  LIBS="$LIBS_SAVED"
 else
   AC_CHECK_LIB(tiff,TIFFOpen,,
                AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
 build libgeotiff without libtiff]),-lm)
+  LIBS_SAVED="$LIBS"
   AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,,
                AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
 libgeotiff. Please upgrade libtiff or use an older version of libgeotiff.]),-lm)
+  LIBS="$LIBS_SAVED"
   TIFF_INC=
 fi
 
