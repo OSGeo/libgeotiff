@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.4  1999/03/18 21:35:19  geotiff
+ * Added PROJ.4 related stuff
+ *
  * Revision 1.3  1999/03/17 20:44:04  geotiff
  * added CPL_DLL related support
  *
@@ -106,9 +109,20 @@ int CPL_DLL GTIFGetDefn( GTIF *, GTIFDefn * );
 void CPL_DLL GTIFPrintDefn( GTIFDefn *, FILE * );
 void CPL_DLL GTIFFreeDefn( GTIF * );
 
-char CPL_DLL * GTIFGetProj4Defn( GTIFDefn * );
-
 void CPL_DLL SetCSVFilenameHook( const char *(*)(const char *) );
+
+const char CPL_DLL *GTIFDecToDMS( double, const char *, int );
+
+/*
+ * These are only useful if using libgeotiff with libproj (PROJ.4+).
+ */
+char CPL_DLL *GTIFGetProj4Defn( GTIFDefn * );
+int  CPL_DLL  GTIFProj4ToLatLong( GTIFDefn *, int, double *, double * );
+int  CPL_DLL  GTIFProj4FromLatLong( GTIFDefn *, int, double *, double * );
+
+#if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)
+#  define HAVE_GTIFPROJ4
+#endif
 
 #ifdef __cplusplus
 }
