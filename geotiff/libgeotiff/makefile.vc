@@ -59,13 +59,6 @@ geotiff.lib:	$(OBJS)
 	lib /out:geotiff.lib $(OBJS)
 
 #
-#	Note: Building a DLL is OK as far as libgeotiff is concerned, 
-#	but tiff.lib will get linked into geotiff.dll without actually
-#	exporting it's interface.  This means another copy will get
-#	pulled into the application and this could lead to much confusion.
-#	Only build geotiff.dll if you are also ensuring that TIFF symbols
-#	get exported.
-#
 $(DLLNAME):    $(OBJS)
 	link /dll /out:$(DLLNAME) /implib:geotiff_i.lib $(OBJS) $(TIFF_LIB_DLL)
 
