@@ -30,6 +30,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.3  2003/06/20 21:25:55  warmerda
+# allow adding a field to a loaded table
+#
 # Revision 1.2  2002/11/29 04:37:48  warmerda
 # upgraded to 'true' csv support
 #
@@ -73,8 +76,10 @@ class CSVTable:
         self.data = {}
         self.multi = 0
 
-    def add_field( self, field_name ):
+    def add_field( self, field_name, default_value = '' ):
         self.fields.append( field_name )
+        for key in self.data.keys():
+            self.data[key] = self.data[key] + ',' + default_value
 
     def read_from_csv( self, filename, multi = 0 ):
 
