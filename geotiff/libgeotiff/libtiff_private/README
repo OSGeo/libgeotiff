@@ -1,5 +1,0 @@
-Libtiff private include files
------------------------------
-
-The included files were copied from libtiff-3.5.5-dev.  They should
-be refreshed periodically.  Ideally they should never be used.
