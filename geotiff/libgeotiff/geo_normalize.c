@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.7  1999/05/04 03:13:22  warmerda
+ * fixed a serious bug in parsing DMSmmss.sss values, and a bug in forming DMS strings
+ *
  * Revision 1.6  1999/05/03 17:50:31  warmerda
  * avoid warnings on IRIX
  *
@@ -239,9 +242,18 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
         
         dfAngle = ABS(atoi(pszAngle));
         pszDecimal = strchr(pszAngle,'.');
-        if( pszDecimal != NULL )
+        if( pszDecimal != NULL && strlen(pszDecimal) > 1 )
         {
-            dfAngle += ((int) (atof(pszDecimal)*100)) / 60.0;
+            char	szMinutes[3];
+
+            szMinutes[0] = pszDecimal[1];
+            if( pszDecimal[2] >= '0' && pszDecimal[2] <= '9' )
+                szMinutes[1] = pszDecimal[2];
+            else
+                szMinutes[1] = '0';
+            
+            szMinutes[2] = '\0';
+            dfAngle += atoi(szMinutes) / 60.0;
             if( strlen(pszDecimal) > 3 )
                 dfAngle += atof(pszDecimal+3) / 3600.0;
         }
@@ -1542,27 +1554,29 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
     double	dfSeconds;
     char	szFormat[30];
     static char szBuffer[50];
-    const char	*pszHemisphere;
-    
+    const char	*pszHemisphere = NULL;
+    double	dfRound;
+    int		i;
+
+    dfRound = 0.5/60;
+    for( i = 0; i < nPrecision; i++ )
+        dfRound = dfRound * 0.1;
 
     nDegrees = (int) ABS(dfAngle);
-    nMinutes = (int) ((ABS(dfAngle) - nDegrees) * 60);
-    dfSeconds = (ABS(dfAngle) * 3600 - nDegrees*3600 - nMinutes*60);
+    nMinutes = (int) ((ABS(dfAngle) - nDegrees) * 60 + dfRound);
+    dfSeconds = ABS((ABS(dfAngle) * 3600 - nDegrees*3600 - nMinutes*60));
 
     if( EQUAL(pszAxis,"Long") && dfAngle < 0.0 )
         pszHemisphere = "W";
     else if( EQUAL(pszAxis,"Long") )
         pszHemisphere = "E";
-    else if( EQUAL(pszAxis,"Lat") && dfAngle < 0.0 )
-        pszHemisphere = "S";
-    else if( EQUAL(pszAxis,"Lat") )
-        pszHemisphere = "N";
     else if( dfAngle < 0.0 )
-        pszAxis = "-";
+        pszHemisphere = "S";
     else
-        pszAxis = "+";
+        pszHemisphere = "N";
 
-    sprintf( szFormat, "%%3dd%%2d\'%%.%df\"%s", nPrecision, pszHemisphere );
+    sprintf( szFormat, "%%3dd%%2d\'%%%d.%df\"%s",
+             nPrecision+3, nPrecision, pszHemisphere );
     sprintf( szBuffer, szFormat, nDegrees, nMinutes, dfSeconds );
 
     return( szBuffer );
