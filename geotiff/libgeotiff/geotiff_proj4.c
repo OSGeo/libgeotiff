@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.5  1999/04/29 23:02:24  warmerda
+ * added mapsys utm test.
+ *
  * Revision 1.4  1999/03/18 21:35:42  geotiff
  * Added reprojection functions
  *
@@ -109,9 +112,20 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 /* ==================================================================== */
 
 /* -------------------------------------------------------------------- */
+/*      UTM - special case override on transverse mercator so things    */
+/*      will be more meaningful to the user.                            */
+/* -------------------------------------------------------------------- */
+    if( psDefn->MapSys == MapSys_UTM_North )
+    {
+        sprintf( szProjection+strlen(szProjection),
+                 "+proj=utm +zone=",
+                 psDefn->Zone );
+    }
+    
+/* -------------------------------------------------------------------- */
 /*      Transverse Mercator                                             */
 /* -------------------------------------------------------------------- */
-    if( psDefn->CTProjection == CT_TransverseMercator )
+    else if( psDefn->CTProjection == CT_TransverseMercator )
     {
         sprintf( szProjection+strlen(szProjection),
            "+proj=tmerc +lat_0=%.9f +lon_0=%.9f +k=%f +x_0=%.3f +y_0=%.3f ",
