@@ -1,3 +1,8 @@
+2001-11-28  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_trans.c: fixed memory leak of transform in GTIFPCSToImage()
+	as reported by Ng Lay Keow (Nicole).
+
 2001-07-09  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* cpl_serv.c: Another bug with pszRLBuffer being freed but not set
