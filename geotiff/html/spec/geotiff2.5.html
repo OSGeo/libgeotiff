@@ -1,0 +1,485 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a> <a href="geotiff2.html"><img src="gifs/sec2.gif" alt="Top of Section 2"></a></h2>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="2.5">2.5 Coordinate Systems in GeoTIFF</a></h3>
+<tt>Geotiff has been designed so that standard map coordinate system
+definitions can be readily stored in a single registered TIFF tag. It has also
+been designed to allow the description of coordinate system definitions which
+are non-standard, and for the description of transformations between coordinate
+systems, through the use of three or four additional TIFF tags.<p>
+However, in order for the information to be correctly exchanged between various
+clients and providers of GeoTIFF, it is important to establish a common system
+for describing map projections.<p>
+In the TIFF/GeoTIFF framework, there are essentially three different spaces
+upon which coordinate systems may be defined. The spaces are:<p>
+</tt>
+<pre>  1) The raster space (Image space) R, used to reference the pixel values
+     in an image,
+  2) The Device space D, and
+  3) The Model space, M, used to reference points on the earth.</pre><tt><p>
+In the sections that follow we shall discuss the relevance and use of each of
+these spaces, and their corresponding coordinate systems, from the standpoint
+of GeoTIFF.</tt>
+<pre></pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.1">2.5.1 Device Space and GeoTIFF</a></h4>
+<tt><p>
+In standard TIFF 6.0 there are tags which relate raster space R with device
+space D, such as monitor, scanner or printer. The list of such tags consists of
+the following:<p>
+</tt>
+<pre>    ResolutionUnit (296)
+    XResolution    (282)
+    YResolution    (283)
+    Orientation    (274)
+    XPosition      (286)
+    YPosition      (287)</pre><tt></tt>
+<pre></pre><tt>In
+Geotiff, provision is made to identify earth-referenced coordinate systems
+(model space M) and to relate M space with R space. This provision is
+independent of and can co-exist with the relationship between raster and device
+spaces. To emphasize the distinction, this spec shall not refer to "X" and "Y"
+raster coordinates, but rather to raster space "J" (row) and "I" (column)
+coordinate variables instead, as defined in  <a href="geotiff2.5.html#2.5.2.2.">section 2.5.2.2.</a><p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.2">2.5.2 Raster Coordinate Systems</a></h4>
+<tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.2.1">2.5.2.1 Raster Data</a></h4>
+<tt><p>
+Raster data consists of spatially coherent, digitally stored numerical data,
+collected from sensors, scanners, or in other ways numerically derived. The
+manner in which this storage is implemented in a TIFF file is described in the
+standard TIFF specification. <p>
+<p>
+Raster data values, as read in from a file, are organized by software into two
+dimensional arrays, the indices of the arrays being used as coordinates. There
+may also be additional indices for multispectral data, but these indices do not
+refer to spatial coordinates but spectral, and so of not of concern here.<p>
+<p>
+Many different types of raster data may be georeferenced, and there may be
+subtle ways in which the nature of the data itself influences how the
+coordinate system (Raster Space) is defined for raster data. For example, pixel
+data derived from imaging devices and sensors represent aggregate values
+collected over a small, finite, geographic area, and so it is natural to define
+coordinate systems in which the pixel value is thought of as filling an area.
+On the other hand, digital elevations models may consist of discrete
+"postings", which may best be considered as point measurements at the vertices
+of a grid, and not in the interior of a cell. </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.2.2">2.5.2.2 Raster Space</a></h4>
+<tt><p>
+The choice of origin for raster space is not entirely arbitrary, and depends
+upon the nature of the data collected. Raster space coordinates shall be
+referred to by their pixel types, i.e., as "PixelIsArea" or "PixelIsPoint".<p>
+<p>
+Note: For simplicity, both raster spaces documented below use a fixed pixel
+size and spacing of 1. Information regarding the visual representation of this
+data, such as pixels with non-unit aspect ratios, scales, orientations, etc,
+are best communicated with the TIFF 6.0 standard tags.<p>
+<p>
+ </tt>
+<h4>
+"PixelIsArea" Raster Space</h4>
+<tt><p>
+The "PixelIsArea" raster grid space R, which is the default, uses coordinates I
+and J, with (0,0) denoting the upper-left corner of the image, and increasing I
+to the right, increasing J down. The first pixel-value fills the square grid
+cell with the bounds:<p>
+</tt>
+<pre>   top-left = (0,0), bottom-right = (1,1)</pre><tt><p>
+and so on; by extension this one-by-one grid cell is also referred to as a
+pixel. An N by M pixel image covers an are with the mathematically defined
+bounds (0,0),(N,M).<p>
+</tt>
+<pre>     (0,0)
+      +---+---+-&gt; I
+      | * | * |
+      +---+---+        Standard (PixelIsArea) TIFF Raster space R,
+      | (1,1)  (2,1)      showing the areas (*) of several pixels.
+      |
+      J</pre><tt>
+     <p>
+ </tt>
+<h4>
+"PixelIsPoint" Raster Space</h4>
+<tt><p>
+The PixelIsPoint raster grid space R uses the same coordinate axis names as
+used in PixelIsArea Raster space, with increasing I to the right, increasing J
+down. The first pixel-value however, is realized as a point value located at
+(0,0). An N by M pixel image consists of points which fill the mathematically
+defined bounds (0,0),(N-1,M-1).<p>
+</tt>
+<pre>     (0,0)   (1,0)
+      *-------*------&gt; I
+      |       |
+      |       |       PixelIsPoint TIFF Raster space R,
+      *-------*         showing the location (*) of several pixels.
+      |     (1,1)
+      J</pre><tt><p>
+If a point-pixel image were to be displayed on a display device with pixel
+cells having the same size as the raster spacing, then the upper-left corner of
+the displayed image would be located in raster space at (-0.5, -0.5). <p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.3">2.5.3 Model Coordinate Systems</a></h4>
+<tt><p>
+The following methods of describing spatial model locations (as opposed to
+raster) are recognized in Geotiff: </tt>
+<pre>	Geographic coordinates
+	Geocentric coordinates
+	Projected coordinates
+	Vertical coordinates
+</pre><tt>Geographic,
+geocentric and projected coordinates are all imposed on models of the earth. To
+describe a location uniquely, a coordinate set must be referenced to an
+adequately defined coordinate system. If a coordinate system is from the
+Geotiff standard definitions, the only reference required is the standard
+coordinate system code/name. If the coordinate system is non-standard, it must
+be defined. The required definitions are described below.<p>
+<p>
+Projected coordinates, local grid coordinates, and (usually) geographical
+coordinates, form two dimensional horizontal coordinate systems (i.e.,
+horizontal with respect to the earth's surface). Height is not part of these
+systems. To describe a position in three dimensions it is necessary to consider
+height as a second one dimensional vertical coordinate system.<p>
+<p>
+To georeference an image in GeoTIFF, you must specify a Raster Space coordinate
+system, choose a horizontal model coordinate system, and a transformation
+between these two, as will be described in  <a href="geotiff2.6.html#2.6">section 2.6</a><p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.3.1">2.5.3.1 Geographic Coordinate Systems</a></h4>
+<tt><p>
+Geographic Coordinate Systems are those that relate angular latitude and
+longitude (and optionally geodetic height) to an actual point on the earth. The
+process by which this is accomplished is rather complex, and so we describe the
+components of the process in detail here.<p>
+<p>
+ </tt>
+<h4>
+Ellipsoidal Models of the Earth</h4>
+<tt><p>
+The geoid - the earth stripped of all topography - forms a reference surface
+for the earth. However, because it is related to the earth's gravity field, the
+geoid is a very complex surface; indeed, at a detailed level its description is
+not well known. The geoid is therefore not used in practical mapping.<p>
+<p>
+It has been found that an oblate ellipsoid (an ellipse rotated about its minor
+axis) is a good approximation to the geoid and therefore a good model of the
+earth. Many approximations exist: several hundred ellipsoids have been defined
+for scientific purposes and about 30 are in day to day use for mapping. The
+size and shape of these ellipsoids can be defined through two parameters.
+Geotiff requires one of these to be</tt>
+<pre>          the semi-major axis (a), 
+</pre><tt>and
+the second to be either </tt>
+<pre>          the inverse flattening (1/f) </pre><tt>or
+</tt>
+<pre>          the semi-minor axis (b).
+</pre><tt>Historical
+models exist which use a spherical approximation; such models are not
+recommended for modern applications, but if needed the size of a model sphere
+may be defined by specifying identical values for the semimajor and semiminor
+axes; the inverse flattening cannot be used as it becomes infinite for perfect
+spheres.<p>
+Other ellipsoid parameters needed for mapping applications, for example the
+square of the eccentricity, can easily be calculated by an application from the
+two defining parameters. Note that Geotiff uses the modern geodesy convention
+for the symbol (b) for the semi-minor axis. No provision is made for mapping
+other planets in which a tri-dimensional (triaxial) ellipsoid might be
+required, where (b) would represent the semi-median axis and (c) the semi-minor
+axis.<p>
+<p>
+Numeric codes for ellipsoids regularly used for earth-mapping are included in
+the Geotiff reference lists.<p>
+<p>
+ </tt>
+<h4>
+Latitude and Longitude</h4>
+<tt><p>
+The coordinate axes of the system referencing points on an ellipsoid are called
+latitude and longitude. More precisely, <b>geodetic</b> latitude and longitude
+are required in this Geotiff standard. A discussion of the several other types
+of latitude and longitude is beyond the scope of this document as they are not
+required for conventional mapping. <p>
+<p>
+Latitude is defined to be the angle subtended with the ellipsoid's equatorial
+plane by a perpendicular through the surface of the ellipsoid from a point.
+Latitude is positive if north of the equator, negative if south. <p>
+<p>
+Longitude is defined to be the angle measured about the minor (polar) axis of
+the ellipsoid from a prime meridian (see below) to the meridian through a
+point, positive if east of the prime meridian and negative if west. Unlike
+latitude which has a natural origin at the equator, there is no feature on the
+ellipsoid which forms a natural origin for the measurement of longitude. The
+zero longitude can be any defined meridian. Historically, nations have used the
+meridian through their national astronomical observatories, giving rise to
+several prime meridians. By international convention, the meridian through
+Greenwich, England is the standard prime meridian. Longitude is only
+unambiguous if the longitude of its prime meridian relative to Greenwich is
+given. Prime meridians other than Greenwich which are sometimes used for earth
+mapping are included in the Geotiff reference lists.<p>
+<p>
+ </tt>
+<h4>
+Geodetic Datums</h4>
+<tt><p>
+As well as there being several ellipsoids in use to model the earth, any one
+particular ellipsoid can have its location and orientation relative to the
+earth defined in different ways. If the relationship between the ellipsoid and
+the earth is changed, then the geographical coordinates of a point will
+change.<p>
+<p>
+Conversely, for geographical coordinates to uniquely describe a location the
+relationship between the earth and the ellipsoid must be defined.  This
+relationship is described by a geodetic datum. An exact geodetic definition of
+geodetic datums is beyond the current scope of Geotiff. However the Geotiff
+standard requires that the geodetic datum being utilized be identified by
+numerical code. If required, defining parameters for the geodetic datum can be
+included as a citation.<p>
+<p>
+ </tt>
+<h4>
+Defining Geographic Coordinate Systems</h4>
+<tt><p>
+In summary, geographic coordinates are only unique if qualified by the code of
+the geographic coordinate system to which they belong. A geographic coordinate
+system has two axes, latitude and longitude, which are only unambiguous when
+both of the related prime meridian and geodetic datum are given, and in turn
+the geodetic datum definition includes the definition of an ellipsoid. The
+Geotiff standard includes a list of frequently used geographic coordinate
+systems and their component ellipsoids, geodetic datums and prime meridians.
+Within the Geotiff standard a geographic coordinate system can be identified
+either by </tt>
+<pre>           the code of a standard geographic coordinate system</pre><tt>or
+by</tt>
+<pre>            a user-defined system.</pre><tt><p>
+The user is expected to provide geographic coordinate system code/name,
+geodetic datum code/name, ellipsoid code (if in standard) or ellipsoid name and
+two defining parameters (a) and either (1/f) or (b), and prime meridian code
+(if in standard) or name and longitude relative to Greenwich.<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.3.2">2.5.3.2 Geocentric Coordinate Systems</a></h4>
+<tt><p>
+A geocentric coordinate system is a 3-dimensional coordinate system with its
+origin at or near the center of the earth and with 3 orthogonal axes. The
+Z-axis is in or parallel to the earth's axis of rotation (or to the axis around
+which the rotational axis precesses). The X-axis is in or parallel to the plane
+of the equator and passes through its intersection with the Greenwich meridian,
+and the Y-axis is in the plane of the equator forming a right-handed coordinate
+system with the X and Z axes.<p>
+<p>
+Geocentric coordinate systems are not frequently used for describing locations,
+but they are often utilized as an intermediate step when transforming between
+geographic coordinate systems. (Coordinate system transformations are described
+in  <a href="geotiff2.6.html#2.6">section 2.6</a> below).<p>
+<p>
+In the Geotiff standard, a geocentric coordinate system can be identified,
+either</tt>
+<pre>	through the geographic code (which in turn implies a datum),</pre><tt>
+or</tt>
+<pre>	through a user-defined name.
+</pre><tt><p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.3.3">2.5.3.3 Projected Coordinate Systems</a></h4>
+<tt><p>
+Although a geographical coordinate system is mathematically two dimensional, it
+describes a three dimensional object and cannot be represented on a plane
+surface without distortion. Map projections are transformations of geographical
+coordinates to plane coordinates in which the characteristics of the
+distortions are controlled. A map projection consists of a coordinate system
+transformation method and a set of defining parameters. A projected coordinate
+system (PCS) is a two dimensional (horizontal) coordinate set which, for a
+specific map projection, has a single and unambiguous transformation to a
+geographic coordinate system. <p>
+<p>
+In GeoTIFF PCS's are defined using the POSC/EPSG system, in which the PCS
+planar coordinate system, the Geographic coordinate system, and the
+transformation between them, are broken down into simpler logical components.
+Here are schematic formulas showing how the Projected Coordinate Systems and
+Geographic Coordinates Systems are encoded:</tt>
+<pre>
+     Projected_CS  =  Geographic_CS + Projection
+     Geographic_CS =  Angular_Unit + Geodetic_Datum + Prime_Meridian
+     Projection    =  Linear Unit + Coord_Transf_Method + CT_Parameters 
+     Coord_Transf_Method   = { TransverseMercator | LambertCC | ...}
+     CT_Parameters = {OriginLatitude + StandardParallel+...}</pre><tt><p>
+(See also the Reference Parameters documentation in  <a href="geotiff2.5.html#2.5.4">section 2.5.4</a>). <p>
+Notice that "Transverse Mercator" is not referred to as a "Projection", but
+rather as a "Coordinate Transformation Method"; in GeoTIFF, as in EPSG/POSC,
+the word "Projection" is reserved for particular, well-defined systems in which
+both the coordinate transformation method, its defining parameters, and their
+linear units are established. <p>
+<p>
+Several tens of coordinate transformation methods have been developed. Many are
+very similar and for practical purposes can be considered to give identical
+results. For example in the Geotiff standard Gauss-Kruger and Gauss-Boaga
+projection types are considered to be of the type Transverse Mercator. Geotiff
+includes a listing of commonly used projection defining parameters.<p>
+<p>
+Different algorithms require different defining parameters. A future version of
+Geotiff will include formulas for specific map projection algorithms
+recommended for use with listed projection parameters.<p>
+<p>
+To limit the magnitude of distortions of projected coordinate systems, the
+boundaries of usage are sometimes restricted. To cover more extensive areas,
+two or more projected coordinate systems may be required. In some cases many of
+the defining parameters of a set of projected coordinate systems will be held
+constant. <p>
+<p>
+The Geotiff standard does not impose a strict hierarchy onto such zoned systems
+such as US State Plane or UTM, but considers each zone to be a discrete
+projected coordinate system; the ProjectedCSTypeGeoKey code value alone is
+sufficient to identify the standard coordinate systems. <p>
+<p>
+Within the Geotiff standard a projected coordinate system can be identified
+either by </tt>
+<pre>        the code of a standard projected coordinate system </pre><tt>or
+by</tt>
+<pre>        a user-defined system. </pre><tt><p>
+<p>
+User-define projected coordinate systems may be defined by defining the
+Geographic Coordinate System, the coordinate transformation method and its
+associated parameters, as well as the planar system's linear units.<p>
+</tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.3.4">2.5.3.4 Vertical Coordinate Systems</a></h4>
+<tt><p>
+Many uses of Geotiff will be limited to a two-dimensional, horizontal,
+description of location for which geographic coordinate systems and projected
+coordinate systems are adequate. If a three-dimensional description of location
+is required Geotiff allows this either through the use of a geocentric
+coordinate system or by defining a vertical coordinate system and using this
+together with a geographic or projected coordinate system.<p>
+<p>
+In general usage, elevations and depths are referenced to a surface at or close
+to the geoid. Through increasing use of satellite positioning systems the
+ellipsoid is increasingly being used as a vertical reference surface. The
+relationship between the geoid and an ellipsoid is in general not well known,
+but is required when coordinate system transformations are to be executed.<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.5.4">2.5.4 Reference Parameters</a></h4>
+<tt><p>
+Most of the numerical coding systems and coordinate system definitions are
+based on the hierarchical system developed by EPSG/POSC. The complete set of
+EPSG tables used in GeoTIFF is available at:<p>
+<p>
+  <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl-mirror/tables">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl-mirror/tables</a><p>
+</tt>
+Appended below is the README.TXT file that accompanies the tables of defining
+parameters for those codes:</tt>
+<pre>
+                    +-----------------------------------+
+                    |     EPSG Geodesy Parameters       |
+                    |    version 2.1, 2nd June 1995.    |
+                    +-----------------------------------+       
+                           
+ 
+ The European Petroleum Survey Group (EPSG) has compiled and is
+ distributing this set of parameters defining various geodetic
+ and cartographic coordinate systems to encourage
+ standardisation across the Exploration and Production segment
+ of the oil industry.  The data is included as reference data
+ in the Geotiff data exchange specification, in Iris21 the
+ Petroconsultants data model, and in Epicentre, the POSC data
+ model.  Parameters map directly to the POSC Epicentre model
+ v2.0, except for data item codes which are included in the
+ files for data management purposes.  Geodetic datum parameters
+ are embedded within the geographic coordinate system file. 
+ This has been done to ease parameter maintenance as there is a
+ high correlation between geodetic datum names and geographic
+ coordinate system names.  The Projected Coordinate System v2.0
+ tabulation consists of systems associated with locally used
+ projections.  Systems utilising the popular UTM grid system
+ have also been included.
+ 
+ Criteria used for material in these lists include:
+   - information must be in the public domain: "private" data   
+     is not included.
+   - data must be in current use.
+   - parameters are given to a precision consistent with
+     coordinates being to a precision of one centimetre.
+ 
+ The user assumes the entire risk as to the accuracy and the
+ use of this data.  The data may be copied and distributed
+ subject to the following conditions:
+ 
+      1)   All data must then be copied without modification
+ and all pages must be included;
+           
+      2)   All components of this data set must be distributed
+ together;
+           
+      3)   The data may not be distributed for profit by any 
+ third party; and
+ 
+      4)   Acknowledgement to the original source must be
+ given.
+           
+ INFORMATION  PROVIDED IN THIS DOCUMENT IS PROVIDED "AS IS"
+ WITHOUT WARRANTY  OF  ANY  KIND,  EITHER  EXPRESSED OR 
+ IMPLIED, INCLUDING  BUT  NOT LIMITED TO THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ Data is distributed on MS-DOS formatted diskette in comma-
+ separated record format.  Additional copies may be obtained
+ from Jean-Patrick Girbig at the address below at a cost of
+ US$100 to cover media and shipping, payment to be made in
+ favour of Petroconsultants S.A at Union Banque Suisses,
+ 1211 Geneve 11, Switzerland (compte number 403 458 60 K).
+ 
+ The data is to be made available on a bulletin board shortly.
+ 
+ 
+ Shipping List
+ -------------
+ 
+ This data set consists of 8 files:
+ 
+ PROJCS.CSV  Tabulation of Projected Coordinate Systems to     
+             which map grid coordinates may be referenced.
+ 
+ GEOGCS.CSV  Tabulation of Geographic Coordinate Systems to    
+             which latitude and longitude coordinates may be   
+             referenced.  This table includes the equivalent   
+             geocentric coordinate systems and also the        
+             geodetic datum, reference to which allows latitude
+             and longitude or geocentric XYZ to uniquely       
+             describe a location on the earth.
+ 
+ VERTCS.CSV  Tabulation of Vertical Coordinate Systems to     
+             which heights or depths may be referenced. This
+             table is currently in an early form.
+ 
+ PROJ.CSV    Tabulation of transformation methods and          
+             parameters through which Projected Coordinate     
+             Systems are defined and related to Geographic     
+             Coordinate Systems.
+ 
+ ELLIPS.CSV  Tabulation of reference ellipsoids upon which     
+             geodetic datums are based.
+ 
+ PMERID.CSV  Tabulation of prime meridians upon which geodetic 
+             datums are based.
+ 
+ UNITS.CSV   Tabulation of length units used in Projected and  
+             Vertical Coordinate Systems and angle units used  
+             in Geographic Coordinate Systems.
+ 
+ README.TXT  This file.
+ 
+ 
+ 
+ 
+ 
+</pre><tt><img src="gifs/clrbar.gif"></tt>
+</body></html>

@@ -1,0 +1,178 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a> <a href="geotiff2.html"><img src="gifs/sec2.gif" alt="Top of Section 2"></a></h2>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="2.4">2.4 GeoTIFF File and "Key" Structure</a></h3>
+<tt><p>
+This section describes the abstract file-format and "GeoKey" data storage
+mechanism used in GeoTIFF. Uses of this mechanism for implementing
+georeferencing and geocoding is detailed in  <a href="geotiff2.6.html#2.6">section 2.6</a> and  <a href="geotiff2.7.html#2.7">section 2.7</a> .<p>
+<p>
+A GeoTIFF file is a TIFF 6.0 file, and inherits the file structure as described
+in the corresponding portion of the TIFF spec. All GeoTIFF specific information
+is encoded in several additional reserved TIFF tags, and contains no private
+Image File Directories (IFD's), binary structures or other private information
+invisible to standard TIFF readers.<p>
+ <p>
+The number and type of parameters that would be required to describe most
+popular projection types would, if implemented as separate TIFF tags, likely
+require dozens or even hundred of tags, exhausting the limited resources of the
+TIFF tag-space. On the other hand, a private IFD, while providing thousands of
+free tags, is limited in that its tag-values are invisible to non-savvy TIFF
+readers (which don't know that the IFD_OFFSET tag value points to a private
+IFD).<p>
+<p>
+To avoid these problems, a GeoTIFF file stores projection parameters in a set
+of "Keys" which are virtually identical in function to a "Tag", but has one
+more level of abstraction above TIFF. Effectively, it is a sort of "Meta-Tag".
+A Key works with formatted tag-values of a TIFF file the way that a TIFF file
+deals with the raw bytes of a data file. Like a tag, a Key has an ID number
+ranging from 0 to 65535, but unlike TIFF tags, all key ID's are available for
+use in GeoTIFF parameter definitions.<p>
+<p>
+The Keys in GeoTIFF (also call "GeoKeys") are all referenced from the
+GeoKeyDirectoryTag, which defined as follows: </tt>
+<pre>
+GeoKeyDirectoryTag:
+      Tag = 34735 (87AF.H) 
+      Type = SHORT (2-byte unsigned short)
+      N = variable, &gt;= 4
+      Alias: ProjectionInfoTag, CoordSystemInfoTag
+      Owner: SPOT Image, Inc.</pre><tt><p>
+This tag may be used to store the GeoKey Directory, which defines and
+references the "GeoKeys", as described below. <p>
+<p>
+The tag is an array of unsigned SHORT values, which are primarily grouped into
+blocks of 4. The first 4 values are special, and contain GeoKey directory
+header information. The header values consist of the following information, in
+order:<p>
+</tt>
+<pre>  Header={KeyDirectoryVersion, KeyRevision, MinorRevision, NumberOfKeys}
+  where 
+     "KeyDirectoryVersion" indicates the current version of Key
+     implementation, and will only change if this Tag's Key 
+     structure is changed. (Similar to the TIFFVersion (42)).
+     The current DirectoryVersion number is 1. This value will
+     most likely never change, and may be used to ensure that
+     this is a valid Key-implementation.
+   
+     "KeyRevision" indicates what revision of Key-Sets are used.
+     "MinorRevision" indicates what set of Key-codes are used. The
+     complete revision number is denoted &lt;KeyRevision&gt;.&lt;MinorRevision&gt;
+          
+     "NumberOfKeys" indicates how many Keys are defined by the rest
+     of this Tag.</pre><tt>
+    <p>
+This header is immediately followed by a collection of &lt;NumberOfKeys&gt;
+KeyEntry sets, each of which is also 4-SHORTS long. Each KeyEntry is modeled on
+the "TIFFEntry" format of the TIFF directory header, and is of the form:<p>
+</tt>
+<pre>   KeyEntry = { KeyID, TIFFTagLocation, Count, Value_Offset }
+   where 
+     "KeyID" gives the key-ID value of the Key (identical in function
+     to TIFF tag ID, but completely independent of TIFF tag-space),
+     
+     "TIFFTagLocation" indicates which TIFF tag contains the value(s)
+      of the Key: if TIFFTagLocation is 0, then the value is SHORT,
+      and is contained in the "Value_Offset" entry. Otherwise, the type
+      (format) of the value is implied by the TIFF-Type of the tag
+      containing the value.
+  
+     "Count" indicates the number of values in this key.
+   
+      "Value_Offset" Value_Offset indicates the index-
+      offset *into* the TagArray indicated by TIFFTagLocation, if
+      it is nonzero. If TIFFTagLocation=0, then Value_Offset
+      contains the actual (SHORT) value of the Key, and
+      Count=1 is implied. Note that the offset is not a byte-offset,
+      but rather an index based on the natural data type of the
+      specified tag array.  </pre><tt><p>
+Following the KeyEntry definitions, the KeyDirectory tag may also contain
+additional values. For example, if a Key requires multiple SHORT values, they
+shall be placed at the end of this tag, and the KeyEntry will set
+TIFFTagLocation=GeoKeyDirectoryTag, with the Value_Offset pointing to the
+location of the value(s).<p>
+<p>
+All key-values which are not of type SHORT are to be stored in one of the
+following two tags, based on their format:<p>
+</tt>
+<pre>GeoDoubleParamsTag:
+      Tag = 34736 (87BO.H) 
+      Type = DOUBLE (IEEE Double precision)
+      N = variable
+      Owner: SPOT Image, Inc.</pre><tt><p>
+This tag is used to store all of the DOUBLE valued GeoKeys, referenced by the
+GeoKeyDirectoryTag. The meaning of any value of this double array is determined
+from the GeoKeyDirectoryTag reference pointing to it. FLOAT values should first
+be converted to DOUBLE and stored here.<p>
+</tt>
+<pre>GeoAsciiParamsTag:
+      Tag = 34737 (87B1.H)  
+      Type = ASCII
+      Owner: SPOT Image, Inc.
+      N = variable</pre><tt><p>
+This tag is used to store all of the ASCII valued GeoKeys, referenced by the
+GeoKeyDirectoryTag. Since keys use offsets into tags, any special comments may
+be placed at the beginning of this tag. For the most part, the only keys that
+are ASCII valued are "Citation" keys, giving documentation and references for
+obscure projections, datums, etc.<p>
+</tt>
+<pre>Note on ASCII Keys:
+</pre><tt>Special
+handling is required for ASCII-valued keys. While it is true that TIFF 6.0
+permits multiple NULL-delimited strings within a single ASCII tag, the
+secondary strings might not appear in the output of naive "tiffdump" programs.
+For this reason, the null delimiter of each ASCII Key value shall be converted
+to a "|" (pipe) character before being installed back into the ASCII holding
+tag, so that a dump of the tag will look like this.<p>
+</tt>
+<pre>   AsciiTag="first_value|second_value|etc...last_value|"</pre><tt><p>
+A baseline GeoTIFF-reader must check for and convert the final "|" pipe
+character of a key back into a NULL before returning it to the client software.
+<p>
+</tt>
+<pre>GeoKey Sort Order:
+</pre><tt>In
+the TIFF spec it is required that TIFF tags be written out to the file in
+tag-ID sorted order. This is done to avoid forcing software to perform
+N-squared sort operations when reading and writing tags.<p>
+<p>
+To follow the TIFF philosophy, GeoTIFF-writers shall store the GeoKey entries
+in key-sorted order within the CoordSystemInfoTag.<p>
+</tt>
+<pre>Example:
+  GeoKeyDirectoryTag=(   1,     1, 2,     6,
+                      1024,     0, 1,     2,
+                      1026, 34737,12,     0,
+                      2048,     0, 1, 32767,
+                      2049, 34737,14,    12,
+                      2050,     0, 1,     6,
+                      2051, 34736, 1,     0 )
+  GeoDoubleParamsTag(34736)=(1.5)
+  GeoAsciiParamsTag(34737)=("Custom File|My Geographic|")</pre><tt><p>
+The first line indicates that this is a Version 1 GeoTIFF GeoKey directory, the
+keys are Rev. 1.2, and there are 6 Keys defined in this tag.<p>
+The next line indicates that the first Key (ID=1024 = GTModelTypeGeoKey) has
+the value 2 (Geographic), explicitly placed in the entry list (since
+TIFFTagLocation=0). The next line indicates that the Key 1026 (the
+GTCitationGeoKey) is listed in the GeoAsciiParamsTag (34737) array, starting at
+offset 0 (the first in array), and running for 12 bytes and so has the value
+"Custom File" (the "|" is converted to a null delimiter at the end). Going
+further down the list, the Key 2051 (GeogLinearUnitSizeGeoKey) is located in
+the GeoDoubleParamsTag (34736), at offset 0 and has the value 1.5; the value of
+key 2049 (GeogCitationGeoKey) is "My Geographic".<p>
+<p>
+The TIFF layer handles all the problems of data structure, platform
+independence, format types, etc, by specifying byte-offsets, byte-order format
+and count, while the Key describes its key values at the TIFF level by
+specifying Tag number, array-index, and count. Since all TIFF information
+occurs in TIFF arrays of some sort, we have a robust method for storing
+anything in a Key that would occur in a Tag.<p>
+<p>
+With this Key-value approach, there are 65536 Keys which have all the
+flexibility of TIFF tag, with the added advantage that a TIFF dump will provide
+all the information that exists in the GeoTIFF implementation.<p>
+<p>
+This GeoKey mechanism will be used extensively in  <a href="geotiff2.7.html#2.7">section 2.7</a>, where the
+numerous parameters for defining Coordinate Systems and their underlying
+projections are defined.<p>
+ </tt>
+</body></html>

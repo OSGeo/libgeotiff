@@ -1,0 +1,275 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a></h2>
+<img src="gifs/clrbar.gif">
+ <h2><a name="1">1  Introduction  </a></h2>
+<tt> <p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="1.1">1.1 About this Specification</a></h3>
+<tt><p>
+This is a description of a proposal to specify the content and structure of a
+group of industry-standard tag sets for the management of georeference or
+geocoded raster imagery using Aldus-Adobe's public domain Tagged-Image File
+Format (TIFF). <p>
+  <p>
+This specification closely follows the organization and structure of the TIFF
+specification document.<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.1.1">1.1.1 Background</a></h4>
+<tt><p>
+TIFF has emerged as one of the world's most popular raster file formats. But
+TIFF remains limited in cartographic applications, since no publicly available,
+stable structure for conveying geographic information presently exists in the
+public domain.<p>
+<p>
+Several private solutions exist for recording cartographic information in TIFF
+tags. Intergraph has a mature and sophisticated geotie tag implementation, but
+this remains within the private TIFF tagset registered exclusively to
+Intergraph. Other companies (such as ESRI, and Island Graphics) have geographic
+solutions which are also proprietary or limited by specific application to
+their software's architecture. <p>
+<p>
+Many GIS companies, raster data providers, and their clients have requested
+that the companies concerned with delivery and exploitation of raster
+geographic imagery develop a publicly available, platform interoperable
+standard for the support of geographic TIFF imagery. Such TIFF imagery would
+originate from satellite imaging platforms, aerial platforms, scans of aerial
+photography or paper maps, or as a result of geographic analysis. TIFF images
+which were supported by the public "geotie" tagset would be able to be read and
+positioned correctly in any GIS or digital mapping system which supports the
+"GeoTIFF" standard, as proposed in this document. <p>
+<p>
+The savings to the users and providers of raster data and exploitation
+softwares are potentially significant. With a platform interoperable GeoTIFF
+file, companies could stop spending excessive development resource in support
+of any and all proprietary formats which are invented. Data providers may be
+able to produce off-the-shelf imagery products which can be delivered in the
+"generic" TIFF format quickly and possibly at lower cost. End-users will have
+the advantage of developed software that exploits the GeoTIFF tags
+transparently. Most importantly, the same raster TIFF image which can be read
+and modified in one GIS environment may be equally exploitable in another GIS
+environment without requiring any file duplication or import/export operation.
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.1.2">1.1.2 History</a></h4>
+<tt><p>
+The initial efforts to define a TIFF "geotie" specification began under the
+leadership of Ed Grissom at Intergraph, and others in the early 1990's. In 1994
+a formal GeoTIFF mailing-list was created and maintained by Niles Ritter at
+JPL, which quickly grew to over 140 subscribers from government and industry.
+The purpose of the list is to discuss common goals and interests in developing
+an industry-wide GeoTIFF standard, and culminated in a conference in March of
+1995 hosted by SPOT Image, with representatives from USGS, Intergraph, ESRI,
+ERDAS, SoftDesk, MapInfo, NASA/JPL, and others, in which the current working
+proposal for GeoTIFF was outlined. The outline was condensed into a prerelease
+GeoTIFF specification document by Niles Ritter, and Mike Ruth of SPOT Image.<p>
+Following discussions with Dr. Roger Lott of the European Petroleum Survey
+Group (EPSG), the GeoTIFF projection parametrization method was extensively
+modified, and brought into compatibility with both the POSC Epicentre model,
+and the Federal Geographic Data Committee (FGDC) metadata approaches.<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.1.3">1.1.3 Scope</a></h4>
+<tt><p>
+The GeoTIFF spec defines a set of TIFF tags provided to describe all
+"Cartographic" information associated with TIFF imagery that originates from
+satellite imaging systems, scanned aerial photography, scanned maps, digital
+elevation models, or as a result of geographic analyses. Its aim is to allow
+means for tying a raster image to a known model space or map projection, and
+for describing those projections.<p>
+<p>
+GeoTIFF does not intend to become a replacement for existing geographic data
+interchange standards, such as the USGS SDTS standard or the FGDC metadata
+standard. Rather, it aims to augment an existing popular raster-data format to
+support georeferencing and geocoding information.<p>
+<p>
+The tags documented in this spec are to be considered completely orthogonal to
+the raster-data descriptions of the TIFF spec, and impose no restrictions on
+how the standard TIFF tags are to be interpreted, which color spaces or
+compression types are to be used, etc.<p>
+ <p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.1.4">1.1.4 Features</a></h4>
+<pre></pre><tt>GeoTIFF
+fully complies with the TIFF 6.0 specifications, and its extensions do not in
+any way go against the TIFF recommendations, nor do they limit the scope of
+raster data supported by TIFF.<p>
+<p>
+GeoTIFF uses a small set of reserved TIFF tags to store a broad range of
+georeferencing information, catering to geographic as well as projected
+coordinate systems needs. Projections include UTM, US State Plane and National
+Grids, as well as the underlying projection types such as Transverse Mercator,
+Lambert Conformal Conic, etc. No information is stored in private structures,
+IFD's or other mechanisms which would hide information from naive TIFF reading
+software.<p>
+<p>
+GeoTIFF uses a "MetaTag" (GeoKey) approach to encode dozens of information
+elements into just 6 tags, taking advantage of TIFF platform-independent data
+format representation to avoid cross-platform interchange difficulties. These
+keys are designed in a manner parallel to standard TIFF tags, and closely
+follow the TIFF discipline in their structure and layout. New keys may be
+defined as needs arise, within the current framework, and without requiring the
+allocation of new tags from Aldus/Adobe.<p>
+<p>
+GeoTIFF uses numerical codes to describe projection types, coordinate systems,
+datums, ellipsoids, etc. The projection, datums and ellipsoid codes are derived
+from the EPSG list compiled by the Petrotechnical Open Software Corporation
+(POSC), and mechanisms for adding further international projections, datums and
+ellipsoids has been established. The GeoTIFF information content is designed to
+be compatible with the data decomposition approach used by the National Spatial
+Data Infrastructure (NSDI) of the U.S. Federal Geographic Data Committee
+(FGDC).<p>
+<p>
+While GeoTIFF provides a robust framework for specifying a broad class of
+existing Projected coordinate systems, it is also fully extensible, permitting
+internal, private or proprietary information storage. However, since this
+standard arose from the need to avoid multiple proprietary encoding systems,
+use of private implementations is to be discouraged.<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="1.2">1.2 Revision Notes</a></h3>
+<tt><p>
+This is the final release of GeoTIFF Revision 1.0, supporting the new EPSG 2.x
+codes.<p>
+<p>
+Changes from 1.8 document: minor spelling and typo corrections.<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.2.1">1.2.1 Revision Nomenclature</a></h4>
+<tt>A Revision of GeoTIFF specifications will be denoted by two integers
+separated by a decimal, indicating the Major and Minor revision numbers.
+GeoTIFF stores most of its information using a "Key-Code" pairing system; the
+Major revision number will only be incremented when a substantial addition or
+modification is made to the list of information Keys, while the Minor Revision
+number permits incremental augmentation of the list of valid codes.<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.2.2">1.2.2 New Features</a></h4>
+<tt> <p>
+Revision 1.0 New Transformation Matrix Tag.<p>
+Index Table added in  <a href="geotiff6.html#6.4">Section 6.4</a> to assist in looking up geodesy codes.<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.2.3">1.2.3 Clarifications</a></h4>
+<pre>Revision 1.0:
+ o The former ModelTransformationTag (33920) conflicts with
+   an internal Intergraph implementation and is being deprecated, 
+   in favor of a new tag (34264, registered to JPL).
+ o The "Origin" keys have been renamed with "Natural" or "Nat" 
+   prefixes, to distinguish from "False" origins, and to have
+   a closer match to EPSG/POSC terminology. All Revision 0.2
+   names shall be recognized in a backward-compatible fashion.
+ o The GeoTIFF web page addresses have been moved and may now be found at:
+    <a href="http://www.earthlink.net/~ritter/geotiff/geotiff.html">http://www.earthlink.net/~ritter/geotiff/geotiff.html</a>
+Revision 0.2:
+ o South Oriented Gauss Conformal is Transverse Mercator with South
+   pointing up, and so has been given a distinct code, rather than
+   aliased to Transverse Mercator.
+Revision 0.1:
+ o GeoTIFF-writers shall store the GeoKey entries in key-sorted order
+   within the GeoKeyDirectoryTag. This is a change from preliminary
+   discussions which permitted arbitrary order, and more closely follows
+   the TIFF discipline.
+ o The third value "ScaleZ" in ModelPixelScaleTag = (ScaleX, ScaleY,
+   ScaleZ) shall by default be set to 0, not 1, as suggested in preliminary
+   discussions. This is because most standard model spaces are
+   2-dimensional (flat), and therefore its vertical shape is 
+   independent of the pixel-value.
+ 
+ o The code 32767 shall be used to imply "user-defined", rather than
+   16384. This avoids breaking up the reserved public GeoKey code space
+   into two discontiguous ranges, 0-16383 and 16385-32767.
+ 
+ o If a GeoKey is coded "undefined", then it is exactly that; no
+   parameters should be provided (e.g. EllipsoidSemiMajorAxis, etc).
+   To provide parameters for a non-coded attribute, use "user-defined".
+</pre><tt>
+ <p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.2.4">1.2.4 Organizational changes</a></h4>
+<tt><p>
+None.<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.2.5">1.2.5 Changes in Requirements</a></h4>
+<pre> Changes to this preliminary revision:
+   o Support for new transformation matrix tag (34264) required.</pre><tt>
+ <p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.2.6">1.2.6 Agenda for Future Development</a></h4>
+<tt><p>
+Revision 1.0, which is the first true "Baseline" revision, is proposed to
+support well-documented, public, relatively simple Projected Coordinate Systems
+(PCS), including most commonly used and supported in the international public
+domains today, together with their underlying map-projection systems. Following
+the critiques of the 0.x Revision phase, the 1.0 Revision spec is hereby
+released in Sept '95. <p>
+<p>
+In the coming year, incremental 1.x augmentations to the "codes" list will be
+established, as well as discussions regarding the future "2.0" requirements.<p>
+<p>
+The Revision 2.0 phase is proposed to extend the capability of the GeoTIFF
+tagsets beyond PCS projections into more complex map projection geometries,
+including single-project, single-vendor, or proprietary cartographic solutions.
+<p>
+<p>
+TBD: Sounding Datums and related parameters for Digital Elevation Models
+(DEM's) and bathymetry -- Revision 2?<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="1.3">1.3 Administration</a></h3>
+<tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.3.1">1.3.1 Information and Support:</a></h4>
+<tt>The most recent version of the GeoTIFF spec, EPSG/POSC tables, and source
+code is available via anonymous FTP at the USGS site:</tt>
+<pre>
+        <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/</a>
+   There are several subdirectories called spec/ tables/ and code/.
+   The USGS also has an archive of prototype GeoTIFF images at:
+        <a href="ftp://ftpmcmc.cr.usgs.gov/release/geotiff/images/">ftp://ftpmcmc.cr.usgs.gov/release/geotiff/images/</a>
+</pre><tt>Information
+and a hypertext version of the GeoTIFF spec is available via WWW at the
+following site:</tt>
+<pre>
+        <a href="http://www.earthlink.net/~ritter/geotiff/geotiff.html">http://www.earthlink.net/~ritter/geotiff/geotiff.html</a>
+</pre><tt>A
+mailing-list is currently active to discuss the on-going development of this
+standard. To subscribe to this list, send e-mail to:</tt>
+<pre>
+       GeoTIFF-request@tazboy.jpl.nasa.gov
+</pre><tt>with
+no subject and the body of the message reading:</tt>
+<pre>
+     subscribe geotiff  your-name-here
+</pre><tt>To
+post inquiries directly to the list, send email to:</tt>
+<pre>
+       geotiff@tazboy.jpl.nasa.gov</pre><tt><p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.3.2">1.3.2 Private Keys and Codes:</a></h4>
+<tt>As with TIFF, in GeoTIFF private "GeoKeys" and codes may be used, starting
+with 32768 and above. Unlike the TIFF spec, however, these private key-spaces
+will not be reserved, and are only to be used for private, internal purposes.
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="1.3.3">1.3.3 Proposed Revisions to GeoTIFF</a></h4>
+<tt>Should a feature arise which is not currently supported, it should be
+formally proposed for addition to the GeoTIFF spec, through the official
+mailing-list.<p>
+<p>
+The current maintainer of the GeoTIFF specification is Niles Ritter, though
+this may change at a later time. Projection codes are maintained through
+EPSG/POSC, and a mechanism for change/additions will be established through the
+GeoTIFF mailing list. </tt>
+<pre></pre><tt> </tt>
+</body></html>

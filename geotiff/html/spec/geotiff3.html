@@ -1,0 +1,203 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a></h2>
+<img src="gifs/clrbar.gif">
+ <h2><a name="3">3  Examples</a></h2>
+<tt> <p>
+<p>
+Here are some examples of how GeoTIFF may be implemented at the  Tag and GeoKey
+level, following the general "Cookbook" approach above. <p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="3.1">3.1 Common Examples</a></h3>
+<tt><p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.1.1.">3.1.1. UTM Projected Aerial Photo</a></h4>
+<pre>   </pre><tt>We
+have an aerial photo which has been orthorectified and resampled to a UTM grid,
+zone 60, using WGS84 datum; the coordinates of the upper-left corner of the
+image is are given in easting/northing, as 350807.4m, 5316081.3m. The scanned
+map pixel scale is 100 meters/pixels (the actual dpi scanning ratio is
+irrelevant).</tt>
+<pre>   
+      ModelTiepointTag       = (0, 0, 0,  350807.4, 5316081.3, 0.0)
+      ModelPixelScaleTag      = (100.0, 100.0, 0.0)
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey        =  1      (ModelTypeProjected)
+            GTRasterTypeGeoKey       =  1      (RasterPixelIsArea)
+            ProjectedCSTypeGeoKey    =  32660  (PCS_WGS84_UTM_zone_60N)
+            PCSCitationGeoKey        =  "UTM Zone 60 N with WGS84"
+            
+   
+   Notes:
+   1) We did not need to specify the GCS lat-long, since the 
+      PCS_WGS84_UTM_zone_60N codes implies particular 
+      GCS and units already (WGS_84 and meters). The citation
+      was added just for documentation.
+ 
+   2)  The "GeoKeyDirectoryTag" is expressed using the "GeoKey" 
+   structure defined above. At the TIFF level the tags look like
+   this:
+      GeoKeyDirectoryTag=(  1,     0,     2,       4,
+                         1024,     0,     1,       1,
+                         1025,     0,     1,       1,
+                         3072,     0,     1,       32660,
+                         3073, 34737,    25,       0 ) 
+      GeoAsciiParamsTag(34737)=("UTM Zone 60 N with WGS84|")
+      
+   For the rest of these examples we will only show the GeoKey-level
+   dump, with the understanding that the actual TIFF-level tag
+   representation can be determined from the documentation.
+</pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.1.2.">3.1.2. Standard State Plane</a></h4>
+<pre>      </pre><tt>We
+have a USGS State Plane Map of Texas, Central Zone, using NAD83, correctly
+oriented. The map resolution is 1000 meters/pixel, at origin. There is a grid
+intersection line in the image at pixel location (50,100), and corresponds to
+the projected coordinate system easting/northing of (949465.0, 3070309.1).</tt>
+<pre>      
+      ModelTiepointTag           = (  50,  100, 0, 949465.0, 3070309.1, 0)   
+      ModelPixelScaleTag         = (1000, 1000, 0)
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey            =  1   (ModelTypeProjected)
+            GTRasterTypeGeoKey           =  1   (RasterPixelIsArea)
+            ProjectedCSTypeGeoKey        = 32139 (PCS_NAD83_Texas_Central)
+    Notice that in this case, since the PCS is a standard code, we
+    do not need to define the GCS, datum, etc, since those are implied
+    by the PCS code. Also, since this is NAD83, meters are used rather
+    than US Survey feet (as in NAD 27).
+  </pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.1.3.">3.1.3. Lambert Conformal Conic Aeronautical Chart</a></h4>
+<pre>      </pre><tt>We
+have a 500 x 500 scanned aeronautical chart of Seattle, WA, using Lambert
+Conformal Conic projection, correctly oriented. The central meridian is at 120
+degrees west. The map resolution is 1000 meters/pixel, at origin, and uses
+NAD27 datum. The standard parallels of the projection are at 41d20m N and
+48d40m N. The latitude of the origin is at 45 degrees North, and occurs in the
+image at the raster coordinates (80,100). The origin is given a false easting
+and northing of 200000m, 1500000m.</tt>
+<pre>      
+      ModelTiepointTag          = (  80,  100, 0,  200000,  1500000,  0)   
+      ModelPixelScaleTag         = (1000, 1000, 0)
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey               =  1     (ModelTypeProjected)
+            GTRasterTypeGeoKey              =  1     (RasterPixelIsArea)
+            GeographicTypeGeoKey            =  4267  (GCS_NAD27)
+            ProjectedCSTypeGeoKey           =  32767 (user-defined)
+            ProjectionGeoKey                =  32767 (user-defined)
+            ProjLinearUnitsGeoKey           =  9001     (Linear_Meter)
+            ProjCoordTransGeoKey            =  8  (CT_LambertConfConic_2SP)
+                 ProjStdParallel1GeoKey     =  41.333
+                 ProjStdParallel2GeoKey     =  48.666
+                 ProjCenterLongGeoKey       =-120.0
+                 ProjNatOriginLatGeoKey     =  45.0
+                 ProjFalseEastingGeoKey,    = 200000.0
+                 ProjFalseNorthingGeoKey,   = 1500000.0
+   Notice that the Tiepoint takes the false easting and northing into
+   account when tying the raster point (50,100) to the projection origin.
+</pre><tt>
+  <p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.1.4.">3.1.4. DMA ADRG Raster Graphic Map</a></h4>
+<pre></pre><tt>The
+U.S. Defense Mapping Agency produces ARC digitized raster graphics datasets by
+scanning maps and geometrically resampling them into an equirectangular
+projection, so that they may be directly indexed with WGS84 geographic
+coordinates. The scale for one map is 0.2 degrees per pixel horizontally, 0.1
+degrees per pixel vertically. If stored in a GeoTIFF file it contains the
+following information:  </tt>
+<pre>
+      ModelTiepointTag=(0.0, 0.0, 0.0,  -120.0,       32.0,     0.0)
+      ModelPixelScale = (0.2, 0.1, 0.0) 
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey          =  2   (ModelTypeGeographic)
+            GTRasterTypeGeoKey         =  1   (RasterPixelIsArea)
+            GeographicTypeGeoKey       =  4326 (GCS_WGS_84)
+ </pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="3.2">3.2 Less Common Examples</a></h3>
+<pre></pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.2.1.">3.2.1. Unrectified Aerial photo, known tiepoints, in degrees.</a></h4>
+<pre>   </pre><tt>We
+have an aerial photo, and know only the WGS84 GPS location of several points in
+the scene: the upper left corner is 120 degrees West, 32 degrees North, the
+lower-left corner is at 120 degrees West, 30 degrees 20 minutes North, and the
+lower-right hand corner of the image is at 116 degrees 40 minutes  West, 30
+degrees 20 minutes North. The  photo is not geometrically corrected, however,
+and the complete projection is therefore not known.</tt>
+<pre>   
+    ModelTiepointTag=(   0.0,    0.0, 0.0,  -120.0,       32.0,     0.0,
+                         0.0, 1000.0, 0.0,  -120.0,       30.33333, 0.0,
+                      1000.0, 1000.0, 0.0,  -116.6666667, 30.33333, 0.0) 
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey          =   1 (ModelTypeGeographic)
+            GTRasterTypeGeoKey         =   1 (RasterPixelIsArea)
+            GeographicTypeGeoKey       = 4326 (GCS_WGS_84)
+            
+    Remark: Since we have not specified the ModelPixelScaleTag, clients
+       reading this GeoTIFF file are not permitted to infer that there
+       is a simple linear relationship between the raster data and the
+       geographic model coordinate space. The only points that are know
+       to be exact are the ones specified in the tiepoint tag.   
+   
+   </pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.2.2.">3.2.2. Rotated Scanned Map</a></h4>
+<pre>   </pre><tt>We
+have a scanned standard British National Grid, covering the 100km grid zone NZ.
+Consulting documentation for BNG we find that the southwest corner of the NZ
+zone has an easting,northing of 400000m, 500000m, relative to the BNG standard
+false origin. This scanned map has a resolution of 100 meter pixels, and was
+rotated 90 degrees to fit onto the scanner, so that the southwest corner is now
+the northwest corner. In this case we must use the ModelTransformation tag
+rather than the tiepoint/scale pair to map the raster data into model
+space:</tt>
+<pre>   
+      ModelTransformationTag  = (     0, 100.0,     0,   400000.0,
+                                  100.0,     0,     0,   500000.0,
+                                      0,     0,     0,          0,
+                                      0,     0,     0,          1)
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey        =  1 ( ModelTypeProjected)
+            GTRasterTypeGeoKey       =  1  (RasterPixelIsArea)
+            ProjectedCSTypeGeoKey    =  27700 (PCS_British_National_Grid)
+            PCSCitationGeoKey        =  "British National Grid, Zone NZ"</pre><tt><p>
+Remark: the matrix has 100.0 in the off-diagonals due to the 90 degree
+rotation; increasing I points north, and increasing J points east.<p>
+      <p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="3.2.3.">3.2.3. Digital Elevation Model</a></h4>
+<tt>The DMA stores digital elevation models using an equirectangular
+projection, so that it may be indexed with WGS84 geographic coordinates. Since
+elevation postings are point-values, the pixels should not be considered as
+filling areas, but as point-values at grid vertices. To accommodate the base
+elevation of the Angeles Crest forest, the pixel value of 0 corresponds to an
+elevation of 1000 meters relative to WGS84 reference ellipsoid. The upper left
+corner is at 120 degrees West, 32 degrees North, and has a pixel scale of 0.2
+degrees/pixel longitude, 0.1 degrees/pixel latitude.<p>
+</tt>
+<pre>      ModelTiepointTag=(0.0, 0.0, 0.0,  -120.0,       32.0,    1000.0)
+      ModelPixelScale = (0.2, 0.1, 1.0) 
+      GeoKeyDirectoryTag:
+            GTModelTypeGeoKey          =  2     (ModelTypeGeographic)
+            GTRasterTypeGeoKey         =  2     (RasterPixelIsPoint)
+            GeographicTypeGeoKey       =  4326  (GCS_WGS_84)
+            VerticalCSTypeGeoKey       =  5030  (VertCS_WGS_84_ellipsoid)
+            VerticalCitationGeoKey     =  "WGS 84 Ellipsoid"
+            VerticalUnitsGeoKey        =  9001     (Linear_Meter)</pre><tt></tt>
+<pre>   Remarks: 
+          1) Note the "RasterPixelIsPoint" raster space, indicating that
+             the DEM posting of the first pixel is at the raster point
+             (0,0,0), and therefore corresponds to 120W,32N exactly.
+          2) The third value of the "PixelScale" is 1.0 to indicate
+             that a single pixel-value unit corresponds to 1 meter,
+             and the last tiepoint value indicates that base value
+             zero indicates 1000m above the reference surface.</pre><tt><p>
+ </tt>
+</body></html>

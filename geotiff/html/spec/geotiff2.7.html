@@ -1,0 +1,623 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a> <a href="geotiff2.html"><img src="gifs/sec2.gif" alt="Top of Section 2"></a></h2>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="2.7">2.7 Geocoding Raster Data</a></h3>
+<tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.7.1">2.7.1 General Approach</a></h4>
+<tt>A geocoded image is a georeferenced image as described in  <a href="geotiff2.6.html#2.6">section 2.6</a>,
+which also specifies a model space coordinate system (CS) between the model
+space M (to which the raster space has been tied) and the earth. The
+relationship can be diagrammed, including the associated TIFF tags, as
+follows:</tt>
+<pre>        ModelPixelScaleTag 
+        ModelTiepointTag                  GeoKeyDirectoryTag CS 
+    R  -------- OR ---------------&gt; M  --------- AND  -----------&gt; Earth
+        ModelTransformationTag            GeoDoubleParamsTag  
+                                          GeoAsciiParamsTag  </pre><tt><p>
+The geocoding coordinate system is defined by the GeoKeyDirectoryTag, while the
+Georeferencing information (T) is defined by the ModelTiepointTag and the
+ModelPixelScale, or ModelTransformationTag. Since these two systems are
+independent of each other, the tags used to store the parameters are separated
+from each other in the GeoTIFF file to emphasize the orthogonality. <p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.7.2">2.7.2 GeoTIFF GeoKeys for Geocoding</a></h4>
+<tt>As mentioned above, all information regarding the Model Coordinate System
+used in the raster data is referenced from the GeoKeyDirectoryTag, which stores
+all of the GeoKey entries. In the Appendix,  <a href="geotiff6.html#6.2">section 6.2</a> summarizes all of the
+GeoKeys defined for baseline GeoTIFF, and their corresponding codes are
+documented in  <a href="geotiff6.html#6.3.">section 6.3.</a> Only the Keys themselves are documented here.<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4>Common Features</h4>
+<tt> <p>
+     </tt>
+<h4>
+Public and Private Key and Code Ranges</h4>
+<tt><p>
+GeoTIFF GeoKey ID's may take any value between 0 and 65535. Following TIFF
+general approach, the GeoKey ID's from 32768 and above are available for
+private implementations. However, no registry will be established for these
+keys or codes, so developers are warned to use them at their own risk.<p>
+<p>
+The Key ID's from 0 to 32767 are reserved for use by the official GeoTIFF spec,
+and are broken down into the following sub-domains:<p>
+</tt>
+<pre>   [    0,  1023]       Reserved
+   [ 1024,  2047]       GeoTIFF Configuration Keys
+   [ 2048,  3071]       Geographic/Geocentric CS Parameter Keys
+   [ 3072,  4095]       Projected CS Parameter Keys
+   [ 4096,  5119]       Vertical CS Parameter Keys
+   [ 5120, 32767]       Reserved
+   [32768, 65535]       Private use</pre><tt><p>
+GeoKey codes, like keys and tags, also range from 0 to 65535. Following the
+TIFF approach, all codes from 32768 and above are available for private user
+implementation. There will be no registry for these codes, however, and so
+developers must be sure that these tags will only be used internally. Use
+private codes at your own risk.<p>
+<p>
+The codes from 0 to 32767 for all public GeoKeys are reserved by this GeoTIFF
+specification.<p>
+</tt>
+<h4>
+Common Public Code Values</h4>
+<tt><p>
+For consistency, several key codes have the same meaning in all implemented
+GeoKeys possessing a SHORT numerical coding system:<p>
+</tt>
+<pre>          0 = undefined
+      32767 = user-defined</pre><tt><p>
+The "undefined" code means that this parameter is intentionally omitted, for
+whatever reason. For example, the datum used for a given map may be unknown, or
+the accuracy of a aerial photo is so low that to specify a particular datum
+would imply a higher accuracy than is in the data.<p>
+<p>
+The "user-defined" code means that a feature is not among the standard list,
+and is being explicitly defined. In cases where this is meaningful, Geokey
+parameters have been supplied for the user to define this feature.<p>
+<p>
+"User-Defined" requirements: In each section below a specification of the
+additional GeoKeys required for the "user-defined" option is given. In all
+cases the corresponding "Citation" key is strongly recommended, as per the FGDC
+Metadata standard regarding "local" types.<p>
+<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4>GeoTIFF Configuration GeoKeys</h4>
+<tt> <p>
+<p>
+These keys are to be used to establish the general configuration of this file's
+coordinate system, including the types of raster coordinate systems, model
+coordinate systems, and citations if any.<p>
+<p>
+<img src="gifs/clrbar.gif"></tt>
+<h4>
+GTModelTypeGeoKey      </h4>
+<pre>Key ID = 1024
+Type: SHORT (code)
+Values:  <a href="geotiff6.html#6.3.1.1">Section 6.3.1.1</a> Codes</pre><tt><p>
+This GeoKey defines the general type of model Coordinate system used, and to
+which the raster space will be transformed:unknown, Geocentric (rarely used),
+Geographic, Projected Coordinate System, or user-defined. If the coordinate
+system is a PCS, then only the PCS code need be specified. If the coordinate
+system does not fit into one of the standard registered PCS'S, but it uses one
+of the standard projections and datums, then its should be documented as a PCS
+model with "user-defined" type, requiring the specification of projection
+parameters, etc. </tt>
+<pre>
+GeoKey requirements for User-Defined Model Type (not advisable):
+     GTCitationGeoKey
+     
+<img src="gifs/clrbar.gif"></pre><h4>
+GTRasterTypeGeoKey       </h4>
+<pre>Key ID = 1025  
+Type =  <a href="geotiff6.html#6.3.1.2">Section 6.3.1.2</a> codes
+</pre><tt>This
+establishes the Raster Space coordinate system used; there are currently only
+two, namely RasterPixelIsPoint and RasterPixelIsArea. No user-defined raster
+spaces are currently supported. For variance in imaging display parameters,
+such as pixel aspect-ratios, use the standard TIFF 6.0 device-space tags
+instead.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><h4>
+GTCitationGeoKey       </h4>
+<pre>Key ID = 1026  
+Type = ASCII
+</pre><tt>As
+with all the "Citation" GeoKeys, this is provided to give an ASCII reference to
+published documentation on the overall configuration of this GeoTIFF file.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><tt> </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4>Geographic CS Parameter GeoKeys</h4>
+<tt> </tt>
+<pre><img src="gifs/clrbar.gif">
+</pre><tt>In
+general, the geographic coordinate system used will be implied by the projected
+coordinate system code. If however, this is a user-defined PCS, or the
+ModelType was chosen to be Geographic, then the system must be explicitly
+defined here, using the Horizontal datum code.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><h4>
+GeographicTypeGeoKey    </h4>
+<pre>Key ID = 2048  
+Type = SHORT (code)
+Values =  <a href="geotiff6.html#6.3.2.1">Section 6.3.2.1</a> Codes    
+</pre><tt>This
+key may be used to specify the code for the geographic coordinate system used
+to map lat-long to a specific ellipsoid over the earth.</tt>
+<pre>
+GeoKey Requirements for User-Defined geographic CS:
+ 
+       GeogCitationGeoKey
+       GeogGeodeticDatumGeoKey
+ 	GeogAngularUnitsGeoKey (if not degrees)
+	GeogPrimeMeridianGeoKey (if not Greenwich)
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogCitationGeoKey</h4>
+<pre>Key ID = 2049
+Type = ASCII
+Values = text
+</pre><tt>General
+citation and reference for all Geographic CS parameters.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+GeogGeodeticDatumGeoKey    </h4>
+<pre>Key ID = 2050  
+Type = SHORT (code)
+Values =  <a href="geotiff6.html#6.3.2.2">Section 6.3.2.2</a> Codes    
+</pre><tt>This
+key may be used to specify the horizontal datum, defining the size, position
+and orientation of the reference ellipsoid used in user-defined geographic
+coordinate systems.</tt>
+<pre>
+GeoKey Requirements for User-Defined Horizontal Datum: 
+       GeogCitationGeoKey
+       GeogEllipsoidGeoKey
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogPrimeMeridianGeoKey</h4>
+<pre>Key ID = 2051
+Type = SHORT (code)
+Units:  <a href="geotiff6.html#6.3.2.4">Section 6.3.2.4</a> code
+</pre><tt>Allows
+specification of the location of the Prime meridian for user-defined geographic
+coordinate systems. The default standard is Greenwich, England.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+GeogPrimeMeridianLongGeoKey</h4>
+<pre>Key ID = 2061  
+Type = DOUBLE 
+Units =  GeogAngularUnits</pre><tt></tt>
+<pre>This key allows definition of user-defined Prime Meridians, the location of which is defined by its longitude relative to Greenwich.
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogLinearUnitsGeoKey </h4>
+<pre>Key ID = 2052
+Type = DOUBLE
+Values:  <a href="geotiff6.html#6.3.1.3">Section 6.3.1.3</a> Codes
+</pre><tt>Allows
+the definition of geocentric CS linear units for user-defined GCS.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogLinearUnitSizeGeoKey </h4>
+<pre>Key ID = 2053
+Type = DOUBLE
+Units: meters
+</pre><tt>Allows
+the definition of user-defined linear geocentric units, as measured in
+meters.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+GeogAngularUnitsGeoKey</h4>
+<pre>Key ID = 2054  
+Type = SHORT (code)
+Values =   <a href="geotiff6.html#6.3.1.4">Section 6.3.1.4</a>  Codes 
+</pre><tt>Allows
+the definition of <b>geocentric</b> CS Linear units for user-defined GCS and
+for ellipsoids.</tt>
+<pre>
+GeoKey Requirements for "user-defined" units:
+    GeogCitationGeoKey
+    GeogAngularUnitSizeGeoKey 
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogAngularUnitSizeGeoKey </h4>
+<pre>Key ID = 2055
+Type = DOUBLE
+Units: radians
+</pre><tt>Allows
+the definition of user-defined angular geographic units, as measured in
+radians.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+GeogEllipsoidGeoKey</h4>
+<pre>Key ID = 2056
+Type = SHORT (code)
+Values =  <a href="geotiff6.html#6.3.2.3">Section 6.3.2.3</a> Codes 
+   </pre><tt>This
+key may be used to specify the coded ellipsoid used in the geodetic datum of
+the Geographic Coordinate System. </tt>
+<pre>
+GeoKey Requirements for User-Defined Ellipsoid: 
+   GeogCitationGeoKey
+   [GeogSemiMajorAxisGeoKey, 
+           [GeogSemiMinorAxisGeoKey | GeogInvFlatteningGeoKey] ]
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogSemiMajorAxisGeoKey  </h4>
+<pre>Key ID = 2057
+Type = DOUBLE
+Units: Geocentric CS Linear Units
+</pre><tt>Allows
+the specification of user-defined Ellipsoid Semi-Major Axis (a). </tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogSemiMinorAxisGeoKey  </h4>
+<pre>Key ID = 2058
+Type = DOUBLE
+Units: Geocentric CS Linear Units
+</pre><tt>Allows
+the specification of user-defined Ellipsoid Semi-Minor Axis (b). </tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogInvFlatteningGeoKey</h4>
+<pre>Key ID = 2059
+Type = DOUBLE
+Units: none.
+</pre><tt>Allows
+the specification of the <b>inverse</b> of user-defined Ellipsoid's flattening
+parameter (f). The eccentricity-squared e^2 of the ellipsoid is related to the
+non-inverted f by:</tt>
+<pre>
+      e^2  = 2*f  - f^2
+ 
+   Note: if the ellipsoid is spherical the inverse-flattening
+   becomes infinite; use the GeogSemiMinorAxisGeoKey instead, and
+   set it equal to the semi-major axis length.
+<img src="gifs/clrbar.gif"></pre><h4>
+GeogAzimuthUnitsGeoKey</h4>
+<pre>Key ID = 2060  
+Type = SHORT (code)
+Values =   <a href="geotiff6.html#6.3.1.4">Section 6.3.1.4</a> Codes 
+</pre><tt>This
+key may be used to specify the angular units of measurement used to defining
+azimuths, in geographic coordinate systems. These may be used for defining
+azimuthal parameters for some projection algorithms, and may not necessarily be
+the same angular units used for lat-long.</tt>
+<pre></pre><tt></tt>
+<pre><img src="gifs/clrbar.gif"></pre><tt><p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4>Projected CS Parameter GeoKeys</h4>
+<tt> <p>
+<p>
+The PCS range of GeoKeys includes the projection and coordinate transformation
+keys as well. The projection keys are included in this block since they can
+only be used to define projected coordinate systems.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjectedCSTypeGeoKey   </h4>
+<pre>Key ID = 3072
+Type = SHORT (codes)
+Values:  <a href="geotiff6.html#6.3.3.1">Section 6.3.3.1</a> codes</pre><tt><p>
+This code is provided to specify the projected coordinate system.</tt>
+<pre>
+GeoKey requirements for "user-defined" PCS families:
+   PCSCitationGeoKey
+   ProjectionGeoKey
+ <img src="gifs/clrbar.gif"></pre><h4>
+PCSCitationGeoKey</h4>
+<pre>Key ID = 3073
+Type = ASCII
+</pre><tt>As
+with all the "Citation" GeoKeys, this is provided to give an ASCII reference to
+published documentation on the Projected  Coordinate System particularly if
+this is a "user-defined" PCS.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><tt><p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4>Projection Definition GeoKeys</h4>
+<tt> </tt>
+<pre><img src="gifs/clrbar.gif">
+</pre><tt>With
+the exception of the first two keys, these are mostly  projection-specific
+parameters, and only a few will be required for any particular projection type.
+Projected coordinate systems automatically imply a specific projection type, as
+well as specific parameters for that projection, and so the keys below will
+only be necessary for user-defined projected coordinate systems.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjectionGeoKey</h4>
+<pre>Key ID = 3074
+Type = SHORT (code)
+Values:   <a href="geotiff6.html#6.3.3.2">Section 6.3.3.2</a> codes
+</pre><tt>Allows
+specification of the coordinate transformation method and projection zone
+parameters.  Note : when associated with an appropriate Geographic Coordinate
+System, this forms a Projected Coordinate System.<p>
+</tt>
+<pre>
+GeoKeys Required for "user-defined" Projections:</pre><tt></tt>
+<pre>   PCSCitationGeoKey
+   ProjCoordTransGeoKey
+   ProjLinearUnitsGeoKey
+   (additional parameters depending on ProjCoordTransGeoKey).
+<img src="gifs/clrbar.gif"></pre><h4>
+ProjCoordTransGeoKey</h4>
+<pre>Key ID = 3075
+Type = SHORT (code)
+Values:   <a href="geotiff6.html#6.3.3.3">Section 6.3.3.3</a> codes
+</pre><tt>Allows
+specification of the coordinate transformation method used. Note: this does not
+include the definition of the corresponding Geographic Coordinate System to
+which the projected CS is related; only the transformation method is defined
+here.</tt>
+<pre>
+GeoKeys Required for "user-defined" Coordinate Transformations:
+   PCSCitationGeoKey
+   &lt;additional parameter geokeys depending on the Coord. Trans. specified).
+<img src="gifs/clrbar.gif"></pre><h4>
+ProjLinearUnitsGeoKey</h4>
+<pre>Key ID = 3076 
+Type = SHORT (code)
+Values:  <a href="geotiff6.html#6.3.1.3">Section 6.3.1.3</a> codes 
+</pre><tt>Defines
+linear units used by this projection.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjLinearUnitSizeGeoKey</h4>
+<pre>Key ID = 3077 
+Type = DOUBLE
+Units: meters
+</pre><tt>Defines
+size of user-defined linear units in meters.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjStdParallel1GeoKey</h4>
+<pre>Key ID = 3078 
+Type = DOUBLE
+Units: GeogAngularUnit 
+Alias: ProjStdParallelGeoKey (from Rev 0.2)
+</pre><tt>Latitude
+of primary Standard Parallel.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjStdParallel2GeoKey</h4>
+<pre>Key ID = 3079
+Type = DOUBLE
+Units: GeogAngularUnit 
+</pre><tt>Latitude
+of second Standard Parallel.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjNatOriginLongGeoKey</h4>
+<pre>Key ID = 3080
+Type = DOUBLE
+Units: GeogAngularUnit 
+Alias: ProjOriginLongGeoKey
+</pre><tt>Longitude
+of map-projection Natural origin. </tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjNatOriginLatGeoKey</h4>
+<pre>Key ID = 3081
+Type = DOUBLE
+Units: GeogAngularUnit
+Alias: ProjOriginLatGeoKey
+</pre><tt>Latitude
+of map-projection Natural origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseEastingGeoKey</h4>
+<pre>Key ID = 3082
+Type = DOUBLE
+Units: ProjLinearUnit </pre><tt><p>
+Gives the easting coordinate of the map projection Natural origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseNorthingGeoKey</h4>
+<pre>Key ID = 3083
+Type = DOUBLE
+Units: ProjLinearUnit </pre><tt><p>
+Gives the northing coordinate of the map projection Natural origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseOriginLongGeoKey</h4>
+<pre>Key ID = 3084
+Type = DOUBLE
+Units: GeogAngularUnit </pre><tt><p>
+Gives the longitude of the False origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseOriginLatGeoKey</h4>
+<pre>Key ID = 3085
+Type = DOUBLE
+Units: GeogAngularUnit </pre><tt><p>
+Gives the latitude of the False origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseOriginEastingGeoKey</h4>
+<pre>Key ID = 3086
+Type = DOUBLE
+Units: ProjLinearUnit </pre><tt><p>
+Gives the easting coordinate of the false origin. This is NOT the False
+Easting, which is the easting attached to the Natural origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseOriginNorthingGeoKey</h4>
+<pre>Key ID = 3087
+Type = DOUBLE
+Units: ProjLinearUnit </pre><tt><p>
+Gives the northing coordinate of the False origin. This is NOT the False
+Northing, which is the northing attached to the Natural origin.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjCenterLongGeoKey</h4>
+<pre>Key ID = 3088
+Type = DOUBLE
+Units: GeogAngularUnit 
+</pre><tt>Longitude
+of Center of Projection. Note that this is not necessarily the origin of the
+projection.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjCenterLatGeoKey</h4>
+<pre>Key ID = 3089
+Type = DOUBLE
+Units: GeogAngularUnit
+</pre><tt>Latitude
+of Center of Projection. Note that this is not necessarily the origin of the
+projection.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjCenterEastingGeoKey</h4>
+<pre>Key ID = 3090
+Type = DOUBLE
+Units: ProjLinearUnit </pre><tt><p>
+Gives the easting coordinate of the center. This is NOT the False Easting.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjFalseOriginNorthingGeoKey</h4>
+<pre>Key ID = 3091
+Type = DOUBLE
+Units: ProjLinearUnit </pre><tt><p>
+Gives the northing coordinate of the center. This is NOT the False
+Northing.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjScaleAtNatOriginGeoKey</h4>
+<pre>Key ID = 3092
+Type = DOUBLE
+Units: none
+Alias: ProjScaleAtOriginGeoKey (Rev. 0.2)
+</pre><tt>Scale
+at Natural Origin. This is a ratio, so no units are required.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjScaleAtCenterGeoKey</h4>
+<pre>Key ID = 3093 
+Type = DOUBLE
+Units: none
+</pre><tt>Scale
+at Center. This is a ratio, so no units are required.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjAzimuthAngleGeoKey</h4>
+<pre>Key ID = 3094
+Type = DOUBLE
+Units: GeogAzimuthUnit
+ </pre><tt>Azimuth
+angle east of true north of the central line passing through the projection
+center (for elliptical (Hotine) Oblique Mercator). Note that this is the
+standard method of measuring azimuth, but is opposite the usual mathematical
+convention of positive indicating counter-clockwise.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+ProjStraightVertPoleLongGeoKey   </h4>
+<pre>Key ID = 3095 
+Type = DOUBLE
+Units: GeogAngularUnit 
+</pre><tt>Longitude
+at Straight Vertical Pole. For polar stereographic.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+GeogAzimuthUnitsGeoKey</h4>
+<pre>Key ID = 2060  
+Type = SHORT (code)
+Values =   <a href="geotiff6.html#6.3.1.4">Section 6.3.1.4</a> Codes 
+</pre><tt>This
+key is actually part of the "Geographic CS Parameter Keys" section, but is
+mentioned here as it is useful for defining units used in the azimuthal
+projection parameters.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><tt><p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4>Vertical CS Parameter Keys</h4>
+<tt> <p>
+<p>
+Note: Vertical coordinate systems are not yet implemented. These sections are
+provided for future development, and any vertical coordinate systems in the
+current revision must be defined using the VerticalCitationGeoKey.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+VerticalCSTypeGeoKey</h4>
+<pre>Key ID = 4096  
+Type = SHORT (code)
+Values =   <a href="geotiff6.html#6.3.4.1">Section 6.3.4.1</a>  Codes 
+</pre><tt>This
+key may be used to specify the vertical coordinate system.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+VerticalCitationGeoKey</h4>
+<pre>Key ID = 4097
+Type = ASCII
+Values =  text 
+</pre><tt>This
+key may be used to document the vertical coordinate system used, and its
+parameters.</tt>
+<pre><img src="gifs/clrbar.gif"></pre><h4>
+VerticalDatumGeoKey</h4>
+<pre>Key ID = 4098   
+Type = SHORT (code)
+Values =   <a href="geotiff6.html#6.3.4.2">Section 6.3.4.2</a>  codes
+</pre><tt>This
+key may be used to specify the vertical datum for the vertical coordinate
+system.</tt>
+<pre>
+<img src="gifs/clrbar.gif"></pre><h4>
+VerticalUnitsGeoKey</h4>
+<pre>Key ID = 4099   
+Type = SHORT (code)
+Values =   <a href="geotiff6.html#6.3.1.3">Section 6.3.1.3</a>  Codes 
+</pre><tt>This
+key may be used to specify the vertical units of measurement used in the
+geographic coordinate system, in cases where geographic CS's need to reference
+the vertical coordinate. This, together with the Citation key, comprise the
+only fully implemented keys in this section, at present.<p>
+<p>
+<p>
+<p>
+ </tt>
+<img src="gifs/clrbar_half.gif">
+ <h4><a name="2.7.3">2.7.3 Cookbook for Geocoding Data</a></h4>
+<pre>
+Step 1: Determine the Coordinate system type of the raster data, based on
+        the nature of the data: pixels derived from scanners or other 
+        optical devices represent areas, and most commonly will use the
+        RasterPixelIsArea coordinate system. Pixel data such as digital
+        elevation models represent points, and will probably use 
+        RasterPixelIsPoint coordinates.
+           Store in: GTRasterTypeGeoKey
+Step 2: Determine which class of model space coordinates are most natural
+        for this dataset:Geographic, Geocentric, or Projected Coordinate 
+        System. Usually this will be PCS.
+        
+           Store in: GTModelTypeGeoKey
+           
+Step 3: This step depends on the GTModelType:
+      case PCS:  Determine the PCS projection system. Most of the
+           PCS's used in standard State Plane and national grid systems
+           are defined, so check this list first; the EPSG index in 
+            <a href="geotiff6.html#6.4">section 6.4</a> may be useful for this purpose.
+               
+           Store in: ProjectedCSTypeGeoKey, ProjectedCSTypeGeoKey
+           If coded, it will not be necessary to specify the Projection 
+           datum, etc for this case, since all of those parameters
+           are determined by the ProjectedCSTypeGeoKey code. Skip to
+           step 4 from here.
+               
+           If none of the coded PCS's match your system, then this is a
+           user-defined PCS. Use the Projection code list to check for
+           standard projection systems.
+           Store in: ProjectionGeoKey and skip to Geographic CS case.
+           If none of the Projection codes match your system, then this
+           is a user-defined projection. Use the ProjCoordTransGeoKey to
+           specify the coordinate transformation method (e.g. Transverse
+           Mercator), and all of the associated parameters of that method.
+           Also define the linear units used in the planar coordinate
+           system.
+           
+           Store in: ProjCoordTransGeoKey, ProjLinearUnitsGeoKey  
+               &lt;and other CT related parameter keys&gt;
+           Now continue on to define the Geographic CS, below.
+      case GEOCENTRIC:
+      case GEOGRAPHIC:  Check the list of standard GCS's and use the
+           corresponding code. To use a code both the Datum, Prime
+           Meridian, and angular units must match those of the code.
+                
+           Store in:  GeographicTypeGeoKey and skip to Step 4.
+           If none of the coded GCS's match exactly, then this is a
+           user-defined GCS. Check the list of standard datums,
+           Prime Meridians, and angular units to define your system.
+           Store in: GeogGeodeticDatumGeoKey, GeogAngularUnitsGeoKey,
+              GeogPrimeMeridianGeoKey and skip to Step 4. 
+  
+           If none of the datums match your system, you have a 
+           user-defined datum, which is an odd system, indeed. Use 
+           the GeogEllipsoidGeoKey to select the appropriate ellipsoid
+           or use the GeogSemiMajorAxisGeoKey, GeogInvFlatteningGeoKey to 
+           define, and give a reference using the GeogCitationGeoKey.
+           Store in: GeogEllipsoidGeoKey, etc. and go to Step 4.
+        
+Step 4: Install the GeoKeys/codes into the GeoKeyDirectoryTag, and the
+      DOUBLE and ASCII key values into the corresponding value-tags.
+      
+Step 5: Having completely defined the Raster &amp; Model coordinate system,
+      go to Cookbook  <a href="geotiff2.6.html#2.6.2">section 2.6.2</a> and use the Georeferencing Tags
+      to tie the raster image down onto the Model space.
+</pre><tt> </tt>
+</body></html>

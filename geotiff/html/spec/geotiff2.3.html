@@ -1,0 +1,21 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a> <a href="geotiff2.html"><img src="gifs/sec2.gif" alt="Top of Section 2"></a></h2>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="2.3">2.3 GeoTIFF Software Requirements</a></h3>
+<tt>GeoTIFF requires support for all documented TIFF 6.0 tag data-types, and in
+particular requires the IEEE double-precision floating point "DOUBLE" type tag.
+Most of the parameters for georeferencing will not have sufficient accuracy
+with single-precision IEEE, nor with RATIONAL format storage. The only other
+alternative for storing high-precision values would be to encode as ASCII, but
+this does not conform to TIFF recommendations for data encoding.<p>
+<p>
+It is worth emphasizing here that the TIFF spec indicates that TIFF-compliant
+readers shall honor the 'byte-order' indicator, meaning that 4-byte integers
+from files created on opposite order machines will be swapped in software, and
+that 8-byte DOUBLE's will be 8-byte swapped.<p>
+<p>
+A GeoTIFF reader/writer, in addition to supporting the standard TIFF tag types,
+must also have an additional module which can parse the "Geokey" MetaTag
+information. A public-domain software package for performing this function is
+now available; see the "References" in  <a href="geotiff5.html#5">section 5</a> for the location.</tt>
+<pre></pre><tt> </tt>
+</body></html>

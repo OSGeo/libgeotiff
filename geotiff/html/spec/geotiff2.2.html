@@ -1,0 +1,33 @@
+<h2><html><head><!-- Geotiff converted by Niles --></head><body><tt> </tt> <a href="geotiffhome.html"><img src="gifs/geotiff.gif" alt="GeoTIFF Web Page"></a> <a href="contents.html"><img src="gifs/table.gif" alt="Table of Contents"></a> <a href="geotiff2.html"><img src="gifs/sec2.gif" alt="Top of Section 2"></a></h2>
+<img src="gifs/clrbar_half.gif">
+ <h3><a name="2.2">2.2 GeoTIFF Design Considerations</a></h3>
+<tt>Every effort has been made to adhere to the philosophy of TIFF data
+abstraction. The GeoTIFF tags conform to a hierarchical data structure of tags
+and keys, similar to the tags which have been implemented in the "basic" and
+"extended" TIFF tags already supported in TIFF Version 6 specification. The
+following are some points considered in the design of GeoTIFF:<p>
+<p>
+o Private binary structures, while permitted under the TIFF spec, are in
+general difficult to maintain, and are intrinsically platform- dependent.
+Whenever possible, information should be sorted into their intrinsic
+data-types, and placed into appropriately named tags. Also, implementors of
+TIFF readers would be more willing to honor a new tag specification if it does
+not require parsing novel binary structures.<p>
+<p>
+o Any Tag value which is to be used as a "keyword" switch or modifier should be
+a SHORT type, rather than an ASCII string. This avoids common mistakes of
+mis-spelling a keyword, as well as facilitating an implementation in code using
+the "switch/case" features of most languages. In general, scanning ASCII
+strings for keywords (CaseINSensitiVE?) is a hazardous (not to mention slower
+and more complex) operation.<p>
+<p>
+o True "Extensibility" strongly suggests that the Tags defined have a
+sufficiently abstract definition so that the same tag and its values may be
+used and interpreted in different ways as more complex information spaces are
+developed. For example, the old SubFileType tag (255) had to be obsoleted and
+replaced with a NewSubFileType tag, because images began appearing which could
+not fit into the narrowly defined classes for that Tag. Conversely, the
+YCbCrSubsampling Tag has taken on new meaning and importance as the JPEG
+compression standard for TIFF becomes finalized.</tt>
+<pre></pre><tt> </tt>
+</body></html>
