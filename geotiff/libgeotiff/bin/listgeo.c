@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 static void WriteTFWFile( GTIF * gtif, const char * tif_filename );
-static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int );
+static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int, int );
 static const char *CSVFileOverride( const char * );
 static const char *CSVDirName = NULL;
 
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     TIFF 	*tif=(TIFF*)0;  /* TIFF-level descriptor */
     GTIF	*gtif=(GTIF*)0; /* GeoKey-level descriptor */
     int		i, norm_print_flag = 1, proj4_print_flag = 0;
-    int		tfw_flag = 0;
+    int		tfw_flag = 0, inv_flag = 0;
 
     /*
      * Handle command line options.
@@ -46,13 +46,11 @@ int main(int argc, char *argv[])
             SetCSVFilenameHook( CSVFileOverride );
         }
         else if( strcmp(argv[i],"-tfw") == 0 )
-        {
             tfw_flag = 1;
-        }
         else if( strcmp(argv[i],"-proj4") == 0 )
-        {
             proj4_print_flag = 1;
-        }
+        else if( strcmp(argv[i],"-i") == 0 )
+            inv_flag = 1;
         else if( fname == NULL && argv[i][0] != '-' )
             fname = argv[i];
         else
@@ -112,7 +110,7 @@ int main(int argc, char *argv[])
             
             TIFFGetField( tif, TIFFTAG_IMAGEWIDTH, &xsize );
             TIFFGetField( tif, TIFFTAG_IMAGELENGTH, &ysize );
-            GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize );
+            GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize, inv_flag );
         }
 
     }
@@ -150,50 +148,66 @@ static const char *CSVFileOverride( const char * pszInput )
 
 static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
                               const char * corner_name,
-                              double x, double y )
+                              double x, double y, int inv_flag )
 
 {
+    double	x_saved, y_saved;
+
     /* Try to transform the coordinate into PCS space */
     if( !GTIFImageToPCS( gtif, &x, &y ) )
         return FALSE;
     
+    x_saved = x;
+    y_saved = y;
+
     fprintf( fp_out, "%-13s ", corner_name );
 
     if( defn->Model == ModelTypeGeographic )
     {
         fprintf( fp_out, "(%s,", GTIFDecToDMS( x, "Long", 2 ) );
         fprintf( fp_out, "%s)\n", GTIFDecToDMS( y, "Lat", 2 ) );
-        return TRUE;
     }
-
-    fprintf( fp_out, "(%11.3f,%11.3f)", x, y );
-
-    if( GTIFProj4ToLatLong( defn, 1, &x, &y ) )
+    else
     {
-        fprintf( fp_out, "  (%s,", GTIFDecToDMS( x, "Long", 2 ) );
-        fprintf( fp_out, "%s)", GTIFDecToDMS( y, "Lat", 2 ) );
+        fprintf( fp_out, "(%11.3f,%11.3f)", x, y );
+
+        if( GTIFProj4ToLatLong( defn, 1, &x, &y ) )
+        {
+            fprintf( fp_out, "  (%s,", GTIFDecToDMS( x, "Long", 2 ) );
+            fprintf( fp_out, "%s)", GTIFDecToDMS( y, "Lat", 2 ) );
+        }
+
+        fprintf( fp_out, "\n" );
     }
 
-    fprintf( fp_out, "\n" );
+    if( inv_flag && GTIFPCSToImage( gtif, &x_saved, &y_saved ) )
+    {
+        fprintf( fp_out, "      inverse (%11.3f,%11.3f)\n", x_saved, y_saved );
+    }
+    
     return TRUE;
 }
 
 static void GTIFPrintCorners( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
-                              int xsize, int ysize )
+                              int xsize, int ysize, int inv_flag )
 
 {
     printf( "\nCorner Coordinates:\n" );
     if( !GTIFReportACorner( gtif, defn, fp_out,
-                            "Upper Left", 0.0, 0.0 ) )
+                            "Upper Left", 0.0, 0.0, inv_flag ) )
     {
         printf( " ... unable to transform points between pixel/line and PCS space\n" );
         return;
     }
 
-    GTIFReportACorner( gtif, defn, fp_out, "Lower Left", 0.0, ysize );
-    GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xsize, 0.0 );
-    GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xsize, ysize );
-    GTIFReportACorner( gtif, defn, fp_out, "Center", xsize/2.0, ysize/2.0 );
+    GTIFReportACorner( gtif, defn, fp_out, "Lower Left", 0.0, ysize, 
+                       inv_flag );
+    GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xsize, 0.0,
+                       inv_flag );
+    GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xsize, ysize,
+                       inv_flag );
+    GTIFReportACorner( gtif, defn, fp_out, "Center", xsize/2.0, ysize/2.0,
+                       inv_flag );
 }
 
 /*
