@@ -10,7 +10,7 @@ specifications, projection codes and use, see the WWW web page at:
    
 or the FTP archive at:
 
-   ftp://ftp.remotesensing.org/pub/lib
+   ftp://ftp.remotesensing.org/pub/geotiff
 
 or the older FTP archive at:
 
@@ -32,9 +32,10 @@ the file, and build the library using the documented methods.
 
 Once the libtiff package has been built, install the "libgeotiff"
 directory into the top-level libtiff directory (so that "libgeotiff" is
-at the same level as "libtiff"). You may now skip down to the section
-"Building LIBGEOTIFF".
-
+at the same level as "libtiff").  If libtiff is in some alternate location
+it should be possible to set the TIFF_HOME environment variable to point
+to the libtiff directory within the distribution, instead of colocating them
+before running configure.
 
 
 Building LIBGEOTIFF:
@@ -69,6 +70,14 @@ to create a GeoTIFF metadata file "metadata.txt", and then
 to copy the TIFF file newgeo.tif to newer.tif, using the
 GeoTIFF metadata as stored in "metadata.txt". See "docs/manual.txt"
 for further uses of geotifcp.
+
+To use the new normalization capability of listgeo, the program needs
+to be able to find the CSV files.  Use something like the following, 
+but indicating the correct path to the CSV directory (libgeotiff/csv). 
+
+  % bin/listgeo -t csv -norm newgeo.tif
+
+
  
 Non-Standard Configuration:
 ---------------------------
