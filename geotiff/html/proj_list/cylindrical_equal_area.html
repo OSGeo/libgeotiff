@@ -36,7 +36,7 @@
 <tr>
 
 <td>GeoTIFF Code
-<td> -
+<td> CT_CylindricalEqualArea (28)
 <tr>
 
 <td>OGC WKT Name
@@ -62,7 +62,7 @@
 
 <td> Central Meridian
 <td> 
-<td> 
+<td> NatOriginLong
 <td> central_meridian
 <td> Angular
 <td>
@@ -70,7 +70,7 @@
 
 <td> Standard Parallel
 <td> 
-<td> 
+<td> StdParallel1
 <td> standard_parallel_1
 <td> Angular
 <td> Defaults to zero. 
@@ -78,7 +78,7 @@
 
 <td>False Easting
 <td>
-<td>
+<td>FalseEasting
 <td>false_easting
 <td>Linear
 <td>
@@ -86,7 +86,7 @@
 
 <td>False Northing
 <td>
-<td>
+<td>FalseNorthing
 <td>false_northing
 <td>Linear
 <td>
@@ -96,7 +96,11 @@
 <h3>Notes</h3>
 
 This is classified as a cylindrical and equal area projection, as one might
-expect from the name.  
+expect from the name.  There does not seem to be an EPSG equivelent.  The GeoTIFF
+code was added Feb 2005, and so is not likely widely supported.<p>
+
+For documentation, the Cylindrical Equal-Area projection is discussed in
+Snyder, Map Projections -- a Working Manual (1987) on pg 76ff.<p>
 
 <h3>PROJ.4 Organization</h3>
 
@@ -108,7 +112,6 @@ expect from the name.
 </pre>
 
 </b>
-
 
 </body>
 
