@@ -101,28 +101,25 @@ There are substantial questions about Stereographic projections in
 
 <h3>EPSG Notes</h3>
 
-Polar Stereographic Formula<p>
-
-For the forward transformation from latitude and longitude,
-<p>
+For the forward transformation from latitude and longitude:<p>
 <pre>
-	E = FE + * sin (* - *o)
-	N = FN - * cos (* - *o)
+E = FE + rho sin(lon - lon0)
+N = FN - rho cos(lon - lon0)
 where
-	* = 2 a ko t /{[(1+e)(1+e) (1-e)(1-e)]0.5}
-	t = tan (*/4 - */2) / [(1-esin* ) / (1 + e sin*)]e/2
-
-For the reverse transformation,
-
-	* = * 	+ (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) 
-		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)
-		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)
-
-	* = *o	+ arctan [(E-FE) / (FN-N)]
-
-where 	*  = */2 - 2 arctan t
-	t   =  * [(1+e)(1+e) (1-e)1-e]0.5} / 2 a ko
-	* = [(E-FE)2  + (N - FN)2]0.5
+rho = 2 a ko t /{[((1+e)^(1+e)) ((1-e)^(1-e))]^0.5}
+t = tan (pi/4 - lat/2) / [(1-esin(lat) ) / (1 + e sin(lat))]^(e/2)
 </pre>
 
+For the reverse transformation:<p>
+<pre>
+lat = chi+ (e^2/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2 chi) 
++ (7e^4/48 + 29e^6/240 + 811e^8/11520) sin(4 chi)
++ (7e^6/120 +  81e^8/1120) sin(6 chi)  + (4279e^8/161280) sin(8 chi)
+
+lon = lon0+ arctan [(E-FE) / (FN-N)]
+
+where chi  = pi/2 - 2 arctan t
+t   =  rho [((1+e)^(1+e)) ((1-e)^(1-e))]^0.5} / 2 a ko
+rho = [(E-FE)^2  + (N - FN)^2]^0.5
+</pre>
 </body>
