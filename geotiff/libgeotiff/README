@@ -17,7 +17,7 @@ or the older FTP archive at:
    ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/
 
 
-Configuration:
+Use of LIBTIFF
 --------------
 
 The default configuration assumes that the public-domain LIBTIFF
@@ -40,12 +40,47 @@ before running configure.
 
 Building LIBGEOTIFF:
 --------------------
+
+
 Assuming that whatever TIFF library you use has been built, you
 may now build the rest of the geotiff library with:
 
    % cd libgeotiff
-   % configure
+   % ./configure
    % make 
+
+Common Configuration Issues:
+
+ o If you want to alter the compiler used, set the CC environment variable
+   before running configure.  
+
+   % setenv CC cc
+   % rm config.status
+   % ./configure
+   % make clean 
+   % make 
+
+ o If you want to control the compiler files, set the CFLAGS environment 
+   variable.  This can be used to override the default optimization/debug
+   flags for instance.
+
+   % setenv CFLAGS -O4
+   % rm config.status
+   % ./configure
+   % make clean 
+   % make
+
+ o If the system can't find libtiff, you can use the TIFF_HOME environment
+   variable to point to it.
+
+   % setenv TIFF_HOME /contrib/tiff-v3.4beta037/libtiff
+   % rm config.status
+   % ./configure
+   % make clean 
+   % make
+
+
+Test Programs:
 
 There are two demonstration test programs "makegeo" and "listgeo"
 that create and list-out the GeoTIFF tags and keys associated 
@@ -98,3 +133,4 @@ variable-length arrays to be passed in to those tags.
 
   
   --Frank Warmerdam (warmerda@home.com)
+
