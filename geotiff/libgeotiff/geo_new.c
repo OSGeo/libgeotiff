@@ -138,6 +138,9 @@ GTIF* GTIFNew(void *tif)
         /* Set up the index (start at 1, since 0=unset) */
         gt->gt_keyindex[entptr->ent_key] = index;		
     }
+
+    if( tempData.tk_asciiParams != NULL )
+        _GTIFFree( tempData.tk_asciiParams );
 	
     return gt;
 	
