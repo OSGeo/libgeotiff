@@ -28,6 +28,11 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.9  1999/09/15 14:24:17  warmerda
+ * Fixed serious bug in geo_normalize.c with translation of
+ * DD.MMSSsss values.  Return value was seriously off if any
+ * fraction of a second was included in the string.
+ *
  * Revision 1.8  1999/07/13 03:12:52  warmerda
  * Make scale a parameter of CT_Stereographic.
  *
@@ -248,6 +253,7 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
         if( pszDecimal != NULL && strlen(pszDecimal) > 1 )
         {
             char	szMinutes[3];
+            char	szSeconds[64];
 
             szMinutes[0] = pszDecimal[1];
             if( pszDecimal[2] >= '0' && pszDecimal[2] <= '9' )
@@ -257,8 +263,23 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
             
             szMinutes[2] = '\0';
             dfAngle += atoi(szMinutes) / 60.0;
+
             if( strlen(pszDecimal) > 3 )
-                dfAngle += atof(pszDecimal+3) / 3600.0;
+            {
+                szSeconds[0] = pszDecimal[3];
+                if( pszDecimal[4] >= '0' && pszDecimal[4] <= '9' )
+                {
+                    szSeconds[1] = pszDecimal[4];
+                    szSeconds[2] = '.';
+                    strcpy( szSeconds+3, pszDecimal + 4 );
+                }
+                else
+                {
+                    szSeconds[1] = '0';
+                    szSeconds[2] = '\0';
+                }
+                dfAngle += atof(szSeconds) / 3600.0;
+            }
         }
 
         if( pszAngle[0] == '-' )
