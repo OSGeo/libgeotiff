@@ -169,8 +169,8 @@ const char *GTIFDecToDDec( double dfAngle, const char * pszAxis,
     else
         pszHemisphere = "N";
 
-    sprintf( szFormat, "%%3.%df%s",
-             nPrecision, pszHemisphere );
+    sprintf( szFormat, "%%%d.%df%s",
+             nPrecision+5, nPrecision, pszHemisphere );
     sprintf( szBuffer, szFormat, dfAngle );
 
     return( szBuffer );
@@ -201,8 +201,8 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     {
 	if (dec_flag) 
 	{
-	    fprintf( fp_out, "(%s,", GTIFDecToDDec( x, "Long", 4 ) );
-	    fprintf( fp_out, "%s)\n", GTIFDecToDDec( y, "Lat", 4 ) );
+	    fprintf( fp_out, "(%s,", GTIFDecToDDec( x, "Long", 7 ) );
+	    fprintf( fp_out, "%s)\n", GTIFDecToDDec( y, "Lat", 7 ) );
 	} 
 	else 
 	{
@@ -212,14 +212,14 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     }
     else
     {
-        fprintf( fp_out, "(%11.3f,%11.3f)", x, y );
+        fprintf( fp_out, "(%12.3f,%12.3f)", x, y );
 
         if( GTIFProj4ToLatLong( defn, 1, &x, &y ) )
         {
 	    if (dec_flag) 
 	    {
-		fprintf( fp_out, "  (%s,", GTIFDecToDDec( x, "Long", 4 ) );
-		fprintf( fp_out, "%s)\n", GTIFDecToDDec( y, "Lat", 4 ) );
+		fprintf( fp_out, "  (%s,", GTIFDecToDDec( x, "Long", 7 ) );
+		fprintf( fp_out, "%s)", GTIFDecToDDec( y, "Lat", 7 ) );
 	    } 
 	    else 
 	    {
