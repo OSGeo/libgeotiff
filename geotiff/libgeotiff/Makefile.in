@@ -45,6 +45,7 @@ OBJS    = \
 	geo_write.o \
 	geo_normalize.o \
 	geotiff_proj4.o \
+	geo_extra.o \
 	cpl_csv.o \
 	cpl_serv.o \
 	${NULL}
@@ -96,6 +97,9 @@ geo_write.o: ${SRCDIR}/geo_write.c
 geo_normalize.o: ${SRCDIR}/geo_normalize.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/geo_normalize.c
 
+geo_extra.o: ${SRCDIR}/geo_extra.c
+	${CC} -c ${CFLAGS} ${SRCDIR}/geo_extra.c
+
 cpl_csv.o: ${SRCDIR}/cpl_csv.c
 	${CC} -c ${CFLAGS} ${SRCDIR}/cpl_csv.c
 
@@ -107,3 +111,6 @@ geotiff_proj4.o: ${SRCDIR}/geotiff_proj4.c
 
 clean:
 	rm -f ${TARGETS} ${OBJS} ${XTIFFINC} core a.out
+
+dox:
+	doxygen
