@@ -58,7 +58,6 @@ CSV_INCODE_OBJS = \
 	csv/gdatum_alias.o \
 	csv/geod_datum.o \
 	csv/geod_trf.o \
-	csv/geoparms.o \
 	csv/horiz_cs.o \
 	csv/p_meridian.o \
 	csv/trf_nonpolynomial.o \
