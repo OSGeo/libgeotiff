@@ -29,8 +29,8 @@
 #******************************************************************************
 # 
 # $Log$
-# Revision 1.1  2002/11/28 16:11:47  warmerda
-# New
+# Revision 1.2  2002/11/29 04:37:27  warmerda
+# added projop_wparm.csv support
 #
 #
 
@@ -138,6 +138,60 @@ for key in pcs_keys:
 pcs_table.write_to_csv( 'pcs.csv' )
 pcs_table = None
 
+##############################################################################
+# Setup projop_wparm (projection operations with parameters) table fields.
+# This table will contain all projection related entries from the
+# coordinate_operation.csv table, with the parameter values from
+# coordinate_operation_parameter_value.csv appended to the record. 
+
+powp_table = csv_tools.CSVTable()
+powp_table.add_field('COORD_OP_CODE')             # 
+powp_table.add_field('COORD_OP_NAME')             # 
+powp_table.add_field('COORD_OP_METHOD_CODE')      # ie. 9807=Transvere Mercator
+
+max_parms = 7
+for i in range(max_parms):
+    powp_table.add_field('PARAMETER_CODE_%d' % (i+1))
+    powp_table.add_field('PARAMETER_VALUE_%d' % (i+1))
+    powp_table.add_field('PARAMETER_UOM_%d' % (i+1))
+
+##############################################################################
+# Build and write the projop_wparm table.
+
+op_keys = co.data.keys()
+
+op_keys.sort()
+for key in op_keys:
+
+    powp_rec = {}
+    
+    # Check COORD_OP_TYPE.
+    if string.find(co.data[key],',conversion,') < 1:
+        continue
+    
+    co_rec = co.get_record(key)
+
+    powp_rec['COORD_OP_CODE'] = co_rec['COORD_OP_CODE']
+    powp_rec['COORD_OP_NAME'] = co_rec['COORD_OP_NAME']
+    powp_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
+
+    parm_recs = co_value.get_records( key )
+    if len(parm_recs) > max_parms:
+        print 'COORD_OP_CODE %d has %d values.' % (key, len(parm_recs))
+        
+    for parm_i in range(len(parm_recs)):
+        parm_rec = parm_recs[parm_i]
+
+        pin = '%d' % (parm_i+1)
+
+        powp_rec['PARAMETER_CODE_'+pin] = parm_rec['PARAMETER_CODE']
+        powp_rec['PARAMETER_VALUE_'+pin] = parm_rec['PARAMETER_VALUE']
+        powp_rec['PARAMETER_UOM_'+pin] = parm_rec['UOM_CODE']
+
+    powp_table.add_record( key, powp_rec )
+
+powp_table.write_to_csv( 'projop_wparm.csv' )
+    
 ##############################################################################
 # Build a map of coordinate operation codes for all mappings to 4326 (WGS84)
 
