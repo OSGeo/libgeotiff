@@ -3,6 +3,7 @@
 	* Fixed order of parameters for LCC when read directly from a 
 	file to match that when read from EPSG tables.  This is now
 	always: 0-NatOriginLat, 1-NatOriginLong, 2-StdParallel1, 3-StdParallel2
+	This change is only in geo_normalize.c.
 
 2000-09-29  Frank Warmerdam  <warmerda@cs46980-c>
 
