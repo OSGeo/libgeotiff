@@ -1,3 +1,9 @@
+==============================================================================
+
+2001-01-17  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Prepare 1.1.4 final release.
+
 2001-01-02  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Added support for .tfw files with rotatational coefficents in
@@ -5,11 +11,9 @@
 
 	* Updated README.WIN to mention VCVARS32.BAT.
 
-==============================================================================
-
 2000-12-28  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Prepare 1.1.4 release.
+	* Prepare 1.1.4beta release.
 
 	* Added HOWTO-RELEASE file. 
 
