@@ -99,11 +99,11 @@ typedef struct     _TIFFMethod {
  **********************************************************************/
 
 extern gsize_t _gtiff_size[]; /* TIFF data sizes */
-extern void _GTIFSetDefaultTIFF(TIFFMethod *method);
-extern gdata_t _GTIFcalloc(gsize_t);
-extern gdata_t _GTIFrealloc(gdata_t,gsize_t);
-extern void _GTIFFree(gdata_t data);
-extern void _GTIFmemcpy(gdata_t out,gdata_t in,gsize_t size);
+extern void CPL_DLL _GTIFSetDefaultTIFF(TIFFMethod *method);
+extern gdata_t CPL_DLL _GTIFcalloc(gsize_t);
+extern gdata_t CPL_DLL _GTIFrealloc(gdata_t,gsize_t);
+extern void CPL_DLL _GTIFFree(gdata_t data);
+extern void CPL_DLL _GTIFmemcpy(gdata_t out,gdata_t in,gsize_t size);
 
 #if defined(__cplusplus)
 } 
