@@ -1,148 +1,242 @@
 "AREA_CODE","AREA_NAME","AREA_OF_USE","ISO_A2_CODE","ISO_A3_CODE","ISO_N_CODE","REMARKS","INFORMATION_SOURCE","DATA_SOURCE","REVISION_DATE","CHANGE_ID","DEPRECATED"
-1118,China - Hong Kong,China - Hong Kong special administrative region.,HK,HKG,344,"""Hong Kong"" in ISO 3166",EPSG,EPSG,2002-06-22 00:00:00,2002.16,0
-1119,Hungary,Hungary.,HU,HUN,348,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1120,Iceland,Iceland.,IS,ISL,352,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1121,India,India.,IN,IND,356,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1122,Indonesia,Indonesia.,ID,IDN,360,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1024,Afghanistan,Afghanistan,AF,AFG,4,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1025,Albania,Albania,AL,ALB,8,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1026,Algeria,Algeria,DZ,DZA,12,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1027,American Samoa,American Samoa,AS,ASM,16,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1028,Andorra,Andorra,AD,AND,20,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1029,Angola,Angola,AO,AGO,24,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1030,Anguilla,Anguilla,AI,AIA,660,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1031,Antarctica,Antarctica,AQ,ATA,10,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1032,Antigua and Barbuda,Antigua and Barbuda,AG,ATG,28,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1033,Argentina,Argentina,AR,ARG,32,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1034,Armenia,Armenia,AM,ARM,51,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1035,Aruba,Aruba,AW,ABW,533,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1036,Australia,Australia,AU,AUS,36,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1037,Austria,Austria,AT,AUT,40,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1038,Azerbaijan,Azerbaijan,AZ,AZE,31,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1039,Bahamas,Bahamas,BS,BHS,44,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1040,Bahrain,Bahrain,BH,BHR,48,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1041,Bangladesh,Bangladesh,BD,BGD,50,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1042,Barbados,Barbados,BB,BRB,52,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1043,Belarus,Belarus,BY,BLR,112,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1044,Belgium,Belgium,BE,BEL,56,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1045,Belize,Belize,BZ,BLZ,84,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1046,Benin,Benin,BJ,BEN,204,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1047,Bermuda,Bermuda,BM,BMU,60,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1048,Bhutan,Bhutan,BT,BTN,64,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1049,Bolivia,Bolivia,BO,BOL,68,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1050,Bosnia and Herzegowina,Bosnia and Herzegowina,BA,BIH,70,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1051,Botswana,Botswana,BW,BWA,72,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1052,Bouvet Island,Bouvet Island,BV,BVT,74,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1053,Brazil,Brazil,BR,BRA,76,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1054,British Indian Ocean Territory,British Indian Ocean Territory,IO,IOT,86,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1055,Brunei Darussalam,Brunei Darussalam,BN,BRN,96,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1056,Bulgaria,Bulgaria,BG,BGR,100,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1057,Burkina Faso,Burkina Faso,BF,BFA,854,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1058,Burundi,Burundi,BI,BDI,108,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1059,Cambodia,Cambodia,KH,KHM,116,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1060,Cameroon,Cameroon,CM,CMR,120,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1061,Canada,Canada - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince Edward Island; Quebec; Saskatchewan; Yukon.,CA,CAN,124,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1062,Cape Verde,Cape Verde,CV,CPV,132,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1063,Cayman Islands,Cayman Islands,KY,CYM,136,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1064,Central African Republic,Central African Republic,CF,CAF,140,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1065,Chad,Chad,TD,TCD,148,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1066,Chile,Chile,CL,CHL,152,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1067,China,China,CN,CHN,156,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1068,Christmas Island,Christmas Island,CX,CXR,162,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1069,Cocos (Keeling) Islands,Cocos (Keeling) Islands,CC,CCK,166,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1070,Colombia,Colombia.,CO,COL,170,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1071,Comoros,Comoros,KM,COM,174,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1072,Congo,Congo,CG,COG,178,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1073,Cook Islands,Cook Islands,CK,COK,184,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1074,Costa Rica,Costa Rica,CR,CRI,188,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1075,Cote d'Ivoire (Ivory Coast),Côte d'Ivoire (Ivory Coast),CI,CIV,384,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1076,Croatia,Croatia,HR,HRV,191,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1077,Cuba,Cuba,CU,CUB,192,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1078,Cyprus,Cyprus,CY,CYP,196,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1079,Czech Republic,Czech Republic,CZ,CZE,203,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1080,Denmark,Denmark,DK,DNK,208,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1081,Djibouti,Djibouti,DJ,DJI,262,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1082,Dominica,Dominica,DM,DMA,212,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1083,Dominican Republic,Dominican Republic,DO,DOM,214,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1084,East Timor,East Timor,TP,TMP,626,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1085,Ecuador,Ecuador,EC,ECU,218,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1086,Egypt,Egypt,EG,EGY,818,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1087,El Salvador,El Salvador,SV,SLV,222,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1088,Equatorial Guinea,Equatorial Guinea,GQ,GNQ,226,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1089,Eritrea,Eritrea,ER,ERI,232,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1090,Estonia,Estonia,EE,EST,233,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1091,Ethiopia,Ethiopia,ET,ETH,231,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1092,Falkland Islands (Malvinas),Falkland Islands (Malvinas),FK,FLK,238,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1093,Faroe Islands,Faroe Islands,FO,FRO,234,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1094,Fiji,Fiji,FJ,FJI,242,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1095,Finland,Finland,FI,FIN,246,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1096,France,France,FR,FRA,250,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1097,French Guiana,French Guiana,GF,GUF,254,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1098,French Polynesia,French Polynesia,PF,PYF,258,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1099,French Southern Territories,French Southern Territories,TF,ATF,260,"Kerguelen Islands, Crozet Islands, St Paul & Amsterdam islands.",ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1100,Gabon,Gabon,GA,GAB,266,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1101,Gambia,Gambia,GM,GMB,270,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1102,Georgia,Georgia,GE,GEO,268,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1103,Germany,Germany,DE,DEU,276,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1104,Ghana,Ghana,GH,GHA,288,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1105,Gibraltar,Gibraltar,GI,GIB,292,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1106,Greece,Greece,GR,GRC,300,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1107,Greenland,Greenland,GL,GRL,304,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1108,Grenada,Grenada,GD,GRD,308,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1109,Guadeloupe,Guadeloupe,GP,GLP,312,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1110,Guam,Guam,GU,GUM,316,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1111,Guatemala,Guatemala,GT,GTM,320,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1112,Guinea,Guinea,GN,GIN,324,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1113,Guinea-Bissau,Guinea-Bissau,GW,GNB,624,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1114,Guyana,Guyana,GY,GUY,328,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1115,Haiti,Haiti,HT,HTI,332,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1116,Heard Island and McDonald Islands,Heard Island and McDonald Islands,HM,HMD,334,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1117,Honduras,Honduras,HN,HND,340,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1118,China - Hong Kong,China - Hong Kong special administrative region,HK,HKG,344,"""Hong Kong"" in ISO 3166",EPSG,EPSG,2002-06-22 00:00:00,2002.16,0
+1119,Hungary,Hungary,HU,HUN,348,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1120,Iceland,Iceland,IS,ISL,352,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1121,India,India,IN,IND,356,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1122,Indonesia,Indonesia,ID,IDN,360,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1123,"Iran, Islamic Republic of",Islamic Republic of Iran,IR,IRN,364,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1124,Iraq,Iraq.,IQ,IRQ,368,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1125,Ireland,Ireland.,IE,IRL,372,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1126,Israel,Israel.,IL,ISR,376,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1127,Italy,Italy.,IT,ITA,380,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1128,Jamaica,Jamaica.,JM,JAM,388,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1129,Japan,Japan.,JP,JPN,392,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1130,Jordan,Jordan.,JO,JOR,400,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1131,Kazakstan,Kazakstan.,KZ,KAZ,398,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1132,Kenya,Kenya.,KE,KEN,404,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1133,Kiribati,Kiribati.,KI,KIR,296,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1134,"Korea, Democratic People's Republic of (North Korea)",Democratic People's Republic of Korea (North Korea).,KP,PRK,408,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1135,"Korea, Republic of (South Korea)",Republic of Korea (South Korea).,KR,KOR,410,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1136,Kuwait,Kuwait.,KW,KWT,414,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1137,Kyrgyzstan,Kyrgyzstan.,KG,KGZ,417,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1138,Lao People's Democratic Republic (Laos).,Lao People's Democratic Republic (Laos).,LA,LAO,418,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1139,Latvia,Latvia.,LV,LVA,428,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1140,Lebanon,Lebanon.,LB,LBN,422,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1141,Lesotho,Lesotho.,LS,LSO,426,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1142,Liberia,Liberia.,LR,LBR,430,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1143,Libyan Arab Jamahiriya,Libyan Arab Jamahiriya.,LY,LBY,434,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1144,Liechtenstein,Liechtenstein.,LI,LIE,438,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1145,Lithuania,Lithuania.,LT,LTU,440,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1146,Luxembourg,Luxembourg.,LU,LUX,442,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1147,China - Macau,China - Macau special administrative region.,MO,MAC,446,"""Macau"" in ISO 3166.",EPSG,EPSG,2002-06-22 00:00:00,2002.16,0
-1148,"Macedonia, The Former Yugoslav Republic of",The Former Yugoslav Republic of Macedonia.,MK,MKD,807,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1149,Madagascar,Madagascar.,MG,MDG,450,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1150,Malawi,Malawi.,MW,MWI,454,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1151,Malaysia,Malaysia.,MY,MYS,458,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1152,Maldives,Maldives.,MV,MDV,462,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1153,Mali,Mali.,ML,MLI,466,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1154,Malta,Malta.,MT,MLT,470,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1155,Marshall Islands,Marshall Islands.,MH,MHL,584,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1156,Martinique,Martinique.,MQ,MTQ,474,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1157,Mauritania,Mauritania.,MR,MRT,478,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1158,Mauritius,Mauritius.,MU,MUS,480,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1159,Mayotte,Mayotte.,YT,MYT,175,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1160,Mexico,Mexico.,MX,MEX,484,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1161,"Micronesia, Federated States of",Federated States of Micronesia.,FM,FSM,583,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1124,Iraq,Iraq,IQ,IRQ,368,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1125,Ireland,Ireland,IE,IRL,372,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1126,Israel,Israel,IL,ISR,376,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1127,Italy,Italy,IT,ITA,380,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1128,Jamaica,Jamaica,JM,JAM,388,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1129,Japan,Japan,JP,JPN,392,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1130,Jordan,Jordan,JO,JOR,400,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1131,Kazakstan,Kazakstan,KZ,KAZ,398,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1132,Kenya,Kenya,KE,KEN,404,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1133,Kiribati,Kiribati,KI,KIR,296,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1134,"Korea, Democratic People's Republic of (North Korea)",Democratic People's Republic of Korea (North Korea),KP,PRK,408,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1135,"Korea, Republic of (South Korea)",Republic of Korea (South Korea),KR,KOR,410,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1136,Kuwait,Kuwait,KW,KWT,414,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1137,Kyrgyzstan,Kyrgyzstan,KG,KGZ,417,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1138,Lao People's Democratic Republic (Laos).,Lao People's Democratic Republic (Laos),LA,LAO,418,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1139,Latvia,Latvia,LV,LVA,428,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1140,Lebanon,Lebanon,LB,LBN,422,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1141,Lesotho,Lesotho,LS,LSO,426,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1142,Liberia,Liberia,LR,LBR,430,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1143,Libyan Arab Jamahiriya,Libyan Arab Jamahiriya,LY,LBY,434,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1144,Liechtenstein,Liechtenstein,LI,LIE,438,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1145,Lithuania,Lithuania,LT,LTU,440,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1146,Luxembourg,Luxembourg,LU,LUX,442,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1147,China - Macau,China - Macau special administrative region,MO,MAC,446,"""Macau"" in ISO 3166.",EPSG,EPSG,2002-06-22 00:00:00,2002.16,0
+1148,"Macedonia, The Former Yugoslav Republic of",The Former Yugoslav Republic of Macedonia,MK,MKD,807,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1149,Madagascar,Madagascar,MG,MDG,450,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1150,Malawi,Malawi,MW,MWI,454,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1151,Malaysia,Malaysia,MY,MYS,458,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1152,Maldives,Maldives,MV,MDV,462,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1153,Mali,Mali,ML,MLI,466,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1154,Malta,Malta,MT,MLT,470,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1155,Marshall Islands,Marshall Islands,MH,MHL,584,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1156,Martinique,Martinique,MQ,MTQ,474,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1157,Mauritania,Mauritania,MR,MRT,478,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1158,Mauritius,Mauritius,MU,MUS,480,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1159,Mayotte,Mayotte,YT,MYT,175,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1160,Mexico,Mexico,MX,MEX,484,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1161,"Micronesia, Federated States of",Federated States of Micronesia,FM,FSM,583,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1162,"Moldova, Republic of",Republic of Moldova,MD,MDA,498,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1163,Monaco,Monaco.,MC,MCO,492,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1164,Mongolia,Mongolia.,MN,MNG,496,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1165,Montserrat,Montserrat.,MS,MSR,500,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1166,Morocco,Morocco.,MA,MAR,504,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1167,Mozambique,Mozambique.,MZ,MOZ,508,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1168,Myanmar (Burma),Myanmar (Burma).,MM,MMR,104,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/isoISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1169,Namibia,Namibia.,NA,NAM,516,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1170,Nauru,Nauru.,NR,NRU,520,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1171,Nepal,Nepal.,NP,NPL,524,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1172,Netherlands,Netherlands.,NL,NLD,528,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1173,Netherlands Antilles,Netherlands Antilles.,AN,ANT,530,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1174,New Caledonia,New Caledonia.,NC,NCL,540,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1175,New Zealand,New Zealand.,NZ,NZL,554,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1176,Nicaragua,Nicaragua.,NI,NIC,558,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1177,Niger,Niger.,NE,NER,562,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1178,Nigeria,Nigeria.,NG,NGA,566,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1179,Niue,Niue.,NU,NIU,570,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1180,Norfolk Island,Norfolk Island.,NF,NFK,574,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1181,Northern Mariana Islands,Northern Mariana Islands.,MP,MNP,580,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1182,Norway,Norway.,NO,NOR,578,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1183,Oman,Oman.,OM,OMN,512,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1184,Pakistan,Pakistan.,PK,PAK,586,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1185,Palau,Palau.,PW,PLW,585,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1186,Panama,Panama.,PA,PAN,591,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1187,Papua New Guinea (PNG),Papua New Guinea (PNG).,PG,PNG,598,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1188,Paraguay,Paraguay.,PY,PRY,600,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1189,Peru,Peru.,PE,PER,604,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1190,Philippines,Philippines.,PH,PHL,608,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1191,Pitcairn,Pitcairn.,PN,PCN,612,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1192,Poland,Poland.,PL,POL,616,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1193,Portugal,Portugal.,PT,PRT,620,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1194,Puerto Rico,Puerto Rico.,PR,PRI,630,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1195,Qatar,Qatar.,QA,QAT,634,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1196,Reunion,Reunion.,RE,REU,638,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1197,Romania,Romania.,RO,ROU,642,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1198,Russian Federation,Russian Federation.,RU,RUS,643,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1199,Rwanda,Rwanda.,RW,RWA,646,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1200,Saint Kitts and Nevis,Saint Kitts and Nevis.,KN,KNA,659,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1201,Saint Lucia,Saint Lucia.,LC,LCA,662,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1202,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines.,VC,VCT,670,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1203,Samoa,Samoa.,WS,WSM,882,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1204,San Marino,San Marino.,SM,SMR,674,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1205,Sao Tome and Principe,Sao Tome and Principe.,ST,STP,678,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1206,Saudi Arabia,Saudi Arabia.,SA,SAU,682,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1207,Senegal,Senegal.,SN,SEN,686,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1208,Seychelles,Seychelles.,SC,SYC,690,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1209,Sierra Leone,Sierra Leone.,SL,SLE,694,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1210,Singapore,Singapore.,SG,SGP,702,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1211,Slovakia (Slovak Republic),Slovakia (Slovak Republic).,SK,SVK,703,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1212,Slovenia,Slovenia.,SI,SVN,705,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1213,Solomon Islands,Solomon Islands.,SB,SLB,90,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1214,Somalia,Somalia.,SO,SOM,706,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1215,South Africa,South Africa.,ZA,ZAF,710,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1216,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands.,GS,SGS,239,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1217,Spain,Spain.,ES,ESP,724,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1218,Sri Lanka,Sri Lanka.,LK,LKA,144,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1219,Saint Helena,Saint Helena.,SH,SHN,654,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1220,Saint Pierre and Miquelon,Saint Pierre and Miquelon.,PM,SPM,666,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1221,Sudan,Sudan.,SD,SDN,736,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1222,Suriname,Suriname.,SR,SUR,740,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1223,Svalbard and Jan Mayen,Svalbard and Jan Mayen.,SJ,SJM,744,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1224,Swaziland,Swaziland.,SZ,SWZ,748,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1225,Sweden,Sweden.,SE,SWE,752,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1226,Switzerland,Switzerland.,CH,CHE,756,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1227,Syrian Arab Republic,Syrian Arab Republic.,SY,SYR,760,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1163,Monaco,Monaco,MC,MCO,492,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1164,Mongolia,Mongolia,MN,MNG,496,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1165,Montserrat,Montserrat,MS,MSR,500,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1166,Morocco,Morocco,MA,MAR,504,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1167,Mozambique,Mozambique,MZ,MOZ,508,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1168,Myanmar (Burma),Myanmar (Burma),MM,MMR,104,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/isoISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1169,Namibia,Namibia,NA,NAM,516,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1170,Nauru,Nauru,NR,NRU,520,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1171,Nepal,Nepal,NP,NPL,524,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1172,Netherlands,Netherlands,NL,NLD,528,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1173,Netherlands Antilles,Netherlands Antilles,AN,ANT,530,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1174,New Caledonia,New Caledonia,NC,NCL,540,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1175,New Zealand,New Zealand,NZ,NZL,554,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1176,Nicaragua,Nicaragua,NI,NIC,558,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1177,Niger,Niger,NE,NER,562,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1178,Nigeria,Nigeria,NG,NGA,566,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1179,Niue,Niue,NU,NIU,570,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1180,Norfolk Island,Norfolk Island,NF,NFK,574,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1181,Northern Mariana Islands,Northern Mariana Islands,MP,MNP,580,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1182,Norway,Norway,NO,NOR,578,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1183,Oman,Oman,OM,OMN,512,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1184,Pakistan,Pakistan,PK,PAK,586,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1185,Palau,Palau,PW,PLW,585,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1186,Panama,Panama,PA,PAN,591,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1187,Papua New Guinea (PNG),Papua New Guinea (PNG),PG,PNG,598,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1188,Paraguay,Paraguay,PY,PRY,600,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1189,Peru,Peru,PE,PER,604,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1190,Philippines,Philippines,PH,PHL,608,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1191,Pitcairn,Pitcairn,PN,PCN,612,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1192,Poland,Poland,PL,POL,616,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1193,Portugal,Portugal,PT,PRT,620,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1194,Puerto Rico,Puerto Rico,PR,PRI,630,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1195,Qatar,Qatar,QA,QAT,634,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1196,Reunion,Reunion,RE,REU,638,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1197,Romania,Romania,RO,ROU,642,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1198,Russian Federation,Russian Federation,RU,RUS,643,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1199,Rwanda,Rwanda,RW,RWA,646,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1200,Saint Kitts and Nevis,Saint Kitts and Nevis,KN,KNA,659,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1201,Saint Lucia,Saint Lucia,LC,LCA,662,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1202,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,VC,VCT,670,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1203,Samoa,Samoa,WS,WSM,882,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1204,San Marino,San Marino,SM,SMR,674,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1205,Sao Tome and Principe,Sao Tome and Principe,ST,STP,678,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1206,Saudi Arabia,Saudi Arabia,SA,SAU,682,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1207,Senegal,Senegal,SN,SEN,686,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1208,Seychelles,Seychelles,SC,SYC,690,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1209,Sierra Leone,Sierra Leone,SL,SLE,694,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1210,Singapore,Singapore,SG,SGP,702,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1211,Slovakia (Slovak Republic),Slovakia (Slovak Republic),SK,SVK,703,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1212,Slovenia,Slovenia,SI,SVN,705,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1213,Solomon Islands,Solomon Islands,SB,SLB,90,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1214,Somalia,Somalia,SO,SOM,706,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1215,South Africa,South Africa,ZA,ZAF,710,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1216,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,GS,SGS,239,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1217,Spain,Spain,ES,ESP,724,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1218,Sri Lanka,Sri Lanka,LK,LKA,144,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1219,Saint Helena,Saint Helena,SH,SHN,654,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1220,Saint Pierre and Miquelon,Saint Pierre and Miquelon,PM,SPM,666,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1221,Sudan,Sudan,SD,SDN,736,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1222,Suriname,Suriname,SR,SUR,740,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1223,Svalbard and Jan Mayen,Svalbard and Jan Mayen,SJ,SJM,744,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1224,Swaziland,Swaziland,SZ,SWZ,748,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1225,Sweden,Sweden,SE,SWE,752,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1226,Switzerland,Switzerland,CH,CHE,756,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1227,Syrian Arab Republic,Syrian Arab Republic,SY,SYR,760,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1228,"Taiwan, Province of China","Taiwan, Province of China",TW,TWN,158,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1229,Tajikistan,Tajikistan.,TJ,TJK,762,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1230,"Tanzania, United Republic of",United Republic of Tanzania.,TZ,TZA,834,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1231,Thailand,Thailand.,TH,THA,764,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1232,Togo,Togo.,TG,TGO,768,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1233,Tokelau,Tokelau.,TK,TKL,772,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1234,Tonga,Tonga.,TO,TON,776,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1235,Trinidad and Tobago,Trinidad and Tobago.,TT,TTO,780,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1236,Tunisia,Tunisia.,TN,TUN,788,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1237,Turkey,Turkey.,TR,TUR,792,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1238,Turkmenistan,Turkmenistan.,TM,TKM,795,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1239,Turks and Caicos Islands,Turks and Caicos Islands.,TC,TCA,796,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1240,Tuvalu,Tuvalu.,TV,TUV,798,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1241,Uganda,Uganda.,UG,UGA,800,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1242,Ukraine,Ukraine.,UA,UKR,804,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1243,United Arab Emirates (UAE),United Arab Emirates (UAE).,AE,ARE,784,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1244,United Kingdom (UK),United Kingdom (UK).,GB,GBR,826,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1245,United States (USA),United States (USA).,US,USA,840,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1229,Tajikistan,Tajikistan,TJ,TJK,762,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1230,"Tanzania, United Republic of",United Republic of Tanzania,TZ,TZA,834,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1231,Thailand,Thailand,TH,THA,764,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1232,Togo,Togo,TG,TGO,768,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1233,Tokelau,Tokelau,TK,TKL,772,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1234,Tonga,Tonga,TO,TON,776,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1235,Trinidad and Tobago,Trinidad and Tobago,TT,TTO,780,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1236,Tunisia,Tunisia,TN,TUN,788,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1237,Turkey,Turkey,TR,TUR,792,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1238,Turkmenistan,Turkmenistan,TM,TKM,795,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1239,Turks and Caicos Islands,Turks and Caicos Islands,TC,TCA,796,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1240,Tuvalu,Tuvalu,TV,TUV,798,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1241,Uganda,Uganda,UG,UGA,800,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1242,Ukraine,Ukraine,UA,UKR,804,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1243,United Arab Emirates (UAE),United Arab Emirates (UAE),AE,ARE,784,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1244,United Kingdom (UK),United Kingdom (UK),GB,GBR,826,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1245,United States (USA),United States (USA),US,USA,840,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1246,United States Minor Outlying Islands,United States Minor Outlying Islands,UM,UMI,581,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1247,Uruguay,Uruguay.,UY,URY,858,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1248,Uzbekistan,Uzbekistan.,UZ,UZB,860,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1249,Vanuatu,Vanuatu.,VU,VUT,548,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1247,Uruguay,Uruguay,UY,URY,858,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1248,Uzbekistan,Uzbekistan,UZ,UZB,860,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1249,Vanuatu,Vanuatu,VU,VUT,548,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1250,Holy See (Vatican City State),Holy See (Vatican City State),VA,VAT,336,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1251,Venezuela,Venezuela.,VE,VEN,862,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1252,Vietnam,Vietnam.,VN,VNM,704,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1253,"Virgin Islands, British",British Virgin Islands.,VG,VGB,92,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1254,"Virgin Islands, US",US Virgin Islands.,VI,VIR,850,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1255,Wallis and Futuna,Wallis and Futuna.,WF,WLF,876,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1256,Western Sahara,Western Sahara.,EH,ESH,732,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1257,Yemen,Yemen.,YE,YEM,887,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1258,Yugoslavia,Yugoslavia.,YU,YUG,891,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1259,"Congo, The Democratic Republic of the Congo (Zaire)",The Democratic Republic of the Congo (Zaire).,CD,COD,180,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1260,Zambia,Zambia.,ZM,ZMB,894,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1261,Zimbabwe,Zimbabwe.,ZW,ZWE,716,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1251,Venezuela,Venezuela,VE,VEN,862,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1252,Vietnam,Vietnam,VN,VNM,704,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1253,"Virgin Islands, British",British Virgin Islands,VG,VGB,92,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1254,"Virgin Islands, US",US Virgin Islands,VI,VIR,850,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1255,Wallis and Futuna,Wallis and Futuna,WF,WLF,876,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1256,Western Sahara,Western Sahara,EH,ESH,732,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1257,Yemen,Yemen,YE,YEM,887,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1258,Yugoslavia - Serbia and Montenegro,Yugoslavia - Union of Serbia and Montenegro,YU,YUG,891,,EPSG,EPSG,2003-02-06 00:00:00,2002.341 2003.06,0
+1259,"Congo, The Democratic Republic of the Congo (Zaire)",The Democratic Republic of the Congo (Zaire),CD,COD,180,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1260,Zambia,Zambia,ZM,ZMB,894,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
+1261,Zimbabwe,Zimbabwe,ZW,ZWE,716,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1262,World,World.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
 1263,Not specified,Not specified.,,,,,EPSG,EPSG,2000-06-23 00:00:00,,0
 1264,UK - Great Britain onshore,United Kingdom (UK) - Great Britain - England  Scotland  Wales - onshore; Isle of Man.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
@@ -152,7 +246,7 @@
 1268,Venezuela - Falcon state,Venezuela - Falcon state.,,,,,EPSG,EPSG,2000-06-23 00:00:00,,0
 1269,Venezuela - Pedregal area of Falcon state,Venezuela - Pedregal area of Falcon state.,,,,,EPSG,EPSG,2000-06-23 00:00:00,,0
 1270,Venezuela - Maracaibo south,Venezuela - south Maracaibo area.,,,,,EPSG,EPSG,2000-06-23 00:00:00,,0
-1271,Africa - Ethiopia and Sudan,Ethiopia; Sudan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+1271,"Africa - Eritrea, Ethiopia and Sudan",Eritrea; Ethiopia; Sudan.,,,,,EPSG,EPSG,2003-03-06 00:00:00,2002.81,0
 1272,Asia - Middle East - Kuwait and Saudi,Kuwait; Saudi Arabia.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1273,Antigua,Antigua and Barbuda - Antigua.,,,,,EPSG,EPSG,1999-04-22 00:00:00,,0
 1274,Brazil - Aratu,Brazil - coastal areas south of 2 deg 55 min South.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
@@ -174,106 +268,12 @@
 1290,Africa - Botswana and South Africa.,Botswana; South Africa.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1291,Asia - Caspian Sea,Azerbaijan - offshore; Kazakstan - offshore;  Russian Federation - Caspian Sea;  Turkmenistan - offshore.,,,,,EPSG,EPSG,1996-09-12 00:00:00,,0
 1292,Argentina - Neuquen province,Argentina - Neuquen province.,,,,,EPSG,EPSG,2000-03-07 00:00:00,,0
-1024,Afghanistan,Afghanistan.,AF,AFG,4,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1025,Albania,Albania.,AL,ALB,8,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1026,Algeria,Algeria.,DZ,DZA,12,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1027,American Samoa,American Samoa.,AS,ASM,16,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1028,Andorra,Andorra.,AD,AND,20,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1029,Angola,Angola.,AO,AGO,24,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1030,Anguilla,Anguilla.,AI,AIA,660,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1031,Antarctica,Antarctica.,AQ,ATA,10,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1032,Antigua and Barbuda,Antigua and Barbuda.,AG,ATG,28,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1033,Argentina,Argentina.,AR,ARG,32,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1034,Armenia,Armenia.,AM,ARM,51,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1035,Aruba,Aruba.,AW,ABW,533,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1036,Australia,Australia.,AU,AUS,36,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1037,Austria,Austria.,AT,AUT,40,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1038,Azerbaijan,Azerbaijan.,AZ,AZE,31,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1039,Bahamas,Bahamas.,BS,BHS,44,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1040,Bahrain,Bahrain.,BH,BHR,48,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1041,Bangladesh,Bangladesh.,BD,BGD,50,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1042,Barbados,Barbados.,BB,BRB,52,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1043,Belarus,Belarus.,BY,BLR,112,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1044,Belgium,Belgium.,BE,BEL,56,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1045,Belize,Belize.,BZ,BLZ,84,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1046,Benin,Benin.,BJ,BEN,204,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1047,Bermuda,Bermuda.,BM,BMU,60,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1048,Bhutan,Bhutan.,BT,BTN,64,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1049,Bolivia,Bolivia.,BO,BOL,68,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1050,Bosnia and Herzegowina,Bosnia and Herzegowina.,BA,BIH,70,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1051,Botswana,Botswana.,BW,BWA,72,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1052,Bouvet Island,Bouvet Island.,BV,BVT,74,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1053,Brazil,Brazil.,BR,BRA,76,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1054,British Indian Ocean Territory,British Indian Ocean Territory.,IO,IOT,86,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1055,Brunei Darussalam,Brunei Darussalam.,BN,BRN,96,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1056,Bulgaria,Bulgaria.,BG,BGR,100,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1057,Burkina Faso,Burkina Faso.,BF,BFA,854,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1058,Burundi,Burundi.,BI,BDI,108,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1059,Cambodia,Cambodia.,KH,KHM,116,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1060,Cameroon,Cameroon.,CM,CMR,120,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1061,Canada,Canada - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince Edward Island; Quebec; Saskatchewan; Yukon.,CA,CAN,124,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1062,Cape Verde,Cape Verde.,CV,CPV,132,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1063,Cayman Islands,Cayman Islands.,KY,CYM,136,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1064,Central African Republic,Central African Republic.,CF,CAF,140,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1065,Chad,Chad.,TD,TCD,148,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1066,Chile,Chile.,CL,CHL,152,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1067,China,China.,CN,CHN,156,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1068,Christmas Island,Christmas Island.,CX,CXR,162,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1069,Cocos (Keeling) Islands,Cocos (Keeling) Islands.,CC,CCK,166,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1070,Colombia,Colombia.,CO,COL,170,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1071,Comoros,Comoros.,KM,COM,174,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1072,Congo,Congo.,CG,COG,178,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1073,Cook Islands,Cook Islands.,CK,COK,184,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1074,Costa Rica,Costa Rica.,CR,CRI,188,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1075,Cote d'Ivoire (Ivory Coast),Côte d'Ivoire (Ivory Coast).,CI,CIV,384,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1076,Croatia,Croatia.,HR,HRV,191,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1077,Cuba,Cuba.,CU,CUB,192,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1078,Cyprus,Cyprus.,CY,CYP,196,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1079,Czech Republic,Czech Republic.,CZ,CZE,203,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1080,Denmark,Denmark.,DK,DNK,208,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1081,Djibouti,Djibouti.,DJ,DJI,262,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1082,Dominica,Dominica.,DM,DMA,212,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1083,Dominican Republic,Dominican Republic.,DO,DOM,214,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1084,East Timor,East Timor.,TP,TMP,626,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1085,Ecuador,Ecuador.,EC,ECU,218,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1086,Egypt,Egypt.,EG,EGY,818,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1087,El Salvador,El Salvador.,SV,SLV,222,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1088,Equatorial Guinea,Equatorial Guinea.,GQ,GNQ,226,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1089,Eritrea,Eritrea.,ER,ERI,232,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1090,Estonia,Estonia.,EE,EST,233,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1091,Ethiopia,Ethiopia.,ET,ETH,231,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1092,Falkland Islands (Malvinas),Falkland Islands (Malvinas).,FK,FLK,238,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1093,Faroe Islands,Faroe Islands.,FO,FRO,234,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1094,Fiji,Fiji.,FJ,FJI,242,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1095,Finland,Finland.,FI,FIN,246,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1096,France,France.,FR,FRA,250,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1097,French Guiana,French Guiana.,GF,GUF,254,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1098,French Polynesia,French Polynesia.,PF,PYF,258,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1099,French Southern Territories,French Southern Territories.,TF,ATF,260,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1100,Gabon,Gabon.,GA,GAB,266,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1101,Gambia,Gambia.,GM,GMB,270,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1102,Georgia,Georgia.,GE,GEO,268,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1103,Germany,Germany.,DE,DEU,276,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1104,Ghana,Ghana.,GH,GHA,288,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1105,Gibraltar,Gibraltar.,GI,GIB,292,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1106,Greece,Greece.,GR,GRC,300,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1107,Greenland,Greenland.,GL,GRL,304,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1108,Grenada,Grenada.,GD,GRD,308,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1109,Guadeloupe,Guadeloupe.,GP,GLP,312,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1110,Guam,Guam.,GU,GUM,316,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1111,Guatemala,Guatemala.,GT,GTM,320,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1112,Guinea,Guinea.,GN,GIN,324,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1113,Guinea-Bissau,Guinea-Bissau.,GW,GNB,624,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1114,Guyana,Guyana.,GY,GUY,328,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1115,Haiti,Haiti.,HT,HTI,332,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1116,Heard Island and McDonald Islands,Heard Island and McDonald Islands.,HM,HMD,334,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
-1117,Honduras,Honduras.,HN,HND,340,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,2002.341,0
 1293,Brazil - Corrego Alegre,Brazil - NE coastal area between 45 deg W and 40 deg West.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1294,Portugal - onshore,Portugal - onshore.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
 1295,Germany - DHDN,"Germany - onshore - Baden-Wurtemberg, Bayern, Hessen, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland, Schleswig-Holstein. Also former DDR states of Sachsen and Thuringen by transformation.",,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
-1296,Europe - ED50,Europe - west - Denmark; Faroe Islands; France offshore; Italy; Ireland offshore; Netherlands offshore; Germany offshore; Greece (offshore); North Sea; Norway; Spain; Turkey; United Kingdom UKCS offshore. Egypt - Western Desert.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+1296,Europe - ED50,Europe - west - Denmark; Faroe Islands; France offshore; Italy; Ireland offshore; Netherlands offshore; Germany offshore; Greece (offshore); North Sea; Norway; Spain; Svalbard; Turkey; United Kingdom UKCS offshore. Egypt - Western Desert.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
 1297,Europe - ED87,Europe - west.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-1298,Europe - ETRS89,Europe: Austria; Belgium; Bosnia and Herzegovina; Croatia; Czech Republic; Denmark; Estonia; Finland; France; Germany; Hungary; Italy; Latvia; Liechtenstein; Lithuania; Luxembourg; Netherlands; Norway; Poland; Portugal; Romania; Slovakia; Slovenia; Spain; Sweden; Switzerland; United Kingdom (UK).,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+1298,Europe - ETRS89,Europe: Austria; Belgium; Bosnia and Herzegovina; Croatia; Czech Republic; Denmark; Estonia; Finland; France; Germany; Hungary; Italy; Latvia; Liechtenstein; Lithuania; Luxembourg; Netherlands; Norway; Poland; Portugal; Romania; Slovakia; Slovenia; Spain; Svalbard; Sweden; Switzerland; United Kingdom (UK).,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
 1299,Europe - EVRF2000,Europe: Austria; Belgium; Bosnia and Herzegovina; Croatia; Czech Republic; Denmark; Estonia; Finland; France; Germany; Hungary; Italy; Latvia; Liechtenstein; Lithuania; Luxembourg; Netherlands; Norway; Poland; Portugal; Romania; Slovakia; Slovenia; Spain; Sweden; Switzerland; United Kingdom (UK).,,,,,EPSG,EPSG,2001-09-03 00:00:00,,0
 1300,Iran - FD58,Islamic Republic of Iran - Gulf coast and Arwaz areas.,,,,,EPSG,EPSG,1998-11-11 00:00:00,,0
 1301,Portugal - central Azores,"Portugal - central Azores - Graciosa, Terceira, Sao Jorge, Pico, Faial.",,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
@@ -307,52 +307,6 @@
 1329,Mozambique - south,Mozambique - south.,,,,,EPSG,EPSG,1998-04-16 00:00:00,,0
 1330,USA - Alaska,United States (USA) - Alaska,,,,,EPSG,EPSG,2001-09-03 00:00:00,,0
 1331,USA - Alaska - St. George Island,United States (USA) - Alaska - St. George Island.,,,,,EPSG,EPSG,1999-05-24 00:00:00,,0
-2040,WGS84 / UTM zone 21N,Between 60 and 54 deg West; northern hemisphere. Barbados. Brazil. Canada - Newfoundland; Quebec. French Guiana. Greenland. Guyana. St. Pierre and Miquelon. Suriname.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2041,WGS84 / UTM zone 21S,Between 60 and 54 deg West; southern hemisphere. Argentina. Bolivia. Brazil. Falkland Islands (Malvinas). Paraguay. Uruguay.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2042,WGS84 / UTM zone 22N,Between 54 and 48 deg West; northern hemisphere. Brazil. Canada - Newfoundland. French Guiana. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2043,WGS84 / UTM zone 22S,Between 54 and 48 deg West; southern hemisphere. Brazil.  Uruguay.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2044,WGS84 / UTM zone 23N,Between 48 and 42 deg West; northern hemisphere. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2045,WGS84 / UTM zone 23S,Between 48 and 42 deg West; southern hemisphere. Brazil.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2046,WGS84 / UTM zone 24N,Between 42 and 36 deg West; northern hemisphere. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2047,WGS84 / UTM zone 24S,Between 42 and 36 deg West; southern hemisphere. Brazil. South Georgia and the South Sandwich Islands.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2048,WGS84 / UTM zone 25N,Between 36 and 30 deg West; northern hemisphere. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2049,WGS84 / UTM zone 25S,Between 36 and 30 deg West; southern hemisphere. Brazil.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2050,WGS84 / UTM zone 26N,Between 30 and 24 deg West; northern hemisphere. Greenland. Iceland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2051,WGS84 / UTM zone 26S,Between 30 and 24 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2052,WGS84 / UTM zone 27N,Between 24 and 18 deg West; northern hemisphere. Greenland. Iceland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2053,WGS84 / UTM zone 27S,Between 24 and 18 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2054,WGS84 / UTM zone 28N,Between 18 and 12 deg West; northern hemisphere. Gambia. Greenland. Guinea. Guinea-Bissau. Iceland. Ireland - offshore Porcupine Basin. Mauritania. Morocco. Senegal. Sierra Leone. Western Sahara.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2055,WGS84 / UTM zone 28S,Between 18 and 12 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2056,WGS84 / UTM zone 29N,Between 12 and 6 deg West; northern hemisphere. Algeria. Cote D'Ivoire (Ivory Coast). Faroe Islands. Guinea. Ireland. Mali. Mauritania. Morocco. Portugal. Sierra Leone. Spain. United Kingdom (UK). Western Sahara.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2057,WGS84 / UTM zone 29S,Between 12 and 6 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2058,WGS84 / UTM zone 30N,Between 6 deg West and 0 deg East; northern hemisphere. Algeria. Burkino Faso. Cote' Ivoire (Ivory Coast). Faroe Islands - offshore. France. Ghana. Gibraltar. Ireland - offshore Irish Sea. Mali. Mauritania. Morocco. Spain. United Kingdom (UK).,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2059,WGS84 / UTM zone 30S,Between 6 deg West and 0 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2060,WGS84 / UTM zone 31N,Between 0 and 6 deg East; northern hemisphere. Algeria. Andorra. Benin. Bukino Faso. Denmark - North Sea. France. Germany - North Sea. Ghana. Luxembourg. Mali. Netherlands. Niger. Nigeria. Norway. Spain. Togo. United Kingdom (UK) - North Sea.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2061,WGS84 / UTM zone 31S,Between 0 and 6 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2062,WGS84 / UTM zone 32N,Between 6 and 12 deg East; northern hemisphere. Algeria. Austria. Cameroon. Denmark. Equatorial Guinea. France. Gabon. Germany. Italy. Libya. Liechtenstein. Monaco. Netherlands. Niger. Nigeria. Norway. Sao Tome and Principe. Svalbard and Jan Mayen Islands. Sweden. Switzerland. Tunisia. Vatican City State.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2063,WGS84 / UTM zone 32S,Between 6 and 12 deg East; southern hemisphere. Angola. Congo. Gabon. Namibia.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2064,WGS84 / UTM zone 33N,Between 12 and 18 deg East; northern hemisphere. Austria. Bosnia and Herzegowina. Cmeroon. Central African Republic. Chad. Congo. Croatia. Czech Republic. Democratic Republic of the Congo (Zaire). Gabon. Germany. Hungary. Italy. Libya. Malta. Niger. Nigeria. Norway. Poland. San Marino. Slovakia. Slovenia. Svalbard and Jan Mayen Islands. Sweden.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2065,WGS84 / UTM zone 33S,Between 12 and 18 deg East; southern hemisphere. Angola. Congo. Democratic Republic of the Congo (Zaire). Gabon. Namibia. South Africa.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2066,WGS84 / UTM zone 34N,Between 18 and 24 deg East; northern hemisphere. Albania. Belarus. Bosnia and Herzegowina. Bulgaria. Central African Republic. Chad. Croatia. Democratic Republic of the Congo (Zaire). Estonia. Finland. FYR Macedonia. Greece. Hungary. Italy. Latvia. Libya. Lithuania. Norway. Poland. Romania. Russian Federation. Slovakia. Sudan. Svalbard. Sweden. Ukraine. Yugoslavia.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2067,WGS84 / UTM zone 34S,Between 18 and 24 deg East; southern hemisphere. Angola. Botswana. Democratic Republic of the Congo (Zaire). Namibia. South Africa. Zambia.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2068,WGS84 / UTM zone 35N,Between 24 and 30 deg East; northern hemisphere. Belarus. Bulgaria. Central African Republic. Democratic Republic of the Congo (Zaire). Egypt. Estonia. Finland. Greece. Latvia. Lesotho. Libya. Lithuania. Moldova. Norway. Romania. Russian Federation. Sudan. Svalbard. Turkey. Uganda. Ukraine.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2069,WGS84 / UTM zone 35S,Between 24 and 30 deg East; southern hemisphere. Botswana. Burundi. Democratic Republic of the Congo (Zaire). Rwanda. South Africa. Tanzania. Uganda. Zambia. Zimbabwe.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2070,WGS84 / UTM zone 36N,Between 30 and 36 deg East; northern hemisphere. Belarus. Cyprus. Egypt. Ethiopia. Finland. Israel. Jordan. Kenya. Lebanon. Norway. Russian Federation. Saudi Arabia. Sudan. Syria. Turkey. Uganda. Ukraine.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2071,WGS84 / UTM zone 36S,Between 30 and 36 deg East; southern hemisphere. Burundi. Kenya. Malawi. Mozambique. Rwanda. South Africa. Swaziland. Tanzania. Uganda. Zambia. Zimbabwe.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2072,WGS84 / UTM zone 37N,Between 36 and 42 deg East; northern hemisphere. Djibouti. Egypt. Eritrea. Ethiopia. Georgia. Iraq. Jordan. Kenya. Lebanon. Russian Federation. Saudi Arabia. Somalia. Sudan. Syria. Turkey. Ukraine.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2073,WGS84 / UTM zone 37S,Between 36 and 42 deg East; southern hemisphere. Kenya. Mozambique. Tanzania.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2074,WGS84 / UTM zone 38N,Between 42 and 48 deg East; northern hemisphere. Armenia. Azerbaijan. Djibouti. Eritrea. Ethiopia. Georgia. Islamic Republic of Iran. Iraq. Kazakstan. Kuwait. Russian Federation. Saudi Arabia. Somalia. Turkey. Yemen.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2075,WGS84 / UTM zone 38S,Between 42 and 48 deg East; southern hemisphere. Madagascar.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2076,WGS84 / UTM zone 39N,Between 48 and 54 deg East; northern hemisphere. Azerbaijan. Bahrain. Islamic Republic of Iran. Kazakstan. Kuwait. Oman. Qatar. Russian Federation. Saudi Arabia. Somalia. Turkmenistan. United Arab Emirates. Yemen.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2077,WGS84 / UTM zone 39S,Between 48 and 54 deg East; southern hemisphere. Madagascar.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2078,WGS84 / UTM zone 40N,Between 54 and 60 deg East; northern hemisphere. Islamic Republic of Iran. Kazakstan. Oman. Russian Federation. Saudi Arabia. Turkmenistan. United Arab Emirates. Uzbekistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2079,WGS84 / UTM zone 40S,Between 54 and 60 deg East; southern hemisphere. Seychelles.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2080,WGS84 / UTM zone 41N,Between 60 and 66 deg East; northern hemisphere. Afghanistan. Islamic Republic of Iran. Kazakstan. Pakistan. Russian Federation. Turkmenistan.  Uzbekistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2081,WGS84 / UTM zone 41S,Between 60 and 66 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2082,WGS84 / UTM zone 42N,Between 66 and 72 deg East; northern hemisphere. Afghanistan. India. Kazakstan. Kyrgyzstan. Pakistan. Russian Federation. Tajikistan. Uzbekistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2083,WGS84 / UTM zone 42S,Between 66 and 72 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2084,WGS84 / UTM zone 43N,Between 72 and 78 deg East; northern hemisphere. China. India. Kazakstan. Kyrgyzstan. Maldives. Pakistan. Russian Federation. Tajikistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-2085,WGS84 / UTM zone 43S,Between 72 and 78 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1332,USA - Alaska - St. Lawrence Island,United States (USA) - Alaska - St. Lawrence Island.,,,,,EPSG,EPSG,1999-05-24 00:00:00,,0
 1333,USA - Alaska - St. Paul Island,United States (USA) - Alaska - St. Paul Island.,,,,,EPSG,EPSG,1999-05-24 00:00:00,,0
 1334,USA - Hawaii,United States (USA) - Hawaii.,,,,,EPSG,EPSG,1999-05-24 00:00:00,,0
@@ -572,8 +526,8 @@
 1549,USA - Hawaii - Kauai.,United States (USA) - Hawaii - Kauai.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
 1550,USA - Hawaii - Niihau.,United States (USA) - Hawaii - Niihau.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
 1551,Grenada including Grenada Grenadines,Grenada (including Grenada Grenadines).,,,,,EPSG,EPSG,1999-04-22 00:00:00,,0
-1552,Africa - Ethiopia and Sudan - W of 42 deg E,Ethiopia - west of 42 degrees East.  Sudan - west of 42 degrees East.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-1553,Africa - Ethiopia and Sudan - E of 42 deg E,Ethiopia - east of 42 degrees East.  Sudan - east of 42 degrees East.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+1552,"Africa - Eritrea, Ethiopia and Sudan - 36 to 42 deg E",Eritrea. Ethiopia - between 36 and 42 degrees East.  Sudan - east of 36 degrees East.,,,,,EPSG,EPSG,2003-01-16 00:00:00,2002.81,0
+1553,Ethiopia - E of 42 deg E,Ethiopia - east of 42 degrees East.,,,,,EPSG,EPSG,2003-01-16 00:00:00,2002.81,0
 1554,Somalia - W of 48 deg E,Somalia - west of 48 degrees East.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1555,Somalia - E of 48 deg E,Somalia - east of 48 degrees East.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1556,Australia - 102 to 108 deg E,Australia - between 102 and 108 deg East.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
@@ -655,10 +609,10 @@
 1632,Europe - ED50 / UTM 29,Europe - between 12 and 6 deg West - Portugal; Spain; Ireland offshore; United Kingdom (UKCS) offshore.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1633,Europe - ED50 / UTM 30,Europe - between 6 deg West and 0 deg East - Faroe Islands; France offshore; Gibraltar; Ireland offshore; Spain; United Kingdom - UKCS offshore - North Sea west of 0 d eg East).,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1634,Europe - ED50 / UTM 31,Europe - between 0 and 6 deg East - Denmark (North Sea); Germany offshore; Netherlands offshore; Norway; Spain (Balearic Islands); United Kingdom (UKCS) offshore.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-1635,Europe - ED50 / UTM 32,Europe - between 6 and 12 deg East - Denmark; Germany offshore; Italy; Netherlands offshore; Norway.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-1636,Europe - ED50 / UTM 33,Europe - between 12 and 18 deg East - Denmark (Bornholm); Italy; Norway.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-1637,Europe - ED50 / UTM 34,Europe - between 18 and 24 deg East - Greece; Norway.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
-1638,Europe - ED50 / UTM 35,Europe - between 24 and 30 deg East - Greece; Norway; Turkey. Egypt - Western Desert.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+1635,Europe - ED50 / UTM 32,Europe - between 6 and 12 deg East - Denmark; Germany offshore; Italy; Netherlands offshore; Norway; Svalbard.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+1636,Europe - ED50 / UTM 33,Europe - between 12 and 18 deg East - Denmark (Bornholm); Italy; Norway; Svalbard.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+1637,Europe - ED50 / UTM 34,Europe - between 18 and 24 deg East - Greece; Norway; Svalbard.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+1638,Europe - ED50 / UTM 35,Europe - between 24 and 30 deg East - Greece; Norway; Svalbard; Turkey.  Egypt - Western Desert.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
 1639,Europe - ED50 / UTM 36,Europe - between 30 and 36 deg East - Turkey.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1640,Europe - ED50 / UTM 37,Europe - between 36 and 42 deg East - Turkey.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1641,Europe - ED50 / UTM 38,Europe - between 42 and 48 deg East - Turkey.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
@@ -724,8 +678,8 @@
 1701,Philippines - zone IV,Philippines - SE Luzon; Tablas; Masbate; Panay; Cebu; Negros; west Mindanao.,,,,,EPSG,EPSG,2000-03-07 00:00:00,,0
 1702,Philippines - zone V,Philippines - east Mindanao; Bohol; Samar.,,,,,EPSG,EPSG,2000-03-07 00:00:00,,0
 1703,Morocco - N of 31.5 deg N,Morocco north of 35 grads (31 deg 30 min) North.,,,,,EPSG,EPSG,1996-09-12 00:00:00,,0
-1704,Morocco - 27.9 to 31.5 deg N,Morocco between 31 and 35 grads (27 deg 54 min and 31 deg 30 min) North.,,,,,EPSG,EPSG,1996-09-12 00:00:00,,0
-1705,Morocco - S of 27.9 deg N,Morocco south of 31grads  (27 deg 54 min) North.,,,,,EPSG,EPSG,1996-09-12 00:00:00,,0
+1704,Morocco - 27.9 to 31.5 deg N,Morocco between 31 and 35 grads (27 deg 54 min and 31 deg 30 min) North.,,,,,EPSG,EPSG,1996-09-12 00:00:00,,1
+1705,Morocco - S of 27.9 deg N,Morocco south of 31grads  (27 deg 54 min) North.,,,,,EPSG,EPSG,1996-09-12 00:00:00,,1
 1706,Austria - W of 11 deg 50 min E,Austria west of 11deg 50min East of Greenwich (29 deg 30 min East of Ferro).,,,,,EPSG,EPSG,1999-10-20 00:00:00,,0
 1707,Austria - 11 deg 50 min to 14deg 50min E,Austria between 11deg 50min and 14deg 50min East of Greenwich (29 deg 30 min and 32 deg 30 min East of Ferro).,,,,,EPSG,EPSG,1999-10-20 00:00:00,,0
 1708,Austria - E of 14 deg 50 min E,Austria east of 14deg 50min East of Greenwich (32 deg 30 min East of Ferro).,,,,,EPSG,EPSG,1999-10-20 00:00:00,,0
@@ -734,7 +688,7 @@
 1711,Europe - former Yugoslavia - 19.5 to 22.5 deg E,FYR Macedonia west of 22 deg 30 min E; Yugoslavia between 19 deg 30 min and 22 deg 30 min E.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
 1712,Europe - former Yugoslavia - E of 22.5 deg E,FYR Macedonia and Yugoslavia east of 22 deg 30 min E.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
 1713,Nigeria - E of 10.5 deg E,Nigeria east of 10 deg 30 min East.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
-1714,Nigeria - 6.5 to10.5 deg E,Nigeria between 6 deg 30 min and 10 deg 30 min East.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
+1714,Nigeria - 6.5 to 10.5 deg E,Nigeria between 6 deg 30 min and 10 deg 30 min East.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
 1715,Nigeria - W of 6.5 deg E,Nigeria west of 6 deg 30 min East.,,,,,EPSG,EPSG,1995-12-02 00:00:00,,0
 1716,Nigeria - offshore deep water - W of 6 deg E,Nigeria - offshore beyond continental shelf west of 6 deg East.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 1717,Nigeria - offshore deep water,Nigeria - offshore beyond continental shelf.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
@@ -1060,6 +1014,52 @@
 2037,WGS84 / UTM zone 19S,Between 72 and 66 deg West; southern hemisphere. Argentina. Bolivia. Brazil. Chile. Colombia. Peru.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2038,WGS84 / UTM zone 20N,Between 66 and 60 deg West; northern hemisphere. Anguilla. Antigua & Barbuda. Bermuda. Brazil. Canada - New Brunswick (NB); Newfoundland; North west Territories; Nova Scotia (NS); Prince Edward Island; Quebec. Dominica. Greenland. Grenada. Guadeloupe. Guyana. Martinique. Montserrat. Saint Kitts and Nevis. Saint Lucia. Saint Vncent and the Grenadines. Trinidad and Tobago. Venezuela. Virgin islands.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2039,WGS84 / UTM zone 20S,Between 66 and 60 deg West; southern hemisphere. Argentina. Bolivia. Brazil. Falkland Islands (Malvinas). Paraguay.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2040,WGS84 / UTM zone 21N,Between 60 and 54 deg West; northern hemisphere. Barbados. Brazil. Canada - Newfoundland; Quebec. French Guiana. Greenland. Guyana. St. Pierre and Miquelon. Suriname.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2041,WGS84 / UTM zone 21S,Between 60 and 54 deg West; southern hemisphere. Argentina. Bolivia. Brazil. Falkland Islands (Malvinas). Paraguay. Uruguay.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2042,WGS84 / UTM zone 22N,Between 54 and 48 deg West; northern hemisphere. Brazil. Canada - Newfoundland. French Guiana. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2043,WGS84 / UTM zone 22S,Between 54 and 48 deg West; southern hemisphere. Brazil.  Uruguay.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2044,WGS84 / UTM zone 23N,Between 48 and 42 deg West; northern hemisphere. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2045,WGS84 / UTM zone 23S,Between 48 and 42 deg West; southern hemisphere. Brazil.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2046,WGS84 / UTM zone 24N,Between 42 and 36 deg West; northern hemisphere. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2047,WGS84 / UTM zone 24S,Between 42 and 36 deg West; southern hemisphere. Brazil. South Georgia and the South Sandwich Islands.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2048,WGS84 / UTM zone 25N,Between 36 and 30 deg West; northern hemisphere. Greenland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2049,WGS84 / UTM zone 25S,Between 36 and 30 deg West; southern hemisphere. Brazil.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2050,WGS84 / UTM zone 26N,Between 30 and 24 deg West; northern hemisphere. Greenland. Iceland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2051,WGS84 / UTM zone 26S,Between 30 and 24 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2052,WGS84 / UTM zone 27N,Between 24 and 18 deg West; northern hemisphere. Greenland. Iceland.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2053,WGS84 / UTM zone 27S,Between 24 and 18 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2054,WGS84 / UTM zone 28N,Between 18 and 12 deg West; northern hemisphere. Gambia. Greenland. Guinea. Guinea-Bissau. Iceland. Ireland - offshore Porcupine Basin. Mauritania. Morocco. Senegal. Sierra Leone. Western Sahara.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2055,WGS84 / UTM zone 28S,Between 18 and 12 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2056,WGS84 / UTM zone 29N,Between 12 and 6 deg West; northern hemisphere. Algeria. Cote D'Ivoire (Ivory Coast). Faroe Islands. Guinea. Ireland. Jan Mayen. Mali. Mauritania. Morocco. Portugal. Sierra Leone. Spain. United Kingdom (UK). Western Sahara.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+2057,WGS84 / UTM zone 29S,Between 12 and 6 deg West; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2058,WGS84 / UTM zone 30N,Between 6 deg West and 0 deg East; northern hemisphere. Algeria. Burkino Faso. Cote' Ivoire (Ivory Coast). Faroe Islands - offshore. France. Ghana. Gibraltar. Ireland - offshore Irish Sea. Mali. Mauritania. Morocco. Spain. United Kingdom (UK).,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2059,WGS84 / UTM zone 30S,Between 6 deg West and 0 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2060,WGS84 / UTM zone 31N,Between 0 and 6 deg East; northern hemisphere. Algeria. Andorra. Benin. Bukino Faso. Denmark - North Sea. France. Germany - North Sea. Ghana. Luxembourg. Mali. Netherlands. Niger. Nigeria. Norway. Spain. Togo. United Kingdom (UK) - North Sea.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2061,WGS84 / UTM zone 31S,Between 0 and 6 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2062,WGS84 / UTM zone 32N,Between 6 and 12 deg East; northern hemisphere. Algeria. Austria. Cameroon. Denmark. Equatorial Guinea. France. Gabon. Germany. Italy. Libya. Liechtenstein. Monaco. Netherlands. Niger. Nigeria. Norway. Sao Tome and Principe. Svalbard. Sweden. Switzerland. Tunisia. Vatican City State.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+2063,WGS84 / UTM zone 32S,Between 6 and 12 deg East; southern hemisphere. Angola. Congo. Gabon. Namibia.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2064,WGS84 / UTM zone 33N,Between 12 and 18 deg East; northern hemisphere. Austria. Bosnia and Herzegowina. Cameroon. Central African Republic. Chad. Congo. Croatia. Czech Republic. Democratic Republic of the Congo (Zaire). Gabon. Germany. Hungary. Italy. Libya. Malta. Niger. Nigeria. Norway. Poland. San Marino. Slovakia. Slovenia. Svalbard. Sweden.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+2065,WGS84 / UTM zone 33S,Between 12 and 18 deg East; southern hemisphere. Angola. Congo. Democratic Republic of the Congo (Zaire). Gabon. Namibia. South Africa.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2066,WGS84 / UTM zone 34N,"Between 18 and 24 deg East; northern hemisphere. Albania. Belarus. Bosnia and Herzegowina. Bulgaria. Central African Republic. Chad. Croatia. Democratic Republic of the Congo (Zaire). Estonia. Finland. FYR Macedonia. Greece. Hungary. Italy. Latvia. Libya. Lithuania. Norway, including Svalbard and Bjornoys. Poland. Romania. Russian Federation. Slovakia. Sudan. Sweden. Ukraine. Yugoslavia.",,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
+2067,WGS84 / UTM zone 34S,Between 18 and 24 deg East; southern hemisphere. Angola. Botswana. Democratic Republic of the Congo (Zaire). Namibia. South Africa. Zambia.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2068,WGS84 / UTM zone 35N,Between 24 and 30 deg East; northern hemisphere. Belarus. Bulgaria. Central African Republic. Democratic Republic of the Congo (Zaire). Egypt. Estonia. Finland. Greece. Latvia. Lesotho. Libya. Lithuania. Moldova. Norway. Romania. Russian Federation. Sudan. Svalbard. Turkey. Uganda. Ukraine.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2069,WGS84 / UTM zone 35S,Between 24 and 30 deg East; southern hemisphere. Botswana. Burundi. Democratic Republic of the Congo (Zaire). Rwanda. South Africa. Tanzania. Uganda. Zambia. Zimbabwe.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2070,WGS84 / UTM zone 36N,Between 30 and 36 deg East; northern hemisphere. Belarus. Cyprus. Egypt. Ethiopia. Finland. Israel. Jordan. Kenya. Lebanon. Norway. Russian Federation. Saudi Arabia. Sudan. Syria. Turkey. Uganda. Ukraine.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2071,WGS84 / UTM zone 36S,Between 30 and 36 deg East; southern hemisphere. Burundi. Kenya. Malawi. Mozambique. Rwanda. South Africa. Swaziland. Tanzania. Uganda. Zambia. Zimbabwe.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2072,WGS84 / UTM zone 37N,Between 36 and 42 deg East; northern hemisphere. Djibouti. Egypt. Eritrea. Ethiopia. Georgia. Iraq. Jordan. Kenya. Lebanon. Russian Federation. Saudi Arabia. Somalia. Sudan. Syria. Turkey. Ukraine.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2073,WGS84 / UTM zone 37S,Between 36 and 42 deg East; southern hemisphere. Kenya. Mozambique. Tanzania.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2074,WGS84 / UTM zone 38N,Between 42 and 48 deg East; northern hemisphere. Armenia. Azerbaijan. Djibouti. Eritrea. Ethiopia. Georgia. Islamic Republic of Iran. Iraq. Kazakstan. Kuwait. Russian Federation. Saudi Arabia. Somalia. Turkey. Yemen.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2075,WGS84 / UTM zone 38S,Between 42 and 48 deg East; southern hemisphere. Madagascar.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2076,WGS84 / UTM zone 39N,Between 48 and 54 deg East; northern hemisphere. Azerbaijan. Bahrain. Islamic Republic of Iran. Kazakstan. Kuwait. Oman. Qatar. Russian Federation. Saudi Arabia. Somalia. Turkmenistan. United Arab Emirates. Yemen.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2077,WGS84 / UTM zone 39S,Between 48 and 54 deg East; southern hemisphere. Madagascar.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2078,WGS84 / UTM zone 40N,Between 54 and 60 deg East; northern hemisphere. Islamic Republic of Iran. Kazakstan. Oman. Russian Federation. Saudi Arabia. Turkmenistan. United Arab Emirates. Uzbekistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2079,WGS84 / UTM zone 40S,Between 54 and 60 deg East; southern hemisphere. Seychelles.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2080,WGS84 / UTM zone 41N,Between 60 and 66 deg East; northern hemisphere. Afghanistan. Islamic Republic of Iran. Kazakstan. Pakistan. Russian Federation. Turkmenistan.  Uzbekistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2081,WGS84 / UTM zone 41S,Between 60 and 66 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2082,WGS84 / UTM zone 42N,Between 66 and 72 deg East; northern hemisphere. Afghanistan. India. Kazakstan. Kyrgyzstan. Pakistan. Russian Federation. Tajikistan. Uzbekistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2083,WGS84 / UTM zone 42S,Between 66 and 72 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2084,WGS84 / UTM zone 43N,Between 72 and 78 deg East; northern hemisphere. China. India. Kazakstan. Kyrgyzstan. Maldives. Pakistan. Russian Federation. Tajikistan.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
+2085,WGS84 / UTM zone 43S,Between 72 and 78 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2086,WGS84 / UTM zone 44N,Between 78 and 84 deg East; northern hemisphere. China. India. Kazakstan. Kyrgyzstan. Nepal. Russian Federation. Sri Lanka.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2087,WGS84 / UTM zone 44S,Between 78 and 84 deg East; southern hemisphere.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2088,WGS84 / UTM zone 45N,Between 84 and 90 deg East; northern hemisphere. Bangladesh. Bhutan. China. India. Kazakstan. Mongolia. Nepal. Russian Federation.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
@@ -1100,13 +1100,13 @@
 2123,Europe - ETRS89 / UTM 29,Europe - between 12 and 6 deg West - United Kingdom (UKCS) offshore.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
 2124,Europe - ETRS89 / UTM 30,Europe - between 6 and 0 deg West.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
 2125,Europe - ETRS89 / UTM 31,Europe - between 0 and 6 deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2126,Europe - ETRS89 / UTM 32,Europe - between 6 and 12deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2127,Europe - ETRS89 / UTM 33,Europe - between 12 and 18deg East - Germany - Brandenburg; Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2128,Europe - ETRS89 / UTM 34,Europe - between 18 and 24deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2129,Europe - ETRS89 / UTM 35,Europe - between 24 and 30deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2130,Europe - ETRS89 / UTM 36,Europe - between 30 and 36deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2131,Europe - ETRS89 / UTM 37,Europe - between 36 and 42deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
-2132,Europe - ETRS89 / UTM 38,Europe - between 42 and 48deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2126,Europe - ETRS89 / UTM 32,Europe - between 6 and 12 deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2127,Europe - ETRS89 / UTM 33,Europe - between 12 and 18 deg East - Germany - Brandenburg; Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2128,Europe - ETRS89 / UTM 34,Europe - between 18 and 24 deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2129,Europe - ETRS89 / UTM 35,Europe - between 24 and 30 deg East - Norway.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2130,Europe - ETRS89 / UTM 36,Europe - between 30 and 36 deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2131,Europe - ETRS89 / UTM 37,Europe - between 36 and 42 deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
+2132,Europe - ETRS89 / UTM 38,Europe - between 42 and 48 deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
 2133,North America - UTM zone 3,North America - between 168 and 162 deg West. United States (USA) - Alaska.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2134,North America - UTM zone 4,North America - between 162 and 156 deg West. United States (USA) - Alaska.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
 2135,North America - UTM zone 5,North America - between 156 and 150 deg West. United States (USA) - Alaska.,,,,,EPSG,EPSG,1995-06-02 00:00:00,,0
@@ -1260,8 +1260,8 @@
 2283,Australia - Australian Capital Territory (ACT),Australia - Australian Capital Territory (ACT).,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
 2284,Australia - Northern Territory (NT),Australia - Northern Territory (NT).,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
 2285,Australia - Victoria,Australia - Victoria.,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
-2286,Australia - New South Wales (NSW and Victoria,Australia - New South Wales (NSW) and Victoria.,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
-2287,Australia - SE Australia (ACT NSW VIC),"Australia - Australian Capital Territory (ACT), New South Wales (NSW), Victoria.",,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
+2286,Australia - New South Wales (NSW) and Victoria,Australia - New South Wales (NSW) and Victoria.,,,,,EPSG,EPSG,2002-11-18 00:00:00,2002.82,0
+2287,Australia - SE Australia (ACT NSW Vic),"Australia - Australian Capital Territory (ACT), New South Wales (NSW), Victoria.",,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
 2288,American Samoa - Tutuila and Aunu'u islands,American Samoa - Tutuila and Aunu'u islands.,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
 2289,"American Samoa - Ofu, Olesega and Ta'u islands","American Samoa - Ofu, Olesega and Ta'u islands.",,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
 2290,Canada - Quebec and Newfoundland - MTM zone 3,Canada - Newfoundland and Labrador between 60 deg and 57 deg 30 min West; Canada - Quebec between 60 deg and 57 deg West.,,,,,EPSG,EPSG,1997-11-13 00:00:00,,0
@@ -1306,7 +1306,7 @@
 2329,Syria - Deir area,Syrian Arab Republic - Deir area (35d 22m N 40d 06m E),,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
 2330,Europe - North Sea,Denmark - North Sea;  Germany - North Sea;  Netherlands - offshore;  Norway - North Sea south of 62 deg N; United Kingdom (UKCS) - North Sea south of 62 deg N.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
 2331,Norway - offshore N of 65 deg N,Norway - offshore north of 65 deg North.,,,,,EPSG,EPSG,1996-10-18 00:00:00,,0
-2332,Norway - offshore N of 65 deg N;  Svalbard; Jan Mayen,Norway - offshore north of 65 deg N;  Svalbard and Jan Mayen Islands.,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
+2332,Norway - offshore N of 65 deg N;  Svalbard,Norway - offshore north of 65 deg N;   Also Svalbard.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
 2333,Norway - offshore 62 to 65 deg N and W of 5 deg E,Norway - offshore between 62 and 65 deg North and west of 5 deg East.,,,,,EPSG,EPSG,2000-10-19 00:00:00,,0
 2334,Norway - North Sea - offshore S of 62 deg N.,Norway - North Sea - offshore south of 62 deg North.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
 2335,Spain - Balearic Islands,Spain - Balearic Islands.,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
@@ -1563,7 +1563,7 @@
 2598,Algeria - District 3,Algeria - District 3 (In Salah).,,,,,EPSG,EPSG,2002-02-12 00:00:00,,0
 2599,Algeria - In Amenas,Algeria - In Amenas block.,,,,,EPSG,EPSG,2002-02-12 00:00:00,,0
 2600,Algeria - Hassi Bir Reikaz,Algeria - Hassi Bir Reikaz.,,,,,EPSG,EPSG,2002-02-12 00:00:00,,0
-2601,Norway - offshore N of 62 deg N;  Svalbard; Jan Mayen,Norway - offshore north of 62 deg N;  Svalbard and Jan Mayen Islands.,,,,,EPSG,EPSG,2001-08-15 00:00:00,,0
+2601,Norway - offshore N of 62 deg N;  Svalbard,Norway - offshore north of 62 deg N. Also Svalbard.,,,,,EPSG,EPSG,2003-06-27 00:00:00,2003.141,0
 2602,"Palestine Territory, Occupied","Palestine Territory, Occupied.",PS,PSE,275,,ISO 3166 Maintenance Agency.  ftp://ftp.fu-berlin.de/pub/doc/iso,EPSG,2002-06-22 00:00:00,,0
 2603,Asia - Middle East - Israel and Palestine Territory,Asia - Middle East - Israel and Palestine Territory.,,,,,EPSG,EPSG,2002-06-22 00:00:00,,0
 2604,3-degree TM - N hemisphere CM 48 deg E,"Between 46 deg 30 min and 49 deg 30 min East, northern hemisphere.",,,,,EPSG,EPSG,2002-06-22 00:00:00,2002.341,0
@@ -1741,7 +1741,7 @@
 2776,Asia - CS63 zone K2,Kazakstan between 49 deg 16 min and 52 deg 16 min E.,,,,,EPSG,EPSG,2002-06-28 00:00:00,,0
 2777,Asia - CS63 zone K3,Kazakstan between 52 deg 16 min and 55 deg 16 min E.,,,,,EPSG,EPSG,2002-06-28 00:00:00,,0
 2778,Asia - CS63 zone K4,Kazakstan between 55 deg 16 min and 58 deg 16 min E.,,,,,EPSG,EPSG,2002-06-28 00:00:00,,0
-2779,Portugal - Selvagens,Portugal - Selvagens island (Madeira group).,,,,,EPSG,EPSG,2001-06-05 00:00:00,,0
+2779,Portugal - Selvagens,Portugal - Selvagens islands (Madeira province).,,,,,EPSG,EPSG,2003-08-14 00:00:00,2003.23,0
 2780,Malaysia - East Malaysia - offshore,Malaysia - East Malaysia (Sabah; Sarawak) - offshore.,,,,,EPSG,EPSG,2002-07-13 00:00:00,,0
 2781,Iran - Kharg Island,Islamic Republic of Iran - Kharg Island.,,,,,EPSG,EPSG,2002-07-13 00:00:00,,0
 2782,Iran - Lavan Island and Balal field,Islamic Republic of Iran - Lavan Island and Balal field.,,,,,EPSG,EPSG,2002-07-13 00:00:00,,0
@@ -1749,3 +1749,96 @@
 2784,Canada - CSRS,Canada - Alberta; New Brunswick; Nova Scotia; Saskatchewan; Prince Edward Island; and Quebec.,,,,,EPSG,EPSG,2002-07-13 00:00:00,,0
 2785,Libya - Murzuq,Libyan Arab Jamahiriya - Murzuq field,,,,,EPSG,EPSG,2002-07-16 00:00:00,,0
 2786,Libya - Mabruk,Libyan Arab Jamahiriya - Mabruk field,,,,,EPSG,EPSG,2002-07-16 00:00:00,,0
+2787,Morocco - S of 31.5 deg N,Morocco south of 35 grads (31 deg 30 min) North.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2788,Western Sahara - N of 24.3 deg N,Western Sahara - north of 27grads (24 deg 18 min) North.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2789,Western Sahara - S of 24.3 deg N,Western Sahara - south of 27grads (24 deg 18 min) North.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2790,Africa - 12th parallel,"Senegal - central, Mali - southwest, Burkina Faso - central, Niger - southwest, Nigeria - north, Chad - central. All in proximity to the 12th parallel of latitude.",,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2791,Africa - Burkina Faso and SW Niger,"Burkina Faso - central, Niger - southwest, in proximity to the 12th parallel of latitude.",,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2792,UK - Great Britain mainland,United Kingdom (UK) - Great Britain - England  and  Wales - mainland; Scotland - mainland and Inner Hebrides.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2793,UK - Orkney Islands,United Kingdom (UK) - Great Britain - Scotland - Orkney Islands.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2794,UK - Fair Isle,United Kingdom (UK) - Great Britain - Scotland - Fair Isle.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2795,UK - Shetland Islands,United Kingdom (UK) - Great Britain - Scotland - Shetland Islands.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2796,UK - Foula,United Kingdom (UK) - Great Britain - Scotland - Foula.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2797,UK - Sule Skerry,United Kingdom (UK) - Great Britain - Scotland - Sule Skerry.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2798,UK - North Rona,United Kingdom (UK) - Great Britain - Scotland - North Rona.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2799,UK - Outer Hebrides,United Kingdom (UK) - Great Britain - Scotland - Outer Hebrides.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2800,UK - St. Kilda,United Kingdom (UK) - Great Britain - Scotland - St. Kilda.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2801,UK - Flannan Isles,United Kingdom (UK) - Great Britain - Scotland - Flannan Isles.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2802,UK - Scilly Isles,United Kingdom (UK) - Great Britain - England - Isles of Scilly.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2803,UK - Isle of Man,United Kingdom (UK) - Isle of Man.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2804,Europe - Austria and FR Yugoslavia.,Austria; Boznia and Herzegovina; Croatia; Czech Republic; FYR Macedonia; Serbia; Slovakia; Slovenia; Yugoslavia.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2805,Chile - Tierra del Fuego,Chile - Tierra del Fuego.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2806,Iran - N Gulf coast,Iran - northern Gulf coast area.,,,,,EPSG,EPSG,2002-09-19 00:00:00,,0
+2807,Comoros - Njazidja (Grand Comoros),Comoros - Njazidja (Grand Comoros).,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2808,Comoros - Nzwani,Comoros - Nzwani.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2809,Comoros - Mwali,Comoros - Mwali.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2810,French Polynesia - Marquises Islands - Nuku Hiva,French Polynesia - Marquises Islands - Nuku Hiva.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2811,French Polynesia - Society Islands - Moorea and Tahiti,French Polynesia - Society Islands - Moorea and Tahiti.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2812,"French Polynesia - Society Islands - Bora Bora, Huahin, Raiatea, Tahaa","French Polynesia - Society Islands - Bora Bora, Huahin, Raiatea and Tahaa.",,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2813,New Caledonia - Ouvea,New Caledonia - Ouvea.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2814,New Caledonia - Lifou,New Caledonia - Lifou.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2815,Wallis and Futuna - Wallis,Wallis and Futuna - Wallis.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2816,French Southern Territories - Kerguelen,French Southern Territories - Kerguelen.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2817,Antarctica - Adelie Land - Petrels island,Antarctica - Adelie Land - Petrels island.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2818,Antarctica - Adelie Land,Antarctica - Adelie Land.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2819,New Caledonia - Mare,New Caledonia - Mare.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2820,New Caledonia - Ile des Pins,New Caledonia - Ile des Pins.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2821,New Caledonia - Belep,New Caledonia - Belep.,,,,,EPSG,EPSG,2002-11-29 00:00:00,,0
+2822,New Caledonia - Grande Terre,New Caledonia - Grande Terre.,,,,,EPSG,EPSG,2003-08-14 00:00:00,2003.24,0
+2823,New Caledonia - Grande Terre - Noumea,New Caledonia - Grande Terre - Noumea district.,,,,,EPSG,EPSG,2003-08-14 00:00:00,2003.24,0
+2824,Caribbean - French Antilles,French Antilles - Guadeloupe and Martinique.,,,,,EPSG,EPSG,1999-04-22 00:00:00,,0
+2825,Africa - Ethiopia and Sudan - 30 to 36 deg E,Ethiopia - west of 36 degrees East.  Sudan - between 30 and 36 degrees East.,,,,,EPSG,EPSG,2003-01-16 00:00:00,2002.81,0
+2826,Sudan - W of 24 deg E,Sudan - west of 24 degrees East.,,,,,EPSG,EPSG,2003-01-16 00:00:00,2002.81,0
+2827,Sudan - 24 to 30 deg E,Sudan - between 24 and 30 degrees East.,,,,,EPSG,EPSG,2003-01-16 00:00:00,2002.81,0
+2828,Guadeloupe - St Martin and St Barthelemy,Guadeloupe - Guadeloupe Department - Saint Martin and Saint Barthelemy islands.,,,,,EPSG,EPSG,2003-01-31 00:00:00,,0
+2829,Guadeloupe - Grande-Terre and surrounding islands,"Guadeloupe - Basse-Terre, Grande-Terre, Desiride, Marie-Galante, Les Saintes.",,,,,EPSG,EPSG,2003-01-31 00:00:00,,0
+2830,World by country,"World: Afghanistan, Albania, Algeria, American Samoa, Andorra, Angola, Anguilla, Antarctica, Antigua and Barbuda, Argentina, Armenia, Aruba, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belgium, Belgium, Belize, Benin, Bermuda, Bhutan, Bolivia, Bosnia and Herzegowina, Botswana, Bouvet Island, Brazil, British Indian Ocean Territory, British Virgin Islands, Brunei Darussalam, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Cayman Islands, Central African Republic, Chad, Chile, China, Christmas Island, Cocos (Keeling) Islands, Comoros, Congo, Cook Islands, Costa Rica, Côte d'Ivoire (Ivory Coast), Croatia, Cuba, Cyprus, Czech Republic, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Falkland Islands (Malvinas), Faroe Islands, Fiji, Finland, France, French Guiana, French Polynesia, French Southern Territories, Gabon, Gambia, Georgia, Germany, Ghana, Gibraltar, Greece, Greenland, Grenada, Guadeloupe, Guam, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Heard Island and McDonald Islands, Holy See (Vatican City State), Honduras, China - Hong Kong, Hungary, Iceland, India, Indonesia, Islamic Republic of Iran, Iraq, Ireland, Israel, Italy, Jamaica, Japan, Jordan, Kazakstan, Kenya, Kiribati, Democratic People's Republic of Korea (North Korea), Republic of Korea (South Korea), Kuwait, Kyrgyzstan, Lao People's Democratic Republic (Laos), Latvia, Lebanon, Lesotho, Liberia, Libyan Arab Jamahiriya, Liechtenstein, Lithuania, Luxembourg, China - Macau, The Former Yugoslav Republic of Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Martinique, Mauritania, Mauritius, Mayotte, Mexico, Federated States of Micronesia, Monaco, Mongolia, Montserrat, Morocco, Mozambique, Myanmar (Burma), Namibia, Nauru, Nepal, Netherlands, Netherlands Antilles, New Caledonia, New Zealand, Nicaragua, Niger, Nigeria, Niue, Norfolk Island, Northern Mariana Islands, Norway, Oman, Pakistan, Palau, Panama, Papua New Guinea (PNG), Paraguay, Peru, Philippines, Pitcairn, Poland, Portugal, Puerto Rico, Qatar, Reunion, Romania, Russian Federation, Rwanda, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Samoa, San Marino, Sao Tome and Principe, Saudi Arabia, Senegal, Seychelles, Sierra Leone, Singapore, Slovakia (Slovak Republic), Slovenia, Solomon Islands, Somalia, South Africa, South Georgia and the South Sandwich Islands, Spain, Sri Lanka, Saint Helena, Saint Pierre and Miquelon, Sudan, Suriname, Svalbard and Jan Mayen, Swaziland, Sweden, Switzerland, Syrian Arab Republic, Taiwan, Tajikistan, United Republic of Tanzania, Thailand, The Democratic Republic of the Congo (Zaire), Togo, Tokelau, Tonga, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Turks and Caicos Islands, Tuvalu, Uganda, Ukraine, United Arab Emirates (UAE), United Kingdom (UK), United States (USA), United States Minor Outlying Islands, Uruguay, Uzbekistan, Vanuatu, Venezuela, Vietnam, US Virgin Islands, Wallis and Futuna, Western Sahara, Yemen, Yugoslavia - Union of Serbia and Montenegro, Zambia, Zimbabwe.",,,,,EPSG,EPSG,2003-01-31 00:00:00,,0
+2831,Canada - Atlantic offshore,"Canada - Newfoundland, New Brunswick and Nova Scotia offshore.",,,,,EPSG,EPSG,2003-02-25 00:00:00,,0
+2832,Canada - British Columbia,Canada - British Columbia.,,,,,EPSG,EPSG,2003-05-05 00:00:00,,0
+2833,Sweden - 12 00,Sweden - communes west of approximately 12 deg 45 min East and south of approximately 60 deg N. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2834,Sweden - 13 30,Sweden - communes between approximately 12 deg 45 min and 14 deg 15 min East and south of approximately 62 deg 10 min North. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2835,Sweden - 15 00,Sweden - communes between approximately 14 deg 15 min and 15 deg 45 min East and south of approximately 61 deg 30 min North. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2836,Sweden - 16 30,Sweden - communes between approximately 15 deg 45 min and 17 deg 15 min East and south of approximately 62 deg 5 min North. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2837,Sweden - 18 00,Sweden - communes east of approximately 17 deg 15 min East between approximately 60 deg 38 min and 58 deg 50 min North. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2838,Sweden - 14 15,Sweden - communes west of approximately 15 deg East and between approximately 61 deg 35 min and 64 deg 25 min N. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2839,Sweden - 15 45,Sweden - communes between approximately 15 deg and 16 deg 30 min East and between approximately 60 deg 30 min and 65 deg N. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2840,Sweden - 17 15,Sweden - communes between approximately 16 deg 30 min and 18 deg East and between approximately 62 deg 20 min and 64 deg North. Also Vaasterbotten west of approximately 18 deg 45 min East. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2841,Sweden - 18 45,Sweden - mainland communes between approximately 18 deg and 19 deg 30 min East and between approximately 62 deg 15 min and 66 deg N. Also Gotland. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2842,Sweden - 20 15,Sweden - communes in Vaasterbotten east of approximately 19 deg 30 min East and south of approximately 65 deg N. Also Norbotten west of approximately 22 deg 30 min E. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2843,Sweden - 21 45,Sweden - communes in Norbotten between approximately 20 deg and 22 deg 30 min East and between approximately 65 deg and 66 deg 25 min N. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2844,Sweden - 23 15,Sweden - communes east of approximately 22 deg 30 min East. See information source for map.,,,,,Lantmateriet (National Land Survey of Sweden).  http://www.lantmateriet.se/cms/files/pdf/pdf/refsystem/info_blad-2.pdf.,EPSG,2003-06-27 00:00:00,,0
+2845,Sweden - 7.5 gon W,Sweden - communes west of approximately 12 deg 26 min East. See information source for map.,,,,,Lantmateriverket (National Land Survey of Sweden). http://www.lm.se/geodesi/refsys/rt/rt_projections.html,EPSG,2003-06-27 00:00:00,,0
+2846,Sweden - 5 gon W,Sweden - communes between approximately 12 deg 26 min and 14 deg 40 min East. See information source for map.,,,,,Lantmateriverket (National Land Survey of Sweden). http://www.lm.se/geodesi/refsys/rt/rt_projections.html,EPSG,2003-06-27 00:00:00,,0
+2847,Sweden - 2.5 gon W,Sweden. For medium and small scale applications:- all country. For large scale applications:- communes between approximately 14 deg 40 min and 16 deg 55 min East. See information source for map.,,,,,Lantmateriverket (National Land Survey of Sweden). http://www.lm.se/geodesi/refsys/rt/rt_projections.html,EPSG,2003-06-27 00:00:00,,0
+2848,Sweden - 0 gon,Sweden - communes between approximately 16 deg 55 min and 19 deg 10 min East; Gotland. See information source for map.,,,,,Lantmateriverket (National Land Survey of Sweden). http://www.lm.se/geodesi/refsys/rt/rt_projections.html,EPSG,2003-06-27 00:00:00,,0
+2849,Sweden - 2.5 gon E,Sweden - communes between approximately 19 deg 10 min and 21 deg 25 min East. See information source for map.,,,,,Lantmateriverket (National Land Survey of Sweden). http://www.lm.se/geodesi/refsys/rt/rt_projections.html,EPSG,2003-06-27 00:00:00,,0
+2850,Sweden - 5 gon E,Sweden - east of approximately 21 deg 26 min East. See information source for map.,,,,,Lantmateriverket (National Land Survey of Sweden). http://www.lm.se/geodesi/refsys/rt/rt_projections.html,EPSG,2003-06-27 00:00:00,,0
+2851,Iceland - W of 24 W,Iceland - west of 24 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2852,Iceland - 24 to 18 deg W,Iceland - between 24 and 18 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2853,Iceland - E of 18 W,Iceland - east of 18 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2854,Europe - ETRS-TM25,Europe - between 36 and 30 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2855,Europe - ETRS-TM26,Europe - between 30 and 24 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2856,Europe - ETRS-TM27,Europe - between 24 and 18 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2857,Europe - ETRS-TM28,Europe - between 18 and 12 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2858,Europe - ETRS-TM29,Europe - between 12 and 6 deg West,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2859,Europe - ETRS-TM30,Europe - between 6 and 0 deg West.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2860,Europe - ETRS-TM31,Europe - between 0 and 6 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2861,Europe - ETRS-TM32,Europe - between 6 and 12 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2862,Europe - ETRS-TM33,Europe - between 12 and 18 deg East..,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2863,Europe - ETRS-TM34,Europe - between 18 and 24 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2864,Europe - ETRS-TM35,Europe - between 24 and 30 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2865,Europe - ETRS-TM36,Europe - between 30 and 36 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2866,Europe - ETRS-TM37,Europe - between 36 and 42 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2867,Europe - ETRS-TM38,Europe - between 42 and 48 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2868,Europe - ETRS-TM39,Europe - between 48 and 54 deg East.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2869,Jan Mayen,Jan Mayen,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0
+2870,Portugal - main Madeira islands,Portugal - Madeira and Porto Santo islands.,,,,,EPSG,EPSG,2003-08-14 00:00:00,,0
+2871,Portugal - E Azores - S Miguel,Portugal - eastern Azores - Sao Miguel island.,,,,,EPSG,EPSG,2003-08-14 00:00:00,,0
+2872,Portugal - C Azores - Terceira,Portugal - central Azores - Terceira island.,,,,,EPSG,EPSG,2003-08-14 00:00:00,,0
+2873,Portugal - C Azores - Faial,Portugal - central Azores - Faial island.,,,,,EPSG,EPSG,2003-08-14 00:00:00,,0
+2874,Portugal - C Azores - Pico,Portugal - central Azores - Pico island.,,,,,EPSG,EPSG,2003-08-14 00:00:00,,0
+2875,Portugal - C Azores - S Jorge,Portugal - central Azores - Sao Jorge island.,,,,,EPSG,EPSG,2003-08-14 00:00:00,,0
+2876,Asia - Middle East - Iraq-Kuwait boundary,Iraq - Kuwait boundary.,,,,,EPSG,EPSG,2003-09-01 00:00:00,,0
+2879,Germany - offshore North Sea,Germany - offshore North Sea.,,,,,EPSG,EPSG,2003-09-22 00:00:00,,0
+2880,Antarctica - Australian sector N of 80 S,Antarctica - Australian sector - north of 80 deg South.,,,,,EPSG,EPSG,2003-09-22 00:00:00,,0
+2881,Europe - ETRS-LCC & LAEA,Europe - EU countries and candidates.,,,,,EPSG,EPSG,2003-06-27 00:00:00,,0

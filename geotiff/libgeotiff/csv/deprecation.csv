@@ -32,7 +32,6 @@
 33,2001-06-25 00:00:00,2001.19,Ellipsoid,7047,7048,Incorrect radius (semi-major and semi-minor axes).
 34,2001-06-21 00:00:00,2001.07,Datum,6035,6047,"Name changed to reflect use of specific ""GRS 1980 Authalic Sphere"" rather than general ""Sphere""."
 35,1997-11-13 00:00:00,97.372,Datum,5107,5118,Replace this general name to specific.
-38,,2001.181,Datum,6314,6177,Correction to name spelling.
 39,2001-08-28 00:00:00,2001.32,Coordinate Reference System,2156,2195,ProjCRS 2156 invalid as linked to projection in wrong hemisphere and has wrong name.
 40,2001-08-28 00:00:00,2001.32,Coordinate_Operation,15300,15301,Longitude of natural origin has incorrect value (wrong hemisphere).
 41,2001-08-28 00:00:00,2001.3,Coordinate Reference System,2291,2292,Source geogCRS code is in error.
@@ -129,7 +128,7 @@
 266,2001-01-21 00:00:00,2001.15,Ellipsoid,7006,7046,Change of axis unit from International metre to German Legal Metre to reflect local usage.
 268,2001-11-06 00:00:00,2001.45,Coordinate Reference System,32036,2204,Dependent map projection 11631 in error.
 270,2001-11-06 00:00:00,2001.45,Coordinate Reference System,26979,2205,Dependent map projection 14100 in error.
-272,2002-01-18 00:00:00,2001.03,Coordinate_Operation,1656,,EPSG copy of ITRF transformation superseded by tfm code 1791.
+272,2002-01-18 00:00:00,2001.03,Coordinate_Operation,1656,1791,EPSG copy of ITRF tfm superseded by direct tfm.
 273,2002-01-18 00:00:00,2001.03,Coordinate_Operation,1658,,EPSG copy of ITRF transformation superseded by tfm code 1793.
 274,2002-01-18 00:00:00,2002.01,Datum,6228,6192,Incorrect ellipsoid attached.
 276,2002-01-18 00:00:00,2002.01,Datum,6260,6193,Incorrect ellipsoid attached.
@@ -274,3 +273,99 @@
 424,2002-02-12 00:00:00,2002.01,Coordinate Reference System,4234,4197,Dependent datum 6228 deprecated due to ellipsoid error.
 425,2002-02-12 00:00:00,2002.01,Coordinate Reference System,23433,2312,Dependent geogCRS 4234 deprecated due to ellipsoid error.
 426,2002-07-13 00:00:00,2002.41,Area,1336,2784,Expansion of area of use.
+427,2002-09-13 00:00:00,2002.5,Datum,6291,6618,Correction of ellipsoid 1/f to 2 decimal places exactly.
+428,2002-09-13 00:00:00,2002.5,Coordinate Reference System,4291,4618,Deprecation of geodetic datum following correction of ellipsoid 1/f to 2 decimal places exactly.
+429,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29100,29101,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+430,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29177,29187,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+432,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29118,29168,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+433,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29185,29195,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+434,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29184,29194,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+435,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29183,29193,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+436,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29182,29192,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+437,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29181,29191,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+438,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29180,29190,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+439,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29179,29189,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+440,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29178,29188,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+441,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29122,29172,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+442,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29121,29171,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+443,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29120,29170,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+444,2002-09-13 00:00:00,2002.5,Coordinate Reference System,29119,29169,Deprecation of source geogCRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+445,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1212,1864,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+446,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1213,1865,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+447,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1214,1866,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+448,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1215,1867,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+449,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1216,1868,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+450,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1217,1869,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+451,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1218,1870,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+452,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1219,1871,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+453,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1220,1872,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+454,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1221,1873,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+455,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1222,1874,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+456,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1223,1875,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+457,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1224,1876,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+458,2002-09-13 00:00:00,2002.5,Coordinate_Operation,1548,1877,Deprecation of source CRS following correction of ellipsoid 1/f to 2 decimal places exactly.
+459,2002-09-19 00:00:00,2002.64,Area,1704,2787,Amendments to map projection.
+460,2002-09-19 00:00:00,2002.64,Area,1705,2788,Amendments to map projection.
+461,2002-09-19 00:00:00,2002.64,Coordinate_Operation,18133,18134,Error in scale factor value.
+462,2002-09-19 00:00:00,2002.64,Coordinate Reference System,26193,26194,Projection on which this CRS is dependent deprecated due to error in scale factor.
+463,2002-09-19 00:00:00,2002.62,Coordinate_Operation,1681,1040,Transformation from which this is taken has been superseded.
+464,2002-09-19 00:00:00,2002.48,Coordinate_Operation,1787,1895,Error in signs of rotations.
+465,2002-09-19 00:00:00,2002.48,Coordinate_Operation,1788,1896,Error in signs of rotations.
+466,2002-10-13 00:00:00,2002.77,Coordinate_Operation,15326,15372,Error in false northing parameter value.
+467,2002-10-13 00:00:00,2002.77,Coordinate_Operation,15327,15373,Error in false northing parameter value.
+468,2002-10-13 00:00:00,2002.77,Coordinate Reference System,2245,2966,Dependent projection deprecated.
+469,2002-10-13 00:00:00,2002.77,Coordinate Reference System,2244,2965,Dependent projection deprecated.
+470,2002-10-13 00:00:00,2002.77,Coordinate Reference System,2889,2967,Dependent projection deprecated.
+471,2002-10-13 00:00:00,2002.77,Coordinate Reference System,2890,2968,Dependent projection deprecated.
+472,2002-11-18 00:00:00,2002.73,Coordinate_Operation,1834,1897,Incorrect source CRS - linked to a deprecated record instead of its replacement.
+473,2002-11-18 00:00:00,2002.73,Coordinate_Operation,1835,1898,Incorrect source CRS - linked to a deprecated record instead of its replacement.
+474,2002-11-18 00:00:00,2002.73,Coordinate_Operation,1836,1899,Incorrect source CRS - linked to a deprecated record instead of its replacement.
+475,2002-11-18 00:00:00,2002.83,Coordinate_Operation,1308,1900,Incorrect source CRS.
+476,2002-11-18 00:00:00,2002.83,Coordinate_Operation,1515,1901,Incorrect source CRS.
+477,2002-12-07 00:00:00,2002.89,Coordinate Reference System,4327,4329,Change of CRS name
+478,2002-11-29 00:00:00,2002.87,Datum,6235,6623,Incorrect name
+479,2002-11-29 00:00:00,2002.87,Coordinate Reference System,4235,4623,Incorrect name.
+480,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9625,9645,Change to formula to accommodate scaling parameters.
+481,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9626,9646,Change to formula to accommodate scaling parameters.
+482,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9627,9647,Change to formula to accommodate scaling parameters.
+483,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9628,9649,Change to formula to accommodate scaling parameter and other conditions for reversibility (see GN7 version 19).
+484,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9629,9650,Change to formula to accommodate scaling parameter and other conditions for reversibility (see GN7 version 19).
+485,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9630,9651,Change to formula to accommodate scaling parameter and other conditions for reversibility (see GN7 version 19).
+486,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9631,9652,Change to formula to accommodate scaling parameters.
+487,2002-12-21 00:00:00,2002.75,Coordinate_Operation Method,9632,9653,Change to formula to accommodate scaling parameters.
+488,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1025,1043,Coordinate operation (transformation) method deprecated and replaced.
+489,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1029,1044,Coordinate operation (transformation) method deprecated and replaced.
+490,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1030,1045,Coordinate operation (transformation) method deprecated and replaced.
+491,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1031,1046,Coordinate operation (transformation) method deprecated and replaced.
+492,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1032,1047,Coordinate operation (transformation) method deprecated and replaced.
+493,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1033,1048,Coordinate operation (transformation) method deprecated and replaced.
+494,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1034,1049,Coordinate operation (transformation) method deprecated and replaced.
+495,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1037,1050,Coordinate operation (transformation) method deprecated and replaced.
+496,2002-12-21 00:00:00,2002.75,Coordinate_Operation,1038,1051,Coordinate operation (transformation) method deprecated and replaced.
+497,2003-01-16 00:00:00,2003.02,Coordinate Reference System,21100,3001,Associated with incorrect datum resulting in map projection longitude being incompatible with prime meridian.
+498,2003-01-16 00:00:00,2003.02,Coordinate Reference System,25700,3002,Associated with incorrect datum resulting in map projection longitude being incompatible with prime meridian.
+499,2003-01-16 00:00:00,2003.02,Coordinate Reference System,2934,3000,Associated with incorrect datum resulting in map projection longitude being incompatible with prime meridian.
+500,2003-01-16 00:00:00,2003.02,Coordinate Reference System,26591,3003,Associated with incorrect datum resulting in map projection longitude being incompatible with prime meridian.
+502,2003-01-16 00:00:00,2003.02,Coordinate Reference System,26592,3004,Associated with incorrect datum resulting in map projection longitude being incompatible with prime meridian.
+503,2003-01-16 00:00:00,2002.81,Coordinate Reference System,29635,20135,Unable to verify existance of this system.
+504,2003-01-16 00:00:00,2002.81,Coordinate Reference System,29636,20136,Unable to verify existance of this system.
+505,2003-01-16 00:00:00,2002.81,Coordinate Reference System,4296,4201,Unable to verify existance of this system.
+506,2003-01-16 00:00:00,2002.81,Datum,6296,6201,Unable to verify existance of this system.
+507,2003-01-21 00:00:00,2002.72,Coordinate_Operation,1791,1944,Incorrect target CRS.
+508,2003-01-21 00:00:00,2002.72,Coordinate_Operation,1793,1945,Incorrect target CRS
+509,2003-02-25 00:00:00,2003.08,Coordinate_Operation,1606,1947,Incorrect parameter file name.
+510,2003-02-25 00:00:00,2003.08,Coordinate_Operation,1607,1948,Incorrect parameter file name.
+511,2003-02-25 00:00:00,2003.08,Coordinate_Operation,1608,1949,Incorrect parameter file name.
+512,2003-06-27 00:00:00,2002.48,Coordinate Reference System,2400,3021,Change of name to include Swedish rather than English abbreviation.
+513,2003-06-27 00:00:00,2002.481,Coordinate Reference System,30800,3027,Change of name to include Swedish rather than English abbreviation.
+514,2003-06-27 00:00:00,2002.62,Coordinate_Operation,1229,1956,"Wrong source CRS and therefore transform name. Caused by confusion between the Geodetic Datum of 1965 and TM65, the Mapping Adjustment of 1965."
+515,2003-06-27 00:00:00,2002.62,Coordinate_Operation,1640,1953,"Wrong source CRS and therefore transform name. Caused by confusion between the Geodetic Datum of 1965 and TM65, the Mapping Adjustment of 1965."
+516,2003-06-27 00:00:00,2002.621,Coordinate_Operation,5401,5406,Error in direction of transformation.
+518,2003-08-14 00:00:00,2003.23,Coordinate_Operation,1889,1965,Error in spelling of transformation name.
+519,2003-08-14 00:00:00,2003.24,Coordinate Reference System,4634,4662,Incorrect spelling of name.
+520,2003-08-14 00:00:00,2003.24,Coordinate Reference System,2982,3060,Incorrect spelling of name.
+521,2003-08-14 00:00:00,2003.24,Coordinate_Operation,1918,1962,Error in spelling of transformation name.
+522,2003-08-14 00:00:00,2003.24,Coordinate_Operation,1929,1963,Error in spelling of transformation name.
+523,2003-08-14 00:00:00,2003.25,Coordinate_Operation,1933,1964,Incorrect spelling of transformation name.
+524,2003-08-14 00:00:00,2003.23,Coordinate_Operation,1945,1987,Approximation replaced by tfm derived from observed data.
+525,2003-08-14 00:00:00,2003.23,Coordinate_Operation,1944,1988,Approximation replaced by tfm derived from observed data.

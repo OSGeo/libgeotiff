@@ -35,28 +35,28 @@ Alternatively, the bearing (clockwise positive) of the source coordinate referen
 8629,A6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8630,A7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8631,A8,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8632,A9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8633,A10,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8634,A11,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8635,A12,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8636,A13,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8637,A14,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8632,Au0v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8633,Au4v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8634,Au3v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8635,Au2v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8636,Au1v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8637,Au0v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
 8638,B00,Coefficient used only in the Madrid to ED50 polynomial transformation method.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8639,B0,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8640,B1,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8641,B2,Coefficient used in affine (general parametric) and polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8642,B3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8643,B4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8644,B5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8645,B6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8646,B7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8647,B8,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8648,B9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8649,B10,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8650,B11,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8651,B12,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8652,B13,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
-8653,B14,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
+8643,Bu1v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8644,Bu0v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8645,Bu3v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8646,Bu2v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8647,Bu1v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8648,Bu0v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8649,Bu4v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8650,Bu3v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8651,Bu2v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8652,Bu1v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
+8653,Bu0v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,2003.20,0
 8654,Semi-major axis length difference,The difference between the semi-major axis values of the ellipsoids used in the target and source coordinate reference systems.,EPSG guidance note number 7.,EPSG,2000-06-23 00:00:00,,0
 8655,Flattening difference,"The difference between the flattening values of the ellipsoids used in the target and source coordinate reference systems. 
 
@@ -73,6 +73,65 @@ flattening  = 1 / (inverse_flattening).",EPSG guidance note number 7.,EPSG,2000-
 8665,Maritime Province residual file,Coordinate differences at control points,Survey of New Brunswick,EPSG,2000-10-19 00:00:00,,0
 8666,Geoid model file,The name of the [path and] file containing geoid heights.,EPSG,EPSG,2001-06-05 00:00:00,,0
 8667,Ordinate 3 of evaluation point,The value of the third ordinate of the evaluation point.,EPSG guidance note number 7.,EPSG,2001-11-06 00:00:00,,0
+8668,Au5v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8669,Au4v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8670,Au3v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8671,Au2v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8672,Au1v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8673,Au0v5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8674,Au6v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8675,Au5v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8676,Au4v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8677,Au3v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8678,Au2v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8679,Au1v5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8680,Au0v6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8681,Bu5v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8682,Bu4v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8683,Bu3v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8684,Bu2v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8685,Bu1v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8686,Bu0v5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8687,Bu6v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8688,Bu5v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8689,Bu4v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8690,Bu3v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8691,Bu2v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8692,Bu1v5,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8693,Bu0v6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2002-09-19 00:00:00,2003.20,0
+8694,Scaling factor for source CRS coord differences,Used in general polynomial transformations to normalise coordinate differences to an acceptable numerical range.,EPSG guidance note number 7.,EPSG,2002-10-11 00:00:00,,0
+8695,Scaling factor for target CRS coord differences,Used in general polynomial transformations to normalise coordinate differences to an acceptable numerical range.,EPSG guidance note number 7.,EPSG,2002-10-11 00:00:00,,0
+8696,Scaling factor for coord differences,Used in reversible polynomial transformations to normalise coordinate differences to an acceptable numerical range. For the reverse transformation the forward target CRS becomes the reverse source CRS and forward source CRS becomes the reverse target CRS.,EPSG guidance note number 7.,EPSG,2002-10-11 00:00:00,,0
+8697,Au5v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8698,Au0v8,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8699,Au9v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8700,Au2v7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8701,Au1v9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8702,Au3v9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8703,Bu7v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8704,Bu6v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8705,Bu4v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8706,Bu8v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8707,Bu7v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8708,Bu2v7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8709,Bu0v9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8710,Bu4v6,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8711,Bu9v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8712,Bu8v3,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8713,Bu5v7,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8714,Bu9v4,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8715,Bu4v9,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8716,Au1v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8717,Au0v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8718,Au2v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8719,Au1v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8720,Au0v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8721,Au3v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8722,Au2v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8723,Au1v2,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8724,Bu1v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8725,Bu0v1,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8726,Bu2v0,Coefficient used in polynomial transformations.,EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
 8801,Latitude of natural origin,"The latitude of the point from which the values of both the geographical coordinates on the ellipsoid and the grid coordinates on the projection are deemed to increment or decrement for computational purposes. Alternatively it may be considered as the latitude of the point which in the absence of application of false coordinates has grid coordinates of (0,0).",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
 8802,Longitude of natural origin,"The longitude of the point from which the values of both the geographical coordinates on the ellipsoid and the grid coordinates on the projection are deemed to increment or decrement for computational purposes. Alternatively it may be considered as the longitude of the point which in the absence of application of false coordinates has grid coordinates of (0,0).  Sometimes known as ""central meridian (CM)"".",EPSG guidance note number 7.,EPSG,2002-06-22 00:00:00,2002.39,0
 8805,Scale factor at natural origin,"The factor by which the map grid is reduced or enlarged during the projection process, defined by its value at the natural origin.",EPSG guidance note number 7.,EPSG,1999-09-09 00:00:00,,0
@@ -97,3 +156,5 @@ flattening  = 1 / (inverse_flattening).",EPSG guidance note number 7.,EPSG,2000-
 8829,Spherical longitude of origin,The longitude of the point from which the values of both the geographical coordinates on the sphere and the grid coordinates on a spherical projection are deemed to increment or decrement for computational purposes.,EPSG guidance note number 7.,EPSG,2001-06-05 00:00:00,,0
 8830,Initial longitude,The longitude of the western limit of the first zone of a Transverse Mercator zoned grid system.,EPSG,EPSG,2001-06-05 00:00:00,,0
 8831,Zone width,The longitude width of a zone of a Transverse Mercator zoned grid system.,EPSG,EPSG,2001-06-05 00:00:00,,0
+8832,Latitude of standard parallel,"For polar aspect azimuthal projections, the parallel on which the scale factor is defined to be unity.",EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
+8833,Longitude of origin,"For polar aspect azimuthal projections, the meridian along which the northing axis increments and also across which parallels of latitude increment towards the north pole.",EPSG guidance note number 7.,EPSG,2003-09-22 00:00:00,,0
