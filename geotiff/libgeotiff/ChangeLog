@@ -1,3 +1,14 @@
+2003-01-15  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geotiff.h: added LIBGEOTIFF_VERSION macro.
+
+	* geo_normalize.c/h: Added GTIFFreeMemory() for freeing memory
+	allocated by GTIF CSV lookup functions.  Added GTIFDeaccessCSV()
+	call for applications to force all CSV files to be de-cached.
+
+	* cpl_serv.h: renamed lots of CPL functions with gt prefixes using
+	macros. 
+
 2003-01-07  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* configure.in: fixed some stuff with last changes.  The --with-libtiff
