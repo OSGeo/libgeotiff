@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.4  2002/12/01 23:44:34  warmerda
+ * Fixed typo in last fix.
+ *
  * Revision 1.3  2002/12/01 23:42:06  warmerda
  * added overrides for two deprecated stateplane zones
  *
@@ -508,7 +511,7 @@ int	GTIFMapSysToProj( int MapSys, int nZone )
 
         /* Kentucky North override */
         if( nZone == 1601 )
-            PCSCode = 15303;
+            ProjCode = 15303;
     }
 
     return( ProjCode );
