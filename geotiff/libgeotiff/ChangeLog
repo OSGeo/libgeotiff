@@ -2,6 +2,8 @@
 
 	* Prepare 1.1.4 final release.
 
+	* Added README_BIN, and mkbindist.sh.
+
 	* Modified csv search code to include a search of 
 	share/epsg_csv and /usr/share/epsg_csv
 
