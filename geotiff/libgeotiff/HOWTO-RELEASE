@@ -1,0 +1,11 @@
+	Preparing a libgeotiff Release
+	==============================
+
+
+ 1) Update the VERSION_MAJOR/MINOR/POINT information in configure.in.
+
+ 2) Add a note to the ChangeLog that a new release is being issued, and what
+    the release number is.
+
+ 3) Tag the release with a command like "cvs tag libgeotiff_1_1_4" from the
+    libgeotiff directory.
