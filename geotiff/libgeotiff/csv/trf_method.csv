@@ -1,0 +1,1188 @@
+"COORD_TRF_METHOD_CODE","CTRF_METHOD_EPSG_NAME","CTRF_METHOD_USER_NAME","DESCRIPTION","PARAM_1_NAME","PARAM_2_NAME","PARAM_3_NAME","PARAM_4_NAME","PARAM_5_NAME","PARAM_6_NAME","PARAM_7_NAME","PARAM_8_NAME","PARAM_9_NAME","PARAM_10_NAME","PARAM_11_NAME","PARAM_12_NAME","PARAM_13_NAME","PARAM_14_NAME","PARAM_15_NAME","PARAM_16_NAME","PARAM_17_NAME","PARAM_18_NAME","PARAM_19_NAME","PARAM_20_NAME","PARAM_21_NAME","PARAM_22_NAME","PARAM_23_NAME","PARAM_24_NAME","PARAM_25_NAME","PARAM_26_NAME","PARAM_27_NAME","PARAM_28_NAME","PARAM_29_NAME","PARAM_30_NAME","PARAM_31_NAME","PARAM_32_NAME","PARAM_33_NAME","PARAM_34_NAME","PARAM_35_NAME","PARAM_36_NAME","PARAM_37_NAME","FORMULA","EXAMPLE","REVISION_DATE","INFORMATION_SOURCE","DATA_SOURCE","REMARKS","CHANGE_ID"
+9601,Longitude rotation,,The value of the origin of longitude system 2 in longitude system 1.,Longitude rotation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9602,Geodetic/geocentric conversions,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Latitude, P, and Longitude, L, in terms of Geographic Coordinate System (GCS) A may \
+be expressed in terms of a geocentric (earth centred) cartesian coordinate system X, Y, Z \
+with the Z axis corresponding with the Polar axis positive northwards, the X axis through \
+the intersection of the Greenwich meridian and equator, and the Y axis through the \
+intersection of the equator with longitude 90 degrees E. If the GCS's prime meridian is not \
+Greewich, longitudes must first be converted to their Greenwich equivalent. If the earth's \
+spheroidal semi major axis is a, semi minor axis  b, and inverse flattening 1/f,  then\
+\
+   XA=   (nu + hA) cos P cos L\
+   YA=   (nu + hA) cos P sin L\
+   ZA=  ((1 - e^2) nu + hA) sin P\
+\
+where nu is the prime vertical radius of curvature at latitude P and is equal to \
+   nu = a /(1 - e^2*sin^2(P))^0.5,\
+   P and L are respectively the latitude and longitude (related to Greenwich) of the \
+point \
+   h is height above the ellipsoid, (topographic height plus geoidal height), and\
+   e is the eccentricity of the ellipsoid where e^2 = (a^2 -b^2)/a^2 = 2f -f^2\
+                                                                                                                                                   Cartesian coordinates in geocentric coordinate system  B may be used \
+to derive geographical coordinates in terms of geographic coordinate system B by:\
+   P   =  arctan (ZB + e^2* nu*sin P) / (XB^2 + YB^2)^0.5 by iteration\
+   L   = arctan YB/XB\
+   hB  =  XB sec L sec P  - nu\
+\
+where LB is relative to Greenwich. If the geographic system has a non Greenwich prime \
+meridian, the Greenwich value of the local prime meridian should be applied to longitude.\
+\
+(Note that h is the height above the ellipsoid. This is the height value which is \
+delivered by Transit and GPS satellite observations but is not the topographic \
+height value which is normally used for national mapping and levelling operations. \
+The topographic height is usually the height above mean sea level or an alternative \
+level reference for the country. If one starts with a topographic height,  it will be \
+necessary to convert it to an ellipsoid height before using the above transformation \
+formulas. h = N + H, where N is the geoid height above the ellipsoid at the point \
+and is sometimes negative, and H is the height of the point above the geoid. The \
+height above the geoid is often taken to be that above mean sea level, perhaps with \
+a constant correction applied. Geoid heights of points above the nationally used \
+ellipsoid may not be readily available. For the WGS84 ellipsoid the value of N, \
+representing the height of the geoid relative to the ellipsoid, can vary between \
+values of -100m in the Sri Lanka area to +60m in the North Atlantic.)","Consider a North Sea point with coordinates derived by GPS satellite in the WGS84 geographical coordinate system with coordinates of:\
+\
+           latitude    53 deg 48 min 33.82 sec N, \
+           longitude 02 deg 07 min 46.38 sec E, \
+    and ellipsoidal height 73.0m, \
+\
+whose coordinates are required in terms of the ED50 geographical coordinate system which takes the International 1924 ellipsoid. The three parameter datum shift from WGS84 to ED50 for this North Sea area is given as dX = +84.87m, dY = +96.49m, dZ = +116.95m. \
+\
+The WGS84 geographical coordinates convert to the following geocentric values using the above formulas for X, Y, Z:\
+\
+   XA = 3771 793.97m\
+   YA =   140 253.34m\
+   ZA = 5124 304.35m\
+\
+Applying the quoted datum shifts to these, we obtain new geocentric values now related to ED50:\
+\
+   XB = 3771 878.84m\
+   YB =   140 349.83m\
+   ZB = 5124 421.30m\
+\
+These convert to ED50 values on the International 1924 ellipsoid as:\
+           latitude    53 deg 48 min 36.565 sec N, \
+           longitude 02 deg 07 min 51.477 sec E, \
+    and ellipsoidal height 28.02 m, \
+\
+Note that the derived height is referred to the International 1924 ellipsoidal surface and will need a further correction for the height of the geoid at this point in order to relate it to Mean Sea Level.",1996-09-18 00:00:00,"\"Transformation from spatial to geographical coordinates\"; B. R. Bowring; Survey Review number 181; July 1976.",EPSG,,97.29
+9603,Geocentric translations,,,X-axis translation,Y-axis translation,Z-axis translation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"If  we may assume that the minor axes of the ellipsoids are parallel, then shifts dX, dY, dZ \
+in the sense from datum A to datum B may then be applied as\
+\
+   XB = XA + dX \
+   YB = YA + dY\
+   ZB = ZA + dZ","Given a three parameter datum shift from WGS84 to ED50 for this North Sea area is given as \
+dX = +84.87m, dY = +96.49m, dZ = +116.95m. \
+\
+The WGS84 geographical coordinates convert to the following GS84 geocentric values using \
+the above formulas for X, Y, Z:\
+\
+   XA = 3771 793.97m\
+   YA =   140 253.34m\
+   ZA = 5124 304.35m\
+\
+Applying the given datum shifts to these, we obtain new geocentric values now related \
+to ED50:\
+\
+   XB = 3771 878.84m\
+   YB =   140 349.83m\
+   ZB = 5124 421.30m",1996-09-18 00:00:00,POSC 2.2.1,EPSG,,
+9604,Molodenski,,,X-axis translation,Y-axis translation,Z-axis translation,Semi-major axis length difference,Flattening difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9605,Abridged Molodenski,,,X-axis translation,Y-axis translation,Z-axis translation,Semi-major axis length difference,Flattening difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"As an alternative to the above computation of the new latitude, longitude and height above ellipsoid in discrete steps, the changes in these coordinates may be derived directly by formulas derived by Molodenski. Abridged versions of these formulas, which are quite satisfactory for three parameter transformations, are as follows:\
+	\
+ 	Dj \" =	 206265 (-dXsinjcosl - dYsinjsinl + dZcosj + [aDf  + fDa ]sin2j)		   	       r\
+\
+	Dl \" = 	206265 (-dXsinl + dYcosj)\
+		      n\
+\
+	 Dh = dXcosjcosl + dYcosjsinl + dZsinj + (aDf + fDa)sin2j - Da\
+\
+where the dX, dY and dZ terms are as before, and r and n are the meridian and prime vertical radii of curvature at the given latitude j on the first ellipsoid (see section 1.4), Da is the difference in the semi-major axes (a1 - a2) of the first and econd ellipsoids and Df  is the difference in the flatteing of the two ellipsoids.\
+\
+The formulas for Dj and Dl indicate changes in j and l in arc-seconds.",,1996-09-18 00:00:00,,EPSG,,
+9606,Position Vector 7-param. transformation,,,X-axis translation,Y-axis translation,Z-axis translation,X-axis rotation,Y-axis rotation,Z-axis rotation,Scale difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Transformation of coordinates from one geographic coordinate system into another (also known as a \"datum transformation\") is usually carried out as an implicit concatenation of three transformations:\
+[geographical to geocentric >> geocentric to geocentric >> geocentric to geographic]\
+\
+The middle part of the concatenated transformation, from geocentric to geocentric, is usually described as a simplified 7-parameter Helmert transformation, expressed in matrix form with 7 parameters, in what is known as the \"Bursa-Wolf\" formula:\
+\
+   (X’)             (  1       -Rz    +Ry)      (X)     (dX)\
+   (Y’)  =  M * ( +Rz     1      -Rx)  *  (Y)  + (dY)\
+   (Z’)              ( -Ry   +Rx       1 )      (Z)      (dZ)\
+\
+The parameters are commonly referred to defining the datum transformation \"from Datum 'A' to Datum 'B'\", whereby (X, Y, Z) are the geocentric coordinates of the point on Datum ‘A’ and (X’, Y’, Z’) are the geocentric coordinates of the point on Datum ‘B’.  However, that does not define the parameters uniquely; neither is the definition of the parameters implied in the formula, as is often believed.  However, the following definition, which is consistent witth the \"Position Vector Transformation\" convention, is common E&P survey practice: \
+\
+(dX, dY, dZ)   :Translation vector, to be added to the point's position vector in coordinate system 'A' in order to transform from system 'A' to system 'B'; also: the coordinates of the origin of system 'A' in the 'B' frame.\
+\
+(Rx, Ry, Rz)   :Rotations to be applied to the point's vector.  The sign convention is such that a positive rotation about an axis is defined as a clockwise rotation of the position vector when viewed from the origin of the Cartesian coordinate system in the positive direction of that axis. E.g. a positive rotation about the Z-axis only from system 'A' to system 'B' will result in a larger longitude value for the point in system 'B'.\
+\
+M                  :	The scale correction to be made to the position vector in coordinate system 'A' in order to obtain the correct scale of coordinate system 'B'. M = (1+S*10 6), whereby S is the scale correction expressed in parts per million.  \
+\
+<<<<<This text continues in the description of the Coordinate Frame Rotation formula>>>>>","Input point: \
+Coordinate system: WGS72 (geographic 3D)\
+  Latitude =   55 deg 00 min 00 sec \
+  Longitude =  4 deg 00 min 00 sec \
+  Ellipsoidal height =  0 m\
+This transforms to cartesian geocentric coords:\
+    X = 3 657 660.66 (m)  \
+    Y =    255 768.55 (m)\
+    Z = 5 201 382.11 (m)\
+\
+Transformation parameters WGS72 to WGS84:\
+   dX (m) = 0.000 \
+   dY (m) = 0.000 \
+   dZ (m) = +4.5\
+   RX (\") = 0.000 \
+   RY (\") = 0.000\
+   RZ (\") = +0.554\
+   Scale (ppm) = +0.219\
+\
+Application of the 7 parameter Position Vector Transformation results in WGS 84 coordinates of:\
+   X = 3 657 660.78 (m)\
+   Y =    255 778.43 (m)\
+   Z = 5 201 387.75 (m)\
+This converts into:\
+   Latitude =   55 deg 00 min 00.090 sec\
+   Longitude =  4 deg 00 min 00.554 sec\
+   Ellipsoidal height =  +3.22 m",1996-09-18 00:00:00,,EPSG,,98.16
+9607,Coordinate Frame 7-param. transformation,,,X-axis translation,Y-axis translation,Z-axis translation,X-axis rotation,Y-axis rotation,Z-axis rotation,Scale difference,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"<<<<<This text is continued from the description of the Position Vector Transformation formula>>>>>\
+\
+Although being common practice in particularly the European E&P industry Position Vector Transformation sign convention is not universally accepted.  A variation on this formula is also used, particularly in the USA E&P industry.  That formula is based on the same definition of translation and scale parameters, but a different definition of the rotation parameters.  The associated convention is known as the \"Coordinate Frame Rotation\" convention. \
+The formula is:\
+\
+   (X’)             (  1      +Rz      -Ry)    (X)      (dX)\
+   (Y’)  =  M * ( -Rz      1      +Rx) * (Y)  +  (dY)\
+   (Z’)              ( +Ry   -Rx        1 )    (Z)       (dZ)\
+\
+and the parameters are defined as:\
+\
+(dX, dY, dZ)   : Translation vector, to be added to the point's position vector in coordinate system 'A' in order to transform from system 'A' to system 'B'; also: the coordinates of the origin of system 'A' in the 'B' frame.\
+\
+(Rx, Ry, Rz)   : Rotations to be applied to the coordinate frame.  The sign convention is such that a positive rotation of the frame about an axis is defined as a clockwise rotation of the coordinate frame when viewed from the origin of the Cartesian coordinate system in the positive direction of that axis, that is a positive rotation about the Z-axis only from system 'A' to system 'B' will result in a smaller longitude value for the point in system 'B'.\
+\
+M                  : The scale factor to be applied to the position vector in coordinate system 'A' in order to obtain the correct scale of coordinate system 'B'. M = (1+S*10 6), whereby S is the scale correction expressed in parts per million.\
+\
+In the absence of rotations the two formulas are identical; the difference is solely in the rotations. The name of the second method reflects this.\
+\
+Note that the same rotation that is defined as positive in the first method is consequently negative in the second and vice versa.  It is therefore crucial that the convention underlying the definition of the rotation parameters is clearly understood and is communicated when exchanging datum transformation parameters, so that the parameters may be associated with the correct coordinate transformation method (algorithm).","The same example as for the Position Vector Transformation can be calculated, however the following transformation parameters have to be applied to achieve the same input and output in terms of coordinate values:\
+\
+Transformation parameters Coordinate Frame Rotation convention:\
+dX (m) = 0.000 \
+dY (m) = 0.000 \
+dZ (m) = +4.5 \
+RX (\") = 0.000\
+RY (\") = 0.000\
+RZ (\") = -0.554\
+Scale (ppm) = +0.219\
+\
+Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",1996-09-18 00:00:00,,EPSG,,
+9608,Similarity transform,,,A1,A2 * m,A3 * n,B1,B2 * m,B3 * n,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9609,2-dimensional Affine transformation,,,A1,A2 * m,A3 * n,B1,B2 * m,B3 * n,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9610,2nd-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9611,3rd-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,A7 * mmm,A8 * mmn,A9 * mnn,A10 * nnn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,B7 * mmm,B8 * mmn,B9 * mnn,B10 * nnn,,,,,,,,,,,,,,,,1996-09-18 00:00:00,,EPSG,,
+9612,4th-order Polynomial function,,,Ordinate 1 of source evaluation point,Ordinate 2 of source evaluation point,Ordinate 1 of target evaluation point,Ordinate 2 of target evaluation point,A1,A2 * m,A3 * n,A4 * mm,A5 * mn,A6 * nn,A7 * mmm,A8 * mmn,A9 * mnn,A10 * nnn,A11 * mmmm,A12 * mmmn,A13 * mmnn,A14 * mnnn,A15 * nnnn,B1,B2 * m,B3 * n,B4 * mm,B5 * mn,B6 * nn,B7 * mmm,B8 * mmn,B9 * mnn,B10 * nnn,B11 * mmmm,B12 * mmmn,B13 * mmnn,B14 * mnnn,B15 * nnnn,,,,"For TRF_POLYNOMIAL 1000, m=Latitude (degrees) of Source Evaluation Point  - 55, and n=longitude of Source Evaluation Point  (degrees east of Greenwich)",,1996-09-18 00:00:00,,EPSG,,
+9613,NADCON,,NAD27-NAD83 geodetic transformation for United States.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Latitude difference gridded binary file,Longitude difference gridded binary file,,,,1996-09-18 00:00:00,US Coast and geodetic Survey - http://www.ngs.noaa.gov,EPSG,Input expects longitudes to be positive west.,
+9614,Canada NTv1,,NAD27-NAD83 geodetic transformation for Canada.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-11-13 00:00:00,Geomatics Canada - Geodetic Survey Division.,EPSG,Superceded in 1997 by NTv2 (transformation method code 9615).   Input expects longitudes to be positive west.,
+9615,Canada NTv2,,NAD27-NAD83 geodetic transformation for Canada.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-11-13 00:00:00,www.geod.emr.ca/html-public/GSDapps/English/NTv2_Fact_Sheet.html,EPSG,Supercedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,
+9616,Vertical Offset,,The value of the origin of vertical coordinate system 2 in vertical coordinate system 1.,Vertical offset,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,V2 = [(V1 * U1) - (O12 * Uoff)] * (m / U2) where V2 = value in second vertical coordinate system; V1 = value in first system; O12 is the value of the the origin of system 2 in system 1; m is unit direction multiplier (m=1if both systems are height or both are depth; m=-1 if one system is height and the other system is depth; the value of m is implied through the vertical coordinate system type attbribute); U1 U2 and Uoff are unit conversion ratios to metres for systems 1 2 and the offset value respectively.,,1997-11-13 00:00:00,,EPSG,,
+9617,Madrid to ED50,,,A,B,C,D,E,F,G,H,J,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"The original geographic coordinate system for the Spanish mainland was based on Madrid 1870 datum, Struve 1860 ellipsoid, with longitudes related to the Madrid meridian.  Three polynomial expressions have been empirically derived by El Servicio Geográfico del Ejército to convert geographical coordinates based on this system to equivalent values based on the European Datum of 1950 (ED50).  The polynomial coefficients derived can be used to convert from Madrid 1870 to ED50.  Three pairs of expressions have been derived: each pair is used to calculate the shift in latitude and longitude respectively for (i) a mean for all Spain, (ii) a better fit for the north of Spain, (iii) a better fit for the south of Spain.\
+\
+The polynomial expressions transformations are:\
+\
+      dLat seconds = A + (B*Lon) + (C*Lat) + (D*h)\
+      dLon seconds =  (E+F) + (G*Lon) + (H*Lat) + (J*h)\
+\
+where Lat and Lon are in decimal degrees referred to the Madrid 1870 (Madrid) geographic coordinate system and h in metres.  E is the longitude (in seconds) of the Madrid meridian measured from the Greenwich meridian.","Input point coordinate system: Madrid 1870 (Madrid) (geographic 3D)\
+   Latitude =   42 deg 38 min 52.77 sec N = 42.647992 degrees\
+   Longitude =  3 deg 39 min 34.57 sec E of Madrid = +3.659603 degrees from the Madrid meridian.\
+   Height =  0 m\
+\
+For the north zone transformation:\
+A = 11.3287790      E = -13336.58\
+B = -0.0385200       F = 2.5079425\
+C = -0.1674000      G = -0.0086400\
+D = 0.0000379        H = 0.835200\
+                              J = -0.0000038\
+\
+dLat = +4.05\
+ED50 Latitude = 42 deg 38 min 56.82 sec N\
+\
+dLon = -13330.54 seconds  = -3 deg 41 min 10.54 sec\
+ED50 Longitude = 0 deg 01 min 35.97 sec W of Greenwich.",1998-11-11 00:00:00,Institut de Geomatica; Barcelona,EPSG,,
+9801,Lambert Conic Conformal (1SP),,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Lambert Conic Conformal\
+\
+Conical projections with one standard parallel are normally considered to maintain the nominal map scale along the parallel of latitude which is the line of contact between the imagined cone and the ellipsoid. For a one standard parallel Lambert the natural origin of the projected coordinate system is the intersection of the standard parallel with the longitude of origin (central meridian). See Figure 5. To maintain the conformal property the spacing of the parallels is variable and increases with increasing distance from the standard parallel, while the meridians are all straight lines radiating from a point on the prolongation of the ellipsoid's minor axis. \
+\
+Sometimes however, although a one standard parallel Lambert is normally considered to have unity scale factor on the standard parallel, a scale factor of \
+slightly less than unity is introduced on this parallel. This is a regular feature of the mapping of some former French territories and has the effect of making the scale \
+factor unity on two other parallels either side of the standard parallel. The projection thus, strictly speaking, becomes a Lambert Conic Conformal projection with two \
+standard parallels. From the one standard parallel and its scale factor it is possible to derive the equivalent two standard parallels and then treat the projection as a two standard parallel Lambert conical conformal, but this procedure is seldom adopted.  Since the two parallels obtained in this way will generally not have integer values of degrees or degrees and minutes it is instead usually preferred to select two specific parallels on which the scale factor is to be unity, - as for several State Plane Coordinate systems in the United States.\
+\
+The choice of the two standard parallels will usually be made according to the latitudinal extent of the area which it is wished to map, the parallels usually being chosen so that they each lie a proportion inboard of the north and south margins of the mapped area. Various schemes and formulas have been developed to make this selection such that the maximum scale distortion within the mapped area is minimised, e.g. Kavraisky in 1934, but whatever two standard parallels are adopted the formulas for the projected coordinates are the same. \
+\
+For territories with limited latitudinal extent but wide longitudinal width it may sometimes be preferred to use a single projection  rather than several bands or zones \
+of a Transverse Mercator. If the latitudinal extent is also large there may still be a need to use two or more zones if the scale distortion at the extremities of the one \
+zone becomes too large to be tolerable.\
+\
+To derive the projected Easting and Northing coordinates of a point with geographical coordinates (*,*) the formulas for the two standard parallel case are:\
+\
+Easting, E = EF + r sin *\
+	Northing, N = NF + rF - r cos *	 \
+\
+where 	m = cos*/(1 - e2sin2*)1/2     for m1, *1, and m2, *2 where *1 and *2  are the latitudes \
+of 			the standard parallels\
+	t  = tan(*/4 - */2)/[(1 - e sin*)/(1 + e sin*)]e/2   for t1, t2, tF and t using *1,*2,*\
+F and * 			respectively\
+	n = (loge m1 - loge m2)/(loge t1 - loge t2)\
+	F = m1/(nt1n)\
+	r =  a F tn         for rF and r, where rF is the radius of the parallel of latitude of the \
+false origin\
+	* = n(* - *0)\
+\
+The reverse formulas to derive the latitude and longitude of a point from its Easting and \
+Northing values are:\
+\
+	* = */2 - 2arctan{t'[(1 - esin*)/(1 + esin*)]e/2}\
+	* = *'/n +*0\
+where\
+	r' = *[(E - EF)2 + {rF - (N - NF)}2]1/2 , taking the sign of n\
+	t' = (r'/aF)1/n\
+	*' = arctan [(E- EF)/(rF - (N- NF))]\
+and n, F, and rF are derived as for the forward calculation.\
+\
+With minor modifications these formulas can be used for the single standard parallel \
+case. Then\
+	E = FE + r sin*\
+	N = FN + r0 - r cos*,  using the natural origin rather than the false origin.\
+where\
+	n = sin *0\
+	r = aFtn k0     	for r0, and r\
+	t is found for  t0, *0 and t, * and m, F, and * are found as for the two standard \
+parallel case\
+	The reverse formulas for * and * are as for the two standard parallel case above, \
+with n, F and r0 as before and\
+\
+	*' = arctan[(E - FE)/{r0 -(N - FN)}]\
+	r' = *[(E - FE)2 + {r0 - (N - FN)}2]1/2\
+	t' = (r'/ak0F)1/n","For Projected Coordinate System JAD69 / Jamaica National Grid\
+\
+Parameters:\
+Ellipsoid:  Clarke 1866, a = 6378206.400 m., 1/f = 294.97870\
+                                   then  e = 0.08227185 and e^2 = 0.00676866\
+\
+Latitude Natural Origin         18 deg 00 min 00 sec N  =  0.31415927 rad\
+Longitude Natural Origin     77 deg 00 min 00 sec W = -1.34390352 rad\
+Scale factor at origin            1.000000\
+False Eastings  FE               250000.00 m\
+False Northings FN              150000.00 m\
+\
+Forward calculation for: \
+Latitude:     17 deg 55 min 55.80 sec N  =  0.31297535 rad\
+Longitude:  76 deg 56 min 37.26 sec W = -1.34292061 rad\
+first gives\
+m0    =  0.95136402        t0 =  0.72806411\
+F       =  3.39591092        n  =  0.30901699\
+r        =  19643955.26     r0  =  19636447.86\
+theta =  0.00030374        t   =  0.728965259\
+\
+Then Easting E   =     255966.58 m\
+         Northing N =      142493.51 m\
+\
+Reverse calculation for the same easting and northing first gives\
+\
+theta' =  0.000303736\
+t'        =  0.728965259\
+m0     =  0.95136402\
+r'        =  19643955.26\
+\
+Then Latitude     = 17 deg 55 min 55.800 sec N\
+         Longitude  = 76 deg 56 min 37.260 sec W",1996-09-18 00:00:00,POSC 1.4.1,EPSG,,
+9802,Lambert Conic Conformal (2SP),,,Latitude of first standard parallel,Latitude of second standard parallel,Latitude of false origin,Longitude of false origin,,Easting at false origin,Northing at false origin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Lambert Conic Conformal\
+		\
+Conical projections with one standard parallel are normally considered to maintain the \
+nominal map scale along the parallel of latitude which is the line of contact between the \
+imagined cone and the ellipsoid. For a one standard parallel Lambert the natural origin of \
+the projected coordinate system is the intersection of the standard parallel with the \
+longitude of origin (central meridian). See Figure 5. To maintain the conformal property \
+the spacing of the parallels is variable and increases with increasing distance from the \
+standard parallel, while the meridians are all straight lines radiating from a point on the \
+prolongation of the ellipsoid's minor axis. \
+\
+Sometimes however, although a one standard parallel Lambert is normally \
+considered to have unity scale factor on the standard parallel, a scale factor of \
+slightly less than unity is introduced on this parallel. This is a regular feature of the \
+mapping of some former French territories and has the effect of making the scale \
+factor unity on two other parallels either side of the standard parallel. The projection \
+thus, strictly speaking, becomes a Lambert Conic Conformal projection with two \
+standard parallels. From the one standard parallel and its scale factor it is possible to \
+derive the equivalent two standard parallels and then treat the projection as a two \
+standard parallel Lambert conical conformal, but this procedure is seldom adopted. \
+Since the two parallels obtained in this way will generally not have integer values of \
+degrees or degrees and minutes it is instead usually preferred to select two specific \
+parallels on which the scale factor is to be unity, - as for several State Plane \
+Coordinate systems in the United States.\
+	\
+ The choice of the two standard parallels will usually be made according to the latitudinal \
+extent of the area which it is wished to map, the parallels usually being chosen so that they \
+each lie a proportion inboard of the north and south margins of the mapped area. Various \
+schemes and formulas have been developed to make this selection such that the maximum \
+scale distortion within the mapped area is minimised, e.g. Kavraisky in 1934, but whatever \
+two standard parallels are adopted the formulas for the projected coordinates are the \
+same. \
+\
+For territories with limited latitudinal extent but wide longitudinal width it may \
+sometimes be preferred to use a single projection  rather than several bands or zones \
+of a Transverse Mercator. If the latitudinal extent is also large there may still be a \
+need to use two or more zones if the scale distortion at the extremities of the one \
+zone becomes too large to be tolerable.\
+\
+To derive the projected Easting and Northing coordinates of a point with \
+geographical coordinates (*,*) the formulas for the two standard parallel case are:\
+\
+	Easting, E = EF + r sin *\
+	Northing, N = NF + rF - r cos *	 \
+\
+where 	m = cos*/(1 - e2sin2*)1/2     for m1, *1, and m2, *2 where *1 and *2  are the latitudes \
+of 			the standard parallels\
+	t  = tan(*/4 - */2)/[(1 - e sin*)/(1 + e sin*)]e/2   for t1, t2, tF and t using *1,*2,*\
+F and * 			respectively\
+	n = (loge m1 - loge m2)/(loge t1 - loge t2)\
+	F = m1/(nt1n)\
+	r =  a F tn         for rF and r, where rF is the radius of the parallel of latitude of the \
+false origin\
+	* = n(* - *0)\
+\
+The reverse formulas to derive the latitude and longitude of a point from its Easting and \
+Northing values are:\
+\
+	* = */2 - 2arctan{t'[(1 - esin*)/(1 + esin*)]e/2}\
+	* = *'/n +*0\
+where\
+	r' = *[(E - EF)2 + {rF - (N - NF)}2]1/2 , taking the sign of n\
+	t' = (r'/aF)1/n\
+	*' = arctan [(E- EF)/(rF - (N- NF))]\
+and n, F, and rF are derived as for the forward calculation.\
+\
+With minor modifications these formulas can be used for the single standard parallel \
+case. Then\
+	E = FE + r sin*\
+	N = FN + r0 - r cos*,  using the natural origin rather than the false origin.\
+where\
+	n = sin *0\
+	r = aFtn k0     	for r0, and r\
+	t is found for  t0, *0 and t, * and m, F, and * are found as for the two standard \
+parallel case\
+	The reverse formulas for * and * are as for the two standard parallel case above, \
+with n, F and r0 as before and\
+\
+	*' = arctan[(E - FE)/{r0 -(N - FN)}]\
+	r' = *[(E - FE)2 + {r0 - (N - FN)}2]1/2\
+	t' = (r'/ak0F)1/n","For Projected Coordinate System NAD27 / Texas South Central\
+\
+Parameters:\
+Ellipsoid  Clarke 1866, a = 6378206.400 metres = 20925832.16 US survey feet\
+                                   1/f = 294.97870\
+then e = 0.08227185 and e^2 = 0.00676866\
+\
+First Standard Parallel          28o23'00\"N  =   0.49538262 rad\
+Second Standard Parallel    30o17'00\"N  =   0.52854388 rad\
+Latitude False Origin            27o50'00\"N  =   0.48578331 rad\
+Longitude False Origin         99o00'00\"W = -1.72787596 rad\
+Easting at false origin           2000000.00  US survey feet\
+Northing at false origin          0.00  US survey feet\
+\
+Forward calculation for: \
+Latitude       28o30'00.00\"N  =  0.49741884 rad\
+Longitude    96o00'00.00\"W = -1.67551608 rad\
+\
+first gives :\
+m1    = 0.88046050      m2 = 0.86428642\
+t        = 0.59686306      tF  = 0.60475101\
+t1      = 0.59823957      t2 = 0.57602212\
+n       = 0.48991263       F = 2.31154807\
+r        = 37565039.86    rF = 37807441.20\
+theta = 0.02565177\
+\
+Then Easting E =      2963503.91 US survey feet\
+         Northing N =      254759.80 US survey feet\
+\
+Reverse calculation for same easting and northing first gives:\
+theta' = 0.025651765     r' = 37565039.86\
+t'        = 0.59686306\
+\
+Then Latitude     	= 28o30'00.000\"N\
+         Longitude   = 96o00'00.000\"W",1996-09-18 00:00:00,POSC 1.4.1,EPSG,,
+9803,Lambert Conic Conformal (2SP Belgium),,,Latitude of first standard parallel,Latitude of second standard parallel,Latitude of false origin,Longitude of false origin,,Easting at false origin,Northing at false origin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Since 1972 a modified form of the two standard parallel case has been used in Belgium.  \
+For the Lambert Conic Conformal (2 SP Belgium), the formulas for the standard two \
+standard parallel case given above are used except for: \
+	Easting, E = EF + r sin (* - a)\
+	Northing, N = NF + rF - r cos (* - a)\
+and for the reverse formulas\
+	* = ((*' + a)/n) +*0\
+where a = 29.2985 seconds.","For Projected Coordinate System Belge l972 / Belge Lambert 72\
+\
+Parameters:\
+Ellipsoid  International 1924,  a = 6378388 metres\
+                                              1/f = 297\
+then e = 0.08199189 and e^2 = 0.006722670\
+\
+First Standard Parallel        49o50'00\"N       =   0.86975574 rad\
+Second Standard Parallel  51o10'00\"N       =   0.89302680 rad\
+Latitude False Origin          90o00'00\"N       =   1.57079633 rad\
+Longitude False Origin         4o21'24.983\"E = 0.07604294 rad\
+Easting at false origin EF        150000.01  metres\
+Northing at false origin NF    5400088.44  metres\
+\
+Forward calculation for: \
+Latitude        50o40'46.461\"N  =  0.88452540 rad\
+Longitude       5o48'26.533\"E   = 0.10135773 rad\
+\
+first gives :\
+m1     = 0.64628304         m2 = 0.62834001\
+t        = 0.59686306          tF  = 0.00000000\
+t1      = 0.36750382           t2 = 0.35433583\
+n       = 0.77164219            F = 1.81329763\
+r        = 37565039.86         rF = 0.00\
+alpha =	0.00014204     theta = 0.01953396\
+\
+Then Easting E  =      251763.20 metres\
+         Northing N =      153034.13 metres\
+\
+Reverse calculation for same easting and northing first gives:\
+theta' = 0.01939192      r' = 548041.03\
+t' = 0.35913403\
+Then Latitude   =    50o40'46.461\"N\
+         Longitude =     5o48'26.533\"E",1996-09-18 00:00:00,POSC 1.4.1,EPSG,,
+9804,Mercator (1SP),,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Mercator\
+	\
+The Mercator projection is a special case of the Lambert Conic Conformal projection  \
+with the equator as the single standard parallel. All other parallels of latitude are straight \
+lines and the meridians are also straight lines at right angles to the equator, equally spaced. \
+It is little used for land mapping purposes but is in universal use for navigation charts and \
+is the basis for the transverse and oblique forms of the Mercator. As well as being \
+conformal, it has the particular property that straight lines drawn on it are lines of constant \
+bearing. Thus navigators may derive their course  from the angle the straight course line \
+makes with the meridians.\
+\
+In the few cases in which the Mercator projection is used for terrestrial applications or \
+land mapping, such as in Indonesia prior to the introduction of the Universal Transverse \
+Mercator, a scale factor may be applied to the projection. This has the same effect as \
+choosing two standard parallels on which the true scale is maintained at equal north and \
+south latitudes either side of the equator.\
+\
+The formulas to derive projected Easting and Northing coordinates are:\
+\
+For the two standard parallel case, k0 is first calculated from\
+\
+k0 = cos*1/(1 - e2sin2*1)1/2 \
+ \
+where *1 is the absolute value of the first standard parallel (i.e. positive).  \
+\
+Then, for both one and two standard parallel cases, \
+\
+	E = FE + ak0(* - *0)              \
+	N = FN + ak0 logn{tan(*/4 + */2)[(1 - esin*)(1 + esin*)]e/2 }                     \
+           		where symbols are as listed above and logarithms are natural.\
+	\
+The reverse formulas to derive latitude and longitude from E and N values are:\
+	\
+	* = * + (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) \
+		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)\
+		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)\
+\
+where 		* = */2 - 2 arctan t\
+		t = B (FN-N)/ak0   		\
+		B = base of the natural logarithm, 2.7182818...\
+		and  for the 2 SP Case, k0 is calculated as for the forward transformation \
+above.\
+ \
+	* =  ((E - FE)/ak0)  + *0","For Projected Coordinate System Makassar / NEIEZ\
+\
+Parameters:\
+Ellipsoid   Bessel 1841  a = 6377397.155 m   1/f = 299.15281\
+then e = 0.08169683\
+\
+Latitude Natural Origin         00o00'00\"N  = 0.0000000 rad\
+Longitude Natural Origin    110o00'00\"E  = 1.91986218 rad\
+Scale factor ko                  0.997\
+False Eastings FE              3900000.00 m\
+False Northings FN              900000.00 m\
+\
+Forward calculation for: \
+Latitude            3o00'00.00\"S   = -0.05235988 rad\
+Longitude     120o00'00.00\"E   =  2.09439510 rad\
+gives\
+Easting  E   =      5009726.58 m\
+Northing N  =        569150.82 m\
+\
+Reverse calculation for same easting and northing first gives :\
+t    = 1.0534121\
+chi = -0.0520110\
+\
+Then Latitude     =   3o00'00.000\"S\
+         Longitude  = 120o00'00.000\"E",1996-09-18 00:00:00,POSC 1.4.2,EPSG,,
+9805,Mercator (2SP),,,Latitude of first standard parallel,Longitude of natural origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Mercator\
+	\
+The Mercator projection is a special case of the Lambert Conic Conformal projection  \
+with the equator as the single standard parallel. All other parallels of latitude are straight \
+lines and the meridians are also straight lines at right angles to the equator, equally spaced. \
+It is little used for land mapping purposes but is in universal use for navigation charts and \
+is the basis for the transverse and oblique forms of the Mercator. As well as being \
+conformal, it has the particular property that straight lines drawn on it are lines of constant \
+bearing. Thus navigators may derive their course  from the angle the straight course line \
+makes with the meridians.\
+\
+In the few cases in which the Mercator projection is used for terrestrial applications or \
+land mapping, such as in Indonesia prior to the introduction of the Universal Transverse \
+Mercator, a scale factor may be applied to the projection. This has the same effect as \
+choosing two standard parallels on which the true scale is maintained at equal north and \
+south latitudes either side of the equator.\
+\
+The formulas to derive projected Easting and Northing coordinates are:\
+\
+For the two standard parallel case, k0 is first calculated from\
+\
+k0 = cos*1/(1 - e2sin2*1)1/2 \
+ \
+where *1 is the absolute value of the first standard parallel (i.e. positive).  \
+\
+Then, for both one and two standard parallel cases, \
+\
+	E = FE + ak0(* - *0)              \
+	N = FN + ak0 logn{tan(*/4 + */2)[(1 - esin*)(1 + esin*)]e/2 }                     \
+           		where symbols are as listed above and logarithms are natural.\
+	\
+The reverse formulas to derive latitude and longitude from E and N values are:\
+	\
+	* = * + (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) \
+		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)\
+		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)\
+\
+where 		* = */2 - 2 arctan t\
+		t = B (FN-N)/ak0   		\
+		B = base of the natural logarithm, 2.7182818...\
+		and  for the 2 SP Case, k0 is calculated as for the forward transformation \
+above.\
+ \
+	* =  ((E - FE)/ak0)  + *0","For Projected Coordinate System Pulkovo 1942 / Mercator Caspian Sea\
+\
+Parameters:\
+Ellipsoid  Krassowski 1940   a = 6378245.00m   1/f = 298.300\
+then e = 0.08181333 and e^2 = 0.00669342\
+\
+Latitude first SP                             42o00'00\"N = 0.73303829 rad\
+Longitude Natural Origin                51o00'00\"E = 0.89011792 rad\
+False Eastings FE                          0.00 m\
+False Northings (at equator) FN     0.00 m\
+  \
+then natural origin at latitude of 0oN has scale factor k0=  0.74426089\
+\
+Forward calculation for: \
+Latitude        53o00'00.00\"N = 0.9250245 rad\
+Longitude     53o00'00.00\"E  = 0.9250245 rad\
+\
+gives Easting E   =     165704.29 m \
+          Northing N =   5171848.07 m\
+\
+Reverse calculation for same easting and northing first gives :\
+t = 0.33639129    chi = 0.92179596\
+\
+Then Latitude     =  53o00'00.000\"N\
+          Longitude  =  53o00'00.000\"E",1996-09-18 00:00:00,POSC 1.4.2,EPSG,,
+9806,Cassini-Soldner,,,Latitude of natural origin,Longitude of natural origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Cassini-Soldner Formula\
+\
+The Cassini-Soldner projection is the ellipsoidal version of the Cassini projection for the \
+sphere. It is not conformal but as it is relatively simple to construct it was extensively used \
+in the last century and is still useful for mapping areas with limited longitudinal extent. It \
+has now largely been replaced by the conformal Transverse Mercator which it resembles. \
+Like this, it has a straight central meridian along which the scale is true, all other meridians \
+and parallels are curved, and the scale distortion increases rapidly with increasing distance \
+from the central meridian.\
+\
+The formulas to derive projected Easting and Northing coordinates are:\
+\
+	Easting, E = FE + *[A - TA3/6 -(8 - T + 8C)TA5/120]\
+\
+	Northing, N = FN + M - M0 + *tan*[A2/2 + (5 - T + 6C)A4/24]		\
+\
+where	A = (* - *0)cos*\
+	T = tan2*\
+	C = e2 cos2*/(1 - e2) \
+and M, the distance along the meridian from equator to latitude *, is given by\
+	M = a[1 - e2/4 - 3e4/64 - 5e6/256 -....)* - (3e2/8 + 3e4/32 + 45e6/1024 +....)sin2* \
+		+ (15e4/256 + 45e6/1024 +.....)sin4* - (35e6/3072 + ....)sin6* + .....]\
+with * in radians.\
+\
+M0 is the value of M calculated for the latitude of the chosen origin. This may not \
+necessarily be chosen as the equator.\
+\
+To compute latitude and longitude from Easting and Northing the reverse formulas are:\
+	* = *1 - (*1tan*1/*1)[D2/2 - (1 + 3T1)D4/24]\
+	* =  *0 + [D - T1D3/3 + (1 + 3T1)T1D5/15]/cos*1\
+\
+where	*1 is the latitude of the point on the central meridian which has the same Northing \
+as the point whose coordinates are sought, and is found from:\
+\
+	*1 = *1 + (3e1/2 - 27e13/32 +.....)sin2*1 + (21e12/16 - 55e14/32 + ....)sin4*1\
+		+ (151e13/96 +.....)sin6*1 + (1097e14/512 - ....)sin8*1 + ......\
+where\
+	e1 = [1- (1 - e2)1/2]/[1 + (1 - e2)1/2]\
+	*1 = M1/[a(1 - e2/4 - 3e4/64 - 5e6/256 - ....)]\
+	M1 = M0 + (N - FN)\
+	T1 = tan2*1\
+	D = (E - FE)/*1","For Projected Coordinate System Trinidad 1903 / Trinidad Grid \
+Parameters:\
+Ellipsoid   Clarke 1858     a = 20926348 ft    = 31706587.88 links\
+                                        b = 20855233 ft\
+\
+then 1/f = 294.97870 and e^2 = 0.00676866\
+\
+Latitude Natural Origin       10o26'30\"N  =  0.182241463 rad\
+Longitude Natural Origin    61o20'00\"W = -1.07046861 rad\
+False Eastings FE              430000.00 links\
+False Northings FN            325000.00 links\
+\
+Forward calculation for: \
+Latitude       10o00'00.00\" N = 0.17453293 rad\
+Longitude    62o00'00.00\"W = -1.08210414 rad\
+\
+A = -0.01145876      C = 0.00662550\
+T = 0.03109120      M = 5496860.24    nu = 31709831.92     M0 = 5739691.12\
+\
+Then Easting E    =  66644.94 links\
+          Northing N =  82536.22 links\
+\
+Reverse calculation for same easting and northing first gives :\
+e1    =   0.00170207       D  =     -0.01145875\
+T1   = 0.03109544         M1 =      5497227.34\
+nu1  = 31709832.34       mu1 =    0.17367306\
+phi1 = 0.17454458         rho1 =    31501122.40\
+\
+\
+Then Latitude     = 10o00'00.000\"N\
+         Longitude  =  62o00'00.000\"W",1996-09-18 00:00:00,POSC 1.4.3,EPSG,,
+9807,Transverse Mercator,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Transverse Mercator Formula\
+\
+The Transverse Mercator projection in its various forms is the most widely used projected \
+coordinate system for world topographical and offshore mapping. All versions have the \
+same basic characteristics and formulas. The differences which distinguish the different \
+forms of the projection which are applied in different countries arise from variations in the \
+choice of the coordinate transformation parameters, namely the latitude of the origin, the \
+longitude of the origin (central meridian), the scale factor at the origin (on the central \
+meridian), and the values of False Easting and False Northing, which embody the units of \
+measurement, given to the origin. Additionally there are variations in the width of the \
+longitudinal zones for the projections used in different territories. \
+\
+The following table indicates the variations in the projection parameters which distinguish \
+the different forms of the Transverse Mercator projection and are used in the Epicentre \
+Transverse Mercator projection method:\
+\
+ \
+TABLE 2\
+Transverse Mercator\
+\
+Name	Areas used	Central \
+meridian(s)	Latitude \
+of origin	CM \
+Scale \
+Factor	Zone width	False \
+Easting at \
+origin	False \
+Northing at \
+origin\
+Transverse \
+Mercator	Various, \
+world wide 	Various	Various	Various	Usually less \
+than 6*	Various	Various\
+							\
+Transverse \
+Mercator \
+south oriented	South Africa	2* intervals \
+E of 11*E	0*	1.000000	2*	0m	0m\
+							\
+UTM North \
+hemisphere	World wide	6* intervals \
+E & W of \
+3* E & W	Always 0*	Always \
+0.9996	Always 6*	500000m	0m\
+UTM South \
+hemisphere	World wide	6* intervals \
+E & W of  \
+3* E  & W	Always 0*	Always \
+0.9996	Always 6*	500000m	10000000m\
+Gauss-Kruger	Former USSR \
+Yugoslavia, \
+Germany,\
+S. America	Various, \
+according to \
+area of cover	Usually 0*	Usually\
+1.000000	Usually less \
+than 6*, \
+often less \
+than 4*	Various but \
+often 500000 \
+prefixed by \
+zone number	Various\
+Gauss Boaga	Italy	Various	Various	0.9996	6*	Various	0m\
+\
+The most familiar and commonly used Transverse Mercator is the Universal Transverse \
+Mercator (UTM) whose natural origin lies on the equator. However, some territories use \
+a Transverse Mercator with a natural origin at a latitude closer to that territory.  \
+\
+In Epicentre the coordinate transformation method is the same for all forms of the \
+Transverse Mercator projection. The formulas to derive the projected Easting and \
+Northing coordinates are in the form of a series as follows:\
+\
+	Easting, E =  FE + k0*[A + (1 - T + C)A3/6 + (5 - 18T + T2 + 72C - 58e'2)A5/120]	\
+\
+	Northing, N =  FN + k0{M - M0 + *tan*[A2/2 + (5 - T + 9C + 4C2)A4/24 + \
+				(61 - 58T + T2 + 600C - 330e'2)A6/720]} \
+where	T = tan2*\
+	C = e2 cos2*/(1 - e2) = e'2 cos2*\
+	A = (* - *0)cos*, with * and *0 in radians\
+	M = a[(1 - e2/4 - 3e4/64 - 5e6/256 -....)* - (3e2/8 + 3e4/32 + 45e6/1024+....)sin2* \
+		+ (15e4/256 + 45e6/1024 +.....)sin4* - (35e6/3072 + ....)sin6* + .....]\
+	with * in radians and M0 for *0, the latitude of the origin, derived in the same way.\
+\
+The reverse formulas to convert Easting and Northing projected coordinates to latitude \
+and longitude are:\
+	\
+	* = *1 - (*1tan*1/*1)[D2/2 - (5 + 3T1 + 10C1 - 4C12 - 9e'2)D4/24\
+			+ (61 + 90T1 + 298C1 + 45T12 - 252e'2 - 3C12)D6/720]\
+	* = *0 + [D - (1 + 2T1 + C1)D3/6 + (5 - 2C1 + 28T1 - 3C12 + 8e'2  			\
+			+ 24T12)D5/120] / cos*1\
+where *1 may be found as for the Cassini projection from:\
+		\
+	*1 = *1 + (3e1/2 - 27e13/32 +.....)sin2*1 + (21e12/16 -55e14/32 + ....)sin4*1\
+		+ (151e13/96 +.....)sin6*1 + (1097e14/512 - ....)sin8*1 + ......\
+and where\
+	e1 = [1- (1 - e2)1/2]/[1 + (1 - e2)1/2]\
+	*1 = M1/[a(1 - e2/4 - 3e4/64 - 5e6/256 - ....)]\
+	M1 = M0 + (N - FN)/k0\
+	T1 = tan2*1\
+	C1 = e'2cos2*1\
+	D = (E - FE)/(*1k0), with *1 = * for *1\
+\
+For areas south of the equator the value of latitude * will be negative and the formulas \
+above, to compute the E and N,  will automatically result in the correct values. Note that \
+the false northings of the origin, if the equator, will need to be large to avoid negative \
+northings and for the UTM projection is in fact 10,000,000m. Alternatively, as in the case \
+of Argentina's Transverse Mercator (Gauss-Kruger) zones, the origin is at the south pole \
+with a northings of zero. However each zone central meridian takes a false easting of \
+500000m prefixed by an identifying zone number. This ensures that instead of points in \
+different zones having the same eastings, every point in the country, irrespective of its \
+projection zone, will have a unique set of projected system coordinates. Strict application \
+of the above formulas, with south latitudes negative, will result in the derivation of the \
+correct Eastings and Northings. \
+\
+Similarly, in applying the reverse formulas to determine a latitude south of the equator, a \
+negative sign for * results from a negative *1 which in turn results from a negative M1.","For Projected Coordinate System OSGB 1936 / British National Grid\
+\
+Parameters:\
+Ellipsoid  Airy 1830  a = 6377563.396 m  1/f = 299.32496\
+then e'^2 = 0.00671534 and e^2 = 0.00667054\
+\
+Latitude Natural Origin         49o00'00\"N   = 0.85521133 rad\
+Longitude Natural Origin        2o00'00\"W  = -0.03490659 rad\
+Scale factor ko                     0.9996013                                                                                              False Eastings FE                 400000.00 m\
+False Northings FN              -100000.00 m\
+\
+Forward calculation for: \
+Latitude       50o30'00.00\"N  = 0.88139127 rad\
+Longitude    00o30'00.00\"E  = 0.00872665 rad\
+A  = 0.02775415       C = 0.00271699\
+T =  1.47160434       M = 5596050.46\
+M0 = 5429228.60     nu  = 6390266.03\
+\
+Then Easting E =        577274.99 m\
+          Northing N =       69740.50 m\
+\
+Reverse calculations for same easting and northing first gives :\
+e1 =    0.00167322      mu1 = 0.87939562\
+M1 = 5599036.80        nu1 = 6390275.88\
+phi1  = 0.88185987      D = 0.02775243\
+rho1 =6372980.21       C1 =  0.00271391\
+T1 = 1.47441726\
+\
+Then Latitude       = 50o30'00.000\"N\
+         Longitude    = 00o30'00.000\"E",1996-09-18 00:00:00,POSC 1.4.4,EPSG,,
+9808,Transverse Mercator (South Orientated),,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"For the mapping of southern Africa a south oriented Transverse Mercator projection is \
+used. Here the coordinate axes are called Westings and Southings and increment to the \
+West and South from the origin respectively.  The Transverse Mercator formulas need to \
+be modified to cope with this arrangement with\
+\
+	Westing, W = k0 *[A + (1 - T + C)A3/6 + (5 - 18T + T2 + 72C - 58e'2)A5/120] - \
+FE\
+\
+	Southing, S = k0{M - M0 + *tan*[A2/2 + (5 - T + 9C + 4C2)A4/24 + \
+				(61 - 58T + T2 + 600C - 330e'2)A6/720]}- FN\
+\
+In these formulas the terms FE and FN have been retained for consistency of the \
+terminology.  For the reverse formulas, those for the standard Transverse Mercator above \
+apply, with the exception that:\
+	\
+	M1 = M0 + (S + FN)/k0\
+and	D = (W + FE)/(*1k0), with *1 = * for *1",,1996-09-18 00:00:00,POSC 1.4.4,EPSG,,
+9809,Oblique Stereographic,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Stereographic\
+\
+The Stereographic projection may be imagined to be a projection of the earth's surface \
+onto a plane in contact with the earth at a single tangent point from the opposite end of \
+the diameter through that tangent point. \
+\
+This projection is best known in its polar form and is frequently used for mapping polar \
+areas where it complements the Universal Transverse Mercator used for lower latitudes. \
+Its spherical form has also been widely used by the US Geological Survey for planetary \
+mapping and the mapping at small scale of continental hydrocarbon provinces. In its \
+transverse or oblique ellipsoidal forms it is useful for mapping limited areas centred on the \
+point where the plane of the projection is regarded as tangential to the ellipsoid., e.g. the \
+Netherlands. The tangent point is the origin of the projected coordinate system and the \
+meridian through it is regarded as the central meridian. In order to reduce the scale error \
+at the extremities of the projection area it is usual to introduce a scale factor of less than \
+unity at the origin such that a unitary scale factor applies on a near circle centred at the \
+origin and some distance from it. \
+\
+The coordinate transformation from geographical to projected coordinates is executed via \
+the distance and azimuth of the point from the centre point or origin. For a sphere the \
+formulas are relatively simple. For the ellipsoid the parameters defining the conformal \
+sphere at the tangent point as origin are first derived. The conformal latitudes and \
+longitudes are substituted for the geodetic  latitudes and longitudes of the spherical \
+formulas for the origin and the point .\
+\
+Oblique and Equatorial Stereographic Formula\
+\
+*	Given the geodetic origin of the projection at the tangent point (*0, *0), the parameters \
+defining the conformal sphere are:\
+\
+	R= *( *0,*0)\
+     	n=  *[(1+e2 cos4*0)/(1-e2)]\
+	c=  (n+sin*0) (1-sin*0)/[(n-sin*0) (1+sin(*0)]\
+\
+where:	sin*0 = (w1-1)/(w1+1)\
+	w1 = (S1.S2e)n\
+	S1 = (1+sin*0)/(1-sin*0)\
+	S2 = (1-e sin*0)/(1+e sin*0)\
+\
+The conformal latitude and longitude (*0,*0) of the origin are then computed from :\
+\
+	*0 = sin-1[(w-1)/(w+1)]\
+\
+	where S1 and S2 are as above and  w = c (S1S2e)n\
+ \
+ 	*0  = *0\
+\
+Then for any point with geodetic coordinates (*,*) the equivalent conformal latitude and \
+longitude ( * , * ) are computed from \
+\
+	* = sin-1[(w-1)/(w+1)]\
+\
+where 	w = c (S1S2e)n\
+	S1 = (1+sin*)/(1-sin*)\
+	S2 = (1-e.sin*)/(1+e.sin*)\
+ \
+and 	* = n( * - *0 ) + *0 \
+ \
+Then	B = [1+sin* sin*0 + cos*cos*0cos(* -*0 )]\
+\
+and	N = FN + 2 R k0 [sin* cos*0 - cos*sin*0cos(* -*0 )] / B\
+\
+	E = FE + 2 R k0 cos* sin(* -*0 ) / B\
+\
+\
+\
+\
+The reverse formulae to compute the geodetic coordinates from the grid coordinates \
+involves computing the conformal values, then the isometric latitude and finally the \
+geodetic values.\
+\
+The parameters of the conformal sphere and conformal latitude and longitude at the origin \
+are computed as above. Then for any point with Stereographic grid coordinates (E,N) :\
+\
+	* = *0 + 2 tan-1[{(N-FN)-(E-FE) tan (j/2)} / (2 Rk0)]\
+\
+	* = j + 2 i + *0\
+\
+where	g = 2 Rk0 tan (*/4 - *0/ 2 )\
+	h = 4 Rk0 tan *0 + g\
+	i = tan-1 [(E-FE) / {h+(N-FN)}]\
+	j = tan-1 [(E-FE) / (g-(N-FN)] - i\
+\
+Geodetic longitude 	* = (* -*0 ) / n +  *0\
+\
+Isometric latitude	* = 0.5 ln [(1+ sin*) / { c (1-  sin*)}] / n\
+\
+First approximation 	*1 = 2 tan-1 e*  - * / 2  where e=base of natural logarithms.\
+\
+			*i = isometric latitude at *i\
+\
+where			*i= ln[{tan(*i/2+* / 4}  {(1-e sin*i)/(1+e sin*i)}e/2]\
+ \
+Then iterate		*i+1 = *i - ( *i - * ) cos *i ( 1 -e2 sin2*i) / (1 - e2)\
+\
+until the change in 	*   is sufficiently small.\
+\
+\
+\
+An alternative approach is given by Snyder, where, instead of defining a single conformal \
+sphere at the origin point , the conformal latitude at each point on the ellipsoid is \
+computed. The conformal longitude is then always equivalent to the geodetic longitude. \
+This approach is a valid alternative to the above, but gives slightly different results away \
+from the origin point. \
+\
+	\
+If the projection is the equatorial case, *0 and *0 will be zero degrees and the formulas are \
+simplified as a result,but the above formulae remain valid.\
+\
+For the polar version, *0 and *0 will be 90 degrees and the formulae become \
+indeterminate.See below for formulae for the polar case.\
+\
+For Stereographic projections centred on points in the southern hemisphere, including the \
+south Polar Stereographic, the signs of E, N, *0, *,  must be reversed to be used in the \
+equations and * will be negative anyway as a southerly latitude.","For Projected Coordinate System RD / Netherlands New\
+\
+Parameters:\
+Ellipsoid   Bessel 1841    a = 6377397.155 m    1/f = 299.15281\
+then e = 0.08169683\
+\
+Latitude Natural Origin      52o09'22.178\"N  = 0.910296727 rad\
+Longitude Natural Origin     5o23'15.500\"E  =  0.094032038 rad\
+Scale factor k0                 0.9999079\
+False Eastings FE             155000.00 m\
+False Northings FN           463000.00 m\
+\
+Forward calculation for: \
+\
+Latitude    53oN = 0.925024504 rad\
+Longitude   6oE = 0.104719755 rad\
+\
+first gives the conformal sphere constants:\
+\
+rho0 = 6374588.71    nu0 = 6390710.613\
+R = 6382644.571    n = 1.000475857    c  = 1.007576465\
+\
+where S1 = 8.509582274  S2 = 0.878790173  w1 = 8.428769183\
+sin chi0 = 0.787883237\
+\
+w   = 8.492629457   chi0 = 0.909684757      D0 = d0 \
+\
+for the point  chi  = 0.924394997    D = 0.104724841\
+\
+hence B = 1.999870665    N = 557057.739    E = 196105.283\
+\
+reverse calculation for the same Easting and Northing first gives:\
+\
+g = 4379954.188    h = 37197327.96   i = 0.001102255   j = 0.008488122\
+\
+then  D = 0.10472467  Longitude = 0.104719584 rad =  6 deg E\
+\
+chi  = 0.924394767    psi = 1.089495123\
+phi1 = 0.921804948       psi1 = 1.084170164\
+phi2 = 0.925031162       psi2 = 1.089506925\
+phi3 = 0.925024504       psi3 = 1.089495505\
+phi4 = 0.925024504\
+\
+Then Latitude      = 53o00'00.000\"N\
+          Longitude   =   6o00'00.000\"E",1996-09-18 00:00:00,POSC 1.4.6,EPSG,,
+9810,Polar Stereographic,,,Latitude of natural origin,Longitude of natural origin,,,Scale factor at natural origin,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Polar Stereographic Formula\
+\
+For the forward transformation from latitude and longitude,\
+\
+	E = FE + * sin (* - *o)\
+	N = FN - * cos (* - *o)\
+where\
+	* = 2 a ko t /{[(1+e)(1+e) (1-e)(1-e)]0.5}\
+	t = tan (*/4 - */2) / [(1-esin* ) / (1 + e sin*)]e/2\
+\
+For the reverse transformation,\
+\
+	* = * 	+ (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) \
+		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)\
+		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)\
+\
+	* = *o	+ arctan [(E-FE) / (FN-N)]\
+\
+where 	*  = */2 - 2 arctan t\
+	t   =  * [(1+e)(1+e) (1-e)1-e]0.5} / 2 a ko\
+	* = [(E-FE)2  + (N - FN)2]0.5",,1996-09-18 00:00:00,"US Geological Survey Professional Paper 1395; \"Map Projections - A Working Manual\";  J. Snyder",EPSG,,
+9811,New Zealand Map Grid,,,Latitude of natural origin,Longitude of natural origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,New Zealand Department of Lands technical circular 1973/32,EPSG,,
+9812,Hotine Oblique Mercator,,,Latitude of projection centre,Longitude of projection centre,Azimuth of initial line,Angle from Rectified to Skew Grid,Scale factor on initial line,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Oblique Mercator\
+\
+It has been noted that the Transverse Mercator projection is employed for the topographical mapping of longitudinal bands of territories, limiting the amount of scale distortion by limiting the extent of the projection either side of the central meridian. Sometimes the shape, general trend and extent of some countries makes it preferable to apply a single zone of the same kind of projection but with its central line aligned with the trend of the territory concerned rather than with a meridian. So, instead of a meridian forming this true scale central line for one of the various forms of Transverse Mercator, or the equator forming the line for the Mercator, a line with a particular azimuth traversing the territory is chosen and the same principles of construction are applied to derive what is now an Oblique Mercator. Such a single zone projection suits areas which have a large extent in one direction but limited extent in the perpendicular direction and whose trend is oblique to the bisecting meridian - such as East and West Malaysia (Hotine Oblique Mercator), Madagascar (Laborde Oblique Mercator) and the Alaskan panhandle. It was also originally applied to Hungary in the 1970’s and, at the beginning of the 20th century, by Rosenmund to the mapping of Switzerland. This projection is sometimes referred to as the Rectified Skew Orthomorphic projection or the Hotine Oblique Mercator. Hotine projected the ellipsoid conformally onto a sphere of constant total curvature, called the ‘aposhere’, before projection onto the plane. Alternative formulae derived by projecting the ellipsoid onto the ‘conformal’ sphere give identical results within the practical limits of the use of the formulae.\
+\
+The co-ordinate system is defined by:\
+\
+\
+\
+ \
+\
+\
+An initial line central to the map area of given azimuth  ac  passes through a defined centre of the projection (jc , lc ) . The point where the projection of this line cuts the equator on the aposphere is the origin of the (u , v) co-ordinate system The u axis is parallel to the centre line and the v axis is perpendicular to this line.\
+\
+The projection's initial line may be selected as a line with a particular azimuth through a single point, - normally at the centre of the mapped area - or as the geodesic line (the shortest line between two points on the ellipsoid) between two selected points. The latter approach is not currently followed in Epicentre. It has been applied to mapping space imagery or, more frequently, for applying a geographical graticule to the imagery. However, the repeated path of the imaging satellite does not actually follow the centre lines of successive oblique cylindrical projections so a projection was derived whose centre line does follow the satellite path. This is known as the Space Oblique Mercator Projection and although it closely resembles an oblique cylindrical it is not quite conformal and has no other application than for space imagery.\
+\
+In applying the formulae for the Hotine Oblique Mercator the first set of co-ordinates computed are referred to the (u, v) co-ordinate axes defined with respect to the azimuth of the centre line. These co-ordinates are then ‘rectified’ to the usual Easting and Northing by applying an orthogonal transformation. Hence the alternative name as the Rectified Skew Orthomorphic. In the special case of the projection covering the Alaskan panhandle the azimuth of the line at the natural origin is taken to be identical to the azimuth of the initial line at the projection centre.  This results in grid and true north coinciding at the projection centre rather than at the natural origin as is more usual.\
+\
+To ensure that all co-ordinates in the map area have positive grid values, false co-ordinates are applied. These may be given values (Ec , Nc) if applied at the projection centre or be applied as false easting (FE) and false northing (FN) at the natural origin.\
+	\
+Formulas for the oblique Mercator, involving hyperbolic functions, were derived by Hotine. Snyder adapted these formula using exponential functions, thus avoiding use of Hotine's hyperbolic expressions. As in the case of the several varieties of Transverse Mercator, the choice of the co-ordinate transformation parameters distinguish the co-ordinate transformation within the Oblique Mercator Co-ordinate Transformation method. The formulae can be used for  the following cases:\
+\
+	Alaska Zone 1\
+	Hungary EOV\
+	Madagascar\
+	East and West Malaysia\
+	Switzerland \
+	\
+The Swiss and Hungarian systems are a special case where the azimuth of the line through the projection centre is 90 degrees. This therefore gives similar but not exactly the same results as a conventional transverse mercator. \
+\
+Epicentre supports the formulae to cover the co-ordinate transformation methods for the following versions of the Oblique Mercator:\
+\
+1.	USGS (Snyder) formulae where the false origin is defined at the natural origin\
+2.	USGS (Snyder) formulae where the false origin is defined at the centre of the projection\
+3.	Swiss Oblique Cylindrical, using polynomial equations developed by Bolliger.\
+\
+The two versions of the Snyder formulae could be unified by introducing an extra parameter to define which origin is used for the application of false co-ordinates. The Swiss Oblique Cylindrical is a special case, as the equations given by Bolliger may deviate from the rigorous formulae for points at some distance from the origin.  Throughout Switzerland the differences are always less than one metre. \
+\
+Specific references for the formulae originally used in the individual cases of these projections are:\
+\
+Switzerland:\
+	\"Die Änderung des Projektionssystems der schweizerischen Landesvermessung.\" M. Rosenmund 1903.\
+	\"Die projecktionen der Schweizerischen Plan und Kartenwerke.\" J. Bollinger 1967.\
+Madagascar:\
+	\"La nouvelle projection du Service Geographique de Madagascar\". J. Laborde 1928.\
+Malaysia:\
+	Series of Articles in numbers 62-66 of the Empire Survey Review of 1946 and 1947 by 	M. Hotine.\
+\
+\
+The defining parameters for the oblique mercator projection are:\
+\
+fc 	= latitude of centre of the projection\
+lc 	= longitude of centre of the projection\
+ac 	= azimuth (true) of the centre line passing through the centre of the projection\
+gc 	= rectified bearing of the centre line\
+kc	= scale factor at the centre of the projection\
+and either\
+Ec	= False Easting at the centre of projection\
+Nc	= False Northing at the centre of projection\
+or\
+FE	= False Easting at the natural origin\
+FN	= False Northing at the natural origin\
+\
+From these the following constants for the projection may be calculated :\
+\
+B	=	(1 + e2 cos4(fc) / (1 - e2 ))0.5\
+A	=	a B kc (1 - e2 )0.5 / ( 1 - e2 sin2 (fc))\
+t0	=	tan(p / 4 - fc / 2) / ((1 - e sin (fc)) / (1 + e sin (fc)))e/2\
+D	=	B (1 - e2 )0.5  / (cos(fc) ( 1 - e2 sin2 (fc))0.5)\
+Dsq	=	D2  = 1 if D*D < 1 to avoid problems with computation of F\
+F	=	D + (Dsq - 1)0.5 . SIGN(fc)\
+H	=	F t0B\
+G	=	(F - 1 / F) / 2\
+g0	=	asin(sin (ac) / D)\
+l0	=	lc - (asin(G tan(g0))) / B\
+\
+Then compute the (uc , vc) co-ordinates for the centre point (fc , lc).  In general\
+\
+uc	=	(A / B) atan((Dsq - 1)0.5 / cos (ac) ). SIGN(fc)\
+vc	=	0\
+\
+But note that for the special cases where ac = 90 degrees (e.g. Hungary, Switzerland) then \
+\
+uc	=	A (lc - l0 )  \
+vc	=	0\
+ \
+\
+Forward case:	To compute (E,N) from a given (f,l) :\
+\
+t	=	tan(p / 4 - f / 2) / ((1 - e sin (f)) / (1 + e sin (f)))e/2\
+Q	=	H / tB\
+S	=	(Q - 1 / Q) / 2\
+T	=	(Q + 1 / Q) / 2\
+V	=	sin(B (l - l0))\
+U	=	(- V cos(g0) + S sin(g0)) / T\
+v	=	A ln((1 - U) / (1 + U)) / 2 B\
+u	=	A atan((S cos(g0) + V sin(g0)) / cos(B (l - l0 ))) / B\
+\
+The value of u from the above equation assumes that  the FE and FN values have beezÏ÷wÿÿÿÿ0õ","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)\
+\
+Parameters:\
+	Ellipsoid:  Everest 1830 (1967 Definition)\
+				a = 6377298.556 metres 	1/f = 300.8017\
+				then	e = 0.081472981	e2 = 0.006637847\
+					\
+	Latitude Projection Centre	fc  	4o00'00\"N		=	0.069813170 rad\
+	Longitude Projection Centre	lc  	115o00'00\"E	=	2.007128640 rad\
+	Azimuth of central line	ac	53o18'56.9537\"	=	0.930536611 rad\
+	Rectified to skew	gc	53o07'48.3685\"	=	0.927295218 rad\
+	Scale factor	ko	 0.99984\
+	False Eastings	FE	 0.00 m\
+	False Northings	FN	 0.00 m\
+\
+Forward calculation for: \
+	Latitude		f	4o39'20.783\"N		=	0.081258569 rad\
+	Longitude		l	114o28'10.539\"E	=	1.997871312 rad\
+		\
+B = 	1.003303209		F =	1.07212156\
+A =	6376278.686		H = 	1.00000299\
+		to = 	0.932946976		g0 = 	0.92729522\
+		D = 	1.002425787		l0 = 	1.91437347\
+		D2 =	1.004857458\
+	\
+		uc =	738096.09		vc =	0.00\
+		t =	0.922369529		Q =	1.084456854\
+		S =	0.081168129		T = 	1.003288725\
+		V =	0.83675700		U =	0.014680803\
+		v =	-93307.40		u =	734236.558\
+						u-uc =	-3859.536\
+\
+	Then	Easting		E =  	531404.81 m\
+		Northing	N =      515187.85 m\
+\
+Reverse calculations for same easting and northing first gives :\
+		v’ =   	-93307.40		u’ =	734236.558\
+		u’+uc = 1472332.652		Q’ =	1.014790165\
+		S’  =	0.014682385		T’ =	1.000107780	\
+		V’ =	0.115274794		U’ = 	0.080902065\
+		t’ = 	0.922369529		c =	0.080721539		\
+				\
+Then	Latitude    	 f  =	4o39'20.783\"N		\
+	Longitude	l   =	114o28'10.539\"E",1997-11-13 00:00:00,POSC 1.4.5,EPSG,,97.62
+9813,Laborde Oblique Mercator,,,Latitude of projection centre,Longitude of projection centre,Azimuth of initial line,,Scale factor on initial line,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,"\"La nouvelle projection du Service Geographique de Madagascar\"; J. Laborde; 1928",EPSG,Can be accomodated by Oblique Mercator method (code 9815).,97.613
+9814,Swiss Oblique Cylindrical,,,Latitude of projection centre,Longitude of projection centre,,,,Easting at projection centre,Northing at projection centre,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-09-18 00:00:00,"\"Die projecktionen der Schweizerischen Plan und Kartenwerke\"; J Bollinger; 1967",EPSG,Can be accomodated by Oblique Mercator method (code 9815).,97.612
+9815,Oblique Mercator,,,Latitude of projection centre,Longitude of projection centre,Azimuth of initial line,Angle from Rectified to Skew Grid,Scale factor on initial line,Easting at projection centre,Northing at projection centre,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1997-07-22 00:00:00,POSC 1.4.5,EPSG,,
+9816,Tunisia Mining Grid,,,Latitude of origin,Longitude of origin,,,,False easting,False northing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"This grid is used as the basis for mineral leasing in Tunsia.  Lease areas are approximately 2 x 2 km or 400 hectares.  The corners of these blocks are defined through a six figure grid reference where the first three digits are an easting in kilometres and the last three digits are a northing.  The latitudes and longitudes for block corners at 2 km intervals are tabulated in a mining decree dated 1st January 1953.  From this tabulation in which geographical coordinates are given to 5 decimal places it can be seen that:\
+a)  the minimum easting is 94 km, on which the longitude is 5.68989 grads east of Paris.\
+b)  the maximum easting is 490 km, on which the longitude is 10.51515 grads east of Paris.\
+c)  each 2 km grid easting interval equals 0.02437 grads.\
+d)  the minimum northing is 40 km, on which the latitude is 33.39 grads.\
+e)  the maximum northing is 860 km, on which the latitude is 41.6039 grads.\
+f)  between 40 km N and 360 km N, each 2 km grid northing interval equals 0.02004 grads.\
+g)  between 360 km N and 860 km N, each 2 km grid northing interval equals 0.02003 grads.\
+\
+This grid could be considered to be two equidistant cylindrical projection zones, north and south of the 360 northing line.  However this would require the introduction of two sphere of unique dimensions.  EPSG has therefore implemented the Tunisia mining grid as transformation method in its own right.  Formulae are:\
+\
+Grads from Paris\
+\
+Lat (grads) = 36.5964 + [(N - 360) * A] \
+where N is in kilometres and A = 0.010015 if N > 360, else A = 0.01002.\
+\
+LonParis (grads) = 7.83445 + [(E - 270) * 0.01285], where E is in kilometres.\
+\
+The reverse formulae are:\
+\
+E (km) = 270 + [(LonParis - 7.83445) / 0.01285] where LonParis is in grads.\
+\
+N (km) = 360 + [(Lat - 36.5964) / B] \
+where Lat is in grads and B = 0.010015 if N > 36.5964, else B = 0.01002.\
+\
+Degrees from Greenwich.\
+\
+Modern practice in Tunisia is to quote latitude and longitude in degrees with longitudes referenced to the Greenwich meridian.  The formulae required in addition to the above are:\
+\
+Lat (degrees) =  (Latg * 0.9) where Latg is in grads.\
+LonGreenwich (degrees) = [(LonParis + 2.5969213) * 0.9] where LonParis is in grads.\
+\
+\
+Lat (grads) =  (Latd / 0.9) where Latd is in decimal degrees.\
+LonParis (grads) = [(LonGreenwich / 0.9) - 2.5969213)] where LonGreenwich is in decimal degrees.","For grid location 302598,\
+Latitude = 36.5964 + [(598 - 360) * A].  As N > 360, A = 0.01005.\
+Latitude = 38.97997 grads = 35.08197 degrees.\
+\
+Longitude  = 7.83445 + [(E - 270) * 0.01285, where E = 302.\
+Longitude  = 8.22437 grads east of Paris = 9.73916 degrees east of Greenwich.",1998-11-11 00:00:00,,EPSG,,

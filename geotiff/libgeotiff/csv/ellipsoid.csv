@@ -1,0 +1,37 @@
+"ELLIPSOID_CODE","ELLIPSOID_EPSG_NAME","ELLIPSOID_USER_NAME","SEMI_MAJOR_AXIS","UOM_LENGTH_CODE","INV_FLATTENING","SEMI_MINOR_AXIS","REVISION_DATE","INFORMATION_SOURCE","DATA_SOURCE","REMARKS","CHANGE_ID"
+7001,Airy 1830,,6377563.396,9001,299.32496,299.32496,1995-06-02 00:00:00,,EPSG,Original definition of a and b in feet. OSGB defines 1/f to 7 d.p.,
+7002,Airy Modified 1849,,6377340.189,9001,299.32496,299.32496,1995-06-02 00:00:00,,EPSG,,
+7003,Australian National Spheroid,,6378160.0,9001,298.25,298.25,1995-06-02 00:00:00,National Mapping Council of Australia Special Publication #7; 1972.,EPSG,Australian Map Grid Technical Manual.,
+7004,Bessel 1841,,6377397.155,9001,299.15281,299.15281,1995-06-02 00:00:00,,EPSG,,
+7005,Bessel Modified,,6377492.018,9001,299.15281,299.15281,1995-06-02 00:00:00,,EPSG,,
+7006,Bessel Namibia,,6377483.865,9001,299.15281,299.15281,1997-06-16 00:00:00,,EPSG,a = 6377397.155 German legal metres,97.16
+7007,Clarke 1858,,20926348.0,9005,9005,20855233.0,1995-06-02 00:00:00,"\"Ellipsoidisch Parameter der Erdfigur (1800-1950)\" by Georg Strasser.",EPSG,Clarke 1858/II solution. Derived parameters: a = 6378293.639m; 1/f = 294.26068,
+7008,Clarke 1866,,6378206.4,9001,9001,6356583.8,1995-06-02 00:00:00,US Army Map Service Technical Manual No. 7; 1943.,EPSG,Uses Benoit 1896 foot-metre ratio. Derived parameter: 1/f = 294.97870,
+7009,Clarke 1866 Michigan,,20926631.53,9003,9003,20855688.67,1995-06-02 00:00:00,USGS Professional Paper #1395.,EPSG,Used for Michigan NAD27 State Plane zones.  Radius = ellipsoid radius + 800 feet; this approximates the average elevation of the state.   Derived parameter: 1/f = 294.97870,98.22
+7010,Clarke 1880 (Benoit),,6378300.79,9001,9001,6356566.43,1995-06-02 00:00:00,,EPSG,Uses Benoit 1896 inch-metre ratio. Derived parameter: 1/f = 293.46623,
+7011,Clarke 1880 (IGN),,6378249.2,9001,9001,6356515.0,1998-04-16 00:00:00,,EPSG,,98.12
+7012,Clarke 1880 (RGS),,6378249.145,9001,293.465,293.465,1995-06-02 00:00:00,,EPSG,Also known as Clarke Modified 1880.,
+7013,Clarke 1880 (Arc),,6378249.145,9001,293.46631,293.46631,1995-06-02 00:00:00,,EPSG,,
+7014,Clarke 1880 (SGA 1922),,6378249.2,9001,293.46598,293.46598,1995-06-02 00:00:00,,EPSG,Used in Old French Triangulation (ATF).,
+7015,Everest 1830 (1937 Adjustment),,6377276.345,9001,300.8017,300.8017,1996-10-18 00:00:00,Survey of India professional paper #28; 1939,EPSG,Used for the 1937 adjustment of Indian triangulation.  Applies Benoit 1898 inch-metre ratio to Everest original definition taken as 20929231.8 Indian feet.,96.20
+7016,Everest 1830 (1967 Definition),,6377298.556,9001,300.8017,300.8017,1995-06-02 00:00:00,,EPSG,Adopted 1967 for use in East Malaysia.  Applies Sears 1928 inch-metre ratio to Everest original definition taken as 20922931.8 British feet.,
+7017,Everest 1830 (1975 Definition),,6377301.243,9001,9001,6356100.231,1995-06-02 00:00:00,,EPSG,Used by Surveys of India and Pakistan since 1975.   Derived parameter: 1/f = 300.80174,
+7018,Everest 1830 Modified,,6377304.063,9001,300.8017,300.8017,1995-06-02 00:00:00,,EPSG,Adopted 1967 for use in West Malaysia.  Applies Benoit 1898 inch-metre ratio to Everest original definition taken as 20929231.8 British feet.,
+7019,GRS 1980,,6378137.0,9001,298.257222101,298.257222101,1998-11-11 00:00:00,"\"Geodetic Reference System 1980\" by H. Moritz; Bulletin Geodesique",EPSG,Adopted by IUGG 1979 Canberra.  Inverse flattening is derived from geocentric gravitational constant GM = 3986005e8 m*m*m/s/s; dynamic form factor J2 = 108263e8 and Earth's angular velocity = 7292115e-11 rad/s.,98.11  98.32
+7020,Helmert 1906,,6378200.0,9001,298.3,298.3,1995-06-02 00:00:00,"\"Ellipsoidisch Parameter der Erdfigur (1800-1950)\" by Georg Strasser",EPSG,Helmert 1906/III solution.,
+7021,Indonesian National Spheroid,,6378160.0,9001,298.247,298.247,1995-06-02 00:00:00,,EPSG,,
+7022,International 1924,,6378388.0,9001,297.0,297.0,1995-06-02 00:00:00,,EPSG,Adopted by IUGG 1924 in Madrid. Based on Hayford 1909/1910 figures.,
+7024,Krassowsky 1940,,6378245.0,9001,298.3,298.3,1995-06-02 00:00:00,,EPSG,,
+7025,NWL 9D,,6378145.0,9001,298.25,298.25,1995-06-02 00:00:00,,EPSG,Used by Transit Precise Ephemeris between October 1971 and January 1987.,
+7026,NWL 10D,,6378135.0,9001,298.26,298.26,1995-06-02 00:00:00,,EPSG,Used by Transit Broadcast Ephemeris before 1989. Also referred to as WGS72 spheroid.,
+7027,Plessis 1817,,6376523.0,9001,308.64,308.64,1995-06-02 00:00:00,"IGN Paris \"Constants d'Ellipsoides\" February 1972.",EPSG,,
+7028,Struve 1860,,6378298.3,9001,294.73,294.73,1998-11-11 00:00:00,"\"Geodesia y Cartografia Matematica\" by Fernando Martin Asin; ISBN 84-398-0248-X.",EPSG,"Original definition of semi-major axis given as 3272539 toise.  In \"Ellipsoidisch Parameter der Erdfigur (1800-1950)\" , Strasser suggests a conversion factor of 1.94903631 which gives a=6378297.337 metres.",98.07
+7029,War Office,,6378300.583,9001,296.0,296.0,1995-06-02 00:00:00,,EPSG,,
+7030,WGS 84,,6378137.0,9001,298.257223563,298.257223563,1998-11-11 00:00:00,DMA Technical Manual 8350.2-B,EPSG,Inverse flattening derived from four defining parameters (semi-major axis; C20 = -484.16685*10e-6; earth's angular velocity w = 7292115e11 rad/sec; gravitational constant GM = 3986005e8 m*m*m/s/s.,98.32
+7031,GEM 10C,,6378137.0,9001,298.257223563,298.257223563,1995-06-02 00:00:00,,EPSG,Used for  GEM 10C Gravity Potential Model.,98.32
+7032,OSU86F,,6378136.2,9001,298.257223563,298.257223563,1995-06-02 00:00:00,,EPSG,Used for OSU86 gravity potential (geoidal) model.,98.32
+7033,OSU91A,,6378136.3,9001,298.257223563,298.257223563,1995-06-02 00:00:00,,EPSG,Used for OSU91 gravity potential (geoidal) model.,98.32
+7034,Clarke 1880,,20926202.0,9005,9005,20854895.0,1995-06-02 00:00:00,"\"Ellipsoidisch Parameter der Erdfigur (1800-1950)\" by Georg Strasser.",EPSG,Derived parameter: 1/f = 293.46631,
+7035,Sphere,,6371000.0,9001,9001,6371000.0,1995-06-02 00:00:00,,EPSG,Authalic sphere.,
+7036,GRS 1967,,6378160.0,9001,298.247167427,298.247167427,1998-11-11 00:00:00,"\"Geodetic Reference System 1967\"; International Association of Geodesy special publication number 3; August 1971.",EPSG,Adopted by IUGG 1967 Lucerne.  Inverse flattening given is derived from geocentric gravitational constant (GM)= 398603e9 m*m*m/s/s; dynamic form factor (J2) = 0.0010827 and Earth's angular velocity w = 7.2921151467e-5 rad/s.,96.09  97.252  98.32
+7041,Average Terrestrial System 1977,,6378135.0,9001,298.257,298.257,1997-07-22 00:00:00,New Brunswick Geographic Information Corporation land and water information standards manual,EPSG,,
