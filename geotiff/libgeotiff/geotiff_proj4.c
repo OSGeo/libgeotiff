@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.21  2003/08/21 18:42:39  warmerda
+ * fixed support for ModelTypeGeographic as per email from Young Su, Cha
+ *
  * Revision 1.20  2003/07/08 17:31:30  warmerda
  * cleanup various warnings
  *
@@ -165,12 +168,21 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 /* ==================================================================== */
 /*      Handle general projection methods.                              */
 /* ==================================================================== */
-
+ 
+/* -------------------------------------------------------------------- */
+/*      Geographic.                                                     */
+/* -------------------------------------------------------------------- */
+    if(psDefn->Model==ModelTypeGeographic)
+    {
+        sprintf(szProjection+strlen(szProjection),"+proj=latlong ");
+        
+    }
+ 
 /* -------------------------------------------------------------------- */
 /*      UTM - special case override on transverse mercator so things    */
 /*      will be more meaningful to the user.                            */
 /* -------------------------------------------------------------------- */
-    if( psDefn->MapSys == MapSys_UTM_North )
+    else if( psDefn->MapSys == MapSys_UTM_North )
     {
         sprintf( szProjection+strlen(szProjection),
                  "+proj=utm +zone=%d ",
