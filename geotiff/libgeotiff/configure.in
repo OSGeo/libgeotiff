@@ -28,7 +28,7 @@ if test "$TIFF_HOME" != "" ; then
 else
   AC_CHECK_LIB(tiff,TIFFOpen,,
                AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
-build libgeotiff without libtiff]),m)
+build libgeotiff without libtiff]),-lm)
   AC_CHECK_HEADERS(tiffiop.h,,AC_MSG_ERROR("tiffiop.h not found - cannot build libxtiff"))
 fi
 
