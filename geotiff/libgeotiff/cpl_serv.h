@@ -251,6 +251,7 @@ typedef enum {
 #define CSVDeaccess gtCSVDeaccess
 #define CSVGetField gtCSVGetField
 #define SetCSVFilenameHook gtSetCSVFilenameHook
+#define CSVGetFileFieldId gtCSVGetFileFieldId
 
 const char  *CSVFilename( const char * );
 
