@@ -52,7 +52,7 @@ cp csv/*.csv $DIST_DIR/share/epsg_csv
 cp README_BIN $DIST_DIR/README
 
 rm -f ${DIST_DIR}.tar.gz
-tar cf ${DIST_DIR}.tar libgeotiff-bin-${VERSION}
+tar cf ${DIST_DIR}.tar ${DIST_DIR}
 gzip -9 ${DIST_DIR}.tar
 
 echo "Prepared: "${DIST_DIR}.tar.gz
