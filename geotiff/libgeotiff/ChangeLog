@@ -1,3 +1,8 @@
+2004-11-21  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* configure.in: bug 649 - add LDFLAGS into LIBS, and ensure we
+	can link against libproj.so even if no libproj.a is provided.
+
 2004-10-19  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_print.c: fixed serious bug with reporting large numbers of
