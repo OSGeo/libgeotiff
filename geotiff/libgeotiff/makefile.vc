@@ -12,19 +12,29 @@ TIFF_INC = -I$(TIFF_DIR)
 TIFF_LIB = $(TIFF_DIR)\libtiff.lib
 TIFF_LIB_DLL = $(TIFF_DIR)\libtiff_i.lib
 
+# Installation locations (with install, or devinstall targets)
+PREFIX =	c:\usr
+BINDIR =	$(PREFIX)\bin
+LIBDIR =	$(PREFIX)\lib
+INCDIR =	$(PREFIX)\include
+DATADIR =	$(PREFIX)\share\epsg_csv
+
 #
 CC      = cl
 INCL	= -I. -Ilibxtiff $(TIFF_INC)
 
-LIBS    = geotiff.lib $(TIFF_LIB)
 
-# Use the following to build exe's again libtiff and libgeotiff DLL
-#LIBS    = geotiff_i.lib $(TIFF_LIB_DLL)
+# Pick the first LIBS definition for a static libtiff.lib or the second
+# to link against the libtiff DLL.
+
+#LIBS    = geotiff.lib $(TIFF_LIB)
+LIBS    = geotiff_i.lib $(TIFF_LIB_DLL)
 
 DLLNAME = geotiff.dll
 
-#
+# Set optimization or debug flags here.
 CFLAGS  = $(INCL) /MD /Ox /nologo
+#CFLAGS  = $(INCL) /MD /Zi /nologo
 
 #
 OBJS    = \
@@ -112,3 +122,19 @@ cpl_serv.obj: cpl_serv.c
 
 clean:
 	rm -f *.obj *.exe *.lib *.dll
+
+install:	all
+	-mkdir $(PREFIX)
+	-mkdir $(BINDIR)
+	-mkdir $(DATADIR)
+	copy *.dll $(BINDIR)
+	copy *.exe $(BINDIR)
+	-copy csv\*.csv $(DATADIR)	
+
+devinstall:	install
+	-mkdir $(INCDIR)
+	-mkdir $(LIBDIR)
+	copy *.lib $(LIBDIR)
+	copy *.h $(INCDIR)
+	copy *.inc $(INCDIR)
+	
