@@ -4,6 +4,8 @@ AC_CONFIG_HEADER(geo_config.h)
 
 dnl Checks for programs.
 AC_PROG_CC
+AC_COMPILER_WFLAGS
+
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_RANLIB
