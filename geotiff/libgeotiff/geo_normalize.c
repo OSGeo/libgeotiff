@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.38  2004/03/19 12:20:40  dron
+ * Initialize projection parameters in GTIFFetchProjParms() before using.
+ *
  * Revision 1.37  2003/07/08 17:31:30  warmerda
  * cleanup various warnings
  *
@@ -1311,9 +1314,9 @@ int GTIFGetProjTRFInfo( /* COORD_OP_CODE from coordinate_operation.csv */
 static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
 {
-    double	dfNatOriginLong, dfNatOriginLat, dfRectGridAngle;
-    double	dfFalseEasting, dfFalseNorthing, dfNatOriginScale;
-    double	dfStdParallel1, dfStdParallel2, dfAzimuth;
+    double dfNatOriginLong = 0.0, dfNatOriginLat = 0.0, dfRectGridAngle = 0.0;
+    double dfFalseEasting = 0.0, dfFalseNorthing = 0.0, dfNatOriginScale = 1.0;
+    double dfStdParallel1 = 0.0, dfStdParallel2 = 0.0, dfAzimuth = 0.0;
 
 /* -------------------------------------------------------------------- */
 /*      Get the false easting, and northing if available.               */
