@@ -3,25 +3,16 @@
 #
 DEPTH   = .
 
-SRCDIR  = ${DEPTH}/@SRCDIR@
+SRCDIR  = ${DEPTH}
 
-TOP = ${DEPTH}/@DIR_LIBTIFF@
-TIFFDIR = ${TOP}/libtiff
-PORT    = ${TOP}/port
-
-#
-# VERSION:      @VERSION@
-# DATE:         @DATE@
-# TARGET:       @TARGET@
-# CCOMPILER:    @CCOMPILER@
 #
 SHELL   = /bin/sh
 NULL    =
 CD      = cd
-CC      = @CCOMPILER@
-AR      = @AR@
-LN      = @LN@ @LN_S@
-AROPTS  = @AROPTS@
+CC      = @CC@
+AR      = ar
+LN      = @LN_S@
+AROPTS  = r
 RANLIB  = @RANLIB@
 INSTALL = @INSTALL@
 RM      = rm -f
@@ -33,13 +24,12 @@ XTIFF=xtiff.o
 XTIFFINC= xtiffio.h xtiffiop.h
 
 #
-IPATH   = -I. -I${TOP} -I${SRCDIR}  -I${TIFFDIR}
+IPATH   = -I. -I${SRCDIR} @TIFF_INC@
 #
 CONF_LIBRARY=\
 	${NULL}
-COPTS   = @GCOPTS@
-OPTIMIZER=-O
-CFLAGS  = @ENVOPTS@ ${COPTS} ${OPTIMIZER} ${IPATH} ${CONF_LIBRARY}
+COPTS	= @CFLAGS@
+CFLAGS  = ${COPTS} ${IPATH} ${CONF_LIBRARY}
 #
 SRCS    = \
 	${NULL}
