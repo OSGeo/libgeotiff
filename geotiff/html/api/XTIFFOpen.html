@@ -7,12 +7,16 @@
 <body>
 <h1>XTIFFOpen - Open GeoTIFF File</h1>
 
+<h3>Usage:</h3>
+
 <b>
 <pre>
     #include &lt;xtiffio.h&gt;
     TIFF* XTIFFOpen( const char * name, const char * mode );
 </pre>
 </b>
+
+<h3>Details:</h3>
 
 This function is used to open GeoTIFF files instead of TIFFOpen() from
 libtiff.  Internally it calls TIFFOpen(), but sets up some extra hooks
