@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.9  1999/05/04 16:24:49  warmerda
+ * Fixed projection string formating with zones.
+ *
  * Revision 1.8  1999/05/04 12:27:01  geotiff
  * only emit proj unsupported warning if DEBUG defined
  *
@@ -127,7 +130,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     if( psDefn->MapSys == MapSys_UTM_North )
     {
         sprintf( szProjection+strlen(szProjection),
-                 "+proj=utm +zone=%d",
+                 "+proj=utm +zone=%d ",
                  psDefn->Zone );
     }
     
