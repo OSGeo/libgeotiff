@@ -53,7 +53,7 @@ IPATH   = -I. -I${SRCDIR} @TIFF_INC@ @PROJ_INC@
 #
 CONF_LIBRARY=\
 	${NULL}
-COPTS	= @CFLAGS@ -DCSV_DATA_DIR=\"$(datadir)\"
+COPTS	= @CFLAGS@ @C_PIC@ -DCSV_DATA_DIR=\"$(datadir)\"
 CFLAGS  = ${COPTS} ${IPATH} ${CONF_LIBRARY}
 #
 SRCS    = \
