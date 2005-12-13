@@ -121,7 +121,10 @@ cpl_serv.obj: cpl_serv.c
 	$(CC) -c $(CFLAGS) cpl_serv.c
 
 clean:
-	rm -f *.obj *.exe *.lib *.dll
+	-del *.obj
+	-del *.exe
+	-del *.lib
+	-del *.dll
 
 install:	all
 	-mkdir $(PREFIX)
