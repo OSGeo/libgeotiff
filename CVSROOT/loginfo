@@ -28,3 +28,4 @@
 ^studio		mail -s "[studio-cvs] "%s maplab-cvs@dmsolutions.ca
 ^php_utils  	mail -s "[php-utils-cvs] "%s chameleon-cvs@dmsolutions.ca,maplab-cvs@dmsolutions.ca
 ^CVSROOT	mail -s "[MapTools CVSROOT] "%s root@dmsolutions.ca
+^ka-map		mail -s "[ka-map-cvs] "%s ka-map-dev@lists.maptools.org
