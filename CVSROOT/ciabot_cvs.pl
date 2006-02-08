@@ -57,7 +57,7 @@ $project = 'ka-map';
 $from_email = 'ka-map-dev@lists.maptools.org';
 
 # Mail all reports to this address.
-$dest_email = 'cia@cia.navi.cx';
+$dest_email = 'cia@cia.navi.cx,ka-map-dev@lists.maptools.org';
 
 # If using XML-RPC, connect to this URI.
 $rpc_uri = 'http://cia.navi.cx/RPC2';
