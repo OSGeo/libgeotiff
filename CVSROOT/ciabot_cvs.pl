@@ -37,7 +37,7 @@
 use strict;
 use vars qw ($project $from_email $dest_email $rpc_uri $sendmail $sync_delay
 		$xml_rpc $ignore_regexp $alt_local_message_target 
-		$plain_text_email=);
+		$plain_text_email );
 
 
 ### Configuration
@@ -105,12 +105,12 @@ $alt_local_message_target = "";
 
 
 # Email address to which to send plain text notification
-$plain_text_email="dmorissette@dmsolutions.ca";
+$plain_text_email='dmorissette@dmsolutions.ca';
 
 
 ### The code itself
 
-use vars qw ($user $module $tag @files $logmsg $message);
+use vars qw ($user $module $tag @files $logmsg $message $txtmessage);
 
 my @dir; # This array stores all the affected directories
 my @dirfiles;  # This array is mapped to the @dir array and contains files
@@ -279,8 +279,8 @@ Module:    $module
 Branch:    $tag
 
 File(s):
-EM 
-    ;
+EM
+;
 
 
 for (my $dirnum = 0; $dirnum < @dir; $dirnum++) {
