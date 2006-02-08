@@ -36,7 +36,8 @@
 
 use strict;
 use vars qw ($project $from_email $dest_email $rpc_uri $sendmail $sync_delay
-		$xml_rpc $ignore_regexp $alt_local_message_target);
+		$xml_rpc $ignore_regexp $alt_local_message_target 
+		$plain_text_email=);
 
 
 ### Configuration
@@ -103,6 +104,8 @@ $ignore_regexp = "";
 $alt_local_message_target = "";
 
 
+# Email address to which to send plain text notification
+$plain_text_email="dmorissette@dmsolutions.ca";
 
 
 ### The code itself
@@ -239,6 +242,8 @@ my ($VERSION) = '2.4';
 my ($URL) = 'http://cia.navi.cx/clients/cvs/ciabot_cvs.pl';
 my $ts = time;
 
+## XML Message
+
 $message = <<EM
 <message>
    <generator>
@@ -264,6 +269,20 @@ $message .= <<EM
 EM
 ;
 
+## Plain text message
+
+$txtmessage = <<EM
+$user committed an Update for:
+
+Project:   $project
+Module:    $module
+Branch:    $tag
+
+File(s):
+EM 
+    ;
+
+
 for (my $dirnum = 0; $dirnum < @dir; $dirnum++) {
   map {
     $_ = $dir[$dirnum] . '/' . $_;
@@ -272,6 +291,7 @@ for (my $dirnum = 0; $dirnum < @dir; $dirnum++) {
     s/</&lt;/g;
     s/>/&gt;/g;
     $message .= "  <file>$_</file>\n";
+    $txtmessage .= "    $_\n";
   } split($", $dirfiles[$dirnum]);
 }
 
@@ -321,7 +341,7 @@ if ($xml_rpc) {
 
 
 
-### Send out the mail
+### Send out the XML mail
 
 
 # Open our mail program
@@ -340,6 +360,32 @@ Subject: DeliverXML
 EOM
 
 print MAIL $message;
+
+
+# Close the mail
+
+close MAIL;
+die "$0: sendmail exit status " . ($? >> 8) . "\n" unless ($? == 0);
+
+
+### Send out the Plain text mail
+
+
+# Open our mail program
+
+open (MAIL, "| $sendmail -t -oi -oem") or die "Cannot execute $sendmail : " . ($?>>8);
+
+
+# The mail header
+
+print MAIL <<EOM;
+From: $from_email
+To: $plain_text_email
+Subject: CVS commit notification
+
+EOM
+
+print MAIL $txtmessage;
 
 
 # Close the mail
