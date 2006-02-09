@@ -58,8 +58,8 @@ $project = 'ka-map';
 $from_email = 'ka-map-dev@lists.maptools.org';
 
 # Mail all reports to this address.
-#$dest_email = 'cia@cia.navi.cx,ka-map-dev@lists.maptools.org';
-$dest_email = 'dmorissette@dmsolutions.ca';
+$dest_email = 'cia@cia.navi.cx';
+#$dest_email = 'dmorissette@dmsolutions.ca';
 
 # If using XML-RPC, connect to this URI.
 $rpc_uri = 'http://cia.navi.cx/RPC2';
@@ -277,12 +277,15 @@ $user committed an Update for:
 
 Project:   $project
 Module:    $module
-Branch:    $tag
+EM
+;
+
+$txtmessage .= "Branch:    $tag" if ($tag);
+$txtmessage .= <<EM
 
 File(s):
 EM
 ;
-
 
 for (my $dirnum = 0; $dirnum < @dir; $dirnum++) {
   map {
