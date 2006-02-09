@@ -106,7 +106,7 @@ $alt_local_message_target = "";
 
 
 # Email address to which to send plain text notification
-$plain_text_email='dmorissette@dmsolutions.ca';
+$plain_text_email='ka-map-dev@lists.maptools.org';
 
 
 ### The code itself
@@ -273,10 +273,10 @@ EM
 ## Plain text message
 
 $txtmessage = <<EM
-$user committed an Update for:
 
 Project:   $project
 Module:    $module
+Author:    $user
 EM
 ;
 
@@ -285,7 +285,6 @@ $txtmessage .= <<EM
 
 Log Message:
 $logmsg
-
 File(s):
 EM
 ;
