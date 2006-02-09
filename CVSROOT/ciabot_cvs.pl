@@ -106,7 +106,7 @@ $alt_local_message_target = "";
 
 
 # Email address to which to send plain text notification
-$plain_text_email='ka-map-dev@lists.maptools.org';
+$plain_text_email='pspencer@dmsolutions.ca';
 
 
 ### The code itself
