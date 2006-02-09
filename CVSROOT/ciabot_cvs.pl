@@ -283,6 +283,9 @@ EM
 $txtmessage .= "Branch:    $tag" if ($tag);
 $txtmessage .= <<EM
 
+Log Message:
+$logmsg
+
 File(s):
 EM
 ;
