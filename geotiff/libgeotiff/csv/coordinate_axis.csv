@@ -1,4 +1,4 @@
-"COORD_SYS_CODE","COORD_AXIS_NAME_CODE","COORD_AXIS_ORIENTATION","COORD_AXIS_ABBREVIATION","UOM_CODE","ORDER"
+coord_sys_code,coord_axis_name_code,coord_axis_orientation,coord_axis_abbreviation,uom_code,coord_axis_order
 4400,9906,east,E,9001,1
 4400,9907,north,N,9001,2
 4401,9906,east,E,9062,1
@@ -19,18 +19,54 @@
 4408,9907,north,N,9084,2
 4409,9906,east,E,9040,1
 4409,9907,north,N,9040,2
+4471,9906,North along 75 deg West,E,9001,1
+4471,9907,North along 165 deg West,N,9001,2
+4472,9906,North along 60 deg West,E,9001,1
+4472,9907,North along 150 deg West,N,9001,2
+4473,9906,North along 45 deg West,E,9001,1
+4473,9907,North along 135 deg West,N,9001,2
+4474,9906,North along 15 deg West,E,9001,1
+4474,9907,North along 105 deg West,N,9001,2
+4475,9906,North along 0 deg,E,9001,1
+4475,9907,North along 90 deg West,N,9001,2
+4476,9906,North along 15 deg East,E,9001,1
+4476,9907,North along 75 deg West,N,9001,2
+4477,9906,North along 45 deg East,E,9001,1
+4477,9907,North along 45 deg West,N,9001,2
+4478,9906,North along 60 deg East,E,9001,1
+4478,9907,North along 30 deg West,N,9001,2
+4479,9906,North along 75 deg East,E,9001,1
+4479,9907,North along 15 deg West,N,9001,2
+4480,9906,North along 105 deg East,E,9001,1
+4480,9907,North along 15 deg East,N,9001,2
+4481,9906,North along 120 deg East,E,9001,1
+4481,9907,North along 30 deg East,N,9001,2
+4482,9906,North along 135 deg East,E,9001,1
+4482,9907,North along 45 deg East,N,9001,2
+4483,9906,North along 165 deg East,E,9001,1
+4483,9907,North along 75 deg East,N,9001,2
+4484,9906,North along 180 deg,E,9001,1
+4484,9907,North along 90 deg East,N,9001,2
+4485,9906,North along 165 deg West,E,9001,1
+4485,9907,North along 105 deg East,N,9001,2
+4486,9906,North along 135 deg West,E,9001,1
+4486,9907,North along 135 deg East,N,9001,2
+4487,9906,North along 120 deg West,E,9001,1
+4487,9907,North along 150 deg East,N,9001,2
+4488,9906,North along 105 deg West,E,9001,1
+4488,9907,North along 165 deg East,N,9001,2
 4489,9906,North along 160 deg East,E,9001,1
 4489,9907,North along 70 deg East,N,9001,2
 4490,9906,North along 90 deg East,E,9001,1
-4490,9907,North along 0 deg East,N,9001,2
+4490,9907,North along 0 deg,N,9001,2
 4491,9907,north,N,9001,2
 4491,9908,west,W,9001,1
 4492,9913,North along 130 deg West,X,9001,1
 4492,9914,North along 140 deg East,Y,9001,2
 4493,9906,South along 90 deg East,E,9001,2
-4493,9907,South along 180 deg East,N,9001,1
+4493,9907,South along 180 deg,N,9001,1
 4494,9906,North along 90 deg East,E,9001,2
-4494,9907,North along 0 deg East,N,9001,1
+4494,9907,North along 0 deg,N,9001,1
 4495,9906,east,X,9002,1
 4495,9907,north,Y,9002,2
 4496,9906,east,E(X),9001,1
@@ -134,3 +170,7 @@
 6508,9921,north north east,J,9209,1
 6509,9908,west,M,9001,2
 6509,9909,south,P,9001,1
+6510,9918,north-east,x,9001,1
+6510,9919,north-west,y,9001,2
+6511,9922,Along receiver lines,I,9208,1
+6511,9923,Across receiver lines,J,9209,2
