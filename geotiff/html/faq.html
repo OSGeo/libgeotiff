@@ -89,6 +89,8 @@ WWW Homepage</A>.
 <li>
     <A HREF="#WorldFile2">How do I convert between ESRI world files, and GeoTIFF?</A>
 <li>
+    <A HREF="#preserve_metadata">How do I preserve GeoTIFF info when editing my image?</A>
+<li>
     <A HREF="#What are the requirements to make a TIFF image ...">What are the requirements to make a TIFF image ...</A>
 <li>
     <A HREF="#Can I make customized geographic projections using GeoTIFF?">Can I make customized geographic projections using GeoTIFF?</A>
@@ -524,6 +526,28 @@ GeoTIFF file (geo_abc.tif) using a command like this:
   % listgeo -tfw geo_abc.tif > projdef.txt 
 </pre>
 
+<!--------------------------------------------------------------------------->
+<H3><A NAME="preserve_metadata">How do I preserve GeoTIFF info when editing my image?</A></H3>
+
+When I edit my GeoTIFF image in Photoshop or other applications, and then save
+the result the geotiff information is lost.  How can I avoid this? <p>
+
+If a given applications does not support the GeoTIFF tags it will generally
+discard them when reading a GeoTIFF image and they won't be present after a 
+save.  However, it is possible to save the GeoTIFF metadata and reapply it to 
+the image later using commandline utilities distributed with libgeotiff.<P>
+
+Given a GeoTIFF file named original.tif, and a modified file (modified.tif) without the GeoTIFF tags, but still the same size and region:<p>
+<pre>
+  listgeo -no_norm original.tif > original.geo
+  geotifcp -g original.geo modified.tif modified_geotiff.tif 
+</pre>
+
+The listgeo utility is saving a text version of the geotiff tags in the file 
+original.geo, and then geotifcp is copying the modified image, and in the 
+process reapplying the GeoTIFF tags to produce a modified GeoTIFF file.  This
+process only works properly if the modified.tif is the same number of pixels
+and lines as the original file, and represents the same region on the earth.<p>
 
 <!--------------------------------------------------------------------------->
 <H3><A NAME="What are the requirements to make a TIFF image ...">What are the requirements to make a TIFF image ...</A></H3>
@@ -633,8 +657,8 @@ There is a GeoTIFF email list where the GeoTIFF file format and specification
 is discussed.  Subscription and mailing list archive information is available
 at:<p>
 
-<a href="http://www.remotesensing.org/mailman/listinfo/geotiff">
-http://www.remotesensing.org/mailman/listinfo/geotiff</a><p>
+<a href="http://lists.maptools.org/mailman/listinfo/geotiff">
+http://lists.maptools.org/mailman/listinfo/geotiff</a><p>
 
 <!---------------------------------------------------------------------------->
 <h3><a name="Status">Is the GeoTIFF community still active?</h3>
