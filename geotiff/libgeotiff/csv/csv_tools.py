@@ -30,6 +30,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.6  2006/02/28 05:43:29  fwarmerdam
+# force field names to upper case
+#
 # Revision 1.5  2004/05/04 00:31:00  warmerda
 # add support for # comment character in first column
 #
@@ -110,7 +113,7 @@ class CSVTable:
         # Process the first line as field names.
         tokens = string.split( string.strip(fd.readline()), ',' )
         for field in tokens:
-            self.fields.append( string.replace( field, '"', '' ) )
+            self.fields.append(string.upper(string.replace( field, '"', '' )))
 
         # Load the rest of the files, merging records split by newlines
         # within quotes.
