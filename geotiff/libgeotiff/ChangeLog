@@ -1,3 +1,7 @@
+2006-03-02  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Issuing libgeotif 1.2.2 release.
+
 2005-08-16  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Makefile.in: Include @C_PIC@ in CFLAGS so -fPIC will be used.
