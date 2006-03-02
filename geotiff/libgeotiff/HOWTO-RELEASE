@@ -33,7 +33,7 @@
     csv files over the ones from the last distribution, and renaming things
     based on the version number.
 
-10) Announce on GeoTIFF mailing list: geotiff@remotesensing.org
+10) Announce on GeoTIFF mailing list: geotiff@lists.maptools.org
     Include a summary of the ChangeLog items for the most recent release.
 
 11) Update entry at http://www.freshmeat.net/projects/libgeotiff
