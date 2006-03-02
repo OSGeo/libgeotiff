@@ -14,7 +14,7 @@ rm -rf dist_wrk
 mkdir dist_wrk
 cd dist_wrk
 
-export CVSROOT=:pserver:anonymous@cvs.remotesensing.org:/cvsroot
+export CVSROOT=:pserver:cvsanon@cvs.maptools.org:/cvs/maptools/cvsroot
 
 echo "Please type anonymous if prompted for a password."
 cvs login
