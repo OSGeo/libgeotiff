@@ -30,7 +30,7 @@
 ^CVSROOT	mail -s "[MapTools CVSROOT] "%s root@dmsolutions.ca
 #^ka-map		mail -s "[ka-map-cvs] "%s ka-map-dev@lists.maptools.org
 ^ka-map		/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs.pl %{,,,s} $USER
-^gdal		/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs.pl %{,,,s} $USER gdal
-^libtiff	/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs.pl %{,,,s} $USER gdal
-^geotiff	/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs.pl %{,,,s} $USER gdal
-^proj		/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs.pl %{,,,s} $USER gdal
+^gdal		/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs_gdal.pl %{,,,s} $USER gdal
+^libtiff	/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs_gdal.pl %{,,,s} $USER gdal
+^geotiff	/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs_gdal.pl %{,,,s} $USER gdal
+^proj		/usr/bin/perl $CVSROOT/CVSROOT/ciabot_cvs_gdal.pl %{,,,s} $USER gdal
