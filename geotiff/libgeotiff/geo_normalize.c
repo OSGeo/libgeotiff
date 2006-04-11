@@ -28,6 +28,10 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.46  2006/04/11 19:25:06  fwarmerdam
+ * Be careful about falling back to gdal_datum.csv as it can interfere
+ * with incode datum.csv support.
+ *
  * Revision 1.45  2005/03/15 16:01:18  fwarmerdam
  * zero inv flattening interpreted as sphere
  *
@@ -739,7 +743,13 @@ int GTIFGetDatumInfo( int nDatumCode, char ** ppszName, short * pnEllipsoid )
 /*      acceptable fallback.  Mostly this is for GDAL.                  */
 /* -------------------------------------------------------------------- */
     if( (fp = VSIFOpen(pszFilename,"r")) == NULL )
-        pszFilename = CSVFilename( "gdal_datum.csv" );
+    {
+        if( (fp = VSIFOpen(CSVFilename("gdal_datum.csv"), "r")) != NULL )
+        {
+            pszFilename = CSVFilename( "gdal_datum.csv" );
+            VSIFClose( fp );
+        }        
+    }
     else
         VSIFClose( fp );
 
