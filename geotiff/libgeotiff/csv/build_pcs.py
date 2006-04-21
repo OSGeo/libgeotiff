@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.7  2006/04/21 04:27:24  fwarmerdam
+# added pcs.override support
+#
 # Revision 1.6  2006/04/21 04:00:20  fwarmerdam
 # added SHOW_CRS and DEPRECATED to pcs.csv and gcs.csv
 #
@@ -92,6 +95,12 @@ gcs_keys.sort()
 print '%d PCS and %d GCS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys))
 
 ##############################################################################
+# Read PCS Override table for manually assigned transformations.
+
+pcs_override_table = csv_tools.CSVTable()
+pcs_override_table.read_from_csv( 'pcs.override.csv' )
+
+##############################################################################
 # Setup PCS table fields.
 
 pcs_table = csv_tools.CSVTable()
@@ -114,6 +123,16 @@ for i in range(max_parms):
 # Populate PCS table.Setup PCS table fields.
 
 for key in pcs_keys:
+
+    try:
+        o_rec = pcs_override_table.get_record( key )
+        
+        print 'PCS %d overridden from pcs.override.csv file' % key
+        pcs_table.add_record( key, o_rec )
+        continue
+    except:
+        pass
+    
     crs_rec = crs.get_record( key )
     pcs_rec = {}
     pcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
