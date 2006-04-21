@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.6  2006/04/21 04:00:20  fwarmerdam
+# added SHOW_CRS and DEPRECATED to pcs.csv and gcs.csv
+#
 # Revision 1.5  2004/05/04 00:29:31  warmerda
 # added gcs.override.csv support
 #
@@ -98,6 +101,8 @@ pcs_table.add_field('UOM_CODE')                  # linear units of projection.
 pcs_table.add_field('SOURCE_GEOGCRS_CODE')       # GCS #
 pcs_table.add_field('COORD_OP_CODE')             # same asPROJECTION_CONV_CODE
 pcs_table.add_field('COORD_OP_METHOD_CODE')      # ie. 9807=Transvere Mercator
+pcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
+pcs_table.add_field('DEPRECATED')                # 0=false, 1=true
 
 max_parms = 7
 for i in range(max_parms):
@@ -114,6 +119,9 @@ for key in pcs_keys:
     pcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
     pcs_rec['COORD_REF_SYS_NAME'] = crs_rec['COORD_REF_SYS_NAME']
     pcs_rec['SOURCE_GEOGCRS_CODE'] = crs_rec['SOURCE_GEOGCRS_CODE']
+    pcs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
+    pcs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
+    
     if len(pcs_rec['SOURCE_GEOGCRS_CODE']) == 0:
         print 'GEOGCRS missing for %s/%s' % (crs_rec['COORD_REF_SYS_CODE'],
                                              crs_rec['COORD_REF_SYS_NAME'])
@@ -251,6 +259,8 @@ gcs_table.add_field('GREENWICH_DATUM')           # Greenwich equiv datum
 gcs_table.add_field('UOM_CODE')                  # Angular units for GCS.
 gcs_table.add_field('ELLIPSOID_CODE')            # 
 gcs_table.add_field('PRIME_MERIDIAN_CODE')       #
+gcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
+gcs_table.add_field('DEPRECATED')                # 0=false, 1=true
 gcs_table.add_field('COORD_OP_METHOD_CODE')      # 
 gcs_table.add_field('DX')                        # +towgs84 parameters.
 gcs_table.add_field('DY')                        
@@ -279,6 +289,8 @@ for key in gcs_keys:
     gcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
     gcs_rec['COORD_REF_SYS_NAME'] = crs_rec['COORD_REF_SYS_NAME']
     gcs_rec['DATUM_CODE']         = crs_rec['DATUM_CODE']
+    gcs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
+    gcs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
 
     gcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, ca )
 
