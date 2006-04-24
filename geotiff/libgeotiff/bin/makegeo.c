@@ -12,6 +12,7 @@
 #include "geotiffio.h"
 #include "xtiffio.h"
 #include <stdlib.h>
+#include <string.h>
 
 void SetUpTIFFDirectory(TIFF *tif);
 void SetUpGeoKeys(GTIF *gtif);
@@ -20,7 +21,7 @@ void WriteImage(TIFF *tif);
 #define WIDTH 20L
 #define HEIGHT 20L
 
-void main()
+int main()
 {
 	char *fname = "newgeo.tif";
 	TIFF *tif=(TIFF*)0;  /* TIFF-level descriptor */
@@ -43,13 +44,13 @@ void main()
 	GTIFWriteKeys(gtif);
 	GTIFFree(gtif);
 	XTIFFClose(tif);
-	exit (0);
+	return 0;
 	
 failure:
 	printf("failure in makegeo\n");
 	if (tif) TIFFClose(tif);
 	if (gtif) GTIFFree(gtif);
-	exit (-1);
+	return -1;
 }
 
 
