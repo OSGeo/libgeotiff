@@ -1,3 +1,11 @@
+2006-06-26  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c: If the ascii parameters list is too short for the declared
+	  size of an ascii parameter, but it doesn't start off the end of the
+          available string then just trim the length.  This is to make the
+          ESRI sample data file 34105h2.tif work properly.  I wish we had
+          a way of issuing warnings!
+
 ==============================================================================
 
 2006-03-02  Frank Warmerdam  <warmerdam@pobox.com>
