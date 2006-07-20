@@ -20,8 +20,8 @@ INSTALL	= @INSTALL@
 
 EXEEXT=@EXEEXT@
 
-prefix = /usr/local
-libdir  = ${prefix}/lib
+prefix = @prefix@
+libdir  = @libdir@
 
 PROGS=${BIN}/makegeo$(EXEEXT) ${BIN}/listgeo$(EXEEXT) ${BIN}/geotifcp$(EXEEXT)
 
