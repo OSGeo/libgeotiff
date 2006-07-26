@@ -15,16 +15,12 @@
 <td>9805
 <tr>
 
-<td>GeoTIFF Code
-<td>CT_Mercator (7)
-<tr>
-
 <td>OGC WKT
 <td>Mercator_2SP
 <tr>
 
 <td>Supported By
-<td>EPSG, GeoTIFF, PROJ.4
+<td>OGC WKT, PROJ.4
 <tr>
 
 </table>
@@ -40,27 +36,27 @@
 <th>Notes
 
 <tr>
+<td>Latitude of first standard parallel
+<td>
+<td>
+<td> standard_parallel_1
+<td> Angular
+<td>
+
+<tr>
 <td>Latitude of natural origin
-<td>1
-<td>NatOriginLat
+<td>
+<td>
 <td>latitude_of_origin
 <td>Angular
 <td>
 
 <tr>
 <td>Longitude of natural origin
-<td>2
-<td>NatOriginLong
+<td>
+<td>
 <td>central_meridian
 <td>Angular
-<td>
-
-<tr>
-<td>Scale factor at natural origin
-<td>5
-<td>ScaleAtNatOrigin
-<td>
-<td>Unitless
 <td>
 
 <tr>
@@ -101,16 +97,12 @@ datum.</i><p>
 PROJ.4 does not support a latitude of natural origin other than the equator.   
 <b>
 <pre>
-  +proj=merc  +lon_0=<i>Longitude of natural origin</i>
-              +k_0=<i>Scale factor at natural origin</i> 
+  +proj=merc  +lat_ts=<i>Latitude of first standard parallel</i>
+              +lon_0=<i>Longitude of natural origin</i>
               +x_0=<i>False Easting</i>
               +y_0=<i>False Northing</i>
 </pre>
 </b>
-
-A more common formulation for Mercator is to drop the +k_0, and instead to
-provide a latitude of true scale using the +lat_ts parameter, which is the 
-latitude at which the scale is 1.<p>
 
 <h3>EPSG Notes</h3>
 
