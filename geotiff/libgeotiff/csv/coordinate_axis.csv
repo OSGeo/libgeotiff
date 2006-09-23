@@ -19,6 +19,8 @@ coord_sys_code,coord_axis_name_code,coord_axis_orientation,coord_axis_abbreviati
 4408,9907,north,N,9084,2
 4409,9906,east,E,9040,1
 4409,9907,north,N,9040,2
+4410,9906,east,E,9301,1
+4410,9907,north,N,9301,2
 4471,9906,North along 75 deg West,E,9001,1
 4471,9907,North along 165 deg West,N,9001,2
 4472,9906,North along 60 deg West,E,9001,1
@@ -87,6 +89,10 @@ coord_sys_code,coord_axis_name_code,coord_axis_orientation,coord_axis_abbreviati
 4531,9907,north,x,9001,1
 4532,9906,east,X,9001,2
 4532,9907,north,Y,9001,1
+4533,9906,east,Y,9098,2
+4533,9907,north,X,9098,1
+4534,9906,east,none,9001,2
+4534,9907,north,none,9001,1
 6401,9901,north,Lat,9108,1
 6401,9902,east,Long,9108,2
 6401,9903,up,h,9001,3
