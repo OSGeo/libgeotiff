@@ -172,9 +172,6 @@ dist-clean: clean
 	rm -rf config.log config.status config.cache geo_config.h
 	rm -f Makefile
 
-config.status:	configure
-	./configure
-
 geo_config.h: geo_config.h.in config.status
 	./config.status
 	touch geo_config.h
