@@ -29,6 +29,7 @@ fi
 find geotiff -name CVS -exec rm -rf {} \;
 
 mv geotiff/libgeotiff libgeotiff-${VERSION}
+touch libgeotiff-${VERSION}/configure
 
 rm -f ../libgeotiff-${VERSION}.tar.gz ../libgeotiff${COMPRESSED_VERSION}.zip
 
