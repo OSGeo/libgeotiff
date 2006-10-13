@@ -186,9 +186,6 @@ dox:
 	  cp docs/*.html ../../geotiff-ht; \
 	fi
 
-configure:	configure.in aclocal.m4
-	autoconf
-
 install:
 	$(INSTALL) -d $(DESTDIR)$(libdir)
 	$(INSTALL) libgeotiff.a $(GEOTIFF_IMP) $(DESTDIR)${libdir}
