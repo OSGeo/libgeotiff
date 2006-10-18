@@ -13,3 +13,12 @@
 # Bart van den Eijnden and Jan Hartman suggest this datum shift value:
 #
 4289,Amersfoort,6289,Amersfoort,6289,9122,7004,8901,1,0,9606,565.2369,50.0087,465.658,-0.406857330322398,0.350732676542563,-1.8703473836068,4.0812
+#
+# Per http://bugzilla.remotesensing.org/show_bug.cgi?id=1305
+# 
+4218,Bogota 1975,6218,Bogota 1975,6218,9122,7022,8901,1,0,9603,307,304,-318,,,,
+#
+# Per http://bugzilla.remotesensing.org/show_bug.cgi?id=957
+#
+4149,CH1903,6149,CH1903,6149,9122,7004,8901,1,0,9603,674.374,15.056,405.346,,,,
+
