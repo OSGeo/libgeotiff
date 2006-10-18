@@ -83,6 +83,8 @@ coord_sys_code,coord_axis_name_code,coord_axis_orientation,coord_axis_abbreviati
 4500,9907,north,N,9001,1
 4501,9907,north,N,9001,1
 4501,9908,west,E,9001,2
+4502,9906,east,E,9005,2
+4502,9907,north,N,9005,1
 4530,9906,east,Y,9001,2
 4530,9907,north,X,9001,1
 4531,9906,east,y,9001,2
