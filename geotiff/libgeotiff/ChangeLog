@@ -1,3 +1,9 @@
+2006-11-11  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* xtiff.c, xtiffio.h: Made XTIFFInitialize() public so that 
+	applications can call it themselves when using alternate opens.
+	http://bugzilla.remotesensing.org/show_bug.cgi?id=1296
+
 2006-10-18  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Upgraded csv files to EPSG 6.11.1.
