@@ -1,3 +1,7 @@
+2006-12-18  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* bin/listgeo.c: Don't report hemispheres *and* signs when using -d.
+
 2006-11-11  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* xtiff.c, xtiffio.h: Made XTIFFInitialize() public so that 

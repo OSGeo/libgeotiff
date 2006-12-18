@@ -153,30 +153,6 @@ static const char *CSVFileOverride( const char * pszInput )
     return( szPath );
 }
 
-const char *GTIFDecToDDec( double dfAngle, const char * pszAxis,
-                          int nPrecision )
-
-{
-    char        szFormat[30];
-    static char szBuffer[50];
-    const char  *pszHemisphere = NULL;
-
-    if( EQUAL(pszAxis,"Long") && dfAngle < 0.0 )
-        pszHemisphere = "W";
-    else if( EQUAL(pszAxis,"Long") )
-        pszHemisphere = "E";
-    else if( dfAngle < 0.0 )
-        pszHemisphere = "S";
-    else
-        pszHemisphere = "N";
-
-    sprintf( szFormat, "%%%d.%df%s",
-             nPrecision+5, nPrecision, pszHemisphere );
-    sprintf( szBuffer, szFormat, dfAngle );
-
-    return( szBuffer );
-}
-
 /*
  * Report the file(s) corner coordinates in projected coordinates, and
  * if possible lat/long.
@@ -202,8 +178,8 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     {
 	if (dec_flag) 
 	{
-	    fprintf( fp_out, "(%s,", GTIFDecToDDec( x, "Long", 7 ) );
-	    fprintf( fp_out, "%s)\n", GTIFDecToDDec( y, "Lat", 7 ) );
+	    fprintf( fp_out, "(%.7f,", x );
+	    fprintf( fp_out, "%.7f)\n", y );
 	} 
 	else 
 	{
@@ -219,8 +195,8 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
         {
 	    if (dec_flag) 
 	    {
-		fprintf( fp_out, "  (%s,", GTIFDecToDDec( x, "Long", 7 ) );
-		fprintf( fp_out, "%s)", GTIFDecToDDec( y, "Lat", 7 ) );
+                fprintf( fp_out, "  (%.7f,", x );
+                fprintf( fp_out, "%.7f)", y );
 	    } 
 	    else 
 	    {
