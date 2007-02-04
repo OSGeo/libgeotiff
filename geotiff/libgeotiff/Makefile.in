@@ -104,7 +104,7 @@ $(GEOTIFF_SO): ${OBJS}
 	rm -f libgeotiff.$(SO_EXT)
 	${LN} $(GEOTIFF_SO) libgeotiff.$(SO_EXT)
 
-Progs:
+Progs:	$(GEOTIFF_SO)
 	${CD} ${BIN};\
 	${MAKE}
 
