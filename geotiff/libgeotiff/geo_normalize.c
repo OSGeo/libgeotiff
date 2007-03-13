@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.47  2007/03/13 18:04:33  fwarmerdam
+ * added new zealand map grid support per bug 1519
+ *
  * Revision 1.46  2006/04/11 19:25:06  fwarmerdam
  * Be careful about falling back to gdal_datum.csv as it can interfere
  * with incode datum.csv support.
@@ -1565,6 +1568,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
       case CT_Gnomonic:
       case CT_LambertAzimEqualArea:
       case CT_Orthographic:
+      case CT_NewZealandMapGrid:
 /* -------------------------------------------------------------------- */
         if( GTIFKeyGet(psGTIF, ProjNatOriginLongGeoKey, 
                        &dfNatOriginLong, 0, 1 ) == 0
