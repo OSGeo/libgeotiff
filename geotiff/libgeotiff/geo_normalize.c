@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.48  2007/06/06 02:17:04  fwarmerdam
+ * added builtin known values for foot and us survey foot
+ *
  * Revision 1.47  2007/03/13 18:04:33  fwarmerdam
  * added new zealand map grid support per bug 1519
  *
@@ -838,7 +841,8 @@ int GTIFGetUOMLengthInfo( int nUOMLengthCode,
     const char *pszFilename;
 
 /* -------------------------------------------------------------------- */
-/*      We short cut meter to save work in the most common case.        */
+/*      We short cut meter to save work and avoid failure for missing   */
+/*      in the most common cases.       				*/
 /* -------------------------------------------------------------------- */
     if( nUOMLengthCode == 9001 )
     {
@@ -846,6 +850,26 @@ int GTIFGetUOMLengthInfo( int nUOMLengthCode,
             *ppszUOMName = CPLStrdup( "metre" );
         if( pdfInMeters != NULL )
             *pdfInMeters = 1.0;
+
+        return TRUE;
+    }
+
+    if( nUOMLengthCode == 9002 )
+    {
+        if( ppszUOMName != NULL )
+            *ppszUOMName = CPLStrdup( "foot" );
+        if( pdfInMeters != NULL )
+            *pdfInMeters = 0.3048;
+
+        return TRUE;
+    }
+
+    if( nUOMLengthCode == 9003 )
+    {
+        if( ppszUOMName != NULL )
+            *ppszUOMName = CPLStrdup( "US survey foot" );
+        if( pdfInMeters != NULL )
+            *pdfInMeters = 12.0 / 39.37;
 
         return TRUE;
     }
