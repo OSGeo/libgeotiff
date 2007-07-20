@@ -255,10 +255,10 @@ Then ED50 latitude = 42 deg 38 min 52.77 sec N + 4.05sec
                                = 42 deg 38 min 56.82 sec N
 
 
-dLon = -13270.54 seconds  = -3 deg 41 min 10.54 sec
+dLon = -13238.484 seconds  = -3 deg 40 min 38.484 sec
 
-Then ED50 longitude = 3 deg 39 min 34.57 sec E - 3 deg 41 min 10.54 sec
-                                  = 0 deg 01 min 35.97 sec W of Greenwich.",,"EPSG guidance note #7-2, http://www.epsg.org, after Institut de Geomatica; Barcelona.",EPSG,2000-03-07,99.284  99.82  99.64,0
+Then ED50 longitude = 3 deg 39 min 34.57 sec E - 3 deg 40 min 38.484 sec
+                                  = 0 deg 01 min 03.914 sec W of Greenwich.",,"EPSG guidance note #7-2, http://www.epsg.org, after Institut de Geomatica; Barcelona.",EPSG,2006-10-30,99.284 99.82 99.64 2006.91,0
 9618,Geographic2D with Height Offsets,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Lat_T = Lat_S + latitude_offset 
@@ -1889,7 +1889,7 @@ rho1 =6372980.21       C1 =  0.00271391
 T1 = 1.47441726
 
 Then Latitude       = 50°30'00.000""N
-         Longitude    = 00°30'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",EPSG,2004-10-28,2004.68,0
+         Longitude    = 00°30'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",EPSG,2007-02-19,2004.68 2007.029,0
 9808,Transverse Mercator (South Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 For the mapping of southern Africa a south oriented Transverse Mercator projection is used. Here the coordinate axes are called Westings and Southings and increment to the West and South from the origin respectively.  The standard Transverse Mercator formulas (coordinate operation method code 9807) need to be modified to cope with this arrangement with
@@ -2169,7 +2169,56 @@ t = 0.910700729             c = 0.093404829
 
 Then Latitude = 5°23'14.113""N
          Longitude = 115°48'19.820""E",,"EPSG guidance note #7-2, http://www.epsg.org",EPSG,2004-10-16,97.62  99.811 2004.43 2004.60,0
-9813,Laborde Oblique Mercator,1,See information source.,See information source.,Can be accomodated by Oblique Mercator method (code 9815).,"""La nouvelle projection du Service Geographique de Madagascar""; J. Laborde; 1928",EPSG,1996-09-18,97.613,0
+9813,Laborde Madagascar,1,"Note : these formulas have been transcribed from IGN Document NT/G 74. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+From the defining parameters the following constants for the map projection may be calculated:
+
+B = {1+[e^2 cos^4(phiC)]/(1 e^2)}^0.5
+phiS = asin[sin(phiC) / B]
+R = a  kC {(1e^2)^0.5 / [1e^2 sin^2(phiC)]}
+C = ln[tan(pi/4+phiS /2)]  B. ln{tan(pi/4+phiC /2) ([1  e sin(phiC)]/[1+e sin(phiC)])^(e/2)}
+
+Forward case: To compute (E,N) from a given (lat,lon)
+L = B.(lonlonC)
+q = C + B . ln{tan(pi/4+lat/2) ([1e sin(lat)] / [1+e sin(lat)])^(e/2)}
+P = 2.atan[e ^q]  pi/2   where e is the base of natural logarithms
+U = cos(P).cos(L).cos(phiS) + sin(P).sin(phiS) 
+V = cos(P).cos(L).sin(phiS) - sin(P).cos(phiS)
+W = cos(P).sin(L)
+d = (U^2+V^2)^0.5
+if d <> 0 then L' = 2.atan(V/(U+d)) and P' = atan(W/d)
+if d = 0 then L' = 0 and P' = sign(W).pi/2
+H = L' + i.ln(tan(pi/4+P'/2))                 where i^2 = 1
+G = (1  cos(2.alphaC) + i.sin(2.alphaC))/12
+E = FE + R . IMAGINARY(H + G.H^3)
+N = FN + R . REAL(H + G.H^3)
+
+Reverse case: To compute (lat, lon) from a given (E,N):
+G = (1cos(2.alphaC) + i.sin(2.alphaC))/12   where i^2 = 1
+To solve for Latitude and Longitude, a re-iterative solution is required, where the first two elements are
+H0 = (NFN)/R + i.(EFE)/R  ie k = 0
+H1 = H0/(H0 + G.H0^3),    i.e. k = 1,
+and in subsequent reiterations, k increments by 1
+Hk+1 = (H0+2.G.Hk^3)/(3.G.Hk^2+1)
+Re-iterate until ABSOLUTE(REAL([H0-Hk-G.Hk^3)])) < 1E-11
+
+L' = 1.REAL(Hk)
+P' = 2.atan{ e ^[IMAGINARY(Hk)]}  pi/2  where e is the base of natural logarithms.
+U' = cos(P').cos(L').cos(phiS) + cos(P').sin(L').sin(phiS)   
+V' = sin(P')
+W' = cos(P').cos(L').sin(phiS)  cos(P').sin(L').cos(phiS)
+d = (U'^2+ V'^2)^0.5
+if d <> 0 then L = 2 atan[V'/( U'+d)] and P = atan(W'/d)
+if d = 0   then L = 0 and P = SIGN(W') . pi/2
+lon = lonC + (L/B)
+
+q' = {ln[tan(pi/4+P/2)]  C}/B
+The final solution for latitude requires a second re-iterative process, where the first element is
+lat'(0) = 2.atan(e ^q')  pi/2    where e is the base of natural logarithms.
+And the subsequent elements are
+lat'(k) = 2.atan{({1+e.sin[lat(k-1)]} / {1e.sin[lat(k-1)]})^(e/2).e ^q'}  pi/2  for K =1 ?
+Iterate until ABSOLUTE(lat(k)-lat(k-1))  < 1E-11	
+lat = lat(k)",See information source.,,"""La nouvelle projection du Service Geographique de Madagascar""; J. Laborde; 1928. Also IGN Paris technical note NT/G 74.",EPSG,2007-03-27,97.613 2006.96 2007.04,0
 9814,Swiss Oblique Cylindrical,1,See information source.,See information source.,Can be accomodated by Oblique Mercator method (code 9815).,"""Die projecktionen der Schweizerischen Plan und Kartenwerke""; J Bollinger; 1967",EPSG,1996-09-18,97.612,0
 9815,Oblique Mercator,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -2485,6 +2534,7 @@ Latitude = 0.876312566 rad = 50°12'32.4416""N
 Longitude = 0.294083999 rad = 16°50'59.1790""E",,Research Institute for Geodesy Topography and Cartography (VUGTK); Prague.,EPSG,2006-03-31,2002.95 2006.18,0
 9820,Lambert Azimuthal Equal Area,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
+Oblique aspect
 To derive the projected coordinates of a point, geodetic latitude (lat) is converted to authalic latitude (ß). The formulae  to convert geodetic latitude and longitude (lat,lon) to Easting and Northing are:
 
 Easting, E   = FE + {(B . D) . [cos ß . sin(lon  lonO)]}
@@ -2506,13 +2556,40 @@ The reverse formulas to derive the geodetic latitude and longitude of a point fr
 
 lat = ß' + [(e^2/3 + 31e^4/180 + 517e^6/5040) . sin 2ß'] + [(23e^4/360 + 251e^6/3780) . sin 4ß'] +  [(761e^6/45360) . sin 6ß']
 
-lon = lonO + atan {(X-FE) . sin C / [D. rho . cos ßO . cos C  D^2. (Y-FN) . sin ßO . sin C]}
+lon = lonO + atan {(E-FE) . sin C / [D. rho . cos ßO . cos C  D^2. (N-FN) . sin ßO . sin C]}
 where
-ß' = asin{(cosC . sin ßO) + [(D . (Y-FN) . sinC . cos ßO) / rho]}
+ß' = asin{(cosC . sin ßO) + [(D . (N-FN) . sinC . cos ßO) / rho]}
 C = 2 . asin(rho / 2 . Rq)
-rho = {[(X-FE)/D]^2 + [D . (Y FN)]^2}^0.5
+rho = {[(E-FE)/D]^2 + [D . (N FN)]^2}^0.5
 
-and D, Rq, and ßO are as in the forward equations.","For Projected Coordinate Reference System: ETRS89 / ETRS-LAEA
+and D, Rq, and ßO are as in the forward equations.
+
+Polar aspect
+For the polar aspect of the Lambert Azimuthal Equal Area projection, some of the above equations are indeterminate. Instead, for the forward case from latitude and longitude (lat, lon) to Easting (E) and Northing (N):
+
+For the north polar case:
+	Easting, E   = FE + [rho  sin(lon  lonO)]
+	Northing, N = FN   [rho  cos(lon  lonO)]
+where
+rho = a (qP   q)^0.5
+and qP  and q are found as for the general case above.
+
+For the south polar case:
+	Easting, E   = FE + [rho . sin(lon  lonO)]
+	Northing, N = FN +  [rho . cos(lon  lonO)]
+where
+rho = a (qP  + q)^0.5
+and qP  and q are found as for the general case above.
+
+For the reverse formulas to derive the geodetic latitude and longitude of a point from its Easting and Northing:
+lat = ß' + [(e^2/3 + 31e^4/180 + 517e^6/5040)  sin 2ß'] + [(23e^4/360 + 251e^6/3780)  sin 4ß'] +  [(761e^6/45360)  sin 6ß']
+as for the oblique case, but where
+ß' = ±asin [1 rho^2 / (a^2{1 [(1 e^2)/2e)) ln[(1-e)/(1+ e)]})], taking the sign of  latO
+and rho = {[(E FE)]^2 + [(N  FN)]^2}^0.5
+Then
+lon = lonO + atan [(E FE)] / (N FN)] for the south pole case
+and
+lon = lonO + atan [(E FE)] /  (N FN)] for the north pole case.","For Projected Coordinate Reference System: ETRS89 / ETRS-LAEA
 
 Parameters:
 Ellipsoid:GRS 1980  a = 6378137.0 metres    1/f = 298.2572221
@@ -2548,7 +2625,7 @@ C = 0.065193736
 beta' = 0.870458708
 
 Then Latitude = 50°00'00.000""N
-        Longitude = 5°00'00.000""E",This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2006-03-31,2003.35 2004.43 2005.075 2005.29 2006.20,0
+        Longitude = 5°00'00.000""E",This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2007-01-12,2003.35 2004.43 2005.075 2005.29 2006.20 2007.005,0
 9821,Lambert Azimuthal Equal Area (Spherical),1,See information source.,See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Azimuthal Equal Area (code 9820) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2001-06-05,,0
 9822,Albers Equal Area,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -2565,21 +2642,21 @@ C  = m1^2 +  (n . alpha1)
 n   = (m1^2  m2^2) / (alpha2 - alpha1)
 m1 = cos lat1 / (1  e^2 sin^2(lat1))^0.5
 m2 = cos lat2 / (1  e^2 sin^2(lat2))^0.5
-alpha  = (1  e^2) . {[(sin(lat) / (1  e^2 sin^2(lat))]  [1/(2e)] . ln [(1  e sin(lat)) / (1 + e sin(lat))]}
-alphaO  = (1  e^2) . {[(sin(latO) / (1  e^2 sin^2(latO))]  [1/(2e)] . ln [(1  e sin(latO)) / (1 + e sin(latO))]}
-alpha1  = (1  e^2) . {[(sin(lat1) / (1  e^2 sin^2(lat1))]  [1/(2e)] . ln [(1  e sin(lat1)) / (1 + e sin(lat1))]}
-alpha2  = (1  e^2) . {[(sin(lat2) / (1  e^2 sin^2(lat2))]  [1/(2e)] . ln [(1  e sin(lat2)) / (1 + e sin(lat2))]}
+alpha  = (1  e^2) . {[sin(lat) / (1  e^2 sin^2(lat))]  [1/(2e)] . ln [(1  e sin(lat)) / (1 + e sin(lat))]}
+alphaO  = (1  e^2) . {[sin(latO) / (1  e^2 sin^2(latO))]  [1/(2e)] . ln [(1  e sin(latO)) / (1 + e sin(latO))]}
+alpha1  = (1  e^2) . {[sin(lat1) / (1  e^2 sin^2(lat1))]  [1/(2e)] . ln [(1  e sin(lat1)) / (1 + e sin(lat1))]}
+alpha2  = (1  e^2) . {[sin(lat2) / (1  e^2 sin^2(lat2))]  [1/(2e)] . ln [(1  e sin(lat2)) / (1 + e sin(lat2))]}
 
 The reverse formulas to derive the geodetic latitude and longitude of a point from its Easting and Northing values are:
 lat = ß' + (e^2/3 + 31e^4/180 + 517e^6/5040) . sin 2ß'] + [(23e^4/360 + 251e^6/3780) . sin 4ß'] + [(761e^6/45360) . sin 6ß']
 
 lon =   lonO + (theta / n)
 where
-ß' =  sin(alpha' / {1  [(1  e^2) / (2 . e)] . ln [(1  e / (1 + e)]
+ß' =  asin(alpha' / {1  [(1  e^2) / (2 . e)] . ln [(1  e) / (1 + e)]
 alpha' =  [C  (rho^2 . N^2 / a^2)] / n
 rho =  {(E  EF)^2 + [rhoO  (N  NF)]^2 }^0.5
 theta =  atan [(E  EF) / [rhoO  (N  NF)]
-and C, n and rhoO are as in the forward equations.",See Information Source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2006-03-30,2006.20,0
+and C, n and rhoO are as in the forward equations.",See Information Source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",EPSG,2007-03-27,2006.20 2007.049,0
 9823,Equidistant Cylindrical,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 This method has one of the simplest formulas available. If the latitude of natural origin (latO) is at the equator the method is also known as Plate Carrée. It is not used for rigorous topographic mapping because its distortion characteristics are unsuitable. Formulas are included to distinguish this map projection method from an approach sometimes mistakenly called by the same name and used for simple computer display of geographic coordinates  see Pseudo Plate Carrée (coordinate operation method code 9825).
@@ -2924,4 +3001,4 @@ Then
 lat = atan [(1  e^2 * K sin(latO) / sin(psi')) * tan(psi') / (1  e^2)]
 lon = lonO + asin (sin(alpha') * sin(J) / cos(psi'))",See information source or EPSG Guidance Note 7.,Modified form of Oblique Azimuthal Equidistant projection method developed for Polynesian islands. For the distances over which these projections are used (under 800km) this modification introduces no significant error.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",EPSG,2006-03-31,2006.20,0
 9833,Hyperbolic Cassini-Soldner,1,See information source.,See information source.,,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2006-06-28,,0
-9834,Lambert Cylindical Equal Area (Spherical),1,See information source.,See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Azimuthal Equal Area (code 9820) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2006-09-22,,0
+9834,Lambert Cylindrical Equal Area (Spherical),1,See information source.,See information source.,This is the spherical form of the projection. Differences of several tens of metres result from comparison with ellipsoidal form.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2006-09-22,,0

@@ -12,7 +12,7 @@
 #
 # Bart van den Eijnden and Jan Hartmann suggest this datum shift value:
 #
-4289,Amersfoort,6289,Amersfoort,6289,9122,7004,8901,1,0,9606,565.2369,50.0087,465.658,-0.406857330322398,0.350732676542563,-1.8703473836068,4.0812
+#4289,Amersfoort,6289,Amersfoort,6289,9122,7004,8901,1,0,9606,565.2369,50.0087,465.658,-0.406857330322398,0.350732676542563,-1.8703473836068,4.0812
 #
 # Per http://bugzilla.remotesensing.org/show_bug.cgi?id=1305
 # 
@@ -25,5 +25,3 @@
 # From Jan: http://bugzilla.remotesensing.org/show_bug.cgi?id=1336
 #
 4313,Belge 1972,6313,Reseau National Belge 1972,6313,9122,7022,8901,1,0,9606,106.868628,-52.297783,103.723893,-0.336570,0.456955,-1.842183,1.0000012747
-
-
