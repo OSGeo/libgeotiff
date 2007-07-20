@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.49  2007/07/20 18:10:41  fwarmerdam
+ * Pre-search pcs.override.csv and gcs.override.csv.
+ *
  * Revision 1.48  2007/06/06 02:17:04  fwarmerdam
  * added builtin known values for foot and us survey foot
  *
@@ -249,18 +252,30 @@ int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
 {
     char	**papszRecord;
     char	szSearchKey[24];
-    const char	*pszFilename = CSVFilename( "pcs.csv" );
-    
+    const char	*pszFilename;
+
 /* -------------------------------------------------------------------- */
-/*      Search the units database for this unit.  If we don't find      */
-/*      it return failure.                                              */
+/*      Search the pcs.override table for this PCS.                     */
 /* -------------------------------------------------------------------- */
+    pszFilename = CSVFilename( "pcs.override.csv" );
     sprintf( szSearchKey, "%d", nPCSCode );
     papszRecord = CSVScanFileByName( pszFilename, "COORD_REF_SYS_CODE",
                                      szSearchKey, CC_Integer );
 
+/* -------------------------------------------------------------------- */
+/*      If not found, search the EPSG PCS database.                     */
+/* -------------------------------------------------------------------- */
     if( papszRecord == NULL )
-        return FALSE;
+    {
+        pszFilename = CSVFilename( "pcs.csv" );
+        
+        sprintf( szSearchKey, "%d", nPCSCode );
+        papszRecord = CSVScanFileByName( pszFilename, "COORD_REF_SYS_CODE",
+                                         szSearchKey, CC_Integer );
+
+        if( papszRecord == NULL )
+            return FALSE;
+    }
 
 /* -------------------------------------------------------------------- */
 /*      Get the name, if requested.                                     */
@@ -443,15 +458,25 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
 {
     char	szSearchKey[24];
     int		nDatum, nPM, nUOMAngle;
+    const char *pszFilename;
 
 /* -------------------------------------------------------------------- */
 /*      Search the database for the corresponding datum code.           */
 /* -------------------------------------------------------------------- */
+    pszFilename = CSVFilename("gcs.override.csv");
     sprintf( szSearchKey, "%d", nGCSCode );
+    nDatum = atoi(CSVGetField( pszFilename,
+                               "COORD_REF_SYS_CODE", szSearchKey, 
+                               CC_Integer, "DATUM_CODE" ) );
 
-    nDatum = atoi(CSVGetField( CSVFilename("gcs.csv" ),
-                               "COORD_REF_SYS_CODE", szSearchKey, CC_Integer,
-                               "DATUM_CODE" ) );
+    if( nDatum < 1 )
+    {
+        pszFilename = CSVFilename("gcs.csv");
+        sprintf( szSearchKey, "%d", nGCSCode );
+        nDatum = atoi(CSVGetField( pszFilename,
+                                   "COORD_REF_SYS_CODE", szSearchKey, 
+                                   CC_Integer, "DATUM_CODE" ) );
+    }
 
 /* -------------------------------------------------------------------- */
 /*      Handle some "well known" GCS codes directly if the table        */
@@ -505,9 +530,9 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
 /* -------------------------------------------------------------------- */
     if( pnPM != NULL )
     {
-        nPM = atoi(CSVGetField( CSVFilename("gcs.csv" ),
-                            "COORD_REF_SYS_CODE", szSearchKey, CC_Integer,
-                            "PRIME_MERIDIAN_CODE" ) );
+        nPM = atoi(CSVGetField( pszFilename,
+                                "COORD_REF_SYS_CODE", szSearchKey, CC_Integer,
+                                "PRIME_MERIDIAN_CODE" ) );
 
         if( nPM < 1 )
             return FALSE;
@@ -518,7 +543,7 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
 /* -------------------------------------------------------------------- */
 /*      Get the angular units.                                          */
 /* -------------------------------------------------------------------- */
-    nUOMAngle = atoi(CSVGetField( CSVFilename("gcs.csv" ),
+    nUOMAngle = atoi(CSVGetField( pszFilename,
                                   "COORD_REF_SYS_CODE",szSearchKey, CC_Integer,
                                   "UOM_CODE" ) );
 
@@ -533,7 +558,7 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
 /* -------------------------------------------------------------------- */
     if( ppszName != NULL )
         *ppszName =
-            CPLStrdup(CSVGetField( CSVFilename("gcs.csv" ),
+            CPLStrdup(CSVGetField( pszFilename,
                                    "COORD_REF_SYS_CODE",szSearchKey,CC_Integer,
                                    "COORD_REF_SYS_NAME" ));
     

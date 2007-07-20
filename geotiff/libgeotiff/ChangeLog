@@ -1,3 +1,10 @@
+2007-07-20  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: Pre-search pcs.override.csv and gcs.override.csv.
+
+	* cpl_csv_incode.c: Handle unexpected .csv files, and missing
+	records more gracefully.
+
 2007-06-05  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Modified GTIFGetUOMLengthInfo() (for normalization) to have
