@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.8  2007/07/20 18:28:43  fwarmerdam
+# disable application of gcs.override.csv and pcs.override.csv
+#
 # Revision 1.7  2006/04/21 04:27:24  fwarmerdam
 # added pcs.override support
 #
@@ -124,6 +127,7 @@ for i in range(max_parms):
 
 for key in pcs_keys:
 
+    """
     try:
         o_rec = pcs_override_table.get_record( key )
         
@@ -132,7 +136,8 @@ for key in pcs_keys:
         continue
     except:
         pass
-    
+    """
+
     crs_rec = crs.get_record( key )
     pcs_rec = {}
     pcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
@@ -250,6 +255,7 @@ for key in op_keys:
         if to_wgs84_ops.has_key(source_crs):
             if to_wgs84_ops[source_crs] is not None:
                 print 'GCS %d has multiple ways to WGS84.' % source_crs
+                print to_wgs84_ops[source_crs], key
                 to_wgs84_ops[source_crs] = None
         else:
             to_wgs84_ops[source_crs] = key
@@ -294,6 +300,7 @@ gcs_table.add_field('DS')
 
 for key in gcs_keys:
 
+    """
     try:
         o_rec = gcs_override_table.get_record( key )
         
@@ -302,7 +309,8 @@ for key in gcs_keys:
         continue
     except:
         pass
-    
+    """
+
     crs_rec = crs.get_record( key )
     gcs_rec = {}
     gcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
