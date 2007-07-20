@@ -82,12 +82,12 @@ Common Configuration Issues:
    % make
 
  o If you want to use EPSG tables compiled into the code, use the
-   --with-incode-epsg configure switch.  It will make the library and
+   --enable-incode-epsg configure switch.  It will make the library and
    resulting executables substantially larger (~600K), but will avoid any 
    configuration issues with finding the .csv files. 
 
    % rm config.status
-   % ./configure --with-incode-epsg
+   % ./configure --enable-incode-epsg
    % make clean
    % make
 
