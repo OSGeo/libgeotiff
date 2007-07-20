@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.8  2007/07/20 18:08:29  fwarmerdam
+ * Handle unexpected .csv files, and missing records more gracefully.
+ *
  * Revision 1.7  2004/03/23 18:21:56  warmerda
  * Added CSVReadParseLine() stub
  *
@@ -151,11 +154,15 @@ char **CSVScanFileByName( const char * pszFilename,
                           CSVCompareCriteria eCriteria )
 {
   datafile_t *csvfile;
-  int row, col;
+  int row, col, iFile;
+
+  iFile = __CSVGetFileId(pszFilename);
+  if( iFile == -1 )
+      return NULL;
 
   col = CSVGetFileFieldId(pszFilename, pszKeyFieldName);
 
-  csvfile = (datafile_t *)&files[__CSVGetFileId(pszFilename)];
+  csvfile = (datafile_t *)&files[iFile];
   for (row = 1; ((csvfile->rows[row] != 0) && (csvfile->rows[row][col] != 0));
        row++) {
     if (CSVCompare(csvfile->rows[row][col], pszValue, eCriteria))
@@ -168,9 +175,13 @@ char **CSVScanFileByName( const char * pszFilename,
 int CSVGetFileFieldId( const char * pszFilename, const char * pszFieldName)
 {
     datafile_t *csvfile;
-    int i;
+    int i, iFile;
 
-    csvfile = (datafile_t *)&files[__CSVGetFileId(pszFilename)];
+    iFile = __CSVGetFileId(pszFilename);
+    if( iFile == -1 )
+        return -1;
+
+    csvfile = (datafile_t *)&files[iFile];
     if (!strncmp(csvfile->name,pszFilename,(strlen(pszFilename)-4)))
     {
         for (i = 0; csvfile->rows[0][i]; i++) 
@@ -194,12 +205,12 @@ const char *CSVGetField( const char * pszFilename,
 				   pszKeyFieldValue, CC_Integer );
 
   if( papszRecord == NULL )
-      return NULL;
+      return "";
 
   iField = CSVGetFileFieldId(pszFilename, pszTargetField);
 
   if( iField == -1 )
-      return NULL;
+      return "";
   else
       return (papszRecord[iField]);
 }
