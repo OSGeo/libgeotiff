@@ -1,6 +1,10 @@
-2007-07-20  Frank Warmerdam  <warmerdam@pobox.com>
+2007-07-28  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Prepare libgeotiff 1.2.4 release.
+	* Issue libgeotiff 1.2.4 release.
+
+	* geo_normalize.c: Fix name for GCS_WGS_72 per gdal bug #1715.
+
+2007-07-20  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* csv/*.csv,*.c: Upgrade to EPSG 6.13.  Avoid applying pcs.override.csv
 	and gcs.override.csv to pcs.csv and gcs.csv as this sort of dataset

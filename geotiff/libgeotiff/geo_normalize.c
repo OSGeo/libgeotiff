@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.50  2007/07/28 13:55:21  fwarmerdam
+ * Fix name for GCS_WGS_72 per gdal bug #1715.
+ *
  * Revision 1.49  2007/07/20 18:10:41  fwarmerdam
  * Pre-search pcs.override.csv and gcs.override.csv.
  *
@@ -505,7 +508,7 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
         else if( nGCSCode == GCS_WGS_72 )
         {
             nDatum = Datum_WGS72;
-            pszName = "WGS 82";
+            pszName = "WGS 72";
         }
         else
             return FALSE;
