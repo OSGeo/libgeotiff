@@ -1,3 +1,7 @@
+2007-10-02  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c: avoid memory leak in case of error.
+
 2007-07-28  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Issue libgeotiff 1.2.4 release.
