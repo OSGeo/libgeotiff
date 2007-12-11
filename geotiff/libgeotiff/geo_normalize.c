@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.51  2007/12/11 17:58:34  fwarmerdam
+ * Add EPSG 9822 (Albers Equal Area) support from EPSG
+ *
  * Revision 1.50  2007/07/28 13:55:21  fwarmerdam
  * Fix name for GCS_WGS_72 per gdal bug #1715.
  *
@@ -1131,6 +1134,9 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
 
       case 9816: /* tunesia mining grid has no counterpart */
         return( KvUserDefined );
+
+      case 9822:
+        return( CT_AlbersEqualArea );
     }
 
     return( KvUserDefined );
@@ -1241,6 +1247,22 @@ static int SetGTParmIds( int nCTProjection,
         panEPSGCodes[1] = EPSGFalseOriginLong;
         panEPSGCodes[2] = EPSGStdParallel1Lat;
         panEPSGCodes[3] = EPSGStdParallel2Lat;
+        panEPSGCodes[5] = EPSGFalseOriginEasting;
+        panEPSGCodes[6] = EPSGFalseOriginNorthing;
+        return TRUE;
+
+      case CT_AlbersEqualArea:
+        panProjParmId[0] = ProjStdParallel1GeoKey;
+        panProjParmId[1] = ProjStdParallel2GeoKey;
+        panProjParmId[2] = ProjNatOriginLatGeoKey;
+        panProjParmId[3] = ProjNatOriginLongGeoKey;
+        panProjParmId[5] = ProjFalseEastingGeoKey;
+        panProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        panEPSGCodes[0] = EPSGStdParallel1Lat;
+        panEPSGCodes[1] = EPSGStdParallel2Lat;
+        panEPSGCodes[2] = EPSGFalseOriginLat;
+        panEPSGCodes[3] = EPSGFalseOriginLong;
         panEPSGCodes[5] = EPSGFalseOriginEasting;
         panEPSGCodes[6] = EPSGFalseOriginNorthing;
         return TRUE;
