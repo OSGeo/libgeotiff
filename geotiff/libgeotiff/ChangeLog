@@ -1,3 +1,9 @@
+2008-01-31  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: Ignore GCS values less than 1 as seen in the ENVI
+	generated file reported in:
+	  http://trac.osgeo.org/gdal/ticket/2183
+
 2007-12-11  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: Add EPSG 9822 (Albers Equal Area) support from EPSG

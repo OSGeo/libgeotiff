@@ -28,6 +28,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.52  2008/01/31 19:47:57  fwarmerdam
+ * Ignore GCS values less than 1 as a sanity measure
+ *
  * Revision 1.51  2007/12/11 17:58:34  fwarmerdam
  * Add EPSG 9822 (Albers Equal Area) support from EPSG
  *
@@ -2097,6 +2100,8 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /*      the PCS.                                                        */
 /* -------------------------------------------------------------------- */
     GTIFKeyGet(psGTIF, GeographicTypeGeoKey, &(psDefn->GCS), 0, 1 );
+    if( psDefn->GCS < 1 || psDefn->GCS >= KvUserDefined )
+        psDefn->GCS = KvUserDefined;
 
 /* -------------------------------------------------------------------- */
 /*      Derive the datum, and prime meridian from the GCS.              */
