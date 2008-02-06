@@ -139,5 +139,6 @@ devinstall:	install
 	-mkdir $(LIBDIR)
 	copy *.lib $(LIBDIR)
 	copy *.h $(INCDIR)
+	copy libxtiff\*.h $(INCDIR)
 	copy *.inc $(INCDIR)
 	
