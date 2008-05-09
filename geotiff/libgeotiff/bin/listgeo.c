@@ -9,6 +9,7 @@
 #include "geotiff.h"
 #include "xtiffio.h"
 #include "geo_normalize.h"
+#include "geo_simpletags.h"
 #include "geovalues.h"
 #include "tiffio.h"
 #include "cpl_serv.h"
@@ -18,6 +19,7 @@ static void WriteTFWFile( GTIF * gtif, const char * tif_filename );
 static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int, int, int );
 static const char *CSVFileOverride( const char * );
 static const char *CSVDirName = NULL;
+static TIFF *st_setup_test_info();
 
 void Usage()
 
@@ -42,6 +44,7 @@ int main(int argc, char *argv[])
     GTIF	*gtif=(GTIF*)0; /* GeoKey-level descriptor */
     int		i, norm_print_flag = 1, proj4_print_flag = 0;
     int		tfw_flag = 0, inv_flag = 0, dec_flag = 0;
+    int         st_test_flag = 0;
 
     /*
      * Handle command line options.
@@ -63,6 +66,11 @@ int main(int argc, char *argv[])
             inv_flag = 1;
         else if( strcmp(argv[i],"-d") == 0 )
             dec_flag = 1;
+        else if( strcmp(argv[i],"-st_test") == 0 )
+        {
+            st_test_flag = 1;
+            norm_print_flag = 0;
+        }
         else if( fname == NULL && argv[i][0] != '-' )
             fname = argv[i];
         else
@@ -71,21 +79,29 @@ int main(int argc, char *argv[])
         }
     }
 
-    if( fname == NULL )
+    if( fname == NULL && !st_test_flag )
         Usage();
 
     /*
      * Open the file, read the GeoTIFF information, and print to stdout. 
      */
 
-    tif=XTIFFOpen(fname,"r");
-    if (!tif) goto failure;
-	
-    gtif = GTIFNew(tif);
-    if (!gtif)
+    if( st_test_flag )
     {
-        fprintf(stderr,"failed in GTIFNew\n");
-        goto failure;
+        tif = st_setup_test_info();
+        gtif = GTIFNewSimpleTags( tif );
+    }
+    else
+    {
+        tif=XTIFFOpen(fname,"r");
+        if (!tif) goto failure;
+	
+        gtif = GTIFNew(tif);
+        if (!gtif)
+        {
+            fprintf(stderr,"failed in GTIFNew\n");
+            goto failure;
+        }
     }
 
     if( tfw_flag )
@@ -129,7 +145,10 @@ int main(int argc, char *argv[])
 
   Success:
     GTIFFree(gtif);
-    XTIFFClose(tif);
+    if( st_test_flag )
+        ST_Destroy( (ST_TIFF *) tif );
+    else
+        XTIFFClose(tif);
     return 0;
 		
   failure:
@@ -307,4 +326,42 @@ static void WriteTFWFile( GTIF * gtif, const char * tif_filename )
         fprintf( fp, "%24.10f\n", adfCoeff[i] );
 
     fclose( fp );
+}
+
+/************************************************************************/
+/*                         st_setup_test_info()                         */
+/*                                                                      */
+/*      Setup a ST_TIFF structure for a simulated TIFF file.  This      */
+/*      is just a hack to test the ST_ interface.                       */
+/************************************************************************/
+
+static TIFF *st_setup_test_info()
+
+{
+    ST_TIFF *st;
+    double dbl_data[100];
+    short  shrt_data[] = 
+        { 1,1,0,6,1024,0,1,1,1025,0,1,1,1026,34737,17,0,2052,0,1,9001,2054,0,1,9102,3072,0,1,26711 };
+    char *ascii_data = "UTM    11 S E000|";
+
+    st = ST_Create();
+
+    dbl_data[0] = 60;
+    dbl_data[1] = 60;
+    dbl_data[2] = 0;
+    
+    ST_SetKey( st, 33550, 3, STT_DOUBLE, dbl_data );
+
+    dbl_data[0] = 0;
+    dbl_data[1] = 0;
+    dbl_data[2] = 0;
+    dbl_data[3] = 440720;
+    dbl_data[4] = 3751320;
+    dbl_data[5] = 0;
+    ST_SetKey( st, 33922, 6, STT_DOUBLE, dbl_data );
+
+    ST_SetKey( st, 34735, sizeof(shrt_data)/2, STT_SHORT, shrt_data );
+    ST_SetKey( st, 34737, strlen(ascii_data)+1, STT_ASCII, ascii_data );
+    
+    return (TIFF *) st;
 }

@@ -66,7 +66,7 @@ typedef struct TempKeyData TempKeyData;
 
 struct gtiff {
    tiff_t*    gt_tif;      /* TIFF file descriptor  */
-   TIFFMethod gt_methods;  /* TIFF i/o methods      */
+   struct _TIFFMethod gt_methods;  /* TIFF i/o methods      */
    int        gt_flags;    /* file flags            */
    
    pinfo_t    gt_version;  /* GeoTIFF Version       */

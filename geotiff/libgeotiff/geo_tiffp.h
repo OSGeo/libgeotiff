@@ -88,7 +88,7 @@ typedef struct     _TIFFMethod {
 	GTGetFunction get;
 	GTSetFunction set;
 	GTTypeFunction type;
-} TIFFMethod;
+} TIFFMethod_t;
 
 /**********************************************************************
  *

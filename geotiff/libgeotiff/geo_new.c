@@ -13,6 +13,9 @@
  *    7 July,  1995      Greg Martin             Fix index
  *
  * $Log$
+ * Revision 1.14  2008/05/09 18:37:46  fwarmerdam
+ * add support for simple tags api
+ *
  * Revision 1.13  2007/10/03 04:08:03  fwarmerdam
  * avoid memory leak in case of error
  *
@@ -40,6 +43,7 @@
 #include "geotiffio.h"   /* public interface        */
 #include "geo_tiffp.h" /* external TIFF interface */
 #include "geo_keyp.h"  /* private interface       */
+#include "geo_simpletags.h" 
 
 /* private local routines */
 static int ReadKey(GTIF* gt, TempKeyData* tempData,
@@ -72,8 +76,34 @@ still returned.  GTIFNew() is used both for existing files being read, and
 for new TIFF files that will have GeoTIFF tags written to them.<p>
 
  */
- 
+
 GTIF* GTIFNew(void *tif)
+
+{
+    TIFFMethod default_methods;
+    _GTIFSetDefaultTIFF( &default_methods );
+
+    return GTIFNewWithMethods( tif, &default_methods );
+}
+
+GTIF *GTIFNewSimpleTags( void *tif )
+
+{
+    TIFFMethod default_methods;
+    GTIFSetSimpleTagsMethods( &default_methods );
+
+    return GTIFNewWithMethods( tif, &default_methods );
+}
+
+/************************************************************************/
+/*                         GTIFNewWithMethods()                         */
+/*                                                                      */
+/*      Create a new geotiff, passing in the methods structure to       */
+/*      support not libtiff implementations without replacing the       */
+/*      default methods.                                                */
+/************************************************************************/
+
+GTIF* GTIFNewWithMethods(void *tif, TIFFMethod* methods)
 {
     GTIF* gt=(GTIF*)0;
     int count,bufcount,index;
@@ -89,7 +119,7 @@ GTIF* GTIFNew(void *tif)
 	
     /* install TIFF file and I/O methods */
     gt->gt_tif = (tiff_t *)tif;
-    _GTIFSetDefaultTIFF(&gt->gt_methods);
+    memcpy( &gt->gt_methods, methods, sizeof(TIFFMethod) );
 
     /* since this is an array, GTIF will allocate the memory */
     if ( tif == NULL 

@@ -43,7 +43,7 @@ SO_EXT=@SO_EXT@
 
 GT_INCLUDE_FILES = xtiffio.h geotiff.h geotiffio.h geovalues.h \
 	geonames.h geokeys.h geo_tiffp.h geo_config.h geo_keyp.h \
-	geo_normalize.h cpl_serv.h \
+	geo_normalize.h cpl_serv.h geo_simpletags.h \
 	epsg_datum.inc epsg_gcs.inc epsg_pm.inc epsg_units.inc geo_ctrans.inc\
 	epsg_ellipse.inc epsg_pcs.inc epsg_proj.inc epsg_vertcs.inc geokeys.inc
 
@@ -72,6 +72,7 @@ CORE_OBJS    = \
 	geo_normalize.o \
 	geotiff_proj4.o \
 	geo_extra.o \
+	geo_simpletags.o \
 	cpl_serv.o \
 	${NULL}
 

@@ -54,6 +54,7 @@ extern "C" {
 #endif
 
 typedef struct gtiff GTIF;   /* struct gtiff is private */
+typedef struct _TIFFMethod TIFFMethod;
 typedef unsigned short tifftag_t;
 typedef unsigned short geocode_t;
 typedef int (*GTIFPrintMethod)(char *string, void *aux);
@@ -82,6 +83,8 @@ typedef enum {
 
 /* TIFF-level interface */
 GTIF CPL_DLL *GTIFNew(void *tif);
+GTIF CPL_DLL *GTIFNewSimpleTags(void *tif);
+GTIF CPL_DLL *GTIFNewWithMethods(void *tif, TIFFMethod*);
 void CPL_DLL  GTIFFree(GTIF *gtif);
 int  CPL_DLL  GTIFWriteKeys(GTIF *gtif);
 void CPL_DLL  GTIFDirectoryInfo(GTIF *gtif, int *versions, int *keycount);
