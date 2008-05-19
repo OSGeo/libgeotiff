@@ -51,6 +51,7 @@ OBJS    = \
 	geo_trans.obj \
 	geo_normalize.obj \
 	geotiff_proj4.obj \
+	geo_simpletags.obj \
 	cpl_csv.obj \
 	cpl_serv.obj
 
