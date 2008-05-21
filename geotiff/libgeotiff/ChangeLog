@@ -1,3 +1,9 @@
+2008-05-21  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* bin/geotifcp.c: Support for -4 option to set from proj.4 def.
+
+	* geotiff_proj4.c: Preliminary proj4->geotiff function, quite incomplete
+
 2008-05-09  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_simpletags.{c,h}, geo_new.c, geotiff.h: Introduce "simple tags"

@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.13  2008/05/21 04:12:57  fwarmerdam
+ * added preliminary GTIFSetFromProj4() support
+ *
  * Revision 1.12  2005/08/26 16:08:14  fwarmerdam
  * Include void in empty argument list for prototype.
  *
@@ -224,8 +227,11 @@ int CPL_DLL   GTIFProjToMapSys( int ProjCode, int * pZone );
  * These are only useful if using libgeotiff with libproj (PROJ.4+).
  */
 char CPL_DLL *GTIFGetProj4Defn( GTIFDefn * );
+
 int  CPL_DLL  GTIFProj4ToLatLong( GTIFDefn *, int, double *, double * );
 int  CPL_DLL  GTIFProj4FromLatLong( GTIFDefn *, int, double *, double * );
+
+int  CPL_DLL  GTIFSetFromProj4( GTIF *gtif, const char *proj4 );
 
 #if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)
 #  define HAVE_GTIFPROJ4

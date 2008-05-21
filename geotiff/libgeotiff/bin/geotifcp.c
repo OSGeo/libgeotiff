@@ -17,6 +17,7 @@
 /* GeoTIFF overrides */
 
 #include "geotiff.h"
+#include "geo_normalize.h"
 #include "geo_tiffp.h"
 #include "geo_keyp.h"
 #include "xtiffio.h"
@@ -55,6 +56,7 @@ static	int jpegcolormode = JPEGCOLORMODE_RGB;
 static	uint16 defcompression = (uint16) -1;
 static	uint16 defpredictor = (uint16) -1;
 static 	char *geofile=(char *)0;
+static  char *proj4_string = (char *) 0;
 static  char *worldfile=(char *)0;
 
 static  void ApplyWorldFile(const char *worldfile, TIFF *out);
@@ -79,7 +81,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:aistd")) != -1)
+	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:4:aistd")) != -1)
 		switch (c) {
 		case 'a':		/* append to output */
 			mode = "a";
@@ -107,6 +109,9 @@ main(int argc, char* argv[])
 			break;
 		case 'g':		/* GeoTIFF metadata file */
 			geofile = optarg;
+			break;
+		case '4':	       
+			proj4_string = optarg;
 			break;
 		case 'l':		/* tile length */
 			outtiled = TRUE;
@@ -247,21 +252,33 @@ static void InstallGeoTIFF(TIFF *out)
         return;
     }
 
-    /* Install keys and tags */
-    fd = fopen(geofile,"r");
-    if( fd == NULL )
+    if( geofile )
     {
-        perror( geofile );
-        exit( -1 );
+        /* Install keys and tags */
+        fd = fopen(geofile,"r");
+        if( fd == NULL )
+        {
+            perror( geofile );
+            exit( -1 );
+        }
+        if (!GTIFImport(gtif,0,fd))
+        {
+            fprintf(stderr,"Failure in GTIFImport\n");
+            exit (-1);
+        }
+        fclose(fd);
     }
-    if (!GTIFImport(gtif,0,fd)) goto bad;
-    fclose(fd);
+    else if( proj4_string )
+    {
+        if( !GTIFSetFromProj4(gtif,proj4_string) )
+        {
+            fprintf(stderr,"Failure in GTIFSetFromProj4\n");
+            exit (-1);
+        }
+    }
     GTIFWriteKeys(gtif);
     GTIFFree(gtif);
     return;
-  bad:
-    fprintf(stderr,"Failure in GTIFImport\n");
-    exit (-1);
 }
 
 static void CopyGeoTIFF(TIFF * in, TIFF *out)
@@ -352,6 +369,7 @@ char* stuff[] = {
 "usage: gtiffcp [options] input... output",
 "where options are:",
 " -g file	install GeoTIFF metadata from <file>",
+" -4 proj4_str	install GeoTIFF metadata from proj4 string",
 " -e file	install positioning info from ESRI Worldfile <file>",
 " -a		append to output instead of overwriting",
 " -o offset	set initial directory offset",
@@ -633,7 +651,7 @@ tiffcp(TIFF* in, TIFF* out)
 	}
 	cpOtherTags(in, out);
 
-	if (geofile)
+	if (geofile || proj4_string )
             InstallGeoTIFF(out);
         else
             CopyGeoTIFF(in,out);
