@@ -29,6 +29,9 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.25  2008/05/21 04:25:01  fwarmerdam
+ * avoid warnings.
+ *
  * Revision 1.24  2008/05/21 04:12:57  fwarmerdam
  * added preliminary GTIFSetFromProj4() support
  *
@@ -255,7 +258,7 @@ int GTIFSetFromProj4( GTIF *gtif, const char *proj4 )
 {
     char **papszNV = OSRProj4Tokenize( proj4 );
     short nSpheroid = KvUserDefined;
-    double dfSemiMajor, dfSemiMinor, dfInvFlattening;
+    double dfSemiMajor, dfSemiMinor=0.0, dfInvFlattening=0.0;
     int	   nDatum = KvUserDefined;
     int    nGCS = KvUserDefined;    
     const char  *value;
