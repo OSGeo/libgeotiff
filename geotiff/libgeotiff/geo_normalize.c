@@ -28,6 +28,10 @@
  ******************************************************************************
  *
  * $Log$
+ * Revision 1.53  2008/07/03 18:36:31  fwarmerdam
+ * Fix potential buffer overflow in GTIFAngleStringToDD.
+ * http://trac.osgeo.org/gdal/ticket/2228
+ *
  * Revision 1.52  2008/01/31 19:47:57  fwarmerdam
  * Ignore GCS values less than 1 as a sanity measure
  *
@@ -413,7 +417,8 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
                 {
                     szSeconds[1] = pszDecimal[4];
                     szSeconds[2] = '.';
-                    strcpy( szSeconds+3, pszDecimal + 5 );
+                    strncpy( szSeconds+3, pszDecimal + 5, sizeof(szSeconds) - 3 );
+                    szSeconds[sizeof(szSeconds) - 1] = 0;
                 }
                 else
                 {

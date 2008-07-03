@@ -1,3 +1,8 @@
+2008-07-03  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: Fix potential buffer overflow in GTIFAngleStringToDD
+	http://trac.osgeo.org/gdal/ticket/2228
+	
 2008-05-21  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* bin/geotifcp.c: Support for -4 option to set from proj.4 def.
