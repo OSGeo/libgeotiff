@@ -4,14 +4,12 @@
 The .csv files in this directory are an extract of tables from the EPSG 
 projection database in CSV (comma separated value) format.  These same
 files come with the source distribution in the libgeotiff/csv directory.
-Information and source to extract these tables from the EPSG database
-can be found in the source distribution libgeotiff/csv/odbc2csv directory.
 
 Detailed information on the EPSG database can be found at:
 
-  http://www.petroconsultants.com/products/geodetic.htm
+  http://www.epsg.org/
 
-The current version of the EPSG database dumped is 6.5.
+The current version of the EPSG database dumped is 6.17.
 
 All EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
 are intended to be "true" csv files.  In particular quotes within quoted
@@ -49,3 +47,35 @@ Libgeotiff uses the following tables.  The rest are present for completeness.
  unit_of_measure.csv
  datum.csv
  projop_wparm.csv
+
+
+Generating CSV Files
+--------------------
+
+The csv files are generated from the Postgres dump provided by EPSG.
+
+
+1) Load epsg database into postgres instance named "epsg".
+
+   insert a line "\encoding LATIN1" at start of the _Data_ sql file. 
+
+   run "load_pg.sh" in the directory where the .sql files are found.
+
+   There will be some errors, possible due to encoding issues?
+
+2) Dump the database to .csv files.
+
+   python pg_to_csv.py
+
+   Puts the results in the out directory.  After some inspection move them
+   into this directory (libgeotiff/csv).
+
+3) Build the pcs and gcs csv files.
+
+   python build_pcs.py
+
+4) Commit the changes in libgeotiff repository.
+
+
+
+
