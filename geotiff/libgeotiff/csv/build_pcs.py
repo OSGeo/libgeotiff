@@ -29,6 +29,9 @@
 #******************************************************************************
 # 
 # $Log$
+# Revision 1.9  2008/07/21 19:03:07  fwarmerdam
+# various fixes and improvements done a while ago
+#
 # Revision 1.8  2007/07/20 18:28:43  fwarmerdam
 # disable application of gcs.override.csv and pcs.override.csv
 #
@@ -52,10 +55,10 @@
 import string
 import csv_tools
 
-def get_crs_uom( crs_rec, cs, ca ):
+def get_crs_uom( crs_rec, cs, caxis ):
     coord_sys_code = int(crs_rec['COORD_SYS_CODE'])
 
-    ca_recs = ca.get_records( coord_sys_code )
+    ca_recs = caxis.get_records( coord_sys_code )
     return ca_recs[0]['UOM_CODE']
 
 ##############################################################################
@@ -76,8 +79,8 @@ datums.read_from_csv( 'datum.csv' )
 cs = csv_tools.CSVTable()
 cs.read_from_csv( 'coordinate_system.csv', multi=0 )
 
-ca = csv_tools.CSVTable()
-ca.read_from_csv( 'coordinate_axis.csv', multi=1 )
+caxis = csv_tools.CSVTable()
+caxis.read_from_csv( 'coordinate_axis.csv', multi=1 )
 
 ##############################################################################
 # Scan coordinate_reference_systems table to collect PCS ids.
@@ -115,6 +118,7 @@ pcs_table.add_field('COORD_OP_CODE')             # same asPROJECTION_CONV_CODE
 pcs_table.add_field('COORD_OP_METHOD_CODE')      # ie. 9807=Transvere Mercator
 pcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
 pcs_table.add_field('DEPRECATED')                # 0=false, 1=true
+pcs_table.add_field('COORD_SYS_CODE')            # Used mainly for axes.
 
 max_parms = 7
 for i in range(max_parms):
@@ -145,12 +149,13 @@ for key in pcs_keys:
     pcs_rec['SOURCE_GEOGCRS_CODE'] = crs_rec['SOURCE_GEOGCRS_CODE']
     pcs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
     pcs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
+    pcs_rec['COORD_SYS_CODE']     = crs_rec['COORD_SYS_CODE']
     
     if len(pcs_rec['SOURCE_GEOGCRS_CODE']) == 0:
         print 'GEOGCRS missing for %s/%s' % (crs_rec['COORD_REF_SYS_CODE'],
                                              crs_rec['COORD_REF_SYS_NAME'])
 
-    pcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, ca )
+    pcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, caxis )
                                              
     pcs_rec['COORD_OP_CODE']      = crs_rec['PROJECTION_CONV_CODE']
 
@@ -192,6 +197,7 @@ for i in range(max_parms):
     powp_table.add_field('PARAMETER_CODE_%d' % (i+1))
     powp_table.add_field('PARAMETER_VALUE_%d' % (i+1))
     powp_table.add_field('PARAMETER_UOM_%d' % (i+1))
+
 
 ##############################################################################
 # Build and write the projop_wparm table.
@@ -286,6 +292,7 @@ gcs_table.add_field('ELLIPSOID_CODE')            #
 gcs_table.add_field('PRIME_MERIDIAN_CODE')       #
 gcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
 gcs_table.add_field('DEPRECATED')                # 0=false, 1=true
+gcs_table.add_field('COORD_SYS_CODE')            # mainly for axes
 gcs_table.add_field('COORD_OP_METHOD_CODE')      # 
 gcs_table.add_field('DX')                        # +towgs84 parameters.
 gcs_table.add_field('DY')                        
@@ -318,8 +325,9 @@ for key in gcs_keys:
     gcs_rec['DATUM_CODE']         = crs_rec['DATUM_CODE']
     gcs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
     gcs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
+    gcs_rec['COORD_SYS_CODE']     = crs_rec['COORD_SYS_CODE']
 
-    gcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, ca )
+    gcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, caxis )
 
     try:
         datum_id = int(crs_rec['DATUM_CODE'])
