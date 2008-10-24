@@ -1,3 +1,7 @@
+2008-10-24  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* bin/listgeo.c: Improve tfw error reporting and user hints (#2)
+
 2008-07-21  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Prepare 1.2.5 release.

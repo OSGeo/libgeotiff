@@ -292,7 +292,10 @@ static void WriteTFWFile( GTIF * gtif, const char * tif_filename )
     x = 0.5;
     y = 0.5;
     if( !GTIFImageToPCS( gtif, &x, &y ) )
+    {
+        fprintf( stderr, "Unable to translate image to PCS coordinates.\n" );
         return;
+    }
     adfCoeff[4] = x;
     adfCoeff[5] = y;
 
@@ -326,6 +329,8 @@ static void WriteTFWFile( GTIF * gtif, const char * tif_filename )
         fprintf( fp, "%24.10f\n", adfCoeff[i] );
 
     fclose( fp );
+
+    fprintf( stderr, "World file written to '%s'.\n", tfw_filename); 
 }
 
 /************************************************************************/
