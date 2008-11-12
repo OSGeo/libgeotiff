@@ -23,7 +23,8 @@ EXEEXT=@EXEEXT@
 prefix = @prefix@
 libdir  = @libdir@
 
-PROGS=${BIN}/makegeo$(EXEEXT) ${BIN}/listgeo$(EXEEXT) ${BIN}/geotifcp$(EXEEXT)
+PROGS=${BIN}/makegeo$(EXEEXT) ${BIN}/listgeo$(EXEEXT) ${BIN}/geotifcp$(EXEEXT) \
+	${BIN}/applygeo$(EXEEXT)
 
 #
 IPATH	= -I. -I${GEOTIFFDIR} @TIFF_INC@ @ZIP_INC@
@@ -41,21 +42,24 @@ OBJS	= \
 	geotifcp.o \
 	${NULL}
 
-ALL=	makegeo$(EXEEXT) listgeo$(EXEEXT) geotifcp$(EXEEXT)
-  
+ALL=	makegeo$(EXEEXT) listgeo$(EXEEXT) geotifcp$(EXEEXT) applygeo$(EXEEXT)
+
 all:	${ALL} 
-  
+
 makegeo$(EXEEXT): makegeo.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} makegeo.o -L${libdir} ${LIBS} -o $@
-  
+
 geotifcp$(EXEEXT): geotifcp.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} geotifcp.o -L${libdir} ${LIBS} -o $@
-  
+
 listgeo$(EXEEXT): listgeo.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} listgeo.o -L${libdir} ${LIBS} -o $@
-  
+
 csv2html$(EXEEXT): csv2html.o  ${GEOTIFFDIR}/libgeotiff.a
 	${CC} ${COPTS} csv2html.o -L${libdir} ${LIBS} -o $@
+
+applygeo$(EXEEXT): applygeo.o  ${GEOTIFFDIR}/libgeotiff.a
+	${CC} ${COPTS} applygeo.o -L${libdir} ${LIBS} -o $@
 
 clean:
 	rm -f ${ALL} ${OBJS} core a.out newgeo.tif ${GEOTIFF_SO}
