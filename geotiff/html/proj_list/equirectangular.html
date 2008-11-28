@@ -19,8 +19,12 @@
 <td>Equidistant Cylindrical
 <tr>
 
+<td>Alias
+<td>Simple Cylindrical
+<tr>
+
 <td>EPSG Code
-<td> 9823
+<td> 9823 (spherical), 9842 (elliptical)
 <tr>
 
 <td>GeoTIFF Code
@@ -40,62 +44,86 @@
 <h3>Projection Parameters</h3>
 
 <table border>
+
 <th>Name
 <th>EPSG #
 <th>GeoTIFF ID
-<th>OGC WKT
+<th>OGC(OGR) WKT
+<th>ESRI PE WKT
+<th>PROJ.4
 <th>Units
-<th>Notes
 
 <tr>
-<td>Latitude of projection center
-<td>1
+<td>Latitude of true scale
+<td>3
+<td>ProjStdParallel1
+<td>standard_parallel_1
+<td>Standard_Parallel_1
+<td>+lat_ts
+<td>Angular
+
+<tr>
+<td>Latitude of origin
+<td>1 (8801)
 <td>ProjCenterLat
 <td>latitude_of_origin
+<td>(unavailable)
+<td>+lat_0
 <td>Angular
-<td>
 
 <tr>
 <td>Longitude of projection center
-<td>2
+<td>2 (8802/8822)
 <td>ProjCenterLong
 <td>central_meridian
+<td>Central_Meridian
+<td>+lon_0
 <td>Angular
-<td>
 
 <tr>
 <td>False Easting
 <td>6
 <td>FalseEasting
 <td>false_easting
+<td>False_Easting
+<td>+x_0
 <td>Linear
-<td>
 
 <tr>
 <td>False Northing
 <td>7
 <td>FalseNorthing
 <td>false_northing
+<td>False_Northing
+<td>+y_0
 <td>Linear
-<td>
 
 </table>
 
 <h3>Notes</h3>
 
-I get very substantially different results from PROJ.4, and PCI (GCTP)'s 
-results as noted in 
-<a href="random_issues.html#equirectangular">Random Issues</a>.<p>
+There are two latitudes that can be important for this projection. 
 
-<h3>PROJ.4 Organization</h3>
+The latitude of true scale (lat_ts in PROJ.4, Standard_Parallel_1 in ESRI PE, 
+PSEUDO_STD_PARALLEL_1 in OGR (1.6.0beta), unavailable in EPSG, 6th parm in 
+GCTP) and the latitude of origin (lat_0 in PROJ.4, latitude_of_origin in OGR 
+WKT, unavailable in ESRI PE, unavailable in GCTP).   The latitude of origin is 
+just an alternate origin and has no other effect on the equations.   Often both
+are zero.<p>
 
-<b>
-<pre>
-  +proj=eqc   +lat_ts=<i>Latitude at projection center</i> 
-              +lon_0=<i>Longitude at projection center</i>
-              +x_0=<i>False Easting</i>
-              +y_0=<i>False Northing</i>
-</pre>
-</b>
+Generally speaking, if you only have one of these latitudes
+provided, it is likely the latitude of true scale.<p>
+
+For a period OGR used the name "latitude_of_origin" for the latitude of 
+true scale, in error resulting in much confusion. <p>
+
+Most libraries only implement the spherical version this projection.  The 
+rules for deriving a spherical radius from the ellipsoid defined for a
+coordinate system vary between libraries, causing some confusion and mixed
+results.<p>
+
+Plate Caree is an alias, but generally implies that the latitude of true 
+scale, and latitude of natural origin are zero.  Simple Cylindrical is also 
+an alias with the same assumptions.<p>
 
 </body>
