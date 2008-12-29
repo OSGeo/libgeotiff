@@ -920,7 +920,7 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 
 {
     char	szProjection[512];
-    char	szUnits[24];
+    char	szUnits[64];
     double      dfFalseEasting, dfFalseNorthing;
 
     szProjection[0] = '\0';
