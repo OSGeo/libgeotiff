@@ -1,5 +1,8 @@
 2008-12-29  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* geo_normalize.c: Optimizations to avoid opening CSV files for
+	"well known" definitions. (#4).
+
 	* geotiff_proj4.c: Reduce change of szUnits overflow (#3).
 
 2008-11-27  Frank Warmerdam  <warmerdam@pobox.com>
