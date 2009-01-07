@@ -113,9 +113,11 @@ if test "${ZIP_CONFIG}" != "no" ; then
         if test -d ${with_zip}/include ; then
             ZIP_INC="-I$with_zip/include"
             AC_MSG_RESULT([using zlib from $with_zip/include]) 
+            HAVE_ZLIB="yes"
+            ZIP_CONFIG="yes"
         fi
     fi
-    HAVE_ZLIB="yes"
+
 fi
 
 AC_SUBST([ZIP_INC])
@@ -152,6 +154,7 @@ if test "${JPEG_CONFIG}" != "no" ; then
         fi
     fi
     HAVE_JPEG="yes"
+    JPEG_CONFIG="yes"
 fi
 
 AC_SUBST([JPEG_INC])
@@ -166,7 +169,6 @@ dnl required private include files.  Normally these private include files
 dnl (tiffiop.h) are not installed with the public interface.
 dnl #########################################################################
 
-HAVE_TIFF="no"
 TIFF_CONFIG="no"
 
 AC_ARG_WITH(libtiff, [  --with-libtiff=dir      Use libtiff in directory dir],,)
@@ -194,8 +196,9 @@ build libgeotiff without libtiff]),-lm)
   AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,[TIFF_CONFIG=yes],
                AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
 libgeotiff. Please upgrade libtiff or use an older version of libgeotiff.]),-lm)
-  LIBS="$LIBS_SAVED"
+  LIBS="$LIBS -ltiff"
   TIFF_INC=
+  TIFF_CONFIG="yes"
 fi
 
 
@@ -316,11 +319,14 @@ LOC_MSG([  C++ compiler.............: ${CXX} ${CXXFLAGS}])
 LOC_MSG([  Debugging support........: ${enable_debug}])
 LOC_MSG()
 
-LOC_MSG([  zlib support......: ${HAVE_ZLIB}])
-LOC_MSG([  jpeg support......: ${HAVE_JPEG}])
-LOC_MSG([  TIFF support......: ${HAVE_TIFF}])
+LOC_MSG([  zlib support......: ${ZIP_CONFIG}])
+LOC_MSG([  jpeg support......: ${JPEG_CONFIG}])
+LOC_MSG([  TIFF support......: ${TIFF_CONFIG}])
 LOC_MSG([    -INCLUDE .......: ${TIFF_INC}])
 LOC_MSG([    -PREFIX ........: ${TIFF_PREFIX}])
+LOC_MSG([  PROJ support......: ${PROJ_CONFIG}])
+LOC_MSG([    -INCLUDE .......: ${PROJ_INC}])
+LOC_MSG([    -PREFIX ........: ${PROJ_PREFIX}])
 LOC_MSG([  Incode CSV support: ${CSV_CONFIG}])
 
 LOC_MSG([  LIBS.....................: ${LIBS}])
