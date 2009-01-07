@@ -39,7 +39,8 @@
  *
  */
 
-#include "cpl_csv.h"
+//#include "cpl_csv.h"
+#include "cpl_serv.h"
 
 static void
 CSV2HTML( const char * pszFilename, int nColumns, int * panColumns, char**,
