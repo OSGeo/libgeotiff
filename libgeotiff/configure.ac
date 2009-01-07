@@ -73,13 +73,13 @@ AC_ARG_ENABLE([debug],
 AC_MSG_CHECKING([for debug enabled])
 
 if test "x$enable_debug" = "xyes"; then
-	CFLAGS="$CFLAGS -g -DDEBUG"
-	CXXFLAGS="$CXXFLAGS -g -DDEBUG"
-	AC_MSG_RESULT(yes)
+    CFLAGS="$CFLAGS -g -DDEBUG"
+    CXXFLAGS="$CXXFLAGS -g -DDEBUG"
+    AC_MSG_RESULT(yes)
 else
-	CFLAGS="$CFLAGS -O3 -DNDEBUG"
-	CXXFLAGS="$CXXFLAGS -O3 -DNDEBUG"
-	AC_MSG_RESULT(no)
+    CFLAGS="$CFLAGS -O3 -DNDEBUG"
+    CXXFLAGS="$CXXFLAGS -O3 -DNDEBUG"
+    AC_MSG_RESULT(no)
 fi
 
 
@@ -277,7 +277,7 @@ dnl default use of EPSG tables in csv files?  Temporarily unvailable.
 dnl
 
 CSV_CONFIG="no"
-AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg	  Use C code EPSG tables],, enable_incode_epsg=no)
+AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg    Use C code EPSG tables],, enable_incode_epsg=no)
 
 if test "$enable_incode_epsg" != "no"  -o "$enable_incode_epsg" = ""  ; then
 

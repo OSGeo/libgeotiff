@@ -24,34 +24,33 @@ include_HEADERS =   geotiff.h \
                     geo_normalize.h \
                     cpl_serv.h \
                     geo_simpletags.h \
-                	epsg_datum.inc \
-                	epsg_gcs.inc \
-                	epsg_pm.inc \
-                	epsg_units.inc \
-                	geo_ctrans.inc \
-                	epsg_ellipse.inc \
-                	epsg_pcs.inc \
-                	epsg_proj.inc \
-                	epsg_vertcs.inc \
-                	geokeys.inc 
+                    epsg_datum.inc \
+                    epsg_gcs.inc \
+                    epsg_pm.inc \
+                    epsg_units.inc \
+                    geo_ctrans.inc \
+                    epsg_ellipse.inc \
+                    epsg_pcs.inc \
+                    epsg_proj.inc \
+                    epsg_vertcs.inc \
+                    geokeys.inc 
 
 
-libgeotiff_la_SOURCES = \
-    cpl_serv.c \
-    cpl_csv.c \
-    geo_extra.c \
-    geo_free.c \
-    geo_get.c \
-    geo_names.c \
-    geo_new.c \
-    geo_normalize.c \
-    geo_print.c \
-    geo_set.c \
-    geo_simpletags.c \
-    geo_tiffp.c \
-    geo_trans.c \
-    geo_write.c \
-    geotiff_proj4.c 
+libgeotiff_la_SOURCES = cpl_serv.c \
+                        cpl_csv.c \
+                        geo_extra.c \
+                        geo_free.c \
+                        geo_get.c \
+                        geo_names.c \
+                        geo_new.c \
+                        geo_normalize.c \
+                        geo_print.c \
+                        geo_set.c \
+                        geo_simpletags.c \
+                        geo_tiffp.c \
+                        geo_trans.c \
+                        geo_write.c \
+                        geotiff_proj4.c 
 
 if CSV_IS_CONFIG
     libgeotiff_la_SOURCES += csv/datum.c \
