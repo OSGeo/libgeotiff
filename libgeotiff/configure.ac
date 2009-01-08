@@ -12,7 +12,7 @@ AC_CANONICAL_BUILD
 
 RELEASE_VERSION=GEOTIFF_VERSION
 AC_SUBST([RELEASE_VERSION])
-
+AM_CONFIG_HEADER(geo_config.h)
 dnl #########################################################################
 dnl Checks for programs.
 dnl #########################################################################
@@ -49,7 +49,7 @@ dnl #########################################################################
 dnl Checks for header files.
 dnl #########################################################################
 
-AC_CHECK_HEADERS([string.h],, [AC_MSG_ERROR([cannot find string.h, bailing out])])
+AC_CHECK_HEADERS([string.h],[HAVE_STRING_H=1], [AC_MSG_ERROR([cannot find string.h, bailing out])])
 AC_CHECK_HEADERS([stdio.h],, [AC_MSG_ERROR([cannot find stdio.h, bailing out])])
 AC_CHECK_HEADERS([stdlib.h],, [AC_MSG_ERROR([cannot find stdlib.h, bailing out])])
 
@@ -258,6 +258,7 @@ elif test "$PROJ_LIB" != "" -a "$PROJ_INC" != "" ; then
   AC_SUBST(PROJ_INC,$PROJ_INC)
   AC_DEFINE(HAVE_PROJECTS_H)
   AC_DEFINE(HAVE_LIBPROJ)
+  AC_SUBST([HAVE_LIBPROJ])
   PROJ_CONFIG="yes"
   PROJECTS_H_CONFIG="yes"
 
