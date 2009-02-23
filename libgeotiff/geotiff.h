@@ -2,9 +2,12 @@
  *
  *  geotiff.h - Public interface for Geotiff tag parsing.
  *
- *
  *   Written By: Niles D. Ritter
  *
+ *  copyright (c) 1995   Niles D. Ritter
+ *
+ *  Permission granted to use this software, so long as this copyright
+ *  notice accompanies any products derived therefrom.
  **********************************************************************/
 
 #ifndef __geotiff_h_
