@@ -126,16 +126,19 @@ static char **OSRProj4Tokenize( const char *pszFull )
 {
     char *pszStart = NULL;
     char *pszFullWrk;
-    char **papszTokens = (char **) calloc(sizeof(char*),200);
+    char **papszTokens;
     int  i;
     int  nTokens = 0;
+    static const int nMaxTokens = 200;
 
     if( pszFull == NULL )
         return NULL;
 
+    papszTokens = (char **) calloc(sizeof(char*),nMaxTokens);
+
     pszFullWrk = strdup( pszFull );
 
-    for( i=0; pszFullWrk[i] != '\0'; i++ )
+    for( i=0; pszFullWrk[i] != '\0' && nTokens != nMaxTokens-1; i++ )
     {
         switch( pszFullWrk[i] )
         {
@@ -151,7 +154,7 @@ static char **OSRProj4Tokenize( const char *pszFull )
                     else
                     {
                         char szAsBoolean[100];
-                        strcpy( szAsBoolean,pszStart);
+                        strncpy( szAsBoolean,pszStart, sizeof(szAsBoolean)-1-4);
                         strcat( szAsBoolean,"=yes" );
                         papszTokens[nTokens++] = strdup(szAsBoolean);
                     }
@@ -173,7 +176,8 @@ static char **OSRProj4Tokenize( const char *pszFull )
 
     if( pszStart != NULL && strlen(pszStart) > 0 )
     {
-        papszTokens[nTokens++] = strdup( pszStart );
+        if (nTokens != 199)
+            papszTokens[nTokens++] = strdup( pszStart );
     }
 
     free( pszFullWrk );
