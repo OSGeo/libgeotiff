@@ -426,9 +426,7 @@ int GTIFSetFromProj4( GTIF *gtif, const char *proj4 )
                    OSR_GDV( papszNV, "y_0", 0.0 ) );
     }
 
-    else if( EQUAL(value,"lcc") 
-             && OSR_GDV(papszNV, "lat_0", 0.0 ) 
-             == OSR_GDV(papszNV, "lat_1", 0.0 ) )
+    else if( EQUAL(value,"lcc") )
     {
 	GTIFKeySet(gtif, GTModelTypeGeoKey, TYPE_SHORT, 1,
                    ModelTypeProjected);
