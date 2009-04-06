@@ -10,11 +10,9 @@ endif
 
 if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
-else
-TIFF_CFLAGS = -I../libxtiff
 endif
 
-AM_CFLAGS = $(PROJ_CFLAGS) $(TIFF_CFLAGS)
+AM_CFLAGS = -I./libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
 
 include_HEADERS =   geotiff.h \
                     geotiffio.h \
