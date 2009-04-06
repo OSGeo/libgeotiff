@@ -855,9 +855,10 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     } 
     else 
     { 
-        return NULL;
+        return strdup("");
     }
-        
+    
+
     szProjection[0] = '\0';
     
     if ( !nKeyCount ) return strdup( szProjection );
@@ -1301,6 +1302,9 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     }
 
     strcat( szProjection, szUnits );
+    
+    /* If we don't have anything, reset */
+    if (strstr(szProjection,"+proj=") == NULL) { return strdup(""); }
 
     return( strdup( szProjection ) );
 }
