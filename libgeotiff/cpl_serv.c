@@ -22,31 +22,6 @@
  *
  * cpl_serv.c: Various Common Portability Library derived convenience functions
  *
- * $Log$
- * Revision 1.8  2001/07/09 20:14:37  warmerda
- * Another problem freeing pszRLBuffer and not setting to NULL.
- *
- * Revision 1.7  2001/04/17 13:40:43  warmerda
- * fixed freeing of line buffer in CPLReadLine(), init ptr to NULL
- *
- * Revision 1.6  2001/03/05 04:56:17  warmerda
- * make it possible to deallocate CPLReadLine buffer
- *
- * Revision 1.5  2000/09/30 03:35:05  warmerda
- * Fixed CPLReadLine() to use avoid calling VSIRealloc() on a NULL pointer.
- *
- * Revision 1.4  1999/06/25 04:35:26  warmerda
- * Fixed to actually support long lines.
- *
- * Revision 1.3  1999/03/17 20:43:03  geotiff
- * Avoid use of size_t keyword
- *
- * Revision 1.2  1999/03/10 18:22:39  geotiff
- * Added string.h, fixed backslash escaping
- *
- * Revision 1.1  1999/03/09 15:57:04  geotiff
- * New
- *
  */
 
 #include "cpl_serv.h"

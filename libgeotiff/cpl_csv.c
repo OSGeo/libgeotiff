@@ -21,63 +21,6 @@
  ******************************************************************************
  *
  * cpl_csv.c: Support functions for accessing CSV files.
- *
- * $Log$
- * Revision 1.16  2003/07/10 18:03:28  warmerda
- * don't crash if NULL passed to gtCSVAccess()
- *
- * Revision 1.15  2003/01/20 06:46:35  warmerda
- * search for pcs.csv, not horiz_cs.csv
- *
- * Revision 1.14  2003/01/15 04:39:58  warmerda
- * change internal name of CSVAccess
- *
- * Revision 1.13  2002/11/28 22:26:41  warmerda
- * upgraded to proper CSV formatting, and in-memory caching
- *
- * Revision 1.12  2002/06/19 03:51:15  warmerda
- * migrated cpl_csv.h into cpl_serv.h
- *
- * Revision 1.11  2001/03/05 04:49:56  warmerda
- * try to clear CPLReadLine buffer on deaccess
- *
- * Revision 1.10  2001/01/17 15:32:19  warmerda
- * Include /usr/share/epsg_csv and share/epsg_csv in csv search path.
- *
- * Revision 1.9  2000/12/12 19:34:36  warmerda
- * Use CSV_DATA_DIR if defined.
- *
- * Revision 1.8  2000/08/22 04:33:33  warmerda
- * added support for /usr/local/shared/epsg_csv
- *
- * Revision 1.7  1999/12/03 14:42:59  warmerda
- * Passing a NULL filename into CSVAccess() now results in a graceful
- * failure to open the file.
- *
- * Revision 1.6  1999/06/26 17:28:51  warmerda
- * Fixed reading of records with newlines embedded in quoted strings.
- *
- * Revision 1.5  1999/05/04 03:07:24  warmerda
- * avoid warning
- *
- * Revision 1.4  1999/04/28 19:59:56  warmerda
- * added some doxygen style documentation
- *
- * Revision 1.3  1999/03/17 19:53:15  geotiff
- * sys includes moved to cpl_serv.h
- *
- * Revision 1.2  1999/03/10 16:54:42  geotiff
- * Added use of the GEOTIFF_CSV environment variable to locate CSV files.
- *
- * Revision 1.1  1999/03/09 15:57:04  geotiff
- * New
- *
- * Revision 1.2  1999/02/24 16:23:21  warmerda
- * added lots
- *
- * Revision 1.1  1999/01/05 16:52:36  warmerda
- * New
- *
  */
 
 #include "cpl_serv.h"

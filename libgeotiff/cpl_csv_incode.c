@@ -26,35 +26,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- ******************************************************************************
- *
- * $Log$
- * Revision 1.8  2007/07/20 18:08:29  fwarmerdam
- * Handle unexpected .csv files, and missing records more gracefully.
- *
- * Revision 1.7  2004/03/23 18:21:56  warmerda
- * Added CSVReadParseLine() stub
- *
- * Revision 1.6  2003/01/20 21:42:52  warmerda
- * Ensure CSVGetField() does not crash if record not found.
- *
- * Revision 1.5  2003/01/20 07:11:04  warmerda
- * updated csv-incode support to 6.2.2
- *
- * Revision 1.4  2002/06/19 03:51:15  warmerda
- * migrated cpl_csv.h into cpl_serv.h
- *
- * Revision 1.3  2002/02/11 14:22:22  warmerda
- * Added stub CSVDeaccess().
- *
- * Revision 1.2  2001/06/28 17:53:20  warmerda
- * Use EQUAL instead of strcasecmp() to ensure code builds on windows.
- * As per http://bugzilla.remotesensing.org/show_bug.cgi?id=59
- *
- * Revision 1.1  1999/12/10 18:00:58  warmerda
- * New
- *
- */
+ *****************************************************************************/
 
 #include "cpl_serv.h"
 
