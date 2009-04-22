@@ -149,12 +149,14 @@ int main(int argc, char *argv[])
         ST_Destroy( (ST_TIFF *) tif );
     else
         XTIFFClose(tif);
+    GTIFDeaccessCSV();
     return 0;
 		
   failure:
     fprintf(stderr,"failure in listgeo\n");
     if (tif) XTIFFClose(tif);
     if (gtif) GTIFFree(gtif);
+    GTIFDeaccessCSV();
     return 1;
 }
 

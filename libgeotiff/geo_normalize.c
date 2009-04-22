@@ -2202,13 +2202,6 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
             psDefn->ProjParm[6] = 10000000.0;
     }
 
-/* -------------------------------------------------------------------- */
-/*      For now we forceable deaccess all CSV files to reduce the       */
-/*      chance of "leakage".  Really, this should be application        */
-/*      controlled.                                                     */
-/* -------------------------------------------------------------------- */
-    CSVDeaccess( NULL );
-
     return TRUE;
 }
 
@@ -2424,8 +2417,6 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
                  psDefn->UOMLength, pszName, psDefn->UOMLengthInMeters );
         CPLFree( pszName );
     }
-
-    CSVDeaccess( NULL );
 }
 
 /************************************************************************/
