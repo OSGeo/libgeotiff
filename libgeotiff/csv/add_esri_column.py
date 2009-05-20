@@ -56,9 +56,14 @@ print '%d GCS defined.', len(gcs_table.data.keys())
 esri_gcs_names = {}
 esri_datum_names = {}
 
+#
+# First try looking up all the EPSG GCS codes in the ESRI "epsg" directory,
+# and using those examples to correspond an EPSG datum code with an ESRI datum
+# name ... note that datums that aren't used in the EPSG GCS set will be missed.
+#
 for gcs_code in gcs_table.data.keys():
     gcs_code = int(gcs_code)
-    filename = '/u/data/esri/prj/epsg/%d.prj' % gcs_code
+    filename = '/usr3/data/esri/prj/epsg/%d.prj' % gcs_code
 
     try:
         esri_gcs_wkt = open(filename).read()
@@ -84,10 +89,22 @@ for gcs_code in gcs_table.data.keys():
     except:
         print 'Failed to get gcs record, or datum info'
 
+#
+# Now add mappings from the manual override table esri_datum_override.csv
+#
+overrides = csv_tools.CSVTable()
+overrides.read_from_csv( 'esri_datum_override.csv' )
+
+for datum_code in overrides.data.keys():
+    record = overrides.get_record( datum_code )
+    esri_datum_names[datum_code] = record['ESRI_DATUM_NAME']
+
+# Make sure the output datum table has the ESRI_DATUM_NAME field    
+
 if 'ESRI_DATUM_NAME' not in datum_table.fields:
     datum_table.add_field( 'ESRI_DATUM_NAME' )
 
-print esri_datum_names
+# Loop over all datums, adding the esri name where we have it.
 
 for datum_code in datum_table.data.keys():
     datum_rec = datum_table.get_record( datum_code )
