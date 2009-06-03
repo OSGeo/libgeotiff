@@ -1,3 +1,13 @@
+2009-06-03  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: add support for LAEA, as contributed by EvenR.
+	http://trac.osgeo.org/gdal/ticket/3016
+
+2009-05-20  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv/add_esri_column.py, csv/esri_datum_override.csv: Added a bunch
+	of manual ESRI datum name overrides - related to GDAL r17058.
+
 2009-05-18  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* COPYING: remove inadvertent GPL license, refer to LICENSE file.
