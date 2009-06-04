@@ -49,6 +49,25 @@ Libgeotiff uses the following tables.  The rest are present for completeness.
  projop_wparm.csv
 
 
+Overrides
+---------
+
+In some cases we wish to override the EPSG definition - often to provide
+a single preferred towgs84 transformation for datums.  Overrides to GCS
+and PCS definitions should be put in the files:
+
+  gcs.override.csv
+  pcs.override.csv
+
+in a format the same as the pcs.csv and gcs.csv files.  Additions to these
+tables should normally be accompanied by detailed comments and references
+to any relavent tickets.  
+
+Note that we deliberately keep alterations separate from the EPSG definitions
+in gcs.csv and pcs.csv to avoid violating the EPSG distribution license
+which requires that the definitions be distributed in unaltered form.  
+
+
 Generating CSV Files
 --------------------
 
@@ -77,5 +96,44 @@ The csv files are generated from the Postgres dump provided by EPSG.
 4) Commit the changes in libgeotiff repository.
 
 
+Generating Downstream Products - GDAL
+-------------------------------------
 
+Rebuild gdal_datum.csv.  Unfortunately this depends on a set of ArcGIS
+.prj files that are usually only available on Frank's machine:
+
+ python add_esri_column.py
+
+Copy the following files from libgeotiff/csv to gdal/data:
+
+ coordinate_axis.csv ellipsoid.csv gcs.csv gcs.override.csv
+ gdal_datum.csv pcs.csv pcs.override.csv prime_meridian.csv
+ propop_wparm.csv stateplane.csv unit_of_measure.csv
+
+svn commit these files. 
+
+
+Generating Downstream Products - PROJ.4
+---------------------------------------
+
+From the GDAL distribution (do after updating GDAL) do the following in
+the gdal/data directory (with GDAL Python scripts operational):
+
+  rm epsg
+  epsg_tr.py -proj4 -skip -list gcs.csv > epsg
+  epsg_tr.py -proj4 -skip -list pcs.csv >> epsg
+
+Commit this in proj/nad.
+
+
+Generating Downstream Products - PostGIS
+----------------------------------------
+
+
+From the GDAL distribution (do after updating GDAL) do the following in
+the gdal/data directory (with GDAL Python scripts operational):
+
+  rm spatial_ref_sys.sql
+  epsg_tr.py -postgis -skip -list gcs.csv > spatial_ref_sys.sql
+  epsg_tr.py -postgis -skip -list pcs.csv >> spatial_ref_sys.sql
 
