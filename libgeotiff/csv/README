@@ -108,7 +108,7 @@ Copy the following files from libgeotiff/csv to gdal/data:
 
  coordinate_axis.csv ellipsoid.csv gcs.csv gcs.override.csv
  gdal_datum.csv pcs.csv pcs.override.csv prime_meridian.csv
- propop_wparm.csv stateplane.csv unit_of_measure.csv
+ projop_wparm.csv stateplane.csv unit_of_measure.csv
 
 svn commit these files. 
 
