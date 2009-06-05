@@ -9,7 +9,7 @@ Detailed information on the EPSG database can be found at:
 
   http://www.epsg.org/
 
-The current version of the EPSG database dumped is 6.17.
+The current version of the EPSG database dumped is 7.1.
 
 All EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
 are intended to be "true" csv files.  In particular quotes within quoted
@@ -93,7 +93,10 @@ The csv files are generated from the Postgres dump provided by EPSG.
 
    python build_pcs.py
 
-4) Commit the changes in libgeotiff repository.
+4) Update this file to note the current version of the ESPG database being
+   used.
+
+5) Commit the changes in libgeotiff repository.
 
 
 Generating Downstream Products - GDAL
