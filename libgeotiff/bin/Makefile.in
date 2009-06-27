@@ -203,6 +203,7 @@ geotifcp_SOURCES = geotifcp.c
 listgeo_SOURCES = listgeo.c
 csv2html_SOURCES = csv2html.c
 applygeo_SOURCES = applygeo.c
+AM_CFLAGS = -I../libxtiff 
 LDADD = ../libgeotiff.la
 csv2html_LDADD = ../cpl_csv.lo ../libgeotiff.la
 all: all-am
