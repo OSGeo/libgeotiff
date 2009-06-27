@@ -12,8 +12,38 @@ if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
 endif
 
-AM_CFLAGS = -I./libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
+AM_CFLAGS = -I./libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS) \
+			-DCSV_DATA_DIR=\"$(datadir)/epsg_csv\"
 
+csvdir = $(datadir)/epsg_csv
+
+csv_DATA = 	csv/alias.csv \
+			csv/area.csv \
+			csv/change.csv \
+			csv/codes.csv \
+			csv/coordinate_axis.csv \
+			csv/coordinate_axis_name.csv \
+			csv/coordinate_operation.csv \
+			csv/coordinate_operation_method.csv \
+			csv/coordinate_operation_parameter.csv \
+			csv/coordinate_operation_parameter_value.csv \
+			csv/coordinate_operation_path.csv \
+			csv/coordinate_reference_system.csv \
+			csv/coordinate_system.csv \
+			csv/datum.csv \
+			csv/ellipsoid.csv \
+			csv/esri_datum_override.csv \
+			csv/gcs.csv \
+			csv/gcs.override.csv \
+			csv/naming_system.csv \
+			csv/pcs.csv \
+			csv/pcs.override.csv \
+			csv/prime_meridian.csv \
+			csv/projop_wparm.csv \
+			csv/stateplane.csv \
+			csv/unit_of_measure.csv \
+			csv/version_history.csv 
+			
 include_HEADERS =   geotiff.h \
                     geotiffio.h \
                     geovalues.h \
