@@ -49,6 +49,7 @@ include_HEADERS =   geotiff.h \
                     geovalues.h \
                     geonames.h \
                     geokeys.h \
+					geo_config.h \
                     geo_tiffp.h \
                     geo_keyp.h \
                     geo_normalize.h \
