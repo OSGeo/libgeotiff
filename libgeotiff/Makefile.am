@@ -98,3 +98,10 @@ libgeotiff_la_LDFLAGS = -version-info 1:2:0
 libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 
 lib_LTLIBRARIES = libgeotiff.la
+
+lib_geotiff_EXTRA_DIST =    makefile.vc \
+                README \
+                README.WIN \
+                README_BIN \
+                LICENSE \
+                INSTALL
