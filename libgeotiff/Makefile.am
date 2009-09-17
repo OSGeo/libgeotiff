@@ -17,7 +17,7 @@ AM_CFLAGS = -I./libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS) \
 
 csvdir = $(datadir)/epsg_csv
 
-csv_DATA = 	csv/alias.csv \
+dist_csv_DATA = 	csv/alias.csv \
 			csv/area.csv \
 			csv/change.csv \
 			csv/codes.csv \
