@@ -6,6 +6,15 @@
 # We deliberately limit this to automake and autoconf since
 # we don't want geo_config.h.in regenerated automatically. 
 #
+giveup()
+{
+        echo
+        echo "  Something went wrong, giving up!"
+        echo
+        exit 1
+}
+
+
 echo "Running automake"
 automake $AMFLAGS # || giveup
 echo "Running autoconf"

@@ -18,6 +18,7 @@ dnl Checks for programs.
 dnl #########################################################################
 
 AM_INIT_AUTOMAKE
+AM_MAINTAINER_MODE
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP

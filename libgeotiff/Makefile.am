@@ -1,5 +1,7 @@
 SUBDIRS = libxtiff . bin
 
+AUTOMAKE_OPTIONS =	dist-zip
+
 if PROJ_IS_CONFIG
 PROJ_CFLAGS = @PROJ_INC@ -DHAVE_LIBPROJ=1
 endif
