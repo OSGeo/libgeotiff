@@ -76,6 +76,7 @@ static char **OSRProj4Tokenize( const char *pszFull )
                     {
                         char szAsBoolean[100];
                         strncpy( szAsBoolean,pszStart, sizeof(szAsBoolean)-1-4);
+                        szAsBoolean[sizeof(szAsBoolean)-1-4] = '\0';
                         strcat( szAsBoolean,"=yes" );
                         papszTokens[nTokens++] = strdup(szAsBoolean);
                     }
