@@ -42,7 +42,7 @@ import string
 import sys
 import osr
 
-sys.path.append( '/Users/pramsey/Code/libgeotiff-svn/csv' )
+sys.path.append( '/home/warmerda/libgeotiff/csv' )
 import csv_tools
 
 gcs_table = csv_tools.CSVTable()
@@ -63,7 +63,7 @@ esri_datum_names = {}
 #
 for gcs_code in gcs_table.data.keys():
     gcs_code = int(gcs_code)
-    filename = '/Users/pramsey/Downloads/epsg/%d.prj' % gcs_code
+    filename = '/usr3/data/esri/prj/epsg/%d.prj' % gcs_code
 
     try:
         esri_gcs_wkt = open(filename).read()
