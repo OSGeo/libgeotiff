@@ -9,7 +9,10 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
     TIFF *tif = (TIFF*)0; /* TIFF-level descriptor */
     GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
     FILE *fp;
- 
+
+    uint16 *panVI = NULL;
+    uint16 nKeyCount;
+     
     tif = XTIFFOpen(tiffile, "r+");
     if (!tif)
     {
@@ -18,10 +21,9 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
         return(-1);
     }
 
-    // If we have existing geokeys, try to wipe them
-    // by writing a dummy goekey directory. (#2546)
-    uint16 *panVI = NULL;
-    uint16 nKeyCount;
+    /* If we have existing geokeys, try to wipe them
+    by writing a dummy geokey directory. (#2546) */
+
 
     if( TIFFGetField( tif, TIFFTAG_GEOKEYDIRECTORY, 
                       &nKeyCount, &panVI ) )
