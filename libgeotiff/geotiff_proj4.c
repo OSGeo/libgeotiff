@@ -847,22 +847,10 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     char	szUnits[64];
     double      dfFalseEasting, dfFalseNorthing;
 
-    int     nKeyCount = 0;
-    int     anVersion[3];
-
-    if( psDefn != NULL ) 
-    {
-        GTIFDirectoryInfo( psDefn, anVersion, &nKeyCount );
-    } 
-    else 
-    { 
+    if( psDefn == NULL || !psDefn->DefnSet )
         return strdup("");
-    }
-    
 
     szProjection[0] = '\0';
-    
-    if ( !nKeyCount ) return strdup( szProjection );
     
 /* ==================================================================== */
 /*      Translate the units of measure.                                 */

@@ -128,6 +128,9 @@ typedef struct {
     /** UTM, or State Plane Zone number, zero if not known. */
     int		Zone;
 
+    /** Do we have any definition at all?  0 if no geokeys found */
+    int         DefnSet;
+
 } GTIFDefn;
 
 int CPL_DLL GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,

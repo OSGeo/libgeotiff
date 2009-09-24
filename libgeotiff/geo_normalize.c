@@ -1972,6 +1972,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
 /*      Initially we default all the information we can.                */
 /* -------------------------------------------------------------------- */
+    psDefn->DefnSet = 1;
     psDefn->Model = KvUserDefined;
     psDefn->PCS = KvUserDefined;
     psDefn->GCS = KvUserDefined;
@@ -1999,6 +2000,21 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
     psDefn->MapSys = KvUserDefined;
     psDefn->Zone = 0;
+
+/* -------------------------------------------------------------------- */
+/*      Do we have any geokeys?                                         */
+/* -------------------------------------------------------------------- */
+    {
+        int     nKeyCount = 0;
+        int     anVersion[3];
+        GTIFDirectoryInfo( psGTIF, anVersion, &nKeyCount );
+
+        if( nKeyCount == 0 )
+        {
+            psDefn->DefnSet = 0;
+            return FALSE;
+        }
+    }
 
 /* -------------------------------------------------------------------- */
 /*	Try to get the overall model type.				*/
@@ -2273,6 +2289,15 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
 void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 
 {
+/* -------------------------------------------------------------------- */
+/*      Do we have anything to report?                                  */
+/* -------------------------------------------------------------------- */
+    if( !psDefn->DefnSet )
+    {
+        fprintf( fp, "No GeoKeys found.\n" );
+        return;
+    }
+
 /* -------------------------------------------------------------------- */
 /*      Get the PCS name if possible.                                   */
 /* -------------------------------------------------------------------- */
