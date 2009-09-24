@@ -1,42 +1,44 @@
 	Preparing a libgeotiff Release
 	==============================
 
- 1) Update the VERSION_MAJOR/MINOR/POINT information in configure.in.
+ 1) Update the VERSION_MAJOR/MINOR/POINT information in configure.ac, and 
+    run autogen.sh
 
  2) Update the LIBGEOTIFF_VERSION macro in geotiff.h.
 
  3) Add a note to the ChangeLog that a new release is being issued, and what
     the release number is.
 
- 4) Tag the release with a command like "cvs tag libgeotiff_1_1_4" from the
-    libgeotiff directory.
+ 3.5) Commit the above changes.
 
- 5) Prepare a zip and tar.gz file using a command like "mkdist.sh 1.1.5" 
-    from within the geotiff/libgeotiff directory. 
+ 4) If this is a major release, prepare a branch. 
 
- 6) Test build and install on at least one Unix platform.  Test build on a
+   svn copy https://svn.osgeo.org/metacrs/libgeotiff/trunk \
+            https://svn.osgeo.org/metacrs/libgeotiff/branches/1.2
+
+ 5) Tag the release set in SVN 
+
+   svn copy https://svn.osgeo.org/metacrs/libgeotiff/branches/1.2 \
+            https://svn.osgeo.org/metacrs/libgeotiff/tags/1.2.6
+
+ 6) Prepare a zip and tar.gz file using a command like:
+
+   make dist
+
+ 7) Test build and install on at least one Unix platform.  Test build on a
     Windows system.
 
- 7) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff115.zip) 
+ 8) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff-1.1.5.zip) 
     should be copied to the distribution directory (geotiff/libgeotiff on 
-    ftp.remotesensing.org).  Update the README file in that directory to 
+    upload.osgeo.org).  Update the README file in that directory to 
     indicate the new current release.
 
- 8) Build binary distributions of libgeotiff, and utilities for various
-    Unix platforms (usually Linux, Solaris and IRIX).  This can be accomplished
-    using a command like "mkbindist.sh 1.1.5 linux -install".  The -install
-    option only works if you have scp locally, and a matching account on 
-    remotesensing.org.
+    scp libgeotiff-1.1.5.{tar.gz,zip} warmerdam@upload.osgeo.org:/osgeo/download/geotiff/libgeotiff
 
- 9) Build binary distribution for Windows.  Normally prepared by downloading
-    the last distribution, and overlaying the most recent .exe files, and 
-    csv files over the ones from the last distribution, and renaming things
-    based on the version number.
-
-10) Announce on GeoTIFF mailing list: geotiff@lists.maptools.org
+ 9) Announce on GeoTIFF mailing list: geotiff@lists.maptools.org
     Include a summary of the ChangeLog items for the most recent release.
 
-11) Update entry at http://www.freshmeat.net/projects/libgeotiff
+10) Update entry at http://www.freshmeat.net/projects/libgeotiff
 
-12) Update html/geotiff.html to point to most recent release, including
-    the most recent release version number.
+11) Update http://geotiff.osgeo.org/ trac wiki page to point to most recent 
+    release, including the most recent release version number.

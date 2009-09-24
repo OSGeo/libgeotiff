@@ -1,5 +1,7 @@
 2009-09-24  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* Preparing 1.3.0 release.
+
 	* geo_normalize.c/h, geotiff_proj4.c: Added DefnSet to GTIFDefn so 
 	it can be properly established if a definition was set or if there
 	were no geokeys (#12).  Corrects serious interim bug in geotiff_proj4.c
