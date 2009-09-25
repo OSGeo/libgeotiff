@@ -1027,9 +1027,10 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
     else if( psDefn->CTProjection == CT_Equirectangular )
     {
         sprintf( szProjection+strlen(szProjection),
-                 "+proj=eqc +lat_ts=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
+                 "+proj=eqc +lat_0=%.9f +lon_0=%.9f +lat_ts=%.9f +x_0=%.3f +y_0=%.3f ",
                  psDefn->ProjParm[0],
                  psDefn->ProjParm[1],
+                 psDefn->ProjParm[2],
                  dfFalseEasting,
                  dfFalseNorthing );
     }
