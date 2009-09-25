@@ -7,7 +7,7 @@ m4_define([GEOTIFF_VERSION],
           [VERSION_MAJOR.VERSION_MINOR.VERSION_POINT])
 
 AC_PREREQ([2.59])
-AC_INIT([geotiff], [GEOTIFF_VERSION], [warmerdam@pobox.com])
+AC_INIT([libgeotiff], [GEOTIFF_VERSION], [warmerdam@pobox.com])
 AC_CANONICAL_BUILD
 
 RELEASE_VERSION=GEOTIFF_VERSION
