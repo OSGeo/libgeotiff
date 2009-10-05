@@ -6,39 +6,39 @@
 
  2) Update the LIBGEOTIFF_VERSION macro in geotiff.h.
 
- 3) Add a note to the ChangeLog that a new release is being issued, and what
+ 3) Update -version-info CURRENT/REVISION/AGE values in Makefile.am
+   - For a release with no interface changes just bump REVISION. 
+   - Adding interfaces, bump CURRENT/AGE, set REVISION to 0. 
+   - Deleting interfaces / compatibility issues - bump CURRENT, others to zero.
+
+ 4) Add a note to the ChangeLog that a new release is being issued, and what
     the release number is.
 
- 3.5) Commit the above changes.
+ 5) Commit the above changes.
 
- 4) If this is a major release, prepare a branch. 
+ 6) Tag the release set in SVN (for now we aren't using branches in libgeotiff)
 
    svn copy https://svn.osgeo.org/metacrs/libgeotiff/trunk \
-            https://svn.osgeo.org/metacrs/libgeotiff/branches/1.2
+            https://svn.osgeo.org/metacrs/libgeotiff/tags/1.3.0
 
- 5) Tag the release set in SVN 
-
-   svn copy https://svn.osgeo.org/metacrs/libgeotiff/branches/1.2 \
-            https://svn.osgeo.org/metacrs/libgeotiff/tags/1.2.6
-
- 6) Prepare a zip and tar.gz file using a command like:
+ 7) Prepare a zip and tar.gz file using a command like:
 
    make dist
 
- 7) Test build and install on at least one Unix platform.  Test build on a
+ 8) Test build and install on at least one Unix platform.  Test build on a
     Windows system.
 
- 8) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff-1.1.5.zip) 
+ 9) The resulting files (eg. libgeotiff-1.1.5.tar.gz and libgeotiff-1.1.5.zip) 
     should be copied to the distribution directory (geotiff/libgeotiff on 
     upload.osgeo.org).  Update the README file in that directory to 
     indicate the new current release.
 
     scp libgeotiff-1.1.5.{tar.gz,zip} warmerdam@upload.osgeo.org:/osgeo/download/geotiff/libgeotiff
 
- 9) Announce on GeoTIFF mailing list: geotiff@lists.maptools.org
+10) Announce on GeoTIFF mailing list: geotiff@lists.maptools.org
     Include a summary of the ChangeLog items for the most recent release.
 
-10) Update entry at http://www.freshmeat.net/projects/libgeotiff
+11) Update entry at http://www.freshmeat.net/projects/libgeotiff
 
-11) Update http://geotiff.osgeo.org/ trac wiki page to point to most recent 
+12) Update http://geotiff.osgeo.org/ trac wiki page to point to most recent 
     release, including the most recent release version number.
