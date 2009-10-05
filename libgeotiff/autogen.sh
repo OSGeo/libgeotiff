@@ -11,7 +11,7 @@ giveup()
         echo
         echo "  Something went wrong, giving up!"
         echo
-        cp geo_config.h.in.safe geo_config.h.in
+        mv geo_config.h.in.safe geo_config.h.in
         exit 1
 }
 
@@ -41,7 +41,7 @@ echo "Running automake"
 automake $AMFLAGS # || giveup
 echo "Running autoconf"
 autoconf || giveup
-cp geo_config.h.in.safe geo_config.h.in
+mv geo_config.h.in.safe geo_config.h.in
 
 echo "======================================"
 echo "Now you are ready to run './configure'"
