@@ -150,7 +150,7 @@ static double OSR_GDV( char **papszNV, const char * pszField,
 {
     const char *pszValue = OSR_GSV( papszNV, pszField );
 
-    // special hack to use k_0 if available.
+    /* special hack to use k_0 if available. */
     if( pszValue == NULL && EQUAL(pszField,"k") )
         return OSR_GDV( papszNV, "k_0", dfDefaultValue );
 
@@ -184,7 +184,7 @@ int GTIFSetFromProj4( GTIF *gtif, const char *proj4 )
 {
     char **papszNV = OSRProj4Tokenize( proj4 );
     short nSpheroid = KvUserDefined;
-    double dfSemiMajor, dfSemiMinor=0.0, dfInvFlattening=0.0;
+    double dfSemiMajor=0.0, dfSemiMinor=0.0, dfInvFlattening=0.0;
     int	   nDatum = KvUserDefined;
     int    nGCS = KvUserDefined;    
     const char  *value;
@@ -676,7 +676,7 @@ int GTIFSetFromProj4( GTIF *gtif, const char *proj4 )
         SetKrovak( OSR_GDV( papszNV, "lat_0", 0.0 ), 
                    OSR_GDV( papszNV, "lon_0", 0.0 ), 
                    OSR_GDV( papszNV, "alpha", 0.0 ), 
-                   0.0, // pseudo_standard_parallel_1
+                   0.0, /* pseudo_standard_parallel_1 */
                    OSR_GDV( papszNV, "k", 1.0 ), 
                    OSR_GDV( papszNV, "x_0", 0.0 ), 
                    OSR_GDV( papszNV, "y_0", 0.0 ) );
