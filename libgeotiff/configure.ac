@@ -76,7 +76,7 @@ AC_ARG_ENABLE([debug],
 AC_MSG_CHECKING([for debug enabled])
 
 if test "x$enable_debug" = "xyes"; then
-    CFLAGS="$CFLAGS -g -DDEBUG -Wall -Wno-long-long -pedantic"
+    CFLAGS="$CFLAGS -g -DDEBUG -Wall -Wno-long-long -pedantic -std=c99"
     CXXFLAGS="$CXXFLAGS -g -DDEBUG -Wall -Wno-long-long -pedantic -std=c++98"
     AC_MSG_RESULT(yes)
 else
