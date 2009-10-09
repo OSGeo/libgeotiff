@@ -39,7 +39,7 @@
  *
  */
 
-//#include "cpl_csv.h"
+/* #include "cpl_csv.h" */
 #include "cpl_serv.h"
 
 static void
