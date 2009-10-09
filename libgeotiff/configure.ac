@@ -39,7 +39,8 @@ dnl #########################################################################
 dnl Default compilation flags
 dnl #########################################################################
 
-debug_default="no"
+m4_define([debug_default],[no])
+
 CFLAGS="$CFLAGS"
 CXXFLAGS="$CXXFLAGS"
 
