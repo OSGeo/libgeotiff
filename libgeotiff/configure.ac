@@ -70,12 +70,13 @@ dnl Build mode configuration (debug/optimized)
 dnl #########################################################################
 
 AC_ARG_ENABLE([debug],
-    AC_HELP_STRING([--enable-debug=ARG], [Enable debug compilation mode [yes or no, default=${debug_default}]]),,)
+    AC_HELP_STRING([--enable-debug=ARG], [Enable debug compilation mode @<:@yes|no@:>@, default=debug_default]),,)
+    
 AC_MSG_CHECKING([for debug enabled])
 
 if test "x$enable_debug" = "xyes"; then
-    CFLAGS="$CFLAGS -g -DDEBUG"
-    CXXFLAGS="$CXXFLAGS -g -DDEBUG"
+    CFLAGS="$CFLAGS -g -DDEBUG -Wall -Wno-long-long -pedantic"
+    CXXFLAGS="$CXXFLAGS -g -DDEBUG -Wall -Wno-long-long -pedantic -std=c++98"
     AC_MSG_RESULT(yes)
 else
     CFLAGS="$CFLAGS -O3 -DNDEBUG"
@@ -95,17 +96,24 @@ dnl #########################################################################
 AC_ARG_WITH([zip],
     AC_HELP_STRING([--with-zip=ARG], [zlib library to use (yes or path)]),,)
 
+AC_ARG_WITH([zip1],
+    AC_HELP_STRING([--with-zlib=ARG], [ alias for --with-zip]),,)
+
+AC_ARG_WITH([zip2],
+    AC_HELP_STRING([--with-libz=ARG], [ alias for --with-zip]),,)
+
 HAVE_ZIP="no"
 ZIP_CONFIG="no"
 
-if test "$with_zip" = "no" -o "$with_zip" = "" ; then
-    AC_MSG_CHECKING([for zlib])
-    AC_MSG_RESULT([no])
-else
+if test "$with_zip" != "" -o "$with_zlib" != "" -o "$with_libz" != ""; then
     AC_CHECK_HEADERS([zlib.h],, [AC_MSG_ERROR([cannot find zlib.h, bailing out])])
     AC_SEARCH_LIBS([inflateInit_], [z],
                  [ZIP_CONFIG=yes], [ZIP_CONFIG=no],
                  [-L$with_zip/lib -lm])
+
+else
+    AC_MSG_CHECKING([for zlib])
+    AC_MSG_RESULT([no])
 fi
 
 if test "${ZIP_CONFIG}" != "no" ; then
