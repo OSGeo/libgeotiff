@@ -1,3 +1,8 @@
+2009-10-19  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv/{gcs,pcs}.override.csv: Add comments on where the master lives
+	and incorporate COORD_SYS_CODE and Pulkovo 1942 GCS.
+
 2009-09-24  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geotiff_proj4.c: fix parameter mapping to proj4. for equirectangular
