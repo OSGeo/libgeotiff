@@ -1,6 +1,9 @@
 SUBDIRS = libxtiff . bin
 
 AUTOMAKE_OPTIONS =	dist-zip
+ACLOCAL_AMFLAGS = -I m4
+
+include $(top_srcdir)/m4/doxygen.am
 
 if PROJ_IS_CONFIG
 PROJ_CFLAGS = @PROJ_INC@ -DHAVE_LIBPROJ=1
@@ -107,3 +110,5 @@ lib_geotiff_EXTRA_DIST =    makefile.vc \
                 README_BIN \
                 LICENSE \
                 INSTALL
+
+MOSTLYCLEANFILES = $(DX_CLEANFILES)

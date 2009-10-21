@@ -6,13 +6,18 @@ m4_define([VERSION_POINT], [0])
 m4_define([GEOTIFF_VERSION],
           [VERSION_MAJOR.VERSION_MINOR.VERSION_POINT])
 
+m4_include([m4/ax_prog_doxygen.m4])
+
 AC_PREREQ([2.59])
 AC_INIT([libgeotiff], [GEOTIFF_VERSION], [warmerdam@pobox.com])
 AC_CANONICAL_BUILD
 
+AC_CONFIG_MACRO_DIR([m4])
+
 RELEASE_VERSION=GEOTIFF_VERSION
 AC_SUBST([RELEASE_VERSION])
 AM_CONFIG_HEADER(geo_config.h)
+
 dnl #########################################################################
 dnl Checks for programs.
 dnl #########################################################################
@@ -33,7 +38,6 @@ dnl AC_COMPILER_WFLAGS
 dnl AC_PROG_RANLIB
 dnl AC_COMPILER_PIC
 dnl AC_LD_SHARED
-
 
 dnl #########################################################################
 dnl Default compilation flags
@@ -301,6 +305,22 @@ else
 
 fi
 AM_CONDITIONAL([CSV_IS_CONFIG], [test ! x$CSV_CONFIG = xno])
+
+dnl #########################################################################
+dnl Doxygen settings
+dnl #########################################################################
+
+DX_HTML_FEATURE(ON)
+DX_CHM_FEATURE(OFF)
+DX_CHI_FEATURE(OFF)
+DX_MAN_FEATURE(ON)
+DX_RTF_FEATURE(OFF)
+DX_XML_FEATURE(OFF)
+DX_PDF_FEATURE(OFF)
+DX_PS_FEATURE(OFF)
+
+DX_INIT_DOXYGEN($PACKAGE_NAME, docs/Doxyfile, docs/output)
+
 
 
 dnl #########################################################################
