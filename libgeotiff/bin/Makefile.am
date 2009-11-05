@@ -11,7 +11,6 @@ if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
 endif
 
-AM_CPPFLAGS = -I../ -I../libxtiff $(TIFF_CFLAGS) 
 AM_CFLAGS = -I../ -I../libxtiff $(TIFF_CFLAGS) 
 
 LDADD = ../libgeotiff.la
