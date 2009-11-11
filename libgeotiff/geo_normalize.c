@@ -984,6 +984,14 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
 
       case 9805:
         return( CT_Mercator );  /* 1SP and 2SP not differentiated */
+        
+      /* Mercator 1SP (Spherical) For EPSG:3785 */
+      case 9841:
+        return( CT_Mercator );  /* 1SP and 2SP not differentiated */
+        
+      /* Google Mercator For EPSG:3857 */
+      case 1024:
+        return( CT_Mercator );  /* 1SP and 2SP not differentiated */
 
       case 9806:
         return( CT_CassiniSoldner );
