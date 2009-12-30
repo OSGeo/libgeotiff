@@ -1,3 +1,8 @@
+2009-12-30  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c: fix computation of ascii key length introduced in past
+	fix a few months ago that was breaking the GTIFImport() logic.  (#14)
+
 2009-11-11  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: Recognise 9841 and 1024 projection methods as 
