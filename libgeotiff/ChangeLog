@@ -1,5 +1,7 @@
 2010-01-03  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* Preparing 1.3.0 release.
+
 	* Makefile.am: set versioninfo to 2:0:0 as required by the change for
 	1.3.0 in the ABI due to change of size of GTIFDefn structure. 
 	(#19, GDAL #3309)
@@ -25,8 +27,6 @@
 	per http://trac.osgeo.org/gdal/ticket/2706
 
 	* autogen.sh: adjust to avoid version conflicts (#10).
-
-	* Preparing 1.3.0 release.
 
 	* geo_normalize.c/h, geotiff_proj4.c: Added DefnSet to GTIFDefn so 
 	it can be properly established if a definition was set or if there
