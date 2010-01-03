@@ -98,7 +98,7 @@ if CSV_IS_CONFIG
                              csv/unit_of_measure.c 
 endif
 
-libgeotiff_la_LDFLAGS = -version-info 1:2:0
+libgeotiff_la_LDFLAGS = -version-info 2:0:0
 
 libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 
