@@ -4,9 +4,6 @@
 
 	* geo_names.c: ensure that VerticalUnitsGeoKey works properly.
 
-	* geo_set.c: Ensure that key is initialized to NULL, might not
-	be critical after all though.
-
 	* geo_write.c: switch SortKeys() to a simple bubble sort so we don't
 	end up crashing when rewriting screwn geotiff tag sets with 
 	duplicate geokeys (like some LAS files with multiple zero dummy tags)
