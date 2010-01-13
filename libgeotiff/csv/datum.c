@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "geo_incode_defs.h"
 datafile_rows_t datum_row_0[] = {"datum_code","datum_name","datum_type","origin_description","realization_epoch","ellipsoid_code","prime_meridian_code","area_of_use_code","datum_scope","remarks","information_source","data_source","revision_date","change_id","deprecated ",NULL};
 datafile_rows_t datum_row_1[] = {"5100","Mean Sea Level","vertical","","","","","1262","Hydrography.","msl has geographic and temporal components.  Users are advised to not use this generic vertical datum but to define specific instances of msl based on knowledge of these components; for instance \"msl at xxx during 19yy\".","","EPSG","1996-04-12","","0 ",NULL};
 datafile_rows_t datum_row_2[] = {"5101","Ordnance Datum Newlyn","vertical","Mean Sea Level at Newlyn between 1915 and 1921.","","","","2792","Topographic mapping, geodetic survey.","Orthometric heights.","Ordnance Survey of Great Britain","EPSG","2004-06-16","2004.10","0 ",NULL};

@@ -30,7 +30,7 @@
 
 #include "cpl_serv.h"
 
-#include "defs.h"
+#include "geo_incode_defs.h"
 
 extern const datafile_rows_t *pcs_rows[];
 extern const datafile_rows_t *gcs_rows[];

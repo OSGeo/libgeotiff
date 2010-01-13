@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "geo_incode_defs.h"
 datafile_rows_t projop_wparm_row_0[] = {"COORD_OP_CODE","COORD_OP_NAME","COORD_OP_METHOD_CODE","PARAMETER_CODE_1","PARAMETER_VALUE_1","PARAMETER_UOM_1","PARAMETER_CODE_2","PARAMETER_VALUE_2","PARAMETER_UOM_2","PARAMETER_CODE_3","PARAMETER_VALUE_3","PARAMETER_UOM_3","PARAMETER_CODE_4","PARAMETER_VALUE_4","PARAMETER_UOM_4","PARAMETER_CODE_5","PARAMETER_VALUE_5","PARAMETER_UOM_5","PARAMETER_CODE_6","PARAMETER_VALUE_6","PARAMETER_UOM_6","PARAMETER_CODE_7","PARAMETER_VALUE_7","PARAMETER_UOM_7 ",NULL};
 datafile_rows_t projop_wparm_row_1[] = {"101","deg to DMSH","9637","","","","","","","","","","","","","","","","","","","",""," ",NULL};
 datafile_rows_t projop_wparm_row_2[] = {"102","degH to DMSH","9638","","","","","","","","","","","","","","","","","","","",""," ",NULL};

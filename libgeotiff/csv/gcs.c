@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "geo_incode_defs.h"
 datafile_rows_t gcs_row_0[] = {"COORD_REF_SYS_CODE","COORD_REF_SYS_NAME","DATUM_CODE","DATUM_NAME","GREENWICH_DATUM","UOM_CODE","ELLIPSOID_CODE","PRIME_MERIDIAN_CODE","SHOW_CRS","DEPRECATED","COORD_OP_METHOD_CODE","DX","DY","DZ","RX","RY","RZ","DS ",NULL};
 datafile_rows_t gcs_row_1[] = {"4001","Unknown datum based upon the Airy 1830 ellipsoid","6001","Not specified (based on Airy 1830 ellipsoid)","6001","9122","7001","8901","0","0","","","","","","",""," ",NULL};
 datafile_rows_t gcs_row_2[] = {"4002","Unknown datum based upon the Airy Modified 1849 ellipsoid","6002","Not specified (based on Airy Modified 1849 ellipsoid)","6002","9122","7002","8901","0","0","","","","","","",""," ",NULL};

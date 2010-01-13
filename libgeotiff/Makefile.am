@@ -54,7 +54,7 @@ include_HEADERS =   geotiff.h \
                     geovalues.h \
                     geonames.h \
                     geokeys.h \
-					geo_config.h \
+                    geo_config.h \
                     geo_tiffp.h \
                     geo_keyp.h \
                     geo_normalize.h \
@@ -69,7 +69,8 @@ include_HEADERS =   geotiff.h \
                     epsg_pcs.inc \
                     epsg_proj.inc \
                     epsg_vertcs.inc \
-                    geokeys.inc 
+                    geokeys.inc \
+                    geo_incode_defs.h
 
 
 libgeotiff_la_SOURCES = cpl_serv.c \

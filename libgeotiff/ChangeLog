@@ -1,6 +1,12 @@
-2010-01-07  Frank Warmerdam  <warmerdam@pobox.com>
+2010-01-12  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Preparing 1.3.0 release.
+
+	* csv/*.c, cpl_csv_incode.c, geo_incode_defs.h, Makefile.am: rename 
+	defs.h to geo_incode_defs.h and include it in distribution so incode
+	table support will work out of the box.
+
+2010-01-07  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_names.c: ensure that VerticalUnitsGeoKey works properly.
 

@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "geo_incode_defs.h"
 datafile_rows_t prime_meridian_row_0[] = {"PRIME_MERIDIAN_CODE","PRIME_MERIDIAN_NAME","GREENWICH_LONGITUDE","UOM_CODE","REMARKS","INFORMATION_SOURCE","DATA_SOURCE","REVISION_DATE","CHANGE_ID","DEPRECATED ",NULL};
 datafile_rows_t prime_meridian_row_1[] = {"8901","Greenwich","0.0","9110","","","EPSG","1995-06-02 00:00:00","96.29","0 ",NULL};
 datafile_rows_t prime_meridian_row_2[] = {"8902","Lisbon","-9.0754862","9110","","Instituto Geografico e Cadastral; Lisbon","EPSG","1995-06-02 00:00:00","96.29","0 ",NULL};

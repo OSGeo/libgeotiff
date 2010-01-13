@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "geo_incode_defs.h"
 datafile_rows_t unit_of_measure_row_0[] = {"uom_code","unit_of_meas_name","unit_of_meas_type","target_uom_code","factor_b","factor_c","remarks","information_source","data_source","revision_date","change_id","deprecated ",NULL};
 datafile_rows_t unit_of_measure_row_1[] = {"9001","metre","length","9001","1","1","Also known as International metre. SI standard unit.","ISO 1000.","EPSG","1995-06-02","","0 ",NULL};
 datafile_rows_t unit_of_measure_row_2[] = {"9002","foot","length","9001","0.3048","1","","ISO 1000; 1958","EPSG","1995-06-02","","0 ",NULL};

@@ -65,7 +65,7 @@ def convert_csv_table( csv_filename ):
     lines = csv_tools.merge_split_lines(open(csv_filename).readlines())
 
     c_fd = open( c_filename, 'w' )
-    c_fd.write( '#include "defs.h"\n' )
+    c_fd.write( '#include "geo_incode_defs.h"\n' )
 
     data_lines = 0
     for line in lines:
