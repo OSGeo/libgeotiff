@@ -6,19 +6,11 @@ This library is designed to permit the extraction and parsing of the
 of GeoTIFF keys in new files. For more information about GeoTIFF
 specifications, projection codes and use, see the WWW web page at:
 
-   http://www.remotesensing.org/geotiff/geotiff.html
+   http://geotiff.osgeo.org/
 
-or at:
+or the download archive at:
 
-   http://www.geotiff.org/
-   
-or the FTP archive at:
-
-   ftp://ftp.remotesensing.org/pub/geotiff
-
-or the older FTP archive at:
-
-   ftp://ftpmcmc.cr.usgs.gov/release/geotiff/jpl_mirror/
+   http://download.osgeo.org/geotiff/
 
 
 Use of LIBTIFF
@@ -29,7 +21,7 @@ package for reading and writing TIFF files has been installed, with
 the development kit (include files).  The latest version of libtiff may 
 be found at:
 
-   http://www.libtiff.org/
+   http://www.remotesensing.org/libtiff
    
 For this build to work you must use libtiff version v3.6.0 alpha or newer.
 
