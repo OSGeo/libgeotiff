@@ -1,3 +1,8 @@
+2010-02-12  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv/stateplane.csv: Fix califoria VII and added Kentuky Single Zone.
+	http://trac.osgeo.org/gdal/ticket/3408
+
 2010-01-12  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Preparing 1.3.0 release.
