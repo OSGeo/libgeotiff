@@ -7,7 +7,7 @@
 #            required to define a PCS (not including GCS defs). 
 #  Author:   Frank Warmerdam, warmerdam@pobox.com
 #******************************************************************************
-#  Copyright (c) 2002, Frank Warmerdam <warmerdam@pobox.com>
+#  Copyright (c) 2002, 2010, Frank Warmerdam <warmerdam@pobox.com>
 # 
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -27,30 +27,6 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 #******************************************************************************
-# 
-# $Log$
-# Revision 1.9  2008/07/21 19:03:07  fwarmerdam
-# various fixes and improvements done a while ago
-#
-# Revision 1.8  2007/07/20 18:28:43  fwarmerdam
-# disable application of gcs.override.csv and pcs.override.csv
-#
-# Revision 1.7  2006/04/21 04:27:24  fwarmerdam
-# added pcs.override support
-#
-# Revision 1.6  2006/04/21 04:00:20  fwarmerdam
-# added SHOW_CRS and DEPRECATED to pcs.csv and gcs.csv
-#
-# Revision 1.5  2004/05/04 00:29:31  warmerda
-# added gcs.override.csv support
-#
-# Revision 1.4  2004/03/20 07:52:28  warmerda
-# more escape clauses for EPSG 6.5
-#
-# Revision 1.3  2003/03/31 14:27:21  warmerda
-# added collection of GREENWICH_DATUM gcs column and related shift fix
-#
-#
 
 import string
 import csv_tools
@@ -81,6 +57,12 @@ cs.read_from_csv( 'coordinate_system.csv', multi=0 )
 
 caxis = csv_tools.CSVTable()
 caxis.read_from_csv( 'coordinate_axis.csv', multi=1 )
+
+area_tb = csv_tools.CSVTable()
+area_tb.read_from_csv( 'area.csv' )
+
+datum_shift_pref = csv_tools.CSVTable()
+datum_shift_pref.read_from_csv( 'datum_shift_pref.csv' )
 
 ##############################################################################
 # Scan coordinate_reference_systems table to collect PCS ids.
@@ -257,20 +239,144 @@ for key in op_keys:
             or co_rec['COORD_OP_METHOD_CODE'] == '9607'):
 
         source_crs = int(co_rec['SOURCE_CRS_CODE'])
-        
+
         if to_wgs84_ops.has_key(source_crs):
-            if to_wgs84_ops[source_crs] is not None:
-                print 'GCS %d has multiple ways to WGS84.' % source_crs
-                print to_wgs84_ops[source_crs], key
-                to_wgs84_ops[source_crs] = None
+            to_wgs84_ops[source_crs].append(key)
         else:
-            to_wgs84_ops[source_crs] = key
+            to_wgs84_ops[source_crs] = [key]
+        
+#        if to_wgs84_ops.has_key(source_crs):
+#            if to_wgs84_ops[source_crs] is not None:
+#                print 'GCS %d has multiple ways to WGS84.' % source_crs
+#                print to_wgs84_ops[source_crs], key
+#                to_wgs84_ops[source_crs] = None
+#        else:
+#            to_wgs84_ops[source_crs] = key
 
     # Does this operation relate this GCS with a Greenwich meridian
     # equivelent?
     if co_rec['COORD_OP_METHOD_CODE'] == '9601':
         greenwich_equiv[int(co_rec['SOURCE_CRS_CODE'])] = \
                                             int(co_rec['TARGET_CRS_CODE'])
+
+##############################################################################
+# Prepare a datum shift file containing all the datum shifts for each
+# datum with a bit of supporting information.
+
+ds_table = csv_tools.CSVTable()
+ds_table.add_field('SEQ_KEY')             
+ds_table.add_field('COORD_OP_CODE')             
+ds_table.add_field('SOURCE_CRS_CODE')             
+ds_table.add_field('TARGET_CRS_CODE')             
+ds_table.add_field('REMARKS')
+ds_table.add_field('COORD_OP_SCOPE')
+ds_table.add_field('AREA_OF_USE_CODE')
+ds_table.add_field('AREA_SOUTH_BOUND_LAT')
+ds_table.add_field('AREA_NORTH_BOUND_LAT')
+ds_table.add_field('AREA_WEST_BOUND_LON')
+ds_table.add_field('AREA_EAST_BOUND_LON')
+ds_table.add_field('SHOW_OPERATION')
+ds_table.add_field('DEPRECATED')
+ds_table.add_field('COORD_OP_METHOD_CODE')   # +towgs84 parameters.
+ds_table.add_field('DX')                        
+ds_table.add_field('DY')                        
+ds_table.add_field('DZ')                        
+ds_table.add_field('RX')                        
+ds_table.add_field('RY')                        
+ds_table.add_field('RZ')                        
+ds_table.add_field('DS')                        
+ds_table.add_field('PREFERRED')
+
+##############################################################################
+# populate table.
+
+seq_key = 0
+for gcs in to_wgs84_ops.keys():
+    preferred_op = None
+    preferred_op_area = 0
+
+    try:
+        pref_rec = datum_shift_pref.get_record(gcs)
+    except:
+        pref_rec = None
+    
+    for shift_ops in to_wgs84_ops[gcs]:
+
+        seq_key = seq_key + 1
+        
+        ds_rec = {}
+       
+        co_rec = co.get_record( shift_ops )
+        ds_rec['SEQ_KEY'] = str(seq_key)
+        ds_rec['COORD_OP_CODE'] = co_rec['COORD_OP_CODE']
+        ds_rec['SOURCE_CRS_CODE'] = co_rec['SOURCE_CRS_CODE']
+        ds_rec['TARGET_CRS_CODE'] = co_rec['TARGET_CRS_CODE']
+        ds_rec['REMARKS'] = co_rec['REMARKS']
+        ds_rec['COORD_OP_SCOPE'] = co_rec['COORD_OP_SCOPE']
+        ds_rec['AREA_OF_USE_CODE'] = co_rec['AREA_OF_USE_CODE']
+        ds_rec['SHOW_OPERATION'] = co_rec['SHOW_OPERATION']
+        ds_rec['DEPRECATED'] = co_rec['DEPRECATED']
+        ds_rec['PREFERRED'] = '0'
+        ds_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
+        
+        parms = co_value.get_records( int(co_rec['COORD_OP_CODE']) )
+
+        for parm_rec in parms:
+            if parm_rec['PARAMETER_CODE'] == '8605':
+                ds_rec['DX'] = parm_rec['PARAMETER_VALUE']
+            elif parm_rec['PARAMETER_CODE'] == '8606':
+                ds_rec['DY'] = parm_rec['PARAMETER_VALUE']
+            elif parm_rec['PARAMETER_CODE'] == '8607':
+                ds_rec['DZ'] = parm_rec['PARAMETER_VALUE']
+            elif parm_rec['PARAMETER_CODE'] == '8608':
+                ds_rec['RX'] = parm_rec['PARAMETER_VALUE']
+            elif parm_rec['PARAMETER_CODE'] == '8609':
+                ds_rec['RY'] = parm_rec['PARAMETER_VALUE']
+            elif parm_rec['PARAMETER_CODE'] == '8610':
+                ds_rec['RZ'] = parm_rec['PARAMETER_VALUE']
+            elif parm_rec['PARAMETER_CODE'] == '8611':
+                ds_rec['DS'] = parm_rec['PARAMETER_VALUE']
+
+        area_rec = area_tb.get_record( int(ds_rec['AREA_OF_USE_CODE']) )
+        ds_rec['AREA_SOUTH_BOUND_LAT'] = area_rec['AREA_SOUTH_BOUND_LAT']
+        ds_rec['AREA_NORTH_BOUND_LAT'] = area_rec['AREA_NORTH_BOUND_LAT']
+        ds_rec['AREA_WEST_BOUND_LON'] = area_rec['AREA_WEST_BOUND_LON']
+        ds_rec['AREA_EAST_BOUND_LON'] = area_rec['AREA_EAST_BOUND_LON']
+        area_size = \
+                  abs(float(ds_rec['AREA_NORTH_BOUND_LAT'])          \
+                      - float(ds_rec['AREA_SOUTH_BOUND_LAT'])) *     \
+                  abs(float(ds_rec['AREA_EAST_BOUND_LON'])           \
+                      - float(ds_rec['AREA_WEST_BOUND_LON']))
+
+        ds_table.add_record( seq_key, ds_rec )
+
+        if pref_rec is not None \
+           and pref_rec['COORD_OP_CODE'] == ds_rec['COORD_OP_CODE']:
+            preferred_op = seq_key
+            
+        if ds_rec['DEPRECATED'] == '0' and pref_rec is None:
+            if preferred_op is None or area_size > preferred_op_area:
+                preferred_op = seq_key
+                preferred_op_area = area_size
+
+    if preferred_op is None and pref_rec is not None:
+        print 'Failed to find preferred datum shift coord_op_code %s for GCS %d' % (pref_rec['COORD_OP_CODE'],gcs)
+        
+    if preferred_op is not None:
+        ds_rec = ds_table.get_record( preferred_op )
+        ds_rec['PREFERRED'] = '1'
+
+        coc = int(ds_rec['COORD_OP_CODE'])
+        # Promote to front of list.
+        to_wgs84_ops[gcs].remove( coc )
+        to_wgs84_ops[gcs] = [coc] + to_wgs84_ops[gcs]
+
+        ds_table.set_record( preferred_op, ds_rec )
+
+##############################################################################
+# Write the datum shift table.
+
+ds_table.write_to_csv('datum_shift.csv')
 
 ##############################################################################
 # Read GCS Override table for manually assigned transformations.
@@ -293,7 +399,9 @@ gcs_table.add_field('PRIME_MERIDIAN_CODE')       #
 gcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
 gcs_table.add_field('DEPRECATED')                # 0=false, 1=true
 gcs_table.add_field('COORD_SYS_CODE')            # mainly for axes
-gcs_table.add_field('COORD_OP_METHOD_CODE')      # 
+gcs_table.add_field('COORD_OP_CODE')             # datum shift operation code.
+gcs_table.add_field('COORD_OP_CODE_MULTI')       # more than one datum shift?
+gcs_table.add_field('COORD_OP_METHOD_CODE')      # datum shift method
 gcs_table.add_field('DX')                        # +towgs84 parameters.
 gcs_table.add_field('DY')                        
 gcs_table.add_field('DZ')                        
@@ -326,6 +434,7 @@ for key in gcs_keys:
     gcs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
     gcs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
     gcs_rec['COORD_SYS_CODE']     = crs_rec['COORD_SYS_CODE']
+    gcs_rec['COORD_OP_CODE_MULTI'] = '0'
 
     gcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, caxis )
 
@@ -349,7 +458,12 @@ for key in gcs_keys:
         towgs84_gcs = key
     
     if to_wgs84_ops.has_key(towgs84_gcs) and to_wgs84_ops[towgs84_gcs] is not None:
-        co_rec = co.get_record( to_wgs84_ops[towgs84_gcs] )
+        coc_list = to_wgs84_ops[towgs84_gcs]
+        co_rec = co.get_record( coc_list[0] )
+
+        gcs_rec['COORD_OP_CODE'] = str(coc_list[0])
+        if len(coc_list) > 1:
+            gcs_rec['COORD_OP_CODE_MULTI'] = '1'
         gcs_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
 
         parms = co_value.get_records( int(co_rec['COORD_OP_CODE']) )
@@ -376,3 +490,4 @@ for key in gcs_keys:
 gcs_table.write_to_csv( 'gcs.csv' )
 gcs_table = None
 
+                             
