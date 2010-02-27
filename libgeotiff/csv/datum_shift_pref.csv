@@ -44,3 +44,11 @@
 # Amersfoort - EPSG suggests using 1672
 #
 4289,1672
+####################################################################
+# 
+# KKJ - EPSG says this replaces 1639
+#
+# http://trac.osgeo.org/geotiff/ticket/25
+#
+4289,10099
+
