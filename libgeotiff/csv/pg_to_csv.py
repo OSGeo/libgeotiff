@@ -104,3 +104,7 @@ CopyTable( in_ds, out_ds, 'epsg_ellipsoid',
 
 CopyTable( in_ds, out_ds, 'epsg_unitofmeasure',
            'unit_of_measure', 'uom_code' )
+
+CopyTable( in_ds, out_ds, 'epsg_area',
+           'area', 'area_code' )
+

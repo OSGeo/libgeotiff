@@ -9,9 +9,7 @@ Detailed information on the EPSG database can be found at:
 
   http://www.epsg.org/
 
-The current version of the EPSG database dumped is 7.1.
-
-All EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
+Most EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
 are intended to be "true" csv files.  In particular quotes within quoted
 strings are doubled to escape them, rather than using backslash quoting.  
 Newlines may appear within quoted field values (as real raw newline 
@@ -73,14 +71,18 @@ Generating CSV Files
 
 The csv files are generated from the Postgres dump provided by EPSG.
 
-
 1) Load epsg database into postgres instance named "epsg".
 
    insert a line "\encoding LATIN1" at start of the _Data_ sql file. 
 
+   Do a search and replace on "CHAR(" replacing it with "CHR(" on the 
+   last 50 statements or so in the _Data_ sql file. 
+
    run "load_pg.sh" in the directory where the .sql files are found.
 
-   There will be some errors, possible due to encoding issues?
+   There may be a few inserts rejected because the remarks are too long.
+   Edit those remarks and remove the last word or so of the text.  Then 
+   rerun "load_pg.sh".
 
 2) Dump the database to .csv files.
 

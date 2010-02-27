@@ -28,27 +28,6 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 #******************************************************************************
-# 
-# $Log$
-# Revision 1.6  2006/02/28 05:43:29  fwarmerdam
-# force field names to upper case
-#
-# Revision 1.5  2004/05/04 00:31:00  warmerda
-# add support for # comment character in first column
-#
-# Revision 1.4  2004/03/20 07:31:41  warmerda
-# split merge_split_lines() into its own function
-#
-# Revision 1.3  2003/06/20 21:25:55  warmerda
-# allow adding a field to a loaded table
-#
-# Revision 1.2  2002/11/29 04:37:48  warmerda
-# upgraded to 'true' csv support
-#
-# Revision 1.1  2002/11/28 16:11:47  warmerda
-# New
-#
-#
 
 import string
 
@@ -119,8 +98,11 @@ class CSVTable:
         # within quotes.
         rest_of_lines = merge_split_lines( fd.readlines() )
 
-        # Build lines into an indexed hash table. 
+        # Build lines into an indexed hash table.
+        line_counter = -1
         for line in rest_of_lines:
+            line_counter += 1
+            
             if line[0] == '#':
                 continue
             
@@ -135,7 +117,8 @@ class CSVTable:
                 else:
                     self.data[key] = string.strip(line)
             else:
-                print 'problem line: %s\n' % line
+                print 'Problem reading line %d of file %s:%s\n' \
+                      % ( line_counter, filename, line)
 
     def write_to_csv( self, filename ):
         def_line = ''
