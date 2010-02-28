@@ -30,12 +30,66 @@
 
 import string
 import csv_tools
+import math
 
 def get_crs_uom( crs_rec, cs, caxis ):
     coord_sys_code = int(crs_rec['COORD_SYS_CODE'])
 
     ca_recs = caxis.get_records( coord_sys_code )
     return ca_recs[0]['UOM_CODE']
+
+def copy_datum_shift_parms( target_rec, parms ):
+
+    for parm_rec in parms:
+        # Confirm that the parameter codes in the expected units of measurement.
+        # If not, try to correct expected cases and error out on others.
+        value = parm_rec['PARAMETER_VALUE']
+        code = parm_rec['PARAMETER_CODE']
+        uom = parm_rec['UOM_CODE']
+
+        # Linear parameters
+        if code in ('8605','8606','8607'):
+            if uom != '9001':
+                print 'Datum Shift x/y/z not in meters!'
+                print parm_rec
+
+        # angular parameters
+        if code in ('8608','8609','8610'):
+            # should be in arc-seconds.
+            if uom == '9109':  # Micro-radians.
+                v = float(value)
+                v = (v / 1000000.0) * (180 / math.pi) * 3600.0
+                value = '%.15g' % (v)
+            elif uom == '9101':  # Radians.
+                v = float(value)
+                v = v * (180 / math.pi) * 3600.0
+                value = '%.15g' % (v)
+            elif uom == '9113':  # centesimal second
+                v = float(value)
+                # convert to radians
+                v = v * (math.pi/200.0) / 10000.0
+                # convert to arc seconds
+                v = v * (180 / math.pi) * 3600.0
+                value = '%.15g' % (v)
+            elif uom != '9104':
+                print 'Datum Shift rotation not in arc-seconds!'
+                print parm_rec
+            
+        if code == '8605':
+            target_rec['DX'] = value
+        elif code == '8606':
+            target_rec['DY'] = value
+        elif code == '8607':
+            target_rec['DZ'] = value
+        elif code == '8608':
+            target_rec['RX'] = value
+        elif code == '8609':
+            target_rec['RY'] = value
+        elif code == '8610':
+            target_rec['RZ'] = value
+        elif code == '8611':
+            target_rec['DS'] = value
+            
 
 ##############################################################################
 # Read and index input files.
@@ -320,22 +374,7 @@ for gcs in to_wgs84_ops.keys():
         ds_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
         
         parms = co_value.get_records( int(co_rec['COORD_OP_CODE']) )
-
-        for parm_rec in parms:
-            if parm_rec['PARAMETER_CODE'] == '8605':
-                ds_rec['DX'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8606':
-                ds_rec['DY'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8607':
-                ds_rec['DZ'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8608':
-                ds_rec['RX'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8609':
-                ds_rec['RY'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8610':
-                ds_rec['RZ'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8611':
-                ds_rec['DS'] = parm_rec['PARAMETER_VALUE']
+        copy_datum_shift_parms( ds_rec, parms )
 
         area_rec = area_tb.get_record( int(ds_rec['AREA_OF_USE_CODE']) )
         ds_rec['AREA_SOUTH_BOUND_LAT'] = area_rec['AREA_SOUTH_BOUND_LAT']
@@ -467,23 +506,7 @@ for key in gcs_keys:
         gcs_rec['COORD_OP_METHOD_CODE'] = co_rec['COORD_OP_METHOD_CODE']
 
         parms = co_value.get_records( int(co_rec['COORD_OP_CODE']) )
-
-        for parm_rec in parms:
-            if parm_rec['PARAMETER_CODE'] == '8605':
-                gcs_rec['DX'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8606':
-                gcs_rec['DY'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8607':
-                gcs_rec['DZ'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8608':
-                gcs_rec['RX'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8609':
-                gcs_rec['RY'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8610':
-                gcs_rec['RZ'] = parm_rec['PARAMETER_VALUE']
-            elif parm_rec['PARAMETER_CODE'] == '8611':
-                gcs_rec['DS'] = parm_rec['PARAMETER_VALUE']
-
+        copy_datum_shift_parms( gcs_rec, parms )
         
     gcs_table.add_record( key, gcs_rec )
 
