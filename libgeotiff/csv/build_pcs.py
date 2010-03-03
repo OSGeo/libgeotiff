@@ -118,6 +118,9 @@ area_tb.read_from_csv( 'area.csv' )
 datum_shift_pref = csv_tools.CSVTable()
 datum_shift_pref.read_from_csv( 'datum_shift_pref.csv' )
 
+super = csv_tools.CSVTable()
+super.read_from_csv( 'supersession.csv' )
+
 ##############################################################################
 # Scan coordinate_reference_systems table to collect PCS ids.
 
@@ -314,6 +317,18 @@ for key in op_keys:
                                             int(co_rec['TARGET_CRS_CODE'])
 
 ##############################################################################
+# Identify coordinate operations that have been superseeded according to
+# the supersession table.
+
+superseded_operations = {}
+
+for id in super.data.keys():
+    record = super.get_record(id)
+
+    if record['OBJECT_TABLE_NAME'] == 'epsg_coordoperation':
+        superseded_operations[record['OBJECT_CODE']] = record['SUPERSEDED_BY']
+
+##############################################################################
 # Prepare a datum shift file containing all the datum shifts for each
 # datum with a bit of supporting information.
 
@@ -393,7 +408,9 @@ for gcs in to_wgs84_ops.keys():
            and pref_rec['COORD_OP_CODE'] == ds_rec['COORD_OP_CODE']:
             preferred_op = seq_key
             
-        if ds_rec['DEPRECATED'] == '0' and pref_rec is None:
+        if pref_rec is None \
+           and ds_rec['DEPRECATED'] == '0' \
+           and not superseded_operations.has_key(ds_rec['COORD_OP_CODE']):
             if preferred_op is None or area_size > preferred_op_area:
                 preferred_op = seq_key
                 preferred_op_area = area_size

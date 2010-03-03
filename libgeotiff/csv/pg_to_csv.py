@@ -34,7 +34,7 @@
 #
 #
 
-import ogr
+import ogr, os, sys
 
 
 def CopyTable( in_ds, out_ds, in_tablename, out_tablename, keyname,
@@ -64,6 +64,12 @@ def CopyTable( in_ds, out_ds, in_tablename, out_tablename, keyname,
 
 
 # Main
+
+try:
+    x = os.stat('out')
+    os.system('rm -rf out')
+except:
+    pass
 
 in_ds = ogr.Open( 'PG:dbname=epsg' )
 out_ds = ogr.GetDriverByName('CSV').CreateDataSource('out')
@@ -107,4 +113,7 @@ CopyTable( in_ds, out_ds, 'epsg_unitofmeasure',
 
 CopyTable( in_ds, out_ds, 'epsg_area',
            'area', 'area_code' )
+
+CopyTable( in_ds, out_ds, 'epsg_supersession',
+           'supersession', 'supersession_id' )
 

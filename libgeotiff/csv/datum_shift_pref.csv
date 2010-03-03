@@ -34,20 +34,3 @@
 # and michael: http://trac.osgeo.org/gdal/ticket/3362
 #
 4313,15749
-####################################################################
-#
-# CH1903: Per http://bugzilla.remotesensing.org/show_bug.cgi?id=957
-#
-4149,1766
-####################################################################
-#
-# Amersfoort - EPSG suggests using 4833 (#22)
-#
-4289,4833
-####################################################################
-# 
-# KKJ - EPSG says this replaces 1639
-#
-# http://trac.osgeo.org/geotiff/ticket/25
-#
-4123,10099
