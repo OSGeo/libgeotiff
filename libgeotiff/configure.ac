@@ -101,16 +101,26 @@ dnl #########################################################################
 AC_ARG_WITH([zip],
     AC_HELP_STRING([--with-zip=ARG], [zlib library to use (yes or path)]),,)
 
-AC_ARG_WITH([zip1],
+AC_ARG_WITH([zlib],
     AC_HELP_STRING([--with-zlib=ARG], [ alias for --with-zip]),,)
 
-AC_ARG_WITH([zip2],
+AC_ARG_WITH([libz],
     AC_HELP_STRING([--with-libz=ARG], [ alias for --with-zip]),,)
 
 HAVE_ZIP="no"
 ZIP_CONFIG="no"
 
-if test "$with_zip" != "" -o "$with_zlib" != "" -o "$with_libz" != ""; then
+# Implement aliasing...
+
+if test "$with_zlib" != "" ; then
+  with_zip=$with_zlib
+fi
+if test "$with_libz" != "" ; then
+  with_zip=$with_libz
+fi
+
+
+if test "$with_zip" != "" -a "x$with_zip" != "xno" ; then
     AC_CHECK_HEADERS([zlib.h],, [AC_MSG_ERROR([cannot find zlib.h, bailing out])])
     AC_SEARCH_LIBS([inflateInit_], [z],
                  [ZIP_CONFIG=yes], [ZIP_CONFIG=no],
