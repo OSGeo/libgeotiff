@@ -1,5 +1,7 @@
 2010-05-28  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* bin/Makefile.am: add getopt.c to distribution.
+
 	* Makefile.am: ensure geo_config.h.vc is distributed.
 
 2010-05-09  Frank Warmerdam  <warmerdam@pobox.com>

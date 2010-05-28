@@ -16,4 +16,5 @@ AM_CFLAGS = -I../ -I../libxtiff $(TIFF_CFLAGS)
 LDADD = ../libgeotiff.la
 csv2html_LDADD = ../cpl_csv.lo ../libgeotiff.la
 
+EXTRA_DIST =    getopt.c
 
