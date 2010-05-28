@@ -106,6 +106,7 @@ libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 lib_LTLIBRARIES = libgeotiff.la
 
 EXTRA_DIST =    makefile.vc \
+		geo_config.h.vc \
                 README \
                 README.WIN \
                 README_BIN \
