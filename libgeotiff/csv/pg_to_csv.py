@@ -117,3 +117,6 @@ CopyTable( in_ds, out_ds, 'epsg_area',
 CopyTable( in_ds, out_ds, 'epsg_supersession',
            'supersession', 'supersession_id' )
 
+CopyTable( in_ds, out_ds, 'epsg_primemeridian',
+           'prime_meridian', 'prime_meridian_code' )
+
