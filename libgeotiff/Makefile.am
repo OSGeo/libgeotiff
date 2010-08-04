@@ -25,7 +25,6 @@ csvdir = $(datadir)/epsg_csv
 dist_csv_DATA = 	csv/alias.csv \
 			csv/area.csv \
 			csv/change.csv \
-			csv/codes.csv \
 			csv/coordinate_axis.csv \
 			csv/coordinate_axis_name.csv \
 			csv/coordinate_operation.csv \
