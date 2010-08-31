@@ -359,6 +359,8 @@ ds_table.add_field('PREFERRED')
 ##############################################################################
 # populate table.
 
+ignore_towgs84_gcs_list = []
+
 seq_key = 0
 for gcs in to_wgs84_ops.keys():
     preferred_op = None
@@ -366,6 +368,13 @@ for gcs in to_wgs84_ops.keys():
 
     try:
         pref_rec = datum_shift_pref.get_record(gcs)
+
+        # keep track of gcs'es we don't want a transform for, like NAD27
+        if pref_rec['COORD_OP_CODE'] == '-1':
+            pref_rec = None
+            ignore_towgs84_gcs_list.append( gcs )
+            print 'Ignore TOWGS84 for GCS ', gcs
+            
     except:
         pref_rec = None
     
@@ -513,7 +522,10 @@ for key in gcs_keys:
         gcs_rec['GREENWICH_DATUM'] = crs_rec['DATUM_CODE']
         towgs84_gcs = key
     
-    if to_wgs84_ops.has_key(towgs84_gcs) and to_wgs84_ops[towgs84_gcs] is not None:
+    if to_wgs84_ops.has_key(towgs84_gcs) \
+       and to_wgs84_ops[towgs84_gcs] is not None \
+       and not (towgs84_gcs in ignore_towgs84_gcs_list):
+    
         coc_list = to_wgs84_ops[towgs84_gcs]
         co_rec = co.get_record( coc_list[0] )
 

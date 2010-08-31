@@ -34,3 +34,9 @@
 # and michael: http://trac.osgeo.org/gdal/ticket/3362
 #
 4313,15749
+####################################################################
+#
+# We don't want to apply TOWGS84 values for NAD27 - we prefer to use
+# datum grid shift files.
+#
+4267,-1
