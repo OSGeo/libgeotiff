@@ -3,8 +3,8 @@
 #  $Id$
 # 
 #  Project:  GDAL
-#  Purpose:  Build the epsg_pcs.csv table with the minimum information
-#            required to define a PCS (not including GCS defs). 
+#  Purpose:  Build the pcs.csv, gcs.csv and compdcs.csv tables with the minimum
+#            information required to define a PCS, GCS and COMPD_CS for GDAL.
 #  Author:   Frank Warmerdam, warmerdam@pobox.com
 #******************************************************************************
 #  Copyright (c) 2002, 2010, Frank Warmerdam <warmerdam@pobox.com>
@@ -126,6 +126,8 @@ super.read_from_csv( 'supersession.csv' )
 
 pcs_keys = []
 gcs_keys = []
+compdcs_keys = []
+vertcs_keys = []
 
 for key in crs.data.keys():
     crs_rec = crs.get_record( key )
@@ -133,11 +135,17 @@ for key in crs.data.keys():
         pcs_keys.append( key )
     elif crs_rec['COORD_REF_SYS_KIND'] == 'geographic 2D':
         gcs_keys.append( key )
+    elif crs_rec['COORD_REF_SYS_KIND'] == 'compound':
+        compdcs_keys.append( key )
+    elif crs_rec['COORD_REF_SYS_KIND'] == 'vertical':
+        vertcs_keys.append( key )
 
 pcs_keys.sort()
 gcs_keys.sort()
+compdcs_keys.sort()
+vertcs_keys.sort()
 
-print '%d PCS and %d GCS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys))
+print '%d PCS, %d GCS, %d VertCS and %d COMPD_CS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys), len(vertcs_keys), len(compdcs_keys) )
 
 ##############################################################################
 # Read PCS Override table for manually assigned transformations.
@@ -302,14 +310,6 @@ for key in op_keys:
         else:
             to_wgs84_ops[source_crs] = [key]
         
-#        if to_wgs84_ops.has_key(source_crs):
-#            if to_wgs84_ops[source_crs] is not None:
-#                print 'GCS %d has multiple ways to WGS84.' % source_crs
-#                print to_wgs84_ops[source_crs], key
-#                to_wgs84_ops[source_crs] = None
-#        else:
-#            to_wgs84_ops[source_crs] = key
-
     # Does this operation relate this GCS with a Greenwich meridian
     # equivelent?
     if co_rec['COORD_OP_METHOD_CODE'] == '9601':
@@ -478,6 +478,8 @@ gcs_table.add_field('DS')
 ##############################################################################
 # Populate and write GCS table.
 
+skipped_funky_gcs = 0
+
 for key in gcs_keys:
 
     """
@@ -490,6 +492,10 @@ for key in gcs_keys:
     except:
         pass
     """
+
+    if key > 10000000:
+        skipped_funky_gcs += 1
+        continue
 
     crs_rec = crs.get_record( key )
     gcs_rec = {}
@@ -542,4 +548,96 @@ for key in gcs_keys:
 gcs_table.write_to_csv( 'gcs.csv' )
 gcs_table = None
 
+print( 'Skipped %d very large GCS codes, the (deg) versions presumably.' \
+       % skipped_funky_gcs )
                              
+##############################################################################
+# Read VertCS Override table for manually assigned transformations.
+
+vertcs_override_table = csv_tools.CSVTable()
+vertcs_override_table.read_from_csv( 'vertcs.override.csv' )
+
+##############################################################################
+# Setup VertCS table fields.
+
+vertcs_table = csv_tools.CSVTable()
+vertcs_table.add_field('COORD_REF_SYS_CODE')        # GCS #
+vertcs_table.add_field('COORD_REF_SYS_NAME')        # GCS Name
+vertcs_table.add_field('DATUM_CODE')                # Datum #
+vertcs_table.add_field('DATUM_NAME')                # 
+vertcs_table.add_field('UOM_CODE')                  # Angular units for GCS.
+vertcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
+vertcs_table.add_field('DEPRECATED')                # 0=false, 1=true
+vertcs_table.add_field('COORD_SYS_CODE')            # mainly for axes
+vertcs_table.add_field('COORD_OP_METHOD_CODE_1')    # vert datum shift method
+vertcs_table.add_field('PARM_1_1')
+
+##############################################################################
+# Populate and write vertcs table.
+
+for key in vertcs_keys:
+    try:
+        o_rec = vertcs_override_table.get_record( key )
+        
+        print 'VertCS %d overridden from vertcs.override.csv file' % key
+        vertcs_table.add_record( key, o_rec )
+        continue
+    except:
+        pass
+
+    crs_rec = crs.get_record( key )
+    vertcs_rec = {}
+    vertcs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
+    vertcs_rec['COORD_REF_SYS_NAME'] = crs_rec['COORD_REF_SYS_NAME']
+    vertcs_rec['DATUM_CODE']         = crs_rec['DATUM_CODE']
+    vertcs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
+    vertcs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
+    vertcs_rec['COORD_SYS_CODE']     = crs_rec['COORD_SYS_CODE']
+
+    vertcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, caxis )
+
+    try:
+        datum_id = int(crs_rec['DATUM_CODE'])
+    except:
+        print 'No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME']
+        continue
+    
+    datum_rec = datums.get_record( datum_id )
+    vertcs_rec['DATUM_NAME'] = datum_rec['DATUM_NAME']
+
+    vertcs_table.add_record( key, vertcs_rec )
+
+vertcs_table.write_to_csv( 'vertcs.csv' )
+vertcs_table = None
+
+##############################################################################
+# Setup COMPD_CS table fields.
+
+compdcs_table = csv_tools.CSVTable()
+compdcs_table.add_field('COORD_REF_SYS_CODE')        
+compdcs_table.add_field('COORD_REF_SYS_NAME')        
+compdcs_table.add_field('CMPD_HORIZCRS_CODE')       
+compdcs_table.add_field('CMPD_VERTCRS_CODE')       
+compdcs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
+compdcs_table.add_field('DEPRECATED')                # 0=false, 1=true
+
+##############################################################################
+# Populate COMPD_CS table.
+
+for key in compdcs_keys:
+
+    crs_rec = crs.get_record( key )
+    compd_rec = {}
+    compd_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
+    compd_rec['COORD_REF_SYS_NAME'] = crs_rec['COORD_REF_SYS_NAME']
+    compd_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
+    compd_rec['DEPRECATED']         = crs_rec['DEPRECATED']
+    compd_rec['CMPD_HORIZCRS_CODE'] = crs_rec['CMPD_HORIZCRS_CODE']
+    compd_rec['CMPD_VERTCRS_CODE']  = crs_rec['CMPD_VERTCRS_CODE']
+
+    compdcs_table.add_record( key, compd_rec )
+
+compdcs_table.write_to_csv( 'compdcs.csv' )
+compdcs_table = None
+
+
