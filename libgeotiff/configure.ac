@@ -235,7 +235,6 @@ dnl Try and find libproj.a, and projects.h
 dnl
 
 PROJ_CONFIG="no"
-PROJECTS_H_CONFIG="no"
 
 AC_ARG_WITH(proj, [  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)],[PROJ_HOME=$withval],[PROJ_HOME=])
 
@@ -245,13 +244,13 @@ if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
   fi
 
   dnl Old PROJ.4 build tree, without automake
-  if test -f "$PROJ_HOME/libproj.a" -a -f "$PROJ_HOME/projects.h" ; then
+  if test -f "$PROJ_HOME/libproj.a" -a -f "$PROJ_HOME/proj_api.h" ; then
     PROJ_LIB=$PROJ_HOME/libproj.a
     PROJ_INC=$PROJ_HOME
     PROJ_CONFIG="yes"
 
   dnl New PROJ.4 build tree, with automake
-  elif test -f "$PROJ_HOME/.libs/libproj.a" -a -f "$PROJ_HOME/projects.h" ; then
+  elif test -f "$PROJ_HOME/.libs/libproj.a" -a -f "$PROJ_HOME/proj_api.h" ; then
     PROJ_LIB=$PROJ_HOME/.libs/libproj.a
     PROJ_INC=$PROJ_HOME
 
@@ -264,7 +263,7 @@ if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
 
     PROJ_CONFIG="yes"
   else
-    echo "PROJ_HOME=$PROJ_HOME, but either projects.h or libproj.a not found!"
+    echo "PROJ_HOME=$PROJ_HOME, but either proj_api.h or libproj.a not found!"
   fi
 fi
 
@@ -274,7 +273,7 @@ if test "$PROJ_HOME" = "no" ; then
 
 elif test "$PROJ_LIB" != "" -a "$PROJ_INC" != "" ; then
   echo "Found $PROJ_LIB"
-  echo "Found $PROJ_INC/projects.h"
+  echo "Found $PROJ_INC/proj_api.h"
 
   LIBS="$PROJ_LIB $LIBS"
   PROJ_INC=-I$PROJ_INC
@@ -284,11 +283,10 @@ elif test "$PROJ_LIB" != "" -a "$PROJ_INC" != "" ; then
   AC_DEFINE(HAVE_LIBPROJ)
   AC_SUBST([HAVE_LIBPROJ])
   PROJ_CONFIG="yes"
-  PROJECTS_H_CONFIG="yes"
 
 else
   AC_CHECK_LIB(proj,pj_init,,,-lm)
-  AC_CHECK_HEADERS(projects.h,,)
+  AC_CHECK_HEADERS(proj_api.h,,)
   PROJ_CONFIG="yes"
 fi
 
