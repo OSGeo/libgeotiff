@@ -1,3 +1,11 @@
+2010-10-05  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_new.c, geo_simpletags.c: Fix simple tags so it includes the
+	'\0' char at the end of strings just like a real tiff.  Modify 
+	geo_new.c so we only drop the trailing '\0' char if that is what it
+	really is.  All loosely related to:
+	http://trac.liblas.org/ticket/188
+
 2010-09-21  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* configure.ac, geotiff_proj4.c: Avoid use of projects.h. (GDAL #3761)
