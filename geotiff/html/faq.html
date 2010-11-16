@@ -11,9 +11,9 @@ content="GeoTIFF raster satellite aerial imagery mapping">
 
 <BODY>
 
-<H1>GeoTIFF FAQ Version 2.3</H1>
+<H1>GeoTIFF FAQ Version 2.4</H1>
 
-<h2>Last Updated: February, 2005</h2>
+<h2>Last Updated: November, 2010</h2>
 
 <ADDRESS>
 Author: Mike Ruth<BR>
@@ -55,8 +55,6 @@ WWW Homepage</A>.
 <li>
     <A HREF="#Can IP, GIS, CAD, and Desktop Mapping systems all use GeoTIFF?">Can IP, GIS, CAD, and Desktop Mapping systems all use GeoTIFF?</A>
 <li>
-    <A HREF="#What Data providers are delivering geographic images in GeoTIFF format today?">What Data providers are delivering geographic images in GeoTIFF format today?</A>
-<li>
     <A HREF="#Does GeoTIFF imagery conform to the TIFF specification?">Does GeoTIFF imagery conform to the TIFF specification?</A>
 <li>
     <A HREF="#Can systems that don't use geography read a GeoTIFF image?">Can systems that don't use geography read a GeoTIFF image?</A>
@@ -75,8 +73,6 @@ WWW Homepage</A>.
 <li>
     <A HREF="#Is the tagset proprietary?">Is the tagset proprietary?</A>
 <li>
-    <A HREF="#Is the SPOT data still proprietary?">Is the SPOT data still proprietary?</A>
-<li>
     <A HREF="#What are the advantages of TIFF format for geographic data?">What are the advantages of TIFF format for geographic data?</A>
 <li>
     <A HREF="#Is GeoTIFF really platform interoperable?">Is GeoTIFF really platform interoperable?</A>
@@ -94,6 +90,8 @@ WWW Homepage</A>.
     <A HREF="#What are the requirements to make a TIFF image ...">What are the requirements to make a TIFF image ...</A>
 <li>
     <A HREF="#Can I make customized geographic projections using GeoTIFF?">Can I make customized geographic projections using GeoTIFF?</A>
+<li>
+    <A HREF="#PixelIsPoint">What is the effect of PointIsArea vs. PointAsPixel?</A>
 <li>
     <A HREF="#Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A>
 <li>
@@ -184,26 +182,6 @@ of Geographic Information Systems (GIS), Image Processors (IP) and Computer Aide
 softwares.  You need to check with your system provider to find out if they have written the
 software module to read/write GeoTIFF imagery in the software version which you use.      
  
-<!--------------------------------------------------------------------------->
-<H3><A NAME="What Data providers are delivering geographic images in GeoTIFF format today?">What Data providers are delivering geographic images in GeoTIFF format today?</A></H3>
-
-Data providers who have stated their intentions to deliver imagery in the GeoTIFF 
-format include 
-   <UL>
-   <LI>SPOT Image Corp
-   <LI>Trifid (representing LandSat data)
-   <LI>Space Imaging
-   <LI>US Geological Survey
-   <LI>New York Department of Transportation.   
-</UL>
-Other Federal entities in various countries are evaluating the use of GeoTIFF format for public
-distribution of their products, including the United Kingdom Military Survey.  
-     
-Further information on industry support is in the 
-<A HREF="providers.html"> 
-GeoTIFF Providers Table</A>     
-<P></P>
-
 <!--------------------------------------------------------------------------->
 <H3><A NAME="Does GeoTIFF imagery conform to the TIFF specification?">Does GeoTIFF imagery conform to the TIFF specification?</A></H3>
      
@@ -344,24 +322,6 @@ completely public and published for anyone to use for any imagery.
 So, anyone may create any images which use the same tagset
 as SPOT or other users of the GeoTIFF structure.  
 <P></P>
-
-<!--------------------------------------------------------------------------->
-<H3><A NAME="Is the SPOT data still proprietary?">Is the SPOT data still proprietary?</A></H3>
-     
-The actual *image* (if provided by SPOT) IS PROPRIETARY and subject to 
-all licenses applicable to the purchase of the data.  This means
-that you cannot copy and send around SPOTView images, just 
-because they are in TIFF format!  This is against the law. 
-    <P></P> 
-Some providers may make some images free, others may require licensing
-for sale.  The GeoTIFF format does not change whatever license conditions
-are imposed by an image provider.  Format has no relationship to the license
-conditions of ownership or sale. 
-<P></P>
-Put another way, the GeoTIFF tags, specification, and format are public.
-But the imagery is not, unless specified as free by the provider.  
-<P></P>
-
 
 <!--------------------------------------------------------------------------->
 <H3><A NAME="What are the advantages of TIFF format for geographic data?">What are the advantages of TIFF format for geographic data?</A></H3>
@@ -583,6 +543,28 @@ be able to understand all possibilities.
 <P></P>
 
 <!--------------------------------------------------------------------------->
+<H3><A NAME="PixelIsPoint">What is the effect of PointIsArea vs. PointAsPixel?</A></H3>     
+
+Setting the GTRasterTypeGeoKey value to RasterPixelIsPoint or RasterPixelIsArea 
+alters how the raster coordinate space is to be interpreted.  This is defined
+in <a href="spec/geotiff2.5.html#2.5.2.2">section 2.5.2.2</a> of the GeoTIFF
+specification.  In the case of PixelIsArea (default) a pixel is treated as an area and
+the raster coordinate (0,0) is the top left corner of the top left pixel. 
+PixelIsPoint treats pixels as point samples with empty space between the 
+"pixel" samples.  In this case raster (0,0) is the location of the top left
+raster pixel.<p>
+
+The net effect is a half pixel offset when interpreting PointIsPixel vs. 
+PointIsArea images.  There has been some confusion on the intepretation of
+this value in the GeoTIFF community for some time and some held the opinion
+that this parameter should have no effect on the georeferencing of the image.
+While this matter has been settled, the result is that some software packages,
+particularly those built on GDAL 1.7.x or older incorrectly interprete the
+georeferenced location of PixelIsPoint images - placing them offset by half
+a pixel.  One way of avoiding compatability problems is to produce GeoTIFF
+files with the default PixelIsArea interpretation.<p>
+
+<!--------------------------------------------------------------------------->
 <H3><A NAME="Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A></H3>     
 
 POSC is the <A HREF="http://www.posc.org" NAME="POSC WWW HomePage">
@@ -592,10 +574,10 @@ in the oil and gas business.  They distribute a geodetic model and
 encoding system which is international 
 in scope, hierarchical in structure and inclusive of many 
 cartographic options and variables.  The geodesy system and tables
-are created and supported by the 
+are created and supported by the OGP, the International Association of 
+Oil & Gas Producers who have absorbed the work of the 
 <a href="http://www.epsg.org">European Petrotechnical Survey Group (EPSG)</a>.
-The POSC tables (maintained
-by EPSG) are the most comprehensive and TIFF compatible tables
+The POSC tables (maintained by EPSG) are the most comprehensive and TIFF compatible tables
 of cartographic inforamation available in the public domain today. 
 <P></P>
 
@@ -689,7 +671,13 @@ units issues and so forth.  The libgeotiff reference library is also
 periodically released with updates to the EPSG .csv tables, and bug fixes. 
 <p>
 
-In short, the GeoTIFF community is alive, but relatively quiet.  <p>
+There have been some efforts to put the GeoTIFF specification into the
+care of either NASA or OGC, but those have not been successful.  In
+2008 libgeotiff joined the <a href="http://metacrs.osgeo.org/">OSGeo
+MetaCRS Project</a> and to some sense stewardship of the GeoTIFF 
+specification is also in the care of that project.<p.
+
+In short, the GeoTIFF community is alive, but relatively quiet.<p>
 
 </body>
 </html>
