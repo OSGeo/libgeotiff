@@ -91,7 +91,7 @@ WWW Homepage</A>.
 <li>
     <A HREF="#Can I make customized geographic projections using GeoTIFF?">Can I make customized geographic projections using GeoTIFF?</A>
 <li>
-    <A HREF="#PixelIsPoint">What is the effect of PointIsArea vs. PointAsPixel?</A>
+    <A HREF="#PixelIsPoint">What is the effect of PixelIsArea vs. PixelIsPoint?</A>
 <li>
     <A HREF="#Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A>
 <li>
@@ -543,7 +543,7 @@ be able to understand all possibilities.
 <P></P>
 
 <!--------------------------------------------------------------------------->
-<H3><A NAME="PixelIsPoint">What is the effect of PointIsArea vs. PointAsPixel?</A></H3>     
+<H3><A NAME="PixelIsPoint">What is the effect of PixelIsArea vs. PixelIsPoint?</A></H3>     
 
 Setting the GTRasterTypeGeoKey value to RasterPixelIsPoint or RasterPixelIsArea 
 alters how the raster coordinate space is to be interpreted.  This is defined
@@ -554,8 +554,8 @@ PixelIsPoint treats pixels as point samples with empty space between the
 "pixel" samples.  In this case raster (0,0) is the location of the top left
 raster pixel.<p>
 
-The net effect is a half pixel offset when interpreting PointIsPixel vs. 
-PointIsArea images.  There has been some confusion on the intepretation of
+The net effect is a half pixel offset when interpreting PixelIsPoint vs. 
+PixelIsArea images.  There has been some confusion on the intepretation of
 this value in the GeoTIFF community for some time and some held the opinion
 that this parameter should have no effect on the georeferencing of the image.
 While this matter has been settled, the result is that some software packages,
