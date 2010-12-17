@@ -13,7 +13,7 @@ content="GeoTIFF raster satellite aerial imagery mapping">
 
 <H1>GeoTIFF FAQ Version 2.4</H1>
 
-<h2>Last Updated: November, 2010</h2>
+<h2>Last Updated: December, 2010</h2>
 
 <ADDRESS>
 Author: Mike Ruth<BR>
@@ -92,6 +92,7 @@ WWW Homepage</A>.
     <A HREF="#Can I make customized geographic projections using GeoTIFF?">Can I make customized geographic projections using GeoTIFF?</A>
 <li>
     <A HREF="#PixelIsPoint">What is the effect of PixelIsArea vs. PixelIsPoint?</A>
+    <A HREF="#AxisOrder">What is the Axis Order in GeoTIFF?</A>
 <li>
     <A HREF="#Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A>
 <li>
@@ -563,6 +564,35 @@ particularly those built on GDAL 1.7.x or older incorrectly interprete the
 georeferenced location of PixelIsPoint images - placing them offset by half
 a pixel.  One way of avoiding compatability problems is to produce GeoTIFF
 files with the default PixelIsArea interpretation.<p>
+
+<!--------------------------------------------------------------------------->
+<H3><A NAME="AxisOrder">What is the Axis Order in GeoTIFF?</A></H3>     
+
+The axis order of a coordinate system is used to interprete coordinates.  For 
+instance should (-5,45) in EPSG:4326 be interpreted as -5 degrees longitude, and
+45 degrees latitude or -5 degrees latitude and 45 degrees longitude?<p>
+
+The GeoTIFF specification does not appear to specifically address axis order.
+The EPSG dataset <i>does</i> define axis order for each coordinate system. 
+Unfortunately for most (all?) geographic coordinate systems it defines a 
+lat/long order that conflicts with common GIS practice and the examples
+and existing practice in GeoTIFF files.<p>
+
+For that reason, it is suggested that geographic coordinate systems in
+GeoTIFF be assumed to be with longitude, latitude coordinate ordering in
+the GEOTIEPOINTS and related fields.<p>
+
+For projected coordinate system the situation is less clear.  Examples are
+all easting, northing but then most projected coordinate systems are defined
+this way in EPSG.  However, a few coordinate system (such as Krovak - EPSG:2065)
+actually use other axis orientations.  In the case of Krovak the first 
+coordinate is actually southing, and the second is westing.  Note that axis
+orientation can also affect the direction of positive (east vs. west, north
+vs. south) as well as the order of the coordinates.<p>
+
+While there are few examples of files in these coordinate systems, it is 
+suggested practice to honour EPSG axis orientation definitions for projected
+coordinate systems.<p>
 
 <!--------------------------------------------------------------------------->
 <H3><A NAME="Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A></H3>     
