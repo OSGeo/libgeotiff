@@ -97,8 +97,13 @@
 
 #ifndef EQUAL
 #if defined(_WIN32) && !defined(__CYGWIN__)
-#  define EQUALN(a,b,n)           (strnicmp(a,b,n)==0)
-#  define EQUAL(a,b)              (stricmp(a,b)==0)
+#   if     (_MSC_FULL_VER >= 15000000)
+#       define EQUALN(a,b,n)           (_strnicmp(a,b,n)==0)
+#       define EQUAL(a,b)              (_stricmp(a,b)==0)
+#   else
+#       define EQUALN(a,b,n)           (strnicmp(a,b,n)==0)
+#       define EQUAL(a,b)              (stricmp(a,b)==0)
+#   endif
 #else
 #  define EQUALN(a,b,n)           (strncasecmp(a,b,n)==0)
 #  define EQUAL(a,b)              (strcasecmp(a,b)==0)
