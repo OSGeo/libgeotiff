@@ -13,7 +13,7 @@ content="GeoTIFF raster satellite aerial imagery mapping">
 
 <H1>GeoTIFF FAQ Version 2.4</H1>
 
-<h2>Last Updated: December, 2010</h2>
+<h2>Last Updated: February, 2011</h2>
 
 <ADDRESS>
 Author: Mike Ruth<BR>
@@ -94,6 +94,8 @@ WWW Homepage</A>.
     <A HREF="#PixelIsPoint">What is the effect of PixelIsArea vs. PixelIsPoint?</A>
 <li>
     <A HREF="#AxisOrder">What is the Axis Order in GeoTIFF?</A>
+<li>
+    <A HREF="#VerticalCS">How should Vertical Datums and Vertical Coordinate Systems be encoded in GeoTIFF?</A>
 <li>
     <A HREF="#Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A>
 <li>
@@ -594,6 +596,14 @@ vs. south) as well as the order of the coordinates.<p>
 While there are few examples of files in these coordinate systems, it is 
 suggested practice to honour EPSG axis orientation definitions for projected
 coordinate systems.<p>
+
+<!--------------------------------------------------------------------------->
+<H3><A NAME="VerticalCS">How should Vertical Datums and Vertical Coordinate Systems be encoded in GeoTIFF?</A></H3>     
+
+The GeoTIFF specification only lightly addresses vertical coordinate systems. 
+In support of .LAS format (which uses GeoTIFF tags for coordinate systems)
+and for general GeoTIFF use there are some <a href="http://trac.osgeo.org/geotiff/wiki/VerticalCS">vertical coordinate system best practices</a> being 
+written up in the wiki. <p>
 
 <!--------------------------------------------------------------------------->
 <H3><A NAME="Who are POSC and EPSG and why is GeoTIFF involved with them?">Who are POSC and EPSG and why is GeoTIFF involved with them?</A></H3>     
