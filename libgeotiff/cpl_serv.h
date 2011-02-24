@@ -157,6 +157,12 @@ char CPL_DLL *CPLStrdup( const char * );
 #define CPLFree(x)	{ if( x != NULL ) VSIFree(x); }
 
 /* -------------------------------------------------------------------- */
+/*      Locale insensitive string to float conversion.                  */
+/* -------------------------------------------------------------------- */
+double GTIFAtof(const char *nptr);
+double GTIFStrtod(const char *nptr, char **endptr);
+
+/* -------------------------------------------------------------------- */
 /*      Read a line from a text file, and strip of CR/LF.               */
 /* -------------------------------------------------------------------- */
 

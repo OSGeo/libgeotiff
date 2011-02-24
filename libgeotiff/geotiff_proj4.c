@@ -4,7 +4,7 @@
  * Project:  libgeotiff
  * Purpose:  Code to convert a normalized GeoTIFF definition into a PROJ.4
  *           (OGDI) compatible projection string.
- * Author:   Frank Warmerdam, warmerda@home.com
+ * Author:   Frank Warmerdam, warmerdam@pobox.com
  *
  ******************************************************************************
  * Copyright (c) 1999, Frank Warmerdam
@@ -157,7 +157,7 @@ static double OSR_GDV( char **papszNV, const char * pszField,
     if( pszValue == NULL )
         return dfDefaultValue;
     else
-        return atof(pszValue);
+        return GTIFAtof(pszValue);
 }
 
 /************************************************************************/
@@ -811,7 +811,7 @@ int GTIFSetFromProj4( GTIF *gtif, const char *proj4 )
             GTIFKeySet( gtif, ProjLinearUnitsGeoKey, TYPE_SHORT, 1, 
                         KvUserDefined );
             GTIFKeySet( gtif, ProjLinearUnitSizeGeoKey, TYPE_DOUBLE, 1, 
-                        atof(value) );
+                        GTIFAtof(value) );
         }
     }
     else if( EQUAL(value,"meter") || EQUAL(value,"m") )

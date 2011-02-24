@@ -86,6 +86,7 @@ libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_tiffp.c \
                         geo_trans.c \
                         geo_write.c \
+			geo_strtod.c \
                         geotiff_proj4.c 
 
 if CSV_IS_CONFIG

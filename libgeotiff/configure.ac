@@ -59,6 +59,7 @@ AC_CHECK_HEADERS([string.h],[HAVE_STRING_H=1], [AC_MSG_ERROR([cannot find string
 AC_CHECK_HEADERS([stdio.h],, [AC_MSG_ERROR([cannot find stdio.h, bailing out])])
 AC_CHECK_HEADERS([stdlib.h],, [AC_MSG_ERROR([cannot find stdlib.h, bailing out])])
 
+AC_CHECK_HEADERS([locale.h])
 
 LIBS="${LIBS}"
 

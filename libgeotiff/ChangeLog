@@ -1,3 +1,10 @@
+2011-02-24  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_strtod.c, geo_normalize.c: Provide a locale-safe implementation
+	of atof() and use it when parsing values from .csv files. 
+
+	http://trac.osgeo.org/gdal/ticket/3979
+
 2011-02-11  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geotiff_proj4.c, geo_normalize.c: fix a few warnings for type casts, 
