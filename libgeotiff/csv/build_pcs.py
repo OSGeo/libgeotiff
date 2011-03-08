@@ -128,6 +128,7 @@ pcs_keys = []
 gcs_keys = []
 compdcs_keys = []
 vertcs_keys = []
+geoccs_keys = []
 
 for key in crs.data.keys():
     crs_rec = crs.get_record( key )
@@ -139,13 +140,16 @@ for key in crs.data.keys():
         compdcs_keys.append( key )
     elif crs_rec['COORD_REF_SYS_KIND'] == 'vertical':
         vertcs_keys.append( key )
+    elif crs_rec['COORD_REF_SYS_KIND'] == 'geocentric':
+        geoccs_keys.append( key )
 
 pcs_keys.sort()
 gcs_keys.sort()
 compdcs_keys.sort()
 vertcs_keys.sort()
+geoccs_keys.sort()
 
-print '%d PCS, %d GCS, %d VertCS and %d COMPD_CS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys), len(vertcs_keys), len(compdcs_keys) )
+print '%d PCS, %d GCS, %d GeocCS, %d VertCS and %d COMPD_CS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys), len(geoccs_keys), len(vertcs_keys), len(compdcs_keys) )
 
 ##############################################################################
 # Read PCS Override table for manually assigned transformations.
@@ -640,4 +644,56 @@ for key in compdcs_keys:
 compdcs_table.write_to_csv( 'compdcs.csv' )
 compdcs_table = None
 
+##############################################################################
+# Setup Geocentric table fields.
 
+geoccs_table = csv_tools.CSVTable()
+geoccs_table.add_field('COORD_REF_SYS_CODE')        
+geoccs_table.add_field('COORD_REF_SYS_NAME')        
+geoccs_table.add_field('DATUM_CODE')                # Datum #
+geoccs_table.add_field('DATUM_NAME')                # 
+geoccs_table.add_field('GREENWICH_DATUM')           # Greenwich equiv datum
+geoccs_table.add_field('UOM_CODE')                  # Linear units for GCS.
+geoccs_table.add_field('ELLIPSOID_CODE')            # 
+geoccs_table.add_field('PRIME_MERIDIAN_CODE')       #
+geoccs_table.add_field('SHOW_CRS')                  # 0=false, 1=true
+geoccs_table.add_field('DEPRECATED')                # 0=false, 1=true
+geoccs_table.add_field('COORD_SYS_CODE')            # mainly for axes
+
+##############################################################################
+# Populate Geocentric table.
+
+for key in geoccs_keys:
+
+    crs_rec = crs.get_record( key )
+
+    geoccs_rec = {}
+    geoccs_rec['COORD_REF_SYS_CODE'] = crs_rec['COORD_REF_SYS_CODE']
+    geoccs_rec['COORD_REF_SYS_NAME'] = crs_rec['COORD_REF_SYS_NAME']
+    geoccs_rec['SHOW_CRS']           = crs_rec['SHOW_CRS']
+    geoccs_rec['DEPRECATED']         = crs_rec['DEPRECATED']
+    geoccs_rec['UOM_CODE']           = get_crs_uom(crs_rec, cs, caxis )
+    geoccs_rec['DATUM_CODE']         = crs_rec['DATUM_CODE']
+    geoccs_rec['COORD_SYS_CODE']     = crs_rec['COORD_SYS_CODE']
+    try:
+        datum_id = int(crs_rec['DATUM_CODE'])
+    except:
+        print 'No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME']
+        continue
+    
+    datum_rec = datums.get_record( datum_id )
+    geoccs_rec['DATUM_NAME'] = datum_rec['DATUM_NAME']
+    geoccs_rec['ELLIPSOID_CODE'] = datum_rec['ELLIPSOID_CODE']
+    geoccs_rec['PRIME_MERIDIAN_CODE'] = datum_rec['PRIME_MERIDIAN_CODE']
+
+    if greenwich_equiv.has_key(key):
+        towgs84_gcs = greenwich_equiv[key]
+        crs_rec_base = crs.get_record( towgs84_gcs )
+        geoccs_rec['GREENWICH_DATUM'] = crs_rec_base['DATUM_CODE']
+    else:
+        geoccs_rec['GREENWICH_DATUM'] = crs_rec['DATUM_CODE']
+
+    geoccs_table.add_record( key, geoccs_rec )
+
+geoccs_table.write_to_csv( 'geoccs.csv' )
+geoccs_table = None
