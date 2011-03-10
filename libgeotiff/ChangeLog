@@ -1,3 +1,8 @@
+2011-03-09  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geokeys.h, geo_normalize.c, geo_normalize.h: Add GeogTOWGS84GeoKey
+	support as an extension to the official specification.
+
 2011-02-24  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_strtod.c, geo_normalize.c: Provide a locale-safe implementation
