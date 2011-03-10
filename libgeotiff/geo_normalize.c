@@ -67,6 +67,11 @@
 #define EPSGSphericalOriginLong  8829
 #define EPSGInitialLongitude     8830
 #define EPSGZoneWidth            8831
+#define EPSGLatOfStdParallel     8832
+#define EPSGOriginLong           8833
+#define EPSGTopocentricOriginLat 8834
+#define EPSGTopocentricOriginLong 8835
+#define EPSGTopocentricOriginHeight 8836
 
 /************************************************************************/
 /*                           GTIFGetPCSInfo()                           */
@@ -1006,6 +1011,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
         return( CT_ObliqueStereographic );
 
       case 9810:
+        /* case 9829: variant B not quite the same */ 
         return( CT_PolarStereographic );
 
       case 9811:
