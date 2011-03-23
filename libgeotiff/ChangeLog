@@ -1,3 +1,8 @@
+2011-03-22  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_print.c: ensure there is a space between numbers to avoid
+	them flowing into each other and being unparsable (#36, #37).
+
 2011-03-09  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geokeys.h, geo_normalize.c, geo_normalize.h: Add GeogTOWGS84GeoKey
