@@ -1096,8 +1096,8 @@ static int SetGTParmIds( int nCTProjection,
         panEPSGCodes[2] = EPSGAzimuth;
         panEPSGCodes[3] = EPSGAngleRectifiedToSkewedGrid;
         panEPSGCodes[4] = EPSGInitialLineScaleFactor;
-        panEPSGCodes[5] = EPSGProjCenterEasting;
-        panEPSGCodes[6] = EPSGProjCenterNorthing;
+        panEPSGCodes[5] = EPSGProjCenterEasting; /* EPSG proj method 9812 uses EPSGFalseEasting, but 9815 uses EPSGProjCenterEasting */
+        panEPSGCodes[6] = EPSGProjCenterNorthing; /* EPSG proj method 9812 uses EPSGFalseNorthing, but 9815 uses EPSGProjCenterNorthing */
         return TRUE;
 
       case CT_ObliqueMercator_Laborde:
@@ -1322,7 +1322,29 @@ int GTIFGetProjTRFInfo( /* COORD_OP_CODE from coordinate_operation.csv */
 
         /* not found, accept the default */
         if( iEPSG == 7 )
-            continue;
+        {
+            /* for CT_ObliqueMercator try alternate parameter codes first */
+            /* because EPSG proj method 9812 uses EPSGFalseXXXXX, but 9815 uses EPSGProjCenterXXXXX */
+            if ( nCTProjMethod == CT_ObliqueMercator && nEPSGCode == EPSGProjCenterEasting )
+                nEPSGCode = EPSGFalseEasting;
+            else if ( nCTProjMethod == CT_ObliqueMercator && nEPSGCode == EPSGProjCenterNorthing )
+                nEPSGCode = EPSGFalseNorthing;
+            else
+                continue;
+                
+            for( iEPSG = 0; iEPSG < 7; iEPSG++ )
+            {
+                sprintf( szParamCodeID, "PARAMETER_CODE_%d", iEPSG+1 );
+
+                if( atoi(CSVGetField( pszFilename,
+                                      "COORD_OP_CODE", szTRFCode, CC_Integer, 
+                                      szParamCodeID )) == nEPSGCode )
+                    break;
+            }
+            
+            if( iEPSG == 7 )
+                continue;
+        }
 
         /* Get the value, and UOM */
         sprintf( szParamUOMID, "PARAMETER_UOM_%d", iEPSG+1 );

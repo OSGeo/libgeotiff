@@ -1,3 +1,8 @@
+2011-04-11  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: fix false easting/northing fetching from epsg for
+	oblique mercator (EPSG:9812) (#38).
+
 2011-03-22  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_print.c: ensure there is a space between numbers to avoid
