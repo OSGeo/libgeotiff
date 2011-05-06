@@ -1414,6 +1414,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
     double dfNatOriginLong = 0.0, dfNatOriginLat = 0.0, dfRectGridAngle = 0.0;
     double dfFalseEasting = 0.0, dfFalseNorthing = 0.0, dfNatOriginScale = 1.0;
     double dfStdParallel1 = 0.0, dfStdParallel2 = 0.0, dfAzimuth = 0.0;
+    int iParm;
 
 /* -------------------------------------------------------------------- */
 /*      Get the false easting, and northing if available.               */
@@ -1875,6 +1876,33 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
         psDefn->nParms = 7;
         break;
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Normalize any linear parameters into meters.  In GeoTIFF        */
+/*      the linear projection parameter tags are normally in the        */
+/*      units of the coordinate system described.                       */
+/* -------------------------------------------------------------------- */
+    for( iParm = 0; iParm < psDefn->nParms; iParm++ )
+    {
+        switch( psDefn->ProjParmId[iParm] )
+        {
+          case ProjFalseEastingGeoKey:
+          case ProjFalseNorthingGeoKey:
+          case ProjFalseOriginEastingGeoKey:
+          case ProjFalseOriginNorthingGeoKey:
+          case ProjCenterEastingGeoKey:
+          case ProjCenterNorthingGeoKey:
+            if( psDefn->UOMLengthInMeters != 0 
+                && psDefn->UOMLengthInMeters != 1.0 )
+            {
+                psDefn->ProjParm[iParm] *= psDefn->UOMLengthInMeters;
+            }
+            break;
+
+          default:
+            break;
+        }
     }
 }
 
