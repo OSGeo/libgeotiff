@@ -1,3 +1,8 @@
+2011-05-10  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_normalize.c: Add support for cylindrical equal area from EPSG
+	(http://trac.osgeo.org/gdal/ticket/4068)
+	
 2011-05-06  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: Fix so that false easting/northing values read from

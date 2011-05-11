@@ -1037,6 +1037,9 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
 
       case 9822:
         return( CT_AlbersEqualArea );
+
+      case 9834:
+        return( CT_CylindricalEqualArea );
     }
 
     return( KvUserDefined );
@@ -1186,6 +1189,18 @@ static int SetGTParmIds( int nCTProjection,
         panEPSGCodes[1] = EPSGNatOriginLong;
         panEPSGCodes[5] = EPSGFalseEasting;
         panEPSGCodes[6] = EPSGFalseNorthing;
+        return TRUE;
+
+      case CT_CylindricalEqualArea:
+        panProjParmId[0] = ProjStdParallel1GeoKey;
+        panProjParmId[1] = ProjNatOriginLongGeoKey;
+        panProjParmId[5] = ProjFalseEastingGeoKey;
+        panProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        panEPSGCodes[0] = EPSGStdParallel1Lat;
+        panEPSGCodes[1] = EPSGFalseOriginLong;
+        panEPSGCodes[5] = EPSGFalseOriginEasting;
+        panEPSGCodes[6] = EPSGFalseOriginNorthing;
         return TRUE;
 
       default:
