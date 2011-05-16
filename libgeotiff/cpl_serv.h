@@ -138,6 +138,12 @@
 #define VSIRealloc(p,n) (((char *) _GTIFrealloc(((char *)p)-4,(n)+4)) + 4)
 #endif
 
+
+#if !defined(GTIFAtof) 
+#  define GTIFAtof atof 
+#endif 
+
+
 /* -------------------------------------------------------------------- */
 /*      Safe malloc() API.  Thin cover over VSI functions with fatal    */
 /*      error reporting if memory allocation fails.                     */
@@ -159,7 +165,7 @@ char CPL_DLL *CPLStrdup( const char * );
 /* -------------------------------------------------------------------- */
 /*      Locale insensitive string to float conversion.                  */
 /* -------------------------------------------------------------------- */
-double GTIFAtof(const char *nptr);
+/*double GTIFAtof(const char *nptr); */
 double GTIFStrtod(const char *nptr, char **endptr);
 
 /* -------------------------------------------------------------------- */
