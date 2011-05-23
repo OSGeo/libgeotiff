@@ -1,4 +1,4 @@
-SUBDIRS = libxtiff . bin
+SUBDIRS = libxtiff . bin man
 
 AUTOMAKE_OPTIONS =	dist-zip
 ACLOCAL_AMFLAGS = -I m4

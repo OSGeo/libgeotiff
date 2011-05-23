@@ -340,6 +340,8 @@ AC_CONFIG_FILES([
     Makefile
     libxtiff/Makefile
     bin/Makefile
+    man/Makefile
+    man/man1/Makefile
 ])
 
 AC_OUTPUT

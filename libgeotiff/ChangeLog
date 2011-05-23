@@ -1,5 +1,9 @@
 2011-05-23  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* man: add listgeo man page (#1)
+
+	* Makefile.am (SUBDIRS): 
+
 	* csv/*.csv: Upgrade to EPSG 7.6 database.
 
 2011-05-10  Frank Warmerdam  <warmerdam@pobox.com>
