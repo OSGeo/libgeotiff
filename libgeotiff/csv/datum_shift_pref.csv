@@ -32,8 +32,9 @@
 #
 # From Jan: http://bugzilla.remotesensing.org/show_bug.cgi?id=1336, 
 # and michael: http://trac.osgeo.org/gdal/ticket/3362
+# and followup from Michael: http://trac.osgeo.org/geotiff/ticket/32
 #
-4313,15749
+4313,15929
 ####################################################################
 #
 # We don't want to apply TOWGS84 values for NAD27 - we prefer to use

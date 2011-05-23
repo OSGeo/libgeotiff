@@ -1,5 +1,9 @@
 2011-05-23  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* Prepare libgeotiff 1.4.0 release.
+
+	* csv/datum_shift_pref.csv: update Belge 1972 preferred datum shift(#32)
+
 	* man: add listgeo man page (#1)
 
 	* Makefile.am (SUBDIRS): 
