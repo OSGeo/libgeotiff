@@ -276,9 +276,6 @@ for key in op_keys:
         # this happens for parameterless methods like DMSH conversions.
         parm_recs = []
         
-    if len(parm_recs) > max_parms:
-        print 'COORD_OP_CODE %d has %d values.' % (key, len(parm_recs))
-        
     for parm_i in range(len(parm_recs)):
         parm_rec = parm_recs[parm_i]
 

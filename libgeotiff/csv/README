@@ -73,20 +73,25 @@ The csv files are generated from the Postgres dump provided by EPSG.
 
 1) Load epsg database into postgres instance named "epsg".
 
-   insert a line "\encoding LATIN1" at start of the _Data_ sql file. 
+   1a) Insert a line "\encoding LATIN1" at start of the _Data_ sql file. 
 
-   Do a search and replace on "CHAR(" replacing it with "CHR(" on the 
-   last 50 statements or so in the _Data_ sql file. 
+   1b) Modify the _Table_ sql file, changing every occurance of (254) to 
+   (300).  This is to ensure that text fields are still big enough 
+   after Latin1 special characters are expanded into multi-byte 
+   UTF8 characters. 
 
-   run "load_pg.sh" in the directory where the .sql files are found.
+   1c) run "load_pg.sh" in the directory where the .sql files are found.
 
-   There may be a few inserts rejected because the remarks are too long.
-   Edit those remarks and remove the last word or so of the text.  Then 
-   rerun "load_pg.sh".
+   eg. 
+ 
+     ../load_pg.sh >& log
 
-2) Dump the database to .csv files.
+   1d) Make sure you search the log file for "error" in case something went
+   wrong. 
 
-   python pg_to_csv.py
+2) Dump the database to .csv files in the libgeotiff/csv directory.
+
+     python pg_to_csv.py
 
    Puts the results in the out directory.  After some inspection move them
    into this directory (libgeotiff/csv).
