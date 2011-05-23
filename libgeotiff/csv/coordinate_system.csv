@@ -1,5 +1,8 @@
 coord_sys_code,coord_sys_name,coord_sys_type,dimension,remarks,information_source,data_source,revision_date,change_id,deprecated
 1024,"Cartesian 2D CS. Axes: easting, northing (M,P). Orientations east, north. UoM m.",Cartesian,2,Used in projected and engineering coordinate reference systems in Portuguese territories.,OGP,OGP,2009/11/14,2009.085,0
+1025,"Cartesian 2D CS for south polar azimuthal lonO 140°E. Axes: X,Y. Orientations: X along 130°W, Y along 140°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,OGP,OGP,2010/03/14,2009.034,0
+1026,"Cartesian 2D CS for UPS north. Axes: E,N. Orientations: E along 90°E meridian, N along 180°E meridian. UoM: m.",Cartesian,2,Used for North Pole tangential and secant projections.,OGP,OGP,2010/03/24,2010.022,0
+1027,"Cartesian 2D CS for UPS south. Axes: E,N. Orientations: E along 90°E, N along 0°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,OGP,OGP,2010/03/14,2010.022,0
 4400,"Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: m.",Cartesian,2,Used in projected and engineering coordinate reference systems.,OGP,OGP,2001/04/29,,0
 4401,"Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: chBnB.",Cartesian,2,Used in projected and engineering coordinate reference systems.,OGP,OGP,2001/04/29,,0
 4402,"Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: chSe.",Cartesian,2,Used in projected and engineering coordinate reference systems.,OGP,OGP,2001/04/29,,0
@@ -43,8 +46,8 @@ coord_sys_code,coord_sys_name,coord_sys_type,dimension,remarks,information_sourc
 4489,"Cartesian 2D CS for south polar azimuthal lonO 70°E. Axes: E,N. Orientations: E along 160°E, N along 70°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,OGP,OGP,2008/06/23,2008.045,0
 4490,"Cartesian 2D CS for south polar azimuthal lonO 0°E. Axes: E,N. Orientations: E along 90°E, N along 0°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,OGP,OGP,2008/06/23,2008.045,0
 4491,"Cartesian 2D CS. Axes: westing, northing (W,N). Orientations: west, north. UoM: m.",Cartesian,2,Used in old Danish coordinate reference systems.,Landmaelingar Islands (National Land Survey of Iceland).,OGP,2001/04/29,,0
-4492,"Cartesian 2D CS for south polar azimuthal lonO 140°E. Axes: X,Y. Orientations: X along 130°W, Y along 140°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,OGP,OGP,2008/06/23,2008.045,0
-4493,"Cartesian 2D CS for UPS north. Axes: N,E. Orientations: N along 0°E then 180°E meridians, E along 90°E meridian. UoM: m.",Cartesian,2,Used for North Pole tangential and secant projections.,DMA TM8358.2,OGP,2008/06/23,2008.045,0
+4492,"Cartesian 2D CS for south polar azimuthal lonO 140°E. Axes: X,Y. Orientations: X along 130°W, Y along 140°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,OGP,OGP,2008/06/23,2008.045 2009.034,1
+4493,"Cartesian 2D CS for UPS north. Axes: N,E. Orientations: N along 180°E meridian, E along 90°E meridian. UoM: m.",Cartesian,2,Used for North Pole tangential and secant projections.,DMA TM8358.2,OGP,2010/03/30,2008.045 2010.022,0
 4494,"Cartesian 2D CS for UPS south. Axes: N,E. Orientations: N along 0°E, E along 90°E meridians. UoM: m.",Cartesian,2,Used for South Pole tangential and secant projections.,DMA TM8358.2,OGP,2008/06/23,2008.045,0
 4495,"Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ft.",Cartesian,2,Used in projected and engineering coordinate reference systems.,OGP,OGP,2001/11/06,,0
 4496,"Cartesian 2D CS. Axes: easting, northing [E(X),N(Y)]. Orientations: east, north. UoM: m.",Cartesian,2,Used in projected and engineering coordinate reference systems.,OGP,OGP,2001/04/29,,0

@@ -1,3 +1,7 @@
+2011-05-23  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv/*.csv: Upgrade to EPSG 7.6 database.
+
 2011-05-10  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: Add support for cylindrical equal area from EPSG

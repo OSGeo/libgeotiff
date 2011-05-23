@@ -78,3 +78,25 @@ supersession_id,object_table_name,object_code,superseded_by,supersession_type,su
 169,epsg_coordoperation,1927,15902,Retirement,2006,Withdrawn by information source and replaced by improved information.
 170,epsg_coordoperation,1962,15903,Retirement,2006,Withdrawn by information source and replaced by improved information from local authority.
 171,epsg_coordoperation,1963,15903,Retirement,2006,Withdrawn by information source and replaced by improved information.
+1024,epsg_coordoperation,3972,4834,Retirement,2010,Retired in 2005 when SIRGAS 2000 adopted by Brazil.
+1025,epsg_coordoperation,10092,5051,Retirement,2010,Improved determination by Petrobras.
+1026,epsg_coordoperation,1992,5037,Retirement,2010,Improved determination.
+1027,epsg_coordoperation,1281,5043,Retirement,2010,Withdrawn and replaced by improved determination.
+1028,epsg_coordoperation,1267,5044,Retirement,2010,Withdrawn and replaced by improved determination.
+1029,epsg_coordoperation,1997,5038,Retirement,2010,Improved determination.
+1030,epsg_coordoperation,1550,5061,Retirement,2010,Improved determination.
+1031,epsg_coordoperation,1551,5061,Retirement,2010,Improved determination.
+1032,epsg_coordoperation,1552,5061,Retirement,2010,Improved determination.
+1033,epsg_coordoperation,15710,5053,Retirement,2010,Improved resolution.
+1034,epsg_coordoperation,15711,5051,Retirement,2010,Improved resolution.
+1035,epsg_coordoperation,15712,5055,Retirement,2010,Improved resolution.
+1036,epsg_coordoperation,10091,5055,Retirement,2010,Improved determination for area by Petrobras.
+1037,epsg_coordoperation,10089,5051,Retirement,2010,Improved determination for area by Petrobras.
+1038,epsg_coordoperation,10090,5053,Retirement,2010,Improved determination for area by Petrobras.
+1039,epsg_coordoperation,15872,5078,Retirement,2010,Signiicantly improved determination.
+1043,epsg_coordoperation,15754,5055,Retirement,2010,Improved determinations for subareas.
+1044,epsg_coordoperation,15754,5053,Retirement,2010,Improved determinations for subareas.
+1045,epsg_coordoperation,15754,5051,Retirement,2010,Improved determinations for subareas.
+1046,epsg_coordoperation,10093,5055,Retirement,2010,Improved determinations for subareas by Petrobras.
+1047,epsg_coordoperation,10093,5053,Retirement,2010,Improved determinations for subareas by Petrobras.
+1048,epsg_coordoperation,10093,5051,Retirement,2010,Improved determinations for subareas by Petrobras.

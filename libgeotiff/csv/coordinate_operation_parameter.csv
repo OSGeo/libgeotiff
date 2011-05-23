@@ -1,5 +1,16 @@
 parameter_code,parameter_name,description,information_source,data_source,revision_date,change_id,deprecated
-1024,Cartesian coordinate file,The name of the [path and] file containing Cartesian coordinates in both source and target CRSs.,OGP,OGP,2009/11/14,2009.071,0
+1024,Cartesian coordinate programme file,The name of the programme file containing Cartesian coordinates in both source and target CRSs.,OGP,OGP,2010/03/30,2009.071 2010.037,0
+1025,GNTRANS transformation identifier,Identifier for the subset of parameters stored inside the transformation programme.,OGP,OGP,2010/03/30,2010.037,0
+1026,C1,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1027,C2,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1028,C3,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1029,C4,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1030,C5,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1031,C6,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1032,C7,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1033,C8,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1034,C9,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1035,C10,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
 8601,Latitude offset,The difference between the latitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
 8602,Longitude offset,The difference between the longitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
 8603,Vertical Offset,The difference between the height or depth values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0

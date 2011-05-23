@@ -432,6 +432,411 @@ This converts into:
    Longitude =  66 deg 04 min 54.705 sec W
    Ellipsoidal height =  -18.10 m
 on the REGVEN geographic 3D coordinate reference system.",See methods 1034 and 9636 for similar tfms operating between other CRSs types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2009/11/17,2009.083,0
+1040,GNTRANS,1,"GNTRANS is a multistage three-dimensional transformation approach. Starting with a conventional seven-parameter transformation, the next stage functionally models the residuals at identical points using a unique, continuous spline surface. The final stage is a stochastic prediction to describe remaining discrepancies. For application and to improve performance, topocentric coordinate offsets are interpolated from a regular grid derived from the above transformation to determine coordinates of an arbitrary input point in the target system and vice-versa.",,,Geo++.,OGP,2010/03/30,2010.037,0
+1041,Krovak (North Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+From the defining parameters the following constants for the projection may be calculated :
+
+A = a(1 - e^2)^0.5 / [1 - e^2 sin^2.(latC)]
+B = {1 + [e^2 * cos^4(latC) / (1 - e^2)]}^0.5
+gammao = asin[sin(latC) / B]
+to = tan(pi/4 + gammao/2).[(1 + e sin(latC)) / (1 - e sin(latC))]^(e.B/2) / [tan(pi/4 + latC/2)]^B
+n = sin(latp)
+ro = kp.A / tan(latp)
+
+To derive the projected Southing and Westing coordinates of a point with geographical coordinates (lat, lon) the formulas for the Krovak are:
+
+U = 2(atan{to.tan^B(lat/2 + pi/4) / [(1 + e sin(lat)) / (1 - e sin(lat))]^[e.B/2]} - pi/4)
+V = B(lonO - lon) where lonO and lon must both be referenced to the same prime meridian.
+T = asin[cos(alphaC).sin(U) + sin(alphaC).cos(U). cos(V)]
+D = asin[cos(U).sin(V)/cos(T)]
+theta = n.D
+r = ro.tan^n(pi/4 + latp/2) / tan^n(T/2 + pi/4)
+Xp = r.cos(theta)
+Yp = r.sin(theta)
+Southing = Xp + FN
+Westing = Yp + FE
+
+Then Easting = -Westing
+     Northing = -Southing
+
+The reverse formulas to derive the latitude and longitude of a point from its Easting and Northing values are:
+Southing = -Northing
+Westing = -Easting
+Xp' = Southing Â FN
+Yp' = Westing Â FE
+r' = [(Yp')^2 + (Xp')^2]^(1/2)  
+theta' = atan[Yp'/Xp']
+D' = theta' / sin(latp)
+T' = 2{atan[((ro / r')^(1/n)).tan(pi/4 + latp/2)] - pi/4}
+U' = asin[cos(alphaC).sin(T') - sin(alphaC).cos(T').cos(D')]
+V' = asin(cos(T').sin(D') / cos(U'))
+
+Then latitude lat is found by iteration using U' as the value for lat(j-1) in the first iteration:
+lat(j) = 2*(atan{to^(-1/B) tan^(1/B).(U'/2 + pi/4).[(1 + e sin(lat(j-1)) / (1 - e sin(lat(j-1))]^(e/2)} - pi/4) 
+
+Then
+lon = lonO - V' / B where lon is referenced to the same prime meridian as lonO.","For Projected Coordinate Reference System: S-JTSK (Ferro) / Krovak East North
+
+Parameters:
+Ellipsoid  Bessel 1841   a = 6377397.155m  1/f = 299.15281
+    then    e = 0.081696831        e^2 = 0.006674372
+
+Latitude of projection centre = 49°30'00""N =  0.863937979 rad
+Longitude of Origin = 42°30'00""E of Ferro = 0.741764932 rad
+Azimuth of centre line = 30°17'17.303"" = 0.528627762 rad
+Latitude of pseudo standard parallel = 78°30'00""N = 1.370083463 rad
+Scale factor on pseudo Standard Parallel (ko) = 0.9999
+False Easting = 0.00 m
+False Northing = 0.00 m
+
+Calculated projection constants:
+A = 6380703.611
+B = 1.000597498
+gammao = 0.863239103
+to = 1.003419164
+n = 0.979924705
+ro = 1298039.005
+
+Forward calculation for: 
+Latitude = 50°12'32.442""N = 0.876312568 rad
+Longitude = 34°30'59.179""E of Ferro = 0.602425500 rad
+
+Then the forward calculation first gives
+
+U = 0.875596951
+V = 0.139422687
+T = 1.386275051
+D = 0.506554626
+theta = 0.496385392
+r = 1194731.005
+Xp = 1050538.634
+Yp = 568990.995
+Southing = 1050538.634
+Westing = 568990.995
+ 
+Then 
+Easting  (X) =  -568991.00 m
+Northing (Y) = -1050538.64 m
+
+Reverse calculation for the same Easting and Northing:
+
+Southing = 1050538.634
+Westing = 568990.995
+Xp' = 1050538.634
+Yp' = 568990.995
+r' = 1194731.005
+theta' = 0.496385392
+D' = 0.506554626
+T' = 1.386275051
+U' = 0.875596951
+V' = 0.139422687
+lat(iteration 1) = 0.876310603 
+lat(iteration 2) = 0.876312562
+lat(iteration 3) = 0.876312568
+
+Latitude = 0.876312568 rad = 50°12'32.442""N
+Longitude = 0.60242500 rad = 34°30'59.179""E of Ferro.",,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2010/11/02,2010.071,0
+1042,Krovak Modified,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+From the defining parameters the following constants for the projection may be calculated :
+
+A = a(1 - e^2)^0.5 / [1 - e^2 sin^2.(latC)]
+B = {1 + [e^2 * cos^4(latC) / (1 - e^2)]}^0.5
+gammao = asin[sin(latC) / B]
+to = tan(pi/4 + gammao/2).[(1 + e sin(latC)) / (1 - e sin(latC))]^(e.B/2) / [tan(pi/4 + latC/2)]^B
+n = sin(latp)
+ro = kp.A / tan(latp)
+
+To derive the projected Southing and Westing coordinates of a point with geographical coordinates (lat, lon) the formulas for the Krovak are:
+
+U = 2(atan{to.tan^B(lat/2 + pi/4) / [(1 + e sin(lat)) / (1 - e sin(lat))]^[e.B/2]} - pi/4)
+V = B(lonO - lon) where lonO and lon must both be referenced to the same prime meridian.
+T = asin[cos(alphaC).sin(U) + sin(alphaC).cos(U). cos(V)]
+D = asin[cos(U).sin(V)/cos(T)]
+theta = n.D
+r = ro.tan^n(pi/4 + latp/2) / tan^n(T/2 + pi/4)
+Xp = r.cos(theta)
+Yp = r.sin(theta)
+Xr = Xp Â Xo
+Yr = Yp Â Yo
+dX = C1 + C3.Xr Â C4.Yr Â 2.C6.Xr.Yr + C5.(Xr^2 Â Yr^2) + C8.Xr.(Xr^2 Â 3.Yr^2) Â C7.Yr.(3.Xr^2 Â Yr^2) Â 4.C10.Xr.Yr.(Xr^2 Â Yr^2) + C9.(Xr^4 + Yr^4 Â 6.Xr^2.Yr^2)
+dY = C2 + C3.Yr + C4.Xr + 2.C5.Xr.Yr + C6.(Xr^2 Â Yr^2) + C7.Xr.(Xr^2 Â 3.Yr^2)Â C8.Yr.(3.Xr^2 Â Yr^2) + 4.C9.Xr.Yr.(Xr^2 Â Yr^2) + C10.(Xr^4 + Yr^4 Â 6.Xr^2.Yr^2)
+Southing   X = FN + Xp Â dX
+Westing    Y = FE + Yp Â dY
+
+The reverse formulas to derive the latitude and longitude of a point from its Southing and Westing values are:
+
+Xr' = (Southing Â FN) Â Xo
+Yr' = (Westing Â FE) Â Yo
+dX' = C1 + C3.Xr' Â C4.Yr' Â 2.C6.Xr'.Yr' + C5.(Xr'^2 Â Yr'^2) + C8.Xr'.(Xr'^2 Â 3.Yr'^2) Â C7.Yr'.(3.Xr'^2 Â Yr'^2) Â 4.C10.Xr'.Yr'.(Xr'^2 Â Yr'^2) + C9.(Xr'^4 + Yr'^4 Â 6.Xr'^2.Yr'^2)
+dY' = C2 + C3.Yr' + C4.Xr' + 2.C5.Xr'.Yr' + C6.(Xr'^2 Â Yr'^2) + C7.Xr'.(Xr'^2 Â 3.Yr'^2) 
+Â C8.Yr'.(3.Xr'^2 Â Yr'^2) + 4.C9.Xr'.Yr'.(Xr'^2 Â Yr'^2) + C10.(Xr'^4 + Yr'^4 Â 6.Xr'^2.Yr'^2)
+Xp' = (Southing Â FN) + dX'
+Yp' = (Westing Â FE) + dY'
+r' = [(Yp')^2 + (Xp')^2]^(1/2)  
+theta' = atan[Yp'/Xp']
+D' = theta' / sin(latp)
+T' = 2{atan[((ro / r')^(1/n)).tan(pi/4 + latp/2)] - pi/4}
+U' = asin[cos(alphaC).sin(T') - sin(alphaC).cos(T').cos(D')]
+V' = asin(cos(T').sin(D') / cos(U'))
+
+Then latitude lat is found by iteration using U' as the value for lat(j-1) in the first iteration:
+lat(j) = 2*(atan{tO^(-1/B) tan^(1/B).(U'/2 + pi/4).[(1 + e sin(lat(j-1)) / (1 - e sin(lat(j-1))]^(e/2)} - pi/4) 
+
+Then
+lon = lonO - V' / B where lon is referenced to the same prime meridian as lonO.","For Projected Coordinate Reference System: S-JTSK/05 (Ferro) / Modified Krovak
+
+Parameters:
+Ellipsoid  Bessel 1841   a = 6377397.155m  1/f = 299.15281
+    then    e = 0.081696831        e^2 = 0.006674372
+
+Latitude of projection centre = 49°30'00""N =  0.863937979 rad
+Longitude of Origin = 42°30'00""E of Ferro = 0.741764932 rad
+Azimuth of centre line = 30°17'17.303"" = 0.528627762 rad
+Latitude of pseudo standard parallel = 78°30'00""N 1.370083463 rad
+Scale factor on pseudo Standard Parallel (ko) = 0.9999
+False Easting = 5000000.00 m
+False Northing = 5000000.00 m
+Ordinate 1 of evaluation point Xo = 1089000.00 m
+Ordinate 2 of evaluation point Yo = 654000.00 m
+C1 = 2.946529277E-02
+C2 = 2.515965696E-02
+C3 = 1.193845912E-07
+C4 = -4.668270147E-07
+C5 = 9.233980362E-12
+C6 = 1.523735715E-12
+C7 = 1.696780024E-18
+C8 = 4.408314235E-18
+C9 = -8.331083518E-24
+C10 = -3.689471323E-24
+
+Calculated projection constants:
+A = 6380703.611
+B = 1.000597498
+gammao = 0.863239103
+to = 1.003419164
+n = 0.979924705
+ro = 1298039.005
+
+Forward calculation for: 
+Latitude = 50°12'32.442""N = 0.876312568 rad
+Longitude = 34°30'59.179""E of Ferro = 0.602425500 rad
+
+U = 0.875596951
+V = 0.139422687
+S = 1.386275051
+D = 0.506554626
+theta = 0.496385392
+r = 1194731.005
+Xp = 1050538.634
+Yp = 568990.995
+Xr = -38461.366
+Yr = -85009.005
+dX = -0.075
+dY = 0.086
+and	
+Southing X = 6050538.71 m
+Westing	 Y = 5568990.91 m
+
+Reverse calculation for the same Southing and Westing:
+
+Xr' = -38461.291
+Yr' = -85009.090
+dX' = -0.075
+dY' = 0.086
+Xp' = 1050538.634
+Yp' = 568990.995
+r' = 1194731.005
+theta' = 0.496385392
+D' = 0.506554626
+T' = 1.386275051
+U' = 0.875596951
+V' = 0.139422687
+lat(iteration 1) = 0.876310603 
+lat(iteration 2) = 0.876312562
+lat(iteration 3) = 0.876312568
+
+Latitude = 0.876312568 rad = 50°12'32.442""N
+Longitude = 0.294083997 rad = 16°50'59.179""E",Incorporates a polynomial transformation which is defined to be exact and for practical purposes is considered to be a map projection.,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2010/11/02,2010.071,0
+1043,Krovak Modified (North Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+From the defining parameters the following constants for the projection may be calculated :
+
+A = a(1 - e^2)^0.5 / [1 - e^2 sin^2.(latC)]
+B = {1 + [e^2 * cos^4(latC) / (1 - e^2)]}^0.5
+gammao = asin[sin(latC) / B]
+to = tan(pi/4 + gammao/2).[(1 + e sin(latC)) / (1 - e sin(latC))]^(e.B/2) / [tan(pi/4 + latC/2)]^B
+n = sin(latp)
+ro = kp.A / tan(latp)
+
+To derive the projected Southing and Westing coordinates of a point with geographical coordinates (lat, lon) the formulas for the Krovak are:
+
+U = 2(atan{to.tan^B(lat/2 + pi/4) / [(1 + e sin(lat)) / (1 - e sin(lat))]^[e.B/2]} - pi/4)
+V = B(lonO - lon) where lonO and lon must both be referenced to the same prime meridian.
+T = asin[cos(alphaC).sin(U) + sin(alphaC).cos(U). cos(V)]
+D = asin[cos(U).sin(V)/cos(T)]
+theta = n.D
+r = ro.tan^n(pi/4 + latp/2) / tan^n(T/2 + pi/4)
+Xp = r.cos(theta)
+Yp = r.sin(theta)
+Xr = Xp Â Xo
+Yr = Yp Â Yo
+dX = C1 + C3.Xr Â C4.Yr Â 2.C6.Xr.Yr + C5.(Xr^2 Â Yr^2) + C8.Xr.(Xr^2 Â 3.Yr^2) Â C7.Yr.(3.Xr^2 Â Yr^2) Â 4.C10.Xr.Yr.(Xr^2 Â Yr^2) + C9.(Xr^4 + Yr^4 Â 6.Xr^2.Yr^2)
+dY = C2 + C3.Yr + C4.Xr + 2.C5.Xr.Yr + C6.(Xr^2 Â Yr^2) + C7.Xr.(Xr^2 Â 3.Yr^2)Â C8.Yr.(3.Xr^2 Â Yr^2) + 4.C9.Xr.Yr.(Xr^2 Â Yr^2) + C10.(Xr^4 + Yr^4 Â 6.Xr^2.Yr^2)
+Southing = FN + Xp Â dX
+Westing = FE + Yp Â dY
+Easting = -(Westing)
+Northing = -(Southing)
+
+The reverse formulas to derive the latitude and longitude of a point from its Easting and Northing values are:
+Southing = -(Northing)
+Westing = -(Easting)
+
+Xr' = (Southing - FN) Â Xo
+Yr' = (Westing - FE) Â Yo
+dX' = C1 + C3.Xr' Â C4.Yr' Â 2.C6.Xr'.Yr' + C5.(Xr'^2 Â Yr'^2) + C8.Xr'.(Xr'^2 Â 3.Yr'^2) Â C7.Yr'.(3.Xr'^2 Â Yr'^2) Â 4.C10.Xr'.Yr'.(Xr'^2 Â Yr'^2) + C9.(Xr'^4 + Yr'^4 Â 6.Xr'^2.Yr'^2)
+dY' = C2 + C3.Yr' + C4.Xr' + 2.C5.Xr'.Yr' + C6.(Xr'^2 Â Yr'^2) + C7.Xr'.(Xr'^2 Â 3.Yr'^2) 
+Â C8.Yr'.(3.Xr'^2 Â Yr'^2) + 4.C9.Xr'.Yr'.(Xr'^2 Â Yr'^2) + C10.(Xr'^4 + Yr'^4 Â 6.Xr'^2.Yr'^2)
+Xp' = (Southing - FN) + dX'
+Yp' = (Westing - FE) + dY'
+r' = [(Yp')^2 + (Xp')^2]^(1/2)  
+theta' = atan[Yp'/Xp']
+D' = theta' / sin(latp)
+T' = 2{atan[((ro / r')^(1/n)).tan(pi/4 + latp/2)] - pi/4}
+U' = asin[cos(alphaC).sin(T') - sin(alphaC).cos(T').cos(D')]
+V' = asin(cos(T').sin(D') / cos(U'))
+
+Then latitude lat is found by iteration using U' as the value for lat(j-1) in the first iteration:
+lat(j) = 2*(atan{tO^(-1/B) tan^(1/B).(U'/2 + pi/4).[(1 + e sin(lat(j-1)) / (1 - e sin(lat(j-1))]^(e/2)} - pi/4) 
+
+Then
+lon = lonO - V' / B where lon is referenced to the same prime meridian as lonO.","For Projected Coordinate Reference System: S-JTSK (Ferro) / Modified Krovak
+
+Parameters:
+Ellipsoid  Bessel 1841   a = 6377397.155m  1/f = 299.15281
+    then    e = 0.081696831        e^2 = 0.006674372
+
+Latitude of projection centre = 49°30'00""N =  0.863937979 rad
+Longitude of Origin = 42°30'00""E of Ferro = 0.741764932 rad
+Azimuth of centre line = 30°17'17.303"" = 0.528627762 rad
+Latitude of pseudo standard parallel = 78°30'00""N = 1.370083463 rad
+Scale factor on pseudo Standard Parallel (ko) = 0.9999
+False Easting = 0.00 m
+False Northing = 0.00 m
+Ordinate 1 of evaluation point Xo = 1089000.00 m
+Ordinate 2 of evaluation point Yo = 654000.00 m
+C1 = 2.946529277E-02
+C2 = 2.515965696E-02
+C3 = 1.193845912E-07
+C4 = -4.668270147E-07
+C5 = 9.233980362E-12
+C6 = 1.523735715E-12
+C7 = 1.696780024E-18
+C8 = 4.408314235E-18
+C9 = -8.331083518E-24
+C10 = -3.689471323E-24
+
+Calculated projection constants:
+A = 6380703.611
+B = 1.000597498
+gammao = 0.863239103
+to = 1.003419164
+n = 0.979924705
+ro = 1298039.005
+
+Forward calculation for: 
+Latitude = 50°12'32.442""N = 0.876312568 rad
+Longitude = 34°30'59.1790""E of Ferro = 0.602425500 rad
+
+Then the forward calculation first gives
+
+U = 0.875596951
+V = 0.139422687
+T = 1.386275051
+D = 0.506554626
+theta = 0.496385392
+r = 1194731.005
+Xp = 1050538.634
+Yp = 568990.995
+Xr = -38461.366
+Yr = -85009.005
+dX = -0.075
+dY = 0.086
+Southing = 6050538.71 m
+Westing	= 5568990.91 m
+and then
+Easting	X = -5568990.91 m
+Northing Y = -6050538.71 m
+
+Reverse calculation for the same Easting and Northing:
+Southing = 6050538.71 m
+Westing	= 5568990.91 m
+Xr' = -38461.290
+Yr' = -85009.090
+dX' = -0.075
+dY' = 0.086
+Xp' = 1050538.634
+Yp' = 568990.995
+r' = 1194731.005
+theta' = 0.496385392
+D' = 0.506554626
+T' = 1.386275051
+U' = 0.875596951
+V' = 0.139422687
+lat(iteration 1) = 0.876310603 
+lat(iteration 2) = 0.876312562
+lat(iteration 3) = 0.876312568
+
+Latitude = 0.876312568 rad = 50°12'32.442""N
+Longitude = 0.602425500 rad = 34°30'59.179""E of Ferro.",Incorporates a polynomial transformation which is defined to be exact and for practical purposes is considered to be a map projection.,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2010/11/02,2010.071,0
+1044,Mercator (variant C),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+The formulas to derive projected Easting and Northing coordinates are:
+
+ko = cos(latSP1)/(1 - e^2*sin^2(latSP1))^0.5 
+ 
+where latSP1 is the absolute value of the first standard parallel (i.e. positive).  
+
+E = FE + a*ko(lon - lonF)             
+M = a ko ln{tan(pi/4 + latF/2)[(1 Â e sin(latF))/(1 + e sin(latF))]^(e/2)}
+N = (NF Â M) + a ko ln{tan(pi/4 + lat/2)[(1 Â e sin(lat))/(1 + e sin(lat))]^(e/2)}
+where logarithms are natural.
+
+The reverse formulas to derive latitude and longitude from E and N values are:
+
+lat = chi + (esq/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2chi) 
++ (7e^4/48 + 29e^6/240 + 811e^8/11520) sin(4chi)
++ (7e^6/120 +  81e^8/1120) sin(6chi)  + (4279e^8/161280) sin(8chi)
+
+where chi = pi/2 - 2 arctan t
+t = B^((NF+M-N)/a*ko) 
+B = base of the natural logarithm, 2.7182818...
+and ko is calculated as for the forward transformation above.
+lon  =  ((E - EF)/a*ko) + lonF","Parameters:
+Ellipsoid  Krassowski 1940   a = 6378245.00m   1/f = 298.300
+then e = 0.08181333 and e^2 = 0.00669342
+
+Latitude first SP = 42°00'00""N = 0.73303829 rad
+Longitude of natural origin = 51°00'00""E = 0.89011792 rad
+Latitude of false origin = 42°00'00""N = 0.73303829 rad
+Eastings at false origin EF = 0.00 m
+Northing at false origin NF = 0.00 m
+  
+Forward calculation for: 
+Latitude = 53°00'00.00""N = 0.9250245 rad
+Longitude = 53°00'00.00""E = 0.9250245 rad
+
+ko = 0.744260894
+M = 3819897.85
+Easting E = 165704.29 m
+Northing N = 1351950.22 m
+
+Reverse calculation for same easting and northing first gives :
+t = 0.336391288
+chi = 0.921795958
+Latitude = 53°00'00.000""N
+Longitude = 53°00'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/11/01,2010.058,0
 9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/11/12,1999.790,0
 9602,Geographic/geocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -758,29 +1163,54 @@ Reversibility
 The reverse formula for the Similarity Transformation is:
 
 XS = [(XT  Â XTO) * cos q   Â  (YT Â YTO) * sin q ] / [M ]
-YS = [(XT   Â XTO) * sin q   +  (YT Â YTO) * cos q] / [M ]","Tombak LNG Plant Grid to Nakhl-e Ghanem / UTM zone 39N
+YS = [(XT   Â XTO) * sin q   +  (YT Â YTO) * cos q] / [M ]
+
+An alternative approach for the reverse operation is to use the same formula as for the forward computation but with different parameter values:
+	XT = XTO'  + XS * M' * cos theta'  + YS * M' * sin theta'
+	YT = YTO'  Â  XS * M' * sin theta' + YS * M' * cos theta'
+
+The reverse parameter values, indicated by a prime ('), can be calculated from those of the forward operation as follows:
+XTO' =  (YTO sin theta Â  XTO cos theta) / M
+YTO' =  Â(YTO cos theta +  XTO sin theta) / M
+M'   =  1/M
+theta'    =  Âtheta","ED50 / UTM zone 31N to ETRS89 / UTM zone 31N
 
 Parameters of the Similarity Transformation:
-XTO 	=	  611267.2865 metres
-YTO 	= =	3046565.8255 metres
-M 	= 0.9997728332
-q 	= 315 degrees
+XTO   = -129.549 metres
+YTO   = -208.185 metres
+M     = 1.00000155
+theta = 1.56504"" = 0.000007588 rad
 
-Forward computation for plant grid coordinates x (= XS) = 20000m, y (= YS) = 10000m:
+Forward computation for source coordinates 300000m E, 4500000m N:
 
-XT 	= UTM E 	= 611267.2865 + 14138.9230 + (-7069.4615)
-			= 618336.748 m
+E(ETRS89) = Â129.549 + 300000.465 + 34.144
+          = 299905.060 m E
 
-YT	= UTM N	= 3046565.8255 Â (Â14138.9230) + 7069.4615
-		= 3067774.210 m
+N(ETRS89) = Â208.185 Â2.276 + 4500006.977
+          = 4499796.515m N
 
-Reverse computation for UTM coordinates 618336.748 m E, 3067774.210 m:
+Reverse computation of ETRS89 / UTM 31N coordinates 299905.060m E, 4499796.515m N:
 
-Plant x	= [4998.8642 Â (Â14996.5925)] / 0.9997728332
-	= 20000.000 m
+E(ED50) = (300034.609 Â 34.144) / 1.00000155
+	= 300000.000m E
 
-Plant y	= [(Â 4998.8642) + 14996.5925)] / 0.9997728332
-	= 10000.000 m",Defined for two-dimensional coordinate systems.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2005/08/26,2000.830 2004.670,0
+N(ED50) = (2.276 + 4500004.700) / 1.00000155
+	= 4500000.000m N
+
+Alternative reverse computation:
+
+First calculate new parameter values:
+XTO'   = 129.5472 m
+YTO'   = 208.1857 m
+M'     = 0.99999845
+theta' = Â0.000007588 rad
+
+Then apply these values to forward formula:
+E(ED50) = 129.547 + 299904.595 + (Â34.142)
+        = 300000.000 m
+
+N(ED50) = 208.186 Â (Â2.276) + 4499789.539
+        = 4500000.000 m",Defined for two-dimensional coordinate systems.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/06/29,2000.830 2004.670 2010.053,0
 9622,Affine orthogonal geometric transformation,0,"Note: These formulas have been transcribed from EPSG Guidance Note #7. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 XT = XT0   +   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
@@ -2114,12 +2544,12 @@ theta' = 0.01939192      r' = 548041.03
 t' = 0.35913403
 Then Latitude   =    50°40'46.461""N
          Longitude =     5°48'26.533""E",In 2000 this modification was replaced through use of the regular Lambert Conic Conformal (2SP) method [9802] with appropriately modified parameter values.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/04/22,1999.280,0
-9804,Mercator (1SP),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+9804,Mercator (variant A),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates are:
 
-E = FE + a*k0(lon - lon0)              
-N = FN + a*k0* ln{tan(pi/4 + lat/2)[(1 - esin(lat))/(1 + esin(lat))]^e/2} where symbols are as listed above and logarithms are natural.
+E = FE + a*ko(lon - lonO)              
+N = FN + a*ko* ln{tan(pi/4 + lat/2)[(1 - esin(lat))/(1 + esin(lat))]^e/2} where symbols are as listed above and logarithms are natural.
 
 The reverse formulas to derive latitude and longitude from E and N values are:
 
@@ -2128,48 +2558,43 @@ lat = chi + (esq/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2chi)
 + (7e^6/120 +  81e^8/1120) sin(6chi)  + (4279e^8/161280) sin(8chi)
 
 where chi = pi/2 - 2 arctan t
-t = B^((FN-N)/(a*k0)) 
+t = B^((FN-N)/(a*ko)) 
 B = base of the natural logarithm, 2.7182818...
-and  for the 2 SP Case, k0 is calculated as for the forward transformation above.
-lon  =  ((E - FE)/(a*k0))  + lon0","For Projected Coordinate System Makassar / NEIEZ
+and  for the 2 SP Case, ko is calculated as for the forward transformation above.
+lon  =  ((E - FE)/(a*ko))  + lonO","For Projected Coordinate System Makassar / NEIEZ
 
 Parameters:
 Ellipsoid   Bessel 1841  a = 6377397.155 m   1/f = 299.15281
 then e = 0.08169683
 
-Latitude Natural Origin         00°00'00""N  = 0.0000000 rad
-Longitude Natural Origin    110°00'00""E  = 1.91986218 rad
-Scale factor ko                  0.997
-False Eastings FE              3900000.00 m
-False Northings FN              900000.00 m
+Latitude of natural origin = 00°00'00""N  = 0.0000000 rad
+Longitude of natural origin = 110°00'00""E  = 1.91986218 rad
+Scale factor at natural origin ko = 0.997
+False Eastings FE = 3900000.00 m
+False Northings FN = 900000.00 m
 
 Forward calculation for: 
-Latitude            3°00'00.00""S   = -0.05235988 rad
-Longitude     120°00'00.00""E   =  2.09439510 rad
+Latitude = 3°00'00.00""S   = -0.05235988 rad
+Longitude = 120°00'00.00""E   =  2.09439510 rad
 gives
-Easting  E   =      5009726.58 m
-Northing N  =        569150.82 m
+Easting  E  =  5009726.58 m
+Northing N  =   569150.82 m
 
 Reverse calculation for same easting and northing first gives :
 t    = 1.0534121
 chi = -0.0520110
 
-Then Latitude     =   3°00'00.000""S
-         Longitude  = 120°00'00.000""E","Note that in these formulas the parameter latitude of natural origin (lat0) is not used. However for the Merctor (1SP) method the EPSG dataset includes this parameter, which must have a value of zero, for completeness in CRS labelling.","EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/06/22,2001.080 2004.430 2008.000,0
-9805,Mercator (2SP),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+Latitude   =   3°00'00.000""S
+Longitude  = 120°00'00.000""E","Note that in these formulas the parameter latitude of natural origin (latO) is not used. However for this Mercator (variant A) method the EPSG dataset includes this parameter, which must have a value of zero, for completeness in CRS labelling.","EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/11/02,2001.080 2004.430 2008.000 2010.058,0
+9805,Mercator (variant B),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates are:
 
-For the two standard parallel case, k0 is first calculated from
+ko = cos(latSP1)/(1 - e^2*sin^2(latSP1))^0.5 
+where latSP1 is the absolute value of the first standard parallel (i.e. positive).
 
-k0 = cos(latSP1)/(1 - e^2*sin^2(latSP1))^0.5 
- 
-where latSP1 is the absolute value of the first standard parallel (i.e. positive).  
-
-Then, for both one and two standard parallel cases, 
-
-E = FE + a*k0(lon - lon0)              
-N = FN + a*k0* ln{tan(pi/4 + lat/2)[(1 - esin(lat))/(1 + esin(lat))]^e/2} where symbols are as listed above and logarithms are natural.
+E = FE + a*ko(lon - lonO)              
+N = FN + a*ko* ln{tan(pi/4 + lat/2)[(1 - esin(lat))/(1 + esin(lat))]^e/2} where logarithms are natural.
 
 The reverse formulas to derive latitude and longitude from E and N values are:
 
@@ -2178,34 +2603,34 @@ lat = chi + (esq/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2chi)
 + (7e^6/120 +  81e^8/1120) sin(6chi)  + (4279e^8/161280) sin(8chi)
 
 where chi = pi/2 - 2 arctan t
-t = B^((FN-N)/a*k0) 
+t = B^((FN-N)/a*ko) 
 B = base of the natural logarithm, 2.7182818...
-and  for the 2 SP Case, k0 is calculated as for the forward transformation above.
-lon  =  ((E - FE)/a*k0)  + lon0","For Projected Coordinate System Pulkovo 1942 / Mercator Caspian Sea
+and ko is calculated as for the forward transformation above.
+lon  =  ((E - FE)/a*ko) + lonO","For Projected Coordinate System Pulkovo 1942 / Mercator Caspian Sea
 
 Parameters:
 Ellipsoid  Krassowski 1940   a = 6378245.00m   1/f = 298.300
 then e = 0.08181333 and e^2 = 0.00669342
 
-Latitude first SP                             42°00'00""N = 0.73303829 rad
-Longitude Natural Origin                51°00'00""E = 0.89011792 rad
-False Eastings FE                          0.00 m
-False Northings (at equator) FN     0.00 m
-  
-then natural origin at latitude of 0°N has scale factor k0=  0.744260894
-
+Latitude of first SP = 42°00'00""N = 0.73303829 rad
+Longitude of natural origin = 51°00'00""E = 0.89011792 rad
+False Eastings FE = 0.00 m
+False Northings (at equator) FN = 0.00 m
 Forward calculation for: 
-Latitude        53°00'00.00""N = 0.9250245 rad
-Longitude     53°00'00.00""E  = 0.9250245 rad
+Latitude = 53°00'00.00""N = 0.9250245 rad
+Longitude = 53°00'00.00""E  = 0.9250245 rad
 
-gives Easting E   =     165704.29 m 
-          Northing N =   5171848.07 m
+gives 
+  
+ko = 0.744260894
+Easting E = 165704.29 m 
+Northing N = 5171848.07 m
 
 Reverse calculation for same easting and northing first gives :
-t = 0.336391288    chi = 0.921795958
-
-Then Latitude     =  53°00'00.000""N
-          Longitude  =  53°00'00.000""E",Used for most nautical charts.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2006/07/30,2004.320 2004.430,0
+t = 0.336391288
+chi = 0.921795958
+Latitude = 53°00'00.000""N
+Longitude = 53°00'00.000""E",Used for most nautical charts.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/11/02,2004.320 2004.430 2010.058,0
 9806,Cassini-Soldner,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates are:
@@ -2482,9 +2907,9 @@ chi  =  pi/2 - 2 atan t'
 
 Then for for both north and south cases if E = FE, lon = lonO
 else for the south pole case
-lon = lonO + atan [(E Â FE) / (N Â FN)]
+lon = lonO + atan2[(E Â FE),(N Â FN)]
 and for the north pole case
-lon = lonO + atan [(E Â FE) / Â(N Â FN)] = lonO + atan [(E Â FE) / (FN Â N)]","For Projected Coordinate Reference System: WGS 84 / UPS North
+lon = lonO + atan2[(E Â FE),(FN Â N)]","For Projected Coordinate Reference System: WGS 84 / UPS North
 
 Parameters:
 Ellipsoid: WGS 84
@@ -2515,22 +2940,22 @@ chi  = 1.2722090
 
 Then
 Latitude (lat) = 73°00'00.000""N
-Longitude (lon) = 44°00'00.000""E",Latitude of natural origin must be either 90 degrees or -90 degrees (or equivalent in alternative angle unit).,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2003/09/22,2003.220,0
+Longitude (lon) = 44°00'00.000""E",Latitude of natural origin must be either 90 degrees or -90 degrees (or equivalent in alternative angle unit).,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/07/13,2003.220 2010.054,0
 9811,New Zealand Map Grid,1,See information source.,See information source.,,New Zealand Department of Lands technical circular 1973/32,OGP,1996/09/18,,0
-9812,Hotine Oblique Mercator,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+9812,Hotine Oblique Mercator (variant A),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The following constants for the projection may be calculated :
 
 B = {1 + [esq * cos^4(latc) / (1 - esq )]}^0.5
 A = a * B * kc *(1 - esq )^0.5 / ( 1 - esq * sin^2(latc))
-t0 = tan(pi/4 - latc/2) / ((1 - e*sin(latc)) / (1 + e*sin(latc)))^(e/2)
+to = tan(pi/4 - latc/2) / ((1 - e*sin(latc)) / (1 + e*sin(latc)))^(e/2)
 D = B (1 - esq)^0.5  / (cos(latc) * ( 1 - esq*sin^2(latc))^0.5)
 if D < 1 to avoid problems with computation of F make D^2  = 1 
 F = D + (D^2 - 1)^0.5  * SIGN(latc)
-H = F*(t0)^B
+H = F*(to)^B
 G = (F - 1/F) / 2
-gamma0 = asin(sin(alphac) / D)
-lon0 = lonc - (asin(G*tan(gamma0))) / B
+gammao = asin(sin(alphac) / D)
+lonO = lonc - (asin(G*tan(gammao))) / B
 
  
 Forward case: To compute (E,N) from a given (lat,lon) :
@@ -2539,10 +2964,10 @@ t = tan(pi/4 - lat/2) / ((1 - e sin (lat)) / (1 + e sin (lat)))^(e/2)
 Q = H / t^B
 S = (Q - 1 / Q) / 2
 T = (Q + 1 / Q) / 2
-V = sin(B (lon - lon0))
-U = (- V cos(gamma0) + S sin(gamma0)) / T
+V = sin(B (lon - lonO))
+U = (- V cos(gammao) + S sin(gammao)) / T
 v = A ln((1 - U) / (1 + U)) / 2 B
-u = A atan((S cos(gamma0) + V sin(gamma0)) / cos(B (lon - lon0 ))) / B
+u = A atan((S cos(gammao) + V sin(gammao)) / cos(B (lon - lonO))) / B
 
 The rectified skew co-ordinates are then derived from:
 E = v cos(gammac) + u sin(gammac) + FE
@@ -2564,7 +2989,7 @@ chi = pi / 2 - 2 atan(tÂ)
 
 lat = chi + sin(2chi).( e^2 / 2 + 5*e^4 / 24 + e^6 / 12 + 13*e^8 / 360) +  sin(4*chi).( 7*e^4 /48 + 29*e^6 / 240 + 811*e8 / 11520) +  sin(6chi).( 7*e^6 / 120 + 81*e8 / 1120) +  sin(8chi).(4279 e^8 / 161280)
 
-lon=  lon0  - atan ((SÂ cos(gamma0) - VÂ sin(gamma0)) / cos(B*uÂ / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
+lon = lonO - atan ((SÂ cos(gammao) - VÂ sin(gammao)) / cos(B*uÂ / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
 
 Parameters:
 Ellipsoid:  Everest 1830 (1967 Definition)
@@ -2585,18 +3010,18 @@ Longitude lon = 115°48'19.8196""E = 2.021187362 rad
 
 B = 1.003303209            F = 1.072121256
 A =6376278.686            H = 1.000002991
-to = 0.932946976          g0 = 0.927295218
+to = 0.932946976          go = 0.927295218
 D = 1.002425787           lon0 = 1.914373469
 D2 =1.004857458
 uc =738096.09              vc =0.00
 
-t =0.910700729             Q =1.098398182
-S =0.093990763            T = 1.004407419
-V =0.106961709            U = 0.010967247
-v =-69702.787                u =901334.257
+t = 0.910700729            Q = 1.098398182
+S = 0.093990763            T = 1.004407419
+V = 0.106961709            U = 0.010967247
+v = -69702.787             u = 901334.257
 
 Then Easting E =      679245.73 m
-        Northing N =     596562.78 m
+     Northing N =     596562.78 m
 
 Reverse calculations for same easting and northing first gives :
 vÂ =   -69702.787              uÂ =901334.257
@@ -2606,8 +3031,8 @@ VÂ = 0.141349378           UÂ = 0.093578324
 tÂ = 0.910700729             c = 0.093404829
 
 Then Latitude = 5°23'14.113""N
-         Longitude = 115°48'19.820""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/10/16,1997.620 1999.811 2004.430 2004.600 2007.044,0
-9813,Laborde Madagascar,1,"Note : these formulas have been transcribed from IGN Document NT/G 74. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+     Longitude = 115°48'19.820""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/11/02,1997.620 1999.811 2004.430 2004.600 2007.044 2010.058,0
+9813,Laborde Oblique Mercator,1,"Note : these formulas have been transcribed from IGN Document NT/G 74. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 From the defining parameters the following constants for the map projection may be calculated:
 
@@ -2656,26 +3081,26 @@ lat'(0) = 2.atan(e ^q') Â pi/2    where e is the base of natural logarithms.
 And the subsequent elements are
 lat'(k) = 2.atan{({1+e.sin[lat(k-1)]} / {1Âe.sin[lat(k-1)]})^(e/2).e ^q'} Â pi/2  for K =1 ?
 Iterate until ABSOLUTE(lat(k)-lat(k-1))  < 1E-11	
-lat = lat(k)",See information source.,,"""La nouvelle projection du Service Geographique de Madagascar""; J. Laborde; 1928. Also IGN Paris technical note NT/G 74.",OGP,2007/03/27,1997.613 2006.960 2007.040,0
+lat = lat(k)",See information source.,,"""La nouvelle projection du Service Geographique de Madagascar""; J. Laborde; 1928. Also IGN Paris technical note NT/G 74.",OGP,2010/11/02,1997.613 2006.960 2007.040 2010.058,0
 9814,Swiss Oblique Cylindrical,1,See information source.,See information source.,"Can be accommodated by Oblique Mercator method (code 9815), for which this method is an approximation (see BfL document swissprojectionen.pdf at www.swisstopo.com).","""Die projecktionen der Schweizerischen Plan und Kartenwerke""; J Bollinger; 1967",OGP,2008/11/23,1997.612 2008.106,0
-9815,Oblique Mercator,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+9815,Hotine Oblique Mercator (variant B),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The following constants for the projection may be calculated :
 
 B = {1 + [e^2 * cos^4(latc) / (1 - e^2 )]}^0.5
 A = a * B * kc *(1 - e^2 )^0.5 / ( 1 - e^2 * sin^2(latc))
-t0 = tan(pi/4 - latc/2) / ((1 - e*sin(latc)) / (1 + e*sin(latc)))^(e/2)
+to = tan(pi/4 - latc/2) / ((1 - e*sin(latc)) / (1 + e*sin(latc)))^(e/2)
 D = B (1 - e^2)^0.5  / (cos(latc) * ( 1 - e^2*sin^2(latc))^0.5)
 if D < 1 to avoid problems with computation of F make D^2  = 1 
 F = D + (D^2 - 1)^0.5  * SIGN(latc)
-H = F*(t0)^B
+H = F*(to)^B
 G = (F - 1/F) / 2
-gamma0 = asin(sin(alphac) / D)
-lon0 = lonc - (asin(G*tan(gamma0))) / B
-vc =0
+gammao = asin(sin(alphac) / D)
+lonO = lonc - (asin(G*tan(gamma0))) / B
+vc = 0
 In general: uc = (A / B) atan((Dsq - 1)^0.5 / cos (alphac) ) * SIGN(latc)
 but for the special cases where alphac = 90 degrees (e.g. Hungary, Switzerland) then 
-uc = A*(lonc - lon0)  
+uc = A*(lonc - lonO)  
 
  
 Forward case: To compute (E,N) from a given (lat,lon) :
@@ -2684,10 +3109,17 @@ t = tan(pi/4 - lat/2) / ((1 - e sin (lat)) / (1 + e sin (lat)))^(e/2)
 Q = H / t^B
 S = (Q - 1 / Q) / 2
 T = (Q + 1 / Q) / 2
-V = sin(B (lon - lon0))
-U = (- V cos(gamma0) + S sin(gamma0)) / T
+V = sin(B (lon - lonO))
+U = (- V cos(gammao) + S sin(gammao)) / T
 v = A ln((1 - U) / (1 + U)) / 2 B
-u = (A atan((S cos(gamma0) + V sin(gamma0)) / cos(B (lon - lon0 ))) / B) - (ABS(uc) . SIGN(latc))
+
+In general:
+u = (A atan((S cos(gammao) + V sin(gammao)) / cos(B (lon - lonO))) / B) - (ABS(uc) . SIGN(latc))
+
+but when alphac = pi/2 rad
+if lon = lonc, u = 0
+else u = (A atan((S cos(gammao) + V sin(gammao)) / cos(B (lon - lonO))) / B) - (ABS(uc) . SIGN(latc) . SIGN(lonc Â lon))
+
 
 The rectified skew co-ordinates are then derived from:
 E = v cos(gammac) + u sin(gammac) + Ec
@@ -2709,7 +3141,7 @@ chi = pi / 2 - 2 atan(tÂ)
 
 lat = chi + sin(2chi).( e^2 / 2 + 5*e^4 / 24 + e^6 / 12 + 13*e^8 / 360) +  sin(4*chi).( 7*e^4 /48 + 29*e^6 / 240 + 811*e8 / 11520) +  sin(6chi).( 7*e^6 / 120 + 81*e8 / 1120) +  sin(8chi).(4279 e^8 / 161280)
 
-lon=  lon0  - atan ((SÂ cos(gamma0) - VÂ sin(gamma0)) / cos(B*uÂ / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
+lon=  lonO - atan ((SÂ cos(gammao) - VÂ sin(gammao)) / cos(B*uÂ / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
 
 Parameters:
 Ellipsoid:  Everest 1830 (1967 Definition)
@@ -2751,7 +3183,7 @@ VÂ = 0.141349378           UÂ = 0.093578324
 tÂ = 0.910700729             c = 0.093404829
 
 Then Latitude = 5°23'14.113""N
-         Longitude = 115°48'19.820""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/10/16,1999.811 2004.430 2004.600 2007.044,0
+         Longitude = 115°48'19.820""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/11/02,1999.811 2004.430 2004.600 2007.044 2010.058,0
 9816,Tunisia Mining Grid,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 This grid is used as the basis for mineral leasing in Tunsia.  Lease areas are approximately 2 x 2 km or 400 hectares.  The corners of these blocks are defined through a six figure grid reference where the first three digits are an easting in kilometres and the last three digits are a northing.  The latitudes and longitudes for block corners at 2 km intervals are tabulated in a mining decree dated 1st January 1953.  From this tabulation in which geographical coordinates are given to 5 decimal places it can be seen that:
@@ -2806,7 +3238,7 @@ CÂ = 15 a [ n^2 -n^3 + 3 ( n^4 - n^5 ) / 4 ] / 16
 DÂ = 35 a [ n^3 - n^4 + 11 n^5 / 16 ] / 48
 EÂ = 315 a [ n^4 - n^5 ] / 512
 r0 = ko nu0 / tan(lat0)
-s0 = AÂ lat0 - BÂ sin(2 latO) + CÂ sin(4 latO) - DÂ sin(6 latO) + EÂ sin(8 latO) where in the first term lat0 is in degrees, in the other terms latO is in radians.
+s0 = AÂ latO - BÂ sin(2 latO) + CÂ sin(4 latO) - DÂ sin(6 latO) + EÂ sin(8 latO) where in the first term latO is in degrees, in the other terms latO is in radians.
 
 Then for the computation of easting and northing from latitude and longitude:
 
@@ -2827,7 +3259,7 @@ r' = +/- {(E Â  FE)^2 + [rO Â  (N Â  FN)]}^2}^0.5, taking the sign of l
 M' = rO Â r'
 
 If an exact solution is required, it is necessary to solve for m and lat using iteration of the two equations:
-m'= 	m' ÂM' Â [ ko m' Â ko A (m')^3] / [Â ko Â 3 ko A (m')^2]
+m'= 	m' Â [M' Â ko m' Â ko A (m')^3] / [Â ko Â 3 ko A (m')^2]
 using M' for m' in the first iteration. This will usually converge (to within 1mm) in a single iteration. Then
 lat' = lat' +{m' + sO Â [A' lat' (180/pi) Â B' sin(2 lat')  + C' sin(4 lat')  Â  D' sin(6lat') + E' sin(8 lat')]}/A' (pi/180)
 first using lat' = latO + m'/A' (pi/180).
@@ -2836,8 +3268,8 @@ However the following non-iterative solution is accurate to better than 0.001"" 
 m' = 	M' Â [M' ko M' Â ko A (M')^3] / [Â ko Â 3 ko A (M')^2]
 lat' = latO + m'/A' (pi/180)
 s' = A	' lat' Â  B' sin(2 lat')  + C' sin(4 lat')  Â  D' sin(6 lat') + E' sin(8 lat')
-		where in the fterm lat' is in degrees, in the other terms lat' is in radians.
-Ds' = 	A'80 / pi) Â 2B' cos(2 lat')  + 4C' cos(4 lat')  Â  6D' cos(6 lat') + 8E' cos(8 lat')
+		where in the first term lat' is in degrees, in the other terms lat' is in radians.
+Ds' = 	A'(180 / pi) Â 2B' cos(2 lat')  + 4C' cos(4 lat')  Â  6D' cos(6 lat') + 8E' cos(8 lat')
 lat = lat' Â [(m' + sO Â s') / (Âds')] radians
 
 Then after solution of lat using either method above
@@ -2873,103 +3305,116 @@ rÂ  =  8916631.685
 MÂ= 318632.72 
 
 Latitude =      0.654874806 rad = 37°31'17.625""N
-Longitude = 0.595793792 rad =  34°08'11.291""E",The Lambert Near-Conformal projection is derived from the Lambert Conformal Conic projection by truncating the series expansion of the projection formulae.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/07/14,1999.811 2004.610 2005.390 2008.029,0
+Longitude = 0.595793792 rad =  34°08'11.291""E",The Lambert Near-Conformal projection is derived from the Lambert Conformal Conic projection by truncating the series expansion of the projection formulae.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/03/01,1999.811 2004.610 2005.390 2008.029 2010.024,0
 9818,American Polyconic,1,See information source.,See information source.,See information source for formula and example.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder",OGP,1999/10/20,1999.550,0
-9819,Krovak Oblique Conic Conformal,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+9819,Krovak,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 From the defining parameters the following constants for the projection may be calculated :
 
+A = a(1 - e^2)^0.5 / [1 - e^2 sin^2.(latC)]
 B = {1 + [e^2 * cos^4(latC) / (1 - e^2)]}^0.5
-A=a (1 - e^2 )^0.5 / [ 1 - e^2 sin^2 (latC)]
-gammaO=asin[sin (latC) / B]
-tO =tan(pi / 4 + gamma0 / 2) . [(1 + e sin(latC)) / (1 - e sin (latC))]^(e.B/2) / [tan(pi / 4 + latC/ 2)]^B
-n = sin (latp)
-rO=kp  A / tan (latp)
+gammao = asin[sin(latC) / B]
+to = tan(pi/4 + gammao/2).[(1 + e sin(latC)) / (1 - e sin(latC))]^(e.B/2) / [tan(pi/4 + latC/2)]^B
+n = sin(latp)
+ro = kp.A / tan(latp)
 
-To derive the projected Southing and Westing coordinates of a point with geographical coordinates (lat, lon) the formulas for the Krovak oblique conic conformal are:
+To derive the projected Southing and Westing coordinates of a point with geographical coordinates (lat, lon) the formulas for the Krovak are:
 
-Southing:    X = FN + r cos theta
-Westing:     Y = FE + r sin theta
- 
-where
+U = 2(atan{to.tan^B(lat/2 + pi/4) / [(1 + e sin(lat)) / (1 - e sin(lat))]^[e.B/2]} - pi/4)
+V = B(lonO - lon) where lonO and lon must both be referenced to the same prime meridian.
+T = asin[cos(alphaC).sin(U) + sin(alphaC).cos(U). cos(V)]
+D = asin[cos(U).sin(V)/cos(T)]
+theta = n.D
+r = ro.tan^n(pi/4 + latp/2) / tan^n(T/2 + pi/4)
+Xp = r.cos(theta)
+Yp = r.sin(theta)
 
-U=2 (atan { tO. tan^B (lat/2 + pi / 4 ) / [(1 + e sin (lat)) / (1 - e sin (lat))]^[e.B/2 ]} - pi / 4)
-V=B (lonO -  lon)
-S=asin [ cos (alphaC) sin ( U ) + sin (alphaC) cos (U) cos (V)]
-D=asin [ cos ( U ) sin ( V ) / cos ( S ) ]
-theta=n D
-r=rO tan^n . (pi / 4 + phi1/ 2) / tan^n ( S/2 + pi / 4 )
+Then	
+Southing (X) = Xp + FN
+Westing	 (Y) = Yp + FE
 
 The reverse formulas to derive the latitude and longitude of a point from its Southing and Westing values are:
 
-r' =[(Y - FE)^2 + (X - FN)^2]^(1/2)  
-theta'=arctan [(Y- FE)/(X- FN)]
-D'=theta' / sin ( latp)
-S'=2*{atan[(rO / r' )^(1/n) tan(pi / 4 + latp/ 2)] - pi / 4}
-U'=asin ( cos (alphaC) sin ( S' ) - sin (alphaC) cos (S') cos (D') )
-V'=asin ( cos (S') sin (D') / cos (U'))
+Xp' = Southing Â FN
+Yp' = Westing Â FE
+r' = [(Yp')^2 + (Xp')^2]^(1/2)  
+theta' = atan[Yp'/Xp']
+D' = theta' / sin(latp)
+T' = 2{atan[((ro / r')^(1/n)).tan(pi/4 + latp/2)] - pi/4}
+U' = asin[cos(alphaC).sin(T') - sin(alphaC).cos(T').cos(D')]
+V' = asin(cos(T').sin(D') / cos(U'))
 
 Then latitude lat is found by iteration using U' as the value for lat(j-1) in the first iteration:
-lat(j) = 2*(atan{tO^(-1/B) tan^(1/B).( U?/2 + pi / 4 ).[(1 + e sin ( lat( j-1)) / (1 - e sin ( lat(j-1))]^(e/2)} - pi / 4) 
+lat(j) = 2*(atan{to^(-1/B) tan^(1/B).(U'/2 + pi/4).[(1 + e sin(lat(j-1)) / (1 - e sin(lat(j-1))]^(e/2)} - pi/4) 
 
 Then
-lon = lonO - V' / B","For Projected Coordinate Reference System: S-JTSK (Ferro) / Krovak
-
-N.B. Krovak projection uses Ferro as the prime meridian. This has a longitude with reference to Greenwich of 17 deg 40 min West. To apply the formulae the defining longitudes must be corrected to the Greenwich meridian.
+lon = lonO - V' / B where lon is referenced to the same prime meridian as lonO.","For Geographic CRS S-JTSK and Projected CRS S-JTSK (Ferro) / Krovak
 
 Parameters:
 Ellipsoid  Bessel 1841   a = 6377397.155m  1/f = 299.15281
-    then    e = 0.081696831        e2 = 0.006674372
+    then    e = 0.081696831        e^2 = 0.006674372
 
-Latitude of projection centre = 49o 30'00"" N =  0.863937979 rad
-Longitude of Origin = 42°30'00"" East of Ferro
-Longitude of Ferro is 17°40'00"" West of Greenwich
-Longitude of Origin = 24°50'00"" East of Greenwich = 0.433423431   rad
-Latitude of pseudo standard parallel = 78°30'00""N
-Azimuth of centre line = 30°17'17.3031""
-Scale factor on pseudo Standard Parallel (ko) = 0.99990
-Easting at projection centre (Ec) = 0.00 m
-Northing  at projection centre (Nc) = 0.00 m
+Latitude of projection centre = 49°30'00""N =  0.863937979 rad
+Longitude of origin = 42°30'00""E of Ferro = 0.741764932 rad
+Azimuth of initial line = 30°17'17.303"" = 0.528627762 rad
+Latitude of pseudo standard parallel = 78°30'00""N = 1.370083463 rad
+Scale factor on pseudo Standard Parallel (ko) = 0.9999
+False Easting = 0.00 m
+False Northing = 0.00 m
 
-Projection constants:
-B=1.000597498
+Calculated projection constants:
 A=6380703.611
-gammaO=0.863239103
-tO=1.003419164
+B=1.000597498
+gammao=0.863239103
+to=1.003419164
 n= 0.979924705
-rO=1298039.005
+ro=1298039.005
 
 Forward calculation for: 
-Latitude = 50°12'32.4416""N = 0.876312566 rad
-Longitude = 16°50'59.1790""E = 0.294083999 rad
+Latitude = 50°12'32.442""N = 0.876312568 rad
+Longitude = 16°50'59.179""E of Greenwich
+Firstly, because the projection definition includes longitudes referenced to the Ferro meridian, the longitude of the point needs to be transformed to be referenced to the Ferro meridian using the Longitude Rotation method (EPSG method code 9601).
 
-Gives
+Longitude = 16°50'59.1790""E of Greenwich	
+Longitude of Ferro = 17°40'00"" west of Greenwich
+and then
+Longitude = 34°30'59.1790""E of Ferro = 0.602425500 rad
 
-U=0.875596949
-V=0.139422687
-S=1.386275049
-D=0.506554623
-theta=0.496385389
-rO=1194731.014
+Then the forward calculation first gives
 
-Then 'Northing' X =  1050538.643 m
-     'Easting'  Y =    568990.997 m
-where &#8216;Northing&#8217; increases southwards and &#8216;Easting&#8217; increases westwards.
+U = 0.875596951
+V = 0.139422687
+T = 1.386275051
+D = 0.506554626
+theta = 0.496385392
+r = 1194731.005
+Xp = 1050538.634
+Yp = 568990.995
 
-Reverse calculation for the same 'Northing' and 'Easting' gives
+Then Southing (X) =  1050538.63 m
+     Westing  (Y) =   568991.00 m.
 
-r' =1194731.014
-theta' =0.496385389
-D'=0.506554623
-S'=1.386275049
-U'=0.875596949
-V'=0.139422687
-lat(iteration 1)=0.876310601 
-lat(iteration 2)=0.876312560
-lat(iteration3)=0.876312566
+Reverse calculation for the same Southing and Westing gives
 
-Latitude = 0.876312566 rad = 50°12'32.4416""N
-Longitude = 0.294083999 rad = 16°50'59.1790""E",,"Research Institute for Geodesy Topography and Cartography (VUGTK); Prague.",OGP,2009/06/02,2002.950 2006.180 2007.040 2009.017,0
+Xp' = 1050538.634
+Yp' = 568990.995
+r' = 1194731.005
+theta' = 0.496385392
+D' = 0.506554626
+T' = 1.386275051
+U' = 0.875596951
+V' = 0.139422687
+lat(iteration 1) = 0.876310603 
+lat(iteration 2) = 0.876312562
+lat(iteration 3) = 0.876312568
+
+Latitude = 0.876312568 rad = 50°12'32.442""N.
+
+Longitude of point = 0.602425500 rad = 34°30'59.179""E of Ferro.
+Then using the Longitude Rotation method (EPSG method code 9601):
+Longitude of Ferro = 17°40'00"" west of Greenwich
+and
+Longitude of point = 34°30'59.179""E of Greenwich.",,"Research Institute for Geodesy Topography and Cartography (VUGTK); Prague.",OGP,2010/11/02,2002.950 2006.180 2007.040 2009.017 2010.071,0
 9820,Lambert Azimuthal Equal Area,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Oblique aspect
@@ -3264,9 +3709,9 @@ chi  =  pi/2 - 2 atan t'
 
 Then for for both north and south cases if E = FE, lon = lonO
 else for the south pole case
-lon = lonO + atan [(E Â FE) / (N Â FN)]
+lon = lonO + atan2[(E Â FE),(N Â FN)]
 and for the north pole case
-lon = lonO + atan [(E Â FE) / Â(N Â FN)] = lonO + atan [(E Â FE) / (FN Â N)]","For Projected Coordinate Reference System: WGS 84 / Australian Antarctic Polar Stereographic
+lon = lonO + atan2[(E Â FE),(FN Â N)]","For Projected Coordinate Reference System: WGS 84 / Australian Antarctic Polar Stereographic
 
 Parameters:
 Ellipsoid: WGS 84
@@ -3296,7 +3741,7 @@ tF  = 0.168407325       mF = 0.326546781      and  ko = 0.97276901
 then rho' = 1638783.236          t'  = 0.132508347               chi = -1.3073146
 
 Then Latitude (lat) = 75°00'00.000""S
-        Longitude (lon) = 120°00'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/06/22,2004.430,0
+        Longitude (lon) = 120°00'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/07/13,2004.430 2010.054,0
 9830,Polar Stereographic (variant C),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 For the forward conversion from latitude and longitude, for the south pole case
@@ -3334,9 +3779,9 @@ chi  =  pi/2 - 2 atan t'
 Then for for both north and south pole cases 
 if E = EF, lon = lonO
 else for the south pole case
-lon = lonO + atan [(E Â EF) / (N Â NF + rhoF)]
+lon = lonO + atan2[(E Â EF),(N Â NF + rhoF)]
 and for the north pole case
-lon = lonO + atan [(E Â EF) / Â(N Â NF Â rhoF)] = lonO + atan [(E Â EF) / (NF + rhoF Â N)]","For Projected Coordinate Reference System: Petrels 1972 / Terre Adelie Polar Stereographic
+lon = lonO + atan2[(E Â EF),(NF + rhoF Â N)]","For Projected Coordinate Reference System: Petrels 1972 / Terre Adelie Polar Stereographic
 
 Parameters:
 Ellipsoid:International 1924
@@ -3372,7 +3817,7 @@ t'  = 0.208326304
 chi = -1.1600190
 
 Then Latitude (lat) = 66°36'18.820""S
-         Longitude (lon) =140°04'17.040""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2003/09/22,,0
+         Longitude (lon) =140°04'17.040""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/07/13,2010.054,0
 9831,Guam Projection,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 the forward conversion from latitude and longitude is given by: 
