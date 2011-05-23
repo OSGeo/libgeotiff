@@ -2,6 +2,8 @@
 
 	* Prepare libgeotiff 1.4.0 release.
 
+	* bin/csv2html.c: Removed (#6) 
+
 	* csv/datum_shift_pref.csv: update Belge 1972 preferred datum shift(#32)
 
 	* man: add listgeo man page (#1)
