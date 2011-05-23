@@ -18,12 +18,12 @@
 
  6) Tag the release set in SVN (for now we aren't using branches in libgeotiff)
 
-   svn copy https://svn.osgeo.org/metacrs/libgeotiff/trunk \
-            https://svn.osgeo.org/metacrs/libgeotiff/tags/1.3.0
+    svn copy https://svn.osgeo.org/metacrs/geotiff/trunk/libgeotiff 
+             https://svn.osgeo.org/metacrs/geotiff/tags/libgeotiff-1.4.0
 
  7) Prepare a zip and tar.gz file using a command like:
 
-   make dist
+    make dist
 
  8) Test build and install on at least one Unix platform.  Test build on a
     Windows system.
