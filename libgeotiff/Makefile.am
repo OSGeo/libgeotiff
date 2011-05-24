@@ -113,6 +113,9 @@ EXTRA_DIST =    makefile.vc \
                 INSTALL \
                 CMakeLists.txt \
                 libxtiff/CMakeLists.txt \
-                bin/CMakeLists.txt
+                bin/CMakeLists.txt \
+                cmake/FindGeoTIFF.cmake \
+                cmake/FindPROJ4.cmake \
+                cmake/geoconfig.h.in 
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
