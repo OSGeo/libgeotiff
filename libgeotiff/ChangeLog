@@ -1,5 +1,8 @@
 2011-05-23  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* geo_normalize.c: Treat 1027 as equivelent to 9820 (LAEA)
+	http://trac.osgeo.org/gdal/ticket/3828
+
 	* csv/pcs.override.csv: Fix to include coord_sys_code field to match
 	pcs.csv and fixes serious issue with EPSG:26799.
 

@@ -1033,6 +1033,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
         return( KvUserDefined );
 
       case 9820:
+      case 1027:
         return( CT_LambertAzimEqualArea );
 
       case 9822:
