@@ -1,4 +1,4 @@
-SUBDIRS = libxtiff . bin man
+SUBDIRS = libxtiff . bin man cmake
 
 AUTOMAKE_OPTIONS =	dist-zip
 ACLOCAL_AMFLAGS = -I m4
@@ -113,9 +113,6 @@ EXTRA_DIST =    makefile.vc \
                 INSTALL \
                 CMakeLists.txt \
                 libxtiff/CMakeLists.txt \
-                bin/CMakeLists.txt \
-                cmake/FindGeoTIFF.cmake \
-                cmake/FindPROJ4.cmake \
-                cmake/geoconfig.h.in 
+                bin/CMakeLists.txt 
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)

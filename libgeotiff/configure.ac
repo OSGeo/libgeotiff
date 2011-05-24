@@ -16,7 +16,7 @@ AC_CONFIG_MACRO_DIR([m4])
 
 RELEASE_VERSION=GEOTIFF_VERSION
 AC_SUBST([RELEASE_VERSION])
-AM_CONFIG_HEADER(geo_config.h)
+AC_CONFIG_HEADER(geo_config.h)
 
 dnl #########################################################################
 dnl Checks for programs.
@@ -342,6 +342,7 @@ AC_CONFIG_FILES([
     bin/Makefile
     man/Makefile
     man/man1/Makefile
+    cmake/Makefile
 ])
 
 AC_OUTPUT
