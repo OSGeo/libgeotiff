@@ -85,7 +85,7 @@ libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_tiffp.c \
                         geo_trans.c \
                         geo_write.c \
-			geo_strtod.c \
+                        geo_strtod.c \
                         geotiff_proj4.c 
 
 if CSV_IS_CONFIG
@@ -105,11 +105,14 @@ libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 lib_LTLIBRARIES = libgeotiff.la
 
 EXTRA_DIST =    makefile.vc \
-		geo_config.h.vc \
+                geo_config.h.vc \
                 README \
                 README.WIN \
                 README_BIN \
                 LICENSE \
-                INSTALL
+                INSTALL \
+                CMakeLists.txt \
+                libxtiff/CMakeLists.txt \
+                bin/CMakeLists.txt
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
