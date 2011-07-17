@@ -49,6 +49,7 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/version_history.csv 
 			
 include_HEADERS =   geotiff.h \
+                    geo_config.h \
                     geotiffio.h \
                     geovalues.h \
                     geonames.h \
