@@ -127,6 +127,9 @@ SET(WITH_UTILITIES TRUE CACHE BOOL "Choose if GeoTIFF utilities should be built"
 ###############################################################################
 # Search for dependencies
 
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/libxtiff)
+
 # TIFF support - required, default=ON
 SET(WITH_TIFF TRUE CACHE BOOL "Choose if TIFF support should be built")
 
@@ -264,7 +267,8 @@ SET(GEOTIFF_LIB_HEADERS
     epsg_pcs.inc
     epsg_proj.inc
     epsg_vertcs.inc
-    geokeys.inc)
+    geokeys.inc
+    libxtiff/xtiffio.h)
 
 #    ${PROJECT_BINARY_DIR}/geotiff_version.h
 
