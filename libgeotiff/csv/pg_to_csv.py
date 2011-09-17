@@ -71,7 +71,7 @@ try:
 except:
     pass
 
-in_ds = ogr.Open( 'PG:dbname=epsg' )
+in_ds = ogr.Open( 'PG:dbname=epsg host=localhost' )
 out_ds = ogr.GetDriverByName('CSV').CreateDataSource('out')
 
 CopyTable( in_ds, out_ds, 'epsg_coordinatereferencesystem',
