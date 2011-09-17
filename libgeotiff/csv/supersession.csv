@@ -94,9 +94,15 @@ supersession_id,object_table_name,object_code,superseded_by,supersession_type,su
 1037,epsg_coordoperation,10089,5051,Retirement,2010,Improved determination for area by Petrobras.
 1038,epsg_coordoperation,10090,5053,Retirement,2010,Improved determination for area by Petrobras.
 1039,epsg_coordoperation,15872,5078,Retirement,2010,Signiicantly improved determination.
+1040,epsg_coordoperation,1642,5485,Retirement,2011,Replacement derived through more observations.
+1041,epsg_coordoperation,1643,5486,Retirement,2011,Replacement derived through more observations.
 1043,epsg_coordoperation,15754,5055,Retirement,2010,Improved determinations for subareas.
 1044,epsg_coordoperation,15754,5053,Retirement,2010,Improved determinations for subareas.
 1045,epsg_coordoperation,15754,5051,Retirement,2010,Improved determinations for subareas.
 1046,epsg_coordoperation,10093,5055,Retirement,2010,Improved determinations for subareas by Petrobras.
 1047,epsg_coordoperation,10093,5053,Retirement,2010,Improved determinations for subareas by Petrobras.
 1048,epsg_coordoperation,10093,5051,Retirement,2010,Improved determinations for subareas by Petrobras.
+1049,epsg_coordoperation,1079,5484,Retirement,2011,Taken from replacement which was derived through more observations.
+1050,epsg_coordoperation,1078,5483,Retirement,2011,Taken from replacement which was derived through more observations.
+1051,epsg_coordinatereferencesystem,3764,3793,Retirement,2011,Withdrawn and replaced by NZGD200 / CITM2000 before being utilised.
+1052,epsg_coordoperation,17959,17965,Retirement,2011,Withdrawn and replaced by Chatham Islands TM2000 before being utilised.

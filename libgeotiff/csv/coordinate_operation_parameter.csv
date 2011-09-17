@@ -11,6 +11,7 @@ parameter_code,parameter_name,description,information_source,data_source,revisio
 1033,C8,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
 1034,C9,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
 1035,C10,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
+1036,Co-latitude of cone axis,"The rotation applied to spherical coordinates for the oblique projection, measured on the conformal sphere in the plane of the meridian of origin.",OGP,OGP,2010/12/06,2010.100,0
 8601,Latitude offset,The difference between the latitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
 8602,Longitude offset,The difference between the longitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
 8603,Vertical Offset,The difference between the height or depth values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
