@@ -25,6 +25,7 @@ csvdir = $(datadir)/epsg_csv
 dist_csv_DATA = 	csv/alias.csv \
 			csv/area.csv \
 			csv/change.csv \
+			csv/compdcs.csv \
 			csv/coordinate_axis.csv \
 			csv/coordinate_axis_name.csv \
 			csv/coordinate_operation.csv \
@@ -35,19 +36,26 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/coordinate_reference_system.csv \
 			csv/coordinate_system.csv \
 			csv/datum.csv \
+			csv/datum_shift.csv \
+			csv/datum_shift_pref.csv \
+			cvs/deprecation.csv \
 			csv/ellipsoid.csv \
 			csv/esri_datum_override.csv \
 			csv/gcs.csv \
 			csv/gcs.override.csv \
+			csv/geoccs.csv \
 			csv/naming_system.csv \
 			csv/pcs.csv \
 			csv/pcs.override.csv \
 			csv/prime_meridian.csv \
 			csv/projop_wparm.csv \
 			csv/stateplane.csv \
+			csv/supercession.csv \
 			csv/unit_of_measure.csv \
-			csv/version_history.csv 
-			
+			csv/version_history.csv \
+			csv/vertcs.csv \
+			csv/vertcs.override.csv 
+
 include_HEADERS =   geotiff.h \
                     geo_config.h \
                     geotiffio.h \
