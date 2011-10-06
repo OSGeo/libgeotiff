@@ -38,7 +38,7 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/datum.csv \
 			csv/datum_shift.csv \
 			csv/datum_shift_pref.csv \
-			cvs/deprecation.csv \
+			csv/deprecation.csv \
 			csv/ellipsoid.csv \
 			csv/esri_datum_override.csv \
 			csv/gcs.csv \
