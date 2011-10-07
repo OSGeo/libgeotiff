@@ -1,4 +1,4 @@
-SUBDIRS = libxtiff . bin man cmake
+pSUBDIRS = libxtiff . bin man cmake
 
 AUTOMAKE_OPTIONS =	dist-zip
 ACLOCAL_AMFLAGS = -I m4
@@ -50,7 +50,7 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/prime_meridian.csv \
 			csv/projop_wparm.csv \
 			csv/stateplane.csv \
-			csv/supercession.csv \
+			csv/supersession.csv \
 			csv/unit_of_measure.csv \
 			csv/version_history.csv \
 			csv/vertcs.csv \

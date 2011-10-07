@@ -1,3 +1,7 @@
+2011-10-06  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* Add some missing csv files in svn, fix Makefile.am (#46)
+
 2011-09-28  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Makefile.am: add various missing csv/*.csv files to dist list.
