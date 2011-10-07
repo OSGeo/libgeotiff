@@ -133,7 +133,12 @@ int main(int argc, char *argv[])
             if( proj4_print_flag )
             {
                 printf( "\n" );
+#if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)        
                 printf( "PROJ.4 Definition: %s\n", GTIFGetProj4Defn(&defn));
+#else
+                printf( "PROJ.4 Definition: %s\n", "Proj.4 not available for this libgeotiff build!");
+#endif
+
             }
             
             TIFFGetField( tif, TIFFTAG_IMAGEWIDTH, &xsize );
@@ -212,6 +217,7 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     {
         fprintf( fp_out, "(%12.3f,%12.3f)", x, y );
 
+#if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)        
         if( GTIFProj4ToLatLong( defn, 1, &x, &y ) )
         {
 	    if (dec_flag) 
@@ -225,6 +231,11 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
 		fprintf( fp_out, "%s)", GTIFDecToDMS( y, "Lat", 2 ) );
 	    }
         }
+#else
+        fprintf( fp_out, "Proj.4 support not enabled in this libgeotiff build!" );
+#endif
+
+
 
         fprintf( fp_out, "\n" );
     }

@@ -270,11 +270,17 @@ static void InstallGeoTIFF(TIFF *out)
     }
     else if( proj4_string )
     {
+#if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)        
         if( !GTIFSetFromProj4(gtif,proj4_string) )
         {
             fprintf(stderr,"Failure in GTIFSetFromProj4\n");
             exit (-1);
         }
+#else
+            fprintf(stderr,"Proj.4 support not available in this libgeotiff build!\n");
+            exit (-1);
+
+#endif
     }
     GTIFWriteKeys(gtif);
     GTIFFree(gtif);
