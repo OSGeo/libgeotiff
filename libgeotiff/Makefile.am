@@ -1,4 +1,4 @@
-pSUBDIRS = libxtiff . bin man cmake
+SUBDIRS = libxtiff . bin man cmake
 
 AUTOMAKE_OPTIONS =	dist-zip
 ACLOCAL_AMFLAGS = -I m4
