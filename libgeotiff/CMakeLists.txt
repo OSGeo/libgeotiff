@@ -219,32 +219,39 @@ MESSAGE(STATUS "Generating geo_config.h header - done")
 # Installation settings
 
 SET(GEOTIFF_CSV_DATA
-    csv/alias.csv
-    csv/area.csv
-    csv/change.csv
-    csv/coordinate_axis.csv
-    csv/coordinate_axis_name.csv
-    csv/coordinate_operation.csv
-    csv/coordinate_operation_method.csv
-    csv/coordinate_operation_parameter.csv
-    csv/coordinate_operation_parameter_value.csv
-    csv/coordinate_operation_path.csv
-    csv/coordinate_reference_system.csv
-    csv/coordinate_system.csv
-    csv/datum.csv
-    csv/ellipsoid.csv
-    csv/esri_datum_override.csv
-    csv/gcs.csv
-    csv/gcs.override.csv
-    csv/naming_system.csv
-    csv/pcs.csv
-    csv/pcs.override.csv
-    csv/prime_meridian.csv
-    csv/projop_wparm.csv
-    csv/stateplane.csv
-    csv/unit_of_measure.csv
-    csv/version_history.csv)
-#    csv/codes.csv
+    csv/alias.csv 
+    csv/area.csv 
+    csv/change.csv 
+    csv/compdcs.csv 
+    csv/coordinate_axis.csv 
+    csv/coordinate_axis_name.csv 
+    csv/coordinate_operation.csv 
+    csv/coordinate_operation_method.csv 
+    csv/coordinate_operation_parameter.csv 
+    csv/coordinate_operation_parameter_value.csv 
+    csv/coordinate_operation_path.csv 
+    csv/coordinate_reference_system.csv 
+    csv/coordinate_system.csv 
+    csv/datum.csv 
+    csv/datum_shift.csv 
+    csv/datum_shift_pref.csv 
+    csv/deprecation.csv 
+    csv/ellipsoid.csv 
+    csv/esri_datum_override.csv 
+    csv/gcs.csv 
+    csv/gcs.override.csv 
+    csv/geoccs.csv 
+    csv/naming_system.csv 
+    csv/pcs.csv 
+    csv/pcs.override.csv 
+    csv/prime_meridian.csv 
+    csv/projop_wparm.csv 
+    csv/stateplane.csv 
+    csv/supersession.csv 
+    csv/unit_of_measure.csv 
+    csv/version_history.csv 
+    csv/vertcs.csv 
+    csv/vertcs.override.csv )
 
 SET(GEOTIFF_LIB_HEADERS
     geotiff.h
