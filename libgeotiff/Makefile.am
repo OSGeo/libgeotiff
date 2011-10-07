@@ -10,7 +10,7 @@ PROJ_CFLAGS = @PROJ_INC@ -DHAVE_LIBPROJ=1
 endif
 
 if PROJECTS_H_IS_CONFIG
-PROJ_CFLAGS = -DHAVE_PROJECTS_H=1
+PROJ_CFLAGS = -DHAVE_PROJECTS_H=1 -DHAVE_LIBPROJ=1 @PROJ_INC@
 endif
 
 if TIFF_IS_CONFIG
@@ -94,10 +94,8 @@ libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_tiffp.c \
                         geo_trans.c \
                         geo_write.c \
-                        geo_strtod.c
-if PROJ_IS_CONFIG 
-    libgeotiff_la_SOURCES += geotiff_proj4.c 
-endif
+                        geo_strtod.c \
+                        geotiff_proj4.c 
 
 if CSV_IS_CONFIG
     libgeotiff_la_SOURCES += csv/datum.c \
