@@ -347,7 +347,7 @@ static TIFF *st_setup_test_info()
 {
     ST_TIFF *st;
     double dbl_data[100];
-    short  shrt_data[] = 
+    unsigned short  shrt_data[] = 
         { 1,1,0,6,1024,0,1,1,1025,0,1,1,1026,34737,17,0,2052,0,1,9001,2054,0,1,9102,3072,0,1,26711 };
     char *ascii_data = "UTM    11 S E000|";
 
