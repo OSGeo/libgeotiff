@@ -130,8 +130,8 @@ From the GDAL distribution (do after updating GDAL) do the following in
 the gdal/data directory (with GDAL Python scripts operational):
 
   rm epsg
-  epsg_tr.py -proj4 -skip -list gcs.csv > epsg
-  epsg_tr.py -proj4 -skip -list pcs.csv >> epsg
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -proj4 -skip -list gcs.csv > epsg
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -proj4 -skip -list pcs.csv >> epsg
 
 Commit this in proj/nad.
 
