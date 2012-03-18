@@ -6,14 +6,14 @@
 #
 # You may want to add optimization options to the CFLAGS macro as well. 
 #
-TIFF_DIR = ..\libtiff\libtiff
 
-TIFF_INC = -I$(TIFF_DIR)
-TIFF_LIB = $(TIFF_DIR)\libtiff.lib
-TIFF_LIB_DLL = $(TIFF_DIR)\libtiff_i.lib
+OSGEO4W = c:\OSGeo4W
+
+TIFF_INC = -I$(OSGEO4W)\include
+TIFF_LIB_DLL = $(OSGEO4W)\lib\libtiff_i.lib
 
 # Installation locations (with install, or devinstall targets)
-PREFIX =	c:\usr
+PREFIX =	release	
 BINDIR =	$(PREFIX)\bin
 LIBDIR =	$(PREFIX)\lib
 INCDIR =	$(PREFIX)\include
@@ -72,6 +72,7 @@ geotiff.lib:	$(OBJS)
 #
 $(DLLNAME):    $(OBJS)
 	link /dll /out:$(DLLNAME) /implib:geotiff_i.lib $(OBJS) $(TIFF_LIB_DLL)
+	if exist $(DLLNAME).manifest mt -manifest $(DLLNAME).manifest -outputresource:$(DLLNAME);2
 
 geo_config.h:	geo_config.h.vc
 	copy geo_config.h.vc geo_config.h
@@ -126,6 +127,7 @@ clean:
 	-del *.exe
 	-del *.lib
 	-del *.dll
+	-del *.manifest
 
 install:	all
 	-mkdir $(PREFIX)
