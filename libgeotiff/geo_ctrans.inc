@@ -76,6 +76,9 @@ ValuePair(CT_TransvMercator_SouthOrientated, 27)
 /* Added Feb 2005 */
 ValuePair(CT_CylindricalEqualArea, 28)
 
+/* Added May 2012 - from now on we use the EPSG */
+ValuePair(CT_HotineObliqueMercatorAzimuthCenter, 9815)
+
 
 /* Aliases */
 
