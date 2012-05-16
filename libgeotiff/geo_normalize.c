@@ -1011,7 +1011,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG )
         return( CT_ObliqueStereographic );
 
       case 9810:
-        /* case 9829: variant B not quite the same */ 
+      case 9829: /* variant B not quite the same - not sure how to handle */ 
         return( CT_PolarStereographic );
 
       case 9811:
