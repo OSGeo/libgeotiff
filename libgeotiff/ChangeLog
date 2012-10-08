@@ -1,3 +1,12 @@
+2012-10-08  Frank Warmerdam  <warmerdam@google.com>
+
+	* geo_normalize.c/geo_normalize.h: Add support for disabling the
+	TOWGS84 parameter support if GEO_NORMALIZE_DISABLE_TOWGS84 is
+	defined.  This is primary intended to maintain binary compatability
+	of the GTIFDefn structure with older versions (for MrSID compat for
+	instance).  No configure support - you need to manually incorporate
+	into geo_config.h or perhaps geo_normalize.h.  (gdal #3309)
+
 2012-05-15  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: for now treat method 9829 (Polar Stereographic 

@@ -2071,8 +2071,10 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     psDefn->SemiMinor = 0.0;
     psDefn->PM = KvUserDefined;
     psDefn->PMLongToGreenwich = 0.0;
+#if !defined(GEO_NORMALIZE_DISABLE_TOWGS84)
     psDefn->TOWGS84Count = 0;
     memset( psDefn->TOWGS84, 0, sizeof(psDefn->TOWGS84) );
+#endif
 
     psDefn->ProjCode = KvUserDefined;
     psDefn->Projection = KvUserDefined;
@@ -2264,8 +2266,10 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
 /*      Get the TOWGS84 parameters.                                     */
 /* -------------------------------------------------------------------- */
+#if !defined(GEO_NORMALIZE_DISABLE_TOWGS84)
     psDefn->TOWGS84Count = 
         GTIFKeyGet(psGTIF, GeogTOWGS84GeoKey, &(psDefn->TOWGS84), 0, 7 );
+#endif
 
 /* -------------------------------------------------------------------- */
 /*      Have the projection units of measure been overridden?  We       */
@@ -2541,6 +2545,7 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
 /*      Report TOWGS84 parameters.                                      */
 /* -------------------------------------------------------------------- */
+#if !defined(GEO_NORMALIZE_DISABLE_TOWGS84)
     if( psDefn->TOWGS84Count > 0 )
     {
         int i;
@@ -2556,6 +2561,7 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
 
         fprintf( fp, "\n" );
     }
+#endif
 
 /* -------------------------------------------------------------------- */
 /*      Report the projection units of measure (currently just          */
