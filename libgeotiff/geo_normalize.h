@@ -176,7 +176,8 @@ void CPL_DLL GTIFDeaccessCSV( void );
 
 int CPL_DLL GTIFGetDefn( GTIF *psGTIF, GTIFDefn * psDefn );
 void CPL_DLL GTIFPrintDefn( GTIFDefn *, FILE * );
-void CPL_DLL GTIFFreeDefn( GTIF * );
+GTIFDefn CPL_DLL *GTIFAllocDefn( void );
+void CPL_DLL GTIFFreeDefn( GTIFDefn * );
 
 void CPL_DLL SetCSVFilenameHook( const char *(*CSVFileOverride)(const char *) );
 

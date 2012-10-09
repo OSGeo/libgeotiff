@@ -1933,8 +1933,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
 /**
 @param psGTIF GeoTIFF information handle as returned by GTIFNew.
-@param psDefn Pointer to an existing GTIFDefn structure.  This structure
-does not need to have been pre-initialized at all.
+@param psDefn Pointer to an existing GTIFDefn structure allocated by GTIFAllocDefn().
 
 @return TRUE if the function has been successful, otherwise FALSE.
 
@@ -2610,4 +2609,28 @@ void GTIFDeaccessCSV()
 
 {
     CSVDeaccess( NULL );
+}
+
+/************************************************************************/
+/*                           GTIFAllocDefn()                            */
+/*                                                                      */
+/*      This allocates a GTIF structure in such a way that the          */
+/*      calling application doesn't need to know the size and           */
+/*      initializes it appropriately.                                   */
+/************************************************************************/
+
+GTIFDefn *GTIFAllocDefn()
+{
+    return (GTIFDefn *) CPLCalloc(sizeof(GTIFDefn),1);
+}
+
+/************************************************************************/
+/*                            GTIFFreeDefn()                            */
+/*                                                                      */
+/*      Free a GTIF structure allocated by GTIFAllocDefn().             */
+/************************************************************************/
+
+void GTIFFreeDefn( GTIFDefn *defn ) 
+{
+    VSIFree( defn );
 }
