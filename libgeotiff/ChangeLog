@@ -1,6 +1,10 @@
 2012-10-12  Frank Warmerdam  <warmerdam@google.com>
 
-	* LICENSE: Add note on BSD licensed cmake macros.
+	* configure.ac, geotiff.h: update for 1.4.1 version even though
+	we aren't releasing right now.
+
+	* cmake/COPYING-CMAKE-SCRIPTS, LICENSE: Add note on BSD licensed
+	cmake macros.
 
 2012-10-08  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -17,8 +21,8 @@
 
 2012-05-15  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: for now treat method 9829 (Polar Stereographic 
-	Variant B) the same as 9810 - as CT_PolarStereographic.  
+	* geo_normalize.c: for now treat method 9829 (Polar Stereographic
+	Variant B) the same as 9810 - as CT_PolarStereographic.
 
 2012-05-08  Frank Warmerdam  <warmerdam@pobox.com>
 

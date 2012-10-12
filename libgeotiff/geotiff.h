@@ -30,7 +30,7 @@
  */
 #define GvCurrentVersion   1
 
-#define LIBGEOTIFF_VERSION 1400
+#define LIBGEOTIFF_VERSION 1410
 
 #include "geo_config.h"
 #include "geokeys.h"
