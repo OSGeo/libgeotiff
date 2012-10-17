@@ -459,7 +459,6 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
     char	szSearchKey[24];
     double	dfSemiMajor=0.0, dfToMeters = 1.0;
     int		nUOMLength;
-    const char* pszFilename;
 
 /* -------------------------------------------------------------------- */
 /*      Try some well known ellipsoids.                                 */
@@ -515,10 +514,8 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
 /*      Get the semi major axis.                                        */
 /* -------------------------------------------------------------------- */
     sprintf( szSearchKey, "%d", nEllipseCode );
-    pszFilename = CSVFilename("ellipsoid.csv" );
-
     dfSemiMajor =
-        GTIFAtof(CSVGetField( pszFilename,
+        GTIFAtof(CSVGetField( CSVFilename("ellipsoid.csv"),
                           "ELLIPSOID_CODE", szSearchKey, CC_Integer,
                           "SEMI_MAJOR_AXIS" ) );
 
@@ -530,7 +527,7 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
 /* -------------------------------------------------------------------- */
 /*	Get the translation factor into meters.				*/
 /* -------------------------------------------------------------------- */
-    nUOMLength = atoi(CSVGetField( pszFilename,
+    nUOMLength = atoi(CSVGetField( CSVFilename("ellipsoid.csv"),
                                    "ELLIPSOID_CODE", szSearchKey, CC_Integer,
                                    "UOM_CODE" ));
     GTIFGetUOMLengthInfo( nUOMLength, NULL, &dfToMeters );
@@ -547,7 +544,7 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
     if( pdfSemiMinor != NULL )
     {
         *pdfSemiMinor =
-            GTIFAtof(CSVGetField( pszFilename,
+            GTIFAtof(CSVGetField( CSVFilename("ellipsoid.csv"),
                               "ELLIPSOID_CODE", szSearchKey, CC_Integer,
                               "SEMI_MINOR_AXIS" )) * dfToMeters;
 
@@ -556,7 +553,7 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
             double	dfInvFlattening;
             
             dfInvFlattening = 
-                GTIFAtof(CSVGetField( pszFilename,
+                GTIFAtof(CSVGetField( CSVFilename("ellipsoid.csv"),
                                   "ELLIPSOID_CODE", szSearchKey, CC_Integer,
                                   "INV_FLATTENING" ));
             *pdfSemiMinor = dfSemiMajor * (1 - 1.0/dfInvFlattening);
@@ -568,7 +565,7 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
 /* -------------------------------------------------------------------- */
     if( ppszName != NULL )
         *ppszName =
-            CPLStrdup(CSVGetField( pszFilename,
+            CPLStrdup(CSVGetField( CSVFilename("ellipsoid.csv"),
                                    "ELLIPSOID_CODE", szSearchKey, CC_Integer,
                                    "ELLIPSOID_NAME" ));
     
