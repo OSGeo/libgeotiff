@@ -10,4 +10,6 @@
 /* Define if you have the <strings.h> header file.  */
 #cmakedefine HAVE_STRING_H
 
+#cmakedefine GEO_NORMALIZE_DISABLE_TOWGS84
+
 #endif /* ndef GEO_CONFIG_H */

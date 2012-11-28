@@ -196,6 +196,12 @@ IF(WITH_JPEG)
     ENDIF()
 ENDIF()
 
+# Turn off TOWGS84 support
+SET(WITH_TOWGS84 TRUE CACHE BOOL "Build with TOWGS84 support")
+IF (NOT WITH_TOWGS84)
+   SET(GEO_NORMALIZE_DISABLE_TOWGS84 1)
+endif()
+
 ###############################################################################
 # Generate geo_config.h with compile-time configuration
 

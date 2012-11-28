@@ -315,6 +315,9 @@ else
 fi
 AM_CONDITIONAL([CSV_IS_CONFIG], [test ! x$CSV_CONFIG = xno])
 
+
+AC_ARG_ENABLE(towgs84, [  --disable-towgs84       Disable WGS84 parameters for binary compatibility with pre-1.4.1], AC_DEFINE(GEO_NORMALIZE_DISABLE_TOWGS84))
+
 dnl #########################################################################
 dnl Doxygen settings
 dnl #########################################################################
