@@ -29,6 +29,6 @@
 #define BUILD_AS_DLL      1
 
 /* Turn off TOWGS84 if necessary */
-/ * #define GEO_NORMALIZE_DISABLE_TOWGS84 1 */
+/* #define GEO_NORMALIZE_DISABLE_TOWGS84 1 */
 
 #endif /* ndef GEO_CONFIG_H */
