@@ -1,3 +1,7 @@
+2012-12-05  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv: Upgrade to EPSG 8.0
+
 2012-10-17  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: GTIFGetEllipsoidInfo() - do not assume that

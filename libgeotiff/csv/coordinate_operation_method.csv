@@ -560,8 +560,8 @@ Xp = r.cos(theta)
 Yp = r.sin(theta)
 Xr = Xp  Xo
 Yr = Yp  Yo
-dX = C1 + C3.Xr  C4.Yr  2.C6.Xr.Yr + C5.(Xr^2  Yr^2) + C8.Xr.(Xr^2  3.Yr^2)  C7.Yr.(3.Xr^2  Yr^2)  4.C10.Xr.Yr.(Xr^2  Yr^2) + C9.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
-dY = C2 + C3.Yr + C4.Xr + 2.C5.Xr.Yr + C6.(Xr^2  Yr^2) + C7.Xr.(Xr^2  3.Yr^2) C8.Yr.(3.Xr^2  Yr^2) + 4.C9.Xr.Yr.(Xr^2  Yr^2) + C10.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
+dX = C1 + C3.Xr  C4.Yr  2.C6.Xr.Yr + C5.(Xr^2  Yr^2) + C7.Xr.(Xr^2  3.Yr^2)  C8.Yr.(3.Xr^2  Yr^2) + 4.C9.Xr.Yr.(Xr^2  Yr^2) + C10.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
+dY = C2 + C3.Yr + C4.Xr + 2.C5.Xr.Yr + C6.(Xr^2  Yr^2) + C8.Xr.(Xr^2  3.Yr^2)+ C7.Yr.(3.Xr^2  Yr^2)  4.C10.Xr.Yr.(Xr^2  Yr^2) + C9.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
 Southing   X = FN + Xp  dX
 Westing    Y = FE + Yp  dY
 
@@ -569,9 +569,9 @@ The reverse formulas to derive the latitude and longitude of a point from its So
 
 Xr' = (Southing  FN)  Xo
 Yr' = (Westing  FE)  Yo
-dX' = C1 + C3.Xr'  C4.Yr'  2.C6.Xr'.Yr' + C5.(Xr'^2  Yr'^2) + C8.Xr'.(Xr'^2  3.Yr'^2)  C7.Yr'.(3.Xr'^2  Yr'^2)  4.C10.Xr'.Yr'.(Xr'^2  Yr'^2) + C9.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
-dY' = C2 + C3.Yr' + C4.Xr' + 2.C5.Xr'.Yr' + C6.(Xr'^2  Yr'^2) + C7.Xr'.(Xr'^2  3.Yr'^2) 
- C8.Yr'.(3.Xr'^2  Yr'^2) + 4.C9.Xr'.Yr'.(Xr'^2  Yr'^2) + C10.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
+dX' = C1 + C3.Xr'  C4.Yr'  2.C6.Xr'.Yr' + C5.(Xr'^2  Yr'^2) + C7.Xr'.(Xr'^2  3.Yr'^2)  C8.Yr'.(3.Xr'^2  Yr'^2) + 4.C9.Xr'.Yr'.(Xr'^2  Yr'^2) + C10.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
+dY' = C2 + C3.Yr' + C4.Xr' + 2.C5.Xr'.Yr' + C6.(Xr'^2  Yr'^2) + C8.Xr'.(Xr'^2  3.Yr'^2) 
++ C7.Yr'.(3.Xr'^2  Yr'^2) - 4.C10.Xr'.Yr'.(Xr'^2  Yr'^2) + C9.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
 Xp' = (Southing  FN) + dX'
 Yp' = (Westing  FE) + dY'
 r' = [(Yp')^2 + (Xp')^2]^(1/2)  
@@ -633,18 +633,18 @@ Xp = 1050538.634
 Yp = 568990.995
 Xr = -38461.366
 Yr = -85009.005
-dX = -0.075
-dY = 0.086
+dX = -0.077
+dY = 0.088
 and	
 Southing X = 6050538.71 m
 Westing	 Y = 5568990.91 m
 
 Reverse calculation for the same Southing and Westing:
 
-Xr' = -38461.291
-Yr' = -85009.090
-dX' = -0.075
-dY' = 0.086
+Xr' = -38461.289
+Yr' = -85009.093
+dX' = -0.077
+dY' = 0.088
 Xp' = 1050538.634
 Yp' = 568990.995
 r' = 1194731.005
@@ -658,7 +658,7 @@ lat(iteration 2) = 0.876312562
 lat(iteration 3) = 0.876312568
 
 Latitude = 0.876312568 rad = 50°12'32.442""N
-Longitude = 0.294083997 rad = 16°50'59.179""E",Incorporates a polynomial transformation which is defined to be exact and for practical purposes is considered to be a map projection.,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2010/12/07,2010.071 2010.100,0
+Longitude = 0.294083997 rad = 16°50'59.179""E",Incorporates a polynomial transformation which is defined to be exact and for practical purposes is considered to be a map projection.,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2012/03/24,2010.071 2010.100 2012.011,0
 1043,Krovak Modified (North Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 From the defining parameters the following constants for the projection may be calculated :
@@ -682,8 +682,8 @@ Xp = r.cos(theta)
 Yp = r.sin(theta)
 Xr = Xp  Xo
 Yr = Yp  Yo
-dX = C1 + C3.Xr  C4.Yr  2.C6.Xr.Yr + C5.(Xr^2  Yr^2) + C8.Xr.(Xr^2  3.Yr^2)  C7.Yr.(3.Xr^2  Yr^2)  4.C10.Xr.Yr.(Xr^2  Yr^2) + C9.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
-dY = C2 + C3.Yr + C4.Xr + 2.C5.Xr.Yr + C6.(Xr^2  Yr^2) + C7.Xr.(Xr^2  3.Yr^2) C8.Yr.(3.Xr^2  Yr^2) + 4.C9.Xr.Yr.(Xr^2  Yr^2) + C10.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
+dX = C1 + C3.Xr  C4.Yr  2.C6.Xr.Yr + C5.(Xr^2  Yr^2) + C7.Xr.(Xr^2  3.Yr^2)  C8.Yr.(3.Xr^2  Yr^2) + 4.C9.Xr.Yr.(Xr^2  Yr^2) + C10.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
+dY = C2 + C3.Yr + C4.Xr + 2.C5.Xr.Yr + C6.(Xr^2  Yr^2) + C8.Xr.(Xr^2  3.Yr^2)+ C7.Yr.(3.Xr^2  Yr^2) - 4.C10.Xr.Yr.(Xr^2  Yr^2) + C9.(Xr^4 + Yr^4  6.Xr^2.Yr^2)
 Southing = FN + Xp  dX
 Westing = FE + Yp  dY
 Easting = -(Westing)
@@ -695,9 +695,9 @@ Westing = -(Easting)
 
 Xr' = (Southing - FN)  Xo
 Yr' = (Westing - FE)  Yo
-dX' = C1 + C3.Xr'  C4.Yr'  2.C6.Xr'.Yr' + C5.(Xr'^2  Yr'^2) + C8.Xr'.(Xr'^2  3.Yr'^2)  C7.Yr'.(3.Xr'^2  Yr'^2)  4.C10.Xr'.Yr'.(Xr'^2  Yr'^2) + C9.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
-dY' = C2 + C3.Yr' + C4.Xr' + 2.C5.Xr'.Yr' + C6.(Xr'^2  Yr'^2) + C7.Xr'.(Xr'^2  3.Yr'^2) 
- C8.Yr'.(3.Xr'^2  Yr'^2) + 4.C9.Xr'.Yr'.(Xr'^2  Yr'^2) + C10.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
+dX' = C1 + C3.Xr'  C4.Yr'  2.C6.Xr'.Yr' + C5.(Xr'^2  Yr'^2) + C7.Xr'.(Xr'^2  3.Yr'^2)  C8.Yr'.(3.Xr'^2  Yr'^2) + 4.C9.Xr'.Yr'.(Xr'^2  Yr'^2) + C10.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
+dY' = C2 + C3.Yr' + C4.Xr' + 2.C5.Xr'.Yr' + C6.(Xr'^2  Yr'^2) + C8.Xr'.(Xr'^2  3.Yr'^2) 
++ C7.Yr'.(3.Xr'^2  Yr'^2) - 4.C10.Xr'.Yr'.(Xr'^2  Yr'^2) + C9.(Xr'^4 + Yr'^4  6.Xr'^2.Yr'^2)
 Xp' = (Southing - FN) + dX'
 Yp' = (Westing - FE) + dY'
 r' = [(Yp')^2 + (Xp')^2]^(1/2)  
@@ -761,8 +761,8 @@ Xp = 1050538.634
 Yp = 568990.995
 Xr = -38461.366
 Yr = -85009.005
-dX = -0.075
-dY = 0.086
+dX = -0.077
+dY = 0.088
 Southing = 6050538.71 m
 Westing	= 5568990.91 m
 and then
@@ -772,10 +772,10 @@ Northing Y = -6050538.71 m
 Reverse calculation for the same Easting and Northing:
 Southing = 6050538.71 m
 Westing	= 5568990.91 m
-Xr' = -38461.290
-Yr' = -85009.090
-dX' = -0.075
-dY' = 0.086
+Xr' = -38461.289
+Yr' = -85009.093
+dX' = -0.077
+dY' = 0.088
 Xp' = 1050538.634
 Yp' = 568990.995
 r' = 1194731.005
@@ -789,7 +789,7 @@ lat(iteration 2) = 0.876312562
 lat(iteration 3) = 0.876312568
 
 Latitude = 0.876312568 rad = 50°12'32.442""N
-Longitude = 0.602425500 rad = 34°30'59.179""E of Ferro.",Incorporates a polynomial transformation which is defined to be exact and for practical purposes is considered to be a map projection.,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2010/12/07,2010.071 2010.100,0
+Longitude = 0.602425500 rad = 34°30'59.179""E of Ferro.",Incorporates a polynomial transformation which is defined to be exact and for practical purposes is considered to be a map projection.,"Land Survey Office (ZU), Prague. www.cuzk.cz/zu",OGP,2012/03/24,2010.071 2010.100 2012.011,0
 1044,Mercator (variant C),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates are:
@@ -848,6 +848,112 @@ Then:
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
 and     H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2011/01/14,2010.104,0
+1046,Vertical Offset and Slope,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+In Europe, national height systems are related to the pan-European height system through three transformation parameters and the formula:
+
+Ht = Hs + A + [IncLat * rhoO * (Lat  LatO)] + [IncLong * nuO * (Long
+ LongO) * cos(Lat)]
+
+where
+Ht = gravity-related height value in the target vertical coordinate reference system.
+Hs = gravity-related height value in the source vertical coordinate reference system.
+A is the value of the vertical offset to be applied.
+IncLat is the value in radians of the inclination parameter in the latitude domain, i.e. in the plane of the meridian, derived at an evaluation point with coordinates of LatO, LongO.
+IncLon is the value of the inclination parameter in the longitude domain, i.e. perpendicular to the plane of the meridian.
+rhoO is the radius of curvature of the meridian at latitude LatO, where rhoO = a(1  e^2)/(1  e^2 * sin^2(LatO))^1.5
+nuO is the radius of curvature on the prime vertical (i.e. perpendicular to the meridian) at latitude LatO, where nuO = a /(1  e^2 * sin^2(LatO))^0.5
+LatO , LongO are the coordinates of the evaluation point in the 'Horizontal CRS' coordinate reference system, in radians. The ID of the 'Horizontal CRS' is a defining parameter.
+Lat , Long are the horizontal coordinates of the point in the same coordinate reference system as the evaluation point (the 'Horizontal CRS'), in radians.
+
+The horizontal location of the point must always be given in 'Horizontal CRS' terms. If given in another CRS the coordinates must first be transformed to 'Horizontal CRS' values. The method is reversible.","For coordinate transformation LN02 to EVRF2000 (1)
+
+Ordinate 1 of evaluation point: 46deg 55min N = 0.818850307  radians
+Ordinate 2 of evaluation point: 8deg 11min E of Greenwich = 0.142826110  radians
+Transformation Parameters:
+A = -0.245m 
+IncLat = -0.210"" = -0.000001018  radians
+IncLong = -0.032"" = -0.000000155  radians
+
+Consider a point having a gravity-related height in the LN02 system (Hs) of 473.0m and with horizontal coordinates in the ETRS89 geographical coordinate reference system (CRS code 4258) of:
+ETRS89 latitude: 47deg 20 min N = 0.826122513  radians
+ETRS89 longitude: 9 deg 40min E of Greenwich = 0.168715161 radians
+
+Then rhoO = 6369526.88 m 
+IncLat term = -0.047 m 
+nuO = 6389555.64 m  
+incLong term = -0.017 m
+whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.",This transformation allows calculation of height in the target system by applying the parameter values to the height value of the point in the source system.,OGP,OGP,2011/12/23,2011.108,0
+1047,Geographic3D to GravityRelatedHeight (Gravsoft),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a quasigeoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
+
+The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
+
+Calculation of the separation is achieved through a bi-linear interpolation of the grid, using the latitude and longitude of the point. This step provides the geoid-ellipsoid separation (N) above the ellipsoid of the source Geographic 3D CRS.
+
+Then:
+           H = h - N
+
+where h = the height above the ellipsoid in the source geographic 3D CRS
+and     H = the geoid height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2011/09/24,2011.083,0
+1048,Geographic3D to GravityRelatedHeight (Ausgeoid09),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a geoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
+
+The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
+
+Calculation of the separation is achieved through a bi-cubic interpolation of the grid, using the latitude and longitude of the point. This step provides the geoid-ellipsoid separation (N) above the ellipsoid of the source Geographic 3D CRS.
+
+Then:
+           H = h - N
+
+where h = the height above the ellipsoid in the source geographic 3D CRS
+and     H = the geoid height in the target vertical CRS.",(none),"The Information Source references software which offers both bi-cubic and bi-linear interpolation methods. Unlike earlier Australian models which used bi-linear interpolation, Ausgeoid09 uses the bi-cubic method.  See Info Source for file format doc.","Geoscience Australia; http://www.ga.gov.au/geodesy/ausgeoid/",OGP,2012/03/01,2012.009,0
+1049,P6 (I = J-90°) seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+XT = XT0   -   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
+
+YT = YT0   +   XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
+
+XS = XSO - {[( XT   XTO) * cos q    (YT  YTO) * sin q ] * [IncSX  / (k * MX)]}
+
+YS = YSO + {[(XT    XTO) * sin q   +  (YT  YTO) * cos q] * [IncSY  / (k * MY)]}
+
+where:
+
+XT0 ,YT0  = the coordinates of the origin point of the source coordinate reference system, expressed in the target coordinate reference system;
+dSX , dSY  = the length of one unit of the source  axis, expressed in units of the target axis, for the X axes and the Y- axes respectively;
+k = point scale factor of the target coordinate reference system in a chosen reference point;
+q  = the angle through which the source coordinate reference system axes must be rotated to coincide with the target coordinate refderence system axes (counter-clockwise is positive). Alternatively, the bearing (clockwise positive) of the source coordinate reference system Y-axis measured relative to target coordinate reference system north.","This example is given in the OGP P6/11 user guide. Source coordinate reference system: imaginary 3D seismic acquisition bin grid. The bin width on the I-axis (XS axis) is 82.5 US survey feet, whilst the bin width on the J-axis (YS axis) is 41.25 US survey feet. The origin of the bin grid has bin values of 5000,0.
+
+The target coordinate reference system is a projected CRS [NAD27/ BLM 16N (ftUS)] upon which the origin of the bin grid is defined at east = 871200.0, north = 10280160.0.  As the survey was acquired on the map grid, the bin grid scale factor at the bin grid origin is 1.
+
+In the map grid (target CRS), the bearing of the bin grid (source CRS) I and J axes are 250deg and 340deg respectively.  Thus the angle through which the bin grid axes need to be rotated to coincide with the map grid axes is +340 degrees.
+
+The transformation parameter values are:
+
+Bin grid origin I:                   5000 bins
+Bin grid origin J:                   0 bins
+Bin grid origin Easting:             871200 ftUS
+Bin grid origin Northing:            10280160 ftUS
+Scale factor of bin grid:            1.0
+Bin Width on I-axis:                 82.5 ftUS
+Bin Width on J-axis:                 41.25 ftUS
+Map grid bearing of bin grid J-axis: 340 deg
+Bin node increment on I-axis:        1
+Bin node increment on J-axis:        1
+
+
+Forward calculation for centre of bin with coordinates: I = 4700, J = 247:
+XT = Easting   = XTO   -   [(XS  XSO) * cos q * k * MX / IncSX]  +  [(YS  YSO) * sin q * k * MY / IncSY]
+= 890972.63 ftUS.
+
+YT = Northing = YTO + [(XS  XSO) * sin q * k * MX / IncSX]   +  [(YS  YSO) * cos q * k * MY / IncSY]
+= 10298199.29 ftUS.
+
+Reverse calculation for this point east = 890972.63ftUS, north = 10298199.29ftUS:
+XS = XSO - {[( XT   XTO) * cos q    (YT  YTO) * sin q ] * [IncSX  / (k * MX)]}
+= 4700 bins, 
+
+YS = YSO + {[(XT    XTO) * sin q   +  (YT  YTO) * cos q] * [IncSY  / (k * MY)]}
+= 247 bins","Use only when the bin grid I-axis is rotated 90° counter-clockwise from the J-axis when viewed from above the plane containing the two axes (CS code 1034). If the I-axis is rotated clockwise, method 9666 should be used.","OGP P6/11 Seismic Bin Grid Data Exchange Format - User Guidelines, version 1.0, July 2012.",OGP,2012/07/31,2011.106,0
 9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/11/12,1999.790,0
 9602,Geographic/geocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -2287,7 +2393,7 @@ Then rhoO = 6369526.88 m
 IncLat term = -0.047 m	
 nuO = 6389555.64  m 		
 incLong term = -0.017 m
-whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.",This transformation allows calculation of height in the target system by applying the parameter values to the height value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/14,,0
+whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.",This transformation allows calculation of height in the target system by applying the parameter values to the height value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/14,2011.108,1
 9658,VERTCON,1,See information source.,See information source.,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US National Geodetic Survey - http://www.ngs.noaa.gov,OGP,2004/04/27,,0
 9659,Geographic3D to 2D conversion,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -2352,10 +2458,15 @@ Then:
            H = h - C
 
 where h = the height above the ellipsoid in the source geographic 3D CRS",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/04/11,2008.010,0
-9666,UKOOA P6 seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+9666,P6 (I = J+90°) seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 XT = XT0   +   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
+
 YT = YT0      XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
+
+XS = {[( XT   XTO) * cos q    (YT  YTO) * sin q ] * [IncSX  / (k * MX)]} + XSO
+
+YS = {[(XT    XTO) * sin q   +  (YT  YTO) * cos q] * [IncSY  / (k * MY)]} + YSO 
 
 where:
 
@@ -2370,17 +2481,16 @@ In the map grid (target CRS), the bearing of the bin grid (source CRS) I and J a
 
 The transformation parameter values are:
 
-Parameter                                     	Parameter value
-Bin grid origin                                 	1
-Bin grid origin                                 	1
-Bin grid origin Easting                       	456781.00 m
-Bin grid origin Northing                    5836723.00 m
-Scale factor of bin grid  	                	0.99984
-Bin Width on I-axis                         	25 m
-Bin Width on J-axis                        	12.5 m
-Map grid bearing of bin grid J-axis    	20 deg
-Bin node increment on I-axis           	1
-Bin node increment on J-axis          	1
+Bin grid origin I:                   1 bin
+Bin grid origin J:                   1 bin
+Bin grid origin Easting:             456781.00 m
+Bin grid origin Northing:            5836723.00 m
+Scale factor of bin grid:            0.99984
+Bin Width on I-axis:                 25 m
+Bin Width on J-axis:                 12.5 m
+Map grid bearing of bin grid J-axis: 20 deg
+Bin node increment on I-axis:        1
+Bin node increment on J-axis:        1
 
 
 Forward calculation for centre of bin with coordinates: I = 300, J = 247:
@@ -2397,7 +2507,7 @@ XS = {[( XT   XTO) * cos q    (YT  YTO) * sin q ] * [IncSX  / (k * MX)]} +
 = 300 bins, 
 
 YS = {[(XT    XTO) * sin q   +  (YT  YTO) * cos q] * [IncSY  / (k * MY)]} + YSO 
-= 247 bins",,"UKOOA Data Exchange Format P6/98, Definition of 3D Seismic Binning Grids, revision 3, May 2000.",OGP,2005/08/25,,0
+= 247 bins","Use only when the bin grid I-axis is rotated 90° clockwise from the J-axis when viewed from above the plane containing the two axes (CS code 1033). If the I-axis is rotated counter-clockwise, method 1049 should be used.","UKOOA Data Exchange Format P6/98, Definition of 3D Seismic Binning Grids, revision 3, May 2000, and OGP P6/11 seismic bin grid data exchange format user guide, July 2012.",OGP,2012/07/31,2011.106,0
 9801,Lambert Conic Conformal (1SP),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
@@ -2701,67 +2811,160 @@ Then Latitude     = 10°00'00.000""N
          Longitude  =  62°00'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1996/09/18,,0
 9807,Transverse Mercator,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
-The formulas to derive the projected Easting and Northing coordinates are in the form of a series as follows:
+For the calculation of easting and northing from latitude and longitude, first calculate constants for the projection:
 
-Easting, E =  FE + k0*nu[A + (1 - T + C)A^3/6 + (5 - 18T + T^2 + 72C - 58e'sq)A^5/120]	
+n = f / (2-f)
+B = [a/(1+n)] (1 + n^2/4 + n^4/64)
+		
+h1 = n/2  (2/3)n^2 + (5/16)n^3 + (41/180)n^4
+h2 = (13/48)n^2  (3/5)n^3 + (557/1440)n^4
+h3 = (61/240)n^3  (103/140)n^4
+h4 = (49561/161280)n^4
 
-Northing, N =  FN + k0{M - M0 + nu*tan(lat)[A^2/2 + (5 - T + 9C + 4C^2)A^4/24 + (61 - 58T + T^2 + 600C - 330e'sq)A^6/720]} 
-where T = tan^2(lat)                nu = a /(1 - esq*sin^2(lat))^0.5
-C = esq*cos^2(lat)/(1 - esq)
-A = (lon - lon0)cos(lat), with lon and lon0 in radians.
-M = a[(1 - esq/4 - 3e^4/64 - 5e^6/256 -....)lat - (3esq/8 + 3e^4/32 + 45e^6/1024+....)sin(2*lat) + (15e^4/256 + 45e^6/1024 +.....)sin(4*lat) - (35e^6/3072 + ....)sin(6*lat) + .....]
-with lat in radians and M0 for lat0, the latitude of the origin, derived in the same way.
+Then the meridional arc distance from equator to the projection origin (Mo) is computed from:
+If LatO = 0 then Mo = 0
+else if LatO ? 90°N ? ?/2 radians
+   Mo = B (?/2)
+else if LatO ? 90°S ? -?/2 radians
+   Mo = B (-?/2)	
+else
+ Qo = asinh(tan LatO)  [e atanh(e sin LatO)]
+ ?o = atan(sinh Qo)
+ ?O0 = asin (sin ?o)
+Note: The previous two steps are taken from the generic calculation flow given below for latitude Lat, but here for LatO may be simplified to ?O0 = ?o = atan(sinh Qo).
+ ?O1 = h1 sin(2?Oo)
+ ?O2 = h2 sin(4?Oo) 
+ ?O3 = h3 sin(6?Oo) 
+ ?O4 = h4 sin(8?Oo) 
+ ?O = ?O0+ ?O1+ ?O2+ ?O3+ ?O4
+ Mo = B ?O
+end
 
-The reverse formulas to convert Easting and Northing projected coordinates to latitude and longitude are:
+Note: if the projection grid origin is very close to the pole (within 2"" or 50m), the tangent function in the equation for Qo is unstable and may fail. Mo may instead be calculated as:
+Mo = a[(1  e^2/4  3e^4/64  5e^6/256 ....)LatO  (3e^2/8 + 3e^4/32 + 45e^6/1024+....)sin2LatO 
++ (15e^4/256 + 45e^6/1024 +.....)sin4LatO  (35e^6/3072 + ....)sin6LatO  + .....]
+with LatO in radians.
 
-lat = lat1 - (nu1*tan(lat1)/rho1)[D^2/2 - (5 + 3*T1 + 10*C1 - 4*C1^2 - 9*e'^2)D^4/24 + (61 + 90*T1 + 298*C1 + 45*T1^2 - 252*e'^2 - 3*C1^2)D^6/720]
-lon = lon0 + [D - (1 + 2*T1 + C1)D^3/6 + (5 - 2*C1 + 28*T1 - 3*C1^2 + 8*e'^2 + 24*T1^2)D^5/120] / cos(lat1)
-where lat1 may be found as for the Cassini projection from:
+Then
+Q = asinh(tan Lat)  [e atanh(e sin Lat)]
+? = atan(sinh Q)
+?0 = atanh [cos ? sin(Lon  LonO)]
+?0 = asin (sin ?  cosh ?0)	
+?1 = h1 sin(2?0) cosh(2?0)
+?1 = h1 cos(2?0) sinh(2?0)
+?2 = h2 sin(4?0) cosh(4?0)
+?2 = h2 cos(4?0) sinh(4?0)
+?3 = h3 sin(6?0) cosh(6?0)
+?3 = h3 cos(6?0) sinh(6?0)
+?4 = h4 sin(8?0) cosh(8?0)
+?4 = h4 cos(8?0) sinh(8?0)
+? = ?0 + ?1 + ?2 + ?3 + ?4
+? = ?0 + ?1 + ?2 + ?3 + ?4
+and
+Easting, E =  FE + ko B ?
+Northing, N =  FN + ko (B ?  Mo)
 
-lat1 = mu1 + ((3*e1)/2 - 27*e1^3/32 +.....)sin(2*mu1) + (21*e1^2/16 -55*e1^4/32 + ....)sin(4*mu1)+ (151*e1^3/96 +.....)sin(6*mu1) + (1097*e1^4/512 - ....)sin(8*mu1) + ......
-and where
-nu1 = a /(1 - esq*sin^2(lat1))^0.5
-rho1 = a(1 - esq)/(1 - esq*sin^2(lat1))^1.5
-e1 = [1- (1 - esq)^0.5]/[1 + (1 - esq)^0.5]
-mu1 = M1/[a(1 - esq/4 - 3e^4/64 - 5e^6/256 - ....)]
-M1 = M0 + (N - FN)/k0
-T1 = tan^2(lat1)
-C1 = e'^2*cos^2(lat1)
-D = (E - FE)/(nu1*k0), with nu1 = nu for lat1
+For the reverse formulas to convert Easting and Northing projected coordinates to latitude and longitude first calculate constants of the projection where n is as for the forward conversion, as are B and Mo:
+h1' = n/2  (2/3)n^2 + (37/96)n^3  (1/360)n^4
+h2' = (1/48)n^2 + (1/15)n^3  (437/1440)n^4
+h3' = (17/480)n^3  (37/840)n^4
+h4' = (4397/161280)n^4
 
-For areas south of the equator the value of latitude lat will be negative and the formulas above, to compute the E and N,  will automatically result in the correct values. Note that the false northings of the origin, if the equator, will need to be large to avoid negative northings and for the UTM projection is in fact 10,000,000m. Alternatively, as in the case of Argentina's Transverse Mercator (Gauss-Kruger) zones, the origin is at the south pole with a northings of zero. However each zone central meridian takes a false easting of 500000m prefixed by an identifying zone number. This ensures that instead of points in 
-different zones having the same eastings, every point in the country, irrespective of its projection zone, will have a unique set of projected system coordinates. Strict application of the above formulas, with south latitudes negative, will result in the derivation of the correct Eastings and Northings. 
-
-Similarly, in applying the reverse formulas to determine a latitude south of the equator, a negative sign for lat results from a negative lat1 which in turn results from a negative M1.","For Projected Coordinate System OSGB 1936 / British National Grid
+Then 
+?' = (E   FE) / (B ko)				
+?' = [(N  FN) + ko Mo] / (B ko)
+?1' = h1' sin(2?') cosh(2?')
+?1' = h1' cos(2?') sinh(2?')
+?2' = h2' sin(4?') cosh(4?')
+?2' = h2' cos(4?') sinh(4?')
+?3' = h3' sin(6?') cosh(6?')
+?3' = h3' cos(6?') sinh(6?')
+?4' = h4' sin(8?') cosh(8?')
+?4' = h4' cos(8?') sinh(8?')
+?0' = ?'  (?1' + ?2' + ?3' + ?4')
+?0' = ?'  (?1' + ?2' + ?3' + ?4')
+						
+?' = asin(sin ?0' / cosh ?0')
+Q' = asinh(tan ?')
+Q"" = Q' + [e atanh(e tanh Q')] = Q' + [e atanh(e tanh Q"")] which should be iterated until the change in Q"" is insignificant. Then
+Lat = atan(sinh Q"")
+Lon = LonO + asin(tanh(?0') / cos ?')","For Projected Coordinate System OSGB 1936 / British National Grid
 
 Parameters:
 Ellipsoid  Airy 1830  a = 6377563.396 m  1/f = 299.32496
 then e'^2 = 0.00671534 and e^2 = 0.00667054
 
-Latitude Natural Origin         49°00'00""N   = 0.85521133 rad
-Longitude Natural Origin        2°00'00""W  = -0.03490659 rad
-Scale factor ko                     0.9996013                                                                                              False Eastings FE                 400000.00 m
-False Northings FN              -100000.00 m
+Latitude of natural origin (LatO) = 49°00'00""N = 0.85521133 rad
+Longitude of natural origin (LonO) = 2°00'00""W = -0.03490659 rad
+Scale factor (ko) = 0.9996013
+False Eastings (FE) = 400000.00 m
+False Northings (FN) = -100000.00 m
 
 Forward calculation for: 
-Latitude       50°30'00.00""N  = 0.88139127 rad
-Longitude    00°30'00.00""E  = 0.00872665 rad
-A  = 0.02775415       C = 0.00271699
-T =  1.47160434       M = 5596050.46
-M0 = 5429228.60     nu  = 6390266.03
+Latitude = 50°30'00.00""N = 0.88139127 rad
+Longitude = 00°30'00.00""E = 0.00872665 rad
+Constants of the projection:
 
-Then Easting E =        577274.99 m
-          Northing N =       69740.50 m
+n = 0.00167322
+B = 6366914.609
+h1 = 0.0008347452
+h2 = 0.0000007554
+h3 = 1.18487E-09
+h4 = 2.40864E-12
+QO = 0.9787671618
+?O0 = 0.8518980373
+?O1 = 0.0008273732
+?O2 = -0.0000001986
+?O3 = -1.0918E-09
+?O4 = 1.2218E-12
+Mo = 5429228.602
+Q = 1.0191767215
+? = 0.8781064142
+?0 = 0.0278629616
+?0 = 0.8785743280
+?1 = -0.0000086229
+?1 = 0.0008215669
+?2 = -0.0000000786
+?2 = -0.0000002768
+?3 = 1.05551E-10
+?3 = -1.01855E-09
+?4 = 3.97791E-13
+?4 = 1.67447E-12
+? = 0.0278542603
+? = 0.8793956171
+Then
+Easting	E = 577274.99 metres
+Northing	N =  69740.50 metres
 
-Reverse calculations for same easting and northing first gives :
-e1 =    0.00167322      mu1 = 0.87939562
-M1 = 5599036.80        nu1 = 6390275.88
-lat1  = 0.88185987      D = 0.02775243
-rho1 =6372980.21       C1 =  0.00271391
-T1 = 1.47441726
+Reverse calculation for same easting and northing first gives:
 
-Then Latitude       = 50°30'00.000""N
-         Longitude    = 00°30'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2007/02/19,2004.680 2007.029,0
+h1' = 0.0008347455
+h2' = 0.0000000586
+h3' = 1.65563E-10
+h4' = 2.13692E-13
+Then
+?' = 0.87939562
+?' = 0.0278542603
+?1' = 0.0008213109
+?1' = -0.0000086953
+?2' = -0.0000000217
+?2' = -0.0000000061
+?3' = -1.41881E-10
+?3' = 1.486E-11
+?4' = 1.49609E-13
+?4' = 3.50657E-14
+?0' = 0.8785743280
+?0' = 0.0278629616
+?' = 0.8781064142
+Q' = 1.0191767215
+Q"" 1st iteration	= 1.0243166838
+Q"" 2nd iteration	= 1.0243306667
+Q"" 3rd iteration	= 1.0243307046
+Q"" 4th iteration	= 1.0243307047
+
+Then
+Latitude	(Lat) = 50°30'00.000""N
+Longitude (Lon) =	00°30'00.000""E",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2012/02/13,2004.680 2007.029 2011.098,0
 9808,Transverse Mercator (South Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 For the mapping of southern Africa a south oriented Transverse Mercator projection is used. Here the coordinate axes are called Westings and Southings and increment to the West and South from the origin respectively.  The standard Transverse Mercator formulas (coordinate operation method code 9807) need to be modified to cope with this arrangement with
