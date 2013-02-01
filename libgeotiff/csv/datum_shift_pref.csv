@@ -41,3 +41,9 @@
 # datum grid shift files.
 #
 4267,-1
+####################################################################
+#
+# Preferred OSGB 1936 Transformation.
+# http://trac.osgeo.org/gdal/ticket/4597
+#
+4277,1314

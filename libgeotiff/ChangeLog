@@ -1,3 +1,8 @@
+2013-01-31  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv/datum_shift_pref.csv: Force OSGB 1936 preferred datum shift.
+	(http://trac.osgeo.org/gdal/ticket/4597)
+
 2012-12-05  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* csv: Upgrade to EPSG 8.0
