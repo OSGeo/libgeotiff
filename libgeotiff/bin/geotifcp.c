@@ -81,10 +81,13 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:4:aistd")) != -1)
+	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:4:aistd8")) != -1)
 		switch (c) {
 		case 'a':		/* append to output */
 			mode = "a";
+			break;
+		case '8':		/* append to output */
+			mode = "w8";
 			break;
 		case 'd':		/* down cast 8bit to 4bit */
                         convert_8_to_4 = 1;
@@ -372,6 +375,7 @@ char* stuff[] = {
 " -4 proj4_str	install GeoTIFF metadata from proj4 string",
 " -e file	install positioning info from ESRI Worldfile <file>",
 " -a		append to output instead of overwriting",
+" -8		write BigTIFF instead of default ClassicTIFF",
 " -o offset	set initial directory offset",
 " -p contig	pack samples contiguously (e.g. RGBRGB...)",
 " -p separate	store samples separately (e.g. RRR...GGG...BBB...)",
