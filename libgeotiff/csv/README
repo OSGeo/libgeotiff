@@ -105,7 +105,10 @@ The csv files are generated from the Postgres dump provided by EPSG.
 4) Update this file to note the current version of the ESPG database being
    used.
 
-5) Commit the changes in libgeotiff repository.
+5) Commit the changes in libgeotiff repository.  It may be necessary to 
+   manually remove cntl-M (DOS LF) from some files, such as 
+   coordinate_operation_method.csv, if svn balks with a the error:
+   svn: Inconsistent line ending style
 
 
 Generating Downstream Products - GDAL
