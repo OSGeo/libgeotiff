@@ -1,7 +1,7 @@
 	EPSG Tables
 	===========
 
-VERSION: 8.0
+VERSION: 8.2
 
 The .csv files in this directory are an extract of tables from the EPSG 
 projection database in CSV (comma separated value) format.  These same
@@ -75,7 +75,7 @@ The csv files are generated from the Postgres dump provided by EPSG.
 
 1) Load epsg database into postgres instance named "epsg".
 
-   1a) Insert a line "\encoding LATIN1" at start of the _Data_ sql file. 
+   1a) Insert a line "\encoding WIN1252" at start of the _Data_ sql file. 
 
    1b) Modify the _Tables_ sql file, changing every occurance of (254) to 
    (300).  This is to ensure that text fields are still big enough 
