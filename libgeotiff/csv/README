@@ -1,7 +1,7 @@
 	EPSG Tables
 	===========
 
-VERSION: 8.2
+VERSION: 8.4
 
 The .csv files in this directory are an extract of tables from the EPSG 
 projection database in CSV (comma separated value) format.  These same
@@ -58,6 +58,8 @@ and PCS definitions should be put in the files:
 
   gcs.override.csv
   pcs.override.csv
+  vertcs.override.csv
+  esri_datum_override.csv
 
 in a format the same as the pcs.csv and gcs.csv files.  Additions to these
 tables should normally be accompanied by detailed comments and references
@@ -98,7 +100,7 @@ The csv files are generated from the Postgres dump provided by EPSG.
    Puts the results in the out directory.  After some inspection move them
    into this directory (libgeotiff/csv).
 
-3) Build the pcs and gcs csv files.
+3) Build the pcs.csv, gcs.csv, compdcs.csv and geoccs.csv files.
 
    python build_pcs.py
 
@@ -115,7 +117,9 @@ Generating Downstream Products - GDAL
 -------------------------------------
 
 Rebuild gdal_datum.csv.  Unfortunately this depends on a set of ArcGIS
-.prj files that are usually only available on Frank's machine:
+.prj files that are usually only available on Frank's machine. But it can
+also work with an alternate method if you have OGR configured with FileGDB and
+OpenFileGDB drivers (GDAL >= 1.11) :
 
  python add_esri_column.py
 
@@ -123,7 +127,8 @@ Copy the following files from libgeotiff/csv to gdal/data:
 
  coordinate_axis.csv ellipsoid.csv gcs.csv gcs.override.csv
  gdal_datum.csv pcs.csv pcs.override.csv prime_meridian.csv
- projop_wparm.csv stateplane.csv unit_of_measure.csv
+ projop_wparm.csv stateplane.csv unit_of_measure.csv geoccs.csv
+ compdcs.csv datum_shift.csv vertcs.csv vertcs.override.csv
 
 svn commit these files. 
 
@@ -137,6 +142,8 @@ the gdal/data directory (with GDAL Python scripts operational):
   rm epsg
   epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -proj4 -skip -list gcs.csv > epsg
   epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -proj4 -skip -list pcs.csv >> epsg
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -proj4 -skip -list geoccs.csv >> epsg
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -proj4 -skip -list compdcs.csv >> epsg
 
 Commit this in proj/nad.
 
@@ -149,6 +156,7 @@ From the GDAL distribution (do after updating GDAL) do the following in
 the gdal/data directory (with GDAL Python scripts operational):
 
   rm spatial_ref_sys.sql
-  epsg_tr.py -postgis -skip -list gcs.csv > spatial_ref_sys.sql
-  epsg_tr.py -postgis -skip -list pcs.csv >> spatial_ref_sys.sql
-
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list gcs.csv > spatial_ref_sys.sql
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list pcs.csv >> spatial_ref_sys.sql
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list geoccs.csv >> spatial_ref_sys.sql
+  epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list compdcs.csv >> spatial_ref_sys.sql

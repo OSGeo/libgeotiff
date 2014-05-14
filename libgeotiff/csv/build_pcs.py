@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #******************************************************************************
 #  $Id$
 # 
 #  Project:  GDAL
-#  Purpose:  Build the pcs.csv, gcs.csv and compdcs.csv tables with the minimum
-#            information required to define a PCS, GCS and COMPD_CS for GDAL.
+#  Purpose:  Build the pcs.csv, gcs.csv, compdcs.csv and geoccs.csv tables with
+#            the minimum information required to define a PCS, GCS, COMPD_CS and
+#            GEOCCS for GDAL.
 #  Author:   Frank Warmerdam, warmerdam@pobox.com
 #******************************************************************************
 #  Copyright (c) 2002, 2010, Frank Warmerdam <warmerdam@pobox.com>

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #******************************************************************************
 #  $Id$
 # 
@@ -72,6 +73,8 @@ except:
     pass
 
 in_ds = ogr.Open( 'PG:dbname=epsg host=localhost' )
+if in_ds is None:
+    in_ds = ogr.Open( 'PG:dbname=epsg' )
 out_ds = ogr.GetDriverByName('CSV').CreateDataSource('out')
 
 CopyTable( in_ds, out_ds, 'epsg_coordinatereferencesystem',
