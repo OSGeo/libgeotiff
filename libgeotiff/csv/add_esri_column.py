@@ -138,6 +138,12 @@ if prj_epsg_exists or filegdb_method:
         gcs_name = srs.GetAttrValue( 'GEOGCS' )
         datum_name = srs.GetAttrValue( 'DATUM' )
 
+        # See discussion starting at http://lists.maptools.org/pipermail/proj/2014-May/006857.html
+        if gcs_name == 'GCS_Peru96' and datum_name == 'D_SIRGAS-Chile':
+            print('WARNING: Peru96 would be translated as D_SIRGAS-Chile, but ' + \
+                  'this looks like an error from the reference data --> Overriden by D_Peru96')
+            datum_name = 'D_Peru96'
+
         esri_gcs_names[gcs_code] = gcs_name
 
         print 'GCS %d = %s, %s' % (gcs_code, gcs_name, datum_name)
