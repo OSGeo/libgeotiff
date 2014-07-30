@@ -55,13 +55,14 @@ def emit_token_line( fd, field_list, counter, varname ):
     fd.write( 'NULL};\n' )
     
 ###############################################################################
-def convert_csv_table( csv_filename ):
+def convert_csv_table( csv_filename, c_filename ):
 
     without_ext, ext = os.path.splitext( csv_filename )
-    c_filename = without_ext + '.c'
     csv_filename = without_ext + '.csv'
     varname = os.path.basename(without_ext)
-
+    
+    structname = varname.replace('.','_')
+    
     lines = csv_tools.merge_split_lines(open(csv_filename).readlines())
 
     c_fd = open( c_filename, 'w' )
@@ -70,22 +71,22 @@ def convert_csv_table( csv_filename ):
     data_lines = 0
     for line in lines:
         emit_token_line( c_fd, csv_tools.SplitCSVLine(line), data_lines,
-                         varname )
+                         structname )
         data_lines = data_lines + 1
 
-    c_fd.write( 'datafile_rows_t *%s_rows[] = {' % varname )
+    c_fd.write( 'datafile_rows_t *%s_rows[] = {' % structname )
     for i in range(data_lines):
         if i != 0:
             c_fd.write(' ,')
-        c_fd.write( '%s_row_%d' % (varname, i) )
+        c_fd.write( '%s_row_%d' % (structname, i) )
     c_fd.write( ',NULL};\n' )
     c_fd = None
 
 ###############################################################################
 # main
-if len(sys.argv) < 2:
-    print 'Usage: csv2c.py filename.csv [...]'
+if len(sys.argv) < 3:
+    print 'Usage: csv2c.py filename.csv filename.c'
     sys.exit( 1 )
 
 for arg in sys.argv[1:]:
-    convert_csv_table( arg )
+    convert_csv_table( sys.argv[1], sys.argv[2] )
