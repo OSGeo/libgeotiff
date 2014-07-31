@@ -1432,6 +1432,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
     double dfFalseEasting = 0.0, dfFalseNorthing = 0.0, dfNatOriginScale = 1.0;
     double dfStdParallel1 = 0.0, dfStdParallel2 = 0.0, dfAzimuth = 0.0;
     int iParm;
+    int bHaveSP1, bHaveNOS;
 
 /* -------------------------------------------------------------------- */
 /*      Get the false easting, and northing if available.               */
@@ -1492,8 +1493,64 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         break;
 
 /* -------------------------------------------------------------------- */
-      case CT_LambertConfConic_1SP:
       case CT_Mercator:
+/* -------------------------------------------------------------------- */
+        if( GTIFKeyGet(psGTIF, ProjNatOriginLongGeoKey,
+                       &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjFalseOriginLongGeoKey,
+                          &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjCenterLongGeoKey,
+                          &dfNatOriginLong, 0, 1 ) == 0 )
+            dfNatOriginLong = 0.0;
+
+        if( GTIFKeyGet(psGTIF, ProjNatOriginLatGeoKey,
+                       &dfNatOriginLat, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjFalseOriginLatGeoKey,
+                          &dfNatOriginLat, 0, 1 ) == 0
+            && GTIFKeyGet(psGTIF, ProjCenterLatGeoKey,
+                          &dfNatOriginLat, 0, 1 ) == 0 )
+            dfNatOriginLat = 0.0;
+
+
+        bHaveSP1 = GTIFKeyGet(psGTIF, ProjStdParallel1GeoKey,
+                              &dfStdParallel1, 0, 1 );
+
+        bHaveNOS = GTIFKeyGet(psGTIF, ProjScaleAtNatOriginGeoKey,
+                              &dfNatOriginScale, 0, 1 );
+
+        /* Default scale only if dfStdParallel1 isn't defined either */
+        if( !bHaveNOS && !bHaveSP1)
+        {
+            bHaveNOS = TRUE;
+            dfNatOriginScale = 1.0;
+        }
+
+        /* notdef: should transform to decimal degrees at this point */
+
+        psDefn->ProjParm[0] = dfNatOriginLat;
+        psDefn->ProjParmId[0] = ProjNatOriginLatGeoKey;
+        psDefn->ProjParm[1] = dfNatOriginLong;
+        psDefn->ProjParmId[1] = ProjNatOriginLongGeoKey;
+        if( bHaveSP1 )
+        {
+            psDefn->ProjParm[2] = dfStdParallel1;
+            psDefn->ProjParmId[2] = ProjStdParallel1GeoKey;
+        }
+        if( bHaveNOS )
+        {
+            psDefn->ProjParm[4] = dfNatOriginScale;
+            psDefn->ProjParmId[4] = ProjScaleAtNatOriginGeoKey;
+        }
+        psDefn->ProjParm[5] = dfFalseEasting;
+        psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
+        psDefn->ProjParm[6] = dfFalseNorthing;
+        psDefn->ProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        psDefn->nParms = 7;
+        break;
+
+/* -------------------------------------------------------------------- */
+      case CT_LambertConfConic_1SP:
       case CT_ObliqueStereographic:
       case CT_TransverseMercator:
       case CT_TransvMercator_SouthOriented:
