@@ -116,9 +116,9 @@ The csv files are generated from the Postgres dump provided by EPSG.
 Generating Downstream Products - GDAL
 -------------------------------------
 
-Rebuild gdal_datum.csv.  Unfortunately this depends on a set of ArcGIS
-.prj files that are usually only available on Frank's machine. But it can
-also work with an alternate method if you have OGR configured with FileGDB and
+Rebuild gdal_datum.csv.  Unfortunately this depends on a set of ArcGIS .prj
+files that are usually only available on Frank's machine. But it can also work
+with an alternate method if you have OGR configured with both the FileGDB and
 OpenFileGDB drivers (GDAL >= 1.11) :
 
  python add_esri_column.py
