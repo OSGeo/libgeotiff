@@ -59,7 +59,7 @@
 # Based on discussions on the brazil chapter list, documented at:
 # http://wiki.osgeo.org/wiki/Brazilian_Coordinate_Reference_Systems
 # 
-# Prefer the +towgs84=-67.35,3.88,-38.22 setting for (pre95) SAD69.
+# Prefer the +towgs84=-66.87,4.37,-38.52 setting
 #
 4618,1877
 ####################################################################
