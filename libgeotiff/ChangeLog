@@ -1,3 +1,8 @@
+2014-09-13 Howard Butler <howard@hobu.co>
+	* CMake: Support for INCODE build. If you need INCODE support,
+	with the definitions compiled into headers, use CMake as your
+	configuration/build platform.
+
 2014-09-13  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* csv: Override three Brazilian datum shifts on behalf of Daniel
