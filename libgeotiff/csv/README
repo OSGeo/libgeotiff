@@ -1,9 +1,9 @@
 	EPSG Tables
 	===========
 
-VERSION: 8.4
+VERSION: 8.5
 
-The .csv files in this directory are an extract of tables from the EPSG 
+The .csv files in this directory are an extract of tables from the EPSG
 projection database in CSV (comma separated value) format.  These same
 files come with the source distribution in the libgeotiff/csv directory.
 
@@ -13,31 +13,31 @@ Detailed information on the EPSG database can be found at:
 
 Most EPSG tables have been dumped to csv.  Unlike earlier dumps (4.3) these
 are intended to be "true" csv files.  In particular quotes within quoted
-strings are doubled to escape them, rather than using backslash quoting.  
-Newlines may appear within quoted field values (as real raw newline 
+strings are doubled to escape them, rather than using backslash quoting.
+Newlines may appear within quoted field values (as real raw newline
 characters).  All table names are converted to lower case, and spaces replaced
-with underscores to make them more easily worked with. 
+with underscores to make them more easily worked with.
 
 In addition to the EPSG tables dumped to csv, the following additional items
 are present:
 
  stateplane.csv: my own effort to related "USGS" state plane numbers with their
-                 currently preferred EPSG coordinate reference system 
-                 counterpart. 
+                 currently preferred EPSG coordinate reference system
+                 counterpart.
 
  pcs.csv: An attempt to collect most information about a PCS, including the
-          projection parameters into one fast access file. 
+          projection parameters into one fast access file.
  gcs.csv: An attempt to collect most information about a GCS, including
           the WGS84 shift parameters (if there is only one path in EPSG).
- projop_wparm.csv: Projection operations with projection parameters.  
+ projop_wparm.csv: Projection operations with projection parameters.
           Essentially the coordinate_operation.csv table with the parameters
-          from coordinate_operation_parameter_values.csv appended to each 
+          from coordinate_operation_parameter_values.csv appended to each
           record.
  build_pcs.py: a python script to build pcs.csv and gcs.csv from the other
-               EPSG files. 
+               EPSG files.
  csv_tools.py: supportting python functions for build_pcs.py.
  csv.txt: A definition of the csv format.
- 
+
 Libgeotiff uses the following tables.  The rest are present for completeness.
 
  pcs.csv
@@ -63,11 +63,11 @@ and PCS definitions should be put in the files:
 
 in a format the same as the pcs.csv and gcs.csv files.  Additions to these
 tables should normally be accompanied by detailed comments and references
-to any relavent tickets.  
+to any relavent tickets.
 
 Note that we deliberately keep alterations separate from the EPSG definitions
 in gcs.csv and pcs.csv to avoid violating the EPSG distribution license
-which requires that the definitions be distributed in unaltered form.  
+which requires that the definitions be distributed in unaltered form.
 
 
 Generating CSV Files
@@ -77,21 +77,21 @@ The csv files are generated from the Postgres dump provided by EPSG.
 
 1) Load epsg database into postgres instance named "epsg".
 
-   1a) Insert a line "\encoding WIN1252" at start of the _Data_ sql file. 
+   1a) Insert a line "\encoding WIN1252" at start of the _Data_ sql file.
 
-   1b) Modify the _Tables_ sql file, changing every occurance of (254) to 
-   (300).  This is to ensure that text fields are still big enough 
-   after Latin1 special characters are expanded into multi-byte 
-   UTF8 characters. 
+   1b) Modify the _Tables_ sql file, changing every occurance of (254) to
+   (300).  This is to ensure that text fields are still big enough
+   after Latin1 special characters are expanded into multi-byte
+   UTF8 characters.
 
    1c) run "load_pg.sh" in the directory where the .sql files are found.
 
-   eg. 
- 
+   eg.
+
      ../load_pg.sh >& log
 
    1d) Make sure you search the log file for "error" in case something went
-   wrong. 
+   wrong.
 
 2) Dump the database to .csv files in the libgeotiff/csv directory.
 
@@ -107,8 +107,8 @@ The csv files are generated from the Postgres dump provided by EPSG.
 4) Update this file to note the current version of the ESPG database being
    used.
 
-5) Commit the changes in libgeotiff repository.  It may be necessary to 
-   manually remove cntl-M (DOS LF) from some files, such as 
+5) Commit the changes in libgeotiff repository.  It may be necessary to
+   manually remove cntl-M (DOS LF) from some files, such as
    coordinate_operation_method.csv, if svn balks with a the error:
    svn: Inconsistent line ending style
 
@@ -130,7 +130,7 @@ Copy the following files from libgeotiff/csv to gdal/data:
  projop_wparm.csv stateplane.csv unit_of_measure.csv geoccs.csv
  compdcs.csv datum_shift.csv vertcs.csv vertcs.override.csv
 
-svn commit these files. 
+svn commit these files.
 
 
 Generating Downstream Products - PROJ.4

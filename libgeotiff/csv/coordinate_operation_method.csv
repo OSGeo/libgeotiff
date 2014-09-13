@@ -212,7 +212,7 @@ rY ("") = 0.000
 rZ ("") = -0.554 = -0.000002685868 radians
 Scale (ppm) = +0.219
 
-Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",Note the analogy with the Position Vector tfm (code 1033) but beware of the differences!  The Position Vector convention is used by IAG and recommended by ISO 19111. See methods 1038 and 9607 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/07/21,2009.083 2013.021,0
+Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",This method is a specific case of the Molodensky-Badekas (CF) method (code 1034) in which the evaluation point is at the geocentre with coordinate values of zero. Note the analogy with the Position Vector method (code 1033) but beware of the differences!,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2009.083 2013.021 2014.039,0
 1033,Position Vector transformation (geocentric domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The transformation between source and target CRS geocentric coordinates is usually described as a simplified 7-parameter Helmert transformation, expressed in matrix form with 7 parameters, in what is known as the ""Bursa-Wolf"" formula:
@@ -248,8 +248,8 @@ Transformation parameters WGS 72 to WGS 84:
 Application of this 7 parameter Position Vector Transformation results in WGS 84 geocentric coordinates of:
    X = 3 657 660.78 (m)
    Y =    255 778.43 (m)
-   Z =  5 201 387.75 (m)",Note the analogy with the Coordinate Frame Rotation (code 1032) but beware of the differences!  The Position Vector convention is used by IAG and recommended by ISO 19111. See methods 1037 and 9606 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/07/21,2009.083 2013.021,0
-1034,Molodensky-Badekas (geocentric domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+   Z =  5 201 387.75 (m)",This method is a specific case of the Molodensky-Badekas (PV) method (code 1061) in which the evaluation point is the geocentre with coordinate values of zero. Note the analogy with the Coordinate Frame method (code 1032) but beware of the differences!,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2009.083 2013.021 2014.039,0
+1034,Molodensky-Badekas (CF geocentric domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To eliminate high correlation between the translations and rotations in the derivation of parameter values for the Helmert transformation methods (coordinate operation method codes 1032 and 1033), instead of the rotations being derived about the geocentric coordinate reference system origin they may be derived at a location within the points used in the determination. Three additional parameters, the coordinates of the rotation point, are then required. The formula is:
 
@@ -291,7 +291,7 @@ Transformation parameters La Canoa to REGVEN:
 Application of the 10 parameter Molodenski-Badekas Transformation results in REGVEN geocentric coordinates of:
    Xt =  2 550 138.467 m
    Yt = -5 749 799.862 m
-   Zt  =  1 054 530.826 m",The Coordinate Frame Rotation is a specific case of the Molodenski-Badekas tfm in which the evaluation point is at the geocentre where geocentric coordinate values are zero. See methods 1039 and 9636 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/07/21,2009.083 2013.021,0
+   Zt  =  1 054 530.826 m",See method codes 1039 and 9636 for this operation in other coordinate domains and method code 1061 for opposite rotation convention in geocentric domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2009.083 2013.021 2014.039,0
 1035,Geocentric translations  (geog3D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
@@ -387,9 +387,9 @@ rZ ("") = -0.554 = -0.000002685868 radians
 Scale (ppm) = +0.219
 
 Please note that only the rotation has changed sign as compared to the Position Vector Transformation.",Note the analogy with the Position Vector tfm (code 1037) but beware of the differences!  The Position Vector convention is used by IAG and recommended by ISO 19111. See methods 1032 and 9607 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/07/21,2009.083 2013.021,0
-1039,Molodensky-Badekas (geog3D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+1039,Molodensky-Badekas (CF geog3D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
-Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
+Transformation of coordinates from one geographic coordinate reference system into another is carried out as a concatenation of the following operations:
 
   (geographical to geocentric) + (geocentric to geocentric) + (geocentric to geographic)
 
@@ -431,7 +431,7 @@ This converts into:
    Latitude =       9 deg 34 min 49.001 sec N
    Longitude =  66 deg 04 min 54.705 sec W
    Ellipsoidal height =  -18.10 m
-on the REGVEN geographic 3D coordinate reference system.",See methods 1034 and 9636 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/07/21,2009.083 2013.021,0
+on the REGVEN geographic 3D coordinate reference system.",See method codes 1034 and 9636 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 3D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2009.083 2013.021 2014.039,0
 1040,GNTRANS,1,"GNTRANS is a multistage three-dimensional transformation approach. Starting with a conventional seven-parameter transformation, the next stage functionally models the residuals at identical points using a unique, continuous spline surface. The final stage is a stochastic prediction to describe remaining discrepancies. For application and to improve performance, topocentric coordinate offsets are interpolated from a regular grid derived from the above transformation to determine coordinates of an arbitrary input point in the target system and vice-versa.",,,Geo++.,OGP,2010/03/30,2010.037,0
 1041,Krovak (North Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -1511,6 +1511,147 @@ Then:
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
 and     H = the geoid height in the target vertical CRS.",(none),For consistency with earlier models the Information Source references software which uses bi-quadratic interpolation. Because of denser node spacing in CGG2013 bi-linear interpolation will be sufficient for most uses. See Info Source for file format doc.,"Geodetic Survey Division, Natural Resources Canada.",OGP,2013/12/13,2013.064,0
+1061,Molodensky-Badekas (PV geocentric domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+To eliminate high correlation between the translations and rotations in the derivation of parameter values for the Helmert transformation methods (coordinate operation method codes 1032 and 1033), instead of the rotations being derived about the geocentric coordinate reference system origin they may be derived at a location within the points used in the determination. Three additional parameters, the coordinates of the rotation point, are then required. The formula is:
+
+   (Xt)          (  1       -rZ    +rY)     (Xs - Xp)     (Xp)     (tX)
+   (Yt)  =  M *  ( +rZ      1      -rX)  *  (Ys - Yp)  +  (Yp)  +  (tY)
+   (Zt)          ( -rY   +rX       1 )      (Zs - Zp)     (Zp)     (tZ)
+
+and the parameters are defined as:
+
+(tX, tY, tZ)   : Translation vector, to be added to the point's position vector in the source coordinate system in order to transform from source coordinate reference system to target coordinate reference system; also: the coordinates of the origin of source coordinate reference system in the target frame.
+
+(rX, rY, rZ)   :Rotations to be applied to the point's vector.  The sign convention is such that a positive rotation about an axis is defined as a clockwise rotation of the position vector when viewed from the origin of the Cartesian coordinate reference system in the positive direction of that axis; e.g. a positive rotation about the Z-axis only from source system to target system will result in a larger longitude value for the point in the target system.  Although rotation angles may be quoted in any angular unit of measure, the formula as given here requires the angles to be provided in radians.
+
+(Xp, Yp, Zp)   : Coordinates of the point about which the coordinate reference frame is rotated, given in the source Cartesian coordinate reference system. 
+
+M                  : The scale factor to be applied to the position vector in the source coordinate reference system  in order to obtain the correct scale of the target coordinate reference system. M = (1+dS*10^-6), where dS is the scale correction expressed in parts per million.
+
+Reversibility.
+The Molodensky-Badekas (PV) transformation in a strict mathematical sense is not reversible, i.e. in principle the same parameter values cannot be used to execute the reverse transformation. This is because the evaluation point coordinates are in the forward direction source coordinate reference system and the rotations have been derived about this point. They should not be applied about the point having the same coordinate values in the target coordinate reference system, as is required for the reverse transformation. However, in practical application there are exceptions when applied to the approximation of small differences between the geometry of a set of points in two different coordinate reference systems. The typical vector difference in coordinate values is in the order of 6*10^1 to 6*10^2 metres, whereas the evaluation point on or near the surface of the earth is 6.3*10^6 metres from the origin of the coordinate systems at the Earth's centre. This difference of four or five orders of magnitude allows the transformation in practice to be considered reversible. Note that in the reverse transformation, only the signs of the translations and rotation parameter values are reversed; the coordinates of the evaluation point remain unchanged.","Input point: 
+Coordinate reference system: La Canoa 
+
+Cartesian geocentric coords:
+   Xs =  2 550 408.965 m
+   Ys = -5 749 912.266 m
+   Zs =   1 054 891.114 m
+
+Transformation parameters La Canoa to REGVEN:
+   tX  = -270.933 m
+   tY  = +115.599 m
+   tZ  = -360.226 m
+   rX   = 5.266 sec = 0.000025530288 radians
+   rY  = 1.238 sec = 0.000006001993 radians
+   rZ  = -2.381 sec = -0.000011543414 radians
+   dS   = -5.109 ppm
+   Ordinate 1 of evaluation point  = 2464351.59 m
+   Ordinate 2 of evaluation point = -5783466.61 m
+   Ordinate 3 of evaluation point =    974809.81 m
+
+Application of the 10 parameter Molodenski-Badekas (PV) transformation results in REGVEN geocentric coordinates of:
+   Xt =  2 550 138.467 m
+   Yt = -5 749 799.862 m
+   Zt  =  1 054 530.826 m",See method codes 1062 and 1063 for this operation in other coordinate domains and method code 1034 for opposite rotation convention in geocentric domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/17,2014.039,0
+1062,Molodensky-Badekas (PV geog3D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+Transformation of coordinates from one geographic coordinate reference system into another is carried out as a concatenation of the following operations:
+
+  (geographical to geocentric) + (geocentric to geocentric) + (geocentric to geographic)
+
+The Molodensky-Badekas (geog3D domain) transformation has 3 steps:
+
+(i) geographic 3D coordinates are converted to geocentric coordinates using EPSG coordinate operation method code 9602;
+
+(ii) the middle step of the concatenated transformation, from geocentric coordinates to geocentric coordinates, uses the Molodensky-Badekas (PV geocentric domain) method, EPSG method code 1061;
+
+(iii) finally the geocentric coordinates are converted to geographic 3D using EPSG coordinate operation method code 9602.","Input point: 
+Coordinate reference system: La Canoa (geographic 3D)
+  Latitude =     9 deg 35 min 00.386 sec N
+  Longitude = 66 deg 04 min 48.091 sec W
+  Ellipsoidal height hS  =  201.465 m
+
+This transforms to Cartesian geocentric coords:
+   Xs =  2 550 408.965 m
+   Ys = -5 749 912.266 m
+   Zs =   1 054 891.114 m
+
+Transformation parameters La Canoa to REGVEN:
+   tX  = -270.933 m
+   tY  = +115.599 m
+   tZ  = -360.226 m
+   rX   =  5.266 sec =  0.000025530288 radians
+   rY  =  1.238 sec =  0.000006001993 radians
+   rZ  = -2.381 sec = -0.000011543414 radians
+   dS   = -5.109 ppm
+   Coordinate 1 of evaluation point  = 2464351.59 m
+   Coordinate 2 of evaluation point = -5783466.61 m
+   Coordinate 3 of evaluation point =    974809.81 m
+
+Application of the Molodenski-Badekas (geocentric domain) Transformation results in REGVEN geocentric coordinates of:
+   Xt =  2 550 138.467 m
+   Yt = -5 749 799.862 m
+   Zt  =  1 054 530.826 m
+
+This converts into:
+   Latitude =       9 deg 34 min 49.001 sec N
+   Longitude =  66 deg 04 min 54.705 sec W
+   Ellipsoidal height =  -18.10 m
+on the REGVEN geographic 3D coordinate reference system.",See method codes 1061 and 1063 for this operation in other coordinate domains and method code 1039 for opposite rotation convention in geographic 3D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/17,2014.039,0
+1063,Molodensky-Badekas (PV geog2D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+Transformation of coordinates from one geographic coordinate reference system into another is carried out as a concatenation of the following operations:
+
+  (geographical to geocentric) + (geocentric to geocentric) + (geocentric to geographic)
+
+The Coordinate Frame Rotation (geog2D domain) transformation has 5 steps:
+
+(i) geographic 2D coordinates are converted to 3D using EPSG coordinate operation method code 9659;
+
+(ii) geographic 3D coordinates are converted to geocentric coordinates using EPSG coordinate operation method code 9602;
+
+(iii) the middle step of the concatenated transformation, from geocentric coordinates to geocentric coordinates, uses the Molodensky-Badekas (PV geocentric domain) method, EPSG method code 1061;
+
+(iv) the geocentric coordinates are converted to geographic 3D using EPSG coordinate operation method code 9602;
+ 
+(v) finally the geographic 3D coordinates are converted to geographic 2D using EPSG coordinate operation method code 9659.","Input point: 
+Coordinate reference system: La Canoa (geographic 2D)
+  Latitude =     9 deg 35 min 00.386 sec N
+  Longitude = 66 deg 04 min 48.091 sec W
+This is taken to be geographic 3D with an assumed Ellipsoidal height hs  =  201.465 m
+
+This transforms to Cartesian geocentric coords:
+   Xs =  2 550 408.965 m
+   Ys = -5 749 912.266 m
+   Zs =   1 054 891.114 m
+
+Transformation parameters La Canoa to REGVEN:
+   tX  = -270.933 m
+   tY  = +115.599 m
+   tZ  = -360.226 m
+   rX   =  5.266 sec =  0.000025530288 radians
+   rY  =  1.238 sec =  0.000006001993 radians
+   rZ  = -2.381 sec = -0.000011543414 radians
+   dS   = -5.109 ppm
+   Coordinate 1 of evaluation point  = 2464351.59 m
+   Coordinate 2 of evaluation point = -5783466.61 m
+   Coordinate 3 of evaluation point =    974809.81 m
+
+Application of the 10 parameter Molodenski-Badekas Transformation results in REGVEN geocentric coordinates of:
+   Xt =  2 550 138.467 m
+   Yt = -5 749 799.862 m
+   Zt  =  1 054 530.826 m
+
+This converts into:
+   Latitude =       9 deg 34 min 49.001 sec N
+   Longitude =  66 deg 04 min 54.705 sec W
+   Ellipsoidal height =  -18.10 m
+on the REGVEN geographic 3D coordinate reference system.
+
+Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
+   Latitude =       9 deg 34 min 49.001 sec N
+   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1061 and 1062 for this operation in other coordinate domains and method code 9636 for opposite rotation in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/17,2014.039,0
 9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/11/12,1999.790,0
 9602,Geographic/geocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -2235,9 +2376,9 @@ h=H+N for Geographic2D+GravityRelatedHeight to Geographic3D
 
 where h = the ellipsoidal height (height above the ellipsoid in a geographic 3D CRS)
 and H = the gravity-related height (vertical CRS) component of the compound CRS.",(none),"Transformation from a Geographic 3D CRS to a Compound CRS consisting of a Geographic 2D CRS and a Vertical CRS, or vice versa. The Geographic 3D and the Geographic 2D CRS must be based on the same Geodetic Datum.","EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/27,2004.190 2004.340,0
-9636,Molodensky-Badekas (geog2D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+9636,Molodensky-Badekas (CF geog2D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
-Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
+Transformation of coordinates from one geographic coordinate reference system into another is carried out as a concatenation of the following operations:
 
   (geographical to geocentric) + (geocentric to geocentric) + (geocentric to geographic)
 
@@ -2287,7 +2428,7 @@ on the REGVEN geographic 3D coordinate reference system.
 
 Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
    Latitude =       9 deg 34 min 49.001 sec N
-   Longitude =  66 deg 04 min 54.705 sec W",See methods 1034 and 1039 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/07/21,2002.510 2004.470 2009.083 2013.021,0
+   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1034 and 1039 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2002.510 2004.470 2009.083 2013.021 2014.039,0
 9637,Degree representation conversion: deg to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
