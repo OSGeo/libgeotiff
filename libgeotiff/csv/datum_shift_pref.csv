@@ -30,6 +30,13 @@
 4284,1267
 ####################################################################
 #
+# Seven-parameter transformation for Pulkovo 1942(58)
+# as discussed on http://trac.osgeo.org/geotiff/ticket/52 and
+# https://trac.osgeo.org/postgis/ticket/1851
+#
+4179,15995
+####################################################################
+#
 # From Jan: http://bugzilla.remotesensing.org/show_bug.cgi?id=1336, 
 # and michael: http://trac.osgeo.org/gdal/ticket/3362
 # and followup from Michael: http://trac.osgeo.org/geotiff/ticket/32

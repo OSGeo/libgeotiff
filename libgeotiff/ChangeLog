@@ -1,5 +1,8 @@
 2014-09-13  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* csv/datum_shift_pref.csv: Update Pulkova 1942(58) to use a 
+	particular transformation (#52).
+
 	* bin/geotifcp.c: added B, L, C and M flags from tiffcp (#68)"
 
 	* geo_print.c: clarify that the buffer passed to read methods is only
