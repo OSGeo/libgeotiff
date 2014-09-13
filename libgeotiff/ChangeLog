@@ -1,3 +1,29 @@
+2014-09-13 Howard Butler <howard@hobu.co>
+	* csv: Upgrade to EPSG 8.5
+
+2014-07-30 Howard Butler <howard@hobu.co>
+	* INCODE: Adapt Ben Adler's patch in #66 to add INCODE support to the
+	CMake configuration
+
+2014-07-30 Howard Butler <howard@hobu.co>
+	* geo_normalize.c: #59, better Mercator_2SP support
+
+2014-07-30 Howard Butler <howard@hobu.co>
+	* geotifcp: Do not segfault when a TIFF file has WhitePoint set #65
+
+2014-07-30 Howard Butler <howard@hobu.co>
+	* geo_names.c: fix #67 -- add VerticalUnitsGeoKey
+
+2014-05-16 Even Roualt <even.rouault@spatialys.com>
+	* add_esri_column.py: manually replace D_SIRGAS-Chile by D_Peru96 for GCS_Peru96. Likely an error in the FileGDB SDK db (#63)
+
+2014-05-14 Even Roualt <even.rouault@spatialys.com>
+	* csv: Upgrade to EPSG 8.4
+
+2013-05-08  Frank Warmerdam  <warmerdam@pobox.com>
+	* tiffcp: Add bigtiff output support with the -8 flag like tiffcp.  Contributed by
+	Mohannad Al-Durgham (nwgeo.com).
+
 2013-10-01  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* csv: Upgrade to EPSG 8.2
@@ -71,7 +97,7 @@
 
 2011-06-15  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* LICENSE: updated to latest EPSG terms of use details which 
+	* LICENSE: updated to latest EPSG terms of use details which
 	clarify commercial use allowed.
 
 2011-05-23  Frank Warmerdam  <warmerdam@pobox.com>
@@ -86,13 +112,13 @@
 
 	* Makefile.am: Do not distribute geo_config.h - it should be generated.
 
-	* bin/csv2html.c: Removed (#6) 
+	* bin/csv2html.c: Removed (#6)
 
 	* csv/datum_shift_pref.csv: update Belge 1972 preferred datum shift(#32)
 
 	* man: add listgeo man page (#1)
 
-	* Makefile.am (SUBDIRS): 
+	* Makefile.am (SUBDIRS):
 
 	* csv/*.csv: Upgrade to EPSG 7.6 database.
 
@@ -100,7 +126,7 @@
 
 	* geo_normalize.c: Add support for cylindrical equal area from EPSG
 	(http://trac.osgeo.org/gdal/ticket/4068)
-	
+
 2011-05-06  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_normalize.c: Fix so that false easting/northing values read from
@@ -125,13 +151,13 @@
 2011-02-24  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_strtod.c, geo_normalize.c: Provide a locale-safe implementation
-	of atof() and use it when parsing values from .csv files. 
+	of atof() and use it when parsing values from .csv files.
 
 	http://trac.osgeo.org/gdal/ticket/3979
 
 2011-02-11  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geotiff_proj4.c, geo_normalize.c: fix a few warnings for type casts, 
+	* geotiff_proj4.c, geo_normalize.c: fix a few warnings for type casts,
 	and uninitialized variables.
 
 2011-01-28  Frank Warmerdam  <warmerdam@pobox.com>
@@ -141,7 +167,7 @@
 2010-10-05  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_new.c, geo_simpletags.c: Fix simple tags so it includes the
-	'\0' char at the end of strings just like a real tiff.  Modify 
+	'\0' char at the end of strings just like a real tiff.  Modify
 	geo_new.c so we only drop the trailing '\0' char if that is what it
 	really is.  All loosely related to:
 	http://trac.liblas.org/ticket/188
@@ -158,7 +184,7 @@
 
 2010-05-09  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_new.c: Avoid memory overrun if more than MAX_VALUES geokeys 
+	* geo_new.c: Avoid memory overrun if more than MAX_VALUES geokeys
 	are encountered (#27).
 
 	* configure.ac: fix --with-libz and --with-zlib aliases (#23)
@@ -172,7 +198,7 @@
 
 	* Preparing 1.3.0 release.
 
-	* csv/*.c, cpl_csv_incode.c, geo_incode_defs.h, Makefile.am: rename 
+	* csv/*.c, cpl_csv_incode.c, geo_incode_defs.h, Makefile.am: rename
 	defs.h to geo_incode_defs.h and include it in distribution so incode
 	table support will work out of the box.
 
@@ -181,7 +207,7 @@
 	* geo_names.c: ensure that VerticalUnitsGeoKey works properly.
 
 	* geo_write.c: switch SortKeys() to a simple bubble sort so we don't
-	end up crashing when rewriting screwn geotiff tag sets with 
+	end up crashing when rewriting screwn geotiff tag sets with
 	duplicate geokeys (like some LAS files with multiple zero dummy tags)
 
 	* geo_new.c: resize short and double arrays bigger when reading
@@ -190,7 +216,7 @@
 2010-01-03  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Makefile.am: set versioninfo to 2:0:0 as required by the change for
-	1.3.0 in the ABI due to change of size of GTIFDefn structure. 
+	1.3.0 in the ABI due to change of size of GTIFDefn structure.
 	(#19, GDAL #3309)
 
 2009-12-30  Frank Warmerdam  <warmerdam@pobox.com>
@@ -200,7 +226,7 @@
 
 2009-11-11  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: Recognise 9841 and 1024 projection methods as 
+	* geo_normalize.c: Recognise 9841 and 1024 projection methods as
 	CT_Mercator: http://trac.osgeo.org/gdal/ticket/3217
 
 2009-10-19  Frank Warmerdam  <warmerdam@pobox.com>
@@ -215,7 +241,7 @@
 
 	* autogen.sh: adjust to avoid version conflicts (#10).
 
-	* geo_normalize.c/h, geotiff_proj4.c: Added DefnSet to GTIFDefn so 
+	* geo_normalize.c/h, geotiff_proj4.c: Added DefnSet to GTIFDefn so
 	it can be properly established if a definition was set or if there
 	were no geokeys (#12).  Corrects serious interim bug in geotiff_proj4.c
 
@@ -248,8 +274,8 @@
 
 2009-04-22  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalizec: Do not call CSVDeaccess() by default in getdefn - 
-	leave it to the application.  
+	* geo_normalizec: Do not call CSVDeaccess() by default in getdefn -
+	leave it to the application.
 
 	* Remove all the $Log logs.
 
@@ -276,12 +302,12 @@
 
 2008-11-27  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: Introduce support for StdParallel1 in 
+	* geo_normalize.c: Introduce support for StdParallel1 in
 	Equirectangular (http://trac.osgeo.org/gdal/ticket/2706)
 
 2008-11-12  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* bin/applygeo.c: New utility for applying georeferencing to an 
+	* bin/applygeo.c: New utility for applying georeferencing to an
 	existing file (written by jeskynar@hotmail.com and myself).
 
 2008-10-24  Frank Warmerdam  <warmerdam@pobox.com>
@@ -298,7 +324,7 @@
 
 	* geo_normalize.c: Fix potential buffer overflow in GTIFAngleStringToDD
 	http://trac.osgeo.org/gdal/ticket/2228
-	
+
 2008-05-21  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* bin/geotifcp.c: Support for -4 option to set from proj.4 def.
@@ -309,7 +335,7 @@
 
 	* geo_simpletags.{c,h}, geo_new.c, geotiff.h: Introduce "simple tags"
 	API for parsing geotiff tags that don't come via libtiff.  Mostly for
-	use of liblas. 
+	use of liblas.
 
 2008-01-31  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -363,7 +389,7 @@
 
 2006-11-11  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* xtiff.c, xtiffio.h: Made XTIFFInitialize() public so that 
+	* xtiff.c, xtiffio.h: Made XTIFFInitialize() public so that
 	applications can call it themselves when using alternate opens.
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=1296
 
@@ -401,7 +427,7 @@
 
 2005-03-15  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: If a zero inverse flattening is encountered, 
+	* geo_normalize.c: If a zero inverse flattening is encountered,
 	interprete this as implying a semiminor axis equal to the semimajor.
 
 2005-03-03  Frank Warmerdam  <warmerdam@pobox.com>
@@ -428,7 +454,7 @@
 
 2004-12-01  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: GTIFGetGCSInfo() changed to work even if an 
+	* geo_normalize.c: GTIFGetGCSInfo() changed to work even if an
 	illegal PM code encountered ... as long as pm info not requested.
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=698
 
@@ -440,16 +466,16 @@
 2004-10-19  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_print.c: fixed serious bug with reporting large numbers of
-	GCPs.  Patch from Oliver Colin (ESA). 
+	GCPs.  Patch from Oliver Colin (ESA).
 
 2004-07-09  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: added 9122 as a simple degree alias in 
+	* geo_normalize.c: added 9122 as a simple degree alias in
 	GTIFGetUOMAngleInfo().
 
 2004-06-07  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c: fallback to using gdal_datum.csv if datum.csv 
+	* geo_normalize.c: fallback to using gdal_datum.csv if datum.csv
 	not found.
 
 ==============================================================================
@@ -460,13 +486,13 @@
 
 2004-04-29  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* xtiffio.h: Avoid including cpl_serv.h, moved to geo_tiffp.h 
+	* xtiffio.h: Avoid including cpl_serv.h, moved to geo_tiffp.h
 	so that only libgeotiff code will end up seeing cpl_serv defines.
 
 2004-04-27  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_new.c, geo_write.c, geo_print.c: Make it possible to 
-	create a GTIF information object *without* an associated TIFF *. 
+	* geo_new.c, geo_write.c, geo_print.c: Make it possible to
+	create a GTIF information object *without* an associated TIFF *.
 
 2004-03-23  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -474,7 +500,7 @@
 
 	* Reconvert the EPSG 6.5 files to C.
 
-	* Wrote csv/csv2c.py for converting .csv file to .c. 
+	* Wrote csv/csv2c.py for converting .csv file to .c.
 
 	* Capture EPSG 6.5 csv files.
 
@@ -487,18 +513,18 @@
 2003-09-23  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_print.c: fixed PrintKey() to work for constant names longer
-	than the message buffer.  
+	than the message buffer.
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=399
 
 2003-09-02  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* geo_new.c: various hacks so that with improperly terminated ascii
-	parameters such as "34737 (0x87b1) ASCII (2) 9<Mercator\0>" will 
+	parameters such as "34737 (0x87b1) ASCII (2) 9<Mercator\0>" will
 	still work.  eg. 1164-0.tif
 
 2003-07-08  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_normalize.c, geo_print.c, geo_set.c, geo_tiffp.c, geo_trans.c, 
+	* geo_normalize.c, geo_print.c, geo_set.c, geo_tiffp.c, geo_trans.c,
 	geo_write.c, geotiff_proj4.c: fix various warnings.
 
 ==============================================================================
@@ -508,14 +534,14 @@
 	* bin/Makefile.in: Removed the "prep" target for copying the geotiff
 	shared library ... not necessary with -L.. (I hope).
 
-	* configure.in: don't let -ltiff get added to LIBS multiple times. 
+	* configure.in: don't let -ltiff get added to LIBS multiple times.
 
 	* Prepared 1.2.1 release
 
 2003-06-19  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_new.c: Fixed bug that can corrupt memory when an invalid 
-	GeoTIFF file with a zero length ascii parms strings is read (like 
+	* geo_new.c: Fixed bug that can corrupt memory when an invalid
+	GeoTIFF file with a zero length ascii parms strings is read (like
 	bruce.tif).
 
 2003-06-03  Frank Warmerdam  <warmerdam@pobox.com>
@@ -545,13 +571,13 @@
 	a crash if a missing record was requested.
 
 	* cpl_csv_incode.c, Makefile.in, csv/*: Reincorporated "incode"
-	support as per patches from Derrick. 
+	support as per patches from Derrick.
 
 	* cpl_serv.h: added #define for gtGetFileFieldId.
 
 	* cpl_csv.c: changed CSVFilename() to search for pcs.csv, not
 	horiz_cs.csv.
-	
+
 2003-01-19  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Makefile.in, bin/Makefile.in: added dist-clean target.
@@ -571,7 +597,7 @@
 	call for applications to force all CSV files to be de-cached.
 
 	* cpl_serv.h: renamed lots of CPL functions with gt prefixes using
-	macros. 
+	macros.
 
 2003-01-07  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -582,13 +608,13 @@
 2003-01-02  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* configure.in: Remove logic to insert /usr/local/ in include and lib
-	path.  Remove configure switch for in-code EPSG tables since that 
+	path.  Remove configure switch for in-code EPSG tables since that
 	option is broken for now.
 
 2002-12-01  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* cpl_csv.c: rewritten to support in memory caching of tables, and
-	fast searches. 
+	fast searches.
 
 	* geo_extra.c: tweaked to favor fixed EPSG codes for Kentucky North
 	(NAD83), and Tennesse (NAD27).  The original entries have incorrect
@@ -598,11 +624,11 @@
 
 2002-11-23  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* geo_free.c: don't read past end of keys list. Introduced by 
+	* geo_free.c: don't read past end of keys list. Introduced by
 	changes from Rainer.
 
 	* geo_new.c: fix memory leak of tempData.tk_asciiParams.  Introduced
-	by changes from Rainer. 
+	by changes from Rainer.
 
 2002-09-27  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -611,7 +637,7 @@
 
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=204
 
-	* geo_free.c, geo_names.c, geo_keyp.h, geo_new.c, geo_set.c, 
+	* geo_free.c, geo_names.c, geo_keyp.h, geo_new.c, geo_set.c,
 	geo_write.c: Rainer Wiesenfarth (wiesi at ngi dot de) submitted
 	patches to support deletion, and changes to ascii tags.  To accomplish
 	this the ASCII tags are now allocated dynamically.  The
@@ -624,7 +650,7 @@
 2002-07-19  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* bin/listgeo.c: Added -d (report corners in decimal degrees) flag
-	to listgeo as submitted by Derrick Brashear. 
+	to listgeo as submitted by Derrick Brashear.
 
 2002-07-09  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -678,7 +704,7 @@
 	* Prepare 1.1.5 release.
 
 	* geo_normalize.c: call CSVDeaccess() at end of GTIFPrintDefn() so that
-	listgeo has closed all file handles by the end. 
+	listgeo has closed all file handles by the end.
 
 2001-11-28  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -688,12 +714,12 @@
 2001-07-09  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* cpl_serv.c: Another bug with pszRLBuffer being freed but not set
-	to NULL.  
+	to NULL.
 
 2001-06-28  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* cpl_csv_incode.c: Use EQUAL instead of strcasecmp() to ensure code 
-	builds on windows.  As per 
+	* cpl_csv_incode.c: Use EQUAL instead of strcasecmp() to ensure code
+	builds on windows.  As per
 
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=59
 
@@ -707,11 +733,11 @@
 	* geo_normalize.c: fixed memory leaks in GTIFGetDefn().
 
 	* cpl_serv.c: Fixed failure to set pointer to NULL when freeing
-	line buffer in CPLReadLine(). 
+	line buffer in CPLReadLine().
 
-	* geo_normalize.c: added support for reading custom ellipsoid 
+	* geo_normalize.c: added support for reading custom ellipsoid
 	definitions.
-	
+
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=42
 
 2001-04-06  Frank Warmerdam  <warmerdam@pobox.com>
@@ -725,14 +751,14 @@
 
 2001-03-04  Frank Warmerdam  <warmerdam@pobox.com>
 
-	Fixed various memory leaks bugs thanks to Alan Gray. 
-	
+	Fixed various memory leaks bugs thanks to Alan Gray.
+
 	* GTIFGetDefn() now calls CSVDeaccess() to avoid memory/file leaks.
 
 	* Added docs/api, and related for Doxygen generated API docs.
 
 	* Fixed memory leaks in GTIFPrintDefn() (geo_normalize.c), and
-	GTIFImageToPCS(), GTIFPCSToImage() (geo_trans.c).  
+	GTIFImageToPCS(), GTIFPCSToImage() (geo_trans.c).
 
 2001-03-01  Frank Warmerdam  <warmerdam@pobox.com>
 
@@ -740,12 +766,12 @@
 
 2001-02-28  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Added PCS_HD72_EOV to epsg_pcs.inc, and added GCS_GGRS87 to 
-	epsg_gcs.inc at the request of Prof. Dr. Irwin Scollar. 
+	* Added PCS_HD72_EOV to epsg_pcs.inc, and added GCS_GGRS87 to
+	epsg_gcs.inc at the request of Prof. Dr. Irwin Scollar.
 
 2001-02-23  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Fixed GTIFPrintDefn() to use fprintf( fp ), instead of printf(), 
+	* Fixed GTIFPrintDefn() to use fprintf( fp ), instead of printf(),
 	as per fixes from Alan Gray.
 
 2001-01-19  Frank Warmerdam  <warmerdam@pobox.com>
@@ -759,7 +785,7 @@
 
 	* Added README_BIN, and mkbindist.sh.
 
-	* Modified csv search code to include a search of 
+	* Modified csv search code to include a search of
 	share/epsg_csv and /usr/share/epsg_csv
 
 2001-01-02  Frank Warmerdam  <warmerdam@pobox.com>
@@ -773,7 +799,7 @@
 
 	* Prepare 1.1.4beta release.
 
-	* Added HOWTO-RELEASE file. 
+	* Added HOWTO-RELEASE file.
 
 	* Removed getopt.h from geotifcp.c to build on windows.
 
@@ -788,9 +814,9 @@
 
 	* Added CSV_DATA_DIR define to control where to look for csv files.
 
-	Todays fixes courtesy of Dave Johnson, ddj@cascv.brown.edu and 
+	Todays fixes courtesy of Dave Johnson, ddj@cascv.brown.edu and
 	are summarized in:
-	
+
 	http://bugzilla.remotesensing.org/show_bug.cgi?id=29
 
 2000-12-05  Frank Warmerdam  <warmerdam@pobox.com>
@@ -809,12 +835,12 @@
 
 2000-11-24  Frank Warmerdam  <warmerdam@pobox.com>
 
-	* Added configure/makefile logic to build a shared library, 
+	* Added configure/makefile logic to build a shared library,
 	currently libgeotiff.so.1.1.5, and intall it with appropriate links.
 
 	* Modified configure to use --with-libtiff, and to ignore TIFF_HOME.
 	Now it is preferred to use an installed libtiff instead of one sitting
-	in a build directory.  
+	in a build directory.
 
 	* Added libtiff_private directory with required libtiff include
 	files, to make it easier to build libgeotiff if only the standard
@@ -823,18 +849,18 @@
 2000-11-23  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Based loosely on suggestions from Curt Mills, I have reworked
-	the configure.in logic for PROJ.4.  I add -I/usr/local/include to 
+	the configure.in logic for PROJ.4.  I add -I/usr/local/include to
 	CFLAGS and -L/usr/local/lib to LIBS right off the start so /usr/local
-	is included in the default search path.  The user no longer 
+	is included in the default search path.  The user no longer
 	specifies the PROJ_HOME environment variable, and instead uses
-	the --with-proj configure switch.  Updated notes for building 
+	the --with-proj configure switch.  Updated notes for building
 	PROJ_HOME set in README.
 
 2000-10-13  Frank Warmerdam  <warmerda@cs46980-c>
 
 	* Added EquidistantConic support in PROJ.4 translation.
 
-	* Fixed order of parameters for LCC when read directly from a 
+	* Fixed order of parameters for LCC when read directly from a
 	file to match that when read from EPSG tables.  This is now
 	always: 0-NatOriginLat, 1-NatOriginLong, 2-StdParallel1, 3-StdParallel2
 	This change is only in geo_normalize.c.
@@ -871,12 +897,12 @@
 2000-06-09    <warmerda@CS46980-B>
 
 	* Added knowledge of NAD27, NAD83, WGS72, WGS84, their datums,
-	  and ellipsoids. 
+	  and ellipsoids.
 
 2000-05-21  Frank Warmerdam  <warmerda@cs46980-c>
 
 	* Added -e option to geotifcp to intialize tiepoint+pixelscale
-	based on an ESRI world file. 
+	based on an ESRI world file.
 
 ==============================================================================
 
@@ -889,22 +915,22 @@ Tue Jan  4 10:59:48 2000  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 	* Fixed inclusion of geoparms in object file list at Derricks
 	  suggestion.
 
-	* Added --with-zip support to configure and makefiles at the 
+	* Added --with-zip support to configure and makefiles at the
 	  suggestion of Derrick Brashear.
 
 Fri Dec 10 13:24:21 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Upgraded .csv and .c files to EPSG 4.4.
 
-	* Fixed bug setting the false northing for files with 
+	* Fixed bug setting the false northing for files with
 	ProjCenterNorthingGeoKey set in GTIFGetDefn().
 
-	* Added "--with-incode-epsg" support to configure, added 
+	* Added "--with-incode-epsg" support to configure, added
 	cpl_csv_incode.c and csv/*.c tables.
 
 Wed Sep 29 10:10:39 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
-	* Upgraded CSV files to EPSG 4.3 from EPSG 4.2.  
+	* Upgraded CSV files to EPSG 4.3 from EPSG 4.2.
 
 Fri Sep 17 10:53:52 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
@@ -914,7 +940,7 @@ Fri Sep 17 10:53:52 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 Thu Sep 16 17:22:55 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
 	* Added support for pure tiepoints, and the transformation
-	matrix in GTIFImageToPCS(), and GTIFPCSToImage(). 
+	matrix in GTIFImageToPCS(), and GTIFPCSToImage().
 
 Wed Sep 15 10:19:34 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
@@ -922,7 +948,7 @@ Wed Sep 15 10:19:34 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 	  to match EPSG.  SouthOriented name remains as an alias.
 
 	* Fixed serious bug in geo_normalize.c with translation of
-	DD.MMSSsss values.  Return value was seriously off if any 
+	DD.MMSSsss values.  Return value was seriously off if any
 	fraction of a second was included in the string.
 
 Tue Sep  7 15:57:47 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
@@ -952,17 +978,17 @@ Mon May  3 14:10:30 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 	* Fixed serious bug with parsing DMSmmsss.ss coordinates from
 	  CSV files which could make many results wrong.
 
-	* Cleaned up warnings with gcc -Wall, and IRIX native compiler. 
+	* Cleaned up warnings with gcc -Wall, and IRIX native compiler.
 
 	* Added support for -Wall for GCC in when running configure. This
 	also resulted in the addition of aclocal.m4 to the dist.
 
 Wed Apr 28 14:12:25 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 
-	* Added geo_extra.c, for special handling of UTM and state plane 
-	map systems. 
+	* Added geo_extra.c, for special handling of UTM and state plane
+	map systems.
 
-	* Changed to have api help inline with the code, and extracted with 
+	* Changed to have api help inline with the code, and extracted with
 	doxygen.
 
 Thu Mar 25 23:25:22 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
@@ -970,18 +996,18 @@ Thu Mar 25 23:25:22 1999  Frank Warmerdam  <warmerda@gdal.velocet.ca>
 	* Added ChangeLog and LICENSE file to distribution.
 
 March 18
-	
+
 	* Added support for PROJ.4 in configure.  Added cover functions
-	for Proj.4 in geotiff_proj.c, added lat/long reporting to listgeo.c. 
+	for Proj.4 in geotiff_proj.c, added lat/long reporting to listgeo.c.
 
 
 ==============================================================================
 
 -- 1.1.0a Release (circa March 10, 1999) --
 
-	* This release is considered alpha (not release) quality. 
-	
-	* Includes new CSV files, ``geo_normalize'' support, and a new
-	configure script (using autoconf). 
+	* This release is considered alpha (not release) quality.
 
--- 1.02 Release (1995 or so) 	
+	* Includes new CSV files, ``geo_normalize'' support, and a new
+	configure script (using autoconf).
+
+-- 1.02 Release (1995 or so)
