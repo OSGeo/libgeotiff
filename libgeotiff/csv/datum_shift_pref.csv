@@ -47,3 +47,28 @@
 # http://trac.osgeo.org/gdal/ticket/4597
 #
 4277,1314
+####################################################################
+# SAD69
+# Based on discussions on the brazil chapter list, documented at:
+# http://wiki.osgeo.org/wiki/Brazilian_Coordinate_Reference_Systems
+# 
+# Prefer the +towgs84=-67.35,3.88,-38.22 setting for (pre95) SAD69.
+#
+4618,5882
+####################################################################
+# Corrego Alegere 1970-72
+# Based on discussions on the brazil chapter list, documented at:
+# http://wiki.osgeo.org/wiki/Brazilian_Coordinate_Reference_Systems
+# 
+# Prefer the +towgs84=-205.57,168.77,-4.12 setting.
+#
+4225,6192
+####################################################################
+# Chua (Astro Chua)
+# Based on discussions on the brazil chapter list, documented at:
+# http://wiki.osgeo.org/wiki/Brazilian_Coordinate_Reference_Systems
+# 
+# Prefer the +towgs84=-143.87,243.37,-33.52 setting.
+#
+4224,3972
+####################################################################

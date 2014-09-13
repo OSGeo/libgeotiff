@@ -1,3 +1,8 @@
+2014-09-13  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv: Override three Brazilian datum shifts on behalf of Daniel
+	Miranda and the OSGeo Brazilian Chapter.
+
 2014-09-13 Howard Butler <howard@hobu.co>
 	* csv: Upgrade to EPSG 8.5
 
