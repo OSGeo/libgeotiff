@@ -1,3 +1,8 @@
+2014-09-13  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* geo_print.c: clarify that the buffer passed to read methods is only
+	guaranteed to be 1024 bytes long (#62).
+
 2014-09-13 Howard Butler <howard@hobu.co>
 	* CMake: Support for INCODE build. If you need INCODE support,
 	with the definitions compiled into headers, use CMake as your
