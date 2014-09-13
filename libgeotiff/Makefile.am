@@ -36,6 +36,7 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/coordinate_operation_path.csv \
 			csv/coordinate_reference_system.csv \
 			csv/coordinate_system.csv \
+			csv/csv2c.py \
 			csv/datum.csv \
 			csv/datum_shift.csv \
 			csv/datum_shift_pref.csv \
@@ -55,7 +56,7 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/unit_of_measure.csv \
 			csv/version_history.csv \
 			csv/vertcs.csv \
-			csv/vertcs.override.csv 
+			csv/vertcs.override.csv
 
 include_HEADERS =   geotiff.h \
                     geo_config.h \
@@ -96,7 +97,7 @@ libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_trans.c \
                         geo_write.c \
                         geo_strtod.c \
-                        geotiff_proj4.c 
+                        geotiff_proj4.c
 
 if CSV_IS_CONFIG
     libgeotiff_la_SOURCES += csv/datum.c \
@@ -105,7 +106,7 @@ if CSV_IS_CONFIG
                              csv/pcs.c \
                              csv/prime_meridian.c \
                              csv/projop_wparm.c \
-                             csv/unit_of_measure.c 
+                             csv/unit_of_measure.c
 endif
 
 libgeotiff_la_LDFLAGS = -version-info 3:0:1
@@ -123,6 +124,6 @@ EXTRA_DIST =    makefile.vc \
                 INSTALL \
                 CMakeLists.txt \
                 libxtiff/CMakeLists.txt \
-                bin/CMakeLists.txt 
+                bin/CMakeLists.txt
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
