@@ -37,6 +37,7 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/coordinate_reference_system.csv \
 			csv/coordinate_system.csv \
 			csv/csv2c.py \
+			csv/csv_tools.py \
 			csv/datum.csv \
 			csv/datum_shift.csv \
 			csv/datum_shift_pref.csv \
