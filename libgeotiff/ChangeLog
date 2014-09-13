@@ -1,5 +1,7 @@
 2014-09-13  Frank Warmerdam  <warmerdam@pobox.com>
 
+	* Preparing 1.4.1 release.
+
 	* csv/datum_shift_pref.csv: Update Pulkova 1942(58) to use a 
 	particular transformation (#52).
 
