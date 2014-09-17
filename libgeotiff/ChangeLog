@@ -1,3 +1,8 @@
+2014-09-16  Frank Warmerdam  <warmerdam@pobox.com>
+
+	* csv/datum_shift_pref.csv: revert change in preferred datum shift
+	for Pulkovo 1942(58) related to ticket #1851 - not appropriate.
+
 2014-09-13  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* Preparing 1.4.1 release.
