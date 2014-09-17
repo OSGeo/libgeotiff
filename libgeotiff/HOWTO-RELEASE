@@ -18,7 +18,7 @@
 
  6) Tag the release set in SVN (for now we aren't using branches in libgeotiff)
 
-    svn copy https://svn.osgeo.org/metacrs/geotiff/trunk/libgeotiff 
+    svn copy https://svn.osgeo.org/metacrs/geotiff/trunk/libgeotiff \
              https://svn.osgeo.org/metacrs/geotiff/tags/libgeotiff-1.4.0
 
  7) Prepare a zip and tar.gz file using a command like:
