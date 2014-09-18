@@ -17,6 +17,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)
 
 SET(CMAKE_COLOR_MAKEFILE ON)
 
+set(LINK_SOVERSION "3.1.1")
+set(GeoTIFF_VERSION "1.4.1")
+
 # Allow advanced users to generate Makefiles printing detailed commands
 MARK_AS_ADVANCED(CMAKE_VERBOSE_MAKEFILE)
 
@@ -24,22 +27,6 @@ MARK_AS_ADVANCED(CMAKE_VERBOSE_MAKEFILE)
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 ###############################################################################
-
-###
-# Set up the version and configure a header file with the version in it.
-###
-set (GeoTIFF_VERSION_MAJOR 2)
-set (GeoTIFF_VERSION_MINOR 1)
-set (GeoTIFF_VERSION_RELEASE 0)
-set (GeoTIFF_VERSION ${GeoTIFF_VERSION_MAJOR}.${GeoTIFF_VERSION_MINOR}.${GeoTIFF_VERSION_RELEASE})
-
-### 
-# Currently commented out.  Could add build data and svn revision in here:
-# configure_file ( "${PROJECT_SOURCE_DIR}/geotiff_version.h.in"
-#                 "${PROJECT_BINARY_DIR}/geotiff_version.h" )
-###
-
-
 # General build settings
 
 IF(NOT CMAKE_BUILD_TYPE)
@@ -71,14 +58,14 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
 # Output directory in which to build ARCHIVE target files.
-# SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${GEOTIFF_BUILD_OUTPUT_DIRECTORY}) 
+# SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${GEOTIFF_BUILD_OUTPUT_DIRECTORY})
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
 ###############################################################################
 # Platform and compiler specific settings
 
 IF(WIN32)
-    IF(MSVC) 
+    IF(MSVC)
         ADD_DEFINITIONS(-DBUILD_AS_DLL=1)
         ADD_DEFINITIONS(/DW4)
         if (NOT (MSVC_VERSION VERSION_LESS 1400))
@@ -138,7 +125,7 @@ IF(WITH_TIFF)
 
     IF(TIFF_FOUND)
         # Confirm required API is available
-        INCLUDE(CheckFunctionExists) 
+        INCLUDE(CheckFunctionExists)
         SET(CMAKE_REQUIRED_LIBRARIES ${TIFF_LIBRARIES})
 
         CHECK_FUNCTION_EXISTS(TIFFOpen HAVE_TIFFOPEN)
@@ -152,7 +139,7 @@ IF(WITH_TIFF)
             SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
             MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFMergeFieldInfo function not found. libtiff 3.6.0 Beta or later required. Please upgrade or use an older version of libgeotiff")
         ENDIF()
-        
+
         INCLUDE_DIRECTORIES(${TIFF_INCLUDE_DIR})
         ADD_DEFINITIONS(-DHAVE_TIFF=1)
     ENDIF(TIFF_FOUND)
@@ -217,38 +204,38 @@ MESSAGE(STATUS "Generating geo_config.h header - done")
 # Installation settings
 
 SET(GEOTIFF_CSV_DATA
-    csv/alias.csv 
-    csv/area.csv 
-    csv/change.csv 
-    csv/compdcs.csv 
-    csv/coordinate_axis.csv 
-    csv/coordinate_axis_name.csv 
-    csv/coordinate_operation.csv 
-    csv/coordinate_operation_method.csv 
-    csv/coordinate_operation_parameter.csv 
-    csv/coordinate_operation_parameter_value.csv 
-    csv/coordinate_operation_path.csv 
-    csv/coordinate_reference_system.csv 
-    csv/coordinate_system.csv 
-    csv/datum.csv 
-    csv/datum_shift.csv 
-    csv/datum_shift_pref.csv 
-    csv/deprecation.csv 
-    csv/ellipsoid.csv 
-    csv/esri_datum_override.csv 
-    csv/gcs.csv 
-    csv/gcs.override.csv 
-    csv/geoccs.csv 
-    csv/naming_system.csv 
-    csv/pcs.csv 
-    csv/pcs.override.csv 
-    csv/prime_meridian.csv 
-    csv/projop_wparm.csv 
-    csv/stateplane.csv 
-    csv/supersession.csv 
-    csv/unit_of_measure.csv 
-    csv/version_history.csv 
-    csv/vertcs.csv 
+    csv/alias.csv
+    csv/area.csv
+    csv/change.csv
+    csv/compdcs.csv
+    csv/coordinate_axis.csv
+    csv/coordinate_axis_name.csv
+    csv/coordinate_operation.csv
+    csv/coordinate_operation_method.csv
+    csv/coordinate_operation_parameter.csv
+    csv/coordinate_operation_parameter_value.csv
+    csv/coordinate_operation_path.csv
+    csv/coordinate_reference_system.csv
+    csv/coordinate_system.csv
+    csv/datum.csv
+    csv/datum_shift.csv
+    csv/datum_shift_pref.csv
+    csv/deprecation.csv
+    csv/ellipsoid.csv
+    csv/esri_datum_override.csv
+    csv/gcs.csv
+    csv/gcs.override.csv
+    csv/geoccs.csv
+    csv/naming_system.csv
+    csv/pcs.csv
+    csv/pcs.override.csv
+    csv/prime_meridian.csv
+    csv/projop_wparm.csv
+    csv/stateplane.csv
+    csv/supersession.csv
+    csv/unit_of_measure.csv
+    csv/version_history.csv
+    csv/vertcs.csv
     csv/vertcs.override.csv )
 
 SET(GEOTIFF_LIB_HEADERS
@@ -367,9 +354,9 @@ FOREACH(epsg_csv_file ${GEOTIFF_CSV_DATA})
     if( INCODE_EPSG_FROM_CSV)
         SET(epsg_source_name "${CMAKE_CURRENT_BINARY_DIR}/incode_epsg_${epsg_csv_basename}.c")
         LIST(APPEND GEOTIFF_LIB_CSV_SOURCES "${epsg_source_name}")
-        
+
         # sanitize .'s out of struct names
-        STRING(REGEX REPLACE "\\." "_" STRUCT_NAME ${epsg_csv_basename}) 
+        STRING(REGEX REPLACE "\\." "_" STRUCT_NAME ${epsg_csv_basename})
         LIST(APPEND epsg_includefile_externconst "\nextern const datafile_rows_t *${STRUCT_NAME}_rows[]")
         LIST(APPEND epsg_includefile_pointer_list "  { \"${STRUCT_NAME}\", ${STRUCT_NAME}_rows },")
         MESSAGE(STATUS "Creating buildrule to convert ${epsg_csv_basename}.csv to ${epsg_csv_basename}.c and include it in code.")
@@ -392,8 +379,8 @@ FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/epsg_incode_header.h"
 SET(XTIFF_SOURCES libxtiff/xtiff.c)
 
 #---
-# Static libgeotiff archive 
-# NOTE: Did not put XTIFF_SOURCES in static lib because libxtiff.a is written out 
+# Static libgeotiff archive
+# NOTE: Did not put XTIFF_SOURCES in static lib because libxtiff.a is written out
 #       currently.
 #---
 ADD_LIBRARY(${GEOTIFF_ARCHIVE_TARGET} STATIC
@@ -413,18 +400,12 @@ ENDIF(WIN32 AND MSVC)
 
 # Unix, linux:
 IF(UNIX)
-   IF(NOT LINK_SOVERSION)
-      set(LINK_SOVERSION "${GeoTIFF_VERSION_MAJOR}")
-   ENDIF(NOT LINK_SOVERSION)
-   IF(NOT LINK_VERSION)	
-      set(LINK_VERSION "${GeoTIFF_VERSION}")
-   ENDIF(NOT LINK_VERSION)
    SET_TARGET_PROPERTIES(
-      ${GEOTIFF_LIBRARY_TARGET} 
+      ${GEOTIFF_LIBRARY_TARGET}
       PROPERTIES
       OUTPUT_NAME ${GEOTIFF_LIB_NAME}
-      VERSION ${LINK_VERSION}
-      SOVERSION ${LINK_SOVERSION} 
+      VERSION ${GeoTIFF_VERSION}
+      SOVERSION ${LINK_SOVERSION}
       CLEAN_DIRECT_OUTPUT 1 )
    if (APPLE)
       set_target_properties(

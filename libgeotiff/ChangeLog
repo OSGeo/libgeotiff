@@ -1,3 +1,8 @@
+2014-09-13 Howard Butler <howard@hobu.co>
+
+	* CMake: Fix up SONAME and VERSION to better
+	match configure.ac
+
 2014-09-16  Frank Warmerdam  <warmerdam@pobox.com>
 
 	* csv/datum_shift_pref.csv: revert change in preferred datum shift
@@ -7,7 +12,7 @@
 
 	* Preparing 1.4.1 release.
 
-	* csv/datum_shift_pref.csv: Update Pulkova 1942(58) to use a 
+	* csv/datum_shift_pref.csv: Update Pulkova 1942(58) to use a
 	particular transformation (#52).
 
 	* bin/geotifcp.c: added B, L, C and M flags from tiffcp (#68)"
