@@ -17,8 +17,23 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)
 
 SET(CMAKE_COLOR_MAKEFILE ON)
 
-set(LINK_SOVERSION "3.1.1")
-set(GeoTIFF_VERSION "1.4.1")
+# Version information
+set(PROJECT_VERSION_MAJOR 1)
+set(PROJECT_VERSION_MINOR 4)
+set(PROJECT_VERSION_PATCH 1)
+set(PROJECT_VERSION
+  "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+set(GeoTIFF_VERSION ${PROJECT_VERSION})
+
+# Set library version to match that of autoconf:
+# libgeotiff.so -> libgeotiff.so.2.1.1
+# libgeotiff.so.2 -> libgeotiff.so.2.1.1
+# libgeotiff.so.2.1.1
+set(LINK_SOVERSION "2")
+set(LINK_VERSION "2.1.1")
+
+string (TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
+string (TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 
 # Allow advanced users to generate Makefiles printing detailed commands
 MARK_AS_ADVANCED(CMAKE_VERBOSE_MAKEFILE)
@@ -120,8 +135,58 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/libxtiff)
 # TIFF support - required, default=ON
 SET(WITH_TIFF TRUE CACHE BOOL "Choose if TIFF support should be built")
 
+# PROJ.4 support - optional, default=ON
+SET(WITH_PROJ4 TRUE CACHE BOOL "Choose if PROJ.4 support should be built")
+
+IF(WITH_PROJ4)
+    FIND_PACKAGE(PROJ4 NO_MODULE QUIET)
+    if (NOT PROJ4_FOUND)
+      FIND_PACKAGE(PROJ4)
+    endif ()
+
+    IF(PROJ4_FOUND)
+        ADD_DEFINITIONS(-DHAVE_LIBPROJ=1)
+        INCLUDE_DIRECTORIES(${PROJ4_INCLUDE_DIR})
+    ENDIF()
+ENDIF()
+
+# Zlib support - optional, default=OFF
+SET(WITH_ZLIB FALSE CACHE BOOL "Choose if zlib support should be built")
+
+IF(WITH_ZLIB)
+    FIND_PACKAGE(ZLIB NO_MODULE QUIET)
+    if (NOT ZLIB_FOUND)
+      FIND_PACKAGE(ZLIB)
+    endif ()
+
+    IF(ZLIB_FOUND)
+        SET(HAVE_ZIP 1)
+        INCLUDE_DIRECTORIES(${ZLIB_INCLUDE_DIR})
+        ADD_DEFINITIONS(-DHAVE_ZIP=${HAVE_ZIP})
+    ENDIF()
+ENDIF()
+
+# JPEG support - optional, default=OFF
+SET(WITH_JPEG FALSE CACHE BOOL "Choose if JPEG support should be built")
+
+IF(WITH_JPEG)
+    FIND_PACKAGE(JPEG NO_MODULE QUIET)
+    if (NOT JPEG_FOUND)
+      FIND_PACKAGE(JPEG)
+    endif ()
+
+    IF(JPEG_FOUND)
+        SET(HAVE_JPEG 1)
+        INCLUDE_DIRECTORIES(${JPEG_INCLUDE_DIR})
+        ADD_DEFINITIONS(-DHAVE_JPEG=${HAVE_JPEG})
+    ENDIF()
+ENDIF()
+
 IF(WITH_TIFF)
-    FIND_PACKAGE(TIFF REQUIRED)
+    FIND_PACKAGE(TIFF NO_MODULE QUIET)
+    if (NOT TIFF_FOUND)
+      FIND_PACKAGE(TIFF REQUIRED)
+    endif ()
 
     IF(TIFF_FOUND)
         # Confirm required API is available
@@ -145,44 +210,6 @@ IF(WITH_TIFF)
     ENDIF(TIFF_FOUND)
 ENDIF(WITH_TIFF)
 
-# PROJ.4 support - optional, default=ON
-SET(WITH_PROJ4 TRUE CACHE BOOL "Choose if PROJ.4 support should be built")
-
-IF(WITH_PROJ4)
-    FIND_PACKAGE(PROJ4)
-
-    IF(PROJ4_FOUND)
-        ADD_DEFINITIONS(-DHAVE_LIBPROJ=1)
-        INCLUDE_DIRECTORIES(${PROJ4_INCLUDE_DIR})
-    ENDIF()
-ENDIF()
-
-# Zlib support - optional, default=OFF
-SET(WITH_ZLIB FALSE CACHE BOOL "Choose if zlib support should be built")
-
-IF(WITH_ZLIB)
-    FIND_PACKAGE(ZLIB)
-
-    IF(ZLIB_FOUND)
-        SET(HAVE_ZIP 1)
-        INCLUDE_DIRECTORIES(${ZLIB_INCLUDE_DIR})
-        ADD_DEFINITIONS(-DHAVE_ZIP=${HAVE_ZIP})
-    ENDIF()
-ENDIF()
-
-# JPEG support - optional, default=OFF
-SET(WITH_JPEG FALSE CACHE BOOL "Choose if JPEG support should be built")
-
-IF(WITH_JPEG)
-    FIND_PACKAGE(JPEG)
-
-    IF(JPEG_FOUND)
-        SET(HAVE_JPEG 1)
-        INCLUDE_DIRECTORIES(${JPEG_INCLUDE_DIR})
-        ADD_DEFINITIONS(-DHAVE_JPEG=${HAVE_JPEG})
-    ENDIF()
-ENDIF()
-
 # Turn off TOWGS84 support
 SET(WITH_TOWGS84 TRUE CACHE BOOL "Build with TOWGS84 support")
 IF (NOT WITH_TOWGS84)
@@ -194,8 +221,9 @@ endif()
 
 MESSAGE(STATUS "Generating geo_config.h header")
 
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/cmake/geo_config.h.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/geo_config.h)
+CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/cmake/geo_config.h.in
+  geo_config.h)
+INCLUDE_DIRECTORIES(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 
 MESSAGE(STATUS "Generating geo_config.h header - done")
 
@@ -244,7 +272,7 @@ SET(GEOTIFF_LIB_HEADERS
     geovalues.h
     geonames.h
     geokeys.h
-    geo_config.h
+    ${CMAKE_CURRENT_BINARY_DIR}/geo_config.h
     geo_tiffp.h
     geo_keyp.h
     geo_normalize.h
@@ -383,6 +411,12 @@ SET(XTIFF_SOURCES libxtiff/xtiff.c)
 # NOTE: Did not put XTIFF_SOURCES in static lib because libxtiff.a is written out
 #       currently.
 #---
+if (MSVC OR CMAKE_CONFIGURATION_TYPES)
+  # For multi-config systems and for Visual Studio, the debug versions
+  # of the libraries have a _d suffix.
+  set (CMAKE_DEBUG_POSTFIX _d)
+endif ()
+
 ADD_LIBRARY(${GEOTIFF_ARCHIVE_TARGET} STATIC
     ${GEOTIFF_LIB_SOURCES} ${GEOTIFF_LIB_CSV_SOURCES})
 SET_TARGET_PROPERTIES(${GEOTIFF_ARCHIVE_TARGET} PROPERTIES
@@ -404,7 +438,7 @@ IF(UNIX)
       ${GEOTIFF_LIBRARY_TARGET}
       PROPERTIES
       OUTPUT_NAME ${GEOTIFF_LIB_NAME}
-      VERSION ${GeoTIFF_VERSION}
+      VERSION ${LINK_VERSION}
       SOVERSION ${LINK_SOVERSION}
       CLEAN_DIRECT_OUTPUT 1 )
    if (APPLE)
@@ -435,6 +469,7 @@ TARGET_LINK_LIBRARIES(${GEOTIFF_LIBRARY_TARGET}
 #   ARCHIVE DESTINATION ${GEOTIFF_LIB_DIR})
 
 INSTALL( TARGETS ${GEOTIFF_ARCHIVE_TARGET} ${GEOTIFF_LIBRARY_TARGET}
+	 EXPORT depends
 	 RUNTIME DESTINATION bin
          LIBRARY DESTINATION lib
 	 ARCHIVE DESTINATION lib )
@@ -450,3 +485,5 @@ SOURCE_GROUP("Source Files" FILES ${GEOTIFF_LIB_SOURCES})
 IF(WITH_UTILITIES)
     ADD_SUBDIRECTORY(bin)
 ENDIF()
+
+ADD_SUBDIRECTORY(cmake)
