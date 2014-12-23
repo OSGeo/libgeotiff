@@ -1436,7 +1436,7 @@ static int GTIFKeyGetInternal( GTIF *psGTIF, geokey_t key,
         if( ++nErrorCount < 100 )
         {
             fprintf(stderr,
-                    "Expected key %s to be of type %s. Got %s",
+                    "Expected key %s to be of type %s. Got %s\n",
                     GTIFKeyName(key), GTIFTypeName(expected_tagtype),
                     GTIFTypeName(tagtype));
         }
