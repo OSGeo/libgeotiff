@@ -215,7 +215,10 @@ static void PrintKey(GeoKey *key, GTIFPrintMethod print, void *aux)
             print( GTIFValueName(keyid,*sptr), aux );
             print( "\n", aux );
         }
+        else if( sptr == NULL && count > 0 )
+            print( "****Corrupted data****\n", aux );
         else
+        {
             for (; count > 0; count-= vals_now)
             {
                 vals_now = count > 3? 3: count;
@@ -226,6 +229,7 @@ static void PrintKey(GeoKey *key, GTIFPrintMethod print, void *aux)
                 }
                 print("\n",aux);
             }
+        }
         break;
         
       default: 
