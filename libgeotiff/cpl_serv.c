@@ -500,7 +500,10 @@ void    CPLError(CPLErr eErrClass, int err_no, const char *fmt, ...)
     }
     else
     {
-        fprintf(stderr, "ERROR %d: %s\n", gnCPLLastErrNo, gszCPLLastErrMsg);
+        if( eErrClass == CE_Warning )
+            fprintf(stderr, "Warning %d: %s\n", gnCPLLastErrNo, gszCPLLastErrMsg);
+        else
+            fprintf(stderr, "ERROR %d: %s\n", gnCPLLastErrNo, gszCPLLastErrMsg);
     }
 
     if( eErrClass == CE_Fatal )
