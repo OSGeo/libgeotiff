@@ -1346,6 +1346,13 @@ int GTIFGetProjTRFInfo( /* COORD_OP_CODE from coordinate_operation.csv */
                 nEPSGCode = EPSGFalseEasting;
             else if ( nCTProjMethod == CT_ObliqueMercator && nEPSGCode == EPSGProjCenterNorthing )
                 nEPSGCode = EPSGFalseNorthing;
+            /* for CT_PolarStereographic try alternate parameter codes first */
+            /* because EPSG proj method 9829 uses EPSGLatOfStdParallel instead of EPSGNatOriginLat */
+            /* and EPSGOriginLong instead of EPSGNatOriginLong */
+            else if( nCTProjMethod == CT_PolarStereographic && nEPSGCode == EPSGNatOriginLat )
+                nEPSGCode = EPSGLatOfStdParallel;
+            else if( nCTProjMethod == CT_PolarStereographic && nEPSGCode == EPSGNatOriginLong )
+                nEPSGCode = EPSGOriginLong;
             else
                 continue;
                 
