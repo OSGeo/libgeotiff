@@ -946,13 +946,21 @@ char * GTIFGetProj4Defn( GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
     else if( psDefn->CTProjection == CT_Mercator )
     {
-        sprintf( szProjection+strlen(szProjection),
-           "+proj=merc +lat_ts=%.9f +lon_0=%.9f +k=%f +x_0=%.3f +y_0=%.3f ",
-                 psDefn->ProjParm[0],
-                 psDefn->ProjParm[1],
-                 psDefn->ProjParm[4],
-                 dfFalseEasting,
-                 dfFalseNorthing );
+        if( psDefn->ProjParm[2] != 0.0 ) /* Mercator 2SP: FIXME we need a better way of detecting it */
+            sprintf( szProjection+strlen(szProjection),
+                    "+proj=merc +lat_ts=%.9f +lon_0=%.9f +x_0=%.3f +y_0=%.3f ",
+                    psDefn->ProjParm[2],
+                    psDefn->ProjParm[1],
+                    dfFalseEasting,
+                    dfFalseNorthing );
+        else
+            sprintf( szProjection+strlen(szProjection),
+                    "+proj=merc +lat_ts=%.9f +lon_0=%.9f +k=%f +x_0=%.3f +y_0=%.3f ",
+                    psDefn->ProjParm[0],
+                    psDefn->ProjParm[1],
+                    psDefn->ProjParm[4],
+                    dfFalseEasting,
+                    dfFalseNorthing );
     }
 
 /* -------------------------------------------------------------------- */
