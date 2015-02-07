@@ -459,7 +459,9 @@ static int ReadKey(GTIF *gt, GTIFReadMethod scan, void *aux)
         }
         else  /* multi-valued short - no such thing yet */
         {
-            sptr = (short *)data;
+            char* cdata;
+            memcpy(&cdata, &data, sizeof(void*));
+            sptr = (short *)cdata;
             outcount = count;
             for (; count > 0; count-= vals_now)
             {
