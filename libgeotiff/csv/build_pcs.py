@@ -40,6 +40,32 @@ def get_crs_uom( crs_rec, cs, caxis ):
     ca_recs = caxis.get_records( coord_sys_code )
     return ca_recs[0]['UOM_CODE']
 
+def get_significant_digits(str_value):
+
+    significant_digits = 0
+    leading_stuff = True
+    for c in str_value:
+        if leading_stuff:
+            if c >= '1' and c <= '9':
+                leading_stuff = False
+                significant_digits = 1
+        else:
+            if c == 'e':
+                break
+            if c != '.':
+                significant_digits = significant_digits + 1
+    return significant_digits
+
+def stringify_with_same_precision(v, old_value):
+
+    significant_digits = get_significant_digits(old_value)
+    for i in range(15):
+        format = "%%.%df" % i
+        str_v = format % v
+        if get_significant_digits(str_v) == significant_digits + 1:
+            return str_v
+    return str_v
+
 def copy_datum_shift_parms( target_rec, parms ):
 
     for parm_rec in parms:
@@ -61,18 +87,18 @@ def copy_datum_shift_parms( target_rec, parms ):
             if uom == '9109':  # Micro-radians.
                 v = float(value)
                 v = (v / 1000000.0) * (180 / math.pi) * 3600.0
-                value = '%.15g' % (v)
+                value = stringify_with_same_precision(v, value)
             elif uom == '9101':  # Radians.
                 v = float(value)
                 v = v * (180 / math.pi) * 3600.0
-                value = '%.15g' % (v)
+                value = stringify_with_same_precision(v, value)
             elif uom == '9113':  # centesimal second
                 v = float(value)
                 # convert to radians
                 v = v * (math.pi/200.0) / 10000.0
                 # convert to arc seconds
                 v = v * (180 / math.pi) * 3600.0
-                value = '%.15g' % (v)
+                value = stringify_with_same_precision(v, value)
             elif uom != '9104':
                 print 'Datum Shift rotation not in arc-seconds!'
                 print parm_rec
