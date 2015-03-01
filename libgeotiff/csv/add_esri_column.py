@@ -37,8 +37,8 @@
 # also work with an alternate method if you have OGR configured with FileGDB and
 # OpenFileGDB drivers (GDAL >= 1.11)
 
-import string
 import sys
+import os
 import osr
 
 sys.path.append( '/home/warmerda/libgeotiff/csv' )
@@ -54,7 +54,7 @@ def get_esri_wkt_from_gcs_code_from_epsg_prj(gcs_code):
         esri_gcs_wkt = open(filename).read()
         return esri_gcs_wkt
     except:
-        print 'Failed to find ', filename
+        print('Failed to find %s' % filename)
         return None
 
 def get_esri_wkt_from_gcs_code_from_filegdb(gcs_code):
@@ -146,7 +146,7 @@ if prj_epsg_exists or filegdb_method:
 
         esri_gcs_names[gcs_code] = gcs_name
 
-        print 'GCS %d = %s, %s' % (gcs_code, gcs_name, datum_name)
+        print('GCS %d = %s, %s' % (gcs_code, gcs_name, datum_name))
 
         try:
             gcs_rec = gcs_table.get_record( gcs_code )
@@ -154,9 +154,9 @@ if prj_epsg_exists or filegdb_method:
 
             esri_datum_names[datum_code] = datum_name
         except:
-            print 'Failed to get gcs record, or datum info'
+            print('Failed to get gcs record, or datum info')
 else:
-    print 'WARNING: ESRI_DATUM_NAME column will be empty !'
+    print('WARNING: ESRI_DATUM_NAME column will be empty !')
 
 #
 # Now add mappings from the manual override table esri_datum_override.csv
@@ -177,11 +177,11 @@ if 'ESRI_DATUM_NAME' not in datum_table.fields:
 
 for datum_code in datum_table.data.keys():
     datum_rec = datum_table.get_record( datum_code )
-    if esri_datum_names.has_key(datum_code):
-        print 'match for ', datum_code
+    if datum_code in esri_datum_names:
+        print('match for %d' % datum_code)
         datum_rec['ESRI_DATUM_NAME'] = esri_datum_names[datum_code]
     else:
-        print 'no match for ', datum_code
+        print('no match for %d' % datum_code)
         datum_rec['ESRI_DATUM_NAME'] = ''
 
     datum_table.set_record( datum_code, datum_rec )

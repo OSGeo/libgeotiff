@@ -63,7 +63,7 @@ def merge_split_lines( raw_lines ):
     cur_line = ''
     for line in raw_lines:
         cur_line = cur_line + line
-        quote_count = string.count(cur_line,'"')
+        quote_count = cur_line.count('"')
         if quote_count % 2 == 0:
             rest_of_lines.append( cur_line )
             cur_line = ''
@@ -90,9 +90,9 @@ class CSVTable:
         fd = open( filename )
 
         # Process the first line as field names.
-        tokens = string.split( string.strip(fd.readline()), ',' )
+        tokens = fd.readline().strip().split( ',' )
         for field in tokens:
-            self.fields.append(string.upper(string.replace( field, '"', '' )))
+            self.fields.append(field.replace( '"', '' ).upper())
 
         # Load the rest of the files, merging records split by newlines
         # within quotes.
@@ -107,18 +107,18 @@ class CSVTable:
                 continue
             
             if len(line) > 2:
-                key, rest = string.split(line,',', 1 )
+                key, rest = line.split( ',', 1 )
                 key = int(key)
                 if multi:
-                    if self.data.has_key(key):
-                        self.data[key].append(string.strip(line))
+                    if key in self.data:
+                        self.data[key].append(line.strip())
                     else:
-                        self.data[key] = [string.strip(line)]
+                        self.data[key] = [line.strip()]
                 else:
-                    self.data[key] = string.strip(line)
+                    self.data[key] = line.strip()
             else:
-                print 'Problem reading line %d of file %s:%s\n' \
-                      % ( line_counter, filename, line)
+                print('Problem reading line %d of file %s:%s\n' \
+                      % ( line_counter, filename, line))
 
     def write_to_csv( self, filename ):
         def_line = ''
@@ -131,7 +131,7 @@ class CSVTable:
         fd.write( def_line + '\n' )
 
         keys = self.data.keys()
-        keys.sort()
+        keys = sorted(keys)
         for key in keys:
             fd.write( self.data[key] + '\n' )
         fd.close()
@@ -160,11 +160,11 @@ class CSVTable:
     def line_to_record( self, line ):
         tokens = SplitCSVLine( line )
         if len(tokens) != len(self.fields):
-            print 'CSV lines field count does not match'
-            print line
-            print len(tokens)
-            print len(self.fields)
-            print tokens
+            print('CSV lines field count does not match')
+            print(line)
+            print(len(tokens))
+            print(len(self.fields))
+            print(tokens)
 
         record = {}
         for i in range(len(self.fields)):
@@ -175,7 +175,7 @@ class CSVTable:
     def record_to_line( self, record ):
         line = ''
         for i in range(len(self.fields)):
-            if record.has_key(self.fields[i]):
+            if self.fields[i] in record:
                 field_val = self.escape_field( record[self.fields[i]] )
             else:
                 field_val = ''

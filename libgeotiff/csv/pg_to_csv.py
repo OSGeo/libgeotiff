@@ -35,7 +35,7 @@
 #
 #
 
-import ogr, os, sys
+import ogr, os
 
 
 def CopyTable( in_ds, out_ds, in_tablename, out_tablename, keyname,

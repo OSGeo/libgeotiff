@@ -30,7 +30,6 @@
 #  DEALINGS IN THE SOFTWARE.
 #******************************************************************************
 
-import string
 import csv_tools
 import math
 
@@ -78,8 +77,8 @@ def copy_datum_shift_parms( target_rec, parms ):
         # Linear parameters
         if code in ('8605','8606','8607'):
             if uom != '9001':
-                print 'Datum Shift x/y/z not in meters!'
-                print parm_rec
+                print('Datum Shift x/y/z not in meters!')
+                print(parm_rec)
 
         # angular parameters
         if code in ('8608','8609','8610'):
@@ -100,8 +99,8 @@ def copy_datum_shift_parms( target_rec, parms ):
                 v = v * (180 / math.pi) * 3600.0
                 value = stringify_with_same_precision(v, value)
             elif uom != '9104':
-                print 'Datum Shift rotation not in arc-seconds!'
-                print parm_rec
+                print('Datum Shift rotation not in arc-seconds!')
+                print(parm_rec)
             
         if code == '8605':
             target_rec['DX'] = value
@@ -177,7 +176,7 @@ compdcs_keys.sort()
 vertcs_keys.sort()
 geoccs_keys.sort()
 
-print '%d PCS, %d GCS, %d GeocCS, %d VertCS and %d COMPD_CS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys), len(geoccs_keys), len(vertcs_keys), len(compdcs_keys) )
+print('%d PCS, %d GCS, %d GeocCS, %d VertCS and %d COMPD_CS coordinate systems to process.' % (len(pcs_keys), len(gcs_keys), len(geoccs_keys), len(vertcs_keys), len(compdcs_keys)))
 
 ##############################################################################
 # Read PCS Override table for manually assigned transformations.
@@ -231,8 +230,8 @@ for key in pcs_keys:
     pcs_rec['COORD_SYS_CODE']     = crs_rec['COORD_SYS_CODE']
     
     if len(pcs_rec['SOURCE_GEOGCRS_CODE']) == 0:
-        print 'GEOGCRS missing for %s/%s' % (crs_rec['COORD_REF_SYS_CODE'],
-                                             crs_rec['COORD_REF_SYS_NAME'])
+        print('GEOGCRS missing for %s/%s' % (crs_rec['COORD_REF_SYS_CODE'],
+                                             crs_rec['COORD_REF_SYS_NAME']))
 
     pcs_rec['UOM_CODE'] = get_crs_uom(crs_rec, cs, caxis )
                                              
@@ -243,8 +242,8 @@ for key in pcs_keys:
 
     parm_recs = co_value.get_records( int(pcs_rec['COORD_OP_CODE']) )
     if len(parm_recs) > max_parms:
-        print 'COORD_OP_CODE %s has %d values.' % (pcs_rec['COORD_OP_CODE'],
-                                                   len(parm_recs))
+        print('COORD_OP_CODE %s has %d values.' % (pcs_rec['COORD_OP_CODE'],
+                                                   len(parm_recs)))
         
     for parm_i in range(len(parm_recs)):
         parm_rec = parm_recs[parm_i]
@@ -283,13 +282,13 @@ for i in range(max_parms):
 
 op_keys = co.data.keys()
 
-op_keys.sort()
+op_keys = sorted(op_keys)
 for key in op_keys:
 
     powp_rec = {}
     
     # Check COORD_OP_TYPE.
-    if string.find(co.data[key],',conversion,') < 1:
+    if co.data[key].find(',conversion,') < 1:
         continue
     
     co_rec = co.get_record(key)
@@ -334,7 +333,7 @@ for key in op_keys:
 
         source_crs = int(co_rec['SOURCE_CRS_CODE'])
 
-        if to_wgs84_ops.has_key(source_crs):
+        if source_crs in to_wgs84_ops:
             to_wgs84_ops[source_crs].append(key)
         else:
             to_wgs84_ops[source_crs] = [key]
@@ -402,7 +401,7 @@ for gcs in to_wgs84_ops.keys():
         if pref_rec['COORD_OP_CODE'] == '-1':
             pref_rec = None
             ignore_towgs84_gcs_list.append( gcs )
-            print 'Ignore TOWGS84 for GCS ', gcs
+            print('Ignore TOWGS84 for GCS ', gcs)
             
     except:
         pref_rec = None
@@ -448,13 +447,13 @@ for gcs in to_wgs84_ops.keys():
             
         if pref_rec is None \
            and ds_rec['DEPRECATED'] == '0' \
-           and not superseded_operations.has_key(ds_rec['COORD_OP_CODE']):
+           and not ds_rec['COORD_OP_CODE'] in superseded_operations:
             if preferred_op is None or area_size > preferred_op_area:
                 preferred_op = seq_key
                 preferred_op_area = area_size
 
     if preferred_op is None and pref_rec is not None:
-        print 'Failed to find preferred datum shift coord_op_code %s for GCS %d' % (pref_rec['COORD_OP_CODE'],gcs)
+        print('Failed to find preferred datum shift coord_op_code %s for GCS %d' % (pref_rec['COORD_OP_CODE'],gcs))
         
     if preferred_op is not None:
         ds_rec = ds_table.get_record( preferred_op )
@@ -541,7 +540,7 @@ for key in gcs_keys:
     try:
         datum_id = int(crs_rec['DATUM_CODE'])
     except:
-        print 'No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME']
+        print('No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME'])
         continue
     
     datum_rec = datums.get_record( datum_id )
@@ -549,7 +548,7 @@ for key in gcs_keys:
     gcs_rec['ELLIPSOID_CODE'] = datum_rec['ELLIPSOID_CODE']
     gcs_rec['PRIME_MERIDIAN_CODE'] = datum_rec['PRIME_MERIDIAN_CODE']
 
-    if greenwich_equiv.has_key(key):
+    if key in greenwich_equiv:
         towgs84_gcs = greenwich_equiv[key]
         crs_rec_base = crs.get_record( towgs84_gcs )
         gcs_rec['GREENWICH_DATUM'] = crs_rec_base['DATUM_CODE']
@@ -557,7 +556,7 @@ for key in gcs_keys:
         gcs_rec['GREENWICH_DATUM'] = crs_rec['DATUM_CODE']
         towgs84_gcs = key
     
-    if to_wgs84_ops.has_key(towgs84_gcs) \
+    if towgs84_gcs in to_wgs84_ops \
        and to_wgs84_ops[towgs84_gcs] is not None \
        and not (towgs84_gcs in ignore_towgs84_gcs_list):
     
@@ -608,7 +607,7 @@ for key in vertcs_keys:
     try:
         o_rec = vertcs_override_table.get_record( key )
         
-        print 'VertCS %d overridden from vertcs.override.csv file' % key
+        print('VertCS %d overridden from vertcs.override.csv file' % key)
         vertcs_table.add_record( key, o_rec )
         continue
     except:
@@ -628,7 +627,7 @@ for key in vertcs_keys:
     try:
         datum_id = int(crs_rec['DATUM_CODE'])
     except:
-        print 'No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME']
+        print('No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME'])
         continue
     
     datum_rec = datums.get_record( datum_id )
@@ -703,7 +702,7 @@ for key in geoccs_keys:
     try:
         datum_id = int(crs_rec['DATUM_CODE'])
     except:
-        print 'No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME']
+        print('No DATUM_CODE for %s, skipping.' % crs_rec['COORD_REF_SYS_NAME'])
         continue
     
     datum_rec = datums.get_record( datum_id )
@@ -711,7 +710,7 @@ for key in geoccs_keys:
     geoccs_rec['ELLIPSOID_CODE'] = datum_rec['ELLIPSOID_CODE']
     geoccs_rec['PRIME_MERIDIAN_CODE'] = datum_rec['PRIME_MERIDIAN_CODE']
 
-    if greenwich_equiv.has_key(key):
+    if key in greenwich_equiv:
         towgs84_gcs = greenwich_equiv[key]
         crs_rec_base = crs.get_record( towgs84_gcs )
         geoccs_rec['GREENWICH_DATUM'] = crs_rec_base['DATUM_CODE']
