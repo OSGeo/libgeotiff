@@ -1,3 +1,11 @@
+2015-04-01 Even Rouault <even dot rouault at spatialys dot com>
+	* geotiff_proj4.c: use CPLStrdup() instead of strdup() to avoid issues
+	with newer MSVC versions (GDAL #5907)
+
+2015-03-01 Even Rouault <even dot rouault at spatialys dot com>
+	* csv/build_pcs.py, csv/csv_tools.py, csv/add_esri_column.py,
+	csv/pg_to_csv.py: add Python3 compatibility and pyflakes fixes
+
 2015-03-01 Even Rouault <even dot rouault at spatialys dot com>
 	* csv/build_pcs.py: when converting rotational values for TOWGS84 clause
 	from other units into arc-seconds, do not output them with too big
