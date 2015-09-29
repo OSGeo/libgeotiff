@@ -33,6 +33,7 @@
 #include <locale.h>
 #include <errno.h>
 #include <stdlib.h>
+#include "geo_tiffp.h"
 #include "cpl_serv.h"
 
 #ifndef NAN
