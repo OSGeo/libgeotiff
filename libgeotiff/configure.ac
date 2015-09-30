@@ -175,6 +175,7 @@ if test "${JPEG_CONFIG}" != "no" ; then
     if test "${JPEG_CONFIG}" = "yes" ; then
         if test -d ${with_jpeg}/include ; then
             JPEG_INC="-I$with_jpeg/include"
+            LIBS="-L$with_jpeg/lib $LIBS"
             AC_MSG_RESULT([using jpeg from $with_jpeg/include]) 
         fi
     fi
