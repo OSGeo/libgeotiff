@@ -584,8 +584,6 @@ int GTIFGetEllipsoidInfo( int nEllipseCode, char ** ppszName,
 
         if( *pdfSemiMinor == 0.0 )
         {
-            double	dfInvFlattening;
-            
             dfInvFlattening = 
                 GTIFAtof(CSVGetField( CSVFilename("ellipsoid.csv"),
                                   "ELLIPSOID_CODE", szSearchKey, CC_Integer,
