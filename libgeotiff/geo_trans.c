@@ -73,6 +73,7 @@ static int inv_geotransform( double *gt_in, double *gt_out )
 /*                       GTIFTiepointTranslate()                        */
 /************************************************************************/
 
+static
 int GTIFTiepointTranslate( int gcp_count, double * gcps_in, double * gcps_out,
                            double x_in, double y_in,
                            double *x_out, double *y_out )
