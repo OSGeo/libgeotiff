@@ -203,7 +203,7 @@ int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
         if( atoi(pszValue) > 0 )
             *pnProjOp = (short) atoi(pszValue);
         else
-            *pnUOMLengthCode = KvUserDefined;
+            *pnProjOp = KvUserDefined;
     }
 
 /* -------------------------------------------------------------------- */
