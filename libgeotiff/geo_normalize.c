@@ -1110,8 +1110,6 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG, int bReturnExtendedCTCode )
       default: /* use the EPSG code for other methods */
         return nEPSG;
     }
-
-    return( KvUserDefined );
 }
 
 /************************************************************************/
@@ -2478,7 +2476,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
 #if !defined(GEO_NORMALIZE_DISABLE_TOWGS84)
     psDefn->TOWGS84Count = 
-        GTIFKeyGetDOUBLE(psGTIF, GeogTOWGS84GeoKey, psDefn->TOWGS84, 0, 7 );
+        (short)GTIFKeyGetDOUBLE(psGTIF, GeogTOWGS84GeoKey, psDefn->TOWGS84, 0, 7 );
 #endif
 
 /* -------------------------------------------------------------------- */
