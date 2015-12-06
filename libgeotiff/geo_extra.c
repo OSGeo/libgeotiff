@@ -37,7 +37,7 @@
 #include "geo_normalize.h"
 #include "geovalues.h"
 
-static int StatePlaneTable[] = 
+static const int StatePlaneTable[] = 
 {
     PCS_NAD83_Alabama_East,		Proj_Alabama_CS83_East,
     PCS_NAD83_Alabama_West,		Proj_Alabama_CS83_West,
