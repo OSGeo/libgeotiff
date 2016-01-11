@@ -251,7 +251,7 @@ int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
 /************************************************************************/
 /*                           GTIFAngleToDD()                            */
 /*                                                                      */
-/*      Convert a numeric angle to decimal degress.                     */
+/*      Convert a numeric angle to decimal degrees.                     */
 /************************************************************************/
 
 double GTIFAngleToDD( double dfAngle, int nUOMAngle )
@@ -344,7 +344,7 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
     {
         dfAngle = GTIFAtof(pszAngle) / 3600;
     }
-    else /* decimal degrees ... some cases missing but seeminly never used */
+    else /* decimal degrees ... some cases missing but seemingly never used */
     {
         CPLAssert( nUOMAngle == 9102 || nUOMAngle == KvUserDefined
                    || nUOMAngle == 0 );
@@ -1011,6 +1011,9 @@ int GTIFGetUOMAngleInfo( int nUOMAngleCode,
             dfInRadians = (dfFactorB / dfFactorC);
             dfInDegrees = dfInRadians * 180.0 / M_PI;
         }
+
+        if( ppszUOMName != NULL )
+            *ppszUOMName = CPLStrdup( pszUOMName );
     }
     else
     {
@@ -1020,13 +1023,6 @@ int GTIFGetUOMAngleInfo( int nUOMAngleCode,
 /* -------------------------------------------------------------------- */
 /*      Return to caller.                                               */
 /* -------------------------------------------------------------------- */
-    if( ppszUOMName != NULL )
-    {
-        if( pszUOMName != NULL )
-            *ppszUOMName = CPLStrdup( pszUOMName );
-        else
-            *ppszUOMName = NULL;
-    }
 
     if( pdfInDegrees != NULL )
         *pdfInDegrees = dfInDegrees;
@@ -1135,7 +1131,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG, int bReturnExtendedCTCode )
 /************************************************************************/
 /*                            SetGTParmIds()                            */
 /*                                                                      */
-/*      This is hardcoded logic to set the GeoTIFF parmaeter            */
+/*      This is hardcoded logic to set the GeoTIFF parameter            */
 /*      identifiers for all the EPSG supported projections.  As the     */
 /*      trf_method.csv table grows with new projections, this code      */
 /*      will need to be updated.                                        */
@@ -2167,7 +2163,7 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
 This function reads the coordinate system definition from a GeoTIFF file,
 and <i>normalizes</i> it into a set of component information using 
-definitions from CSV (Comma Seperated Value ASCII) files derived from 
+definitions from CSV (Comma Separated Value ASCII) files derived from 
 EPSG tables.  This function is intended to simplify correct support for
 reading files with defined PCS (Projected Coordinate System) codes that
 wouldn't otherwise be directly known by application software by reducing
@@ -2175,7 +2171,7 @@ it to the underlying projection method, parameters, datum, ellipsoid,
 prime meridian and units.<p>
 
 The application should pass a pointer to an existing uninitialized 
-GTIFDefn structure, and GTIFGetDefn() will fill it in.  The fuction 
+GTIFDefn structure, and GTIFGetDefn() will fill it in.  The function 
 currently always returns TRUE but in the future will return FALSE if 
 CSV files are not found.  In any event, all geokeys actually found in the
 file will be copied into the GTIFDefn.  However, if the CSV files aren't
@@ -2241,7 +2237,7 @@ Projection Linear Units: 9003/US survey foot (0.304801m)
 </pre>
 
 Note that GTIFGetDefn() does not inspect or return the tiepoints and scale.
-This must be handled seperately as it normally would.  It is intended to
+This must be handled separately as it normally would.  It is intended to
 simplify capture and normalization of the coordinate system definition.  
 Note that GTIFGetDefn() also does the following things:
 
