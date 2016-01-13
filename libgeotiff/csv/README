@@ -1,7 +1,7 @@
 	EPSG Tables
 	===========
 
-VERSION: 8.5
+VERSION: 8.8
 
 The .csv files in this directory are an extract of tables from the EPSG
 projection database in CSV (comma separated value) format.  These same

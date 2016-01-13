@@ -111,6 +111,7 @@ supersession_id,object_table_name,object_code,superseded_by,supersession_type,su
 1054,epsg_coordinatereferencesystem,6095,6352,Retirement,2013,Geodetic CRS superseded before OGP Guidance Note 373-20 published.
 1055,epsg_coordinatereferencesystem,6096,6353,Retirement,2013,Geodetic CRS superseded before OGP Guidance Note 373-20 published.
 1056,epsg_coordinatereferencesystem,6097,6354,Retirement,2013,Geodetic CRS superseded before OGP Guidance Note 373-20 published.
+1057,epsg_coordoperation,1108,6905,Retirement,2014,Later determination.
 1058,epsg_coordoperation,10081,5656,Retirement,2012,Replacement has improved modelling.
 1059,epsg_coordoperation,10078,5656,Retirement,2012,Replacement has improved modelling.
 1060,epsg_coordoperation,10039,5656,Retirement,2012,Replacement has improved modelling.
@@ -119,9 +120,21 @@ supersession_id,object_table_name,object_code,superseded_by,supersession_type,su
 1063,epsg_coordoperation,10042,5656,Retirement,2012,Replacement has improved modelling.
 1064,epsg_coordoperation,10043,5656,Retirement,2012,Replacement has improved modelling.
 1065,epsg_coordoperation,6392,6279,Retirement,2013,Time reference changed by information source to 1994 to coincide with target CRS's datum epoch. This to minimise confusion with dates.
+1066,epsg_coordoperation,1121,6906,Retirement,2014,Later determination.
 1067,epsg_coordoperation,10083,5657,Retirement,2012,Replacement has improved modelling.
 1068,epsg_coordoperation,6315,6278,Retirement,2013,Time reference changed by information source to 1994 to coincide with target CRS's datum epoch. This to minimise confusion with dates.
 1069,epsg_coordoperation,6313,6280,Retirement,2013,Time reference changed by information source to 1994 to coincide with target CRS's datum epoch. This to minimise confusion with dates.
+1070,epsg_coordoperation,1256,6908,Retirement,2014,Later determination.
+1071,epsg_coordoperation,1951,6909,Retirement,2014,Later determination.
+1072,epsg_coordoperation,5662,6939,Retirement,2015,Improved determination.
+1073,epsg_coordoperation,15938,6998,Retirement,2015,Usage has adopted later transformation.
+1075,epsg_coordoperation,15800,6907,Retirement,2014,"Later determination, replacement has improved accuracy."
+1076,epsg_coordoperation,15897,6895,Retirement,2014,"Later determination, replacement has improved accuracy."
+1077,epsg_coordoperation,1868,6976,Retirement,2014,Improved determination.
+1078,epsg_coordoperation,1868,6975,Retirement,2014,Improved determination.
+1079,epsg_coordoperation,1868,6974,Retirement,2014,Improved determination.
+1080,epsg_coordoperation,1203,6971,Retirement,2014,Improved determination.
+1081,epsg_coordoperation,1204,6973,Retirement,2014,Improved determination.
 1082,epsg_coordoperation,10063,5656,Retirement,2012,Replacement has improved modelling.
 1083,epsg_coordoperation,10037,5656,Retirement,2012,Replacement has improved modelling.
 1084,epsg_coordoperation,10064,5656,Retirement,2012,Replacement has improved modelling.

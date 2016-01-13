@@ -291,7 +291,7 @@ Transformation parameters La Canoa to REGVEN:
 Application of the 10 parameter Molodenski-Badekas Transformation results in REGVEN geocentric coordinates of:
    Xt =  2 550 138.467 m
    Yt = -5 749 799.862 m
-   Zt  =  1 054 530.826 m",See method codes 1039 and 9636 for this operation in other coordinate domains and method code 1061 for opposite rotation convention in geocentric domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2009.083 2013.021 2014.039,0
+   Zt  =  1 054 530.826 m",See method codes 1039 and 9636 for this operation in other coordinate domains and method code 1061 for opposite rotation convention in geocentric domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2009.083 2013.021 2014.039 2014.065,0
 1035,Geocentric translations  (geog3D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
@@ -431,7 +431,7 @@ This converts into:
    Latitude =       9 deg 34 min 49.001 sec N
    Longitude =  66 deg 04 min 54.705 sec W
    Ellipsoidal height =  -18.10 m
-on the REGVEN geographic 3D coordinate reference system.",See method codes 1034 and 9636 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 3D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2009.083 2013.021 2014.039,0
+on the REGVEN geographic 3D coordinate reference system.",See method codes 1034 and 9636 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 3D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2009.083 2013.021 2014.039 2014.065,0
 1040,GNTRANS,1,"GNTRANS is a multistage three-dimensional transformation approach. Starting with a conventional seven-parameter transformation, the next stage functionally models the residuals at identical points using a unique, continuous spline surface. The final stage is a stochastic prediction to describe remaining discrepancies. For application and to improve performance, topocentric coordinate offsets are interpolated from a regular grid derived from the above transformation to determine coordinates of an arbitrary input point in the target system and vice-versa.",,,Geo++.,OGP,2010/03/30,2010.037,0
 1041,Krovak (North Orientated),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -908,24 +908,29 @@ where h = the height above the ellipsoid in the source geographic 3D CRS
 and     H = the geoid height in the target vertical CRS.",(none),"The Information Source references software which offers both bi-cubic and bi-linear interpolation methods. Unlike earlier Australian models which used bi-linear interpolation, Ausgeoid09 uses the bi-cubic method.  See Info Source for file format doc.","Geoscience Australia; http://www.ga.gov.au/geodesy/ausgeoid/",OGP,2012/03/01,2012.009,0
 1049,P6 (I = J-90°) seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
-XT = XT0   -   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
+The P6 (I = J-90°) seismic bin grid transformation is a special case of the Affine Geometric Transformation (method code 9623). In practice bin grid definitions are based on an identified map grid. As such the example bin grids in the EPSG Dataset are described with the map grid (projected CRS) as source CRS. However to retain consistency with the syntax used in the description of the affine geometric transformation, in the formulas below the bin grid is the affine source CRS and the map grid is the affine target CRS.
 
-YT = YT0   +   XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
 
-XS = XSO - {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]}
+Map grid Easting = XT = XT0   -   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
 
-YS = YSO + {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]}
+Map grid Northing = YT = YT0   +   XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
+
+Bin grid I = XS = XSO - {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]}
+
+Bin grid J = YS = YSO + {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]}
 
 where:
 
-XT0 ,YT0  = the coordinates of the origin point of the source coordinate reference system, expressed in the target coordinate reference system;
-dSX , dSY  = the length of one unit of the source  axis, expressed in units of the target axis, for the X axes and the Y- axes respectively;
-k = point scale factor of the target coordinate reference system in a chosen reference point;
-q  = the angle through which the source coordinate reference system axes must be rotated to coincide with the target coordinate refderence system axes (counter-clockwise is positive). Alternatively, the bearing (clockwise positive) of the source coordinate reference system Y-axis measured relative to target coordinate reference system north.","This example is given in the OGP P6/11 user guide. Source coordinate reference system: imaginary 3D seismic acquisition bin grid. The bin width on the I-axis (XS axis) is 82.5 US survey feet, whilst the bin width on the J-axis (YS axis) is 41.25 US survey feet. The origin of the bin grid has bin values of 5000,0.
+XT0 ,YT0  = the map grid coordinates (easting, northing) of the origin point of the bin grid;
+dSX , dSY  = the length of one unit of the bin, expressed in units of the map grid, for the bin grid I and J axes respectively;
+k = point scale factor in the map grid at a chosen reference point;
+q  = the angle through which the bin grid axes must be rotated to coincide with the map grid axes (counter-clockwise is positive). Alternatively, the bearing (clockwise positive) of the bin grid system J-axis measured relative to map grid north.","This example is given in the OGP P6/11 user guide. 
 
-The target coordinate reference system is a projected CRS [NAD27/ BLM 16N (ftUS)] upon which the origin of the bin grid is defined at east = 871200.0, north = 10280160.0.  As the survey was acquired on the map grid, the bin grid scale factor at the bin grid origin is 1.
+The bin grid is based on projected CRS NAD27/ BLM 16N (ftUS) in which the origin of the bin grid is defined at east = 871200.0 ftUS, north = 10280160.0 ftUS. As the survey was acquired on the map grid, the bin grid scale factor at the bin grid origin is defined to be 1.
 
-In the map grid (target CRS), the bearing of the bin grid (source CRS) I and J axes are 250deg and 340deg respectively.  Thus the angle through which the bin grid axes need to be rotated to coincide with the map grid axes is +340 degrees.
+The bin width on the I-axis (XS axis) is 82.5 US survey feet, whilst the bin width on the J-axis (YS axis) is 41.25 US survey feet. The origin of the bin grid has bin values of I=5000, J=0.
+
+In the map grid, the bearing of the bin grid I and J axes are 250° and 340° respectively. The latter is one of the transformation parameters.
 
 The transformation parameter values are:
 
@@ -936,24 +941,24 @@ Bin grid origin Northing:            10280160 ftUS
 Scale factor of bin grid:            1.0
 Bin Width on I-axis:                 82.5 ftUS
 Bin Width on J-axis:                 41.25 ftUS
-Map grid bearing of bin grid J-axis: 340 deg
+Map grid bearing of bin grid J-axis: 340°
 Bin node increment on I-axis:        1
 Bin node increment on J-axis:        1
 
 
-Forward calculation for centre of bin with coordinates: I = 4700, J = 247:
-XT = Easting   = XTO   -   [(XS – XSO) * cos q * k * MX / IncSX]  +  [(YS – YSO) * sin q * k * MY / IncSY]
+Calculation of map grid coordinates for centre of bin with coordinates: I = 4700, J = 247:
+Easting = XT = XTO   -   [(XS – XSO) * cos q * k * MX / IncSX]  +  [(YS – YSO) * sin q * k * MY / IncSY]
 = 890972.63 ftUS.
 
-YT = Northing = YTO + [(XS – XSO) * sin q * k * MX / IncSX]   +  [(YS – YSO) * cos q * k * MY / IncSY]
+Northing = YT = YTO + [(XS – XSO) * sin q * k * MX / IncSX]   +  [(YS – YSO) * cos q * k * MY / IncSY]
 = 10298199.29 ftUS.
 
-Reverse calculation for this point east = 890972.63ftUS, north = 10298199.29ftUS:
-XS = XSO - {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]}
+Calculation of bin grid coordinates for this point, map grid location east = 890972.63ftUS, north = 10298199.29ftUS:
+Bin grid I = XS = XSO - {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]}
 = 4700 bins, 
 
-YS = YSO + {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]}
-= 247 bins","Use only when the bin grid I-axis is rotated 90° counter-clockwise from the J-axis when viewed from above the plane containing the two axes (CS code 1034). If the I-axis is rotated clockwise, method 9666 should be used.","OGP P6/11 Seismic Bin Grid Data Exchange Format - User Guidelines, version 1.0, July 2012.",OGP,2012/07/31,2011.106,0
+Bin grid J = YS = YSO + {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]}
+= 247 bins","Use only when the bin grid I-axis is rotated 90° counter-clockwise from the J-axis when viewed from above the plane containing the two axes (CS code 1034). If the I-axis is rotated 90° clockwise from the J-axis, method 9666 should be used.","OGP P6/11 Seismic Bin Grid Data Exchange Format - User Guidelines, version 1.0, July 2012.",OGP,2014/07/28,2011.106 2014.044,0
 1050,Geographic3D to GravityRelatedHeight (CI),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a quasigeoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -1093,16 +1098,16 @@ and Longitude = 74°15'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org
 
 The transformation between source and target CRS geocentric coordinates is usually described as a simplified 7-parameter Helmert transformation, expressed in matrix form with 7 parameters:
 
-   (Xt)          (  1       -rZ'    +rY')     (Xs)    (tX')
-   (Yt)  =  M *  ( +rZ'      1      -rX')  *  (Ys)  + (tY')
-   (Zt)          ( -rY'    +rX'       1 )     (Zs)    (tZ')
+(Xt)       (  1     -rZ'  +rY')   (Xs)   (tX')
+(Yt) = M * ( +rZ'    1    -rX') * (Ys) + (tY')
+(Zt)       ( -rY'   +rX'    1 )   (Zs)   (tZ')
 
 where
 (tX', tY', tZ')   :Translation vector, to be added to the point's position vector in the source coordinate reference system in order to transform from source system to target system; also: the coordinates of the origin of the source coordinate reference system in the target coordinate reference system.
 
 (rX', rY', rZ')   :Rotations to be applied to the point's vector.  The sign convention is such that a positive rotation about an axis is defined as a clockwise rotation of the position vector when viewed from the origin of the Cartesian coordinate reference system in the positive direction of that axis; e.g. a positive rotation about the Z-axis only from source system to target system will result in a larger longitude value for the point in the target system.  Although rotation angles may be quoted in any angular unit of measure, the formula as given here requires the angles to be provided in radians.
 
-M'                 :The scale correction to be made to the position vector in the source coordinate reference system in order to obtain the correct scale in the target coordinate reference system. M' = (1 + dS'*10^-6), where dS' is the scale correction expressed in parts per million. 
+M' : The scale correction to be made to the position vector in the source coordinate reference system in order to obtain the correct scale in the target coordinate reference system. M' = (1 + dS'*10^-6), where dS' is the scale correction expressed in parts per million. 
 
 where 
 tX' = tX + dtX (t – t0)
@@ -1112,14 +1117,13 @@ rX' = rX + drX (t – t0)
 rY' = rY + drY (t – t0)
 rZ' = rZ + drZ (t – t0)
 M' = 1 + dS'*10-6 
-dS' = dS + ddS (t – t0)","Transformation from ITRF2008 to GDA94.
+dS' = dS + ddS (t – t0)","Transformation from ITRF2008 to GDA94 at epoch 2013.90.
 
-Input point coordinate reference system: ITRF2008 at epoch 2013.9 (geocentric
-Cartesian coordinates):
+Input point coordinate reference system: ITRF2008 at epoch 2013.9 (geocentric Cartesian coordinates):
 
-Xs = -3789470.702 m
-Ys = 4841770.411 m
-Zs = -1690893.950 m
+Xs = -3789470.710 m
+Ys = 4841770.404 m
+Zs = -1690893.952 m
 t = 2013.90
 
 Transformation parameter values:
@@ -1149,11 +1153,26 @@ rY' = –2.2578 + [–1.1820 * (2013.90-1994.00)] = –25.78 msec = –1.249830E
 rZ' = –2.4015 + [–1.1551 * (2013.90-1994.00)] = –25.39 msec = –1.230844E-07 rad
 dS' = +0.00971 + [+0.000109 * (2013.90-1994.00)] = +0.01188 ppm
 
-Using these parameter values, application of the 7 parameter Position Vector transformation results in:
-Xt = -3789470.008 m
-Yt =  4841770.685 m
-Zt = -1690895.103 m
-on the GDA94 geocentric coordinate reference system.",Note the analogy with the Time-dependent Coordinate Frame Rotation (code 1056) but beware of the differences!  The Position Vector convention is used by IAG. See methods 1054 and 1055 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/12/23,2013.021 2013.065,0
+Using these parameter values, application of the 7 parameter Position Vector transformation to the given (source) ITRF2008 coordinates results in:
+Xt = -3789470.004m
+Yt =  4841770.686 m
+Zt = -1690895.108 m
+on the GDA94 (target) geocentric coordinate reference system.
+
+For the reverse transformation from GDA94 coordinates to ITRF08 coordinates at epoch 2013.9, the signs of all parameters need to be reversed except for the reference epoch. Then:
+tX' = +84.68 + [(–1.42 * (2013.90 –1994.00)] = +56.42 mm = +0.056 m 
+and similarly for the other six parameters. Hence tY' = –0.007 m, tZ' = –0.050 m, rX' = 1.471021E-07 rad, rY' = 1.249830E-07 rad, rZ' = 1.230844E-07 rad and dS' = –0.01188 ppm.
+
+Using these time-adjusted parameters values, applying the 7 parameter Coordinate Frame rotation fomula to the GDA94 coordinates of 
+Xs = –3789470.004 m
+Ys = 4841770.686 m
+Zs = –1690895.108 m 
+
+results in ITRF08 coordinates at epoch 2013.9 of:
+
+Xt = –3789470.710 m
+Yt = 4841770.404 m
+Zt = –1690893.952 m",Note the analogy with the Time-dependent Coordinate Frame Rotation (code 1056) but beware of the differences!  The Position Vector convention is used by IAG. See methods 1054 and 1055 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2015/02/12,2013.021 2013.065 2014.068,0
 1054,Time-dependent Position Vector tfm (geog2D),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
@@ -1287,9 +1306,9 @@ on the GDA94 geographic 3D coordinate reference system.",Note the analogy with t
 
 The transformation between source and target CRS geocentric coordinates is a two-step process. The first step is to compute the values of seven Helmert transformation parameters at the required epoch. The second step is to apply a seven-parameter Helmert transformation to the source CRS coordinates. This Coordinate Frame rotation is expressed in matrix form as:
 
-   (Xt)          (  1       +rZ'    -rY')     (Xs)    (tX')
-   (Yt)  =  M *  ( -rZ'      1      +rX')  *  (Ys)  + (tY')
-   (Zt)          ( +rY'    -rX'       1 )     (Zs)    (tZ')
+(Xt)       (  1     +rZ'  -rY')     (Xs)    (tX')
+(Yt) = M * ( -rZ'    1    +rX')  *  (Ys)  + (tY')
+(Zt)       ( +rY'  -rX'     1 )     (Zs)    (tZ')
 
 where 
 tX' = tX + dtX (t – t0)
@@ -1319,13 +1338,13 @@ system. Although rotation angles may be quoted in any angular unit of measure,
 the formula as given here requires the angles to be provided in radians.
 
 
-M'                 :The scale correction to be made to the position vector in the source coordinate reference system in order to obtain the correct scale in the target coordinate reference system. M' = (1 + dS'*10^-6), where dS' is the scale correction expressed in parts per million.","Transformation from ITRF2008 to GDA94.
+M': The scale correction to be made to the position vector in the source coordinate reference system in order to obtain the correct scale in the target coordinate reference system. M' = (1 + dS'*10^-6), where dS' is the scale correction expressed in parts per million.","Transformation from ITRF2008 to GDA94 at epoch 2013.90.
 
-Input point coordinate reference system: ITRF2008 at epoch 2013.9 
+Source CRS ITRF2008 coordinates at epoch 2013.9 
 (geocentric Cartesian coordinates):
-Xs = –3789470.702 m
-Ys = 4841770.411 m
-Zs = –1690893.950 m
+Xs = –3789470.710 m
+Ys = 4841770.404 m
+Zs = –1690893.952 m
 t = 2013.90
 
 Transformation parameter values:
@@ -1355,26 +1374,26 @@ rY' = +2.2578 + [(1.1820 * (2013.90-1994.00)] = +25.7796 msec = +1.249830E-07 ra
 rZ' = +2.4015 + [(1.1551 * (2013.90-1994.00)] = +25.3880 msec = +1.230844E-07 rad
 dS' = +0.00971 + [+0.000109 * (2013.90-1994.00)] = +0.01188 ppm
 
-Second, using these time-adjusted parameter values, application of the 7 parameter Coordinate Frame rotation formula results in:
-Xt = –3789470.008 m
-Yt =  4841770.685 m
-Zt = –1690895.103 m
-on the GDA94 geocentric coordinate reference system.
+Second, using these time-adjusted parameter values, application of the 7 parameter Coordinate Frame rotation formula to the given (source) ITRF2008 coordinates results in:
+Xt = –3789470.004 m
+Yt =  4841770.686 m
+Zt = –1690895.108 m
+on the GDA94 (target) geocentric coordinate reference system.
 
 For the reverse transformation from GDA94 coordinates to ITRF08 coordinates at epoch 2013.9, the signs of all parameters need to be reversed except for the reference epoch. Then:
 tX' = +84.68 + [(–1.42 * (2013.90 –1994.00)] = +56.42 mm = +0.056 m 
 and similarly for the other six parameters. Hence tY' = –0.007 m, tZ' = –0.050 m, rX' = –1.471021E-07 rad, rY' = –1.249830E-07 rad, rZ' = –1.230844E-07 rad and dS' = –0.01188 ppm.
 
 Using these time-adjusted parameters values, applying the 7 parameter Coordinate Frame rotation fomula to the GDA94 coordinates of 
-Xs = –3789470.008 m
-Ys = 4841770.685 m
-Zs = –1690895.103 m 
+Xs = –3789470.004 m
+Ys = 4841770.686 m
+Zs = –1690895.108 m 
 
 results in ITRF08 coordinates at epoch 2013.9 of:
 
-Xt = –3789470.702 m
-Yt = 4841770.411 m
-Zt = –1690893.950 m",Note the analogy with the Time-dependent Position Vector transformation (code 1053) but beware of the differences!  The Position Vector convention is used by IAG. See methods 1057 and 1058 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/06/26,2013.021,0
+Xt = –3789470.710 m
+Yt = 4841770.404 m
+Zt = –1690893.952 m",Note the analogy with the Time-dependent Position Vector transformation (code 1053) but beware of the differences!  The Position Vector convention is used by IAG. See methods 1057 and 1058 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2015/02/12,2013.021 2014.068,0
 1057,Time-dependent Coordinate Frame rotation (geog2D),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
@@ -1500,6 +1519,16 @@ on the GDA94 geocentric coordinate reference system.
    Longitude =  128 deg 02 min 56.174 sec E
    Ellipsoidal height =  +46.244m
 on the GDA94 geographic 3D coordinate reference system.",Note the analogy with the Time-dependent Position Vector transformation (code 1055) but beware of the differences!  The Position Vector convention is used by IAG. See methods 1056 and 1057 for similar tfms operating between other CRS types.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/06/26,2013.021,0
+1059,Geographic3D to GravityRelatedHeight (PNG),0,"This transformation involves the application of a height difference interpolated from a height correction model. The model provides height difference values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
+
+The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
+
+Calculation of the height difference is achieved through a bi-linear interpolation of the grid, using the latitude and longitude of the point. This step provides the height correction (C) of the target datum above the ellipsoid of the source Geographic 3D CRS. C differs from the geoid-ellipsoid separation N because a vertical datum is a realisation of the geoid surface, not the geoid itself.
+
+Then:
+           H = h - C
+
+where h = the height above the ellipsoid in the source geographic 3D CRS",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2015/11/05,2015.052,0
 1060,Geographic3D to GravityRelatedHeight (CGG2013),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a geoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -1553,7 +1582,7 @@ Transformation parameters La Canoa to REGVEN:
 Application of the 10 parameter Molodenski-Badekas (PV) transformation results in REGVEN geocentric coordinates of:
    Xt =  2 550 138.467 m
    Yt = -5 749 799.862 m
-   Zt  =  1 054 530.826 m",See method codes 1062 and 1063 for this operation in other coordinate domains and method code 1034 for opposite rotation convention in geocentric domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/17,2014.039,0
+   Zt  =  1 054 530.826 m",See method codes 1062 and 1063 for this operation in other coordinate domains and method code 1034 for opposite rotation convention in geocentric domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2014.039 2014.065,0
 1062,Molodensky-Badekas (PV geog3D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is carried out as a concatenation of the following operations:
@@ -1598,7 +1627,7 @@ This converts into:
    Latitude =       9 deg 34 min 49.001 sec N
    Longitude =  66 deg 04 min 54.705 sec W
    Ellipsoidal height =  -18.10 m
-on the REGVEN geographic 3D coordinate reference system.",See method codes 1061 and 1063 for this operation in other coordinate domains and method code 1039 for opposite rotation convention in geographic 3D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/17,2014.039,0
+on the REGVEN geographic 3D coordinate reference system.",See method codes 1061 and 1063 for this operation in other coordinate domains and method code 1039 for opposite rotation convention in geographic 3D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2014.039 2014.065,0
 1063,Molodensky-Badekas (PV geog2D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is carried out as a concatenation of the following operations:
@@ -1651,7 +1680,7 @@ on the REGVEN geographic 3D coordinate reference system.
 
 Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
    Latitude =       9 deg 34 min 49.001 sec N
-   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1061 and 1062 for this operation in other coordinate domains and method code 9636 for opposite rotation in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/17,2014.039,0
+   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1061 and 1062 for this operation in other coordinate domains and method code 9636 for opposite rotation in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2014.039 2014.065,0
 9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/11/12,1999.790,0
 9602,Geographic/geocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -2428,7 +2457,7 @@ on the REGVEN geographic 3D coordinate reference system.
 
 Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
    Latitude =       9 deg 34 min 49.001 sec N
-   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1034 and 1039 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/06/27,2002.510 2004.470 2009.083 2013.021 2014.039,0
+   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1034 and 1039 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2002.510 2004.470 2009.083 2013.021 2014.039 2014.065,0
 9637,Degree representation conversion: deg to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -3130,9 +3159,14 @@ whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.
 9658,VERTCON,1,See information source.,See information source.,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US National Geodetic Survey - http://www.ngs.noaa.gov,OGP,2004/04/27,,0
 9659,Geographic3D to 2D conversion,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
-The forward case is trivial. A 3-dimensional geographic coordinate reference system comprising of geodetic latitude, geodetic longitude and ellipsoidal height is converted to its 2-dimensional subset by the simple expedient of dropping the height.
+The forward case is trivial. A 3-dimensional geographic coordinate reference system comprising of geodetic latitude, geodetic longitude and ellipsoidal height is converted to its 2-dimensional subset by the simple expedient of dropping the height. The axis order change operates on coordinates of a point whose order change is described by the following matrix operation:
 
-The reverse conversion, from 2D to 3D, is indeterminate. It is however a requirement when a geographic 2D coordinate reference system is to be transformed using a geocentric method which is 3-dimensional. In practice an artificial ellipsoidal height is created and appended to the geographic 2D coordinate reference system to create a geographic 3D coordinate reference system referenced to the same geodetic datum. The assumed ellipsoidal height is usually either set to the gravity-related height of a position in a compound coordinate reference system, or set to zero. As long as the height chosen is within a few kilometres of sea level, no error will be induced into the horizontal position resulting from the later geocentric transformation; the vertical coordinate will however be meaningless.",(none),This is a parameter-less conversion.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/27,,0
+[Derived CRS 1st coordinate]   [1  0  0]   [Base CRS 1st coordinate]
+[Derived CRS 2nd coordinate] = [0  1  0] * [Base CRS 2nd coordinate]
+[Derived CRS 3rd coordinate]   [0  0  0]   [Base CRS 3rd coordinate]
+
+
+The reverse conversion, from 2D to 3D, is indeterminate. It is however a requirement when a geographic 2D coordinate reference system is to be transformed using a geocentric method which is 3-dimensional. In practice an artificial ellipsoidal height is created and appended to the geographic 2D coordinate reference system to create a geographic 3D coordinate reference system referenced to the same geodetic datum. The assumed ellipsoidal height is usually either set to the gravity-related height of a position in a compound coordinate reference system, or set to zero. As long as the height chosen is within a few kilometres of sea level, no error will be induced into the horizontal position resulting from the later geocentric transformation; the vertical coordinate will however be meaningless.",(none),This is a parameter-less conversion.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2015/05/22,2015.018,0
 9660,Geographic3D offsets,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Lat_T = Lat_S + latitude_offset 
@@ -3193,24 +3227,26 @@ Then:
 where h = the height above the ellipsoid in the source geographic 3D CRS",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/04/11,2008.010,0
 9666,P6 (I = J+90°) seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
-XT = XT0   +   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
+The P6 (I = J+90°) seismic bin grid transformation is a special case of the Affine Geometric Transformation (method code 9623). In practice bin grid definitions are based on an identified map grid. As such the example bin grids in the EPSG Dataset are described with the map grid (projected CRS) as source CRS. However to retain consistency with the syntax used in the description of the affine geometric transformation, in the formulas below the bin grid is the affine source CRS and the map grid is the affine target CRS.
 
-YT = YT0   –   XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
+Map grid Easting = XT = XT0   +   XS .  k . dSX . cos q   +   YS .  k .  dSY  . sin q
 
-XS = {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]} + XSO
+Map grid Northing = YT = YT0   –   XS .  k .  dSX . sin q    +   YS .  k .  dSY  . cos q
 
-YS = {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]} + YSO 
+Bin grid I = XS = {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]} + XSO
+
+Bin grid J = YS = {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]} + YSO 
 
 where:
 
-XT0 ,YT0  = the coordinates of the origin point of the source coordinate reference system, expressed in the target coordinate reference system;
-dSX , dSY  = the length of one unit of the source  axis, expressed in units of the target axis, for the X axes and the Y- axes respectively;
-k = point scale factor of the target coordinate reference system in a chosen reference point;
-q  = the angle through which the source coordinate reference system axes must be rotated to coincide with the target coordinate refderence system axes (counter-clockwise is positive). Alternatively, the bearing (clockwise positive) of the source coordinate reference system Y-axis measured relative to target coordinate reference system north.","This example is given in the UKOOA P6/98 document. Source coordinate reference system: imaginary 3D seismic acquisition bin grid. The two axes are orthogonal, but the bin width on the I-axis (XS axis) is 25 metres, whilst the bin width on the J-axis (YS axis) is 12.5 metres. The origin of the grid has bin values of 1,1.
+XT0 ,YT0  = the map grid coordinates (easting, northing) of the origin point of the bin grid;
+dSX , dSY  = the length of one unit of the bin grid, expressed in units of map grid, for the bin grid I and J axes respectively;
+k = point scale factor of the map grid at a chosen reference point;
+q  = the angle through which the bin grid axes must be rotated to coincide with the map grid axes (counter-clockwise is positive). Alternatively, the bearing (clockwise positive) of the bin grid J-axis measured relative to map grid north.","This example is given in the P6/98 document. The bin grid is based on projected CRS WGS 84 / UTM Zone 31N. The origin of the bin grid is defined to be at msp grid easting = 456781.0mE, northing = 5836723.0mN.  The map grid point scale factor at this point is 0.99984.
 
-The target coordinate reference system is a projected CRS (WGS 84 / UTM Zone 31N) upon which the origin of the bin grid is defined at E = 456781.0, N = 5836723.0.  The projected coordinate reference system point scale factor at the bin grid origin is 0.99984.
+The bin width on the I-axis (XS axis) is 25 metres, whilst the bin width on the J-axis (YS axis) is 12.5 metres. At its origin the bin grid has bin values of 1,1.
 
-In the map grid (target CRS), the bearing of the bin grid (source CRS) I and J axes are 110deg and 20deg respectively.  Thus the angle through which the bin grid axes need to be rotated to coincide with the map grid axes is +20 degrees.
+In the map grid, the bearing of the bin grid I and J axes are 110° and 20° respectively. The latter is one of the transformation parameters.
 
 The transformation parameter values are:
 
@@ -3221,26 +3257,26 @@ Bin grid origin Northing:            5836723.00 m
 Scale factor of bin grid:            0.99984
 Bin Width on I-axis:                 25 m
 Bin Width on J-axis:                 12.5 m
-Map grid bearing of bin grid J-axis: 20 deg
+Map grid bearing of bin grid J-axis: 20°
 Bin node increment on I-axis:        1
 Bin node increment on J-axis:        1
 
 
-Forward calculation for centre of bin with coordinates: I = 300, J = 247:
-XT = Easting   = XTO   +   [(XS – XSO) * cos q * k * MX / IncSX]  +  [(YS – YSO) * sin q * k * MY / IncSY]
+Calculation of map grid coordinates for centre of bin with coordinates: I = 300, J = 247:
+Easting = XT   = XTO   +   [(XS – XSO) * cos q * k * MX / IncSX]  +  [(YS – YSO) * sin q * k * MY / IncSY]
 = 456781.000 + 7023.078 + 1051.544 
 = 464855.62 m.
 
-YT = Northing = YTO   –   [(XS – XSO) * sin q * k * MX / IncSX]   +  [(YS – YSO) * cos q * k * MY / IncSY]
+Northing = YT = YTO   –   [(XS – XSO) * sin q * k * MX / IncSX]   +  [(YS – YSO) * cos q * k * MY / IncSY]
 = 5836723.000 - 2556.192 + 2889.092
 = 5837055.90 m.
 
-Reverse calculation for this point 464 855.62mE, 5 837 055.90mN:
-XS = {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]} + XSO 
+Calculation of bin grid coordinates for this point, map grid location 464 855.62mE, 5 837 055.90mN:
+Bin grid I = XS = {[( XT  – XTO) * cos q  –  (YT – YTO) * sin q ] * [IncSX  / (k * MX)]} + XSO 
 = 300 bins, 
 
-YS = {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]} + YSO 
-= 247 bins","Use only when the bin grid I-axis is rotated 90° clockwise from the J-axis when viewed from above the plane containing the two axes (CS code 1033). If the I-axis is rotated counter-clockwise, method 1049 should be used.","UKOOA Data Exchange Format P6/98, Definition of 3D Seismic Binning Grids, revision 3, May 2000, and OGP P6/11 seismic bin grid data exchange format user guide, July 2012.",OGP,2012/07/31,2011.106,0
+Bin grid J = YS = {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [IncSY  / (k * MY)]} + YSO 
+= 247 bins","Use only when the bin grid I-axis is rotated 90° clockwise from the J-axis when viewed from above the plane containing the two axes (CS code 1033). If the I-axis is rotated 90° counter-clockwise from the J-axis, method 1049 should be used.","UKOOA Data Exchange Format P6/98, Definition of 3D Seismic Binning Grids, revision 3, May 2000, and OGP P6/11 seismic bin grid data exchange format user guide, July 2012.",OGP,2014/07/28,2011.106 2014.044,0
 9801,Lambert Conic Conformal (1SP),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
@@ -3458,7 +3494,7 @@ where chi = pi/2 - 2 arctan t
 t = B^((FN-N)/a*ko) 
 B = base of the natural logarithm, 2.7182818...
 and ko is calculated as for the forward transformation above.
-lon  =  ((E - FE)/a*ko) + lonO","For Projected Coordinate System Pulkovo 1942 / Mercator Caspian Sea
+lon  =  ((E - FE)/a*ko) + lonO","For Projected Coordinate System Pulkovo 1942 / Caspian Sea Mercator
 
 Parameters:
 Ellipsoid  Krassowski 1940   a = 6378245.00m   1/f = 298.300
@@ -3482,7 +3518,7 @@ Reverse calculation for same easting and northing first gives :
 t = 0.336391288
 chi = 0.921795958
 Latitude = 53°00'00.000""N
-Longitude = 53°00'00.000""E",Used for most nautical charts.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/11/03,2004.320 2004.430 2010.058 2010.098,0
+Longitude = 53°00'00.000""E",Used for most nautical charts.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2015/04/22,2004.320 2004.430 2010.058 2010.098 2015.021,0
 9806,Cassini-Soldner,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates are:
@@ -4485,15 +4521,15 @@ alpha1  = (1 – e^2) . {[sin(lat1) / (1 – e^2 sin^2(lat1))] – [1/(2e)] . ln
 alpha2  = (1 – e^2) . {[sin(lat2) / (1 – e^2 sin^2(lat2))] – [1/(2e)] . ln [(1 – e sin(lat2)) / (1 + e sin(lat2))]}
 
 The reverse formulas to derive the geodetic latitude and longitude of a point from its Easting and Northing values are:
-lat = ß' + (e^2/3 + 31e^4/180 + 517e^6/5040) . sin 2ß'] + [(23e^4/360 + 251e^6/3780) . sin 4ß'] + [(761e^6/45360) . sin 6ß']
+lat = ß' + [(e^2/3 + 31e^4/180 + 517e^6/5040) . sin 2ß'] + [(23e^4/360 + 251e^6/3780) . sin 4ß'] + [(761e^6/45360) . sin 6ß']
 
 lon =   lonO + (theta / n)
 where
-ß' =  asin(alpha' / {1 – [(1 – e^2) / (2 . e)] . ln [(1 – e) / (1 + e)]
+ß' =  asin(alpha' / {1 – [(1 – e^2) / 2e] . ln [(1 – e) / (1 + e)]})
 alpha' =  [C – (rho^2 . N^2 / a^2)] / n
 rho =  {(E – EF)^2 + [rhoO – (N – NF)]^2 }^0.5
-theta =  atan [(E – EF) / [rhoO – (N – NF)]
-and C, n and rhoO are as in the forward equations.",See Information Source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2007/03/27,2006.200 2007.049,0
+theta =  atan {(E – EF) / [rhoO – (N – NF)]}
+and C, n and rhoO are as in the forward equations.",See Information Source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",IOGP,2015/04/22,2006.200 2007.049 2015.022,0
 9823,Equidistant Cylindrical (Spherical),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 This method has one of the simplest formulas available. If the latitude of natural origin (latO) is at the equator the method is also known as Plate Carrée. It is not used for rigorous topographic mapping because its distortion characteristics are unsuitable. Formulas are included to distinguish this map projection method from an approach sometimes mistakenly called by the same name and used for simple computer display of geographic coordinates – see Pseudo Plate Carrée (coordinate operation method code 9825).
@@ -5049,12 +5085,12 @@ lon = lon + (–J21 dE + J11 dN) / D
 Return to the entry point with new estimates of latitude and longitude and iterate until the change in lat and lon is not significant.",See EPSG Guidance Note 7-2.,"If the natural origin of the projection is at the topocentric origin, this is a special case of the Vertical Perspective (orthographic case) (method code 9839) in which the ellipsoid height of all mapped points is zero (h = 0).","EPSG guidance note #7-2, http://www.epsg.org",OGP,2007/11/01,,0
 9841,Mercator (1SP) (Spherical),1,See information source.,See information source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2008/03/14,2008.114,1
 9842,Equidistant Cylindrical,1,See EPSG Guidance Note #7-2.,,"See method code 9823 for spherical development. See also Pseudo Plate Carree, method code 9825.",ESRI,OGP,2008/03/14,2009.023,1
-9843,Geographic 2D CRS axis order reversal,1,"The axis order reversal operates on coordinates of a point whose order change is described by the following matrix operation:
+9843,axis order reversal (2D),1,"The axis order reversal operates on coordinates of a point whose order change is described by the following matrix operation:
 
 [Derived CRS 1st coordinate ]    =  [ 0   1 ]  *  [Base CRS 1st coordinate ]
-[Derived CRS 2nd coordinate]        [ 1   0 ]     [Base CRS 2nd coordinate]",(none),This is a parameter-less conversion  to reverse the order of the axes of a geographic 2D CRS.,OGP,OGP,2008/03/30,,0
-9844,Geographic 3D CRS axis order change,1,"The axis order change operates on coordinates of a point whose order change is described by the following matrix operation:
+[Derived CRS 2nd coordinate]        [ 1   0 ]     [Base CRS 2nd coordinate]",(none),This is a parameter-less conversion to reverse the order of the axes of a 2D CRS.,OGP,IOGP,2015/05/22,2015.007 2015.018,0
+9844,axis order reversal (geographic3D horizontal),1,"The axis order change operates on coordinates of a point whose order change is described by the following matrix operation:
 
-[Derived CRS 1st coordinate]        [ 0   1   0 ]     [Base CRS 1st coordinate ]
+[Derived CRS 1st coordinate]        [ 0   1   0 ]     [Base CRS 1st coordinate]
 [Derived CRS 2nd coordinate]   =  [ 1   0   0 ]  *  [Base CRS 2nd coordinate]
-[Derived CRS 3rd coordinate]        [ 0   0   0 ]     [Base CRS 3rd coordinate ]",(none),This is a parameter-less conversion to change the order of coordinates of a geographic 3D CRS.,OGP,OGP,2008/03/30,,0
+[Derived CRS 3rd coordinate]        [ 0   0   1 ]     [Base CRS 3rd coordinate]",(none),This is a parameter-less conversion to change the order of horizontal coordinates of a geographic 3D CRS.,OGP,IOGP,2015/05/22,2015.018,0
