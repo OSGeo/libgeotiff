@@ -4,7 +4,9 @@ geotifcp_SOURCES = geotifcp.c
 listgeo_SOURCES = listgeo.c
 applygeo_SOURCES = applygeo.c
 
-bin_PROGRAMS = makegeo geotifcp listgeo applygeo
+bin_PROGRAMS = geotifcp listgeo applygeo
+
+noinst_PROGRAMS = makegeo
 
 if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
