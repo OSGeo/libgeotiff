@@ -1,3 +1,81 @@
+2016-01-13 Even Rouault <even dot rouault at spatialys dot com>
+    * Upgrade to EPSG database v8.8
+
+2016-01-11 Even Rouault <even dot rouault at spatialys dot com>
+    * geo_normalize.c: remove dead code (KS CID 138299)
+
+2016-01-08 Even Rouault <even dot rouault at spatialys dot com>
+    * libgeotiff: fix likely false-positive null-ptr use
+    (KS CID 138459), remove useless null ptr chec(KS CID 138299), add dummy
+    checks for return value of GTIFKeyGetDOUBLE() (KS CID 138174),
+    leak in error code path (KS CID 138952)
+
+2016-01-07 Even Rouault <even dot rouault at spatialys dot com>
+    *geo_print.c: a bit refactoring to avoid false positive warning from
+    Coverity Scan about cast of negative value
+
+2015-12-30 Even Rouault <even dot rouault at spatialys dot com>
+    * ReadKey(): discard double key with invalid offset/count to prevent
+    out-of-bounds read in GTIFKeyGet()
+
+2015-12-21 Even Rouault <even dot rouault at spatialys dot com>
+    *geo_simpletags.c: avoid Clang Static Analyzer warnings about potential
+    malloc(0)
+
+2015-12-20 Even Rouault <even dot rouault at spatialys dot com>
+    * geo_print.c: comment out dead assignment with explicit FIXME
+
+2015-12-20 Even Rouault <even dot rouault at spatialys dot com>
+    * geo_write.c: fix mostly false positive warnings reported by clang static
+    analyzer, except a missed check on return of _GTIFcalloc()
+
+2015-12-06 Even Rouault <even dot rouault at spatialys dot com>
+    * Constify static arrays
+
+2015-11-26 Even Rouault <even dot rouault at spatialys dot com>
+    * Remove leading double underscores in header inclusion guards
+
+2015-11-22 Even Rouault <even dot rouault at spatialys dot com>
+    * Fix typos in comments (patch by Kurt Schwehr)
+
+2015-11-22 Even Rouault <even dot rouault at spatialys dot com>
+    * ReadKey(): fix MSVC warning for TYPE_SHORT and count > 1 (although this
+    is completely untested)
+
+2015-11-18 Even Rouault <even dot rouault at spatialys dot com>
+    * Fix clang -Wshorten-64-to-32 warnings
+
+2015-11-18 Even Rouault <even dot rouault at spatialys dot com>
+    * Fix MSVC warnings
+
+2015-11-02 Even Rouault <even dot rouault at spatialys dot com>
+    * GTIFGetPCSInfo(): correctly assign KvUserDefined to *pnProjOp in case
+    of failure (reported by Clang static analyzer)
+
+2015-10-28 Even Rouault <even dot rouault at spatialys dot com>
+    * Fixes to suppress ''no previous declaration/prototype' warnings
+
+2015-10-17 Even Rouault <even dot rouault at spatialys dot com>
+     * geo_normalize.c: use M_PI when available
+
+2015-10-17 Even Rouault <even dot rouault at spatialys dot com>
+    * Fix -Wshadow warnings
+
+2015-09-30 Even Rouault <even dot rouault at spatialys dot com>
+    * configure.ac: prepend JPEG library directory to LIBS (#71)
+
+2015-09-29 Even Rouault <even dot rouault at spatialys dot com>
+    * Fix warning about unknown symbol _GTIFFree
+
+2015-09-29 Even Rouault <even dot rouault at spatialys dot com>
+    * Free cdata on error in TYPE_ASCII. (GDAL CID 138951, patch by
+    Kurt Schwehr)
+
+2015-05-02 Even Rouault <even dot rouault at spatialys dot com>
+    * GTIFGetProj4Defn(): add case to deal with
+    CT_HotineObliqueMercatorAzimuthCenter (except RSO variant that will
+    need further fix)
+
 2015-04-01 Even Rouault <even dot rouault at spatialys dot com>
 	* geotiff_proj4.c: use CPLStrdup() instead of strdup() to avoid issues
 	with newer MSVC versions (GDAL #5907)
