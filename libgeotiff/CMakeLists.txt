@@ -107,6 +107,7 @@ INCLUDE(CheckIncludeFiles)
 CHECK_INCLUDE_FILES(stdio.h HAVE_STDIO_H)
 CHECK_INCLUDE_FILES(stdlib.h HAVE_STDLIB_H)
 CHECK_INCLUDE_FILES(string.h HAVE_STRING_H)
+CHECK_INCLUDE_FILES(strings.h HAVE_STRINGS_H)
 
 ###############################################################################
 # User-defined build settings
