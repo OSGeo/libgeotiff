@@ -1,5 +1,9 @@
 2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
 
+    * CMake: install man pages
+
+2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
+
     * Add manpages for applygeo & geotifcp, also fix listgeo manpage. Patch by
     Bas Couwenberg
 

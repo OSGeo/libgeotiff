@@ -291,6 +291,11 @@ SET(GEOTIFF_LIB_HEADERS
     geokeys.inc
     libxtiff/xtiffio.h)
 
+SET(GEOTIFF_MAN_PAGES
+    man/man1/applygeo.1
+    man/man1/geotifcp.1
+    man/man1/listgeo.1)
+
 #    ${PROJECT_BINARY_DIR}/geotiff_version.h
 
 IF(WIN32)
@@ -340,6 +345,10 @@ INSTALL(FILES
 # Install CSV data files
 # INSTALL(FILES ${GEOTIFF_CSV_DATA} DESTINATION ${GEOTIFF_DATA_DIR}/epsg_csv)
 INSTALL(FILES ${GEOTIFF_CSV_DATA} DESTINATION share/epsg_csv)
+
+# Install man pages
+INSTALL(FILES ${GEOTIFF_MAN_PAGES} DESTINATION share/man/man1)
+
 
 # Install header files for development distribution
 # INSTALL(FILES ${GEOTIFF_LIB_HEADERS} DESTINATION ${GEOTIFF_INCLUDE_DIR})
