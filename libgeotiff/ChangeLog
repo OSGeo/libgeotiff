@@ -1,5 +1,11 @@
 2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
 
+	* add autogen.sh in extradist
+	* run it on a newer system
+	* prepare for 1.4.2RC2
+
+2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
+
     * make dist: include files in docs/ directory (#78)
 
 2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
