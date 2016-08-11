@@ -20,17 +20,17 @@ SET(CMAKE_COLOR_MAKEFILE ON)
 # Version information
 set(PROJECT_VERSION_MAJOR 1)
 set(PROJECT_VERSION_MINOR 4)
-set(PROJECT_VERSION_PATCH 1)
+set(PROJECT_VERSION_PATCH 2)
 set(PROJECT_VERSION
   "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 set(GeoTIFF_VERSION ${PROJECT_VERSION})
 
 # Set library version to match that of autoconf:
 # libgeotiff.so -> libgeotiff.so.2.1.1
-# libgeotiff.so.2 -> libgeotiff.so.2.1.1
-# libgeotiff.so.2.1.1
+# libgeotiff.so.2 -> libgeotiff.so.2.1.2
+# libgeotiff.so.2.1.2
 set(LINK_SOVERSION "2")
-set(LINK_VERSION "2.1.1")
+set(LINK_VERSION "2.1.2")
 
 string (TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 string (TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)

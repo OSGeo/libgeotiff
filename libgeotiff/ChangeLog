@@ -1,4 +1,8 @@
 2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
+
+    * Preparing 1.4.2 release.
+
+2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
     * Fix warning about strcasecmp not found in -std=c99/cmake build
 
 2016-01-13 Even Rouault <even dot rouault at spatialys dot com>
