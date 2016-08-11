@@ -1,5 +1,10 @@
 2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
 
+    * Add manpages for applygeo & geotifcp, also fix listgeo manpage. Patch by
+    Bas Couwenberg
+
+2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
+
     * Don't install makegeo. makegeo.c serves as a minimal example of creating
     a geotiff file. Installing the executable has no value. Patch by
     Bas Couwenberg
