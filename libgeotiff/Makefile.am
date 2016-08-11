@@ -125,6 +125,11 @@ EXTRA_DIST =    makefile.vc \
                 INSTALL \
                 CMakeLists.txt \
                 libxtiff/CMakeLists.txt \
-                bin/CMakeLists.txt
+                bin/CMakeLists.txt \
+                docs/Doxyfile \
+                docs/geotifcp.html \
+                docs/index.dox \
+                docs/listgeo.html \
+                docs/manual.txt
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
