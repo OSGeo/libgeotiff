@@ -1,6 +1,6 @@
 SUBDIRS = libxtiff . bin man cmake
 
-AUTOMAKE_OPTIONS =	dist-zip
+AUTOMAKE_OPTIONS = dist-zip subdir-objects
 ACLOCAL_AMFLAGS = -I m4
 
 include $(top_srcdir)/m4/doxygen.am

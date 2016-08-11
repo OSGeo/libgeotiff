@@ -1,5 +1,10 @@
 2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
 
+	* Makefile.am: add subdir-objects to AUTOMAKE_OPTIONS. Patch by
+	Bas Couwenberg (#80)
+
+2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
+
 	* add autogen.sh in extradist
 	* run it on a newer system
 	* prepare for 1.4.2RC2
