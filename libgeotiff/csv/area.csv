@@ -3360,3 +3360,8 @@ area_code,area_name,area_of_use,area_south_bound_lat,area_north_bound_lat,area_w
 4382,Algeria - Ain Tsila,Algeria - Ain Tsila field.,27.4,28.1,7.66,8.27,urn:ogc:def:extent-polygon:EPSG::4382,,,,,Isarene,IOGP,2015/09/16,2015.040,0
 4383,Papua New Guinea - onshore south of 5°S and west of 144°E,Papua New Guinea - onshore south of 5°S and west of 144°E.,-9.47,-5,140.85,144.01,urn:ogc:def:extent-polygon:EPSG::4383,,,,,Quickclose Geomatics.,IOGP,2015/11/24,2015.052,0
 4384,Papua New Guinea - 0°N to 12°S and 140°E to 158°E,Papua New Guinea - between 0°N and 12°S and 140°E and 158°E - onshore and offshore.,-12,0,140,158,urn:ogc:def:extent-polygon:EPSG::4384,,,,,"Quickclose Geomatics on behalf of Geodetic Section, PNG Office of the Surveyor-General.",IOGP,2015/11/24,2015.052,0
+4385,Kyrgyzstan - west of 70°01'E,Kyrgyzstan - west of 70°01'E.,39.51,40.22,69.24,70.02,urn:ogc:def:extent-polygon:EPSG::4385,,,,,IOGP,IOGP,2015/11/24,2015.064,0
+4386,Kyrgyzstan - 70°01'E to 73°01'E,Kyrgyzstan - between 70°01'E and 73°01'E.,39.19,42.83,70.01,73.02,urn:ogc:def:extent-polygon:EPSG::4386,,,,,IOGP,IOGP,2015/11/24,2015.064,0
+4387,Kyrgyzstan - 73°01'E to 76°01'E,Kyrgyzstan - between 73°01'E and 76°01'E.,39.35,43.22,73.01,76.02,urn:ogc:def:extent-polygon:EPSG::4387,,,,,IOGP,IOGP,2015/11/24,2015.064,0
+4388,Kyrgyzstan - 76°01'E to 79°01'E,Kyrgyzstan - between 76°01'E and 79°01'E.,40.35,43,76.01,79.02,urn:ogc:def:extent-polygon:EPSG::4388,,,,,IOGP,IOGP,2015/11/24,2015.064,0
+4389,Kyrgyzstan - east of 79°01'E,Kyrgyzstan - east of 79°01'E.,41.66,42.8,79.01,80.29,urn:ogc:def:extent-polygon:EPSG::4389,,,,,IOGP,IOGP,2015/11/24,2015.064,0
