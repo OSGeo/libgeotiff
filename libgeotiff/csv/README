@@ -1,7 +1,7 @@
-	EPSG Tables
-	===========
+EPSG Tables
+===========
 
-VERSION: 8.8
+VERSION: 8.9
 
 The .csv files in this directory are an extract of tables from the EPSG
 projection database in CSV (comma separated value) format.  These same
@@ -63,12 +63,48 @@ and PCS definitions should be put in the files:
 
 in a format the same as the pcs.csv and gcs.csv files.  Additions to these
 tables should normally be accompanied by detailed comments and references
-to any relavent tickets.
+to any relevant tickets.
 
 Note that we deliberately keep alterations separate from the EPSG definitions
 in gcs.csv and pcs.csv to avoid violating the EPSG distribution license
 which requires that the definitions be distributed in unaltered form.
 
+Generating CSV Files with Docker
+---------------------------------
+
+The section below describes how to manually generate the EPSG definitions for
+GDAL, Proj.4, libgeotiff, and PostGIS. A Dockerfile encapsulating the entire
+process is available at
+
+https://gist.github.com/hobu/f27b1e06a45a2200bf7262a664d5b825
+
+To build using it, cd into the csv/ directory and build
+the image:
+
+docker build -t hobu/proj.4 .
+
+Once built (it will grind for a while, and it will build the latest Proj.4, GDAL, and
+libgeotiff in the process), copy the files out by running the container:
+
+
+    #!/bin/bash
+
+    rm -rf artifacts
+    mkdir artifacts
+    mkdir artifacts/gdal  artifacts/postgis artifacts/proj  artifacts/libgeotiff
+    container="projcontainer"
+    docker run --name $container hobu/proj.4  tail -f /dev/null &
+
+    # wait for the container to wake up
+    sleep 5
+    docker cp $container:/gdal/gdal/data/ artifacts/gdal
+    docker cp $container:/gdal/gdal/data/epsg artifacts/proj
+    docker cp $container:/gdal/gdal/data/spatial_ref_sys.sql artifacts/postgis
+    docker cp $container:/libgeotiff/csv/ artifacts/libgeotiff
+    docker kill $container
+    docker rm projcontainer
+
+Then copy artifacts/* data into their respective project directories.
 
 Generating CSV Files
 --------------------
