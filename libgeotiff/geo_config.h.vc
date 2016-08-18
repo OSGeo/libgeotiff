@@ -20,11 +20,6 @@
 #define HAVE_STRING_H 1
 #endif
 
-/* Define if you have the <strings.h> header file.  */
-#ifndef HAVE_STRINGS_H
-#define HAVE_STRINGS_H 1
-#endif
-
 /* Build as DLL */
 #define BUILD_AS_DLL      1
 

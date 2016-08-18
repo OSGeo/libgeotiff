@@ -33,7 +33,7 @@
 /*	Standard include files.						*/
 /* ==================================================================== */
 
-#include "geo_config.h"
+#include <geo_config.h>
 #include <stdio.h>
 
 #include <math.h>
@@ -41,7 +41,7 @@
 #ifdef HAVE_STRING_H
 #  include <string.h>
 #endif
-#ifdef HAVE_STRINGS_H
+#if defined(HAVE_STRINGS_H) && !defined(_WIN32)
 #  include <strings.h>
 #endif
 #ifdef HAVE_STDLIB_H

@@ -60,7 +60,6 @@ dist_csv_DATA = 	csv/alias.csv \
 			csv/vertcs.override.csv
 
 include_HEADERS =   geotiff.h \
-                    geo_config.h \
                     geotiffio.h \
                     geovalues.h \
                     geonames.h \
@@ -82,6 +81,7 @@ include_HEADERS =   geotiff.h \
                     geokeys.inc \
                     geo_incode_defs.h
 
+nodist_include_HEADERS = geo_config.h
 
 libgeotiff_la_SOURCES = cpl_serv.c \
                         cpl_csv.c \

@@ -1,4 +1,14 @@
-2016-08-16 Even Rouault <even dot rouault at spatialys dot com>
+2016-08-18 Even Rouault <even dot rouault at spatialys dot com>
+
+	* Makefile.am: Fix build issue on Windows with cmake by not
+	including generate geo_config.h in the dist .zip/.tar.gz
+	* geotiff.h cpl_serv.h: change #include "geo_config.h" to #include <geo_config.h>
+	* cpl_serv.h: do not include <strings.h> on _WIN32 even if HAVE_STRINGS_H is defined
+	* cpl_config.h.vc: remove #define HAVE_STRINGS_H 1
+	* cpl_serv.c: remove includes of string.h and strings.h. Already done by cpl_serv.h 
+	* Prepare for 1.4.2RC4
+
+2016-08-17 Even Rouault <even dot rouault at spatialys dot com>
 
 	* Prepare for 1.4.2RC3
 
