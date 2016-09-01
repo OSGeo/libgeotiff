@@ -33,7 +33,7 @@
 /*	Standard include files.						*/
 /* ==================================================================== */
 
-#include <geo_config.h>
+#include "geo_config.h"
 #include <stdio.h>
 
 #include <math.h>

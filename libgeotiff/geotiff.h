@@ -32,7 +32,7 @@
 
 #define LIBGEOTIFF_VERSION 1420
 
-#include <geo_config.h>
+#include "geo_config.h"
 #include "geokeys.h"
 
 /**********************************************************************
