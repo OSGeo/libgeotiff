@@ -49,7 +49,7 @@ int GTIFKeyInfo(GTIF *gtif, geokey_t key, int *size, tagtype_t* type)
         return (int)keyptr->gk_count;
 }
 
-/** 
+/**
 
 This function reads the value of a single GeoKey from a GeoTIFF file.
 
@@ -68,12 +68,12 @@ that pointer's to <i>int</i> should never be passed to GTIFKeyGet() for
 integer values as they will be shorts, and the int's may not be properly
 initialized (and will be grossly wrong on MSB systems).
 
-@param index Indicates how far into the list of values
+@param nIndex Indicates how far into the list of values
 for this geokey to offset. Should normally be zero.
 
 @param count Indicates how many values
 to read.  At this time all keys except for strings have only one value,
-so <b>index</b> should be zero, and <b>count</b> should be one.
+so <b>nIndex</b> should be zero, and <b>count</b> should be one.
 
 @return The GTIFKeyGet() function returns the number of values read.  Normally
 this would be one if successful or zero if the key doesn't exist for this
@@ -138,8 +138,8 @@ ValuePair(  ProjScaleAtCenterGeoKey,	3093)     -- ratio   --
 ValuePair(  ProjAzimuthAngleGeoKey,	3094)     -- GeogAzimuthUnit --
 ValuePair(  ProjStraightVertPoleLongGeoKey,	3095)     -- GeogAngularUnit --
 
- 6.2.4 Vertical CS Keys 
-   
+ 6.2.4 Vertical CS Keys
+
 ValuePair(  VerticalCSTypeGeoKey,	4096)  -- Section 6.3.4.1 codes   --
 ValuePair(  VerticalCitationGeoKey,	4097)  -- documentation --
 ValuePair(  VerticalDatumGeoKey,	4098)  -- Section 6.3.4.2 codes   --
