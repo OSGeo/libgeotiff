@@ -1,3 +1,7 @@
+2016-11-20 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_simpletags.c: add cppcheck-suppress duplicateBranch annotation.
+
 2016-09-04 Even Rouault <even dot rouault at spatialys dot com>
 
 	* White space fixes in .h and .c
