@@ -1,3 +1,7 @@
+2016-11-21 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_print.c: secure sscanf()/fscanf() uses.
+
 2016-11-20 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_simpletags.c: add cppcheck-suppress duplicateBranch annotation.
