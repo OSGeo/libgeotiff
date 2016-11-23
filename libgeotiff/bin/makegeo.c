@@ -24,8 +24,8 @@ void WriteImage(TIFF *tif);
 int main()
 {
 	char *fname = "newgeo.tif";
-	TIFF *tif=(TIFF*)0;  /* TIFF-level descriptor */
-	GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
+	TIFF *tif;  /* TIFF-level descriptor */
+	GTIF *gtif; /* GeoKey-level descriptor */
 	
 	tif=XTIFFOpen(fname,"w");
 	if (!tif) goto failure;

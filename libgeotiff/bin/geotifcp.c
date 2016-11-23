@@ -268,7 +268,7 @@ static void ApplyWorldFile(const char *worldfilename, TIFF *out)
 
 static void InstallGeoTIFF(TIFF *out)
 {
-    GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
+    GTIF *gtif; /* GeoKey-level descriptor */
     FILE *fd;
 
     gtif = GTIFNew(out);
@@ -309,7 +309,7 @@ static void InstallGeoTIFF(TIFF *out)
 
 static void CopyGeoTIFF(TIFF * in, TIFF *out)
 {
-    GTIF *gtif=(GTIF*)0; /* GeoKey-level descriptor */
+    GTIF *gtif; /* GeoKey-level descriptor */
     double *d_list = NULL;
     int16   d_list_count;
 

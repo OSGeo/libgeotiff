@@ -1,3 +1,9 @@
+2016-11-23 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_new.c, geo_print.c, geo_set.c, bin/applygeo.c, bin/geotifcp.c,
+	bin/makegeo.c: cppcheck fixes (signed vs unsigned printf/sscanf,
+	redundantAssignment)
+
 2016-11-21 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_print.c: secure sscanf()/fscanf() uses.
