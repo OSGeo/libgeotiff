@@ -105,3 +105,11 @@
 2397,1775
 2398,1775
 2399,1775
+####################################################################
+# PCS EPSG:2065 (S-JTSK (Ferro) / Krovak)
+# Based on https://trac.osgeo.org/gdal/ticket/4762
+#          https://github.com/OSGeo/proj.4/issues/185
+#
+# Prefer the +towgs84=570.8,85.7,462.8,4.998,1.587,5.261,3.56 setting.
+#
+2065,1623
