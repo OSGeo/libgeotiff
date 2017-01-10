@@ -142,14 +142,31 @@ supersession_id,object_table_name,object_code,superseded_by,supersession_type,su
 1086,epsg_coordoperation,10067,5656,Retirement,2012,Replacement has improved modelling.
 1087,epsg_coordoperation,10068,5656,Retirement,2012,Replacement has improved modelling.
 1088,epsg_coordoperation,10069,5656,Retirement,2012,Replacement has improved modelling.
+1089,epsg_coordoperation,5334,7718,Retirement,2016,Update of geoid model.
+1090,epsg_coordoperation,5335,7719,Retirement,2016,Update of geoid model.
 1092,epsg_coordoperation,10058,5656,Retirement,2012,Replacement has improved modelling.
 1093,epsg_coordoperation,10059,5656,Retirement,2012,Replacement has improved modelling.
 1094,epsg_coordoperation,10060,5656,Retirement,2012,Replacement has improved modelling.
 1095,epsg_coordoperation,10061,5656,Retirement,2012,Replacement has improved modelling.
 1096,epsg_coordoperation,10062,5656,Retirement,2012,Replacement has improved modelling.
+1097,epsg_coordoperation,1646,7674,Retirement,2016,NTv2 file is now Swisstopo recommended method for transformation between these CRSs.
+1098,epsg_coordoperation,10034,7713,Retirement,2016,Update of geoid model.
 1099,epsg_coordoperation,10070,5656,Retirement,2012,Replacement has improved modelling.
+1100,epsg_coordoperation,10031,7713,Retirement,2016,Update of geoid model.
+1101,epsg_coordoperation,10030,7713,Retirement,2016,Update of geoid model.
+1102,epsg_coordoperation,10026,7713,Retirement,2016,Update of geoid model.
 1103,epsg_coordoperation,10071,5656,Retirement,2012,Replacement has improved modelling.
+1104,epsg_coordoperation,10025,7713,Retirement,2016,Update of geoid model.
+1105,epsg_coordoperation,10024,7713,Retirement,2016,Update of geoid model.
 1106,epsg_coordoperation,10072,5656,Retirement,2012,Replacement has improved modelling.
+1107,epsg_coordoperation,10033,7715,Retirement,2016,Update of geoid model.
+1108,epsg_coordoperation,10032,7716,Retirement,2016,Update of geoid model.
+1109,epsg_coordoperation,10021,7711,Retirement,2016,Update of geoid model.
+1110,epsg_coordoperation,10029,7712,Retirement,2016,Update of geoid model.
+1111,epsg_coordoperation,1766,7788,Retirement,2016,NTv2 file is now Swisstopo recommended method for transformation between these CRSs.
+1112,epsg_coordoperation,10027,7714,Retirement,2016,Update of geoid model.
+1113,epsg_coordoperation,10023,7717,Retirement,2016,Update of geoid model.
+1115,epsg_coordoperation,1039,7708,Retirement,2016,Recomputation of OS Net station coordinates to updated realisation of ETRS89 (from EUREF GB 2001 to EUREF IE/UK 2009).
 1116,epsg_coordoperation,10073,5656,Retirement,2012,Replacement has improved modelling.
 1117,epsg_coordoperation,10038,5656,Retirement,2012,Replacement has improved modelling.
 1118,epsg_coordoperation,10074,5656,Retirement,2012,Replacement has improved modelling.
@@ -170,7 +187,11 @@ supersession_id,object_table_name,object_code,superseded_by,supersession_type,su
 1133,epsg_coordoperation,10056,5656,Retirement,2012,Replacement has improved modelling.
 1134,epsg_coordoperation,10057,5656,Retirement,2012,Replacement has improved modelling.
 1135,epsg_coordoperation,10075,5656,Retirement,2012,Replacement has improved modelling.
+1136,epsg_coordoperation,15956,7710,Retirement,2016,Recomputation of OS Net station coordinates to updated realisation of ETRS89 (from EUREF GB 2001 to EUREF IE/UK 2009).
+1137,epsg_coordoperation,5338,5338,Retirement,2016,Recomputation of OS Net station coordinates to updated realisation of ETRS89 (from EUREF GB 2001 to EUREF IE/UK 2009).
 1138,epsg_coordoperation,10076,5656,Retirement,2012,Replacement has improved modelling.
+1139,epsg_coordoperation,5338,7709,Retirement,2016,Recomputation of OS Net station coordinates to updated realisation of ETRS89 (from EUREF GB 2001 to EUREF IE/UK 2009).
+1140,epsg_coordoperation,5339,7710,Retirement,2016,Recomputation of OS Net station coordinates to updated realisation of ETRS89 (from EUREF GB 2001 to EUREF IE/UK 2009).
 1141,epsg_coordoperation,10077,5656,Retirement,2012,Replacement has improved modelling.
 1142,epsg_coordoperation,10079,5656,Retirement,2012,Replacement has improved modelling.
 1143,epsg_coordoperation,10080,5656,Retirement,2012,Replacement has improved modelling.

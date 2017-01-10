@@ -12,7 +12,7 @@ parameter_code,parameter_name,description,information_source,data_source,revisio
 1034,C9,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
 1035,C10,Coefficient used in polynomial transformations.,OGP,OGP,2010/07/31,2010.071,0
 1036,Co-latitude of cone axis,"The rotation applied to spherical coordinates for the oblique projection, measured on the conformal sphere in the plane of the meridian of origin.",OGP,OGP,2010/12/06,2010.100,0
-1037,Horizontal CRS code,The EPSG code for the CRS that should be used to reference horizontal coordinates used as arguments within the method.,OGP,OGP,2011/12/23,2011.108,0
+1037,Horizontal CRS code,The EPSG code for the CRS that should be used to reference horizontal coordinates used as arguments within the method.,OGP,IOGP,2016/12/15,2011.108 2016.031,0
 1038,Ellipsoid scaling factor,Ratio by which the ellipsoid is enlarged so that survey observations are reduced to a surface above the ellipsoid surface.,EPSG guidance note number 7-2 (May 2013 Revision),OGP,2013/05/15,2013.020,0
 1039,Projection plane origin height,"For Colombia urban grids, the height of the projection plane at its origin.",EPSG guidance note number 7.,OGP,2013/05/18,2012.044,0
 1040,Rate of change of X-axis translation,Time first derivative of X-axis translation.,EPSG guidance note number 7-2.,OGP,2013/07/26,2013.021 2013.037,0
@@ -23,6 +23,7 @@ parameter_code,parameter_name,description,information_source,data_source,revisio
 1045,Rate of change of Z-axis rotation,Time first derivative of Z-axis rotation.,EPSG guidance note number 7-2.,OGP,2013/07/26,2013.021 2013.037,0
 1046,Rate of change of scale difference,Time first derivative of scale difference.,EPSG guidance note number 7-2.,OGP,2013/07/26,2013.021 2013.037,0
 1047,Time reference,The reference epoch for time-dependent parameters.,OGP,OGP,2013/05/22,2013.021,0
+1048,Interpolation CRS code,The EPSG code for the CRS that should be used to interpolate gridded data.,OGP,IOGP,2016/11/08,2016.031,0
 8601,Latitude offset,The difference between the latitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
 8602,Longitude offset,The difference between the longitude values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0
 8603,Vertical Offset,The difference between the height or depth values of a point in the target and source coordinate reference systems.,EPSG guidance note number 7.,OGP,2000/06/23,,0

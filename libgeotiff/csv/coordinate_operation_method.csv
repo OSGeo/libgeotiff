@@ -72,7 +72,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),"For earlier EGM84 and EGM96 models see Geographic3D to GravityRelatedHeight (EGM), method code 9661.","EPSG guidance note #7-2, http://www.epsg.org",OGP,2009/01/30,2008.097,0
+and   H = the gravity-related height in the target vertical CRS.",(none),"For earlier EGM84 and EGM96 models see Geographic3D to GravityRelatedHeight (EGM), method code 9661.","EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.097 2016.050,0
 1026,Mercator (Spherical),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates from spherical latitude lat and longitude lon are:
@@ -153,7 +153,7 @@ lon = lonO + ([E - FE] / R cos(lat1))
 
 
 where R is as for the forward method.",See information source.,"See method code 1028 for ellipsoidal development. If the latitude of natural origin is at the equator, also known as Plate Carrée. See also Pseudo Plate Carree, method code 9825.","US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",OGP,2009/06/07,2009.023,0
-1030,Geographic3D to GravityRelatedHeight (NZgeoid2009),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a quasigeoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
+1030,Geographic3D to GravityRelatedHeight (NZgeoid),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a quasigeoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
 
@@ -163,7 +163,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2009/10/17,2009.081,0
+and   H = the gravity-related height in the target vertical CRS.",(none),"EPSG initially gave this method the name ""Geographic3D to GravityRelatedHeight (NZgeoid2009)"". As the same file format was retained for the 2016 geoid, date removed from the method name.","EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2009.081 2016.031,0
 1031,Geocentric translations (geocentric domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Xt = Xs + dX;  Yt = Ys + dY;  Zt = Zs + dZ","Given a three parameter datum shift from WGS 84 to ED50 for this North Sea area is given as 
@@ -894,7 +894,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2011/09/24,2011.083,0
+and   H = the gravity-related height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2011.083 2016.050,0
 1048,Geographic3D to GravityRelatedHeight (Ausgeoid09),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a geoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -905,7 +905,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),"The Information Source references software which offers both bi-cubic and bi-linear interpolation methods. Unlike earlier Australian models which used bi-linear interpolation, Ausgeoid09 uses the bi-cubic method.  See Info Source for file format doc.","Geoscience Australia; http://www.ga.gov.au/geodesy/ausgeoid/",OGP,2012/03/01,2012.009,0
+and   H = the gravity-related height in the target vertical CRS.",(none),"The Information Source references software which offers both bi-cubic and bi-linear interpolation methods. Unlike earlier Australian models which used bi-linear interpolation, Ausgeoid09 uses the bi-cubic method.  See Info Source for file format doc.","Geoscience Australia; http://www.ga.gov.au/geodesy/ausgeoid/",IOGP,2016/12/15,2012.009 2016.050,0
 1049,P6 (I = J-90°) seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The P6 (I = J-90°) seismic bin grid transformation is a special case of the Affine Geometric Transformation (method code 9623). In practice bin grid definitions are based on an identified map grid. As such the example bin grids in the EPSG Dataset are described with the map grid (projected CRS) as source CRS. However to retain consistency with the syntax used in the description of the affine geometric transformation, in the formulas below the bin grid is the affine source CRS and the map grid is the affine target CRS.
@@ -969,7 +969,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2013/01/08,2012.095,0
+and   H = the gravity-related height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2012.095 2016.050,0
 1051,Lambert Conic Conformal (2SP Michigan),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
@@ -1528,7 +1528,8 @@ Calculation of the height difference is achieved through a bi-linear interpolati
 Then:
            H = h - C
 
-where h = the height above the ellipsoid in the source geographic 3D CRS",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2015/11/05,2015.052,0
+where h = the height above the ellipsoid in the source geographic 3D CRS
+and   H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2015.052 2016.050,0
 1060,Geographic3D to GravityRelatedHeight (CGG2013),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a geoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -1539,7 +1540,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),For consistency with earlier models the Information Source references software which uses bi-quadratic interpolation. Because of denser node spacing in CGG2013 bi-linear interpolation will be sufficient for most uses. See Info Source for file format doc.,"Geodetic Survey Division, Natural Resources Canada.",OGP,2013/12/13,2013.064,0
+and   H = the gravity-related height in the target vertical CRS.",(none),For consistency with earlier models the Information Source references software which uses bi-quadratic interpolation. Because of denser node spacing in CGG2013 bi-linear interpolation will be sufficient for most uses. See Info Source for file format doc.,"Geodetic Survey Division, Natural Resources Canada.",IOGP,2016/12/15,2013.064 2016.050,0
 1061,Molodensky-Badekas (PV geocentric domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To eliminate high correlation between the translations and rotations in the derivation of parameter values for the Helmert transformation methods (coordinate operation method codes 1032 and 1033), instead of the rotations being derived about the geocentric coordinate reference system origin they may be derived at a location within the points used in the determination. Three additional parameters, the coordinates of the rotation point, are then required. The formula is:
@@ -1681,6 +1682,44 @@ on the REGVEN geographic 3D coordinate reference system.
 Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
    Latitude =       9 deg 34 min 49.001 sec N
    Longitude =  66 deg 04 min 54.705 sec W",See method codes 1061 and 1062 for this operation in other coordinate domains and method code 9636 for opposite rotation in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2014.039 2014.065,0
+1071,Vertical Offset by Grid Interpolation (NZLVD),1,"The relationship between NZVD16 height and thirteen local gravity-related coordinate reference systems (LVDs) for New Zealand is available through gridded data files of offsets (sometimes called height differences). The vertical offset at a point is first interpolated within the grid of values using bi-linear interpolation. The interpolated value is then applied as an offset:
+•	If the height in a LVD is required when a NZVD2016 height is given, add the interpolated offset to the NZVD2016 height (LVD height = NZVD2016 height + interpolated offset).
+•	If the NZVD2016 height is required when a LVD height is given, subtract the interpolated offset from the LVD height (NZVD2016 height = LVD height - interpolated offset).
+
+For interpolation within the offset grids, horizontal positions in the NZGD2000 geographic 2D CRS are used.","For a point in the Dunedin 1958 height area at 44.42°S, 168.92°E (NZGD2000) with NZVD2016 height of 50.000 metres, to find its Dunedin 1958 height:
+
+First obtain the offsets at each of the surrounding grid nodes:
+NW corner 44.4000°S, 168.9000°E, offset = 0.3028m
+NE corner 44.4000°S, 168.9333°E, offset = 0.3029m
+SE corner 44.4333°S, 168.9333°E, offset = 0.3055m
+SW corner 44.4333°S, 168.9000°E, offset = 0.3051m
+
+Then using bi-linear interpolation for 44.42°S, 168.92°E, offset = 0.304m
+
+Then Dunedin 1958 height = 50.000 + 0.304 = 50.304m.
+
+For the reverse calculation to find the NZVD2016 height from a point with Dunedin 1958 height of 50.304m:
+
+First obtain the offsets at each of the surrounding grid nodes:
+NW corner 44.4000°S, 168.9000°E, offset = 0.3028m
+NE corner 44.4000°S, 168.9333°E, offset = 0.3029m
+SE corner 44.4333°S, 168.9333°E, offset = 0.3055m
+SW corner 44.4333°S, 168.9000°E, offset = 0.3051m
+
+Then using bi-linear interpolation for 44.42°S, 168.92°E, offset = 0.304m
+
+Then NZVD2016 height = 50.304 - 0.304 = 50.000m.",,IOGP,IOGP,2016/12/10,2016.031,0
+1072,Geographic3D to GravityRelatedHeight (OSGM15-Ire),0,"This transformation involves the application of a height difference interpolated from a height correction model. The model provides height difference values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
+
+The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
+
+Calculation of the height difference is achieved through a bi-linear interpolation of the grid, using the latitude and longitude of the point. This step provides the height correction (C) of the target datum above the ellipsoid of the source Geographic 3D CRS. C differs from the geoid-ellipsoid separation N because a vertical datum is a realisation of the geoid surface, not the geoid itself.
+
+Then:
+           H = h - C
+
+where h = the height above the ellipsoid in the source geographic 3D CRS
+and     H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/11/22,2016.049,0
 9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/11/12,1999.790,0
 9602,Geographic/geocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -3156,7 +3195,37 @@ IncLat term = -0.047 m
 nuO = 6389555.64  m 		
 incLong term = -0.017 m
 whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.",This transformation allows calculation of height in the target system by applying the parameter values to the height value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/14,2011.108,1
-9658,VERTCON,1,See information source.,See information source.,Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US National Geodetic Survey - http://www.ngs.noaa.gov,OGP,2004/04/27,,0
+9658,VERTCON,1,"The relationship between NGVD29 height and NAVD88 height vertical coordinate reference systems for the coterminous US is available through three gridded data files of offsets (sometimes called height differences). The vertical offset at a point is first interpolated within the grid of values using bi-linear interpolation. The interpolated offset is then applied as an offset:
+•	If a NAVD88 height is desired when a NGVD29 height is given, add the interpolated offset to the NGVD29 height.
+•	If a NGVD29 height is desired when a NAVD88 height is given, subtract the interpolated offset from the NAVD88 height.
+
+Most horizontal positions of the bench marks used to generate the VERTCON grids were scaled from USGS topographic maps.  The estimated uncertainty of the scaled positions, 6 arc-seconds, is greater than the differences between NAD27 and NAD83 coordinates. Therefore the latitude and longitude used for interpolation of the grids can be referenced to either NAD27 or to NAD83(1986) or to any of the NAD83(NSRS) realisations (HARN, NSRS2007 or 2011).","For a point in the Conus central grid area at 29°28'00.443""N, 98°28'49.346""W (NAD83) with NGVD29 height of 247.47 meters (811.9 feet).
+
+First reduce the sexagesimal degree values to decimal degrees:
+29°28'00.443""N = 29.4667897°N
+98°28'49.346""W = 98.4803739°W
+
+Then obtain the offsets at each of the surrounding grid nodes:
+NW corner 29.50°N, 98.50°W, offset = 0.144m
+NE corner 29.50°N, 98.45°W, offset = 0.132m
+SE corner 29.45°N, 98.45°W, offset = 0.121m
+SW corner 29.45°N, 98.50°W, offset = 0.125m
+
+Then using bi-linear interpolation for 29.4667897°N, 98.4803739°W, offset = 0.129m
+
+Then NAVD88 height = 247.47 + 0.129 = 247.599m.
+
+For the reverse calculation of a NAVD88  height of 247.599m to NGVD29 height:
+
+First obtain the offsets at each of the surrounding grid nodes:
+NW corner 29.50°N, 98.50°W, offset = 0.144m
+NE corner 29.50°N, 98.45°W, offset = 0.132m
+SE corner 29.45°N, 98.45°W, offset = 0.121m
+SW corner 29.45°N, 98.50°W, offset = 0.125m
+
+Then using bi-linear interpolation for 29.4667897°N, 98.4803739°W, offset = +0.129m
+
+Then NGVD29 height = 247.599 - 0.129 = 247.470m.","Any NAD realization may be used as the Interpolation CRS; bi-linear interpolation is used. Input expects longitudes to be positive west.",US National Geodetic Survey - http://www.ngs.noaa.gov,IOGP,2016/12/15,2016.046,0
 9659,Geographic3D to 2D conversion,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The forward case is trivial. A 3-dimensional geographic coordinate reference system comprising of geodetic latitude, geodetic longitude and ellipsoidal height is converted to its 2-dimensional subset by the simple expedient of dropping the height. The axis order change operates on coordinates of a point whose order change is described by the following matrix operation:
@@ -3182,7 +3251,7 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),"Applies to EGM84 and EGM96 models. For later model see Geographic3D to GravityRelatedHeight (EGM2008), method code 1025.","EPSG guidance note #7-2, http://www.epsg.org",OGP,2009/02/10,2008.010 2008.097,0
+and   H = the gravity-related height in the target vertical CRS.",(none),"Applies to EGM84 and EGM96 models. For later model see Geographic3D to GravityRelatedHeight (EGM2008), method code 1025.","EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.010 2008.097 2016.050,0
 9662,Geographic3D to GravityRelatedHeight (Ausgeoid98),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a geoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -3193,8 +3262,8 @@ Then:
            H = h - N
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the geoid height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/04/11,2008.010,0
-9663,Geographic3D to GravityRelatedHeight (OSGM02-GB),0,"This transformation involves the application of a height difference interpolated from a height correction model. The model provides height difference values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
+and   H = the gravity-related height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.010 2016.050,0
+9663,Geographic3D to GravityRelatedHeight (OSGM-GB),0,"This transformation involves the application of a height difference interpolated from a height correction model. The model provides height difference values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
 
@@ -3204,7 +3273,7 @@ Then:
            H = h - C
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
-and     H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2011/02/04,2008.010 2010.104,0
+and     H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.010 2010.104 2016.049,0
 9664,Geographic3D to GravityRelatedHeight (IGN),0,"This transformation involves the application of a height difference interpolated from a height correction model. The model provides height difference values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -3214,7 +3283,8 @@ Calculation of the height difference is achieved through a bi-linear interpolati
 Then:
            H = h - C
 
-where h = the height above the ellipsoid in the source geographic 3D CRS",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/04/11,2008.010,0
+where h = the height above the ellipsoid in the source geographic 3D CRS
+and   H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.010 2016.050,0
 9665,Geographic3D to GravityRelatedHeight (US),0,"This transformation involves the application of a height difference interpolated from a height correction model. The model provides height difference values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -3224,7 +3294,8 @@ Calculation of the height difference is achieved through a bi-linear interpolati
 Then:
            H = h - C
 
-where h = the height above the ellipsoid in the source geographic 3D CRS",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/04/11,2008.010,0
+where h = the height above the ellipsoid in the source geographic 3D CRS
+and   H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.010 2016.050,0
 9666,P6 (I = J+90°) seismic bin grid transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The P6 (I = J+90°) seismic bin grid transformation is a special case of the Affine Geometric Transformation (method code 9623). In practice bin grid definitions are based on an identified map grid. As such the example bin grids in the EPSG Dataset are described with the map grid (projected CRS) as source CRS. However to retain consistency with the syntax used in the description of the affine geometric transformation, in the formulas below the bin grid is the affine source CRS and the map grid is the affine target CRS.

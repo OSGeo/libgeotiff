@@ -66,7 +66,7 @@ RUN mkdir /vdatum \
     && wget http://download.osgeo.org/proj/vdatum/egm08_25/egm08_25.gtx && mv egm08_25.gtx /usr/share/proj \
     && rm -rf /vdatum
 #
-RUN git clone https://github.com/OSGeo/proj.4.git \
+RUN git clone --depth=1 https://github.com/OSGeo/proj.4.git \
     &&    cd proj.4 \
     &&    ./autogen.sh \
     && ./configure --prefix=/usr \
@@ -74,35 +74,39 @@ RUN git clone https://github.com/OSGeo/proj.4.git \
     && make -j 4 \
     && make install
 
-RUN svn co https://svn.osgeo.org/metacrs/geotiff/trunk/libgeotiff/ \
+RUN svn co https://svn.osgeo.org/metacrs/geotiff/trunk/libgeotiff/  \
     && cd libgeotiff \
     && ./autogen.sh \
     && ./configure --prefix=/usr \
     && make \
     && make install
 
-RUN wget http://www.epsg.org/Portals/0/EPSG%20files/v8-9/epsg-v8_9sql-PostgreSQL.zip -O temp.zip \
+RUN wget http://www.epsg.org/Portals/0/EPSG%20files/v9-0/epsg-v9_0sql-PostgreSQL.zip -O temp.zip \
     && unzip temp.zip \
     && rm temp.zip
 
 RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-RUN sed -i '1s/^/\\encoding WIN1252\n/' EPSG*_Data_PostgreSQL.sql \
+RUN sed -i '1s/^/\\encoding WIN1252\nBEGIN;\n/' EPSG*_Data_PostgreSQL.sql \
+    && echo "COMMIT;" | cat EPSG*_Data_PostgreSQL.sql - > EPSG_Data_PostgreSQL.sql.tmp \
+    && mv EPSG_Data_PostgreSQL.sql.tmp EPSG*_Data_PostgreSQL.sql \
     && sed -i -- 's/254/300/g' EPSG*_Tables_PostgreSQL.sql
 
 RUN service postgresql start ; \
     sudo -u postgres createuser root -s \
     && createdb -E UTF8 -T template0 epsg \
     && psql epsg -f EPSG*_Tables_PostgreSQL.sql \
-    && psql epsg -f EPSG*_Data_PostgreSQL.sql
+    && psql epsg -f EPSG*_Data_PostgreSQL.sql \
+    && service postgresql stop
 
 RUN service postgresql start ; \
     sleep 10; \
     cd /libgeotiff/csv \
     && python pg_to_csv.py \
     && mv out/* . \
-    && python build_pcs.py
+    && python build_pcs.py \
+    && service postgresql stop
 
 RUN service postgresql start ; \
     sleep 10; \
@@ -119,6 +123,7 @@ RUN service postgresql start ; \
     && /gdal/gdal/swig/python/scripts/epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list gcs.csv > spatial_ref_sys.sql \
     && /gdal/gdal/swig/python/scripts/epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list pcs.csv >> spatial_ref_sys.sql \
     && /gdal/gdal/swig/python/scripts/epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list geoccs.csv >> spatial_ref_sys.sql \
-    && /gdal/gdal/swig/python/scripts/epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list compdcs.csv >> spatial_ref_sys.sql
+    && /gdal/gdal/swig/python/scripts/epsg_tr.py --config OVERRIDE_PROJ_DATUM_WITH_TOWGS84 FALSE -postgis -skip -list compdcs.csv >> spatial_ref_sys.sql \
+    && service postgresql stop
 
 #

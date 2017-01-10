@@ -1,5 +1,9 @@
 2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
 
+	* csv/*: update to EPSG v9.0 (#83)
+
+2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
+
 	* csv/datum_shift_pref.csv: add overrides for PCS 2065
 	(S-JTSK (Ferro) / Krovak)
 	Fixes https://trac.osgeo.org/gdal/ticket/4762 and
