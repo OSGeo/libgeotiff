@@ -1,11 +1,13 @@
 "COORD_REF_SYS_CODE","COORD_OP_CODE"
 ####################################################################
 # This file contains overrides to determine which datum shift
-# operation is considered preferred for particular GCS codes. 
+# operation is considered preferred for particular GCS/PCS codes. 
 #
 # It is used when generating the datum_shift.csv file to mark the
 # preferred operation and this in turn affects what shift gets put
-# into the gcs.csv file. 
+# into the gcs.csv file. The pcs.csv file takes also into account
+# overrides define in this file (PCS override are prioritary over the
+# override of the underlying GCS)
 # 
 # Try to include some comments for each preference override indicating
 # why it is here, and potentially referencing a ticket about it.
@@ -79,3 +81,9 @@
 #
 4149,1510
 ####################################################################
+# PCS EPSG:3844 ("Pulkovo 1942(58) / Stereo70" Romania)
+# Based on https://trac.osgeo.org/geotiff/ticket/52
+#
+# Prefer the +towgs84=2.329,-147.042,-92.08,0.309,-0.325,-0.497,5.69 setting.
+#
+3844,15995

@@ -204,6 +204,14 @@ for i in range(max_parms):
     pcs_table.add_field('PARAMETER_VALUE_%d' % (i+1))
     pcs_table.add_field('PARAMETER_UOM_%d' % (i+1))
 
+pcs_table.add_field('DX')                        # +towgs84 parameters.
+pcs_table.add_field('DY')                        
+pcs_table.add_field('DZ')                        
+pcs_table.add_field('RX')                        
+pcs_table.add_field('RY')                        
+pcs_table.add_field('RZ')                        
+pcs_table.add_field('DS')                        
+
 ##############################################################################
 # Populate PCS table.Setup PCS table fields.
 
@@ -253,6 +261,14 @@ for key in pcs_keys:
         pcs_rec['PARAMETER_CODE_'+pin] = parm_rec['PARAMETER_CODE']
         pcs_rec['PARAMETER_VALUE_'+pin] = parm_rec['PARAMETER_VALUE']
         pcs_rec['PARAMETER_UOM_'+pin] = parm_rec['UOM_CODE']
+
+    try:
+        pref_rec = datum_shift_pref.get_record(key)
+    except:
+        pref_rec = None
+    if pref_rec is not None:
+        parms = co_value.get_records( int(pref_rec['COORD_OP_CODE']) )
+        copy_datum_shift_parms( pcs_rec, parms )
 
     pcs_table.add_record( key, pcs_rec )
 
