@@ -1,7 +1,13 @@
 2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
 
+	* csv/datum_shift_pref.csv: add overrides for PCS 2397/2398/2399
+	(Pulkovo 1942(83) / 3-degree Gauss-Kruger zone 3,4,5)
+	Fixes https://github.com/OSGeo/proj.4/issues/235
+
+2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
+
 	* csv/datum_shift_pref.csv: add overrides for PCS 31251,31252,31253
-        (MGI (Ferro) / Austria)
+	(MGI (Ferro) / Austria)
 	Fixes https://github.com/OSGeo/proj.4/issues/254
 
 2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
