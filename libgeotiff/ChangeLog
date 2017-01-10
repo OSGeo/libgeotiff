@@ -1,5 +1,11 @@
 2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
 
+	* csv/datum_shift_pref.csv: add overrides for PCS 31251,31252,31253
+        (MGI (Ferro) / Austria)
+	Fixes https://github.com/OSGeo/proj.4/issues/254
+
+2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
+
 	* csv/build_pcs.py, csv/datum_shift_pref.csv: add mechanism to define
 	TOWGS84 parameters per PCS (instead of only relying on the TOWGS84
 	parameters of the underlying GCS).
