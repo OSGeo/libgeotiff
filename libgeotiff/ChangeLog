@@ -1,3 +1,8 @@
+2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
+
+	* csv/datum_shift_pref.csv: add override for CH1903 (EPSG:4149)
+	Fixes https://trac.osgeo.org/geotiff/ticket/73
+
 2016-11-23 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_new.c, geo_print.c, geo_set.c, bin/applygeo.c, bin/geotifcp.c,
