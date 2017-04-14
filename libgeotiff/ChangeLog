@@ -1,3 +1,7 @@
+2017-04-14 Even Rouault <even dot rouault at spatialys dot com>
+
+	* *.h, libxtiff/xtiffio.h: replace CPL_DLL by GTIF_DLL
+
 2017-01-10 Even Rouault <even dot rouault at spatialys dot com>
 
 	* csv/*: update to EPSG v9.0 (#83)
