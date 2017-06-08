@@ -1,3 +1,12 @@
+2017-06-08 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geotiff.h, geo_keyp.h, geo_normalize.c, geo_new.c:
+	add GTIFNewEx() and GTIFNewWithMethodsEx() functions that
+	accept a user-provided error printing callback (only called
+	by geo_normalize right now, instead of fprintf(stderr))
+	and a user data handle. Add GTIFGetUserData().
+	Upgrade LIBGEOTIFF_VERSION to 1430.
+
 2017-04-14 Even Rouault <even dot rouault at spatialys dot com>
 
 	* *.h, libxtiff/xtiffio.h: replace CPL_DLL by GTIF_DLL
