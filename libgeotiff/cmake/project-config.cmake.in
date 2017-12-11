@@ -32,8 +32,11 @@ set (@PROJECT_NAME@_BINARY_DIRS "${_ROOT}/bin")
 
 message (STATUS "  include directory: \${@PROJECT_NAME@_INCLUDE_DIRS}")
 
+if(BUILD_SHARED_LIBS)
 set (@PROJECT_NAME@_SHARED_LIBRARIES @GEOTIFF_LIBRARY_TARGET@)
-set (@PROJECT_NAME@_STATIC_LIBRARIES @GEOTIFF_ARCHIVE_TARGET@)
+else()
+set (@PROJECT_NAME@_STATIC_LIBRARIES @GEOTIFF_LIBRARY_TARGET@)
+endif()
 # Read in the exported definition of the library
 include ("${_DIR}/@PROJECT_NAME_LOWER@-depends.cmake")
 

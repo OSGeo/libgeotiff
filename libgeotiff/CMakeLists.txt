@@ -9,7 +9,6 @@ PROJECT(GeoTIFF)
 
 SET(GEOTIFF_LIB_NAME geotiff)
 SET(GEOTIFF_LIBRARY_TARGET geotiff_library)
-SET(GEOTIFF_ARCHIVE_TARGET geotiff_archive)
 
 ##############################################################################
 # CMake settings
@@ -416,31 +415,14 @@ FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/epsg_incode_header.h"
 
 SET(XTIFF_SOURCES libxtiff/xtiff.c)
 
-#---
-# Static libgeotiff archive
-# NOTE: Did not put XTIFF_SOURCES in static lib because libxtiff.a is written out
-#       currently.
-#---
 if (MSVC OR CMAKE_CONFIGURATION_TYPES)
   # For multi-config systems and for Visual Studio, the debug versions
   # of the libraries have a _d suffix.
   set (CMAKE_DEBUG_POSTFIX _d)
 endif ()
 
-ADD_LIBRARY(${GEOTIFF_ARCHIVE_TARGET} STATIC
-    ${GEOTIFF_LIB_SOURCES} ${GEOTIFF_LIB_CSV_SOURCES})
-SET_TARGET_PROPERTIES(${GEOTIFF_ARCHIVE_TARGET} PROPERTIES
-    OUTPUT_NAME ${GEOTIFF_LIB_NAME})
-
-# Shared libgeotiff library
-ADD_LIBRARY(${GEOTIFF_LIBRARY_TARGET} SHARED
+ADD_LIBRARY(${GEOTIFF_LIBRARY_TARGET}
     ${GEOTIFF_LIB_SOURCES} ${GEOTIFF_LIB_CSV_SOURCES} ${XTIFF_SOURCES})
-
-# Windows:
-IF(WIN32 AND MSVC)
-    SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES IMPORT_SUFFIX "_i.lib")
-ENDIF(WIN32 AND MSVC)
-
 
 # Unix, linux:
 IF(UNIX)
@@ -478,7 +460,7 @@ TARGET_LINK_LIBRARIES(${GEOTIFF_LIBRARY_TARGET}
 #   LIBRARY DESTINATION ${GEOTIFF_LIB_DIR}
 #   ARCHIVE DESTINATION ${GEOTIFF_LIB_DIR})
 
-INSTALL( TARGETS ${GEOTIFF_ARCHIVE_TARGET} ${GEOTIFF_LIBRARY_TARGET}
+INSTALL( TARGETS ${GEOTIFF_LIBRARY_TARGET}
 	 EXPORT depends
 	 RUNTIME DESTINATION bin
          LIBRARY DESTINATION lib
