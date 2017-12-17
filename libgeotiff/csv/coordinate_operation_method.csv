@@ -61,7 +61,7 @@ Reverse calculation for a point 10km north on the grid (-11 169 055.58 m E, 2 81
 	D = -0.44056752
 
 Then	Latitude (lat) = 0.426970023 rad = 24°27'48.889""N
-	Longitude (lon) = -1.751147016 rad = 100°20'00.000""W",Applies spherical formulas to the ellipsoid. As such does not have the properties of a true Mercator projection.,OGP Guidance Note 7-2,OGP,2009/06/07,2008.114 2009.023,0
+	Longitude (lon) = -1.751147016 rad = 100°20'00.000""W",Applies spherical formulas to the ellipsoid. As such does not have the properties of a true Mercator projection.,OGP Guidance Note 7-2,IOGP,2017/09/22,2008.114 2009.023 2017.030,0
 1025,Geographic3D to GravityRelatedHeight (EGM2008),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a geoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -75,21 +75,27 @@ where h = the height above the ellipsoid in the source geographic 3D CRS
 and   H = the gravity-related height in the target vertical CRS.",(none),"For earlier EGM84 and EGM96 models see Geographic3D to GravityRelatedHeight (EGM), method code 9661.","EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2008.097 2016.050,0
 1026,Mercator (Spherical),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
+
 The formulas to derive projected Easting and Northing coordinates from spherical latitude lat and longitude lon are:
 	E = FE   R (lon - lonO)              
 	N = FN   R ln[tan(pi/4   lat/2)]                   
 where lonO is the longitude of natural origin and FE and FN are false easting and false nothing.
 
+
 R is the radius of the sphere and will normally be one of the CRS parameters. If the figure of the earth used is an ellipsoid rather than a sphere then R should be calculated as the radius of the conformal sphere at the projection origin at latitude latO using the formula for Rc given in EPSG Guidance Note 7-2, section 1.2, table 3. Note however that if applying spherical formula to ellipsoidal coordinates, the projection properties are not preserved.
 
+
 If latitude lat = 90º, N is infinite. The above formula for N will fail near to the pole, and should not be used poleward of 88º.
+
 
 The reverse formulas to derive latitude and longitude on the sphere from E and N values are:
 	D = -(N - FN)/R = (FN - N)/R
 	lat = pi/2 -  2 atan(e^D) where e=base of natural logarithms, 2.7182818...
 	lon = [(E - FE)/R] + lonO
 
+
 Note that in these formulas, the parameter latitude of natural origin (*O) is not used. However for the Merctor (Spherical) method, for completeness in CRS labelling the EPSG dataset includes this parameter, which must have a value of zero.","For Projected Coordinate Reference System: World Spherical Mercator (Note: CRS not in EPSG dataset)
+
 
 Parameters:
 Sphere:	R = 6371007.0 metres
@@ -99,20 +105,25 @@ Longitude of natural origin (lonO) = 0°00'00.000""E = 0.0 rad
 False easting (FE) = 0.00 metres	
 False northing (FN) = 0.00 metres	
 
+
 Forward calculation for: 
 Latitude (lat) = 24°22'54.433""N	= 0.425542460 rad
 Longitude (lon) = 100°20'00.000""W = -1.751147016 rad
+
 
 whence 
 	E = -11 156 569.90 m
 	N =   2 796 869.94 m
 
+
 Reverse calculation for the same point (-11 156 569.90 m E, 2 796 869.94m N) first gives:
 	D = -0.438999665
+
 
 Then	Latitude (lat) = 0.425542460 rad = 24°22'54.433""N
 	Longitude (lon) = -1.751147016 rad = 100°20'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2009/06/07,2008.114 2009.023,0
 1027,Lambert Azimuthal Equal Area (Spherical),1,"See information source.
+
 
 R is the radius of the sphere and will normally be one of the CRS parameters. If the figure of the earth used is an ellipsoid rather than a sphere then R should be calculated as the radius of the authalic sphere using the formula for RA given in EPSG Guidance Note 7-2, section 1.2, table 3. Note however that if applying spherical formula to ellipsoidal coordinates, the authalic projection properties are not preserved.",See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Azimuthal Equal Area (code 9820) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2009/06/07,2009.007 2009.023,0
 1028,Equidistant Cylindrical,1,See EPSG Guidance Note #7-2.,See EPSG Guidance Note #7-2.,"See method code 1029 for spherical development. See also Pseudo Plate Carree, method code 9825.",ESRI,OGP,2009/06/07,2009.023,0
@@ -120,7 +131,11 @@ R is the radius of the sphere and will normally be one of the CRS parameters. If
 
 
 
+
+
 This method has one of the simplest formulas available. If the latitude of natural origin (lat1) is at the equator the method is also known as Plate Carrée. It is not used for rigorous topographic mapping because its distortion characteristics are unsuitable. Formulas are included to distinguish this map projection method from an approach sometimes mistakenly called by the same name and used for simple computer display of geographic coordinates - see Pseudo Plate Carrée (coordinate operation method code 9825).
+
+
 
 
 
@@ -128,9 +143,14 @@ For the forward calculation:
 
 
 
+
+
 E =  FE + R . (lon - lonO) . cos(lat1)
 
+
 N =  FN + R . lat
+
+
 
 
 
@@ -138,7 +158,11 @@ where lat1, lonO, lat and lon are expressed in radians.
 
 
 
+
+
 R is the radius of the sphere and will normally be one of the CRS parameters. If the figure of the earth used is an ellipsoid rather than a sphere then R should be calculated as the radius of the conformal sphere at the projection origin at latitude lat1 using the formula for RC given in EPSG Guidance Note 7-2, section 1.2, table 3. Note however that if applying spherical formula to ellipsoidal coordinates, the equidistant projection properties are not preserved.
+
+
 
 
 
@@ -146,9 +170,14 @@ For the reverse calculation:
 
 
 
+
+
 lat = (N - FN)/ R  
 
+
 lon = lonO + ([E - FE] / R cos(lat1))
+
+
 
 
 
@@ -883,7 +912,7 @@ Then rhoO = 6369526.88 m
 IncLat term = -0.047 m 
 nuO = 6389555.64 m  
 incLong term = -0.017 m
-whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.",This transformation allows calculation of height in the target system by applying the parameter values to the height value of the point in the source system.,OGP,OGP,2011/12/23,2011.108,0
+whence EVRF2000 height (Ht) = 473.0 +(-0.245) + (-0.047) + (-0.017) = 472.690 m.",This transformation allows calculation of height in the target system by applying the parameter values to the height value of the point in the source system.,OGP,IOGP,2017/10/16,2011.108 2014.027,0
 1047,Geographic3D to GravityRelatedHeight (Gravsoft),0,"This transformation involves the application of a geoid-ellipsoid separation value interpolated from a quasigeoid model. The model provides separation values at the nodes on a regular grid of latitude and longitude intersection points. The geodetic latitude and longitude used to interpolate within the grid are not affected by this transformation.
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
@@ -963,13 +992,13 @@ Bin grid J = YS = YSO + {[(XT   – XTO) * sin q   +  (YT – YTO) * cos q] * [I
 
 The grid is referenced to a specific geographic CRS (the source CRS) and interpolation must be made in this system.
 
-Calculation of the separation is achieved through a bi-linear interpolation of the grid, using the latitude and longitude of the point. This step provides the geoid-ellipsoid separation (N) above the ellipsoid of the source Geographic 3D CRS.
+Calculation of the separation is achieved through a bi-linear interpolation of the grid, using the latitude and longitude of the point. This step provides the geoid-ellipsoid separation (N) above the ellipsoid of the source Geographic 3D CRS. In this method the separation is given in feet.
 
 Then:
-           H = h - N
+           H = (h/0.3048) - N
 
-where h = the height above the ellipsoid in the source geographic 3D CRS
-and   H = the gravity-related height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/12/15,2012.095 2016.050,0
+where h = the height above the ellipsoid in the source geographic 3D CRS (in metres)
+and   H = the gravity-related height in the target vertical CRS.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/10/16,2012.095 2016.050 2014.027,0
 1051,Lambert Conic Conformal (2SP Michigan),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
@@ -1682,6 +1711,199 @@ on the REGVEN geographic 3D coordinate reference system.
 Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
    Latitude =       9 deg 34 min 49.001 sec N
    Longitude =  66 deg 04 min 54.705 sec W",See method codes 1061 and 1062 for this operation in other coordinate domains and method code 9636 for opposite rotation in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2014.039 2014.065,0
+1064,Point motion (geocentric Cartesian),0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+The Cartesian coordinates of a point at coordinate epoch t1 may be calculated at any other coordinate epoch t2 from:
+
+[X(t2)] = [X(t1)] + (t2 - t1) * [Vx]
+[Y(t2)] = [Y(t1)] + (t2 - t1) * [Vy]
+[Z(t2)] = [Z(t1)] + (t2 - t1) * [Vz]","Given a point with geocentric Cartesian 3D coordinates at coordinate epoch 2005.00 and having linear velocities: 
+X = 2845456.0813 m		VX = –0.0212 m/yr
+Y = 2160954.2453 m		VY = +0.0124 m/yr
+Z = 5265993.2296 m		VZ = +0.0072 m/yr
+t = 2005.00 (years)				
+whose coordinates are required at coordinate epoch 2010.00. 
+
+X(t=2010.00) = 2845456.0813 + (–0.0212) * (2010.00 - 2005.00)
+Y(t=2010.00) = 2160954.2453 + (+0.0124) * (2010.00 - 2005.00)
+Z(t=2010.00) = 5265993.2296 + (+0.0072) * (2010.00 - 2005.00)
+
+Then
+X = 2845455.9753 m
+Y = 2160954.3073 m
+Z = 5265993.2656 m
+t = 2010.00 (years)",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/09/23,2016.060,0
+1065,Time-specific Position Vector transform (geocen),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+The time-specific ooordinate transformation is an alternative approach to the time-dependent coordinate transformation. In this method the transformation parameter values are declared for a specified transformation reference epoch (an additional parameter for the transformation) and coordinates are adjusted to this epoch before the transformation is applied. This requires that the velocities for points whose coordinates are to be transformed are available. The time-specific transformation may then be applied as part of a concatenated coordinate operation in conjunction with one or two point motion operations (see EPSG Guidance Note 7-3 section 3) in two or three steps: 
+
+i) change the source CRS Cartesian coordinates from their dataset coordinate epoch to the transformation reference epoch at which the time-specific transformation is valid;
+
+ii) apply the Time-specific Position Vector transformation;
+
+iii) change the target CRS Cartesian coordinates from the transformation reference epoch at which the time-specific transformation is valid to any other desired coordinate epoch.
+
+The transformation reference epoch of the Time-specific Position Vector transformation is used as the target epoch (t2) in step (i) and as the source epoch (t1) in step (iii). It is not used in step (ii).",,Note the analogy with the Time-specifc Coordinate Frame method (code 1066) but beware of the differences!,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/10/15,2016.061,0
+1066,Time-specific Coordinate Frame rotation (geocen),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+The time-specific ooordinate transformation is an alternative approach to the time-dependent coordinate transformation. In this method the transformation parameter values are declared for a specified transformation reference epoch (an additional parameter for the transformation) and coordinates are adjusted to this epoch before the transformation is applied. This requires that the velocities for points whose coordinates are to be transformed are available. The time-specific transformation may then be applied as part of a concatenated coordinate operation in conjunction with one or two point motion operations (see EPSG Guidance Note 7-3 section 3) in two or three steps: 
+
+i) change the source CRS Cartesian coordinates from their dataset coordinate epoch to the transformation reference epoch at which the time-specific transformation is valid;
+
+ii) apply the Time-specific Coordinate Frame rotation transformation;
+
+iii) change the target CRS Cartesian coordinates from the transformation reference epoch at which the time-specific transformation is valid to any other desired coordinate epoch.
+
+The transformation reference epoch of the Time-specific Coordinate Frame rotation transformation is used as the target epoch (t2) in step (i) and as the source epoch (t1) in step (iii). It is not used in step (ii).","Initial coordinates are referenced to the ITRF2008 CRS (EPSG code 5332) at coordinate epoch 2005.00. (Note: this happens to be the frame reference epoch for ITRF2008 but in other circumstancs the coordinate set could be referenced to a coordinate epoch different from the CRS's frame reference epoch).
+
+Coordinates are required to be referenced to the PZ-90.11 CRS (EPSG code 7679) at coordinate epoch 2013.90.
+
+Input point geocentric Cartesian coordinates and linear velocities: 
+XS = 2845 456.0813 m		VX = –0.0212 m/yr
+YS = 2160 954.2453 m		VY = +0.0124 m/yr
+ZS = 5265 993.2296 m		VZ = +0.0072 m/yr
+t  = 2005.0 (years)				
+These are referenced to ITRF2008 at coordinate epoch 2005.00 
+
+Step 1: convert the coordinates in the source CRS from the dataset coordinate epoch (2005.00) to the epoch of validity of the time-specific transformation (2010.00) using the Point Motion (geocentric Cartesian) method described in EPSG Guidance Note 7-2 section 3.1. 
+
+XS(t=2010.0)	= 2845456.0813	+ (–0.0212) * (2010.0 - 2005.0) * 2845455.9753 m
+YS(t=2010.0)	= 2160954.2453	+ (+0.0124) * (2010.0 - 2005.0) * 2160954.3073 m
+ZS(t=2010.0)	= 5265993.2296	+ (+0.0072) * (2010.0 - 2005.0)	* 5265993.2656 m
+
+Step 2: transform the coordinates in the source CRS at coordinate epoch 2010.00 to the target CRS at coordinate epoch 2010.00 using the Coordinate Frame Rotation (geocentric domain) method described in section 2.4.3.3. The time-specific transformation from PZ-90.11 to ITRF2008 (EPSG Dataset transformation code 7960) parameter values are:
+tX = –0.003 m									
+tY = –0.001 m									
+tZ = 0.000 m									
+rX = 0.019 msec									
+rY = –0.042 msec								
+rZ = 0.002 msec									
+dS = 0.000 ppm									
+t  = 2010.0 years								
+This uses the Coordinate Frame Rotation convention.
+
+Because the transformation is required in the reverse direction to that defined, the relevant parameters need to have their signs reversed. Transformation parameter values (from ITRF2008 to PZ-90.11) then are:
+tX = 0.003 m		
+tY = 0.001 m		
+tZ = 0.000 m		
+rX = –0.019 msec = –9.21145994108117E-11 radians
+rY =  0.042 msec =  2.03621746066005E-10 radians
+rZ = –0.002 msec = –9.69627362219071E-12 radians
+dS = 0.000 ppm		
+t  = 2010.0 (years)		
+
+Then:
+XT(t=2010.0) = 2845455.9772m
+YT(t=2010.0) = 2160954.3078m
+ZT(t=2010.0) = 5265993.2652m
+
+
+Step 3: convert the coordinates in the target CRS from epoch 2010.00 to the required coordinate epoch 2013.90 using the Point Motion (geocentric Cartesian) method:
+
+XT(t=2013.9) = 2845455.9772 + [–0.0212 * (2013.9 - 2010.0)] = 2845455.8945m
+YT(t=2013.9) = 2160954.3078 + [+0.0124 * (2013.9 - 2010.0)] = 2160954.3562m
+ZT(t=2013.9) = 5265993.2652 + [+0.0072 * (2013.9 - 2010.0)] = 5265993.2945m",Note the analogy with the Time-specifc Position Vector method (code 1065) but beware of the differences!,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/10/15,2016.061,0
+1067,Point motion (ellipsoidal),0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+The ellipsoidal coordinates of a point at coordinate epoch t1 may be calculated at any other coordinate epoch t2 from:
+
+[Lat(t2)] = [Lat(t1)] + (t2-t1) * [V_lat]
+[Lon(t2)] = [Lon(t1)] + (t2-t1) * [V_lon]
+[h(t2)] = [h(t1)] + (t2-t1) * [V_up]
+
+where V describes the velocities of the ellipsoidal coordinates. These are usually given as a rate in linear units (say millimetres per year) resolved into north, east and up components VN, VE and Vh. The north and east components are converted into latitude and longitude components by:
+	V_lat = VN / (rho+h)
+	V_lon = VE / [(nu+h) cos(lat)] 
+where 
+	rho is radius of curvature of the CRS's ellipsoid in the plane of the meridian at latitude lat, where 
+	rho = a(1 – e^2)/(1 – e^2sin^2(lat))^3/2
+	nu is radius of curvature of the ellipsoid perpendicular to the meridian at latitude lat, where 
+	nu = a /(1 – e^2sin^2(lat))^1/2","Given a point with ellipsoidal coordinates at coordinate epoch 2017.55 and having linear velocities: 
+lat = 51.0°N		VN  = +15.12 mm/yr
+lon = 141.0°W		VE  =  –2.86 mm/yr
+h = 1000 m		V_up =  +1.10 mm/yr
+t = 2017.55 (years)				
+whose coordinates are required at epoch 1997.00. The point is referenced to a CRS which uses the GRS 1980 ellipsoid for which a = 6378137.0m and e^2 = 0.006694380.
+
+Then (after conversion to appropriate units):
+	V_lat = 2.37174E-09 rad/yr
+	V_lon = -7.10972E-07 rad/yr
+	V_up = 0.0011 m / yr
+and
+	lat = 0.890117919 + (1997.00-2017.55) * 2.37174E-09 = 0.890117870 radians = 50°59'59.990""N
+	lon = 0.890117919 + (1997.00-2017.55) * -7.10972E-07 = -2.460914231 radians = 140°59'59.997""W
+	h = 1000.0 + (1997.00-2017.55) * 0.0011 = 999.977m
+	t = 1997.00",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/09/23,2016.060,0
+1068,Height Depth Reversal,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+If there is a requirement to either (i) change a height in a source CRS to a depth in a target CRS referenced  to the same vertical datum, or (ii) change a depth in the a source CRS to a height in a target CRS referenced  to the same vertical datum, then the following generic formula can be used:
+
+X2 = –1 * X1","1. Source CRS = MSL height, in which a height = -300m. Then target CRS = MSL depth, and the depth = (-300 * -1) = 300m
+
+2. Source CRS = NAVD88 depth (ftUS), in which a depth = 500 ftUS. Then target CRS = NAVD88 height (ftUS), and the height = (500 * -1) = -500 ftUS",,EPSG Guidance Note #7-2.,IOGP,2017/06/06,2014.027,0
+1069,Change of Vertical Unit,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+If there is a requirement to change the linear unit of a vertical axis, the following formulae can be used:
+
+for the forward transformation:       	X2 = (X1 * U1) / U2
+for the reverse transformation:        	X1 = (X2 * U2) / U1
+
+where U1 and U2 are unit conversion ratios for CRS1 and CRS2 respectively. U = [(factor b) / (factor c)] from the EPSG Dataset Unit of Measure table, populated with respect to the linear base unit, metre.
+
+Then
+for the forward transformation:       	
+X2 = (X1 * (b1 / c1)) / (b2 / c2) = (X1 * b1 * c2) / (b2 * c1)
+for the reverse transformation:        	
+X1 = [X2 * (b2 / c2)]/ (b1 / c1) = (X2 * b2 * c1) / (b1 * c2)","Conversion of a height of 25 metres into US survey feet:
+
+For the metre (EPSG UoM code 9001) factor b = 1 and factor c = 1, so U1 has a value of 1.
+
+For the US survey foot (EPSG UoM code 9003) factor b = 12 and factor c = 39.37, so U2 has a value of approximately 0.304800609601219 (one US survey foot ? 0.304800609601219 metres).
+
+Then H(ftUS) = (25 * (1 / 1)) / (12 / 39.37) = 82.02 ftUS.",,EPSG Guidance Note #7-2.,IOGP,2017/06/06,2014.027,0
+1070,Point motion by grid (Canada NTv2_Vel),0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
+
+The NTv2_Vel grid contains point velocities resolved into north, east, and up components.
+
+First the three velocities at a point are interpolated within the NTv2_Vel grid using bi-linear interpolation within the source and target CRS.
+
+Then ellipsoidal coordinates of a point at coordinate epoch t1 may be calculated at any other coordinate epoch t2 from:
+
+[Lat(t2)] = [Lat(t1)] + (t2-t1) * [V_lat]
+[Lon(t2)] = [Lon(t1)] + (t2-t1) * [V_lon]
+[h(t2)] = [h(t1)] + (t2-t1) * [V_up]
+
+where V describes the velocities of the ellipsoidal coordinates. These are given as a rate in linear units (metres per year) resolved into north, east and up components VN, VE and Vh. The north and east components are converted into latitude and longitude components by:
+	V_lat = VN / (rho+h)
+	V_lon = VE / [(nu+h) cos(lat)] 
+where 
+	rho is radius of curvature of the CRS's ellipsoid in the plane of the meridian at latitude lat 
+	rho = a(1 – e^2)/(1 – e^2sin^2(lat))^3/2
+	nu is radius of curvature of the ellipsoid perpendicular to the meridian at latitude lat 
+	nu = a /(1 – e^2sin^2(lat))^1/2","For geodetic station Centennial Monument NCC100 with ellipsoidal coordinates referenced to NAD83(CSRS)v6 at coordinate epoch 2010.00: 
+lat = 45°25'45.714920""N
+lon = 75°42'05.960075""W
+h = 39.524 m
+t = 2010.00 (years)				
+whose coordinates are required at coordinate epoch 2002.00. 
+
+First interpolate within the grid file for velocities at lat = 45°25'45.714920""N, lon = 75°42'05.960075""W:
+VN  = -0.00156 m/yr
+VE  =  0.00177 m/yr
+V_up = 0.00202 m/yr
+
+NAD83(CSRS)v6 uses the GRS 1980 ellipsoid for which a = 6378137.0m and e^2 = 0.006694380.
+
+Then:
+	V_lat = -2.44979E-10 rad/yr
+	V_lon =  3.94759E-10 rad/yr
+and
+	lat =  0.792892001 + (2002.00-2010.00) * -2.44979E-10 =  0.792892003 radians = 45°25'45.715324""N
+	lon = -1.321243139 + (2002.00-2010.00) *  3.94759E-10 = -1.321243142 radians = 75°42'05.960726""W
+	h   =       39.524 + (2002.00-2010.00) * 0.00202 = 39.508m
+	t = 2002.00",,Natural Resources Canada.,IOGP,2017/10/15,2016.060,0
 1071,Vertical Offset by Grid Interpolation (NZLVD),1,"The relationship between NZVD16 height and thirteen local gravity-related coordinate reference systems (LVDs) for New Zealand is available through gridded data files of offsets (sometimes called height differences). The vertical offset at a point is first interpolated within the grid of values using bi-linear interpolation. The interpolated value is then applied as an offset:
 •	If the height in a LVD is required when a NZVD2016 height is given, add the interpolated offset to the NZVD2016 height (LVD height = NZVD2016 height + interpolated offset).
 •	If the NZVD2016 height is required when a LVD height is given, subtract the interpolated offset from the LVD height (NZVD2016 height = LVD height - interpolated offset).
@@ -1720,7 +1942,7 @@ Then:
 
 where h = the height above the ellipsoid in the source geographic 3D CRS
 and     H = the gravity-related height in the target vertical CRS.",(none),Transformation of the vertical component of a Geographic 3D CRS to a Vertical CRS.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2016/11/22,2016.049,0
-9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/11/12,1999.790,0
+9601,Longitude rotation,1,Target_longitude = Source_longitude + longitude_offset.,(none),This transformation allows calculation of the longitude of a point in the target system by adding the parameter value to the longitude value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,1999.790 2017.018,0
 9602,Geographic/geocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Latitude, P, and Longitude, L, in terms of Geographic Coordinate Reference System A may 
@@ -1784,7 +2006,7 @@ These convert to ED50 values on the International 1924 ellipsoid as:
            longitude 02 deg 07 min 51.477 sec E, 
     and ellipsoidal height 28.02 m, 
 
-Note that the derived height is referred to the International 1924 ellipsoidal surface and will need a further correction for the height of the geoid at this point in order to relate it to Mean Sea Level.","This is a parameter-less conversion. In applications it is often concatenated with the 3- 7- or 10-parameter transformations 9603, 9606, 9607 or 9636 to form a geographic to geographic transformation.","EPSG guidance note #7-2, http://www.epsg.org, from ""Datums and Map Projections""; Iliffe and Lott (2007).",OGP,2007/11/01,1997.290 2002.510 2004.330 2007.058,0
+Note that the derived height is referred to the International 1924 ellipsoidal surface and will need a further correction for the height of the geoid at this point in order to relate it to Mean Sea Level.","This is a parameter-less conversion. In applications it is often concatenated with the 3- 7- or 10-parameter transformations 9603, 9606, 9607 or 9636 to form a geographic to geographic transformation.","EPSG guidance note #7-2, http://www.epsg.org, from ""Datums and Map Projections""; Iliffe and Lott (2007).",IOGP,2017/06/13,1997.290 2002.510 2004.330 2007.058 2017.018,0
 9603,Geocentric translations (geog2D domain),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Transformation of coordinates from one geographic coordinate reference system into another is often carried out as a concatenation of the following operations:
@@ -1932,15 +2154,15 @@ Please note that only the rotation has changed sign as compared to the Position 
 9613,NADCON,1,"The latitude and longitude offsets at a point are derived by interpolation within the gridded data. Separate grid files are given for latitude and longitude offsets. The grid file format is given in documentation available from the information source. Bi-linear interpolation is used to derive the offset values. For the forward calculation the interpolated value of the offset is then added to the source CRS coordinate value to give the coordinates in the target CRS.
 
 Reversibility
-Iteration is required for the reverse transformation. The coordinate reference system for the coordinates of the grid nodes is the source coordinate reference system for the forward transformation. Then in forward transformations the offset is obtained through straightforward interpolation of the grid file. But for the reverse transformation the first grid interpolation entry will be the value of the point in the second coordinate reference system, the offsets are interpolated and applied with sign reversed, and the result used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant.",(none),Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US Coast and geodetic Survey - http://www.ngs.noaa.gov,OGP,2008/04/11,2004.190 2008.027,0
+Iteration is required for the reverse transformation. The coordinate reference system for the coordinates of the grid nodes is the source coordinate reference system for the forward transformation. Then in forward transformations the offset is obtained through straightforward interpolation of the grid file. But for the reverse transformation the first grid interpolation entry will be the value of the point in the second coordinate reference system, the offsets are interpolated and applied with sign reversed, and the result used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant.",(none),Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Input expects longitudes to be positive west.,US Coast and geodetic Survey - http://www.ngs.noaa.gov,IOGP,2017/06/13,2004.190 2008.027 2017.018,0
 9614,NTv1,1,"The latitude and longitude offsets at a point are derived by interpolation within the gridded data. One grid file contains both latitude and longitude offsets. The grid file format is given in documentation available from the information source. Bi-linear interpolation is used to derive the offset values. For the forward calculation the interpolated value of the offset is then added to the source CRS coordinate value to give the coordinates in the target CRS.
 
 Reversibility
-Iteration is required for the reverse transformation. The coordinate reference system for the coordinates of the grid nodes is the source coordinate reference system for the forward transformation. Then in forward transformations the offset is obtained through straightforward interpolation of the grid file. But for the reverse transformation the first grid interpolation entry will be the value of the point in the second coordinate reference system, the offsets are interpolated and applied with sign reversed, and the result used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant.",(none),Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation. Superseded in 1997 by NTv2 (transformation method code 9615).  Input expects longitudes to be positive west.,Geomatics Canada - Geodetic Survey Division.,OGP,2008/04/11,2004.190 2008.027,0
+Iteration is required for the reverse transformation. The coordinate reference system for the coordinates of the grid nodes is the source coordinate reference system for the forward transformation. Then in forward transformations the offset is obtained through straightforward interpolation of the grid file. But for the reverse transformation the first grid interpolation entry will be the value of the point in the second coordinate reference system, the offsets are interpolated and applied with sign reversed, and the result used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant.",(none),Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation. Superseded in 1997 by NTv2 (transformation method code 9615).  Input expects longitudes to be positive west.,Geomatics Canada - Geodetic Survey Division.,IOGP,2017/06/13,2004.190 2008.027 2017.018,0
 9615,NTv2,1,"The latitude and longitude offsets at a point are derived by interpolation within the gridded data. One grid file contains both latitude and longitude offsets. The grid file format is given in documentation available from the information source. Bi-linear interpolation is used to derive the offset values. For the forward calculation the interpolated value of the offset is then added to the source CRS coordinate value to give the coordinates in the target CRS.
 
 Reversibility
-Iteration is required for the reverse transformation. The coordinate reference system for the coordinates of the grid nodes is the source coordinate reference system for the forward transformation. Then in forward transformations the offset is obtained through straightforward interpolation of the grid file. But for the reverse transformation the first grid interpolation entry will be the value of the point in the second coordinate reference system, the offsets are interpolated and applied with sign reversed, and the result used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant.",(none),Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Supersedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,"Geomatics Canada - Geodetic Survey Division, http://www.geod.nrcan.gc.ca/.  Also GDAit software documentation from University of Melbourne Geomatics Department, http://www.sli.unimelb.edu.au/gda94/.",OGP,2008/04/11,2004.190 2008.027,0
+Iteration is required for the reverse transformation. The coordinate reference system for the coordinates of the grid nodes is the source coordinate reference system for the forward transformation. Then in forward transformations the offset is obtained through straightforward interpolation of the grid file. But for the reverse transformation the first grid interpolation entry will be the value of the point in the second coordinate reference system, the offsets are interpolated and applied with sign reversed, and the result used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant.",(none),Geodetic transformation operating on geographic coordinate differences by bi-linear interpolation.  Supersedes  NTv1 (transformation method code 9614).  Input expects longitudes to be positive west.,"Geomatics Canada - Geodetic Survey Division, http://www.geod.nrcan.gc.ca/.  Also GDAit software documentation from University of Melbourne Geomatics Department, http://www.sli.unimelb.edu.au/gda94/.",IOGP,2017/06/13,2004.190 2008.027 2017.018,0
 9616,Vertical Offset,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 A vertical offset allows calculation of coordinates in the target vertical coordinate reference system by adding a correction parameter A to the coordinate values of the point in the source system:
@@ -1953,23 +2175,15 @@ A1>2 is the offset to be applied for the transformation from CRS 1 to CRS 2. Its
 For the reverse transformation from CRS 2 to CRS 1 the same formula is used but with the sign of the offset A1>2 reversed:
 	X1 = X2 + (–A1>2)
 
-Change of axis direction
-The above formulas apply only when the positive direction of the axis of each CRS is the same. If there is a requirement to transform heights in the source CRS to depths in the target CRS or to transform depths in the source CRS to heights in the target CRS, the formulas must be modified to:
-for the forward transformation:       X2 = mX1 + A1>2
-for the reverse transformation:        X1 = m[X2 + (–A1>2)]
-where m is a direction modifier,
-m = p1 * p2 
-and
-	p1 indicates the positive direction of the CRS 1 axis; p1 = +1 if up, -1 if down;.
-	p2 indicates the positive direction of the CRS 2 axis; p2 = +1 if up, -1 if down
-These modified formulas remain valid whether or not there is a change in axis direction.
+The above formulas apply only when the positive direction of the axis of the source and target CRS is the same and where the two vertical CRSs share the same unit of measure. If either of these are to be changed then a concatenated operation including one or more conversions through intermediate vertical CRSs is required. See Height-depth reversal (code 1068) and Change of vertical axis unit (code 1069) for the required conversion methods.","For coordinate transformation: Baltic height to Black Sea height (1), code 5447:
 
-Change of unit
-A further modification allows for source CRS axis, target CRS axis or offset to be in different units giving the general formulas:
-for the forward transformation:       X2 = {(p1 * p2) * (X1 * U1) + (A1>2 * UA)} / U2
-for the reverse transformation:        X1 = {(p1 * p2) * [(X2 * U2) + (–A1>2 * UA)]} / U1
+Transformation Parameter:	Vertical Offset      A1>2 	=	0.4m
 
-where U1 U2 and UA are unit conversion ratios for the two systems and the offset value respectively. U = [(factor b) / (factor c)] from the EPSG Dataset Unit of Measure table, populated with respect to the linear base unit, metre. U has a value of 0.3048 for the international foot.",(none),This transformation allows calculation of height (or depth) in the target system by adding the parameter value to the height (or depth)-value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2008/04/11,1999.790 2008.010,0
+Consider a point having a gravity-related height in the Baltic height system of 2.55m. Its value in the Black Sea height system is
+2.55m  + 0.4m = 2.95m.
+
+For the reverse calculation to transform the Black Sea height of 2.95m to Baltic height:
+H(Baltic) =  2.95m + (–(0.4m)) =  2.55m.",This transformation allows calculation of height (or depth) in the target system by adding the parameter value to the height (or depth)-value of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/10/16,1999.790 2008.010 2014.027,0
 9617,Madrid to ED50 polynomial,0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The polynomial expressions are:
@@ -2011,7 +2225,7 @@ Then ED50 longitude = 3 deg 39 min 34.57 sec E - 3 deg 41 min 10.54 sec = 0 deg 
 
 Lat_T = Lat_S + latitude_offset 
 Lon_T = Lon_S + longitude_offset 
-EllipsoidHeight_T = GravityHeight_S + gravity-related_to_ellipsoid_height_offset.",(none),This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/27,1999.790 2004.330,0
+EllipsoidHeight_T = GravityHeight_S + gravity-related_to_ellipsoid_height_offset.",(none),This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,1999.790 2004.330 2017.018,0
 9619,Geographic2D offsets,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Lat_T = Lat_S + latitude_offset 
@@ -2024,8 +2238,8 @@ and Lon(GGRS87) 	=	23°48'16.23  5""E	+	0. 28""	 =	23°48'16.515""E
 
 For the reverse transformation for the same point, 
 Lat(GREEK) 	 =	38°08'30.705  "" N	+	5. 86""  	 =	38°08'36.565""N
-Lon(GREEK) 	 =	23°48'16.515"" E 	 +	(-0. 28 "")	 =	23°48'16.235""E",This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/27,1999.790 2004.330,0
-9620,Norway Offshore Interpolation,0,See information source.,(none),"Although in principle this method is not reversible, in practice reversibility is better than 10 cm. For the applications for which it was designed it may be considered reversible.","Norwegian Mapping Authority note of 13-Feb-1991 ""Om Transformasjon mellom Geodetiske Datum i Norge"".",OGP,2005/05/21,2005.230,0
+Lon(GREEK) 	 =	23°48'16.515"" E 	 +	(-0. 28 "")	 =	23°48'16.235""E",This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,1999.790 2004.330 2017.018,0
+9620,Norway Offshore Interpolation,0,See information source.,(none),"Although in principle this method is not reversible, in practice reversibility is better than 10 cm. For the applications for which it was designed it may be considered reversible.","Norwegian Mapping Authority note of 13-Feb-1991 ""Om Transformasjon mellom Geodetiske Datum i Norge"".",IOGP,2017/06/13,2005.230 2017.018,0
 9621,Similarity transformation,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The similarity transformation in algebraic form is:
@@ -2426,10 +2640,10 @@ The offsets at a point are derived by interpolation within the gridded data. One
 
 For the transformation of ETRS89 coordinates to OSGB36 / British National Grid coordinates, the ETRS89 latitude and longitude are first converted into ETRS89 / National Grid values using the Transverse Mercator formulas given in EPSG method code 9807. Then bi-linear interpolation is used to derive easting and northing offset values. These are added to the temporary ETRS89 / National Grid coordinate values to give OSGB36 / National Grid coordinate values.
 
-For the transformation of OSGB36 / British National Grid coordinates to ETRS89 latitude and longitude, iteration is required. For the first iteration the OSGB36 / British National Grid easting and northing values are assumed to be in the ETRS89 / National Grid. Bi-linear interpolation is used to derive the easting and northing offset values which are applied with sign reversed to the input coordinates.The result is used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant. Finally these Transverse Mercator grid coordinates are converted to ETRS89 latitude and longitude using the formulae given in EPSG method code 9807.",See information source.,Geodetic transformation between ETRS89 (or WGS 84) and OSGB36 / National Grid.  Uses ETRS89 / National Grid as an intermediate coordinate system for bi-linear interpolation of gridded grid coordinate differences.,http://www.gps.gov.uk/gpssurveying.asp,OGP,2008/04/11,2004.190 2008.027,0
+For the transformation of OSGB36 / British National Grid coordinates to ETRS89 latitude and longitude, iteration is required. For the first iteration the OSGB36 / British National Grid easting and northing values are assumed to be in the ETRS89 / National Grid. Bi-linear interpolation is used to derive the easting and northing offset values which are applied with sign reversed to the input coordinates.The result is used in further iterations of interpolation and application of offset until the difference between results from successive iterations is insignificant. Finally these Transverse Mercator grid coordinates are converted to ETRS89 latitude and longitude using the formulae given in EPSG method code 9807.",See information source.,Geodetic transformation between ETRS89 (or WGS 84) and OSGB36 / National Grid.  Uses ETRS89 / National Grid as an intermediate coordinate system for bi-linear interpolation of gridded grid coordinate differences.,http://www.gps.gov.uk/gpssurveying.asp,IOGP,2017/06/13,2004.190 2008.027 2017.018,0
 9634,Maritime Provinces polynomial interpolation,0,"The transformation makes use of a residual file for each Canadian maritime province.  The process of residual interpolation accounts for local variations in the coordinate reference system and provides a transformation accuracy of +/- 5 cm.
 
-By using a second residual file, the transformation may be reversed.  Only one residual file is in use by the method during any given execution.",(none),This transformation is an executable module within the application NBGeocalc.  It is an adaptation of the ESTPM program developed by Geodetic Survey of Canada.,Survey of New Brunswick,OGP,2000/10/19,,0
+By using a second residual file, the transformation may be reversed.  Only one residual file is in use by the method during any given execution.",(none),This transformation is an executable module within the application NBGeocalc.  It is an adaptation of the ESTPM program developed by Geodetic Survey of Canada.,Survey of New Brunswick,IOGP,2017/06/13,2017.018,0
 9635,Geographic3D to Geographic2D+GravityRelatedHeight,1,"This is a complex, multi-step transformation, involving the application of a geoid height difference interpolated at a point in a ""geoid model"". The geoid model should be available as a regular grid of latitude and longitude with the height of the geoid above the ellipsoid at each grid node. Only the height is affected by this transformation; the geodetic latitude and longitude are not.
 
 The transformation involves the following sequence of steps:
@@ -2496,7 +2710,7 @@ on the REGVEN geographic 3D coordinate reference system.
 
 Because the source coordinate reference system was 2D, the target system ellipsoidal height is ignored and the results treated as a geographic 2D coordinate reference system:
    Latitude =       9 deg 34 min 49.001 sec N
-   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1034 and 1039 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2014/09/18,2002.510 2004.470 2009.083 2013.021 2014.039 2014.065,0
+   Longitude =  66 deg 04 min 54.705 sec W",See method codes 1034 and 1039 for this operation in other coordinate domains and method code 9636 for opposite rotation convention in geographic 2D domain.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2002.510 2004.470 2009.083 2013.021 2014.039 2014.065 2017.018,0
 9637,Degree representation conversion: deg to DMSH,1,"In the formulas that follow, the coordinate strings are symbolically represented as follows:
 
 deg                     decimal degrees
@@ -2776,7 +2990,7 @@ XT , YT  are coordinates in the target coordinate reference system,
 XS , YS  are coordinates in the source coordinate reference system,
 XS0 , YS0 are coordinates of the evaluation point in the source coordinate reference system,
 XT0 , YT0  are coordinates of the evaluation point in the target coordinate reference system,
-dX, dY   are derived through the scaled polynomial formulas.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/12/21,,0
+dX, dY   are derived through the scaled polynomial formulas.",(none),,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9646,General polynomial of degree 3,0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The simplest of all polynomials is the general polynomial function. In order to avoid problems of numerical instability this type of polynomial should be used after reducing the coordinate values in both the source and the target coordinate reference system to ‘manageable’ numbers, between –10 and +10 at most.  This is achieved by working with offsets relative to a central evaluation point, scaled to the desired number range by applying a scaling factor to the coordinate offsets.
@@ -2928,7 +3142,7 @@ XT, YT are coordinates in the target CRS,
 XS, YS are coordinates in the source CRS,
 XS0, YS0 are coordinates of the evaluation point in the source CRS,
 XT , YT0 are coordinates of the evaluation point in the target CRS,
-dX, dY are derived through the scaled polynomial formulas.",See EPSG Guidance Note 7-2.,,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/12/21,,0
+dX, dY are derived through the scaled polynomial formulas.",See EPSG Guidance Note 7-2.,,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9649,Reversible polynomial of degree 2,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 See method code 9645 for description of general polynomial formula.
@@ -3051,7 +3265,7 @@ Then ED50 Latitude  =   XT = XS + dX
                                  = 52° 30’ 30.000"" N
 
 ED50 Longitude  =   YT = YS + dY
-                           = 2° 00’ 00.000"" E",Reversibility is subject to constraints.  See Guidance Note 7 for conditions and clarification.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/12/21,,0
+                           = 2° 00’ 00.000"" E",Reversibility is subject to constraints.  See Guidance Note 7 for conditions and clarification.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9652,Complex polynomial of degree 3,0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The relationship between two projected coordinate reference systems may be approximated more elegantly by a single polynomial regression formula written in terms of complex numbers. The advantage is that the dependence between the ‘A’ and ‘B’ coefficients (for U and V) is taken into account in the formula, resulting in fewer coefficients for the same order polynomial. A third-order polynomial in complex numbers is used in Belgium.
@@ -3090,7 +3304,7 @@ A5 = 4.0783
 A6 = 0.2193
 
 For source coordinate system E1=200000  N1=100000, then
-E2 = 647737.377  N2 = 5564124.227.",Coordinate pairs treated as complex numbers.  This exploits the correlation between the polynomial coefficients and leads to a smaller number of coefficients than the general polynomial of degree 3.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/12/21,,0
+E2 = 647737.377  N2 = 5564124.227.",Coordinate pairs treated as complex numbers.  This exploits the correlation between the polynomial coefficients and leads to a smaller number of coefficients than the general polynomial of degree 3.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9653,Complex polynomial of degree 4,0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The relationship between two projected coordinate reference systems may be approximated more elegantly by a single polynomial regression formula written in terms of complex numbers. The advantage is that the dependence between the ‘A’ and ‘B’ coefficients (for U and V) is taken into account in the formula, resulting in fewer coefficients for the same order polynomial. A fourth-order polynomial in complex numbers is used in The Netherlands for transforming coordinates referenced to the Amersfoort / RD system to and from ED50 / UTM.
@@ -3131,7 +3345,7 @@ A7 = 0.075
 A8 = -0.012
 
 For source coordinate system E1=200000  N1=500000, then
-E2 =707155.557  N2 = 5819663.128.",Coordinate pairs treated as complex numbers.  This exploits the correlation between the polynomial coefficients and leads to a smaller number of coefficients than the general polynomial of degree 4.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/12/21,,0
+E2 =707155.557  N2 = 5819663.128.",Coordinate pairs treated as complex numbers.  This exploits the correlation between the polynomial coefficients and leads to a smaller number of coefficients than the general polynomial of degree 4.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9654,Reversible polynomial of degree 13,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 See method code 9648 for description of general polynomial formula.
@@ -3152,14 +3366,14 @@ An example of a reversible polynomial is transformation is ED50 to ED87 (1) for 
 The error made by the polynomial approximation formulas in calculating the reverse correction is of the same order of magnitude as the ratio of output versus input:
 (output error / input error) = (	output valu/ input value) which is approximately 10E-6
 
-As long as the input values (the coordinate offsets from the evaluation point) are orders of magnitude larger than the output (the corrections), and provided the coefficients are used with changed signs, the polynomial transformation may be considered to be reversible.","See Reversible polynomial of degree 4, code 9651, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2003/09/22,,0
+As long as the input values (the coordinate offsets from the evaluation point) are orders of magnitude larger than the output (the corrections), and provided the coefficients are used with changed signs, the polynomial transformation may be considered to be reversible.","See Reversible polynomial of degree 4, code 9651, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9655,France geocentric interpolation,1,"The transformation is made in the geocentric domain using the geocentric translations method (code 9603). However the translation parameter values are derived by bilinear interpolation in a gridded data set. The arguments in accessing the grid are geodetic latitude and longitude of the forward transformation source coordinate reference system. 
 
-The method is reversible.  Iteration for latitude and longitude is required to obtain the correct geocentric translation values. The geocentric translations are applied with sign reversal.",See information source.,,"IGN document NTG_88.pdf, ""Grille de parametres de transformation de coordonnees"". http://www.ign.fr",OGP,2008/04/11,2008.027,0
+The method is reversible.  Iteration for latitude and longitude is required to obtain the correct geocentric translation values. The geocentric translations are applied with sign reversal.",See information source.,,"IGN document NTG_88.pdf, ""Grille de parametres de transformation de coordonnees"". http://www.ign.fr",IOGP,2017/06/13,2008.027 2017.018,0
 9656,Cartesian Grid Offsets,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Easting_T = Easting_S + easting_offset 
-Northing_T = Northingn_S + northing_offset.",(none),This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2004/04/14,,0
+Northing_T = Northingn_S + northing_offset.",(none),This transformation allows calculation of coordinates in the target system by adding the parameter value to the coordinate values of the point in the source system.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9657,Vertical Offset and Slope,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 In Europe, national height systems are related to the pan-European height system through three transformation parameters and the formula:
@@ -3402,7 +3616,7 @@ m0     =  0.95136402
 r'        =  19643955.26
 
 Then Latitude     = 17°55'55.800""N
-         Longitude  = 76°56'37.260""W",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2001/06/05,2001.080,0
+         Longitude  = 76°56'37.260""W",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2001.080 2017.018,0
 9802,Lambert Conic Conformal (2SP),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To derive the projected Easting and Northing coordinates of a point with geographical coordinates (lat,lon) the formulas for the one standard parallel case are:
@@ -3459,7 +3673,7 @@ theta' = 0.025651765     r' = 37565039.86
 t'        = 0.59686306
 
 Then Latitude     = 28°30'00.000""N
-         Longitude   = 96°00'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2001/06/05,1999.280 2001.080,0
+         Longitude   = 96°00'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,1999.280 2001.080 2017.018,0
 9803,Lambert Conic Conformal (2SP Belgium),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 For the Lambert Conic Conformal (2 SP Belgium), the formulas for the regular two standard parallel case (coordinate operation method code 9802) are used except for: 
@@ -3502,7 +3716,7 @@ Reverse calculation for same easting and northing first gives:
 theta' = 0.01939192      r' = 548041.03
 t' = 0.35913403
 Then Latitude   =    50°40'46.461""N
-         Longitude =     5°48'26.533""E",In 2000 this modification was replaced through use of the regular Lambert Conic Conformal (2SP) method [9802] with appropriately modified parameter values.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1999/04/22,1999.280,0
+         Longitude =     5°48'26.533""E",In 2000 this modification was replaced through use of the regular Lambert Conic Conformal (2SP) method [9802] with appropriately modified parameter values.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,1999.280 2017.018,0
 9804,Mercator (variant A),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to derive projected Easting and Northing coordinates are:
@@ -3648,7 +3862,7 @@ phi1 = 0.17454458         rho1 =    31501122.40
 
 
 Then Latitude     = 10°00'00.000""N
-         Longitude  =  62°00'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,1996/09/18,,0
+         Longitude  =  62°00'00.000""W",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9807,Transverse Mercator,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 For the calculation of easting and northing from latitude and longitude, first calculate constants for the projection:
@@ -3818,7 +4032,7 @@ In these formulas the terms FE and FN retain their definition, i.e. in the Trans
 For the reverse formulas, those for the standard Transverse Mercator above apply, with the exception that:
 
 M1 = M0 - (S - FN)/k0
-and D = -(W - FE)/(nu1*k0), with nu1 = nu for lat1","See Transverse Mercator, code 9807, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/07/31,2002.510,0
+and D = -(W - FE)/(nu1*k0), with nu1 = nu for lat1","See Transverse Mercator, code 9807, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2002.510 2017.018,0
 9809,Oblique Stereographic,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 Given the geodetic origin of the projection at the tangent point (lat0, lon0), the parameters defining the conformal sphere are:
@@ -3929,7 +4143,7 @@ phi3 = 0.925024504       psi3 = 1.089495505
 phi4 = 0.925024504
 
 Then Latitude      = 53°00'00.000""N
-          Longitude   =   6°00'00.000""E","This is not the same as the projection method of the same name in USGS Professional Paper no. 1395, ""Map Projections - A Working Manual"" by John P. Snyder.","EPSG guidance note #7-2, http://www.epsg.org",OGP,2006/03/31,1999.811 2006.200,0
+          Longitude   =   6°00'00.000""E","This is not the same as the projection method of the same name in USGS Professional Paper no. 1395, ""Map Projections - A Working Manual"" by John P. Snyder.","EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,1999.811 2006.200 2017.018,0
 9810,Polar Stereographic (variant A),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 For the forward conversion from latitude and longitude, for the south pole case
@@ -3993,7 +4207,7 @@ chi  = 1.2722090
 Then
 Latitude (lat) = 73°00'00.000""N
 Longitude (lon) = 44°00'00.000""E",Latitude of natural origin must be either 90 degrees or -90 degrees (or equivalent in alternative angle unit).,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/07/13,2003.220 2010.054,0
-9811,New Zealand Map Grid,1,See information source.,See information source.,,New Zealand Department of Lands technical circular 1973/32,OGP,1996/09/18,,0
+9811,New Zealand Map Grid,1,See information source.,See information source.,,New Zealand Department of Lands technical circular 1973/32,IOGP,2017/06/13,2017.018,0
 9812,Hotine Oblique Mercator (variant A),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The following constants for the projection may be calculated :
@@ -4367,7 +4581,7 @@ M’= 318632.72
 
 Latitude =      0.654874806 rad = 37°31'17.625""N
 Longitude = 0.595793792 rad =  34°08'11.291""E",The Lambert Near-Conformal projection is derived from the Lambert Conformal Conic projection by truncating the series expansion of the projection formulae.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2010/03/01,1999.811 2004.610 2005.390 2008.029 2010.024,0
-9818,American Polyconic,1,See information source.,See information source.,See information source for formula and example.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder",OGP,1999/10/20,1999.550,0
+9818,American Polyconic,1,See information source.,See information source.,See information source for formula and example.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder",IOGP,2017/06/13,1999.550 2017.018,0
 9819,Krovak,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 From the defining parameters the following constants for the projection may be calculated :
@@ -4569,7 +4783,7 @@ C = 0.065193736
 beta' = 0.870458708
 
 Then Latitude = 50°00'00.000""N
-        Longitude = 5°00'00.000""E",This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2007/01/12,2003.350 2004.430 2005.075 2005.290 2006.200 2007.005,0
+        Longitude = 5°00'00.000""E",This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",IOGP,2017/06/13,2003.350 2004.430 2005.075 2005.290 2006.200 2007.005 2017.018,0
 9821,Lambert Azimuthal Equal Area (Spherical),1,See information source.,See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Azimuthal Equal Area (code 9820) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2001/06/05,2009.007,1
 9822,Albers Equal Area,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
@@ -4625,19 +4839,20 @@ where R is as for the forward method.",See information source.,"See method code 
 
 The standard Transverse Mercator formulas (coordinate operation method 9807) are modified as follows:
 
-Zone number, Z, = int((Long + LongI + W) / W)  with Long,  LongI and W in degrees. 
-where (LongI) is the Initial Longitude of the zoned grid system
+Zone number, Z, = [(int((Long - LongI) / W) mod(360 / W)) + 1] with Long, LongI and W in degrees. 
+where (LongI) is the Initial Longitude of the zoned grid system (the western limit of zone 1)
 and W is the width of each zone of the zoned grid system.
-If Long < 0, Long = (Long + 360) degrees.
+
+In the formula above, mod = (a - floor(a / b) * b) where 'floor' is defined as rounding toward negative infinity. Z is in the range 1 ? Z ? (360/W) and for UTM 1 ? Z ? 60.
 
 Then,
-   Long0  = [Z * W] – [LongI + (W/2)]
+   Long0  = LongI + (Z * W) – (W/2)
 
 For the forward calculation,
    Easting, E =  Z*10^6 + FE + k0.nu[A + (1 - T + C)A^3/6 + (5 - 18T + T^2 + 72C - 58e'^2)A^5/120]
    
 and in the reverse calculation for longitude, 
-   D = (E – [FE + Z*10^6])/(nu1.k0)",(none),If locations fall outwith the fixed zones the general Transverse Mercator method (code 9807) must be used for each zone.,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2001/06/05,,0
+   D = (E – [FE + Z*10^6])/(nu1.k0)",(none),If locations fall outwith the fixed zones the general Transverse Mercator method (code 9807) must be used for each zone.,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/07/14,2017.018 2017.011,0
 9825,Pseudo Plate Carree,1,"X = Lon
 Y = Lat
 
@@ -4654,7 +4869,7 @@ In this formula the term FE retains its definition, i.e. in the Lambert Conic Co
 The reverse formulas to derive the latitude and longitude of a point from its Westing and Northing values are as for the standard Lambert Conic Conformal (1SP) case except for:
 
 theta' = arctan[(FE – W)/{r0 – (N – FN)}]
-r' = +/-[(FE – W)^2 + {r0 – (N – FN)}^2]^0.5, taking the sign of n.","See Lambert Conic Conformal (1SP), code 9801, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/01/16,,0
+r' = +/-[(FE – W)^2 + {r0 – (N – FN)}^2]^0.5, taking the sign of n.","See Lambert Conic Conformal (1SP), code 9801, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9827,Bonne,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The formulas to convert geodetic latitude and longitude (lat, lon) to Easting and Northing are:
@@ -4724,7 +4939,7 @@ but if lonO is negative
 lon = lonO + rho {atan[– X / (Y – a . mO / sin(latO))]} / a . m
 In either case, if lat = ±90°, m = 0 and the equation for lon is indeterminate, so use lon = lonO.
 
-In these formulas the terms FE and FN retain their definition, i.e. in the Bonne (South Orientated) method they increase the Westing and Southing value at the natural origin. In this method they are effectively false westing (FW) and false southing (FS) respectively.","See information source of Bonne, code 9827, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2002/07/13,,0
+In these formulas the terms FE and FN retain their definition, i.e. in the Bonne (South Orientated) method they increase the Westing and Southing value at the natural origin. In this method they are effectively false westing (FW) and false southing (FS) respectively.","See information source of Bonne, code 9827, for general methodology.",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9829,Polar Stereographic (variant B),1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 First calculate the scale factor at natural origin:
@@ -4908,7 +5123,7 @@ mu'''   =  M''' / a(1 –  e^2/4 –  3e^4/64 –  5e^6/256 –....)
 lat'''   =  mu''' + (3e'/2 –  27e'^3/32)sin(2mu''') + (21e'^2/16 –  55e'^4/32)sin(4mu''') + (151e'^3/96)sin(6mu''') 
 + (1097e'^4/512)sin(8mu''')
 Then
-lon = lonO + {(E – FE) . [(1 – e^2 sin^2 lat''')^0.5] / (a cos lat''')}",See information source or EPSG Guidance Note 7.,Simplified form of Oblique Azimuthal Equidistant projection method.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",OGP,2004/04/22,,0
+lon = lonO + {(E – FE) . [(1 – e^2 sin^2 lat''')^0.5] / (a cos lat''')}",See information source or EPSG Guidance Note 7.,Simplified form of Oblique Azimuthal Equidistant projection method.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",IOGP,2017/06/13,2017.018,0
 9832,Modified Azimuthal Equidistant,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 First calculate a constant for the projection:
@@ -4943,23 +5158,30 @@ psi' = asin (sin(latO) cos(J) + cos(latO) sin(J) cos(alpha'))
 
 Then
 lat = atan [(1 – e^2 * K sin(latO) / sin(psi')) * tan(psi') / (1 – e^2)]
-lon = lonO + asin (sin(alpha') * sin(J) / cos(psi'))",See information source or EPSG Guidance Note 7.,Modified form of Oblique Azimuthal Equidistant projection method developed for Polynesian islands. For the distances over which these projections are used (under 800km) this modification introduces no significant error.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",OGP,2006/03/31,2006.200,0
-9833,Hyperbolic Cassini-Soldner,1,See information source.,See information source.,,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2006/06/28,,0
+lon = lonO + asin (sin(alpha') * sin(J) / cos(psi'))",See information source or EPSG Guidance Note 7.,Modified form of Oblique Azimuthal Equidistant projection method developed for Polynesian islands. For the distances over which these projections are used (under 800km) this modification introduces no significant error.,"US Geological Survey Professional Paper 1395; ""Map Projections - A Working Manual"";  J. Snyder.",IOGP,2017/06/13,2006.200 2017.018,0
+9833,Hyperbolic Cassini-Soldner,1,See information source.,See information source.,,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9834,Lambert Cylindrical Equal Area (Spherical),1,"For the forward calculation for the normal aspect of the projection in which lat1 is the latitude of the standard parallel:
+
 
 E =  FE   R (lon &#8211; lonO) cos(lat1)
 N =  FN   R sin(lat) / cos(lat1)
 
+
 where  lat1, lat and lon are expressed in radians
+
 
 R is the radius of the sphere and will normally be one of the CRS parameters. If the figure of the earth used is an ellipsoid rather than a sphere then R should be calculated as the radius of the authalic sphere using the formula for RA given in EPSG Guidance Note 7-2, section 1.2, table 3.
 
+
 For the reverse calculation:
+
 
 lat = asin{[(N &#8211; FN) / R] cos(lat1)}
 lon = lonO   {[E &#8211; FE] / [R cos(lat1)]}
 
+
 where R is as for the forward method.
+
 
 See information source for formulas for oblique and polar aspects and examples.",See information source.,This is the spherical form of the projection.  See coordinate operation method Lambert Cylindrical Equal Area (code 9835) for ellipsoidal form.  Differences of several tens of metres result from comparison of the two methods.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2009/06/07,2007.078 2009.023,0
 9835,Lambert Cylindrical Equal Area,1,See information source.,See information source.,This is the ellipsoidal form of the projection.,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2007/11/01,,0
@@ -5005,7 +5227,7 @@ Z= 5124 304.349
 gives topocentric coordinates
 U= -189 013.869
 V= -128 642.040
-W=    -4 220.171",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2007/11/01,,0
+W=    -4 220.171",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9837,Geographic/topocentric conversions,1,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 To convert latitude P, longitude L and ellipsoidal height h into topocentric coordinates U,V,W: 
@@ -5073,7 +5295,7 @@ for a final result of:
 
 Latitude P = 	53°48'33.820""N
 Longitude L 	=	2°07'46.380""E
-Height h = 	73.0 metres",,"EPSG guidance note #7-2, http://www.epsg.org",OGP,2007/11/01,,0
+Height h = 	73.0 metres",,"EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9838,Vertical Perspective,0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 This general case deals with a viewing point at a finite height hv above the origin. If the viewing point is at infinity, the formulas for the orthographic case (method code 9839) should be used.
@@ -5089,7 +5311,7 @@ Then, given the height hv of the perspective viewing point above the origin, the
 E = U * hv / (hv – W)
 N = V * hv / (hv – W)
 
-The reverse calculation from E,N to U,V,W and lat,lon,h is indeterminate.",See EPSG Guidance Note 7-2.,"For a viewing point height approaching or at infinity, see the Vertical Perspective (orthographic case) (method code 9839).","EPSG guidance note #7-2, http://www.epsg.org",OGP,2007/11/01,,0
+The reverse calculation from E,N to U,V,W and lat,lon,h is indeterminate.",See EPSG Guidance Note 7-2.,"For a viewing point height approaching or at infinity, see the Vertical Perspective (orthographic case) (method code 9839).","EPSG guidance note #7-2, http://www.epsg.org",IOGP,2017/06/13,2017.018,0
 9839,Vertical Perspective (Orthographic case),0,"Note: These formulas have been transcribed from EPSG Guidance Note #7-2. Users are encouraged to use that document rather than the text which follows as reference because limitations in the transcription will be avoided.
 
 The orthographic vertical perspective is a special case of the vertical perspective with the viewing point (hv) at infinity. Therefore, all projection ""rays"" are parallel to one another and all are perpendicular to the tangent plane. Since the rays are parallel, coordinates in the tangent-plane are the same in any other parallel mapping plane, i.e. are consistent for any value of ho, which therefore becomes irrelevant to the forward formulas.
@@ -5156,12 +5378,12 @@ lon = lon + (–J21 dE + J11 dN) / D
 Return to the entry point with new estimates of latitude and longitude and iterate until the change in lat and lon is not significant.",See EPSG Guidance Note 7-2.,"If the natural origin of the projection is at the topocentric origin, this is a special case of the Vertical Perspective (orthographic case) (method code 9839) in which the ellipsoid height of all mapped points is zero (h = 0).","EPSG guidance note #7-2, http://www.epsg.org",OGP,2007/11/01,,0
 9841,Mercator (1SP) (Spherical),1,See information source.,See information source.,,"USGS Professional Paper 1395, ""Map Projections - A Working Manual"" by John P. Snyder.",OGP,2008/03/14,2008.114,1
 9842,Equidistant Cylindrical,1,See EPSG Guidance Note #7-2.,,"See method code 9823 for spherical development. See also Pseudo Plate Carree, method code 9825.",ESRI,OGP,2008/03/14,2009.023,1
-9843,axis order reversal (2D),1,"The axis order reversal operates on coordinates of a point whose order change is described by the following matrix operation:
+9843,Axis Order Reversal (2D),1,"The axis order reversal operates on coordinates of a point whose order change is described by the following matrix operation:
 
 [Derived CRS 1st coordinate ]    =  [ 0   1 ]  *  [Base CRS 1st coordinate ]
-[Derived CRS 2nd coordinate]        [ 1   0 ]     [Base CRS 2nd coordinate]",(none),This is a parameter-less conversion to reverse the order of the axes of a 2D CRS.,OGP,IOGP,2015/05/22,2015.007 2015.018,0
-9844,axis order reversal (geographic3D horizontal),1,"The axis order change operates on coordinates of a point whose order change is described by the following matrix operation:
+[Derived CRS 2nd coordinate]        [ 1   0 ]     [Base CRS 2nd coordinate]",(none),This is a parameter-less conversion to reverse the order of the axes of a 2D CRS.,OGP,IOGP,2017/10/16,2015.007 2015.018 2014.027,0
+9844,Axis Order Reversal (Geographic3D horizontal),1,"The axis order change operates on coordinates of a point whose order change is described by the following matrix operation:
 
 [Derived CRS 1st coordinate]        [ 0   1   0 ]     [Base CRS 1st coordinate]
 [Derived CRS 2nd coordinate]   =  [ 1   0   0 ]  *  [Base CRS 2nd coordinate]
-[Derived CRS 3rd coordinate]        [ 0   0   1 ]     [Base CRS 3rd coordinate]",(none),This is a parameter-less conversion to change the order of horizontal coordinates of a geographic 3D CRS.,OGP,IOGP,2015/05/22,2015.018,0
+[Derived CRS 3rd coordinate]        [ 0   0   1 ]     [Base CRS 3rd coordinate]",(none),This is a parameter-less conversion to change the order of horizontal coordinates of a geographic 3D CRS.,OGP,IOGP,2017/10/16,2015.018 2014.027,0
