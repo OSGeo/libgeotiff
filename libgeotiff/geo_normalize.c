@@ -260,10 +260,13 @@ double GTIFAngleToDD( double dfAngle, int nUOMAngle )
 {
     if( nUOMAngle == 9110 )		/* DDD.MMSSsss */
     {
-        char	szAngleString[32];
+        if( dfAngle > -999.9 && dfAngle < 999.9 )
+        {
+            char	szAngleString[32];
 
-        sprintf( szAngleString, "%12.7f", dfAngle );
-        dfAngle = GTIFAngleStringToDD( szAngleString, nUOMAngle );
+            sprintf( szAngleString, "%12.7f", dfAngle );
+            dfAngle = GTIFAngleStringToDD( szAngleString, nUOMAngle );
+        }
     }
     else if ( nUOMAngle != KvUserDefined )
     {
