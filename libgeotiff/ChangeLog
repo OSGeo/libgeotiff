@@ -1,3 +1,9 @@
+2018-01-26 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_normalize.c: use ProjScaleAtCenterGeoKey for CT_Mercator if
+	ProjScaleAtNatOriginGeoKey is not set.
+	Fixes https://github.com/OSGeo/gdal/pull/296
+
 2018-01-09 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_normalize.c: fix potential stack buffer overflow in

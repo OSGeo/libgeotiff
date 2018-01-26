@@ -1747,6 +1747,9 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
             dfNatOriginLat = 0.0;
 
         if( GTIFKeyGetDOUBLE(psGTIF, ProjScaleAtNatOriginGeoKey,
+                       &dfNatOriginScale, 0, 1 ) == 0
+            /* See https://github.com/OSGeo/gdal/files/1665718/lasinfo.txt */
+            && GTIFKeyGetDOUBLE(psGTIF, ProjScaleAtCenterGeoKey,
                        &dfNatOriginScale, 0, 1 ) == 0 )
             dfNatOriginScale = 1.0;
 
