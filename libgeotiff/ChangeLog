@@ -1,3 +1,11 @@
+2018-02-06 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_new.c: reject files where the GTIFF_DOUBLEPARAMS tags has
+	more than MAX_VALUES=1000 values to avoid potential out-of-bounds
+	read overflow. Fixes
+	https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=6035
+	Credit to OSS Fuzz
+
 2018-01-26 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_normalize.c: use ProjScaleAtCenterGeoKey for CT_Mercator if
