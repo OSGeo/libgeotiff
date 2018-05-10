@@ -1,3 +1,7 @@
+2018-05-11 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_set.c: remove useless va_end() as spotted by clang-tidy
+
 2018-02-06 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_new.c: reject files where the GTIFF_DOUBLEPARAMS tags has
