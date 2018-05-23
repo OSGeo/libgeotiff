@@ -1,3 +1,9 @@
+2018-05-23 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_set.c: when rewriting a ASCII key with a string value longer than
+	the original value, do not add a dummy "0 0 0 0" entry in the GeoKeyDirectory
+	(fixes https://github.com/OSGeo/gdal/issues/641)
+
 2018-05-11 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_set.c: remove useless va_end() as spotted by clang-tidy
