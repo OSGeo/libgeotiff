@@ -1,3 +1,7 @@
+2018-12-07 Even Rouault <even dot rouault at spatialys dot com>
+
+	* Prepare for 1.4.3	
+
 2018-05-23 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_set.c: when rewriting a ASCII key with a string value longer than
