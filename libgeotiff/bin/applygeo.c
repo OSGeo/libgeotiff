@@ -80,6 +80,12 @@ main(int argc, char *argv[])
     char *geofile;
     char *tiffile;
     int rc;
+
+    if( argc != 3 )
+    {
+        fprintf(stderr, usage, "applygeo");
+        exit(1);
+    }
  
     prog = argv[0];
     geofile = argv[1];
