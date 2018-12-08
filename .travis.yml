@@ -1,0 +1,38 @@
+compiler: gcc
+language: cpp
+
+cache:
+    directories:
+        - $HOME/.ccache
+
+before_install:
+  - sudo apt install g++ libjpeg-dev libz-dev libtiff-dev libsqlite3-dev ccache
+
+install:
+  - git clone --depth=1 https://github.com/OSGeo/proj.4 proj
+  - (cd proj && ./autogen.sh && CC="ccache gcc" CXX="ccache g++" ./configure && make -j3 && sudo make install)
+  - cd libgeotiff
+  - ./autogen.sh
+  - ./configure
+  - make dist
+  - tar xvzf libgeotiff*.tar.gz
+  - cd libgeotiff*
+  - CC="ccache gcc" CFLAGS="-Wall -Wextra -Werror" ./configure
+  - make -j3
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_C_FLAGS="-Wall -Wextra -Werror"
+  - make -j3
+
+script:
+  - echo "done"
+
+notifications:
+  #email:
+  #  recipients:
+  #    - gdal-commits@lists.osgeo.org
+
+  irc:
+    channels:
+      - "irc.freenode.org#gdal"
+    use_notice: true
