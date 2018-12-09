@@ -10,7 +10,7 @@ before_install:
 
 install:
   - git clone --depth=1 https://github.com/OSGeo/proj.4 proj
-  - (cd proj && ./autogen.sh && CC="ccache gcc" CXX="ccache g++" ./configure && make -j3 && sudo make install)
+  - (cd proj && ./autogen.sh && CC="ccache gcc" CXX="ccache g++" ./configure && make -j3 && sudo make install && sudo ldconfig)
   - cd libgeotiff
   - ./autogen.sh
   - ./configure
@@ -19,6 +19,7 @@ install:
   - cd libgeotiff*
   - CC="ccache gcc" CFLAGS="-Wall -Wextra -Werror" ./configure
   - make -j3
+  - make check
   - mkdir build
   - cd build
   - cmake .. -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_C_FLAGS="-Wall -Wextra -Werror"

@@ -347,6 +347,7 @@ AC_CONFIG_FILES([
     man/Makefile
     man/man1/Makefile
     cmake/Makefile
+    test/Makefile
 ])
 
 AC_OUTPUT
