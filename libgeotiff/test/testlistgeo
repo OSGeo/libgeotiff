@@ -4,6 +4,9 @@
 TEST_CLI_DIR=`dirname $0`
 DATA_DIR=`dirname $0`/data
 
+# FIXME: to ultimately remove !
+export GEOTIFF_CSV=`dirname $0`/../csv
+
 EXE=$1
 
 usage()
@@ -32,6 +35,10 @@ rm -f ${OUT}
 
 echo "Testing listgeo ${DATA_DIR}/byte.tif" >> ${OUT}
 $EXE ${DATA_DIR}/byte.tif >>${OUT}
+echo "" >>${OUT}
+
+echo "Testing listgeo ${DATA_DIR}/pcs_32064.tif" >> ${OUT}
+$EXE ${DATA_DIR}/pcs_32064.tif >>${OUT}
 echo "" >>${OUT}
 
 # do 'diff' with distribution results
