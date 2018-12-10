@@ -7,7 +7,11 @@ LISTGEOEXE = $(EXEPATH)/listgeo
 TESTLISTGEO = $(THIS_DIR)/testlistgeo
 
 EXTRA_DIST = testlistgeo testlistgeo_out.dist \
-             data/byte.tif data/pcs_32064.tif
+             data/byte.tif data/pcs_32064.tif \
+             data/GeogPrimeMeridianGeoKey.tif \
+             data/GeogGeodeticDatumGeoKey.tif \
+             data/GeogAngularUnitsGeoKey_9114.tif \
+             data/ProjLinearUnitsGeoKey_9036.tif
 
 check-local:
 	$(TESTLISTGEO) $(LISTGEOEXE)

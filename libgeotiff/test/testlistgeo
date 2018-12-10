@@ -41,6 +41,22 @@ echo "Testing listgeo ${DATA_DIR}/pcs_32064.tif" >> ${OUT}
 $EXE ${DATA_DIR}/pcs_32064.tif >>${OUT}
 echo "" >>${OUT}
 
+echo "Testing listgeo ${DATA_DIR}/GeogPrimeMeridianGeoKey.tif" >> ${OUT}
+$EXE ${DATA_DIR}/GeogPrimeMeridianGeoKey.tif >>${OUT}
+echo "" >>${OUT}
+
+echo "Testing listgeo ${DATA_DIR}/GeogGeodeticDatumGeoKey.tif" >> ${OUT}
+$EXE ${DATA_DIR}/GeogGeodeticDatumGeoKey.tif >>${OUT}
+echo "" >>${OUT}
+
+echo "Testing listgeo ${DATA_DIR}/GeogAngularUnitsGeoKey_9114.tif" >> ${OUT}
+$EXE ${DATA_DIR}/GeogAngularUnitsGeoKey_9114.tif >>${OUT}
+echo "" >>${OUT}
+
+echo "Testing listgeo ${DATA_DIR}/ProjLinearUnitsGeoKey_9036.tif" >> ${OUT}
+$EXE ${DATA_DIR}/ProjLinearUnitsGeoKey_9036.tif >>${OUT}
+echo "" >>${OUT}
+
 # do 'diff' with distribution results
 echo "diff ${OUT} with testlistgeo_out.dist"
 diff -u ${OUT} ${TEST_CLI_DIR}/testlistgeo_out.dist
