@@ -27,11 +27,15 @@
  * DEALINGS IN THE SOFTWARE.
  *****************************************************************************/
 
+#include <assert.h>
+
 #include "cpl_serv.h"
 #include "geo_tiffp.h"
 #include "geovalues.h"
 #include "geo_normalize.h"
 #include "geo_keyp.h"
+
+#include "proj.h"
 
 #ifndef KvUserDefined
 #  define KvUserDefined 32767
@@ -103,17 +107,17 @@ CPL_INLINE static void CPL_IGNORE_RET_VAL_INT(CPL_UNUSED int unused) {}
 /*                           GTIFGetPCSInfo()                           */
 /************************************************************************/
 
-int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
-                    short *pnProjOp, short *pnUOMLengthCode,
-                    short *pnGeogCS )
+static
+int GTIFGetPCSInfoEx( PJ_CONTEXT* ctx,
+                      int nPCSCode, char **ppszEPSGName,
+                      short *pnProjOp, short *pnUOMLengthCode,
+                      short *pnGeogCS )
 
 {
-    char	**papszRecord;
-    char	szSearchKey[24];
-    const char	*pszFilename;
     int         nDatum;
     int         nZone;
 
+    /* Deal with a few well known CRS */
     int Proj = GTIFPCSToMapSys( nPCSCode, &nDatum, &nZone );
     if ((Proj == MapSys_UTM_North || Proj == MapSys_UTM_South) &&
         nDatum != KvUserDefined)
@@ -152,101 +156,123 @@ int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
         }
     }
 
-/* -------------------------------------------------------------------- */
-/*      Search the pcs.override table for this PCS.                     */
-/* -------------------------------------------------------------------- */
-    pszFilename = CSVFilename( "pcs.override.csv" );
-    sprintf( szSearchKey, "%d", nPCSCode );
-    papszRecord = CSVScanFileByName( pszFilename, "COORD_REF_SYS_CODE",
-                                     szSearchKey, CC_Integer );
-
-/* -------------------------------------------------------------------- */
-/*      If not found, search the EPSG PCS database.                     */
-/* -------------------------------------------------------------------- */
-    if( papszRecord == NULL )
     {
-        pszFilename = CSVFilename( "pcs.csv" );
+        char szCode[12];
+        PJ* proj_crs;
 
-        sprintf( szSearchKey, "%d", nPCSCode );
-        papszRecord = CSVScanFileByName( pszFilename, "COORD_REF_SYS_CODE",
-                                         szSearchKey, CC_Integer );
-
-        if( papszRecord == NULL )
+        sprintf(szCode, "%d", nPCSCode);
+        proj_crs = proj_create_from_database(
+            ctx, "EPSG", szCode, PJ_CATEGORY_CRS, 0, NULL);
+        if( !proj_crs )
         {
-            static int bWarnedOrTried = FALSE;
-            if( !bWarnedOrTried )
-            {
-                FILE* f = VSIFOpen(CSVFilename( "pcs.csv" ), "rb");
-                if( f == NULL )
-                    CPLError(CE_Warning, CPLE_AppDefined, "Cannot find pcs.csv");
-                else
-                    VSIFClose(f);
-                bWarnedOrTried = TRUE;
-            }
             return FALSE;
         }
+
+        if( proj_get_type(proj_crs) != PJ_TYPE_PROJECTED_CRS )
+        {
+            proj_destroy(proj_crs);
+            return FALSE;
+        }
+
+        if( ppszEPSGName )
+        {
+            const char* pszName = proj_get_name(proj_crs);
+            if( !pszName )
+            {
+                // shouldn't happen
+                proj_destroy(proj_crs);
+                return FALSE;
+            }
+            *ppszEPSGName = CPLStrdup(pszName);
+        }
+
+        if( pnProjOp )
+        {
+            PJ* conversion = proj_crs_get_coordoperation(
+                ctx, proj_crs);
+            if( !conversion )
+            {
+                // shouldn't happen except out of memory
+                proj_destroy(proj_crs);
+                return FALSE;
+            }
+
+            {
+                const char* pszConvCode = proj_get_id_code(conversion, 0);
+                assert( pszConvCode );
+                *pnProjOp = (short) atoi(pszConvCode);
+            }
+
+            proj_destroy(conversion);
+        }
+
+        if( pnUOMLengthCode )
+        {
+            PJ* coordSys = proj_crs_get_coordinate_system(
+                ctx, proj_crs);
+            if( !coordSys )
+            {
+                // shouldn't happen except out of memory
+                proj_destroy(proj_crs);
+                return FALSE;
+            }
+
+            {
+                const char* pszUnitCode = NULL;
+                if( !proj_cs_get_axis_info(
+                    ctx, coordSys, 0,
+                    NULL, /* name */
+                    NULL, /* abbreviation*/
+                    NULL, /* direction */
+                    NULL, /* conversion factor */
+                    NULL, /* unit name */
+                    NULL, /* unit auth name (should be EPSG) */
+                    &pszUnitCode) || pszUnitCode == NULL )
+                {
+                    proj_destroy(coordSys);
+                    return FALSE;
+                }
+                *pnUOMLengthCode = (short) atoi(pszUnitCode);
+                proj_destroy(coordSys);
+            }
+        }
+
+        if( pnGeogCS )
+        {
+            PJ* geod_crs = proj_crs_get_geodetic_crs(ctx, proj_crs);
+            if( !geod_crs )
+            {
+                // shouldn't happen except out of memory
+                proj_destroy(proj_crs);
+                return FALSE;
+            }
+
+            {
+                const char* pszGeodCode = proj_get_id_code(geod_crs, 0);
+                assert( pszGeodCode );
+                *pnGeogCS = (short) atoi(pszGeodCode);
+            }
+
+            proj_destroy(geod_crs);
+        }
+
+
+        proj_destroy(proj_crs);
+        return TRUE;
     }
+}
 
-/* -------------------------------------------------------------------- */
-/*      Get the name, if requested.                                     */
-/* -------------------------------------------------------------------- */
-    if( ppszEPSGName != NULL )
-    {
-        *ppszEPSGName =
-            CPLStrdup( CSLGetField( papszRecord,
-                                    CSVGetFileFieldId(pszFilename,
-                                                      "COORD_REF_SYS_NAME") ));
-    }
 
-/* -------------------------------------------------------------------- */
-/*      Get the UOM Length code, if requested.                          */
-/* -------------------------------------------------------------------- */
-    if( pnUOMLengthCode != NULL )
-    {
-        const char	*pszValue;
+int GTIFGetPCSInfo( int nPCSCode, char **ppszEPSGName,
+                    short *pnProjOp, short *pnUOMLengthCode,
+                    short *pnGeogCS )
 
-        pszValue =
-            CSLGetField( papszRecord,
-                         CSVGetFileFieldId(pszFilename,"UOM_CODE"));
-        if( atoi(pszValue) > 0 )
-            *pnUOMLengthCode = (short) atoi(pszValue);
-        else
-            *pnUOMLengthCode = KvUserDefined;
-    }
-
-/* -------------------------------------------------------------------- */
-/*      Get the UOM Length code, if requested.                          */
-/* -------------------------------------------------------------------- */
-    if( pnProjOp != NULL )
-    {
-        const char	*pszValue;
-
-        pszValue =
-            CSLGetField( papszRecord,
-                         CSVGetFileFieldId(pszFilename,"COORD_OP_CODE"));
-        if( atoi(pszValue) > 0 )
-            *pnProjOp = (short) atoi(pszValue);
-        else
-            *pnProjOp = KvUserDefined;
-    }
-
-/* -------------------------------------------------------------------- */
-/*      Get the GeogCS (Datum with PM) code, if requested.		*/
-/* -------------------------------------------------------------------- */
-    if( pnGeogCS != NULL )
-    {
-        const char	*pszValue;
-
-        pszValue =
-            CSLGetField( papszRecord,
-                         CSVGetFileFieldId(pszFilename,"SOURCE_GEOGCRS_CODE"));
-        if( atoi(pszValue) > 0 )
-            *pnGeogCS = (short) atoi(pszValue);
-        else
-            *pnGeogCS = KvUserDefined;
-    }
-
-    return TRUE;
+{
+    PJ_CONTEXT* ctx = proj_context_create();
+    int ret = GTIFGetPCSInfoEx(ctx, nPCSCode, ppszEPSGName, pnProjOp,
+                               pnUOMLengthCode, pnGeogCS);
+    proj_context_destroy(ctx);
+    return ret;
 }
 
 /************************************************************************/
@@ -366,13 +392,13 @@ double GTIFAngleStringToDD( const char * pszAngle, int nUOMAngle )
 /*      GCS.                                                            */
 /************************************************************************/
 
-int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
-                    short * pnDatum, short * pnPM, short *pnUOMAngle )
+static
+int GTIFGetGCSInfoEx( PJ_CONTEXT* ctx,
+                      int nGCSCode, char ** ppszName,
+                      short * pnDatum, short * pnPM, short *pnUOMAngle )
 
 {
-    char	szSearchKey[24];
     int		nDatum=0, nPM, nUOMAngle;
-    const char *pszFilename;
 
 /* -------------------------------------------------------------------- */
 /*      Handle some "well known" GCS codes directly                     */
@@ -420,79 +446,126 @@ int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
     }
 
 /* -------------------------------------------------------------------- */
-/*      Search the database for the corresponding datum code.           */
+/*      Search the database.                                            */
 /* -------------------------------------------------------------------- */
-    pszFilename = CSVFilename("gcs.override.csv");
-    sprintf( szSearchKey, "%d", nGCSCode );
-    nDatum = atoi(CSVGetField( pszFilename,
-                               "COORD_REF_SYS_CODE", szSearchKey,
-                               CC_Integer, "DATUM_CODE" ) );
 
-    if( nDatum < 1 )
     {
-        pszFilename = CSVFilename("gcs.csv");
-        sprintf( szSearchKey, "%d", nGCSCode );
-        nDatum = atoi(CSVGetField( pszFilename,
-                                   "COORD_REF_SYS_CODE", szSearchKey,
-                                   CC_Integer, "DATUM_CODE" ) );
-    }
+        char szCode[12];
+        PJ* geod_crs;
 
-    if( nDatum < 1 )
-    {
-        static int bWarnedOrTried = FALSE;
-        if( !bWarnedOrTried )
+        sprintf(szCode, "%d", nGCSCode);
+        geod_crs = proj_create_from_database(
+            ctx, "EPSG", szCode, PJ_CATEGORY_CRS, 0, NULL);
+        if( !geod_crs )
         {
-            FILE* f = VSIFOpen(CSVFilename( "gcs.csv" ), "rb");
-            if( f == NULL )
-                CPLError(CE_Warning, CPLE_AppDefined, "Cannot find gcs.csv");
-            else
-                VSIFClose(f);
-            bWarnedOrTried = TRUE;
-        }
-        return FALSE;
-    }
-
-    if( pnDatum != NULL )
-        *pnDatum = (short) nDatum;
-
-/* -------------------------------------------------------------------- */
-/*      Get the PM.                                                     */
-/* -------------------------------------------------------------------- */
-    if( pnPM != NULL )
-    {
-        nPM = atoi(CSVGetField( pszFilename,
-                                "COORD_REF_SYS_CODE", szSearchKey, CC_Integer,
-                                "PRIME_MERIDIAN_CODE" ) );
-
-        if( nPM < 1 )
             return FALSE;
+        }
 
-        *pnPM = (short) nPM;
+        {
+            int objType = proj_get_type(geod_crs);
+            if( objType != PJ_TYPE_GEODETIC_CRS &&
+                objType != PJ_TYPE_GEOCENTRIC_CRS &&
+                objType != PJ_TYPE_GEOGRAPHIC_2D_CRS &&
+                objType != PJ_TYPE_GEOGRAPHIC_3D_CRS )
+            {
+                proj_destroy(geod_crs);
+                return FALSE;
+            }
+        }
+
+        if( ppszName )
+        {
+            const char* pszName = proj_get_name(geod_crs);
+            if( !pszName )
+            {
+                // shouldn't happen
+                proj_destroy(geod_crs);
+                return FALSE;
+            }
+            *ppszName = CPLStrdup(pszName);
+        }
+
+        if( pnDatum )
+        {
+            PJ* datum = proj_crs_get_datum(ctx, geod_crs);
+            if( !datum )
+            {
+                proj_destroy(geod_crs);
+                return FALSE;
+            }
+
+            {
+                const char* pszDatumCode = proj_get_id_code(datum, 0);
+                assert( pszDatumCode );
+                *pnDatum = (short) atoi(pszDatumCode);
+            }
+
+            proj_destroy(datum);
+        }
+
+        if( pnPM )
+        {
+            PJ* pm = proj_get_prime_meridian(ctx, geod_crs);
+            if( !pm )
+            {
+                proj_destroy(geod_crs);
+                return FALSE;
+            }
+
+            {
+                const char* pszPMCode = proj_get_id_code(pm, 0);
+                assert( pszPMCode );
+                *pnPM = (short) atoi(pszPMCode);
+            }
+
+            proj_destroy(pm);
+        }
+
+        if( pnUOMAngle )
+        {
+            PJ* coordSys = proj_crs_get_coordinate_system(
+                ctx, geod_crs);
+            if( !coordSys )
+            {
+                // shouldn't happen except out of memory
+                proj_destroy(geod_crs);
+                return FALSE;
+            }
+
+            {
+                const char* pszUnitCode = NULL;
+                if( !proj_cs_get_axis_info(
+                    ctx, coordSys, 0,
+                    NULL, /* name */
+                    NULL, /* abbreviation*/
+                    NULL, /* direction */
+                    NULL, /* conversion factor */
+                    NULL, /* unit name */
+                    NULL, /* unit auth name (should be EPSG) */
+                    &pszUnitCode) || pszUnitCode == NULL )
+                {
+                    proj_destroy(coordSys);
+                    return FALSE;
+                }
+                *pnUOMAngle = (short) atoi(pszUnitCode);
+                proj_destroy(coordSys);
+            }
+        }
+
+        proj_destroy(geod_crs);
+        return TRUE;
     }
+}
 
-/* -------------------------------------------------------------------- */
-/*      Get the angular units.                                          */
-/* -------------------------------------------------------------------- */
-    nUOMAngle = atoi(CSVGetField( pszFilename,
-                                  "COORD_REF_SYS_CODE",szSearchKey, CC_Integer,
-                                  "UOM_CODE" ) );
+int GTIFGetGCSInfo( int nGCSCode, char ** ppszName,
+                    short * pnDatum, short * pnPM, short *pnUOMAngle )
 
-    if( nUOMAngle < 1 )
-        return FALSE;
-
-    if( pnUOMAngle != NULL )
-        *pnUOMAngle = (short) nUOMAngle;
-
-/* -------------------------------------------------------------------- */
-/*      Get the name, if requested.                                     */
-/* -------------------------------------------------------------------- */
-    if( ppszName != NULL )
-        *ppszName =
-            CPLStrdup(CSVGetField( pszFilename,
-                                   "COORD_REF_SYS_CODE",szSearchKey,CC_Integer,
-                                   "COORD_REF_SYS_NAME" ));
-
-    return TRUE;
+{
+    PJ_CONTEXT* ctx = proj_context_create();
+    int ret = GTIFGetGCSInfoEx(ctx, nGCSCode, ppszName, pnDatum,
+                               pnPM, pnUOMAngle);
+    proj_context_destroy(ctx);
+    return ret;
 }
 
 /************************************************************************/
