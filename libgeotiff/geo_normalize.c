@@ -2757,9 +2757,19 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
 /*      debugging.                                                      */
 /************************************************************************/
 
-void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
+void GTIFPrintDefnEx( GTIF *psGTIF, GTIFDefn * psDefn, FILE * fp )
 
 {
+
+    if( psGTIF->pj_context == NULL )
+    {
+        psGTIF->pj_context = proj_context_create();
+        if( psGTIF->pj_context )
+        {
+            psGTIF->own_pj_context = TRUE;
+        }
+    }
+
 /* -------------------------------------------------------------------- */
 /*      Do we have anything to report?                                  */
 /* -------------------------------------------------------------------- */
@@ -2776,7 +2786,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszPCSName = NULL;
 
-        GTIFGetPCSInfo( psDefn->PCS, &pszPCSName, NULL, NULL, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetPCSInfoEx( psGTIF->pj_context,
+                              psDefn->PCS, &pszPCSName, NULL, NULL, NULL );
+        }
         if( pszPCSName == NULL )
             pszPCSName = CPLStrdup("name unknown");
 
@@ -2791,7 +2805,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszTRFName = NULL;
 
-        GTIFGetProjTRFInfo( psDefn->ProjCode, &pszTRFName, NULL, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetProjTRFInfoEx( psGTIF->pj_context,
+                                  psDefn->ProjCode, &pszTRFName, NULL, NULL );
+        }
         if( pszTRFName == NULL )
             pszTRFName = CPLStrdup("");
 
@@ -2853,7 +2871,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszName = NULL;
 
-        GTIFGetGCSInfo( psDefn->GCS, &pszName, NULL, NULL, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetGCSInfoEx( psGTIF->pj_context,
+                              psDefn->GCS, &pszName, NULL, NULL, NULL );
+        }
         if( pszName == NULL )
             pszName = CPLStrdup("(unknown)");
 
@@ -2868,7 +2890,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszName = NULL;
 
-        GTIFGetDatumInfo( psDefn->Datum, &pszName, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetDatumInfoEx( psGTIF->pj_context,
+                                psDefn->Datum, &pszName, NULL );
+        }
         if( pszName == NULL )
             pszName = CPLStrdup("(unknown)");
 
@@ -2883,7 +2909,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszName = NULL;
 
-        GTIFGetEllipsoidInfo( psDefn->Ellipsoid, &pszName, NULL, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetEllipsoidInfoEx( psGTIF->pj_context,
+                                    psDefn->Ellipsoid, &pszName, NULL, NULL );
+        }
         if( pszName == NULL )
             pszName = CPLStrdup("(unknown)");
 
@@ -2900,7 +2930,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszName = NULL;
 
-        GTIFGetPMInfo( psDefn->PM, &pszName, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetPMInfoEx( psGTIF->pj_context,
+                             psDefn->PM, &pszName, NULL );
+        }
 
         if( pszName == NULL )
             pszName = CPLStrdup("(unknown)");
@@ -2941,7 +2975,11 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
     {
         char	*pszName = NULL;
 
-        GTIFGetUOMLengthInfo( psDefn->UOMLength, &pszName, NULL );
+        if( psGTIF->pj_context )
+        {
+            GTIFGetUOMLengthInfoEx(
+                psGTIF->pj_context, psDefn->UOMLength, &pszName, NULL );
+        }
         if( pszName == NULL )
             pszName = CPLStrdup( "(unknown)" );
 
@@ -2954,6 +2992,13 @@ void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
         fprintf( fp, "Projection Linear Units: User-Defined (%fm)\n",
                  psDefn->UOMLengthInMeters );
     }
+}
+
+void GTIFPrintDefn( GTIFDefn * psDefn, FILE * fp )
+{
+    GTIF *psGTIF = GTIFNew(NULL);
+    GTIFPrintDefnEx(psGTIF, psDefn, fp);
+    GTIFFree(psGTIF);
 }
 
 /************************************************************************/

@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
             int		xsize, ysize;
             
             printf( "\n" );
-            GTIFPrintDefn( &defn, stdout );
+            GTIFPrintDefnEx( gtif, &defn, stdout );
 
             if( proj4_print_flag )
             {

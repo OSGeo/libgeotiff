@@ -178,6 +178,7 @@ void GTIF_DLL GTIFAttachPROJContext( GTIF *psGTIF, void* pjContext );
 
 int GTIF_DLL GTIFGetDefn( GTIF *psGTIF, GTIFDefn * psDefn );
 void GTIF_DLL GTIFPrintDefn( GTIFDefn *, FILE * );
+void GTIF_DLL GTIFPrintDefnEx( GTIF *psGTIF, GTIFDefn *, FILE * );
 GTIFDefn GTIF_DLL *GTIFAllocDefn( void );
 void GTIF_DLL GTIFFreeDefn( GTIFDefn * );
 
