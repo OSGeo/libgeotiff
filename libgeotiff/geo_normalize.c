@@ -1233,8 +1233,8 @@ static int SetGTParmIds( int nCTProjection,
         panEPSGCodes[1] = EPSGProjCenterLong;
         panEPSGCodes[2] = EPSGAzimuth;
         panEPSGCodes[4] = EPSGInitialLineScaleFactor;
-        panEPSGCodes[5] = EPSGProjCenterEasting;
-        panEPSGCodes[6] = EPSGProjCenterNorthing;
+        panEPSGCodes[5] = EPSGFalseEasting;
+        panEPSGCodes[6] = EPSGFalseNorthing;
         return TRUE;
 
       case CT_LambertConfConic_1SP:
@@ -1876,6 +1876,53 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
         psDefn->ProjParmId[2] = ProjAzimuthAngleGeoKey;
         psDefn->ProjParm[3] = dfRectGridAngle;
         psDefn->ProjParmId[3] = ProjRectifiedGridAngleGeoKey;
+        psDefn->ProjParm[4] = dfNatOriginScale;
+        psDefn->ProjParmId[4] = ProjScaleAtCenterGeoKey;
+        psDefn->ProjParm[5] = dfFalseEasting;
+        psDefn->ProjParmId[5] = ProjFalseEastingGeoKey;
+        psDefn->ProjParm[6] = dfFalseNorthing;
+        psDefn->ProjParmId[6] = ProjFalseNorthingGeoKey;
+
+        psDefn->nParms = 7;
+        break;
+
+/* -------------------------------------------------------------------- */
+      case CT_ObliqueMercator_Laborde:
+/* -------------------------------------------------------------------- */
+        if( GTIFKeyGetDOUBLE(psGTIF, ProjNatOriginLongGeoKey,
+                       &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGetDOUBLE(psGTIF, ProjFalseOriginLongGeoKey,
+                          &dfNatOriginLong, 0, 1 ) == 0
+            && GTIFKeyGetDOUBLE(psGTIF, ProjCenterLongGeoKey,
+                          &dfNatOriginLong, 0, 1 ) == 0 )
+            dfNatOriginLong = 0.0;
+
+        if( GTIFKeyGetDOUBLE(psGTIF, ProjNatOriginLatGeoKey,
+                       &dfNatOriginLat, 0, 1 ) == 0
+            && GTIFKeyGetDOUBLE(psGTIF, ProjFalseOriginLatGeoKey,
+                          &dfNatOriginLat, 0, 1 ) == 0
+            && GTIFKeyGetDOUBLE(psGTIF, ProjCenterLatGeoKey,
+                          &dfNatOriginLat, 0, 1 ) == 0 )
+            dfNatOriginLat = 0.0;
+
+        if( GTIFKeyGetDOUBLE(psGTIF, ProjAzimuthAngleGeoKey,
+                       &dfAzimuth, 0, 1 ) == 0 )
+            dfAzimuth = 0.0;
+
+        if( GTIFKeyGetDOUBLE(psGTIF, ProjScaleAtNatOriginGeoKey,
+                       &dfNatOriginScale, 0, 1 ) == 0
+            && GTIFKeyGetDOUBLE(psGTIF, ProjScaleAtCenterGeoKey,
+                          &dfNatOriginScale, 0, 1 ) == 0 )
+            dfNatOriginScale = 1.0;
+
+        /* notdef: should transform to decimal degrees at this point */
+
+        psDefn->ProjParm[0] = dfNatOriginLat;
+        psDefn->ProjParmId[0] = ProjCenterLatGeoKey;
+        psDefn->ProjParm[1] = dfNatOriginLong;
+        psDefn->ProjParmId[1] = ProjCenterLongGeoKey;
+        psDefn->ProjParm[2] = dfAzimuth;
+        psDefn->ProjParmId[2] = ProjAzimuthAngleGeoKey;
         psDefn->ProjParm[4] = dfNatOriginScale;
         psDefn->ProjParmId[4] = ProjScaleAtCenterGeoKey;
         psDefn->ProjParm[5] = dfFalseEasting;
