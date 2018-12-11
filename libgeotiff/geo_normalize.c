@@ -2404,14 +2404,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     short	nGeogUOMLinear;
     double	dfInvFlattening;
 
-    if( psGTIF->pj_context == NULL )
+    if( !GTIFGetPROJContext(psGTIF, TRUE, NULL) )
     {
-        psGTIF->pj_context = proj_context_create();
-        if( !psGTIF->pj_context )
-        {
-            return FALSE;
-        }
-        psGTIF->own_pj_context = TRUE;
+        return FALSE;
     }
 
 /* -------------------------------------------------------------------- */
@@ -2760,15 +2755,7 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
 void GTIFPrintDefnEx( GTIF *psGTIF, GTIFDefn * psDefn, FILE * fp )
 
 {
-
-    if( psGTIF->pj_context == NULL )
-    {
-        psGTIF->pj_context = proj_context_create();
-        if( psGTIF->pj_context )
-        {
-            psGTIF->own_pj_context = TRUE;
-        }
-    }
+    GTIFGetPROJContext(psGTIF, TRUE, NULL);
 
 /* -------------------------------------------------------------------- */
 /*      Do we have anything to report?                                  */
@@ -3057,4 +3044,32 @@ void GTIFAttachPROJContext( GTIF *psGTIF, void* pjContext )
     }
     psGTIF->own_pj_context = FALSE;
     psGTIF->pj_context = (PJ_CONTEXT*) pjContext;
+}
+
+/************************************************************************/
+/*                         GTIFGetPROJContext()                         */
+/*                                                                      */
+/*      Return the PROJ context attached to the GTIF handle.            */
+/*      If it has not yet been instanciated and instanciateIfNeeded=TRUE*/
+/*      then, it will be instanciated (and owned by GTIF handle).       */
+/************************************************************************/
+
+void *GTIFGetPROJContext( GTIF *psGTIF, int instanciateIfNeeded,
+                          int* out_gtif_own_pj_context )
+{
+    if( psGTIF->pj_context || !instanciateIfNeeded )
+    {
+        if( out_gtif_own_pj_context )
+        {
+            *out_gtif_own_pj_context = psGTIF->own_pj_context;
+        }
+        return psGTIF->pj_context;
+    }
+    psGTIF->pj_context = proj_context_create();
+    psGTIF->own_pj_context = psGTIF->pj_context != NULL;
+    if( out_gtif_own_pj_context )
+    {
+        *out_gtif_own_pj_context = psGTIF->own_pj_context;
+    }
+    return psGTIF->pj_context;
 }
