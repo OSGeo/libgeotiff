@@ -2410,7 +2410,16 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     int		i;
     short	nGeogUOMLinear;
     double	dfInvFlattening;
-    PJ_CONTEXT* ctx = proj_context_create();
+
+    if( psGTIF->pj_context == NULL )
+    {
+        psGTIF->pj_context = proj_context_create();
+        if( !psGTIF->pj_context )
+        {
+            return FALSE;
+        }
+        psGTIF->own_pj_context = TRUE;
+    }
 
 /* -------------------------------------------------------------------- */
 /*      Initially we default all the information we can.                */
@@ -2483,8 +2492,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
         /*
          * Translate this into useful information.
          */
-        GTIFGetPCSInfoEx( ctx, psDefn->PCS, NULL, &(psDefn->ProjCode),
-                        &(psDefn->UOMLength), &(psDefn->GCS) );
+        GTIFGetPCSInfoEx( psGTIF->pj_context,
+                          psDefn->PCS, NULL, &(psDefn->ProjCode),
+                          &(psDefn->UOMLength), &(psDefn->GCS) );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2520,8 +2530,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
          * The nProjTRFCode itself would correspond to the name
          * ``UTM zone 11N'', and doesn't include datum info.
          */
-        GTIFGetProjTRFInfoEx( ctx, psDefn->ProjCode, NULL, &(psDefn->Projection),
-                            psDefn->ProjParm );
+        GTIFGetProjTRFInfoEx( psGTIF->pj_context,
+                              psDefn->ProjCode, NULL, &(psDefn->Projection),
+                              psDefn->ProjParm );
 
         /*
          * Set the GeoTIFF identity of the parameters.
@@ -2548,8 +2559,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /* -------------------------------------------------------------------- */
     if( psDefn->GCS != KvUserDefined )
     {
-        GTIFGetGCSInfoEx( ctx, psDefn->GCS, NULL, &(psDefn->Datum), &(psDefn->PM),
-                        &(psDefn->UOMAngle) );
+        GTIFGetGCSInfoEx( psGTIF->pj_context,
+                          psDefn->GCS, NULL, &(psDefn->Datum), &(psDefn->PM),
+                          &(psDefn->UOMAngle) );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2559,8 +2571,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     GTIFKeyGetSHORT(psGTIF, GeogAngularUnitsGeoKey, &(psDefn->UOMAngle), 0, 1 );
     if( psDefn->UOMAngle != KvUserDefined )
     {
-        GTIFGetUOMAngleInfoEx( ctx, psDefn->UOMAngle, NULL,
-                             &(psDefn->UOMAngleInDegrees) );
+        GTIFGetUOMAngleInfoEx( psGTIF->pj_context,
+                               psDefn->UOMAngle, NULL,
+                               &(psDefn->UOMAngleInDegrees) );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2571,7 +2584,8 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
     if( psDefn->Datum != KvUserDefined )
     {
-        GTIFGetDatumInfoEx( ctx, psDefn->Datum, NULL, &(psDefn->Ellipsoid) );
+        GTIFGetDatumInfoEx( psGTIF->pj_context,
+                            psDefn->Datum, NULL, &(psDefn->Ellipsoid) );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2582,8 +2596,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
     if( psDefn->Ellipsoid != KvUserDefined )
     {
-        GTIFGetEllipsoidInfoEx( ctx, psDefn->Ellipsoid, NULL,
-                              &(psDefn->SemiMajor), &(psDefn->SemiMinor) );
+        GTIFGetEllipsoidInfoEx( psGTIF->pj_context,
+                                psDefn->Ellipsoid, NULL,
+                                &(psDefn->SemiMajor), &(psDefn->SemiMinor) );
     }
 
 /* -------------------------------------------------------------------- */
@@ -2611,7 +2626,8 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
     if( psDefn->PM != KvUserDefined )
     {
-        GTIFGetPMInfoEx( ctx, psDefn->PM, NULL, &(psDefn->PMLongToGreenwich) );
+        GTIFGetPMInfoEx( psGTIF->pj_context,
+                         psDefn->PM, NULL, &(psDefn->PMLongToGreenwich) );
     }
     else
     {
@@ -2641,8 +2657,9 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
     if( psDefn->UOMLength != KvUserDefined )
     {
-        GTIFGetUOMLengthInfoEx( ctx, psDefn->UOMLength, NULL,
-                              &(psDefn->UOMLengthInMeters) );
+        GTIFGetUOMLengthInfoEx( psGTIF->pj_context,
+                                psDefn->UOMLength, NULL,
+                                &(psDefn->UOMLengthInMeters) );
     }
     else
     {
@@ -2693,8 +2710,6 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
         else
             psDefn->ProjParm[6] = 10000000.0;
     }
-
-    proj_context_destroy(ctx);
 
     return TRUE;
 }
@@ -2996,4 +3011,21 @@ GTIFDefn *GTIFAllocDefn()
 void GTIFFreeDefn( GTIFDefn *defn )
 {
     VSIFree( defn );
+}
+
+/************************************************************************/
+/*                       GTIFAttachPROJContext()                        */
+/*                                                                      */
+/*      Attach an existing PROJ context to the GTIF handle, but         */
+/*      ownership of the context remains to the caller.                 */
+/************************************************************************/
+
+void GTIFAttachPROJContext( GTIF *psGTIF, void* pjContext )
+{
+    if( psGTIF->own_pj_context )
+    {
+        proj_context_destroy(psGTIF->pj_context);
+    }
+    psGTIF->own_pj_context = FALSE;
+    psGTIF->pj_context = (PJ_CONTEXT*) pjContext;
 }

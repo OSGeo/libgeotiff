@@ -174,6 +174,9 @@ double GTIF_DLL GTIFAngleToDD( double dfAngle, int nUOMAngle );
 void GTIF_DLL GTIFFreeMemory( char * );
 void GTIF_DLL GTIFDeaccessCSV( void );
 
+/* The void* should be a PJ_CONTEXT* */
+void GTIF_DLL GTIFAttachPROJContext( GTIF *psGTIF, void* pjContext );
+
 int GTIF_DLL GTIFGetDefn( GTIF *psGTIF, GTIFDefn * psDefn );
 void GTIF_DLL GTIFPrintDefn( GTIFDefn *, FILE * );
 GTIFDefn GTIF_DLL *GTIFAllocDefn( void );
