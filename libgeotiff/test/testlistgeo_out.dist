@@ -56,7 +56,7 @@ Geotiff_Information:
       GTCitationGeoKey (Ascii,23): "NAD27 / BLM 14N (ftUS)"
       GeogCitationGeoKey (Ascii,6): "NAD27"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
-      ProjectedCSTypeGeoKey (Short,1): Unknown-32064
+      ProjectedCSTypeGeoKey (Short,1): Code-32064 (NAD27 / BLM 14N (ftUS))
       ProjLinearUnitsGeoKey (Short,1): Linear_Foot_US_Survey
       End_Of_Keys.
    End_Of_Geotiff.
@@ -135,7 +135,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeGeographic
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GeographicTypeGeoKey (Short,1): User-Defined
-      GeogGeodeticDatumGeoKey (Short,1): Unknown-6742
+      GeogGeodeticDatumGeoKey (Short,1): Code-6742 (Geodetic Datum of Malaysia 2000)
       GeogLinearUnitsGeoKey (Short,1): Linear_Meter
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       End_Of_Keys.
@@ -167,9 +167,9 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeGeographic
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GeographicTypeGeoKey (Short,1): User-Defined
-      GeogGeodeticDatumGeoKey (Short,1): Unknown-6742
+      GeogGeodeticDatumGeoKey (Short,1): Code-6742 (Geodetic Datum of Malaysia 2000)
       GeogLinearUnitsGeoKey (Short,1): Linear_Meter
-      GeogAngularUnitsGeoKey (Short,1): Unknown-9114
+      GeogAngularUnitsGeoKey (Short,1): Code-9114 (mil_6400)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -201,8 +201,8 @@ Geotiff_Information:
       GTCitationGeoKey (Ascii,23): "NAD27 / BLM 14N (ftUS)"
       GeogCitationGeoKey (Ascii,6): "NAD27"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
-      ProjectedCSTypeGeoKey (Short,1): Unknown-32064
-      ProjLinearUnitsGeoKey (Short,1): Unknown-9036
+      ProjectedCSTypeGeoKey (Short,1): Code-32064 (NAD27 / BLM 14N (ftUS))
+      ProjLinearUnitsGeoKey (Short,1): Code-9036 (kilometre)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -241,7 +241,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-28191
+      ProjectedCSTypeGeoKey (Short,1): Code-28191 (Palestine 1923 / Palestine Grid)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -415,7 +415,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-29101
+      ProjectedCSTypeGeoKey (Short,1): Code-29101 (SAD69 / Brazil Polyconic)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -454,7 +454,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,25): "SAD69 / Brazil Polyconic"
-      GeographicTypeGeoKey (Short,1): Unknown-4618
+      GeographicTypeGeoKey (Short,1): Code-4618 (SAD69)
       GeogCitationGeoKey (Ascii,6): "SAD69"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378160          
@@ -504,7 +504,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-6808
+      ProjectedCSTypeGeoKey (Short,1): Code-6808 (NAD83(CORS96) / Oregon Columbia River West zone (m))
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -546,7 +546,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,52): "NAD83(CORS96) / Oregon Columbia River West zone (m)"
-      GeographicTypeGeoKey (Short,1): Unknown-6783
+      GeographicTypeGeoKey (Short,1): Code-6783 (NAD83(CORS96))
       GeogCitationGeoKey (Ascii,14): "NAD83(CORS96)"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378137          
@@ -600,7 +600,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-8065
+      ProjectedCSTypeGeoKey (Short,1): Code-8065 (NAD83(2011) / PCCS zone 1 (ft))
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -642,7 +642,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,31): "NAD83(2011) / PCCS zone 1 (ft)"
-      GeographicTypeGeoKey (Short,1): Unknown-6318
+      GeographicTypeGeoKey (Short,1): Code-6318 (NAD83(2011))
       GeogCitationGeoKey (Ascii,12): "NAD83(2011)"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378137          
@@ -697,7 +697,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-8441
+      ProjectedCSTypeGeoKey (Short,1): Code-8441 (Tananarive / Laborde Grid)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -790,7 +790,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-5456
+      ProjectedCSTypeGeoKey (Short,1): Code-5456 (Ocotepeque 1935 / Costa Rica Norte)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -830,7 +830,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,35): "Ocotepeque 1935 / Costa Rica Norte"
-      GeographicTypeGeoKey (Short,1): Unknown-5451
+      GeographicTypeGeoKey (Short,1): Code-5451 (Ocotepeque 1935)
       GeogCitationGeoKey (Ascii,16): "Ocotepeque 1935"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378206.4        
@@ -880,7 +880,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-5329
+      ProjectedCSTypeGeoKey (Short,1): Code-5329 (Segara (Jakarta) / NEIEZ)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -920,7 +920,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,25): "Segara (Jakarta) / NEIEZ"
-      GeographicTypeGeoKey (Short,1): Unknown-4820
+      GeographicTypeGeoKey (Short,1): Code-4820 (Segara (Jakarta))
       GeogCitationGeoKey (Ascii,17): "Segara (Jakarta)"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6377397.155      
@@ -970,7 +970,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-5641
+      ProjectedCSTypeGeoKey (Short,1): Code-5641 (SIRGAS 2000 / Brazil Mercator)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1010,7 +1010,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,30): "SIRGAS 2000 / Brazil Mercator"
-      GeographicTypeGeoKey (Short,1): Unknown-4674
+      GeographicTypeGeoKey (Short,1): Code-4674 (SIRGAS 2000)
       GeogCitationGeoKey (Ascii,12): "SIRGAS 2000"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378137          
@@ -1060,7 +1060,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-5588
+      ProjectedCSTypeGeoKey (Short,1): Code-5588 (NAD27 / New Brunswick Stereographic (NAD27))
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1151,7 +1151,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-5482
+      ProjectedCSTypeGeoKey (Short,1): Code-5482 (RSRGD2000 / RSPS2000)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1191,7 +1191,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,21): "RSRGD2000 / RSPS2000"
-      GeographicTypeGeoKey (Short,1): Unknown-4764
+      GeographicTypeGeoKey (Short,1): Code-4764 (RSRGD2000)
       GeogCitationGeoKey (Ascii,10): "RSRGD2000"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378137          
@@ -1241,7 +1241,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-3032
+      ProjectedCSTypeGeoKey (Short,1): Code-3032 (WGS 84 / Australian Antarctic Polar Stereographic)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1331,7 +1331,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-3814
+      ProjectedCSTypeGeoKey (Short,1): Code-3814 (NAD83 / Mississippi TM)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1421,7 +1421,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-2046
+      ProjectedCSTypeGeoKey (Short,1): Code-2046 (Hartebeesthoek94 / Lo15)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1461,7 +1461,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,24): "Hartebeesthoek94 / Lo15"
-      GeographicTypeGeoKey (Short,1): Unknown-4148
+      GeographicTypeGeoKey (Short,1): Code-4148 (Hartebeesthoek94)
       GeogCitationGeoKey (Ascii,17): "Hartebeesthoek94"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6378137          
@@ -1511,7 +1511,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-3812
+      ProjectedCSTypeGeoKey (Short,1): Code-3812 (ETRS89 / Belgian Lambert 2008)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1604,7 +1604,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-3083
+      ProjectedCSTypeGeoKey (Short,1): Code-3083 (NAD83 / Texas Centric Albers Equal Area)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1697,7 +1697,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-3035
+      ProjectedCSTypeGeoKey (Short,1): Code-3035 (ETRS89 / LAEA Europe)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1784,7 +1784,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-3410
+      ProjectedCSTypeGeoKey (Short,1): Code-3410 (NSIDC EASE-Grid Global)
       End_Of_Keys.
    End_Of_Geotiff.
 
@@ -1823,7 +1823,7 @@ Geotiff_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
       GTCitationGeoKey (Ascii,23): "NSIDC EASE-Grid Global"
-      GeographicTypeGeoKey (Short,1): Unknown-4053
+      GeographicTypeGeoKey (Short,1): Code-4053 (Unspecified datum based upon the International 1924 Authalic Sphere)
       GeogCitationGeoKey (Ascii,68): "Unspecified datum based upon the International 1924 Authalic Sphere"
       GeogAngularUnitsGeoKey (Short,1): Angular_Degree
       GeogSemiMajorAxisGeoKey (Double,1): 6371228          
@@ -1870,7 +1870,7 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Unknown-4087
+      ProjectedCSTypeGeoKey (Short,1): Code-4087 (WGS 84 / World Equidistant Cylindrical)
       End_Of_Keys.
    End_Of_Geotiff.
 

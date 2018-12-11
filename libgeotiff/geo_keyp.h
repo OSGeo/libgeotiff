@@ -112,6 +112,8 @@ struct gtiff {
 
    PJ_CONTEXT *pj_context;      /* PROJ context */
    int         own_pj_context;  /* whether we own the PROJ context */
+
+   char        szTmpBufferForGTIFValueNameEx[160];
 };
 
 typedef enum {

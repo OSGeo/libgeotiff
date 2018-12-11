@@ -2824,17 +2824,20 @@ void GTIFPrintDefnEx( GTIF *psGTIF, GTIFDefn * psDefn, FILE * fp )
 /* -------------------------------------------------------------------- */
     if( psDefn->CTProjection != KvUserDefined )
     {
-        char	*pszName = GTIFValueName(ProjCoordTransGeoKey,
-                                         psDefn->CTProjection);
+        const char *pszProjectionMethodName =
+            GTIFValueNameEx(psGTIF,
+                            ProjCoordTransGeoKey,
+                            psDefn->CTProjection);
         int     i;
 
-        if( pszName == NULL )
-            pszName = "(unknown)";
+        if( pszProjectionMethodName == NULL )
+            pszProjectionMethodName = "(unknown)";
 
-        fprintf( fp, "Projection Method: %s\n", pszName );
+        fprintf( fp, "Projection Method: %s\n", pszProjectionMethodName );
 
         for( i = 0; i < psDefn->nParms; i++ )
         {
+            char* pszName;
             if( psDefn->ProjParmId[i] == 0 )
                 continue;
 
