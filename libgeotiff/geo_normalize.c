@@ -476,7 +476,7 @@ int GTIFGetGCSInfoEx( PJ_CONTEXT* ctx,
 
         if( ppszName )
         {
-            const char* pszName = proj_get_name(geod_crs);
+            pszName = proj_get_name(geod_crs);
             if( !pszName )
             {
                 // shouldn't happen
@@ -651,7 +651,7 @@ int GTIFGetEllipsoidInfoEx( PJ_CONTEXT* ctx,
 
         if( ppszName )
         {
-            const char* pszName = proj_get_name(ellipsoid);
+            pszName = proj_get_name(ellipsoid);
             if( !pszName )
             {
                 // shouldn't happen
@@ -827,7 +827,7 @@ int GTIFGetDatumInfoEx( PJ_CONTEXT* ctx,
 
         if( ppszName )
         {
-            const char* pszName = proj_get_name(datum);
+            pszName = proj_get_name(datum);
             if( !pszName )
             {
                 // shouldn't happen

@@ -2,11 +2,14 @@
 THIS_DIR = $(top_srcdir)/test
 EXEPATH = ../bin
 LISTGEOEXE = $(EXEPATH)/listgeo
+GEOTIFCPEXE = $(EXEPATH)/geotifcp
 
 # Test scripts
 TESTLISTGEO = $(THIS_DIR)/testlistgeo
+TESTGEOTIFCP = $(THIS_DIR)/testgeotifcp
 
 EXTRA_DIST = testlistgeo testlistgeo_out.dist \
+	     testgeotifcp testgeotifcp_out.dist \
              data/byte.tif data/pcs_32064.tif \
              data/GeogPrimeMeridianGeoKey.tif \
              data/GeogGeodeticDatumGeoKey.tif \
@@ -53,4 +56,5 @@ EXTRA_DIST = testlistgeo testlistgeo_out.dist \
 
 check-local:
 	$(TESTLISTGEO) $(LISTGEOEXE)
+	$(TESTGEOTIFCP) $(GEOTIFCPEXE) $(LISTGEOEXE)
 
