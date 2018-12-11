@@ -1,3 +1,9 @@
+2018-12-11 Even Rouault <even dot rouault at spatialys dot com>
+
+	* geo_print.c: fix wrong test in DefaultRead() that caused erroenous
+	error message to be emitted.
+	* Prepare for 1.4.3RC2
+
 2018-12-07 Even Rouault <even dot rouault at spatialys dot com>
 
 	* Prepare for 1.4.3	

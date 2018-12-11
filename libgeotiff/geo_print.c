@@ -510,7 +510,7 @@ static int DefaultRead(char *string, void *aux)
     int num_read;
     /* 1023 comes from char message[1024]; in GTIFFImport */
     num_read = fscanf((FILE *)aux, "%1023[^\n]\n", string);
-    if (num_read != 0) {
+    if (num_read == 0) {
       fprintf(stderr, "geo_print.c DefaultRead failed to read anything.\n");
     }
     return 1;
