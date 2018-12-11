@@ -73,16 +73,6 @@ Common Configuration Issues:
    % make clean 
    % make
 
- o If you want to use EPSG tables compiled into the code, use the
-   --enable-incode-epsg configure switch.  It will make the library and
-   resulting executables substantially larger (~600K), but will avoid any 
-   configuration issues with finding the .csv files. 
-
-   % rm config.status
-   % ./configure --enable-incode-epsg
-   % make clean
-   % make
-
  o If you want to build in support for the PROJ.4 library, so that listgeo
    can report corner coordinates in lat/long, it may be necessary to 
    specify the directory containing the libproj include files, and library.
@@ -128,12 +118,6 @@ to copy the TIFF file newgeo.tif to newer.tif, using the
 GeoTIFF metadata as stored in "metadata.txt". See "docs/manual.txt"
 for further uses of geotifcp.
 
-To use the new normalization capability of listgeo, the program needs
-to be able to find the CSV files.  Use something like the following, 
-but indicating the correct path to the CSV directory (libgeotiff/csv). 
-
-  % bin/listgeo -t csv -norm newgeo.tif
-
 To convert a projection metafile, an ESRI world file, and a raw TIFF file
 into a GeoTIFF file do something like the following:
 
@@ -164,13 +148,6 @@ Credits
 
  o This library was originally written by Niles Ritter (also the primary
    author of the GeoTIFF specification).  
-
- o It is currently being maintained by Frank Warmerdam (warmerdam@pobox.com),
-   who also added the "normalization" capability of GTIFGetDefn() using 
-   EPSG CSV files. 
-
- o Support for "incode" CSV files was submitted by Derrick J Brashear 
-   <shadow@dementia.org>. 
 
  o Eric Brown of Universal Systems, who contributed a bug fix to 
    GTIFPCSToImage().

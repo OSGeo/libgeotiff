@@ -4,9 +4,6 @@
 TEST_CLI_DIR=`dirname $0`
 DATA_DIR=`dirname $0`/data
 
-# FIXME: to ultimately remove !
-export GEOTIFF_CSV=`dirname $0`/../csv
-
 EXE=$1
 
 usage()

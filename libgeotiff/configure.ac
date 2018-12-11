@@ -322,27 +322,6 @@ fi
 AC_SUBST(PROJ_INCLUDE)
 
 
-dnl
-dnl Has the user requested "incode" EPSG tables, overriding the
-dnl default use of EPSG tables in csv files?  Temporarily unvailable.
-dnl
-
-CSV_CONFIG="no"
-AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg    Use C code EPSG tables],, enable_incode_epsg=no)
-
-if test "$enable_incode_epsg" != "no"  -o "$enable_incode_epsg" = ""  ; then
-
-    AC_MSG_CHECKING([if EPSG tables will be read from .csv files])
-    AC_MSG_RESULT([yes])
-    CSV_CONFIG="yes"
-else
-    AC_MSG_CHECKING([if EPSG tables will be read from .csv files])
-    AC_MSG_RESULT([no])
-
-fi
-AM_CONDITIONAL([CSV_IS_CONFIG], [test ! x$CSV_CONFIG = xno])
-
-
 AC_ARG_ENABLE(towgs84, [  --disable-towgs84       Disable WGS84 parameters for binary compatibility with pre-1.4.1], AC_DEFINE(GEO_NORMALIZE_DISABLE_TOWGS84))
 
 dnl #########################################################################
@@ -400,7 +379,6 @@ LOC_MSG([    -INCLUDE .......: ${TIFF_INC}])
 LOC_MSG([    -PREFIX ........: ${TIFF_PREFIX}])
 LOC_MSG([  PROJ support......: yes])
 LOC_MSG([    -INCLUDE .......: ${PROJ_INCLUDE}])
-LOC_MSG([  Incode CSV support: ${CSV_CONFIG}])
 
 LOC_MSG([  LIBS.....................: ${LIBS}])
 LOC_MSG()

@@ -7,6 +7,7 @@
  *
  ******************************************************************************
  * Copyright (c) 1999, Frank Warmerdam
+ * Copyright (c) 2018, Even Rouault <even.rouault at spatialys.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -1073,8 +1074,6 @@ int GTIFGetUOMAngleInfo( int nUOMAngleCode,
 static int EPSGProjMethodToCTProjMethod( int nEPSG, int bReturnExtendedCTCode )
 
 {
-    /* see trf_method.csv for list of EPSG codes */
-
     switch( nEPSG )
     {
       case 9801:
@@ -1165,9 +1164,8 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG, int bReturnExtendedCTCode )
 /*                            SetGTParmIds()                            */
 /*                                                                      */
 /*      This is hardcoded logic to set the GeoTIFF parameter            */
-/*      identifiers for all the EPSG supported projections.  As the     */
-/*      trf_method.csv table grows with new projections, this code      */
-/*      will need to be updated.                                        */
+/*      identifiers for all the EPSG supported projections.  As new     */
+/*      projection methods are added, this code will need to be updated */
 /************************************************************************/
 
 static int SetGTParmIds( int nCTProjection,
@@ -1605,7 +1603,7 @@ int GTIFGetProjTRFInfoEx( PJ_CONTEXT* ctx,
     }
 }
 
-int GTIFGetProjTRFInfo( /* COORD_OP_CODE from coordinate_operation.csv */
+int GTIFGetProjTRFInfo( /* Conversion code */
                         int nProjTRFCode,
                         char **ppszProjTRFName,
                         short * pnProjMethod,
@@ -2297,8 +2295,8 @@ static void GTIFFetchProjParms( GTIF * psGTIF, GTIFDefn * psDefn )
 
 This function reads the coordinate system definition from a GeoTIFF file,
 and <i>normalizes</i> it into a set of component information using
-definitions from CSV (Comma Separated Value ASCII) files derived from
-EPSG tables.  This function is intended to simplify correct support for
+definitions from the EPSG database as provided by the PROJ library.
+This function is intended to simplify correct support for
 reading files with defined PCS (Projected Coordinate System) codes that
 wouldn't otherwise be directly known by application software by reducing
 it to the underlying projection method, parameters, datum, ellipsoid,
@@ -2307,26 +2305,21 @@ prime meridian and units.<p>
 The application should pass a pointer to an existing uninitialized
 GTIFDefn structure, and GTIFGetDefn() will fill it in.  The function
 currently always returns TRUE but in the future will return FALSE if
-CSV files are not found.  In any event, all geokeys actually found in the
-file will be copied into the GTIFDefn.  However, if the CSV files aren't
-found codes implied by other codes will not be set properly.<p>
+the database is not found.  In any event, all geokeys actually found in the
+file will be copied into the GTIFDefn.  However, if the database isn't
+found, codes implied by other codes will not be set properly.<p>
 
-GTIFGetDefn() will not generally work if the EPSG derived CSV files cannot
-be found.  By default a modest attempt will be made to find them, but
-in general it is necessary for the calling application to override the
-logic to find them.  This can be done by calling the
-SetCSVFilenameHook() function to
-override the search method based on application knowledge of where they are
-found.<p>
+GTIFGetDefn() will not generally work if the EPSG derived database cannot
+be found.<p>
 
 The normalization methodology operates by fetching tags from the GeoTIFF
 file, and then setting all other tags implied by them in the structure.  The
 implied relationships are worked out by reading definitions from the
-various EPSG derived CSV tables.<p>
+various EPSG derived database tables.<p>
 
 For instance, if a PCS (ProjectedCSTypeGeoKey) is found in the GeoTIFF file
-this code is used to lookup a record in the <tt>horiz_cs.csv</tt> CSV
-file.  For example given the PCS 26746 we can find the name
+this code is used to lookup a record in the database.
+For example given the PCS 26746 we can find the name
 (NAD27 / California zone VI), the GCS 4257 (NAD27), and the ProjectionCode
 10406 (California CS27 zone VI).  The GCS, and ProjectionCode can in turn
 be looked up in other tables until all the details of units, ellipsoid,
@@ -2400,7 +2393,7 @@ The
 be used as an example of code that converts a GTIFDefn into another projection
 system.<p>
 
-@see GTIFKeySet(), SetCSVFilenameHook()
+@see GTIFKeySet()
 
 */
 
@@ -2498,7 +2491,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
     }
 
 /* -------------------------------------------------------------------- */
-/*       If we have the PCS code, but didn't find it in the CSV files   */
+/*       If we have the PCS code, but didn't find it in the database    */
 /*      (likely because we can't find them) we will try some ``jiffy    */
 /*      rules'' for UTM and state plane.                                */
 /* -------------------------------------------------------------------- */
@@ -2682,7 +2675,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 
 /* -------------------------------------------------------------------- */
 /*      If this is UTM, and we were unable to extract the projection    */
-/*      parameters from the CSV file, just set them directly now,       */
+/*      parameters from the database just set them directly now,        */
 /*      since it's pretty easy, and a common case.                      */
 /* -------------------------------------------------------------------- */
     if( (psDefn->MapSys == MapSys_UTM_North
@@ -2975,18 +2968,6 @@ void GTIFFreeMemory( char * pMemory )
 {
     if( pMemory != NULL )
         VSIFree( pMemory );
-}
-
-/************************************************************************/
-/*                          GTIFDeaccessCSV()                           */
-/*                                                                      */
-/*      Free all cached CSV info.                                       */
-/************************************************************************/
-
-void GTIFDeaccessCSV()
-
-{
-    CSVDeaccess( NULL );
 }
 
 /************************************************************************/
