@@ -1245,7 +1245,14 @@ static int SetGTParmIds( int nCTProjection,
       case CT_TransverseMercator:
       case CT_TransvMercator_SouthOriented:
         panProjParmId[0] = ProjNatOriginLatGeoKey;
-        panProjParmId[1] = ProjNatOriginLongGeoKey;
+        if( nCTProjection == CT_PolarStereographic )
+        {
+            panProjParmId[1] = ProjStraightVertPoleLongGeoKey;
+        }
+        else
+        {
+            panProjParmId[1] = ProjNatOriginLongGeoKey;
+        }
         if( nEPSGProjMethod == 9805 ) /* Mercator_2SP */
         {
             panProjParmId[2] = ProjStdParallel1GeoKey;
