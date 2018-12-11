@@ -1171,6 +1171,7 @@ static int EPSGProjMethodToCTProjMethod( int nEPSG, int bReturnExtendedCTCode )
 /************************************************************************/
 
 static int SetGTParmIds( int nCTProjection,
+                         int nEPSGProjMethod,
                          int *panProjParmId,
                          int *panEPSGCodes )
 
@@ -1245,12 +1246,20 @@ static int SetGTParmIds( int nCTProjection,
       case CT_TransvMercator_SouthOriented:
         panProjParmId[0] = ProjNatOriginLatGeoKey;
         panProjParmId[1] = ProjNatOriginLongGeoKey;
+        if( nEPSGProjMethod == 9805 ) /* Mercator_2SP */
+        {
+            panProjParmId[2] = ProjStdParallel1GeoKey;
+        }
         panProjParmId[4] = ProjScaleAtNatOriginGeoKey;
         panProjParmId[5] = ProjFalseEastingGeoKey;
         panProjParmId[6] = ProjFalseNorthingGeoKey;
 
         panEPSGCodes[0] = EPSGNatOriginLat;
         panEPSGCodes[1] = EPSGNatOriginLong;
+        if( nEPSGProjMethod == 9805 ) /* Mercator_2SP */
+        {
+            panEPSGCodes[2] = EPSGStdParallel1Lat;
+        }
         panEPSGCodes[4] = EPSGNatOriginScaleFactor;
         panEPSGCodes[5] = EPSGFalseEasting;
         panEPSGCodes[6] = EPSGFalseNorthing;
@@ -1447,7 +1456,7 @@ int GTIFGetProjTRFInfoEx( PJ_CONTEXT* ctx,
 /*      into what fields in adfProjParms.                               */
 /* -------------------------------------------------------------------- */
         nCTProjMethod = EPSGProjMethodToCTProjMethod( nProjMethod, TRUE );
-        SetGTParmIds( nCTProjMethod, NULL, anEPSGCodes );
+        SetGTParmIds( nCTProjMethod, nProjMethod, NULL, anEPSGCodes );
 
 /* -------------------------------------------------------------------- */
 /*      Get the parameters for this projection.                         */
@@ -2514,6 +2523,7 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
             EPSGProjMethodToCTProjMethod( psDefn->Projection, FALSE );
 
         SetGTParmIds( EPSGProjMethodToCTProjMethod(psDefn->Projection, TRUE),
+                      psDefn->Projection,
                       psDefn->ProjParmId, NULL);
         psDefn->nParms = 7;
     }
