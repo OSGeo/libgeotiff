@@ -741,7 +741,7 @@ DECLAREcpFunc(cpContig2ContigByRow_8_to_4)
 
     printf( "Downsample\n" );
 
-    (void) imagewidth; (void) spp;
+    (void) spp;
     for (row = 0; row < imagelength; row++) {
         int i_in, i_out_byte;
             
@@ -749,7 +749,7 @@ DECLAREcpFunc(cpContig2ContigByRow_8_to_4)
             goto done;
 
         for( i_in = 0, i_out_byte = 0;
-             i_in < imagewidth;
+             (unsigned)i_in < imagewidth;
              i_in += 2, i_out_byte++ )
         {
             buf_out[i_out_byte] =
