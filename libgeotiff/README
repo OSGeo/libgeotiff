@@ -21,9 +21,17 @@ package for reading and writing TIFF files has been installed, with
 the development kit (include files).  The latest version of libtiff may 
 be found at:
 
-   http://www.remotesensing.org/libtiff
-   
+   http://www.simplesystems.org/libtiff/
+
 For this build to work you must use libtiff version v3.6.0 alpha or newer.
+
+Use of PROJ
+-----------
+
+PROJ 6 or later is a required dependency of libgeotiff 1.5 or later.
+The latest version of PROJ can be found at
+
+    https://proj4.org/
 
 
 Building LIBGEOTIFF:
@@ -33,7 +41,7 @@ Assuming that whatever TIFF library you use has been built, and installed
 may now build the rest of the geotiff library with:
 
    % cd libgeotiff
-   % ./configure
+   % ./configure --with-proj=/contrib/proj-6
    % make 
 
 Common Configuration Issues:
@@ -71,17 +79,6 @@ Common Configuration Issues:
    % rm config.status
    % ./configure --with-libtiff=/usr/local
    % make clean 
-   % make
-
- o If you want to build in support for the PROJ.4 library, so that listgeo
-   can report corner coordinates in lat/long, it may be necessary to 
-   specify the directory containing the libproj include files, and library.
-   (PROJ.4 can also be disabled by passing --without-proj).  PROJ.4 info 
-   can be found at http://www.remotesensing.org/proj .
-
-   % rm config.status
-   % ./configure --with-proj=/contrib/proj-4.4.1
-   % make clean
    % make
 
  o The logic to build shared libraries is pretty weak, and is likely to
