@@ -232,89 +232,94 @@ AC_SUBST([TIFF_INC])
 AC_SUBST([TIFF_PREFIX])
 AM_CONDITIONAL([TIFF_IS_CONFIG], [test ! x$TIFF_CONFIG = xno])
 
-dnl
-dnl Try and find libproj.a, and projects.h
-dnl
+dnl ---------------------------------------------------------------------------
+dnl PROJ.6 related stuff
+dnl ---------------------------------------------------------------------------
 
-PROJ_CONFIG="no"
+AC_MSG_CHECKING([for PROJ >= 6 library])
 
-AC_ARG_WITH(proj, [  --with-proj[=ARG]       Use PROJ.4 library (ARG=no or path)],[PROJ_HOME=$withval],[PROJ_HOME=])
+AC_ARG_WITH(proj,[  --with-proj=ARG Compile with PROJ.x (ARG=yes or path)],,)
 
-if test "$PROJ_HOME" != "" -a "$PROJ_HOME" != "no" ; then
-  if test -d "$PROJ_HOME/src/pj_init.c" ; then
-    PROJ_HOME=$PROJ_HOME/src
-  fi
+PROJ_INCLUDE=""
+if test "x$with_proj" = "xno" ; then
 
-  dnl Old PROJ.4 build tree, without automake
-  if test -f "$PROJ_HOME/libproj.a" -a -f "$PROJ_HOME/proj_api.h" ; then
-    PROJ_LIB=$PROJ_HOME/libproj.a
-    PROJ_INC=$PROJ_HOME
-    PROJ_CONFIG="yes"
+  AC_MSG_ERROR([PROJ 6 is a required dependency.])
 
-  dnl New PROJ.4 build tree, with automake
-  elif test -f "$PROJ_HOME/.libs/libproj.a" -a -f "$PROJ_HOME/proj_api.h" ; then
-    PROJ_LIB=$PROJ_HOME/.libs/libproj.a
-    PROJ_INC=$PROJ_HOME
+else
 
-    PROJ_CONFIG="yes"
-    
-  dnl Installed tree in an odd place
-  elif test \( -f "$PROJ_HOME/lib/libproj.a" -o -f "$PROJ_HOME/lib/libproj.so" \) -a -f "$PROJ_HOME/include/proj_api.h"; then
-    PROJ_LIB="-L$PROJ_HOME/lib -lproj"
-    PROJ_INC=$PROJ_HOME/include 
-
-    PROJ_CONFIG="yes"
+  if test "x$with_proj" = "xyes" -o "x$with_proj" = "x"; then
+    ORIG_LIBS="$LIBS"
+    LIBS="-lproj $ORIG_LIBS"
+    AC_CHECK_LIB(proj,proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+    if test "$PROJ_FOUND" = "no"; then
+        AC_CHECK_LIB(proj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+        if test "$PROJ_FOUND" = "yes"; then
+            PROJ_INCLUDE="-DPROJ_RENAME_SYMBOLS"
+        fi
+    fi
+    if test "$PROJ_FOUND" = "no"; then
+        LIBS="-linternalproj $ORIG_LIBS"
+        AC_CHECK_LIB(internalproj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+        if test "$PROJ_FOUND" = "yes"; then
+            PROJ_INCLUDE="-DPROJ_RENAME_SYMBOLS"
+        fi
+    fi
+    if test "$PROJ_FOUND" = "no"; then
+        AC_MSG_ERROR([PROJ 6 symbols not found])
+    fi
+    AC_CHECK_HEADERS([proj.h])
+    if test "$ac_cv_header_proj_h" = "yes" ; then
+        AC_MSG_NOTICE([proj.h found])
+    else
+        AC_MSG_ERROR([proj.h not found])
+    fi
   else
-    echo "PROJ_HOME=$PROJ_HOME, but either proj_api.h or libproj.a not found!"
+
+    ORIG_LIBS="$LIBS"
+    LIBS="-L$with_proj/lib -lproj $ORIG_LIBS"
+    AC_CHECK_LIB(proj,proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+    if test "$PROJ_FOUND" = "no"; then
+        LIBS="-L$with_proj/lib -lproj -lsqlite3 $ORIG_LIBS"
+        unset ac_cv_lib_proj_proj_create_from_wkt
+        AC_CHECK_LIB(proj,proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+    fi
+    if test "$PROJ_FOUND" = "no"; then
+        LIBS="-L$with_proj/lib -lproj $ORIG_LIBS"
+        AC_CHECK_LIB(proj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+        if test "$PROJ_FOUND" = "no"; then
+            LIBS="-L$with_proj/lib -lproj -lsqlite3 $ORIG_LIBS"
+            unset ac_cv_lib_proj_internal_proj_create_from_wkt
+            AC_CHECK_LIB(proj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+        fi
+        if test "$PROJ_FOUND" = "yes"; then
+            PROJ_INCLUDE="-DPROJ_RENAME_SYMBOLS"
+        fi
+    fi
+    if test "$PROJ_FOUND" = "no"; then
+        LIBS="-L$with_proj/lib -linternalproj $ORIG_LIBS"
+        AC_CHECK_LIB(internalproj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+        if test "$PROJ_FOUND" = "no"; then
+            LIBS="-L$with_proj/lib -linternalproj -lsqlite3 $ORIG_LIBS"
+            unset ac_cv_lib_internal_proj_internal_proj_create_from_wkt
+            AC_CHECK_LIB(internalproj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+        fi
+        if test "$PROJ_FOUND" = "yes"; then
+            PROJ_INCLUDE="-DPROJ_RENAME_SYMBOLS"
+        fi
+    fi
+    if test "$PROJ_FOUND" = "no"; then
+        AC_MSG_ERROR([PROJ 6 symbols not found])
+    fi
+    if test -r "$with_proj/include/proj.h" ; then
+        PROJ_INCLUDE="$PROJ_INCLUDE -I$with_proj/include"
+        AC_MSG_NOTICE([proj.h found])
+    else
+        AC_MSG_ERROR([proj.h not found])
+    fi
   fi
 fi
 
-
-if test "$PROJ_HOME" = "no" ; then
-  echo "PROJ.4 support disabled."
-
-elif test "$PROJ_LIB" != "" -a "$PROJ_INC" != "" ; then
-  echo "Found $PROJ_LIB"
-  echo "Found $PROJ_INC/proj_api.h"
-
-  LIBS="$PROJ_LIB $LIBS"
-  PROJ_INC=-I$PROJ_INC
-
-  AC_SUBST(PROJ_INC,$PROJ_INC)
-  AC_DEFINE(HAVE_PROJECTS_H)
-  AC_DEFINE(HAVE_LIBPROJ)
-  AC_SUBST([HAVE_LIBPROJ])
-  PROJ_CONFIG="yes"
-
-else
-  AC_CHECK_LIB(proj,pj_init,,,-lm)
-  AC_CHECK_HEADERS(proj_api.h,,)
-  PROJ_CONFIG="yes"
-fi
-
-AM_CONDITIONAL([PROJ_IS_CONFIG], [test ! x$PROJ_CONFIG = xno])
-AM_CONDITIONAL([PROJECTS_H_IS_CONFIG], [test ! x$PROJECTS_H_CONFIG = xno])
-
-
-dnl
-dnl Has the user requested "incode" EPSG tables, overriding the
-dnl default use of EPSG tables in csv files?  Temporarily unvailable.
-dnl
-
-CSV_CONFIG="no"
-AC_ARG_ENABLE(incode-epsg, [  --enable-incode-epsg    Use C code EPSG tables],, enable_incode_epsg=no)
-
-if test "$enable_incode_epsg" != "no"  -o "$enable_incode_epsg" = ""  ; then
-
-    AC_MSG_CHECKING([if EPSG tables will be read from .csv files])
-    AC_MSG_RESULT([yes])
-    CSV_CONFIG="yes"
-else
-    AC_MSG_CHECKING([if EPSG tables will be read from .csv files])
-    AC_MSG_RESULT([no])
-
-fi
-AM_CONDITIONAL([CSV_IS_CONFIG], [test ! x$CSV_CONFIG = xno])
+AC_SUBST(PROJ_INCLUDE)
 
 
 AC_ARG_ENABLE(towgs84, [  --disable-towgs84       Disable WGS84 parameters for binary compatibility with pre-1.4.1], AC_DEFINE(GEO_NORMALIZE_DISABLE_TOWGS84))
@@ -372,10 +377,8 @@ LOC_MSG([  jpeg support......: ${JPEG_CONFIG}])
 LOC_MSG([  TIFF support......: ${TIFF_CONFIG}])
 LOC_MSG([    -INCLUDE .......: ${TIFF_INC}])
 LOC_MSG([    -PREFIX ........: ${TIFF_PREFIX}])
-LOC_MSG([  PROJ support......: ${PROJ_CONFIG}])
-LOC_MSG([    -INCLUDE .......: ${PROJ_INC}])
-LOC_MSG([    -PREFIX ........: ${PROJ_PREFIX}])
-LOC_MSG([  Incode CSV support: ${CSV_CONFIG}])
+LOC_MSG([  PROJ support......: yes])
+LOC_MSG([    -INCLUDE .......: ${PROJ_INCLUDE}])
 
 LOC_MSG([  LIBS.....................: ${LIBS}])
 LOC_MSG()

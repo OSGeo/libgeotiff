@@ -27,9 +27,6 @@ reporting of corner points. <p>
 The <b>-proj4</b> flag forces listgeo to report the PROJ.4 projection
 string it uses for reprojecting corners to lat/long.<p>
 
-The <b>-t tabledir</b> flag overrides the programs concept of how to file the
-EPSG CSV files, causing it to look in directory "tabledir".  <p>
-
 <h2>GeoTIFF Metadata Format</h2>
 
 For the formalist junkies, we will define a GeoTIFF metadata format
@@ -94,12 +91,8 @@ Following the formal metadata report, there is an optional (use -no_norm
 to supress) report on the <i>normalized</i> projection parameters for the
 file.  This is an attempt to lookup PCS and GCS definitions to get detailed
 datum, ellipsoid, and projection definitions for the file.  In general it
-requires access to the EPSG CSV files to work properly.  The GEOTIFF_CSV 
-environment variable can be used to point to directory containing the EPSG
-CSV files (normally distributed with libgeotiff, or this executable).  If
-GEOTIFF_CSV is not defined listgeo will look for a csv subdirectory, or
-the /usr/local/shared/epsg_csv directory.  The -t commandline switch can
-also be used to indicate where the CSV files are located.<p>
+requires access to the EPSG database provided by the PROJ library to work
+properly.<p>
 
 Following the normalized projection information listgeo will report the
 positions of the four corner coordinates, and if possible their lat/long

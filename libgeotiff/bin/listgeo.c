@@ -17,8 +17,6 @@
 
 static void WriteTFWFile( GTIF * gtif, const char * tif_filename );
 static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int, int, int );
-static const char *CSVFileOverride( const char * );
-static const char *CSVDirName = NULL;
 static TIFF *st_setup_test_info();
 
 void Usage()
@@ -53,11 +51,6 @@ int main(int argc, char *argv[])
     {
         if( strcmp(argv[i],"-no_norm") == 0 )
             norm_print_flag = 0;
-        else if( strcmp(argv[i],"-t") == 0 )
-        {
-            CSVDirName = argv[++i];
-            SetCSVFilenameHook( CSVFileOverride );
-        }
         else if( strcmp(argv[i],"-tfw") == 0 )
             tfw_flag = 1;
         else if( strcmp(argv[i],"-proj4") == 0 )
@@ -128,7 +121,7 @@ int main(int argc, char *argv[])
             int		xsize, ysize;
             
             printf( "\n" );
-            GTIFPrintDefn( &defn, stdout );
+            GTIFPrintDefnEx( gtif, &defn, stdout );
 
             if( proj4_print_flag )
             {
@@ -149,29 +142,13 @@ int main(int argc, char *argv[])
         ST_Destroy( (ST_TIFF *) tif );
     else
         XTIFFClose(tif);
-    GTIFDeaccessCSV();
     return 0;
 		
   failure:
     fprintf(stderr,"failure in listgeo\n");
     if (tif) XTIFFClose(tif);
     if (gtif) GTIFFree(gtif);
-    GTIFDeaccessCSV();
     return 1;
-}
-
-static const char *CSVFileOverride( const char * pszInput )
-
-{
-    static char		szPath[1024];
-
-#ifdef WIN32
-    sprintf( szPath, "%s\\%s", CSVDirName, pszInput );
-#else    
-    sprintf( szPath, "%s/%s", CSVDirName, pszInput );
-#endif    
-
-    return( szPath );
 }
 
 /*

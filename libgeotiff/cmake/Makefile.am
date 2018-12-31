@@ -1,5 +1,5 @@
 EXTRA_DIST  = 	FindGeoTIFF.cmake \
-		FindPROJ4.cmake  \
+		FindPROJ.cmake  \
 		geo_config.h.in \
 		project-config-version.cmake.in \
 		project-config.cmake.in \

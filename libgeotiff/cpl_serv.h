@@ -249,45 +249,6 @@ char GTIF_DLL   **CSLTokenizeStringComplex(const char *pszString,
                                    const char *pszDelimiter,
                                    int bHonourStrings, int bAllowEmptyTokens );
 
-/* ==================================================================== */
-/*      .csv file related functions (from cpl_csv.c)                    */
-/* ==================================================================== */
-
-typedef enum {
-    CC_ExactString,
-    CC_ApproxString,
-    CC_Integer
-} CSVCompareCriteria;
-
-#define CSVFilename gtCSVFilename
-#define CSVReadParseLine gtCSVReadParseLine
-#define CSVScanLines gtCSVScanLines
-#define CSVScanFile gtCSVScanFile
-#define CSVScanFileByName gtCSVScanFileByName
-#define CSVGetFieldId gtCSVGetFieldId
-#define CSVDeaccess gtCSVDeaccess
-#define CSVGetField gtCSVGetField
-#define SetCSVFilenameHook gtSetCSVFilenameHook
-#define CSVGetFileFieldId gtCSVGetFileFieldId
-
-const char GTIF_DLL *CSVFilename( const char * );
-
-char GTIF_DLL **CSVReadParseLine( FILE * );
-char GTIF_DLL **CSVScanLines( FILE *, int, const char *, CSVCompareCriteria );
-char GTIF_DLL **CSVScanFile( const char *, int, const char *,
-                            CSVCompareCriteria );
-char GTIF_DLL **CSVScanFileByName( const char *, const char *, const char *,
-                                  CSVCompareCriteria );
-int GTIF_DLL CSVGetFieldId( FILE *, const char * );
-int GTIF_DLL CSVGetFileFieldId( const char *, const char * );
-
-void GTIF_DLL CSVDeaccess( const char * );
-
-const char GTIF_DLL *CSVGetField( const char *, const char *, const char *,
-                                 CSVCompareCriteria, const char * );
-
-void GTIF_DLL SetCSVFilenameHook( const char *(*)(const char *) );
-
 CPL_C_END
 
 #endif /* ndef CPL_SERV_H_INCLUDED */

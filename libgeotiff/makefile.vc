@@ -17,7 +17,6 @@ PREFIX =	release
 BINDIR =	$(PREFIX)\bin
 LIBDIR =	$(PREFIX)\lib
 INCDIR =	$(PREFIX)\include
-DATADIR =	$(PREFIX)\share\epsg_csv
 
 #
 CC      = cl
@@ -52,7 +51,6 @@ OBJS    = \
 	geo_normalize.obj \
 	geotiff_proj4.obj \
 	geo_simpletags.obj \
-	cpl_csv.obj \
 	cpl_serv.obj
 
 all:    geo_config.h geotiff.lib $(DLLNAME) listgeo.exe geotifcp.exe
@@ -116,9 +114,6 @@ geo_normalize.obj: geo_normalize.c
 geotiff_proj4.obj: geotiff_proj4.c
 	$(CC) -c $(CFLAGS) geotiff_proj4.c
 
-cpl_csv.obj: cpl_csv.c
-	$(CC) -c $(CFLAGS) cpl_csv.c
-
 cpl_serv.obj: cpl_serv.c
 	$(CC) -c $(CFLAGS) cpl_serv.c
 
@@ -132,10 +127,8 @@ clean:
 install:	all
 	-mkdir $(PREFIX)
 	-mkdir $(BINDIR)
-	-mkdir $(DATADIR)
 	copy *.dll $(BINDIR)
 	copy *.exe $(BINDIR)
-	-copy csv\*.csv $(DATADIR)	
 
 devinstall:	install
 	-mkdir $(INCDIR)

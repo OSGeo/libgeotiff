@@ -342,9 +342,6 @@ file as well as the metadata file.
 The -no_norm flag will supress reporting of normalized parameters, and
 reporting of corner points. 
 
-The "-t tabledir" flag overrides the programs concept of how to file the
-EPSG CSV files, causing it to look in directory "tabledir". 
-
 ------------------------
 GeoTIFF Metadata Format:
 
