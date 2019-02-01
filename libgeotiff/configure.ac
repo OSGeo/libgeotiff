@@ -140,6 +140,7 @@ if test "${ZIP_CONFIG}" != "no" ; then
             AC_MSG_RESULT([using zlib from $with_zip/include]) 
             HAVE_ZLIB="yes"
             ZIP_CONFIG="yes"
+            LIBS="-L${with_zip}/lib -lz $LIBS"
         fi
     fi
 
