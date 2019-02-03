@@ -25,8 +25,6 @@ dnl #########################################################################
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
 AC_PROG_CC
-AC_PROG_CXX
-AC_PROG_CXXCPP
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
@@ -46,7 +44,6 @@ dnl #########################################################################
 m4_define([debug_default],[no])
 
 CFLAGS="$CFLAGS"
-CXXFLAGS="$CXXFLAGS"
 
 dnl We want to honor the users wishes with regard to linking.
 LIBS="$LDFLAGS $LIBS"
@@ -82,11 +79,9 @@ AC_MSG_CHECKING([for debug enabled])
 
 if test "x$enable_debug" = "xyes"; then
     CFLAGS="$CFLAGS -g -DDEBUG -Wall"
-    CXXFLAGS="$CXXFLAGS -g -DDEBUG -Wall"
     AC_MSG_RESULT(yes)
 else
     CFLAGS="$CFLAGS -O3 -DNDEBUG"
-    CXXFLAGS="$CXXFLAGS -O3 -DNDEBUG"
     AC_MSG_RESULT(no)
 fi
 
@@ -367,7 +362,6 @@ LOC_MSG()
 LOC_MSG([  Version..................: ${RELEASE_VERSION}])
 LOC_MSG([  Installation directory...: ${prefix}])
 LOC_MSG([  C compiler...............: ${CC} ${CFLAGS}])
-LOC_MSG([  C++ compiler.............: ${CXX} ${CXXFLAGS}])
 
 LOC_MSG([  Debugging support........: ${enable_debug}])
 LOC_MSG()
