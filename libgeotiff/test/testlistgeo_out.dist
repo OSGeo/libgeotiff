@@ -717,11 +717,11 @@ Prime Meridian: 8901/Greenwich (0.000000/  0d 0' 0.00"E)
 Projection Linear Units: 9001/metre (1.000000m)
 
 Corner Coordinates:
-Upper Left    (  440720.000, 3751320.000)
-Lower Left    (  440720.000, 3751260.000)
-Upper Right   (  440780.000, 3751320.000)
-Lower Right   (  440780.000, 3751260.000)
-Center        (  440750.000, 3751290.000)
+Upper Left    (  440720.000, 3751320.000)  ( 46d30'50.44"E,  7d41'54.99"N)
+Lower Left    (  440720.000, 3751260.000)  ( 46d30'50.50"E,  7d41'53.06"N)
+Upper Right   (  440780.000, 3751320.000)  ( 46d30'52.38"E,  7d41'55.05"N)
+Lower Right   (  440780.000, 3751260.000)  ( 46d30'52.44"E,  7d41'53.12"N)
+Center        (  440750.000, 3751290.000)  ( 46d30'51.44"E,  7d41'54.06"N)
 
 Testing listgeo ../test/data/oblique_mercator_laborde.tif
 Geotiff_Information:
@@ -770,11 +770,11 @@ Prime Meridian: 8901/Greenwich (0.000000/  0d 0' 0.00"E)
 Projection Linear Units: 9001/metre (1.000000m)
 
 Corner Coordinates:
-Upper Left    (  440720.000, 3751320.000)
-Lower Left    (  440720.000, 3751260.000)
-Upper Right   (  440780.000, 3751320.000)
-Lower Right   (  440780.000, 3751260.000)
-Center        (  440750.000, 3751290.000)
+Upper Left    (  440720.000, 3751320.000)  ( 46d30'50.44"E,  7d41'54.99"N)
+Lower Left    (  440720.000, 3751260.000)  ( 46d30'50.50"E,  7d41'53.06"N)
+Upper Right   (  440780.000, 3751320.000)  ( 46d30'52.38"E,  7d41'55.05"N)
+Lower Right   (  440780.000, 3751260.000)  ( 46d30'52.44"E,  7d41'53.12"N)
+Center        (  440750.000, 3751290.000)  ( 46d30'51.44"E,  7d41'54.06"N)
 
 Testing listgeo ../test/data/ProjectedCSTypeGeoKey_5456_lcc1sp.tif
 Geotiff_Information:
