@@ -210,10 +210,6 @@ int  GTIF_DLL  GTIFProj4FromLatLong( GTIFDefn *, int, double *, double * );
 
 int  GTIF_DLL  GTIFSetFromProj4( GTIF *gtif, const char *proj4 );
 
-#if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)
-#  define HAVE_GTIFPROJ4
-#endif
-
 #ifdef __cplusplus
 }
 #endif
