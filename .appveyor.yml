@@ -52,7 +52,7 @@ build_script:
   - cd libgeotiff
   - mkdir build
   - cd build
-  - cmake -G "%VS_FULL%" .. -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release  -DCMAKE_C_FLAGS="/WX" -DCMAKE_CXX_FLAGS="/WX"  -DCMAKE_INSTALL_PREFIX="%BUILD_FOLDER%/install" -DPROJ_INCLUDE_DIR="%BUILD_FOLDER%/install/include" -DPROJ_LIBRARY="%BUILD_FOLDER%/install/lib/proj_6_0.lib" -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+  - cmake -G "%VS_FULL%" .. -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release  -DCMAKE_C_FLAGS="/WX" -DCMAKE_CXX_FLAGS="/WX"  -DCMAKE_INSTALL_PREFIX="%BUILD_FOLDER%/install" -DPROJ_INCLUDE_DIR="%BUILD_FOLDER%/install/include" -DPROJ_LIBRARY="%BUILD_FOLDER%/install/lib/proj_6_1.lib" -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
   - cmake --build . --config Release --target install
 
 test_script:
