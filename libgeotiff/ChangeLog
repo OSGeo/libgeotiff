@@ -1,3 +1,5 @@
+Changelog entries are no longer updated. Use git history for detailed changes
+
 2018-12-11 Even Rouault <even dot rouault at spatialys dot com>
 
 	* geo_print.c: fix wrong test in DefaultRead() that caused erroenous

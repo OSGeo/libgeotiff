@@ -1,0 +1,10 @@
+libgeotiff 1.5.0
+----------------
+
+* Require PROJ >= 6 dependency
+* Remove all CSV files used by geo_normalize API, since libgeotiff now relies
+  on PROJ database for EPSG CRS definitions.
+* geo_normalize.c: SetGTParmIds(): use ProjStraightVertPoleLongGeoKey for CT_PolarStereographic
+* geo_normalize.c: report StdParallel1 for Mercator_2SP when a PCS code is used
+* geo_normalize.c: fix support for Laborde Oblique Mercator
+* listgeo: use PROJ database to display non-hardcoded values of a number of keys

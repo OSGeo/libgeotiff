@@ -13,15 +13,13 @@
 
  4) Update GeoTIFF_VERSION and SO_VERSION in CMakeLists.txt
 
- 5) Add a note to the ChangeLog that a new release is being issued, and what
-    the release number is.
+ 5) Update NEWS
 
  6) Commit the above changes.
 
- 7) Tag the release set in SVN (for now we aren't using branches in libgeotiff)
+ 7) Tag the release
 
-    svn copy https://svn.osgeo.org/metacrs/geotiff/trunk/libgeotiff \
-             https://svn.osgeo.org/metacrs/geotiff/tags/libgeotiff-1.4.0
+    git tag -a -m "Create tag x.y.z" x.y.z
 
  8) Prepare a zip and tar.gz file using a command like:
 
