@@ -210,9 +210,14 @@ int  GTIF_DLL  GTIFProj4FromLatLong( GTIFDefn *, int, double *, double * );
 
 int  GTIF_DLL  GTIFSetFromProj4( GTIF *gtif, const char *proj4 );
 
-#if defined(HAVE_LIBPROJ) && defined(HAVE_PROJECTS_H)
-#  define HAVE_GTIFPROJ4
-#endif
+
+/*
+ * The following functions were used up to libgeotiff 1.4.X series, but
+ * are now no-operation, since there is no longer any CSV use in libgeotiff.
+ */
+void GTIF_DLL GTIFDeaccessCSV( void );
+void GTIF_DLL SetCSVFilenameHook( const char *(*CSVFileOverride)(const char *) );
+
 
 #ifdef __cplusplus
 }
