@@ -216,7 +216,6 @@ int  GTIF_DLL  GTIFSetFromProj4( GTIF *gtif, const char *proj4 );
  * are now no-operation, since there is no longer any CSV use in libgeotiff.
  */
 void GTIF_DLL GTIFDeaccessCSV( void );
-void GTIF_DLL SetCSVFilenameHook( const char *(*CSVFileOverride)(const char *) );
 
 
 #ifdef __cplusplus
