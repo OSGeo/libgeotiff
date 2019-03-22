@@ -35,10 +35,10 @@
 
     scp libgeotiff-1.1.5.{tar.gz,zip} warmerdam@upload.osgeo.org:/osgeo/download/geotiff/libgeotiff
 
- 11) Announce on GeoTIFF mailing list: geotiff@lists.maptools.org
+ 11) Announce on GeoTIFF mailing list: geotiff@lists.osgeo.org
      Include a summary of the ChangeLog items for the most recent release.
 
- 12) Update entry at http://www.freshmeat.net/projects/libgeotiff
+ 12) [outdated ?] Update entry at http://www.freshmeat.net/projects/libgeotiff
 
  13) Update http://geotiff.osgeo.org/ trac wiki page to point to most recent
      release, including the most recent release version number.
