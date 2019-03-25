@@ -253,6 +253,7 @@ char GTIF_DLL   **CSLTokenizeStringComplex(const char *pszString,
  * The following functions were used up to libgeotiff 1.4.X series, but
  * are now no-operation, since there is no longer any CSV use in libgeotiff.
  */
+#define SetCSVFilenameHook gtSetCSVFilenameHook
 void GTIF_DLL SetCSVFilenameHook( const char *(*CSVFileOverride)(const char *) );
 
 
