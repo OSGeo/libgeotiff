@@ -52,7 +52,7 @@ libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_strtod.c \
                         geotiff_proj4.c
 
-libgeotiff_la_LDFLAGS = -version-info 5:0:0
+libgeotiff_la_LDFLAGS = -version-info 5:1:0
 
 libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 
