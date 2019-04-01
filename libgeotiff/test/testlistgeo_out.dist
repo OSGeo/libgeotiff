@@ -1429,7 +1429,7 @@ PCS = 2046 (Hartebeesthoek94 / Lo15)
 Projection = 17515 (South African Survey Grid zone 15)
 Projection Method: CT_TransvMercator_SouthOrientated
    ProjNatOriginLatGeoKey: 0.000000 (  0d 0' 0.00"N)
-   ProjNatOriginLongGeoKey: 15.000000 ( 14d60' 0.00"E)
+   ProjNatOriginLongGeoKey: 15.000000 ( 15d 0' 0.00"E)
    ProjScaleAtNatOriginGeoKey: 1.000000
    ProjFalseEastingGeoKey: 0.000000 m
    ProjFalseNorthingGeoKey: 0.000000 m
@@ -1791,7 +1791,7 @@ Geotiff_Information:
 PCS = 3410 (NSIDC EASE-Grid Global)
 Projection = 19869 (US NSIDC Equal Area global projection)
 Projection Method: CT_CylindricalEqualArea
-   ProjStdParallel1GeoKey: 30.000000 ( 29d60' 0.00"N)
+   ProjStdParallel1GeoKey: 30.000000 ( 30d 0' 0.00"N)
    ProjNatOriginLongGeoKey: 0.000000 (  0d 0' 0.00"E)
    ProjFalseEastingGeoKey: 0.000000 m
    ProjFalseNorthingGeoKey: 0.000000 m

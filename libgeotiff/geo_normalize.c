@@ -2727,6 +2727,11 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
 
     nDegrees = (int) ABS(dfAngle);
     nMinutes = (int) ((ABS(dfAngle) - nDegrees) * 60 + dfRound);
+    if( nMinutes == 60 )
+    {
+        nDegrees ++;
+        nMinutes = 0;
+    }
     dfSeconds = ABS((ABS(dfAngle) * 3600 - nDegrees*3600 - nMinutes*60));
 
     if( EQUAL(pszAxis,"Long") && dfAngle < 0.0 )
