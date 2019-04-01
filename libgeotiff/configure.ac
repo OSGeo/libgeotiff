@@ -211,16 +211,18 @@ if test "$with_libtiff" != "" ; then
 libgeotiff. Please upgrade or use an older version of libgeotiff.]),-lm)
   LIBS="$LIBS_SAVED"
 else
-  AC_CHECK_LIB(tiff,TIFFOpen,[TIFF_CONFIG=yes],
-               AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
+  PKG_CHECK_MODULES(LIBTIFF, libtiff-4,
+                    [TIFF_INC="$LIBTIFF_CFLAGS" LIBS="$LIBS $LIBTIFF_LIBS" TIFF_CONFIG="yes"],
+                    [AC_CHECK_LIB(tiff,TIFFOpen,[TIFF_CONFIG=yes],
+                                  AC_MSG_ERROR([You will need to substantially rewrite libxtiff to
 build libgeotiff without libtiff]),-lm)
-  LIBS_SAVED="$LIBS"
-  AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,[TIFF_CONFIG=yes],
-               AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
+                    LIBS_SAVED="$LIBS"
+                    AC_CHECK_LIB(tiff,TIFFMergeFieldInfo,[TIFF_CONFIG=yes],
+                                 AC_MSG_ERROR([Libtiff 3.6.0 Beta or later required for this version of
 libgeotiff. Please upgrade libtiff or use an older version of libgeotiff.]),-lm)
-  LIBS="$LIBS -ltiff"
-  TIFF_INC=
-  TIFF_CONFIG="yes"
+                    LIBS="$LIBS -ltiff"
+                    TIFF_INC=
+                    TIFF_CONFIG="yes"])
 fi
 
 
