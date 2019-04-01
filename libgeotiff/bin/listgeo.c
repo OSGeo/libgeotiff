@@ -198,8 +198,16 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
 	    } 
 	    else 
 	    {
-		fprintf( fp_out, "  (%s,", GTIFDecToDMS( x, "Long", 2 ) );
-		fprintf( fp_out, "%s)", GTIFDecToDMS( y, "Lat", 2 ) );
+                const char* pszLong = GTIFDecToDMS( x, "Long", 2 );
+                if( pszLong[0] == 0 )
+                {
+                    fprintf( fp_out, "  (invalid)" );
+                }
+                else
+                {
+                    fprintf( fp_out, "  (%s,", pszLong );
+                    fprintf( fp_out, "%s)", GTIFDecToDMS( y, "Lat", 2 ) );
+                }
 	    }
         }
 

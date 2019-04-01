@@ -2721,6 +2721,9 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
     double	dfRound;
     int		i;
 
+    if( !(dfAngle >= -360 && dfAngle <= 360) )
+        return "";
+
     dfRound = 0.5/60;
     for( i = 0; i < nPrecision; i++ )
         dfRound = dfRound * 0.1;
