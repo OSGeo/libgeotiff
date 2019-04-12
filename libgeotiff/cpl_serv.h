@@ -83,8 +83,8 @@
 #endif
 
 #ifndef MAX
-#  define MIN(a,b)      ((a<b) ? a : b)
-#  define MAX(a,b)      ((a>b) ? a : b)
+#  define MIN(a,b)      (((a)<(b)) ? (a) : (b))
+#  define MAX(a,b)      (((a)>(b)) ? (a) : (b))
 #endif
 
 #ifndef NULL
@@ -92,7 +92,7 @@
 #endif
 
 #ifndef ABS
-#  define ABS(x)        ((x<0) ? (-1*(x)) : x)
+#  define ABS(x)        (((x)<0) ? (-1*(x)) : (x))
 #endif
 
 #ifndef EQUAL
@@ -127,15 +127,15 @@
 #define VSIFRead        fread
 
 #ifndef notdef
-#define VSICalloc(x,y)	_GTIFcalloc(x*y)
+#define VSICalloc(x,y)	_GTIFcalloc((x)*(y))
 #define VSIMalloc	_GTIFcalloc
 #define VSIFree	        _GTIFFree
 #define VSIRealloc      _GTIFrealloc
 #else
-#define VSICalloc(x,y)	(((char *) _GTIFcalloc(x*y+4)) + 4)
+#define VSICalloc(x,y)	(((char *) _GTIFcalloc((x)*(y)+4)) + 4)
 #define VSIMalloc(x)	(((char *) _GTIFcalloc((x)+4)) + 4)
 #define VSIFree(x)      _GTIFFree(((char *) (x)) - 4)
-#define VSIRealloc(p,n) (((char *) _GTIFrealloc(((char *)p)-4,(n)+4)) + 4)
+#define VSIRealloc(p,n) (((char *) _GTIFrealloc(((char *)(p))-4,(n)+4)) + 4)
 #endif
 
 
