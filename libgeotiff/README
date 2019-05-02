@@ -11,6 +11,13 @@ specifications, projection codes and use, see the WWW web page at:
 or the download archive at:
 
    http://download.osgeo.org/geotiff/
+   
+Mailing List
+------------
+
+To ask questions and to follow release announcements, subscribe at:
+
+   https://lists.osgeo.org/mailman/listinfo/geotiff
 
 
 Use of LIBTIFF
@@ -31,7 +38,7 @@ Use of PROJ
 PROJ 6 or later is a required dependency of libgeotiff 1.5 or later.
 The latest version of PROJ can be found at
 
-    https://proj4.org/
+   https://proj4.org/
 
 
 Building LIBGEOTIFF:
