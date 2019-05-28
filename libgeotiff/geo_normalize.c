@@ -1451,7 +1451,7 @@ int GTIFGetProjTRFInfoEx( PJ_CONTEXT* ctx,
         /* Get the projection method code */
         proj_coordoperation_get_method_info(ctx, transf,
                                             NULL, /* method name */
-                                            NULL, /* method auth name (should be EPSG) */ 
+                                            NULL, /* method auth name (should be EPSG) */
                                             &pszMethodCode);
         assert( pszMethodCode );
         nProjMethod = atoi(pszMethodCode);
@@ -2469,7 +2469,10 @@ int GTIFGetDefn( GTIF * psGTIF, GTIFDefn * psDefn )
 /*	Extract the Geog units.  					*/
 /* -------------------------------------------------------------------- */
     nGeogUOMLinear = 9001; /* Linear_Meter */
-    GTIFKeyGetSHORT(psGTIF, GeogLinearUnitsGeoKey, &nGeogUOMLinear, 0, 1 );
+    if( GTIFKeyGetSHORT(psGTIF, GeogLinearUnitsGeoKey, &nGeogUOMLinear, 0, 1 ) == 1 )
+    {
+        psDefn->UOMLength = nGeogUOMLinear;
+    }
 
 /* -------------------------------------------------------------------- */
 /*      Try to get a PCS.                                               */

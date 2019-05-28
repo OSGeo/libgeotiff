@@ -111,7 +111,7 @@ Geotiff_Information:
 
 Ellipsoid: 7016/Everest 1830 (1967 Definition) (6377298.56,6356097.55)
 Prime Meridian: 8903/Paris (2.337229/  2d20'14.03"E)
-Projection Linear Units: User-Defined (1.000000m)
+Projection Linear Units: 9001/metre (1.000000m)
 
 Corner Coordinates:
 Upper Left    (130d 0' 0.00"E, 32d 0' 0.00"N)
@@ -143,7 +143,7 @@ Geotiff_Information:
 
 Datum: 6742/Geodetic Datum of Malaysia 2000
 Ellipsoid: 7019/GRS 1980 (6378137.00,6356752.31)
-Projection Linear Units: User-Defined (1.000000m)
+Projection Linear Units: 9001/metre (1.000000m)
 
 Corner Coordinates:
 Upper Left    (130d 0' 0.00"E, 32d 0' 0.00"N)
@@ -175,7 +175,7 @@ Geotiff_Information:
 
 Datum: 6742/Geodetic Datum of Malaysia 2000
 Ellipsoid: 7019/GRS 1980 (6378137.00,6356752.31)
-Projection Linear Units: User-Defined (1.000000m)
+Projection Linear Units: 9001/metre (1.000000m)
 
 Corner Coordinates:
 Upper Left    (130d 0' 0.00"E, 32d 0' 0.00"N)
