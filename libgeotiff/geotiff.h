@@ -47,7 +47,7 @@
 #define GEOTIFF_SPEC_1_1_MINOR_REVISION 1
 
 /* Libary version */
-#define LIBGEOTIFF_VERSION 1510
+#define LIBGEOTIFF_VERSION 1600
 
 #include "geo_config.h"
 #include "geokeys.h"
