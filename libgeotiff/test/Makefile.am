@@ -10,7 +10,9 @@ TESTGEOTIFCP = $(THIS_DIR)/testgeotifcp
 
 EXTRA_DIST = testlistgeo testlistgeo_out.dist \
 	     testgeotifcp testgeotifcp_out.dist \
-             data/byte.tif data/pcs_32064.tif \
+             data/byte.tif \
+             data/byte_v11.tif \
+             data/pcs_32064.tif \
              data/GeogPrimeMeridianGeoKey.tif \
              data/GeogGeodeticDatumGeoKey.tif \
              data/GeogAngularUnitsGeoKey_9114.tif \

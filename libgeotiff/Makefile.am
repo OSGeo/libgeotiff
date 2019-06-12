@@ -32,7 +32,8 @@ include_HEADERS =   geotiff.h \
                     epsg_pcs.inc \
                     epsg_proj.inc \
                     epsg_vertcs.inc \
-                    geokeys.inc
+                    geokeys.inc \
+                    geokeys_v1_1.inc
 
 nodist_include_HEADERS = geo_config.h
 

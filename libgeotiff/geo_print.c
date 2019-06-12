@@ -144,7 +144,7 @@ static void PrintKey(GTIF *gtif, GeoKey *key, GTIFPrintMethod print, void *aux)
     char message[40];
 
     print("      ",aux);
-    print(GTIFKeyName(keyid),aux);
+    print((char*)GTIFKeyNameEx(gtif, keyid),aux);
 
     sprintf(message," (%s,%d): ",GTIFTypeName(key->gk_type),count);
     print(message,aux);

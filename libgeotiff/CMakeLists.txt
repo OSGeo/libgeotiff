@@ -236,6 +236,7 @@ SET(GEOTIFF_LIB_HEADERS
     epsg_proj.inc
     epsg_vertcs.inc
     geokeys.inc
+    geokeys_v1_1.inc
     libxtiff/xtiffio.h)
 
 SET(GEOTIFF_MAN_PAGES
