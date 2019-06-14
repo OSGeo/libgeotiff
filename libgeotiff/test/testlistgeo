@@ -34,6 +34,10 @@ echo "Testing listgeo ${DATA_DIR}/byte.tif" >> ${OUT}
 $EXE ${DATA_DIR}/byte.tif >>${OUT}
 echo "" >>${OUT}
 
+echo "Testing listgeo ${DATA_DIR}/byte_v11.tif" >> ${OUT}
+$EXE ${DATA_DIR}/byte_v11.tif >>${OUT}
+echo "" >>${OUT}
+
 echo "Testing listgeo ${DATA_DIR}/pcs_32064.tif" >> ${OUT}
 $EXE ${DATA_DIR}/pcs_32064.tif >>${OUT}
 echo "" >>${OUT}

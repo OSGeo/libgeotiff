@@ -43,12 +43,28 @@ $EXE -g tmp_albers_equal_area.txt ${DATA_DIR}/byte.tif tmp_albers_equal_area.tif
 $LISTGEO_EXE tmp_albers_equal_area.tif >> ${OUT}
 rm -f tmp_albers_equal_area.txt
 rm -f tmp_albers_equal_area.tif
+echo "" >> ${OUT}
 
 $LISTGEO_EXE ${DATA_DIR}/ProjectedCSTypeGeoKey_3083_albers_equal_area.tif > tmp_ProjectedCSTypeGeoKey_3083_albers_equal_area.txt
 $EXE -g tmp_ProjectedCSTypeGeoKey_3083_albers_equal_area.txt ${DATA_DIR}/byte.tif tmp_ProjectedCSTypeGeoKey_3083_albers_equal_area.tif
 $LISTGEO_EXE tmp_ProjectedCSTypeGeoKey_3083_albers_equal_area.tif >> ${OUT}
 rm -f tmp_ProjectedCSTypeGeoKey_3083_albers_equal_area.txt
 rm -f tmp_ProjectedCSTypeGeoKey_3083_albers_equal_area.tif
+echo "" >> ${OUT}
+
+# Test copying a GeoTIFF v1.1 file
+$LISTGEO_EXE ${DATA_DIR}/byte_v11.tif > tmp_byte_v11.txt
+$EXE -g tmp_byte_v11.txt ${DATA_DIR}/byte.tif tmp_byte_v11.tif
+$LISTGEO_EXE tmp_byte_v11.tif >> ${OUT}
+rm -f tmp_byte_v11.txt
+rm -f tmp_byte_v11.tif
+echo "" >> ${OUT}
+
+# Test changing the version number
+$EXE -v 1:1:1 ${DATA_DIR}/byte.tif tmp_byte_v11.tif
+$LISTGEO_EXE tmp_byte_v11.tif >> ${OUT}
+rm -f tmp_byte_v11.tif
+echo "" >> ${OUT}
 
 # do 'diff' with distribution results
 echo "diff ${OUT} with testgeotifcp_out.dist"

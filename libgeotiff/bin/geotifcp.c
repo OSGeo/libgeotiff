@@ -64,6 +64,35 @@ static	int tiffcp(TIFF*, TIFF*);
 static	int processCompressOptions(char*);
 static	void usage(void);
 
+static  int forced_version = 0;
+static  unsigned short version = 0;
+static  unsigned short key_version = 0;
+static  unsigned short minor_revision = 0;
+
+static int parseVersion(const char* str)
+{
+    if( strlen(str) != 5 || str[1] != ':' || str[3] != ':' )
+        return 0;
+    if( str[0] < '0' || str[0] > '9' )
+        return 0;
+    if( str[2] < '0' || str[2] > '9' )
+        return 0;
+    if( str[4] < '0' || str[4] > '9' )
+        return 0;
+    forced_version = 1;
+    version = str[0] - '0';
+    key_version = str[2] - '0';
+    minor_revision = str[4] - '0';
+    return 1;
+}
+
+static void SetVersionNumbers(GTIF* gtif)
+{
+    if( forced_version )
+    {
+        GTIFSetVersionNumbers(gtif, version, key_version, minor_revision);
+    }
+}
 
 int
 main(int argc, char* argv[])
@@ -84,7 +113,7 @@ main(int argc, char* argv[])
 
 	*mp++ = 'w';
 	*mp = '\0';
-	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:4:aistd8BLMC")) != -1)
+	while ((c = getopt(argc, argv, "c:f:l:o:p:r:w:e:g:4:v:aistd8BLMC")) != -1)
 		switch (c) {
 		case 'a':		/* append to output */
 			mode[0] = 'a';
@@ -158,6 +187,10 @@ main(int argc, char* argv[])
 			break;
 		case '8':
 			*mp++ = '8'; *mp = '\0';
+			break;
+		case 'v':
+			if (!parseVersion(optarg))
+				usage();
 			break;
 		case '?':
 			usage();
@@ -302,6 +335,7 @@ static void InstallGeoTIFF(TIFF *out)
             exit (-1);
         }
     }
+    SetVersionNumbers(gtif);
     GTIFWriteKeys(gtif);
     GTIFFree(gtif);
     return;
@@ -332,6 +366,7 @@ static void CopyGeoTIFF(TIFF * in, TIFF *out)
     gtif->gt_flags |= FLAG_FILE_MODIFIED;
 
     /* Install keys and tags */
+    SetVersionNumbers(gtif);
     GTIFWriteKeys(gtif);
     GTIFFree(gtif);
     return;
@@ -397,6 +432,7 @@ char* stuff[] = {
 " -g file	install GeoTIFF metadata from <file>",
 " -4 proj4_str	install GeoTIFF metadata from proj4 string",
 " -e file	install positioning info from ESRI Worldfile <file>",
+" -v v:k:m      force the GeoTIFF version numbers (v=version, k=key_major, m=minor_rev)",
 " -a		append to output instead of overwriting",
 " -8		write BigTIFF instead of default ClassicTIFF",
 " -o offset	set initial directory offset",
