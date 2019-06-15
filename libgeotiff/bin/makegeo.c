@@ -25,7 +25,7 @@ int main()
 {
 	char *fname = "newgeo.tif";
 	TIFF *tif;  /* TIFF-level descriptor */
-	GTIF *gtif; /* GeoKey-level descriptor */
+	GTIF *gtif = NULL; /* GeoKey-level descriptor */
 	
 	tif=XTIFFOpen(fname,"w");
 	if (!tif) goto failure;

@@ -621,7 +621,7 @@ static	copyFunc pickCopyFunc(TIFF*, TIFF*, uint16, uint16);
 static int
 tiffcp(TIFF* in, TIFF* out)
 {
-	uint16 bitspersample, samplesperpixel, shortv;
+	uint16 bitspersample = 0, samplesperpixel, shortv;
 	copyFunc cf;
 	uint32 w, l;
 
