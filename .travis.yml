@@ -1,16 +1,28 @@
-compiler: gcc
-language: cpp
+matrix:
+  fast_finish: true
+  include:
+
+    - os: linux
+      compiler: gcc
+      language: cpp
+      sudo: required
+      env:
+        - BUILD_NAME=linux
+
+    - os: osx
+      env:
+        - BUILD_NAME=osx
 
 cache:
     directories:
         - $HOME/.ccache
 
 before_install:
-  - sudo apt install g++ libjpeg-dev libz-dev libtiff-dev libsqlite3-dev ccache
+  - if test "$TRAVIS_OS_NAME" = "linux"; then sudo apt install g++ libjpeg-dev libz-dev libtiff-dev libsqlite3-dev ccache; else brew install ccache; fi
 
 install:
   - git clone --depth=1 https://github.com/OSGeo/proj.4 proj
-  - (cd proj && ./autogen.sh && CC="ccache gcc" CXX="ccache g++" ./configure && make -j3 && sudo make install && sudo ldconfig)
+  - (cd proj && ./autogen.sh && CC="ccache gcc" CXX="ccache g++" ./configure && make -j3 && sudo make install && (if test "$TRAVIS_OS_NAME" = "linux"; then sudo ldconfig; fi))
   - cd libgeotiff
   - ./autogen.sh
   - ./configure
