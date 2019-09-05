@@ -1738,11 +1738,11 @@ Geotiff_Information:
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
       GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
-      ProjectedCSTypeGeoKey (Short,1): Code-3035 (ETRS89 / LAEA Europe)
+      ProjectedCSTypeGeoKey (Short,1): Code-3035 (ETRS89-extended / LAEA Europe)
       End_Of_Keys.
    End_Of_Geotiff.
 
-PCS = 3035 (ETRS89 / LAEA Europe)
+PCS = 3035 (ETRS89-extended / LAEA Europe)
 Projection = 19986 (Europe Equal Area 2001)
 Projection Method: CT_LambertAzimEqualArea
    ProjCenterLatGeoKey: 52.000000 ( 52d 0' 0.00"N)
