@@ -246,9 +246,12 @@ if test "x$with_proj" = "xno" ; then
 else
 
   if test "x$with_proj" = "xyes" -o "x$with_proj" = "x"; then
-    ORIG_LIBS="$LIBS"
-    LIBS="-lproj $ORIG_LIBS"
-    AC_CHECK_LIB(proj,proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+    PKG_CHECK_MODULES(PROJ, proj, [LIBS="$LIBS $PROJ_LIBS" PROJ_FOUND=yes], [PROJ_FOUND=no])
+    if test "$PROJ_FOUND" = "no"; then
+        ORIG_LIBS="$LIBS"
+        LIBS="-lproj $ORIG_LIBS"
+        AC_CHECK_LIB(proj,proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
+    fi
     if test "$PROJ_FOUND" = "no"; then
         AC_CHECK_LIB(proj,internal_proj_create_from_wkt,PROJ_FOUND=yes,PROJ_FOUND=no,)
         if test "$PROJ_FOUND" = "yes"; then
