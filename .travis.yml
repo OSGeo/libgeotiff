@@ -12,13 +12,17 @@ matrix:
     - os: osx
       env:
         - BUILD_NAME=osx
+      addons:
+        homebrew:
+            packages:
+            - ccache
 
 cache:
     directories:
         - $HOME/.ccache
 
 before_install:
-  - if test "$TRAVIS_OS_NAME" = "linux"; then sudo apt install g++ libjpeg-dev libz-dev libtiff-dev libsqlite3-dev ccache; else brew install ccache; fi
+  - if test "$TRAVIS_OS_NAME" = "linux"; then sudo apt install g++ libjpeg-dev libz-dev libtiff-dev libsqlite3-dev; fi
 
 install:
   - git clone --depth=1 https://github.com/OSGeo/proj.4 proj
