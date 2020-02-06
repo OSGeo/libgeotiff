@@ -30,13 +30,6 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_LIBTOOL
 
-dnl AC_PROG_CC
-dnl AC_COMPILER_WFLAGS
-
-dnl AC_PROG_RANLIB
-dnl AC_COMPILER_PIC
-dnl AC_LD_SHARED
-
 dnl #########################################################################
 dnl Default compilation flags
 dnl #########################################################################
@@ -74,7 +67,7 @@ dnl #########################################################################
 
 AC_ARG_ENABLE([debug],
     AC_HELP_STRING([--enable-debug=ARG], [Enable debug compilation mode @<:@yes|no@:>@, default=debug_default]),,)
-    
+
 AC_MSG_CHECKING([for debug enabled])
 
 if test "x$enable_debug" = "xyes"; then
