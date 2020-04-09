@@ -20,7 +20,6 @@ static void GTIFPrintCorners( GTIF *, GTIFDefn *, FILE *, int, int, int, int );
 static TIFF *st_setup_test_info();
 
 void Usage()
-
 {
     printf( 
         "%s", 
@@ -28,7 +27,7 @@ void Usage()
         "\n"
         "  -d: report lat/long corners in decimal degrees instead of DMS.\n"
         "  -tfw: Generate a .tfw (ESRI TIFF World) file for the target file.\n"
-        "  -proj4: Report PROJ.4 equivelent projection definition.\n"
+        "  -proj4: Report PROJ.4 equivalent projection definition.\n"
         "  -no_norm: Don't report 'normalized' parameter values.\n"
         "  filename: Name of the GeoTIFF file to report on.\n" );
         
