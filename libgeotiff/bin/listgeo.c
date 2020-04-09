@@ -227,20 +227,29 @@ static void GTIFPrintCorners( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
 
 {
     printf( "\nCorner Coordinates:\n" );
+
+    unsigned short raster_type = RasterPixelIsArea;
+    GTIFKeyGet(gtif, GTRasterTypeGeoKey, &raster_type, 0, 1);
+
+    double xmin = (raster_type == RasterPixelIsArea) ? 0.0 : -0.5;
+    double ymin = xmin;
+    double ymax = ymin + ysize;
+    double xmax = xmin + xsize;
+
     if( !GTIFReportACorner( gtif, defn, fp_out,
-                            "Upper Left", 0.0, 0.0, inv_flag, dec_flag ) )
+                            "Upper Left", xmin, ymin, inv_flag, dec_flag ) )
     {
         printf( " ... unable to transform points between pixel/line and PCS space\n" );
         return;
     }
 
-    GTIFReportACorner( gtif, defn, fp_out, "Lower Left", 0.0, ysize, 
+    GTIFReportACorner( gtif, defn, fp_out, "Lower Left", xmin, ymax,
                        inv_flag, dec_flag );
-    GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xsize, 0.0,
+    GTIFReportACorner( gtif, defn, fp_out, "Upper Right", xmax, ymin,
                        inv_flag, dec_flag );
-    GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xsize, ysize,
+    GTIFReportACorner( gtif, defn, fp_out, "Lower Right", xmax, ymax,
                        inv_flag, dec_flag );
-    GTIFReportACorner( gtif, defn, fp_out, "Center", xsize/2.0, ysize/2.0,
+    GTIFReportACorner( gtif, defn, fp_out, "Center", xmin + xsize/2.0, ymin + ysize/2.0,
                        inv_flag, dec_flag );
 }
 
