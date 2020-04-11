@@ -1987,3 +1987,35 @@ Upper Right   (  440780.000, 3751320.000)  (  3d57'34.54"E, 33d41'55.25"N)
 Lower Right   (  440780.000, 3751260.000)  (  3d57'34.54"E, 33d41'53.31"N)
 Center        (  440750.000, 3751290.000)  (  3d57'33.57"E, 33d41'54.28"N)
 
+Testing listgeo pixel_is_point_wgs84.tif
+Geotiff_Information:
+   Version: 1
+   Key_Revision: 1.0
+   Tagged_Information:
+      ModelTiepointTag (2,3):
+         0                 0                 0                
+         -1                53                0                
+      ModelPixelScaleTag (1,3):
+         2                 2                 0                
+      End_Of_Tags.
+   Keyed_Information:
+      GTModelTypeGeoKey (Short,1): ModelTypeGeographic
+      GTRasterTypeGeoKey (Short,1): RasterPixelIsPoint
+      GeographicTypeGeoKey (Short,1): GCS_WGS_84
+      GeogAngularUnitsGeoKey (Short,1): Angular_Degree
+      End_Of_Keys.
+   End_Of_Geotiff.
+
+GCS: 4326/WGS 84
+Datum: 6326/World Geodetic System 1984
+Ellipsoid: 7030/WGS 84 (6378137.00,6356752.31)
+Prime Meridian: 8901/Greenwich (0.000000/  0d 0' 0.00"E)
+Projection Linear Units: User-Defined (1.000000m)
+
+Corner Coordinates:
+Upper Left    (  2d 0' 0.00"W, 54d 0' 0.00"N)
+Lower Left    (  2d 0' 0.00"W, 50d 0' 0.00"N)
+Upper Right   (  2d 0' 0.00"E, 54d 0' 0.00"N)
+Lower Right   (  2d 0' 0.00"E, 50d 0' 0.00"N)
+Center        (  0d 0' 0.00"E, 52d 0' 0.00"N)
+

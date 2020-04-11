@@ -210,6 +210,10 @@ echo "Testing listgeo equidistant_cylindrical.tif" >> ${OUT}
 $EXE ${DATA_DIR}/equidistant_cylindrical.tif >>${OUT}
 echo "" >>${OUT}
 
+echo "Testing listgeo pixel_is_point_wgs84.tif" >> ${OUT}
+$EXE ${DATA_DIR}/pixel_is_point_wgs84.tif >>${OUT}
+echo "" >>${OUT}
+
 # Normalize for results depending on the exact version of PROJ / EPSG database
 sed "s/ETRS89-extended/ETRS89/g" < ${OUT} > ${OUT}.tmp
 mv ${OUT}.tmp ${OUT}
