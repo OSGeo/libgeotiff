@@ -11,7 +11,7 @@ if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
 endif
 
-AM_CFLAGS = -I./libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
+AM_CFLAGS = -I.$(srcdir)/libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
 
 include_HEADERS =   geotiff.h \
                     geotiffio.h \
@@ -53,7 +53,7 @@ libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_strtod.c \
                         geotiff_proj4.c
 
-libgeotiff_la_LDFLAGS = -version-info 5:1:0
+libgeotiff_la_LDFLAGS = -version-info 5:1:0 ${NOUNDEFINED}
 
 libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 

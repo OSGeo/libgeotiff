@@ -12,7 +12,7 @@ if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
 endif
 
-AM_CFLAGS = -I../ -I../libxtiff $(TIFF_CFLAGS) @PROJ_INCLUDE@
+AM_CFLAGS = -I../  -I$(srcdir)/.. -I$(srcdir)/../libxtiff $(TIFF_CFLAGS) @PROJ_INCLUDE@
 
 LDADD = ../libgeotiff.la
 
