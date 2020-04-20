@@ -45,11 +45,14 @@ install:
   - make dist
   - tar xvzf libgeotiff*.tar.gz
   - cd libgeotiff*
-  - CFLAGS="-Wall -Wextra -Werror" ./configure
+  - mkdir build_autoconf
+  - cd build_autoconf
+  - CFLAGS="-Wall -Wextra -Werror" ../configure
   - make -j3
   - make check
-  - mkdir build
-  - cd build
+  - cd ..
+  - mkdir build_cmake
+  - cd build_cmake
   - cmake .. -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_C_FLAGS="-Wall -Wextra -Werror"
   - make -j3
 
