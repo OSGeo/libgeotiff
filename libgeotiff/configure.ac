@@ -316,7 +316,21 @@ fi
 AC_SUBST(PROJ_INCLUDE)
 
 
-AC_ARG_ENABLE(towgs84, [  --disable-towgs84       Disable WGS84 parameters for binary compatibility with pre-1.4.1], AC_DEFINE(GEO_NORMALIZE_DISABLE_TOWGS84, [], [Disable WGS84 parameters]))
+AC_ARG_ENABLE(towgs84, [  --disable-towgs84       Disable WGS84 parameters for binary compatibility with pre-1.4.1], AC_DEFINE([GEO_NORMALIZE_DISABLE_TOWGS84], [], [Disable WGS84 parameters]))
+
+AC_MSG_CHECKING([if libtool needs -no-undefined flag to build shared libraries])
+case "${host}" in
+   *-*-cygwin* | *-*-mingw*|*-*-aix*)
+    ## Add in the -no-undefined flag to LDFLAGS for libtool.
+    AC_MSG_RESULT([yes])
+    NOUNDEFINED=" -no-undefined"
+    ;;
+  *)
+    ## Don't add in anything.
+    AC_MSG_RESULT([no])
+    ;;
+esac
+AC_SUBST([NOUNDEFINED])
 
 dnl #########################################################################
 dnl Doxygen settings

@@ -217,6 +217,9 @@ mv ${OUT}.tmp ${OUT}
 sed "s/ETRS89-extended/ETRS89/g" < ${TEST_CLI_DIR}/testlistgeo_out.dist > testlistgeo_out.dist.tmp
 
 # do 'diff' with distribution results
+# after cleaning for avoid spurios result due 
+# to different build dir
+sed -e "s/Testing listgeo .*test/Testing listgeo ..\/test/"  -i ${OUT}
 echo "diff ${OUT} with testlistgeo_out.dist"
 diff -u ${OUT} testlistgeo_out.dist.tmp
 if [ $? -ne 0 ] ; then
