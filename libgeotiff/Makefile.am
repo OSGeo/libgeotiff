@@ -11,7 +11,7 @@ if TIFF_IS_CONFIG
 TIFF_CFLAGS = @TIFF_INC@ -DHAVE_TIFF=1
 endif
 
-AM_CFLAGS = -I.$(srcdir)/libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
+AM_CFLAGS = -I$(srcdir)/libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
 
 include_HEADERS =   geotiff.h \
                     geotiffio.h \
