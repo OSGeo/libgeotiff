@@ -54,7 +54,8 @@ EXTRA_DIST = testlistgeo testlistgeo_out.dist \
              data/ProjectedCSTypeGeoKey_3410_lambert_cylindrical_equal_area.tif \
              data/lambert_cylindrical_equal_area.tif \
              data/ProjectedCSTypeGeoKey_4087_equidistant_cylindrical.tif \
-             data/equidistant_cylindrical.tif
+             data/equidistant_cylindrical.tif \
+             data/pixel_is_point_wgs84.tif
 
 check-local:
 	$(TESTLISTGEO) $(LISTGEOEXE)
