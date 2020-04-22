@@ -228,7 +228,7 @@ static void GTIFPrintCorners( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     printf( "\nCorner Coordinates:\n" );
 
     unsigned short raster_type = RasterPixelIsArea;
-    GTIFKeyGet(gtif, GTRasterTypeGeoKey, &raster_type, 0, 1);
+    GTIFKeyGetSHORT(gtif, GTRasterTypeGeoKey, &raster_type, 0, 1);
 
     double xmin = (raster_type == RasterPixelIsArea) ? 0.0 : -0.5;
     double ymin = xmin;
