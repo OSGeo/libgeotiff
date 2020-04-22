@@ -1,8 +1,8 @@
 
 
 m4_define([VERSION_MAJOR], [1])
-m4_define([VERSION_MINOR], [5])
-m4_define([VERSION_POINT], [1])
+m4_define([VERSION_MINOR], [6])
+m4_define([VERSION_POINT], [0])
 m4_define([GEOTIFF_VERSION],
           [VERSION_MAJOR.VERSION_MINOR.VERSION_POINT])
 
