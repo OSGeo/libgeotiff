@@ -16,7 +16,7 @@ To ask questions and to follow release announcements, subscribe at the [mailing 
 
 [PROJ](https://github.com/OSGeo/PROJ)
 
-[SQLite3](https://sqlite.org/index.html)
+[SQLite3](https://sqlite.org/index.html), as a dependency of PROJ
 
 ## Compilation Instructions
 
@@ -54,12 +54,6 @@ cmake -G "%VS_FULL%" .. -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release  -DCMA
 
 cmake --build . --config Release --target install
 
-```
-
-## Mac
-
-```
-#TO DO?
 ```
 
 ## Testing
