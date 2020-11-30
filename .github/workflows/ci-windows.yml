@@ -1,0 +1,78 @@
+name: Windows CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+    env:
+        ARCH: x64
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        id: cache
+        with:
+            path: |
+              c:\vcpkg\installed
+              ${{ github.workspace }}\install-proj
+            key: ${{ runner.os }}-vcpkg-${{ hashFiles('.github/workflows/ci-windows.yml') }}
+
+      - name: Install VCPKG dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          vcpkg install tiff:${{ env.ARCH }}-windows
+          vcpkg install sqlite3:${{ env.ARCH }}-windows
+
+      - name: Install sqlite3.exe
+        run: |
+          Invoke-WebRequest -Uri https://sqlite.org/2018/sqlite-tools-win32-x86-3250100.zip -OutFile sqlite-tools-win32-x86-3250100.zip
+          7z x sqlite-tools-win32-x86-3250100.zip
+          Copy-Item sqlite-tools-win32-x86-3250100/sqlite3.exe .
+          
+      - name: Build PROJ
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          $buildRoot = "${{ github.workspace }}".Replace("\", "/")
+          $vcpkgPath = [System.IO.Path]::GetDirectoryName((Get-Command vcpkg).Source)
+          git clone --depth=1 -b 6.3 https://github.com/OSGeo/PROJ proj
+          New-Item -Type Directory proj\build -Force
+          Push-Location proj\build
+          Copy-Item ..\..\sqlite3.exe .
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\sqlite3.dll .
+          $env:PATH="$($pwd.Path);$($env:PATH)"
+          cmake -G "Visual Studio 16 2019" -A ${{ env.ARCH }} .. -DCMAKE_BUILD_TYPE=Release -DPROJ_TESTS=OFF -DBUILD_LIBPROJ_SHARED=ON -DCMAKE_TOOLCHAIN_FILE="$vcpkgPath/scripts/buildsystems/vcpkg.cmake" -DCMAKE_INSTALL_PREFIX="$buildRoot/install-proj"
+          cmake --build . --config Release --target install
+          Pop-Location
+          
+      - name: Build
+        run: |
+          $buildRoot = "${{ github.workspace }}".Replace("\", "/")
+          $vcpkgPath = [System.IO.Path]::GetDirectoryName((Get-Command vcpkg).Source)
+          New-Item -Type Directory libgeotiff\build -Force
+          Set-Location libgeotiff\build
+          cmake -G "Visual Studio 16 2019" -A ${{ env.ARCH }} .. -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release  -DCMAKE_C_FLAGS="/WX" -DCMAKE_CXX_FLAGS="/WX"  -DCMAKE_INSTALL_PREFIX="$buildRoot/install" -DPROJ_INCLUDE_DIR="$buildRoot/install-proj/include" -DPROJ_LIBRARY="$buildRoot/install-proj/lib/proj.lib" -DCMAKE_TOOLCHAIN_FILE="$vcpkgPath/scripts/buildsystems/vcpkg.cmake"
+          cmake --build . --config Release --target install
+
+      - name: Add runtime dependencies
+        run: |
+          $vcpkgPath = [System.IO.Path]::GetDirectoryName((Get-Command vcpkg).Source)
+          Copy-Item "${{ github.workspace }}\install-proj\bin\*.dll" "${{ github.workspace }}\install\bin\"
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\sqlite3.dll "${{ github.workspace }}\install\bin\"
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\tiff.dll "${{ github.workspace }}\install\bin\"
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\jpeg62.dll "${{ github.workspace }}\install\bin\"
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\zlib1.dll "${{ github.workspace }}\install\bin\"
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\lzma.dll "${{ github.workspace }}\install\bin\"
+
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: libgeotiff-bin-${{ github.run_number }}
+          path: install/
