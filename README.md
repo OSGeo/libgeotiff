@@ -25,7 +25,7 @@ To ask questions and to follow release announcements, subscribe at the [mailing 
 ### Linux
 ```
 cd libgeotiff
-mkdir build && cd build
+mkdir build
 ./autogen.sh
 ./configure
 make dist
