@@ -144,6 +144,9 @@ ValuePair(  VerticalCSTypeGeoKey,	4096)  -- Section 6.3.4.1 codes   --
 ValuePair(  VerticalCitationGeoKey,	4097)  -- documentation --
 ValuePair(  VerticalDatumGeoKey,	4098)  -- Section 6.3.4.2 codes   --
 ValuePair(  VerticalUnitsGeoKey,	4099)  -- Section 6.3.1 (.x) codes   --
+
+See https://github.com/opengeospatial/geotiff/pull/99
+ValuePair(  CoordinateEpochGeoKey, 5120)  -- GeoKey of type double
 </pre>
 */
 
