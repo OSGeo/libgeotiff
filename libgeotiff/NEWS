@@ -1,3 +1,16 @@
+libgeotiff 1.7.0
+----------------
+
+* Add CoordinateEpochGeoKey = 5120 of type DOUBLE to store coordinate epoch of
+  tie points / geotransform matrix for dynamic CRS.
+  See https://github.com/opengeospatial/geotiff/pull/99
+* geo_normalize.h/c: rename variables to please codespell
+* GTIFGetGCSInfoEx(): use proj_crs_get_datum_forced() for PROJ >= 8 to avoid
+  issues with datum ensembles (fixes #54)
+* GTIFGetGCSInfoEx(): remove dead code (GDAL Coverity CID 1432690)
+* geo_normalize.c: follow-up to e06625c4e5bcce9f9217d1d5a43dc6af73156283 to avoid
+  look up of user-defined GeogGeodeticDatumGeoKey that cause PROJ warnings (fixes #41)
+
 libgeotiff 1.6.0
 ----------------
 
