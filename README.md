@@ -8,7 +8,9 @@ This library is designed to permit the extraction and parsing of the "GeoTIFF" K
 
 Archived releases can be found on the [GitHub releases page](https://github.com/OSGeo/libgeotiff/releases) or the [OSGeo archive page](http://download.osgeo.org/geotiff/)
 
-To ask questions and to follow release announcements, subscribe at the [mailing list](https://lists.osgeo.org/mailman/listinfo/geotiff) or open an [issue](https://github.com/OSGeo/libgeotiff/issues)
+To ask questions and to follow release announcements, subscribe at the [mailing list](https://lists.osgeo.org/mailman/listinfo/geotiff).
+
+You can also report [issues](https://github.com/OSGeo/libgeotiff/issues) (do not use issue tracker for questions)
 
 ## Dependencies
 
