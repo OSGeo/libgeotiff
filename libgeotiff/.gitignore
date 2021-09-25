@@ -8,6 +8,10 @@ config.guess
 config.sub
 configure
 depcomp
+geo_config.h.in
+geo_config.h.in~
+INSTALL
+install-sh
 libxtiff/Makefile.in
 ltmain.sh
 m4/libtool.m4
