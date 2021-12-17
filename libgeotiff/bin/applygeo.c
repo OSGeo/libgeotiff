@@ -1,4 +1,5 @@
 /* applygeo.c */
+#include <stdint.h>
 #include <stdlib.h>
 #include "geotiff.h"
 #include "xtiffio.h"
@@ -10,8 +11,8 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
     GTIF *gtif; /* GeoKey-level descriptor */
     FILE *fp;
 
-    uint16 *panVI = NULL;
-    uint16 nKeyCount;
+    uint16_t *panVI = NULL;
+    uint16_t nKeyCount;
      
     tif = XTIFFOpen(tiffile, "r+");
     if (!tif)
@@ -28,7 +29,7 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
     if( TIFFGetField( tif, TIFFTAG_GEOKEYDIRECTORY, 
                       &nKeyCount, &panVI ) )
     {
-        uint16 anGKVersionInfo[4] = { 1, 1, 0, 0 };
+        uint16_t anGKVersionInfo[4] = { 1, 1, 0, 0 };
         double  adfDummyDoubleParams[1] = { 0.0 };
 
         TIFFSetField( tif, TIFFTAG_GEOKEYDIRECTORY, 

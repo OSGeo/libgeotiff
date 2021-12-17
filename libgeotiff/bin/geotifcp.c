@@ -9,6 +9,7 @@
  * and a lot of legal stuff denying liability for anything.
  */
 
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,22 +40,22 @@
 int getopt();
 
 static  int outtiled = -1;
-static  uint32 tilewidth;
-static  uint32 tilelength;
+static  uint32_t tilewidth;
+static  uint32_t tilelength;
 static  int convert_8_to_4 = 0;
 
-static	uint16 config;
-static	uint16 compression;
-static	uint16 predictor;
-static	uint16 fillorder;
-static	uint32 rowsperstrip;
-static	uint32 g3opts;
+static	uint16_t config;
+static	uint16_t compression;
+static	uint16_t predictor;
+static	uint16_t fillorder;
+static	uint32_t rowsperstrip;
+static	uint32_t g3opts;
 static	int ignore = FALSE;		/* if true, ignore read errors */
-static	uint32 defg3opts = (uint32) -1;
+static	uint32_t defg3opts = (uint32_t) -1;
 static	int quality = 75;		/* JPEG quality */
 static	int jpegcolormode = JPEGCOLORMODE_RGB;
-static	uint16 defcompression = (uint16) -1;
-static	uint16 defpredictor = (uint16) -1;
+static	uint16_t defcompression = (uint16_t) -1;
+static	uint16_t defpredictor = (uint16_t) -1;
 static 	char *geofile=(char *)0;
 static  char *proj4_string = (char *) 0;
 static  char *worldfile=(char *)0;
@@ -97,12 +98,12 @@ static void SetVersionNumbers(GTIF* gtif)
 int
 main(int argc, char* argv[])
 {
-	uint16 defconfig = (uint16) -1;
-	uint16 deffillorder = 0;
-	uint32 deftilewidth = (uint32) -1;
-	uint32 deftilelength = (uint32) -1;
-	uint32 defrowsperstrip = (uint32) -1;
-	uint32 diroff = 0;
+	uint16_t defconfig = (uint16_t) -1;
+	uint16_t deffillorder = 0;
+	uint32_t deftilewidth = (uint32_t) -1;
+	uint32_t deftilelength = (uint32_t) -1;
+	uint32_t defrowsperstrip = (uint32_t) -1;
+	uint32_t diroff = 0;
 	TIFF* in;
 	TIFF* out;
 	char mode[10];
@@ -345,7 +346,7 @@ static void CopyGeoTIFF(TIFF * in, TIFF *out)
 {
     GTIF *gtif; /* GeoKey-level descriptor */
     double *d_list = NULL;
-    int16   d_list_count;
+    int16_t d_list_count;
 
     /* read definition from source file. */
     gtif = GTIFNew(in);
@@ -376,7 +377,7 @@ static void
 processG3Options(char* cp)
 {
     if( (cp = strchr(cp, ':')) != NULL ) {
-        if (defg3opts == (uint32) -1)
+        if (defg3opts == (uint32_t) -1)
             defg3opts = 0;
         do {
             cp++;
@@ -488,7 +489,7 @@ usage(void)
 }
 
 static void
-CheckAndCorrectColormap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
+CheckAndCorrectColormap(TIFF* tif, int n, uint16_t* r, uint16_t* g, uint16_t* b)
 {
 	int i;
 
@@ -515,8 +516,8 @@ CheckAndCorrectColormap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
     if (TIFFGetField(in, tag, &v1, &v2, &v3, &v4)) TIFFSetField(out, tag, v1, v2, v3, v4)
 
 static struct cpTag {
-	uint16	tag;
-	uint16	count;
+	uint16_t	tag;
+	uint16_t	count;
 	TIFFDataType type;
 } tags[] = {
 	{ TIFFTAG_SUBFILETYPE,		1, TIFF_LONG },
@@ -540,8 +541,8 @@ static struct cpTag {
 	{ TIFFTAG_DATETIME,		1, TIFF_ASCII },
 	{ TIFFTAG_ARTIST,		1, TIFF_ASCII },
 	{ TIFFTAG_HOSTCOMPUTER,		1, TIFF_ASCII },
-	{ TIFFTAG_WHITEPOINT,		(uint16) -1,TIFF_RATIONAL },
-	{ TIFFTAG_PRIMARYCHROMATICITIES,(uint16) -1,TIFF_RATIONAL },
+	{ TIFFTAG_WHITEPOINT,		(uint16_t) -1,TIFF_RATIONAL },
+	{ TIFFTAG_PRIMARYCHROMATICITIES,(uint16_t) -1,TIFF_RATIONAL },
 	{ TIFFTAG_HALFTONEHINTS,	2, TIFF_SHORT },
 	{ TIFFTAG_BADFAXLINES,		1, TIFF_LONG },
 	{ TIFFTAG_CLEANFAXDATA,		1, TIFF_SHORT },
@@ -551,11 +552,11 @@ static struct cpTag {
 	{ TIFFTAG_DOTRANGE,		2, TIFF_SHORT },
 	{ TIFFTAG_TARGETPRINTER,	1, TIFF_ASCII },
 	{ TIFFTAG_SAMPLEFORMAT,		1, TIFF_SHORT },
-	{ TIFFTAG_YCBCRCOEFFICIENTS,	(uint16) -1,TIFF_RATIONAL },
+	{ TIFFTAG_YCBCRCOEFFICIENTS,	(uint16_t) -1,TIFF_RATIONAL },
 	{ TIFFTAG_YCBCRSUBSAMPLING,	2, TIFF_SHORT },
 	{ TIFFTAG_YCBCRPOSITIONING,	1, TIFF_SHORT },
-	{ TIFFTAG_REFERENCEBLACKWHITE,	(uint16) -1,TIFF_RATIONAL },
-	{ TIFFTAG_EXTRASAMPLES,		(uint16) -1, TIFF_SHORT },
+	{ TIFFTAG_REFERENCEBLACKWHITE,	(uint16_t) -1,TIFF_RATIONAL },
+	{ TIFFTAG_EXTRASAMPLES,		(uint16_t) -1, TIFF_SHORT },
 	{ TIFFTAG_SMINSAMPLEVALUE,	1, TIFF_DOUBLE },
 	{ TIFFTAG_SMAXSAMPLEVALUE,	1, TIFF_DOUBLE },
 };
@@ -570,19 +571,19 @@ cpOtherTags(TIFF* in, TIFF* out)
 		switch (p->type) {
 		case TIFF_SHORT:
 			if (p->count == 1) {
-				uint16 shortv;
+				uint16_t shortv;
 				CopyField(p->tag, shortv);
 			} else if (p->count == 2) {
-				uint16 shortv1, shortv2;
+				uint16_t shortv1, shortv2;
 				CopyField2(p->tag, shortv1, shortv2);
-			} else if (p->count == (uint16) -1) {
-				uint16 shortv1;
-				uint16* shortav;
+			} else if (p->count == (uint16_t) -1) {
+				uint16_t shortv1;
+				uint16_t* shortav;
 				CopyField2(p->tag, shortv1, shortav);
 			}
 			break;
 		case TIFF_LONG:
-			{ uint32 longv;
+			{ uint32_t longv;
 			  CopyField(p->tag, longv);
 			}
 			break;
@@ -590,7 +591,7 @@ cpOtherTags(TIFF* in, TIFF* out)
 			if (p->count == 1) {
 				float floatv;
 				CopyField(p->tag, floatv);
-			} else if (p->count == (uint16) -1) {
+			} else if (p->count == (uint16_t) -1) {
 				float* floatav;
 				CopyField(p->tag, floatav);
 			}
@@ -604,7 +605,7 @@ cpOtherTags(TIFF* in, TIFF* out)
 			if (p->count == 1) {
 				double doublev;
 				CopyField(p->tag, doublev);
-			} else if (p->count == (uint16) -1) {
+			} else if (p->count == (uint16_t) -1) {
 				double* doubleav;
 				CopyField(p->tag, doubleav);
 			}
@@ -615,15 +616,15 @@ cpOtherTags(TIFF* in, TIFF* out)
 }
 
 typedef int (*copyFunc)
-    (TIFF* in, TIFF* out, uint32 l, uint32 w, uint16 samplesperpixel);
-static	copyFunc pickCopyFunc(TIFF*, TIFF*, uint16, uint16);
+    (TIFF* in, TIFF* out, uint32_t l, uint32_t w, uint16_t samplesperpixel);
+static	copyFunc pickCopyFunc(TIFF*, TIFF*, uint16_t, uint16_t);
 
 static int
 tiffcp(TIFF* in, TIFF* out)
 {
-	uint16 bitspersample = 0, samplesperpixel, shortv;
+	uint16_t bitspersample = 0, samplesperpixel, shortv;
 	copyFunc cf;
-	uint32 w, l;
+	uint32_t w, l;
 
 	CopyField(TIFFTAG_IMAGEWIDTH, w);
 	CopyField(TIFFTAG_IMAGELENGTH, l);
@@ -635,7 +636,7 @@ tiffcp(TIFF* in, TIFF* out)
         {
             CopyField(TIFFTAG_BITSPERSAMPLE, bitspersample);
         }
-	if (compression != (uint16)-1)
+	if (compression != (uint16_t)-1)
 		TIFFSetField(out, TIFFTAG_COMPRESSION, compression);
 	else
 		CopyField(TIFFTAG_COMPRESSION, compression);
@@ -662,9 +663,9 @@ tiffcp(TIFF* in, TIFF* out)
 		 * input image or, if nothing is defined, use the
 		 * library default.
 		 */
-		if (tilewidth == (uint32) -1)
+		if (tilewidth == (uint32_t) -1)
 			TIFFGetField(in, TIFFTAG_TILEWIDTH, &tilewidth);
-		if (tilelength == (uint32) -1)
+		if (tilelength == (uint32_t) -1)
 			TIFFGetField(in, TIFFTAG_TILELENGTH, &tilelength);
 		TIFFDefaultTileSize(out, &tilewidth, &tilelength);
 		TIFFSetField(out, TIFFTAG_TILEWIDTH, tilewidth);
@@ -675,24 +676,24 @@ tiffcp(TIFF* in, TIFF* out)
 		 * value from the input image or, if nothing is defined,
 		 * use the library default.
 		 */
-		if (rowsperstrip == (uint32) -1)
+		if (rowsperstrip == (uint32_t) -1)
 			TIFFGetField(in, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
 		rowsperstrip = TIFFDefaultStripSize(out, rowsperstrip);
 		TIFFSetField(out, TIFFTAG_ROWSPERSTRIP, rowsperstrip);
 	}
-	if (config != (uint16) -1)
+	if (config != (uint16_t) -1)
 		TIFFSetField(out, TIFFTAG_PLANARCONFIG, config);
 	else
 		CopyField(TIFFTAG_PLANARCONFIG, config);
-	if (g3opts != (uint32) -1)
+	if (g3opts != (uint32_t) -1)
 		TIFFSetField(out, TIFFTAG_GROUP3OPTIONS, g3opts);
 	else
 		CopyField(TIFFTAG_GROUP3OPTIONS, g3opts);
 	if (samplesperpixel <= 4) {
-		uint16 *tr, *tg, *tb, *ta;
+		uint16_t *tr, *tg, *tb, *ta;
 		CopyField4(TIFFTAG_TRANSFERFUNCTION, tr, tg, tb, ta);
 	}
-	{ uint16 *red, *green, *blue;
+	{ uint16_t *red, *green, *blue;
 	  if (TIFFGetField(in, TIFFTAG_COLORMAP, &red, &green, &blue)) {
 		CheckAndCorrectColormap(in, 1<<bitspersample, red, green, blue);
 		TIFFSetField(out, TIFFTAG_COLORMAP, red, green, blue);
@@ -706,7 +707,7 @@ tiffcp(TIFF* in, TIFF* out)
 		break;
 	case COMPRESSION_LZW:
 	case COMPRESSION_DEFLATE:
-		if (predictor != (uint16)-1)
+		if (predictor != (uint16_t)-1)
 			TIFFSetField(out, TIFFTAG_PREDICTOR, predictor);
 		else
 			CopyField(TIFFTAG_PREDICTOR, predictor);
@@ -731,17 +732,17 @@ tiffcp(TIFF* in, TIFF* out)
  */
 #define	DECLAREcpFunc(x) \
 static int x(TIFF* in, TIFF* out, \
-    uint32 imagelength, uint32 imagewidth, tsample_t spp)
+    uint32_t imagelength, uint32_t imagewidth, tsample_t spp)
 
 #define	DECLAREreadFunc(x) \
 static void x(TIFF* in, \
-    unsigned char* buf, uint32 imagelength, uint32 imagewidth, tsample_t spp)
-typedef void (*readFunc)(TIFF*, unsigned char*, uint32, uint32, tsample_t);
+    unsigned char* buf, uint32_t imagelength, uint32_t imagewidth, tsample_t spp)
+typedef void (*readFunc)(TIFF*, unsigned char*, uint32_t, uint32_t, tsample_t);
 
 #define	DECLAREwriteFunc(x) \
 static int x(TIFF* out, \
-    unsigned char* buf, uint32 imagelength, uint32 imagewidth, tsample_t spp)
-typedef int (*writeFunc)(TIFF*, unsigned char*, uint32, uint32, tsample_t);
+    unsigned char* buf, uint32_t imagelength, uint32_t imagewidth, tsample_t spp)
+typedef int (*writeFunc)(TIFF*, unsigned char*, uint32_t, uint32_t, tsample_t);
 
 /*
  * Contig -> contig by scanline for rows/strip change.
@@ -749,7 +750,7 @@ typedef int (*writeFunc)(TIFF*, unsigned char*, uint32, uint32, tsample_t);
 DECLAREcpFunc(cpContig2ContigByRow)
 {
 	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
-	uint32 row;
+	uint32_t row;
 
 	(void) imagewidth; (void) spp;
 	for (row = 0; row < imagelength; row++) {
@@ -773,7 +774,7 @@ DECLAREcpFunc(cpContig2ContigByRow_8_to_4)
 {
     unsigned char *buf_in = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
     unsigned char *buf_out = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(out));
-    uint32 row;
+    uint32_t row;
 
     printf( "Downsample\n" );
 
@@ -816,7 +817,7 @@ DECLAREcpFunc(cpDecodedStrips)
 	(void) imagewidth; (void) spp;
 	if (buf) {
 		tstrip_t s, ns = TIFFNumberOfStrips(in);
-		uint32 row = 0;
+		uint32_t row = 0;
 		for (s = 0; s < ns; s++) {
 			tsize_t cc = (row + rowsperstrip > imagelength) ?
 			    TIFFVStripSize(in, imagelength - row) : stripsize;
@@ -840,7 +841,7 @@ DECLAREcpFunc(cpDecodedStrips)
 DECLAREcpFunc(cpSeparate2SeparateByRow)
 {
 	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
-	uint32 row;
+	uint32_t row;
 	tsample_t s;
 
 	(void) imagewidth;
@@ -868,8 +869,8 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 	unsigned char *inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
 	unsigned char *outbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(out));
 	register unsigned char *inp, *outp;
-	register uint32 n;
-	uint32 row;
+	register uint32_t n;
+	uint32_t row;
 	tsample_t s;
 
 	/* unpack channels */
@@ -905,8 +906,8 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 	unsigned char *inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
 	unsigned char *outbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(out));
 	register unsigned char *inp, *outp;
-	register uint32 n;
-	uint32 row;
+	register uint32_t n;
+	uint32_t row;
 	tsample_t s;
 
 	for (row = 0; row < imagelength; row++) {
@@ -936,10 +937,10 @@ bad:
 
 static void
 cpStripToTile(unsigned char* out, unsigned char* in,
-	uint32 rows, uint32 cols, int outskew, int inskew)
+	uint32_t rows, uint32_t cols, int outskew, int inskew)
 {
 	while (rows-- > 0) {
-		uint32 j = cols;
+		uint32_t j = cols;
 		while (j-- > 0)
 			*out++ = *in++;
 		out += outskew;
@@ -949,10 +950,10 @@ cpStripToTile(unsigned char* out, unsigned char* in,
 
 static void
 cpContigBufToSeparateBuf(unsigned char* out, unsigned char* in,
-	uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp)
+	uint32_t rows, uint32_t cols, int outskew, int inskew, tsample_t spp)
 {
 	while (rows-- > 0) {
-		uint32 j = cols;
+		uint32_t j = cols;
 		while (j-- > 0)
 			*out++ = *in, in += spp;
 		out += outskew;
@@ -962,10 +963,10 @@ cpContigBufToSeparateBuf(unsigned char* out, unsigned char* in,
 
 static void
 cpSeparateBufToContigBuf(unsigned char* out, unsigned char* in,
-	uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp)
+	uint32_t rows, uint32_t cols, int outskew, int inskew, tsample_t spp)
 {
 	while (rows-- > 0) {
-		uint32 j = cols;
+		uint32_t j = cols;
 		while (j-- > 0)
 			*out = *in++, out += spp;
 		out += outskew;
@@ -975,7 +976,7 @@ cpSeparateBufToContigBuf(unsigned char* out, unsigned char* in,
 
 static int
 cpImage(TIFF* in, TIFF* out, readFunc fin, writeFunc fout,
-	uint32 imagelength, uint32 imagewidth, tsample_t spp)
+	uint32_t imagelength, uint32_t imagewidth, tsample_t spp)
 {
 	int status = FALSE;
 	unsigned char* buf = (unsigned char *)
@@ -992,7 +993,7 @@ DECLAREreadFunc(readContigStripsIntoBuffer)
 {
 	tsize_t scanlinesize = TIFFScanlineSize(in);
      	unsigned char *bufp = buf;
-	uint32 row;
+	uint32_t row;
 
 	(void) imagewidth; (void) spp;
 	for (row = 0; row < imagelength; row++) {
@@ -1010,7 +1011,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 	(void) imagewidth;
 	if (scanline) {
 		unsigned char *bufp = buf;
-		uint32 row;
+		uint32_t row;
 		tsample_t s;
 
 		for (row = 0; row < imagelength; row++) {
@@ -1035,12 +1036,12 @@ done:
 DECLAREreadFunc(readContigTilesIntoBuffer)
 {
 	unsigned char* tilebuf = (unsigned char *) _TIFFmalloc(TIFFTileSize(in));
-	uint32 imagew = TIFFScanlineSize(in);
-	uint32 tilew  = TIFFTileRowSize(in);
+	uint32_t imagew = TIFFScanlineSize(in);
+	uint32_t tilew  = TIFFTileRowSize(in);
 	int iskew = imagew - tilew;
 	unsigned char *bufp = buf;
-	uint32 tw, tl;
-	uint32 row;
+	uint32_t tw, tl;
+	uint32_t row;
 
 	(void) spp;
 	if (tilebuf == 0)
@@ -1048,17 +1049,17 @@ DECLAREreadFunc(readContigTilesIntoBuffer)
 	(void) TIFFGetField(in, TIFFTAG_TILEWIDTH, &tw);
 	(void) TIFFGetField(in, TIFFTAG_TILELENGTH, &tl);
 	for (row = 0; row < imagelength; row += tl) {
-		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
-		uint32 colb = 0;
-		uint32 col;
+		uint32_t nrow = (row+tl > imagelength) ? imagelength-row : tl;
+		uint32_t colb = 0;
+		uint32_t col;
 
 		for (col = 0; col < imagewidth; col += tw) {
 			if (TIFFReadTile(in, tilebuf, col, row, 0, 0) < 0 &&
 			    !ignore)
 				goto done;
 			if (colb + tilew > imagew) {
-				uint32 width = imagew - colb;
-				uint32 oskew = tilew - width;
+				uint32_t width = imagew - colb;
+				uint32_t oskew = tilew - width;
 				cpStripToTile(bufp + colb,
 					tilebuf, nrow, width,
 					oskew + iskew, oskew);
@@ -1076,22 +1077,22 @@ done:
 
 DECLAREreadFunc(readSeparateTilesIntoBuffer)
 {
-	uint32 imagew = TIFFScanlineSize(in);
-	uint32 tilew = TIFFTileRowSize(in);
+	uint32_t imagew = TIFFScanlineSize(in);
+	uint32_t tilew = TIFFTileRowSize(in);
 	int iskew  = imagew - tilew;
 	unsigned char* tilebuf = (unsigned char *) _TIFFmalloc(TIFFTileSize(in));
 	unsigned char *bufp = buf;
-	uint32 tw, tl;
-	uint32 row;
+	uint32_t tw, tl;
+	uint32_t row;
 
 	if (tilebuf == 0)
 		return;
 	(void) TIFFGetField(in, TIFFTAG_TILEWIDTH, &tw);
 	(void) TIFFGetField(in, TIFFTAG_TILELENGTH, &tl);
 	for (row = 0; row < imagelength; row += tl) {
-		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
-		uint32 colb = 0;
-		uint32 col;
+		uint32_t nrow = (row+tl > imagelength) ? imagelength-row : tl;
+		uint32_t colb = 0;
+		uint32_t col;
 
 		for (col = 0; col < imagewidth; col += tw) {
 			tsample_t s;
@@ -1104,7 +1105,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 				 * visible portion and skewing factors.
 				 */
 				if (colb + tilew > imagew) {
-					uint32 width = imagew - colb;
+					uint32_t width = imagew - colb;
 					int oskew = tilew - width;
 					cpSeparateBufToContigBuf(bufp+colb+s,
 					    tilebuf, nrow, width,
@@ -1125,7 +1126,7 @@ done:
 DECLAREwriteFunc(writeBufferToContigStrips)
 {
 	tsize_t scanline = TIFFScanlineSize(out);
-	uint32 row;
+	uint32_t row;
 
 	(void) imagewidth; (void) spp;
 	for (row = 0; row < imagelength; row++) {
@@ -1144,11 +1145,11 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 	if (obuf == NULL)
 		return (0);
 	for (s = 0; s < spp; s++) {
-		uint32 row;
+		uint32_t row;
 		for (row = 0; row < imagelength; row++) {
 			unsigned char* inp = buf + s;
 			unsigned char* outp = obuf;
-			uint32 n = imagewidth;
+			uint32_t n = imagewidth;
 
 			while (n-- > 0)
 				*outp++ = *inp, inp += spp;
@@ -1165,13 +1166,13 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 
 DECLAREwriteFunc(writeBufferToContigTiles)
 {
-	uint32 imagew = TIFFScanlineSize(out);
-	uint32 tilew  = TIFFTileRowSize(out);
+	uint32_t imagew = TIFFScanlineSize(out);
+	uint32_t tilew  = TIFFTileRowSize(out);
 	int iskew = imagew - tilew;
 	unsigned char* obuf = (unsigned char *) _TIFFmalloc(TIFFTileSize(out));
 	unsigned char* bufp = buf;
-	uint32 tl, tw;
-	uint32 row;
+	uint32_t tl, tw;
+	uint32_t row;
 
 	(void) spp;
 	if (obuf == NULL)
@@ -1179,9 +1180,9 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 	(void) TIFFGetField(out, TIFFTAG_TILELENGTH, &tl);
 	(void) TIFFGetField(out, TIFFTAG_TILEWIDTH, &tw);
 	for (row = 0; row < imagelength; row += tilelength) {
-		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
-		uint32 colb = 0;
-		uint32 col;
+		uint32_t nrow = (row+tl > imagelength) ? imagelength-row : tl;
+		uint32_t colb = 0;
+		uint32_t col;
 
 		for (col = 0; col < imagewidth; col += tw) {
 			/*
@@ -1189,7 +1190,7 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 			 * visible portion and skewing factors.
 			 */
 			if (colb + tilew > imagew) {
-				uint32 width = imagew - colb;
+				uint32_t width = imagew - colb;
 				int oskew = tilew - width;
 				cpStripToTile(obuf, bufp + colb, nrow, width,
 				    oskew, oskew + iskew);
@@ -1210,22 +1211,22 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 
 DECLAREwriteFunc(writeBufferToSeparateTiles)
 {
-	uint32 imagew = TIFFScanlineSize(out);
+	uint32_t imagew = TIFFScanlineSize(out);
 	tsize_t tilew  = TIFFTileRowSize(out);
 	int iskew = imagew - tilew;
 	unsigned char *obuf = (unsigned char*) _TIFFmalloc(TIFFTileSize(out));
 	unsigned char *bufp = buf;
-	uint32 tl, tw;
-	uint32 row;
+	uint32_t tl, tw;
+	uint32_t row;
 
 	if (obuf == NULL)
 		return (FALSE);
 	(void) TIFFGetField(out, TIFFTAG_TILELENGTH, &tl);
 	(void) TIFFGetField(out, TIFFTAG_TILEWIDTH, &tw);
 	for (row = 0; row < imagelength; row += tl) {
-		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
-		uint32 colb = 0;
-		uint32 col;
+		uint32_t nrow = (row+tl > imagelength) ? imagelength-row : tl;
+		uint32_t colb = 0;
+		uint32_t col;
 
 		for (col = 0; col < imagewidth; col += tw) {
 			tsample_t s;
@@ -1235,7 +1236,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 				 * visible portion and skewing factors.
 				 */
 				if (colb + tilew > imagew) {
-					uint32 width = imagew - colb;
+					uint32_t width = imagew - colb;
 					int oskew = tilew - width;
 
 					cpContigBufToSeparateBuf(obuf,
@@ -1396,10 +1397,10 @@ DECLAREcpFunc(cpSeparateTiles2SeparateStrips)
  * Select the appropriate copy function to use.
  */
 static copyFunc
-pickCopyFunc(TIFF* in, TIFF* out, uint16 bitspersample, uint16 samplesperpixel)
+pickCopyFunc(TIFF* in, TIFF* out, uint16_t bitspersample, uint16_t samplesperpixel)
 {
-	uint16 shortv;
-	uint32 w, l, tw, tl;
+	uint16_t shortv;
+	uint32_t w, l, tw, tl;
 	int bychunk;
 
 	(void) TIFFGetField(in, TIFFTAG_PLANARCONFIG, &shortv);
@@ -1422,7 +1423,7 @@ pickCopyFunc(TIFF* in, TIFF* out, uint16 bitspersample, uint16 samplesperpixel)
 		TIFFGetField(in, TIFFTAG_TILELENGTH, &tl);
 		bychunk = (tw == w && tl == rowsperstrip);
 	} else {
-		uint32 irps = (uint32) -1L;
+		uint32_t irps = (uint32_t) -1L;
 		TIFFGetField(in, TIFFTAG_ROWSPERSTRIP, &irps);
 		bychunk = (rowsperstrip == irps);
 	}
