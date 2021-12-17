@@ -38,15 +38,11 @@
 
 #include <math.h>
 
-#ifdef HAVE_STRING_H
-#  include <string.h>
-#endif
-#if defined(HAVE_STRINGS_H) && !defined(_WIN32)
+#include <string.h>
+#if defined(GEOTIFF_HAVE_STRINGS_H) && !defined(_WIN32)
 #  include <strings.h>
 #endif
-#ifdef HAVE_STDLIB_H
-#  include <stdlib.h>
-#endif
+#include <stdlib.h>
 
 /**********************************************************************
  * Do we want to build as a DLL on windows?
