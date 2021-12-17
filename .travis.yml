@@ -10,7 +10,7 @@ matrix:
         - BUILD_NAME=linux
 
     - os: osx
-      language: objective-c
+      osx_image: xcode13.1
       compiler: clang
       cache:
         apt: true
