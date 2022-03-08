@@ -1,3 +1,17 @@
+libgeotiff 1.7.1
+----------------
+
+* geotiff.h: more precise signature for GTIFDirectoryInfo()
+* applygeo.c/geotifcp.c: use uint16/32_t instead of old libtiff non _t custom types
+* Bump CMake min to 3.0.0 and remove apparently unneeded cmake_policy() declarations
+* CMake: remove libjpeg and libz from linking of libgeotiff itself.
+* geo_config.h: prefix HAVE_xxx and restrict it to GEOTIFF_HAVE_STRINGS_H (fixes #61)
+* GTIFPrintDefn(): avoid potential nullptr deref. CID 1469240
+* CMake: use variable for installation subdirectories, and make sure INTERFACE_INCLUDE_DIRECTORIES is exported (fixes #67)
+* ReadKey(): only allow reading a key with TIFFTagLocation=0 that has a count of 1 to avoid reading an illegal address (and crashing) when using GTIFKeyGet() or PrintKey() (fixes #66)
+* ReadKey(): add extra warning messages
+* CMake: avoid INTERFACE_LINK_LIBRARIES vs LINK_INTERFACE_LIBRARIES_DEBUG warning about TIFF
+
 libgeotiff 1.7.0
 ----------------
 
