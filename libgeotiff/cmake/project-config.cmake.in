@@ -36,6 +36,8 @@ if("@BUILD_SHARED_LIBS@")
 else()
   message (STATUS "  \${@PROJECT_NAME@_LIBRARIES} set to static libraries")
   set (@PROJECT_NAME@_STATIC_LIBRARIES ${@PROJECT_NAME@_LIBRARIES})
+  include(CMakeFindDependencyMacro)
+@CONFIG_DEPENDENCIES@
 endif()
 
 # Read in the exported definition of the library
