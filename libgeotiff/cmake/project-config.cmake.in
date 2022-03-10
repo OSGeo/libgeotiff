@@ -13,11 +13,6 @@
 # @PROJECT_NAME_UPPER@_LIBRARY
 # @PROJECT_NAME_UPPER@_LIBRARIES
 
-message (STATUS "Reading ${CMAKE_CURRENT_LIST_FILE}")
-# @PROJECT_NAME@_VERSION is set by version file
-message (STATUS
-  "@PROJECT_NAME@ configuration, version ${@PROJECT_NAME@_VERSION}")
-
 # Tell the user project where to find our headers and libraries
 get_filename_component (_DIR ${CMAKE_CURRENT_LIST_FILE} PATH)
 get_filename_component (_ROOT "${_DIR}/@PROJECT_ROOT_DIR@" ABSOLUTE)
@@ -27,17 +22,26 @@ set (@PROJECT_NAME@_BINARY_DIRS "${_ROOT}/bin")
 unset (_ROOT)
 unset (_DIR)
 
-message (STATUS "  include directory: \${@PROJECT_NAME@_INCLUDE_DIRS}")
-
 set (@PROJECT_NAME@_LIBRARIES @GEOTIFF_LIBRARY_TARGET@)
 if("@BUILD_SHARED_LIBS@")
-  message (STATUS "  \${@PROJECT_NAME@_LIBRARIES} set to shared library")
   set (@PROJECT_NAME@_SHARED_LIBRARIES ${@PROJECT_NAME@_LIBRARIES})
 else()
-  message (STATUS "  \${@PROJECT_NAME@_LIBRARIES} set to static libraries")
   set (@PROJECT_NAME@_STATIC_LIBRARIES ${@PROJECT_NAME@_LIBRARIES})
   include(CMakeFindDependencyMacro)
 @CONFIG_DEPENDENCIES@
+endif()
+
+if(NOT @PROJECT_NAME@_FIND_QUIETLY)
+  message (STATUS "Reading ${CMAKE_CURRENT_LIST_FILE}")
+  # @PROJECT_NAME@_VERSION is set by version file
+  message (STATUS
+    "@PROJECT_NAME@ configuration, version ${@PROJECT_NAME@_VERSION}")
+  message (STATUS "  include directory: \${@PROJECT_NAME@_INCLUDE_DIRS}")
+  if("@BUILD_SHARED_LIBS@")
+    message (STATUS "  \${@PROJECT_NAME@_LIBRARIES} set to shared library")
+  else()
+    message (STATUS "  \${@PROJECT_NAME@_LIBRARIES} set to static libraries")
+  endif()
 endif()
 
 # Read in the exported definition of the library
