@@ -11,6 +11,10 @@ libgeotiff 1.7.1
 * ReadKey(): only allow reading a key with TIFFTagLocation=0 that has a count of 1 to avoid reading an illegal address (and crashing) when using GTIFKeyGet() or PrintKey() (fixes #66)
 * ReadKey(): add extra warning messages
 * CMake: avoid INTERFACE_LINK_LIBRARIES vs LINK_INTERFACE_LIBRARIES_DEBUG warning about TIFF
+* CMake: Fix dllexport
+* CMake: Revise exported cmake config wrt BUILD_SHARED_LIBS
+* CMake: Revise exported cmake config wrt dependencies
+* CMake: Respect <Pkg>_FIND_QUIETLY
 
 libgeotiff 1.7.0
 ----------------
