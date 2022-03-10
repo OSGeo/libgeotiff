@@ -330,19 +330,20 @@ endif()
 SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES
    OUTPUT_NAME ${GEOTIFF_LIB_NAME})
 
+set(CONFIG_DEPENDENCIES "")
 if(TARGET TIFF::TIFF)
-target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PUBLIC TIFF::TIFF)
-else()
+    set(TIFF_LIBRARIES TIFF::TIFF)
+    string(APPEND CONFIG_DEPENDENCIES "  find_dependency(TIFF)\n")
+endif()
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PUBLIC
     ${TIFF_LIBRARIES})
-endif()
 
 if(TARGET PROJ::proj)
-target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE PROJ::proj)
-else()
+    set(PROJ_LIBRARIES PROJ::proj)
+    string(APPEND CONFIG_DEPENDENCIES "  find_dependency(PROJ CONFIG)\n")
+endif()
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
     ${PROJ_LIBRARIES})
-endif()
 
 target_include_directories(
   ${GEOTIFF_LIBRARY_TARGET}
