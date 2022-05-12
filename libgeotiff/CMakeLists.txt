@@ -335,7 +335,7 @@ if(TARGET TIFF::TIFF)
     set(TIFF_LIBRARIES TIFF::TIFF)
     string(APPEND CONFIG_DEPENDENCIES "  find_dependency(TIFF)\n")
 endif()
-target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PUBLIC
+target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
     ${TIFF_LIBRARIES})
 
 if(TARGET PROJ::proj)
