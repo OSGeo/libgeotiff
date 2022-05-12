@@ -16,22 +16,16 @@ ENDIF()
 ###############################################################################
 # Collect programs to build
 
-SET(GEOTIFF_UTILITIES makegeo listgeo applygeo)
+SET(GEOTIFF_UTILITIES makegeo listgeo applygeo geotifcp)
 
 MESSAGE(STATUS "Adding GeoTIFF utilities to build")
 
 FOREACH(utility ${GEOTIFF_UTILITIES})
     ADD_EXECUTABLE(${utility} ${utility}.c ${GETOPT_SOURCE})
-    TARGET_LINK_LIBRARIES(${utility} PRIVATE xtiff ${GEOTIFF_LIBRARY_TARGET})
+    TARGET_LINK_LIBRARIES(${utility} PRIVATE xtiff ${GEOTIFF_LIBRARY_TARGET} ${TIFF_LIBRARIES})
 ENDFOREACH()
 
-ADD_EXECUTABLE(geotifcp geotifcp.c ${GETOPT_SOURCE})
-TARGET_LINK_LIBRARIES(geotifcp
-    PRIVATE
-    xtiff
-    ${GEOTIFF_LIBRARY_TARGET}
-    ${JPEG_LIBRARIES}
-    ${ZLIB_LIBRARIES})
+TARGET_LINK_LIBRARIES(geotifcp PRIVATE ${JPEG_LIBRARIES} ${ZLIB_LIBRARIES})
 
 SET(GEOTIFF_UTILITIES ${GEOTIFF_UTILITIES} geotifcp )
 
