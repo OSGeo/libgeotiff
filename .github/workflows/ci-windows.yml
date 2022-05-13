@@ -69,7 +69,7 @@ jobs:
           Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\tiff.dll "${{ github.workspace }}\install\bin\"
           Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\jpeg62.dll "${{ github.workspace }}\install\bin\"
           Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\zlib1.dll "${{ github.workspace }}\install\bin\"
-          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\lzma.dll "${{ github.workspace }}\install\bin\"
+          Copy-Item $vcpkgPath\installed\${{ env.ARCH }}-windows\bin\liblzma.dll "${{ github.workspace }}\install\bin\"
 
       - name: Publish artifacts
         uses: actions/upload-artifact@v2

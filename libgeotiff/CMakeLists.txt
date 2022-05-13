@@ -5,6 +5,8 @@
 # Author: Mateusz Loskot <mateusz@loskot.net>
 #
 ###############################################################################
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
+
 PROJECT(GeoTIFF)
 
 include(GNUInstallDirs)
@@ -14,8 +16,6 @@ SET(GEOTIFF_LIBRARY_TARGET geotiff_library)
 
 ##############################################################################
 # CMake settings
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
-
 SET(CMAKE_COLOR_MAKEFILE ON)
 
 # Version information
@@ -311,17 +311,18 @@ endif()
 SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES
    OUTPUT_NAME ${GEOTIFF_LIB_NAME})
 
-set(CONFIG_DEPENDENCIES "")
+set(CONFIG_PUBLIC_DEPENDENCIES "")
+set(CONFIG_PRIVATE_DEPENDENCIES "")
 if(TARGET TIFF::TIFF)
     set(TIFF_LIBRARIES TIFF::TIFF)
-    string(APPEND CONFIG_DEPENDENCIES "  find_dependency(TIFF)\n")
+    string(APPEND CONFIG_PUBLIC_DEPENDENCIES "find_dependency(TIFF)\n")
 endif()
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PUBLIC
     ${TIFF_LIBRARIES})
 
 if(TARGET PROJ::proj)
     set(PROJ_LIBRARIES PROJ::proj)
-    string(APPEND CONFIG_DEPENDENCIES "  find_dependency(PROJ CONFIG)\n")
+    string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(PROJ CONFIG)\n")
 endif()
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
     ${PROJ_LIBRARIES})
