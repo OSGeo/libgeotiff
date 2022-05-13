@@ -5,6 +5,8 @@
 # Author: Mateusz Loskot <mateusz@loskot.net>
 #
 ###############################################################################
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
+
 PROJECT(GeoTIFF)
 
 include(GNUInstallDirs)
@@ -14,8 +16,6 @@ SET(GEOTIFF_LIBRARY_TARGET geotiff_library)
 
 ##############################################################################
 # CMake settings
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
-
 SET(CMAKE_COLOR_MAKEFILE ON)
 
 # Version information
