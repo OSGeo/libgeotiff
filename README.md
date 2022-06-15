@@ -41,7 +41,7 @@ make check
 cd ..
 mkdir build_cmake
 cd build_cmake
-cmake .. -DCMAKE_C_COMPILER_LAUNCHER=ccache DCMAKE_C_FLAGS="-Wall -Wextra -Werror"
+cmake -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_C_FLAGS="-Wall -Wextra -Werror" ..
 make -j3 
 ```
 
