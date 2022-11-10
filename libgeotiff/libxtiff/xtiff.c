@@ -188,6 +188,68 @@ XTIFFClientOpen(const char* name, const char* mode, thandle_t thehandle,
     return tif;
 }
 
+#ifdef HAVE_TIFFClientOpenExt
+
+TIFF*
+XTIFFOpenExt(const char* name, const char* mode, TIFFOpenOptions* opts)
+{
+    TIFF *tif;
+
+    /* Set up the callback */
+    XTIFFInitialize();
+
+    /* Open the file; the callback will set everything up
+     */
+    tif = TIFFOpenExt(name, mode, opts);
+    if (!tif) return tif;
+
+    return tif;
+}
+
+TIFF*
+XTIFFFdOpenExt(int fd, const char* name, const char* mode, TIFFOpenOptions* opts)
+{
+    TIFF *tif;
+
+    /* Set up the callback */
+    XTIFFInitialize();
+
+    /* Open the file; the callback will set everything up
+     */
+    tif = TIFFFdOpenExt(fd, name, mode, opts);
+    if (!tif) return tif;
+
+    return tif;
+}
+
+TIFF*
+XTIFFClientOpenExt(const char* name, const char* mode, thandle_t thehandle,
+                   TIFFReadWriteProc RWProc, TIFFReadWriteProc RWProc2,
+                   TIFFSeekProc SProc, TIFFCloseProc CProc,
+                   TIFFSizeProc SzProc,
+                   TIFFMapFileProc MFProvc, TIFFUnmapFileProc UMFProc,
+                   TIFFOpenOptions* opts)
+{
+    TIFF *tif;
+
+    /* Set up the callback */
+    XTIFFInitialize();
+
+    /* Open the file; the callback will set everything up
+     */
+    tif = TIFFClientOpenExt(name, mode, thehandle,
+                            RWProc, RWProc2,
+                            SProc, CProc,
+                            SzProc,
+                            MFProvc, UMFProc,
+                            opts);
+
+    if (!tif) return tif;
+
+    return tif;
+}
+#endif
+
 /**
  * Close a file opened with XTIFFOpen().
  *

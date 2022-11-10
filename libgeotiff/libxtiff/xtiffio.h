@@ -76,6 +76,24 @@ extern TIFF GTIF_DLL * XTIFFClientOpen(const char* name, const char* mode,
                                       TIFFSeekProc, TIFFCloseProc,
                                       TIFFSizeProc,
                                       TIFFMapFileProc, TIFFUnmapFileProc);
+
+#if TIFFLIB_VERSION > 20220520
+/* TIFFClientOpenExt() available in libtiff >= 4.5.0, which is strictly later after 20220520 */
+#define HAVE_TIFFClientOpenExt
+#endif
+
+#ifdef HAVE_TIFFClientOpenExt
+extern TIFF GTIF_DLL * XTIFFOpenExt(const char* name, const char* mode, TIFFOpenOptions* opts);
+extern TIFF GTIF_DLL * XTIFFFdOpenExt(int fd, const char* name, const char* mode, TIFFOpenOptions* opts);
+extern TIFF GTIF_DLL * XTIFFClientOpenExt(const char* name, const char* mode,
+                                          thandle_t thehandle,
+                                          TIFFReadWriteProc, TIFFReadWriteProc,
+                                          TIFFSeekProc, TIFFCloseProc,
+                                          TIFFSizeProc,
+                                          TIFFMapFileProc, TIFFUnmapFileProc,
+                                          TIFFOpenOptions* opts);
+#endif
+
 #if defined(__cplusplus)
 }
 #endif
