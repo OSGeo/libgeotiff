@@ -59,11 +59,11 @@ $EXE ${DATA_DIR}/ProjLinearUnitsGeoKey_9036.tif >>${OUT}
 echo "" >>${OUT}
 
 echo "Testing listgeo ProjectedCSTypeGeoKey_28191_cassini_soldner.tif" >> ${OUT}
-$EXE ${DATA_DIR}/ProjectedCSTypeGeoKey_28191_cassini_soldner.tif >>${OUT}
+$EXE -no_corners ${DATA_DIR}/ProjectedCSTypeGeoKey_28191_cassini_soldner.tif >>${OUT}
 echo "" >>${OUT}
 
 echo "Testing listgeo cassini_soldner.tif" >> ${OUT}
-$EXE ${DATA_DIR}/cassini_soldner.tif >>${OUT}
+$EXE -no_corners ${DATA_DIR}/cassini_soldner.tif >>${OUT}
 echo "" >>${OUT}
 
 echo "Testing listgeo ProjectedCSTypeGeoKey_27200_new_zealand_mapping_grid.tif" >> ${OUT}
