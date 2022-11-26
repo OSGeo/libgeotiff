@@ -299,13 +299,6 @@ Ellipsoid: 7010/Clarke 1880 (Benoit) (6378300.79,6356566.43)
 Prime Meridian: 8901/Greenwich (0.000000/  0d 0' 0.00"E)
 Projection Linear Units: 9001/metre (1.000000m)
 
-Corner Coordinates:
-Upper Left    (  440720.000, 3751320.000)  ( 40d47'28.08"E, 64d13'29.57"N)
-Lower Left    (  440720.000, 3751260.000)  ( 40d47'27.69"E, 64d13'27.64"N)
-Upper Right   (  440780.000, 3751320.000)  ( 40d47'32.51"E, 64d13'29.40"N)
-Lower Right   (  440780.000, 3751260.000)  ( 40d47'32.12"E, 64d13'27.47"N)
-Center        (  440750.000, 3751290.000)  ( 40d47'30.10"E, 64d13'28.52"N)
-
 Testing listgeo cassini_soldner.tif
 Geotiff_Information:
    Version: 1
@@ -347,13 +340,6 @@ Projection Method: CT_CassiniSoldner
    ProjFalseEastingGeoKey: 170251.555000 m
    ProjFalseNorthingGeoKey: 126867.909000 m
 Projection Linear Units: 9001/metre (1.000000m)
-
-Corner Coordinates:
-Upper Left    (  440720.000, 3751320.000)  ( 40d47'28.08"E, 64d13'29.57"N)
-Lower Left    (  440720.000, 3751260.000)  ( 40d47'27.69"E, 64d13'27.64"N)
-Upper Right   (  440780.000, 3751320.000)  ( 40d47'32.51"E, 64d13'29.40"N)
-Lower Right   (  440780.000, 3751260.000)  ( 40d47'32.12"E, 64d13'27.47"N)
-Center        (  440750.000, 3751290.000)  ( 40d47'30.10"E, 64d13'28.52"N)
 
 Testing listgeo ProjectedCSTypeGeoKey_27200_new_zealand_mapping_grid.tif
 Geotiff_Information:

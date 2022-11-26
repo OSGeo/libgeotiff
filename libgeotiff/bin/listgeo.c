@@ -29,6 +29,7 @@ void Usage()
         "  -tfw: Generate a .tfw (ESRI TIFF World) file for the target file.\n"
         "  -proj4: Report PROJ.4 equivalent projection definition.\n"
         "  -no_norm: Don't report 'normalized' parameter values.\n"
+        "  -no_corners: Don't report corner coordinates.\n"
         "  filename: Name of the GeoTIFF file to report on.\n" );
         
     exit( 1 );
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
     int		i, norm_print_flag = 1, proj4_print_flag = 0;
     int		tfw_flag = 0, inv_flag = 0, dec_flag = 0;
     int         st_test_flag = 0;
+    int     corners = 1;
 
     /*
      * Handle command line options.
@@ -50,6 +52,8 @@ int main(int argc, char *argv[])
     {
         if( strcmp(argv[i],"-no_norm") == 0 )
             norm_print_flag = 0;
+        else if( strcmp(argv[i],"-no_corners") == 0 )
+            corners = 0;
         else if( strcmp(argv[i],"-tfw") == 0 )
             tfw_flag = 1;
         else if( strcmp(argv[i],"-proj4") == 0 )
@@ -130,7 +134,8 @@ int main(int argc, char *argv[])
             
             TIFFGetField( tif, TIFFTAG_IMAGEWIDTH, &xsize );
             TIFFGetField( tif, TIFFTAG_IMAGELENGTH, &ysize );
-            GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize, inv_flag, dec_flag );
+            if( corners )
+                GTIFPrintCorners( gtif, &defn, stdout, xsize, ysize, inv_flag, dec_flag );
         }
 
     }
