@@ -77,6 +77,7 @@ EXTRA_DIST =    autogen.sh \
                 docs/geotifcp.html \
                 docs/index.dox \
                 docs/listgeo.html \
+                libgeotiff.pc \
                 docs/manual.txt
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
