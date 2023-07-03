@@ -8,3 +8,4 @@ Description: GeoTIFF file format library
 Version: @VERSION@
 Libs: "-L${libdir}" -lgeotiff
 Cflags: "-I${includedir}"
+Requires.private: proj, libtiff-4
