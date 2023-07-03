@@ -59,9 +59,6 @@ libgeotiff_la_LIBADD = libxtiff/libxtiff.la
 
 lib_LTLIBRARIES = libgeotiff.la
 
-pkgconfig_DATA = libgeotiff.pc
-pkgconfigdir = $(libdir)/pkgconfig
-
 EXTRA_DIST =    autogen.sh \
                 makefile.vc \
                 geo_config.h.vc \
@@ -77,7 +74,6 @@ EXTRA_DIST =    autogen.sh \
                 docs/geotifcp.html \
                 docs/index.dox \
                 docs/listgeo.html \
-                libgeotiff.pc \
                 docs/manual.txt
 
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
