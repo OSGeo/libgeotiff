@@ -344,7 +344,7 @@ SET(includedir ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR})
 SET(libdir ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
 SET(PACKAGE_NAME ${PROJECT_NAME})
 SET(VERSION ${PROJECT_VERSION})
-configure_file(libgeotiff.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libgeotiff.pc)
+configure_file(libgeotiff.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libgeotiff.pc @ONLY)
 
 INSTALL(
     FILES ${CMAKE_CURRENT_BINARY_DIR}/libgeotiff.pc
