@@ -218,14 +218,24 @@ echo "" >>${OUT}
 sed "s/ETRS89-extended/ETRS89/g" < ${OUT} > ${OUT}.tmp
 mv ${OUT}.tmp ${OUT}
 
-sed "s/ETRS89-extended/ETRS89/g" < ${TEST_CLI_DIR}/testlistgeo_out.dist > testlistgeo_out.dist.tmp
+sed "s/ETRS89-extended/ETRS89/g" < ${TEST_CLI_DIR}/testlistgeo_out.dist > testlistgeo_out.dist.normalized
+
+sed "s/GCS: 4053\/Unspecified datum based upon the International 1924 Authalic Sphere/GCS: 10346\/NSIDC Authalic Sphere/g" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed "s/Datum: 6053\/Not specified (based on International 1924 Authalic Sphere)/Datum: 1360\/NSIDC International 1924 Authalic Sphere/g" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+
+sed "s/GCS: 4053\/Unspecified datum based upon the International 1924 Authalic Sphere/GCS: 10346\/NSIDC Authalic Sphere/g" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
+mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
+sed "s/Datum: 6053\/Not specified (based on International 1924 Authalic Sphere)/Datum: 1360\/NSIDC International 1924 Authalic Sphere/g" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
+mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 
 # do 'diff' with distribution results
 # after cleaning for avoid spurios result due 
 # to different build dir
 sed -e "s/Testing listgeo .*test/Testing listgeo ..\/test/"  -i ${OUT}
 echo "diff ${OUT} with testlistgeo_out.dist"
-diff -u ${OUT} testlistgeo_out.dist.tmp
+diff -u ${OUT} testlistgeo_out.dist.normalized
 if [ $? -ne 0 ] ; then
     echo  ""
     echo "PROBLEMS HAVE OCCURRED"
@@ -236,7 +246,7 @@ else
     echo "TEST OK"
     echo "test file ${OUT} removed"
     echo
-    rm testlistgeo_out.dist.tmp
+    rm testlistgeo_out.dist.normalized
     /bin/rm -f ${OUT}
     exit 0
 fi
