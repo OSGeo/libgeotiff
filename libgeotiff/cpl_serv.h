@@ -135,9 +135,9 @@
 #endif
 
 
-#if !defined(GTIFAtof) 
-#  define GTIFAtof atof 
-#endif 
+#if !defined(GTIFAtof)
+#  define GTIFAtof atof
+#endif
 
 
 /* -------------------------------------------------------------------- */

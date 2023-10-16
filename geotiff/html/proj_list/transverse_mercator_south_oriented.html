@@ -83,19 +83,19 @@
 
 <h3>EPSG Notes</h3>
 
-For the mapping of southern Africa a south oriented Transverse Mercator projection is 
-used. Here the coordinate axes are called Westings and Southings and increment to the 
-West and South from the origin respectively.  The Transverse Mercator formulas need to 
+For the mapping of southern Africa a south oriented Transverse Mercator projection is
+used. Here the coordinate axes are called Westings and Southings and increment to the
+West and South from the origin respectively.  The Transverse Mercator formulas need to
 be modified to cope with this arrangement with<p>
 <pre>
-	Westing, W = k0 *[A + (1 - T + C)A3/6 + (5 - 18T + T2 + 72C - 58e'2)A5/120] - 
+	Westing, W = k0 *[A + (1 - T + C)A3/6 + (5 - 18T + T2 + 72C - 58e'2)A5/120] -
 FE
 
-	Southing, S = k0{M - M0 + *tan*[A2/2 + (5 - T + 9C + 4C2)A4/24 + 
+	Southing, S = k0{M - M0 + *tan*[A2/2 + (5 - T + 9C + 4C2)A4/24 +
 				(61 - 58T + T2 + 600C - 330e'2)A6/720]}- FN
 </pre>
 In these formulas the terms FE and FN have been retained for consistency of the
-terminology.  For the reverse formulas, those for the standard Transverse 
+terminology.  For the reverse formulas, those for the standard Transverse
 Mercator above apply, with the exception that:<p>
 
 <pre>

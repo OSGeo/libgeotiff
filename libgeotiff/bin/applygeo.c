@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "geotiff.h"
 #include "xtiffio.h"
- 
+
 static int
 InstallGeoTIFF(const char *geofile, const char *tiffile)
 {
@@ -13,7 +13,7 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
 
     uint16_t *panVI = NULL;
     uint16_t nKeyCount;
-     
+
     tif = XTIFFOpen(tiffile, "r+");
     if (!tif)
     {
@@ -26,15 +26,15 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
     by writing a dummy geokey directory. (#2546) */
 
 
-    if( TIFFGetField( tif, TIFFTAG_GEOKEYDIRECTORY, 
+    if( TIFFGetField( tif, TIFFTAG_GEOKEYDIRECTORY,
                       &nKeyCount, &panVI ) )
     {
         uint16_t anGKVersionInfo[4] = { 1, 1, 0, 0 };
         double  adfDummyDoubleParams[1] = { 0.0 };
 
-        TIFFSetField( tif, TIFFTAG_GEOKEYDIRECTORY, 
+        TIFFSetField( tif, TIFFTAG_GEOKEYDIRECTORY,
                       4, anGKVersionInfo );
-        TIFFSetField( tif, TIFFTAG_GEODOUBLEPARAMS, 
+        TIFFSetField( tif, TIFFTAG_GEODOUBLEPARAMS,
                       1, adfDummyDoubleParams );
         TIFFSetField( tif, TIFFTAG_GEOASCIIPARAMS, "" );
     }
@@ -45,7 +45,7 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
         fprintf(stderr, "Internal error (GTIFNew)\n");
         return(-2);
     }
- 
+
     /* Read GeoTIFF projection information from geofile */
     fp = fopen(geofile, "r");
     if( fp == NULL )
@@ -60,10 +60,10 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
         return(-4);
     }
     fclose(fp);
- 
+
     /* Install GeoTIFF keys into the TIFF file */
     GTIFWriteKeys(gtif);
- 
+
     /* Clean up */
     GTIFFree(gtif);
     TIFFRewriteDirectory(tif);
@@ -87,23 +87,23 @@ main(int argc, char *argv[])
         fprintf(stderr, usage, "applygeo");
         exit(1);
     }
- 
+
     prog = argv[0];
     geofile = argv[1];
     tiffile = argv[2];
- 
+
     if (!geofile || !tiffile)
     {
         fprintf(stderr, usage, prog);
         exit(1);
     }
- 
+
     rc = InstallGeoTIFF(geofile, tiffile);
     if (rc)
     {
         fprintf(stderr, "%s: error %d applying projection from %s into TIFF %s\n", prog, rc, geofile, tiffile);
         exit(2);
     }
- 
+
     return(0);
 }

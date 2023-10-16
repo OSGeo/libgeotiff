@@ -15,7 +15,7 @@ You can also report [issues](https://github.com/OSGeo/libgeotiff/issues) (do not
 
 ## Dependencies
 
-[LibTIFF](http://www.simplesystems.org/libtiff/) 
+[LibTIFF](http://www.simplesystems.org/libtiff/)
 
 [PROJ](https://github.com/OSGeo/PROJ)
 
@@ -42,7 +42,7 @@ cd ..
 mkdir build_cmake
 cd build_cmake
 cmake -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_C_FLAGS="-Wall -Wextra -Werror" ..
-make -j3 
+make -j3
 ```
 
 ### Windows
@@ -60,7 +60,7 @@ cmake --build . --config Release --target install
 
 ## Testing
 
-There are two demonstration test programs `makegeo` and `listgeo` that create and list-out the GeoTIFF tags and keys associated with a small TIFF file, as well as a full-featured utility called `geotifcp`. These will all be built in the `bin/` directory as a matter of course, though may require modification if you are not using `LibTIFF`, as they make explicit calls to `LibTIFF` for opening the files and setting the tags. 
+There are two demonstration test programs `makegeo` and `listgeo` that create and list-out the GeoTIFF tags and keys associated with a small TIFF file, as well as a full-featured utility called `geotifcp`. These will all be built in the `bin/` directory as a matter of course, though may require modification if you are not using `LibTIFF`, as they make explicit calls to `LibTIFF` for opening the files and setting the tags.
 
 To run them simply call:
 

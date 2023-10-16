@@ -2,7 +2,7 @@ GeoTIFF Information:
 
 FTP Archive:
 ------------
-This is an anonymous ftp archive available for use of the 
+This is an anonymous ftp archive available for use of the
 GeoTIFF mailing list; located at:
 
   ftp://ftp.remotesensing.org/geotiff
@@ -11,7 +11,7 @@ and is mirrored at:
 
   ftp://ftpmcmc.cr.usgs.gov/release/geotiff/
 
-and contains proposals, documentation, and software 
+and contains proposals, documentation, and software
 implementations.
 
 See the GeoTIFF web page for more information.

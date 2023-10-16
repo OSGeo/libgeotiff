@@ -174,7 +174,7 @@ earth. Many approximations exist: several hundred ellipsoids have been defined
 for scientific purposes and about 30 are in day to day use for mapping. The
 size and shape of these ellipsoids can be defined through two parameters.
 Geotiff requires one of these to be</tt>
-<pre>          the semi-major axis (a), 
+<pre>          the semi-major axis (a),
 </pre><tt>and
 the second to be either </tt>
 <pre>          the inverse flattening (1/f) </pre><tt>or
@@ -308,7 +308,7 @@ Geographic Coordinates Systems are encoded:</tt>
 <pre>
      Projected_CS  =  Geographic_CS + Projection
      Geographic_CS =  Angular_Unit + Geodetic_Datum + Prime_Meridian
-     Projection    =  Linear Unit + Coord_Transf_Method + CT_Parameters 
+     Projection    =  Linear Unit + Coord_Transf_Method + CT_Parameters
      Coord_Transf_Method   = { TransverseMercator | LambertCC | ...}
      CT_Parameters = {OriginLatitude + StandardParallel+...}</pre><tt><p>
 (See also the Reference Parameters documentation in  <a href="geotiff2.5.html#2.5.4">section 2.5.4</a>). <p>
@@ -381,9 +381,9 @@ parameters for those codes:</tt>
                     +-----------------------------------+
                     |     EPSG Geodesy Parameters       |
                     |    version 2.1, 2nd June 1995.    |
-                    +-----------------------------------+       
-                           
- 
+                    +-----------------------------------+
+
+
  The European Petroleum Survey Group (EPSG) has compiled and is
  distributing this set of parameters defining various geodetic
  and cartographic coordinate systems to encourage
@@ -394,92 +394,92 @@ parameters for those codes:</tt>
  model.  Parameters map directly to the POSC Epicentre model
  v2.0, except for data item codes which are included in the
  files for data management purposes.  Geodetic datum parameters
- are embedded within the geographic coordinate system file. 
+ are embedded within the geographic coordinate system file.
  This has been done to ease parameter maintenance as there is a
  high correlation between geodetic datum names and geographic
  coordinate system names.  The Projected Coordinate System v2.0
  tabulation consists of systems associated with locally used
  projections.  Systems utilising the popular UTM grid system
  have also been included.
- 
+
  Criteria used for material in these lists include:
-   - information must be in the public domain: "private" data   
+   - information must be in the public domain: "private" data
      is not included.
    - data must be in current use.
    - parameters are given to a precision consistent with
      coordinates being to a precision of one centimetre.
- 
+
  The user assumes the entire risk as to the accuracy and the
  use of this data.  The data may be copied and distributed
  subject to the following conditions:
- 
+
       1)   All data must then be copied without modification
  and all pages must be included;
-           
+
       2)   All components of this data set must be distributed
  together;
-           
-      3)   The data may not be distributed for profit by any 
+
+      3)   The data may not be distributed for profit by any
  third party; and
- 
+
       4)   Acknowledgement to the original source must be
  given.
-           
+
  INFORMATION  PROVIDED IN THIS DOCUMENT IS PROVIDED "AS IS"
- WITHOUT WARRANTY  OF  ANY  KIND,  EITHER  EXPRESSED OR 
+ WITHOUT WARRANTY  OF  ANY  KIND,  EITHER  EXPRESSED OR
  IMPLIED, INCLUDING  BUT  NOT LIMITED TO THE IMPLIED WARRANTIES
  OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
- 
+
  Data is distributed on MS-DOS formatted diskette in comma-
  separated record format.  Additional copies may be obtained
  from Jean-Patrick Girbig at the address below at a cost of
  US$100 to cover media and shipping, payment to be made in
  favour of Petroconsultants S.A at Union Banque Suisses,
  1211 Geneve 11, Switzerland (compte number 403 458 60 K).
- 
+
  The data is to be made available on a bulletin board shortly.
- 
- 
+
+
  Shipping List
  -------------
- 
+
  This data set consists of 8 files:
- 
- PROJCS.CSV  Tabulation of Projected Coordinate Systems to     
+
+ PROJCS.CSV  Tabulation of Projected Coordinate Systems to
              which map grid coordinates may be referenced.
- 
- GEOGCS.CSV  Tabulation of Geographic Coordinate Systems to    
-             which latitude and longitude coordinates may be   
-             referenced.  This table includes the equivalent   
-             geocentric coordinate systems and also the        
+
+ GEOGCS.CSV  Tabulation of Geographic Coordinate Systems to
+             which latitude and longitude coordinates may be
+             referenced.  This table includes the equivalent
+             geocentric coordinate systems and also the
              geodetic datum, reference to which allows latitude
-             and longitude or geocentric XYZ to uniquely       
+             and longitude or geocentric XYZ to uniquely
              describe a location on the earth.
- 
- VERTCS.CSV  Tabulation of Vertical Coordinate Systems to     
+
+ VERTCS.CSV  Tabulation of Vertical Coordinate Systems to
              which heights or depths may be referenced. This
              table is currently in an early form.
- 
- PROJ.CSV    Tabulation of transformation methods and          
-             parameters through which Projected Coordinate     
-             Systems are defined and related to Geographic     
+
+ PROJ.CSV    Tabulation of transformation methods and
+             parameters through which Projected Coordinate
+             Systems are defined and related to Geographic
              Coordinate Systems.
- 
- ELLIPS.CSV  Tabulation of reference ellipsoids upon which     
+
+ ELLIPS.CSV  Tabulation of reference ellipsoids upon which
              geodetic datums are based.
- 
- PMERID.CSV  Tabulation of prime meridians upon which geodetic 
+
+ PMERID.CSV  Tabulation of prime meridians upon which geodetic
              datums are based.
- 
- UNITS.CSV   Tabulation of length units used in Projected and  
-             Vertical Coordinate Systems and angle units used  
+
+ UNITS.CSV   Tabulation of length units used in Projected and
+             Vertical Coordinate Systems and angle units used
              in Geographic Coordinate Systems.
- 
+
  README.TXT  This file.
- 
- 
- 
- 
- 
+
+
+
+
+
 </pre><tt><img src="gifs/clrbar.gif"></tt>
 </body></html>

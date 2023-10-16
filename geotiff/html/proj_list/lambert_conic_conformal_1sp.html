@@ -101,34 +101,34 @@
 
 Conical projections with one standard parallel are normally considered to maintain the nominal map scale along the parallel of latitude which is the line of contact between the imagined cone and the ellipsoid. For a one standard parallel Lambert the natural origin of the projected coordinate system is the intersection of the standard parallel with the longitude of origin (central meridian). See Figure 5. To maintain the conformal property the spacing of the parallels is variable and increases with increasing distance from the standard parallel, while the meridians are all straight lines radiating from a point on the prolongation of the ellipsoid's minor axis. <p>
 
-Sometimes however, although a one standard parallel Lambert is normally considered to have unity scale factor on the standard parallel, a scale factor of 
-slightly less than unity is introduced on this parallel. This is a regular feature of the mapping of some former French territories and has the effect of making the scale 
-factor unity on two other parallels either side of the standard parallel. The projection thus, strictly speaking, becomes a Lambert Conic Conformal projection with two 
+Sometimes however, although a one standard parallel Lambert is normally considered to have unity scale factor on the standard parallel, a scale factor of
+slightly less than unity is introduced on this parallel. This is a regular feature of the mapping of some former French territories and has the effect of making the scale
+factor unity on two other parallels either side of the standard parallel. The projection thus, strictly speaking, becomes a Lambert Conic Conformal projection with two
 standard parallels. From the one standard parallel and its scale factor it is possible to derive the equivalent two standard parallels and then treat the projection as a two standard parallel Lambert conical conformal, but this procedure is seldom adopted.  Since the two parallels obtained in this way will generally not have integer values of degrees or degrees and minutes it is instead usually preferred to select two specific parallels on which the scale factor is to be unity, - as for several State Plane Coordinate systems in the United States.<p>
 
 The choice of the two standard parallels will usually be made according to the latitudinal extent of the area which it is wished to map, the parallels usually being chosen so that they each lie a proportion inboard of the north and south margins of the mapped area. Various schemes and formulas have been developed to make this selection such that the maximum scale distortion within the mapped area is minimised, e.g. Kavraisky in 1934, but whatever two standard parallels are adopted the formulas for the projected coordinates are the same.<p>
 
-For territories with limited latitudinal extent but wide longitudinal width it may sometimes be preferred to use a single projection  rather than several bands or zones 
-of a Transverse Mercator. If the latitudinal extent is also large there may still be a need to use two or more zones if the scale distortion at the extremities of the one 
+For territories with limited latitudinal extent but wide longitudinal width it may sometimes be preferred to use a single projection  rather than several bands or zones
+of a Transverse Mercator. If the latitudinal extent is also large there may still be a need to use two or more zones if the scale distortion at the extremities of the one
 zone becomes too large to be tolerable.<p>
 
 To derive the projected Easting and Northing coordinates of a point with geographical coordinates (*,*) the formulas for the two standard parallel case are:
 <p>
 <pre>
 Easting, E = EF + r sin *
-	Northing, N = NF + rF - r cos *	 
+	Northing, N = NF + rF - r cos *
 
-where 	m = cos*/(1 - e2sin2*)1/2     for m1, *1, and m2, *2 where *1 and *2  are the latitudes 
+where 	m = cos*/(1 - e2sin2*)1/2     for m1, *1, and m2, *2 where *1 and *2  are the latitudes
 of 			the standard parallels
 	t  = tan(*/4 - */2)/[(1 - e sin*)/(1 + e sin*)]e/2   for t1, t2, tF and t using *1,*2,*
 F and * 			respectively
 	n = (loge m1 - loge m2)/(loge t1 - loge t2)
 	F = m1/(nt1n)
-	r =  a F tn         for rF and r, where rF is the radius of the parallel of latitude of the 
+	r =  a F tn         for rF and r, where rF is the radius of the parallel of latitude of the
 false origin
 	* = n(* - *0)
 
-The reverse formulas to derive the latitude and longitude of a point from its Easting and 
+The reverse formulas to derive the latitude and longitude of a point from its Easting and
 Northing values are:
 
 	* = */2 - 2arctan{t'[(1 - esin*)/(1 + esin*)]e/2}
@@ -139,16 +139,16 @@ where
 	*' = arctan [(E- EF)/(rF - (N- NF))]
 and n, F, and rF are derived as for the forward calculation.
 
-With minor modifications these formulas can be used for the single standard parallel 
+With minor modifications these formulas can be used for the single standard parallel
 case. Then
 	E = FE + r sin*
 	N = FN + r0 - r cos*,  using the natural origin rather than the false origin.
 where
 	n = sin *0
 	r = aFtn k0     	for r0, and r
-	t is found for  t0, *0 and t, * and m, F, and * are found as for the two standard 
+	t is found for  t0, *0 and t, * and m, F, and * are found as for the two standard
 parallel case
-	The reverse formulas for * and * are as for the two standard parallel case above, 
+	The reverse formulas for * and * are as for the two standard parallel case above,
 with n, F and r0 as before and
 
 	*' = arctan[(E - FE)/{r0 -(N - FN)}]
@@ -167,7 +167,7 @@ Scale factor at origin            1.000000
 False Eastings  FE               250000.00 m
 False Northings FN              150000.00 m
 
-Forward calculation for: 
+Forward calculation for:
 Latitude:     17 deg 55 min 55.80 sec N  =  0.31297535 rad
 Longitude:  76 deg 56 min 37.26 sec W = -1.34292061 rad
 first gives
@@ -202,7 +202,7 @@ Frank Warmerdam says:
 > following parameters for LCC 1SP:
 
 Cartography is infamous for variations in terminology.  "Natural orgin,"
-indeed.  But I suspect that it is the tangency parallel, thus lat_1=18d00'. 
+indeed.  But I suspect that it is the tangency parallel, thus lat_1=18d00'.
 Also lat_0 same.
 
 My definition for the following would be (sans ellipsoid parameters)
@@ -218,9 +218,9 @@ proj=lcc lat_0=18 lat_1=18 lon_0=-77 k_0=1 x_0=250000 y_0=150000
 Single latitude (I prefer "standard latitude") is tangent form, two standard
 parallels is the secant form.  Most US usage is the secant form.  There should
 be a few tangent forms in the world definition file in my distrubution for some
-central American countries.  The single parallel with k_0 < 1. can also be 
-computed with the secant parameters and, as I recall, there is a formula to 
-work from one to the other.  Not a matter of right or wrong way, just what 
+central American countries.  The single parallel with k_0 < 1. can also be
+computed with the secant parameters and, as I recall, there is a formula to
+work from one to the other.  Not a matter of right or wrong way, just what
 one feels comfortable using.
 
 BTW, I haven't tried it in a *long time* but I believe angular input can

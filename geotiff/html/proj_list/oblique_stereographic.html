@@ -83,23 +83,23 @@
 
 <h3>Notes</h3>
 
-The original GeoTIFF notes didn't include a ScaleAtNatOrigin for 
+The original GeoTIFF notes didn't include a ScaleAtNatOrigin for
 Oblique Stereographic, but I have added it since it is implied by the
-current EPSG tables.  See <a href="random_issues.html#stereographic">Random 
+current EPSG tables.  See <a href="random_issues.html#stereographic">Random
 Issues</a> for some more stereographic issues.<p>
 
 <h3>PROJ.4 Organization</h3>
 
 The EPSG Oblique Stereographic is what is also sometimes known as
 "double stereogrphic" and is distinct from the USGS (Snyder?) version
-which is "proj=stere" in PROJ.4.  See 
+which is "proj=stere" in PROJ.4.  See
 <a href="http://bugzilla.remotesensing.org/show_bug.cgi?id=980">Bug 980</a>.<p>
 
 <b>
 <pre>
-  +proj=sterea +lat_0=<i>Latitude of natural origin</i> 
+  +proj=sterea +lat_0=<i>Latitude of natural origin</i>
                +lon_0=<i>Longitude of natural origin</i>
-               +k_0=<i>Scale factor at natural origin</i> 
+               +k_0=<i>Scale factor at natural origin</i>
                +x_0=<i>False Easting</i>
                +y_0=<i>False Northing</i>
 </pre>
@@ -111,31 +111,31 @@ Stereographic<p>
 
 The Stereographic projection may be imagined to be a projection of the earth's surface onto a plane in contact with the earth at a single tangent point from the opposite end of the diameter through that tangent point. <p>
 
-This projection is best known in its polar form and is frequently used for 
-mapping polar areas where it complements the Universal Transverse Mercator 
-used for lower latitudes.  Its spherical form has also been widely used by the 
-US Geological Survey for planetary mapping and the mapping at small scale of 
-continental hydrocarbon provinces. In its transverse or oblique ellipsoidal 
-forms it is useful for mapping limited areas centred on the point where the 
-plane of the projection is regarded as tangential to the ellipsoid., e.g. the 
+This projection is best known in its polar form and is frequently used for
+mapping polar areas where it complements the Universal Transverse Mercator
+used for lower latitudes.  Its spherical form has also been widely used by the
+US Geological Survey for planetary mapping and the mapping at small scale of
+continental hydrocarbon provinces. In its transverse or oblique ellipsoidal
+forms it is useful for mapping limited areas centred on the point where the
+plane of the projection is regarded as tangential to the ellipsoid., e.g. the
 Netherlands. The tangent point is the origin of the projected coordinate system
-and the meridian through it is regarded as the central meridian. In order to 
-reduce the scale error at the extremities of the projection area it is usual 
-to introduce a scale factor of less than unity at the origin such that a 
-unitary scale factor applies on a near circle centred at the origin and some 
+and the meridian through it is regarded as the central meridian. In order to
+reduce the scale error at the extremities of the projection area it is usual
+to introduce a scale factor of less than unity at the origin such that a
+unitary scale factor applies on a near circle centred at the origin and some
 distance from it. <p>
 
-The coordinate transformation from geographical to projected coordinates is 
-executed via the distance and azimuth of the point from the centre point or 
-origin. For a sphere the formulas are relatively simple. For the ellipsoid the 
-parameters defining the conformal sphere at the tangent point as origin are 
-first derived. The conformal latitudes and longitudes are substituted for the 
+The coordinate transformation from geographical to projected coordinates is
+executed via the distance and azimuth of the point from the centre point or
+origin. For a sphere the formulas are relatively simple. For the ellipsoid the
+parameters defining the conformal sphere at the tangent point as origin are
+first derived. The conformal latitudes and longitudes are substituted for the
 geodetic  latitudes and longitudes of the spherical formulas for the origin and
 the point .<p>
 
 Oblique and Equatorial Stereographic Formula<p>
 
-* Given the geodetic origin of the projection at the tangent point (*0, *0), 
+* Given the geodetic origin of the projection at the tangent point (*0, *0),
 the parameters defining the conformal sphere are:<p>
 
 <pre>
@@ -158,7 +158,7 @@ The conformal latitude and longitude (*0,*0) of the origin are then computed fro
  	*0  = *0
 </pre>
 
-Then for any point with geodetic coordinates (*,*) the equivalent conformal 
+Then for any point with geodetic coordinates (*,*) the equivalent conformal
 latitude and longitude ( * , * ) are computed from <p>
 
 <pre>
@@ -168,8 +168,8 @@ where 	w = c (S1S2e)n
 	S1 = (1+sin*)/(1-sin*)
 	S2 = (1-e.sin*)/(1+e.sin*)
 
-and 	* = n( * - *0 ) + *0 
- 
+and 	* = n( * - *0 ) + *0
+
 Then	B = [1+sin* sin*0 + cos*cos*0cos(* -*0 )]
 
 and	N = FN + 2 R k0 [sin* cos*0 - cos*sin*0cos(* -*0 )] / B
@@ -177,12 +177,12 @@ and	N = FN + 2 R k0 [sin* cos*0 - cos*sin*0cos(* -*0 )] / B
 	E = FE + 2 R k0 cos* sin(* -*0 ) / B
 </pre>
 
-The reverse formulae to compute the geodetic coordinates from the grid 
-coordinates involves computing the conformal values, then the isometric 
+The reverse formulae to compute the geodetic coordinates from the grid
+coordinates involves computing the conformal values, then the isometric
 latitude and finally the geodetic values.<p>
 
-The parameters of the conformal sphere and conformal latitude and longitude 
-at the origin are computed as above. Then for any point with Stereographic 
+The parameters of the conformal sphere and conformal latitude and longitude
+at the origin are computed as above. Then for any point with Stereographic
 grid coordinates (E,N) :<p>
 
 <pre>
@@ -204,29 +204,29 @@ First approximation 	*1 = 2 tan-1 e*  - * / 2  where e=base of natural logarithm
 			*i = isometric latitude at *i
 
 where			*i= ln[{tan(*i/2+* / 4}  {(1-e sin*i)/(1+e sin*i)}e/2]
- 
+
 Then iterate		*i+1 = *i - ( *i - * ) cos *i ( 1 -e2 sin2*i) / (1 - e2)
 
 until the change in 	*   is sufficiently small.
 </pre>
 
-An alternative approach is given by Snyder, where, instead of defining a single conformal 
-sphere at the origin point , the conformal latitude at each point on the ellipsoid is 
-computed. The conformal longitude is then always equivalent to the geodetic longitude. 
-This approach is a valid alternative to the above, but gives slightly different results away 
+An alternative approach is given by Snyder, where, instead of defining a single conformal
+sphere at the origin point , the conformal latitude at each point on the ellipsoid is
+computed. The conformal longitude is then always equivalent to the geodetic longitude.
+This approach is a valid alternative to the above, but gives slightly different results away
 from the origin point.<P>
 
-	
-If the projection is the equatorial case, *0 and *0 will be zero degrees and the formulas are 
+
+If the projection is the equatorial case, *0 and *0 will be zero degrees and the formulas are
 simplified as a result,but the above formulae remain valid.
 <p>
 
-For the polar version, *0 and *0 will be 90 degrees and the formulae become 
+For the polar version, *0 and *0 will be 90 degrees and the formulae become
 indeterminate.See below for formulae for the polar case.
 <p>
 
-For Stereographic projections centred on points in the southern hemisphere, including the 
-south Polar Stereographic, the signs of E, N, *0, *,  must be reversed to be used in the 
+For Stereographic projections centred on points in the southern hemisphere, including the
+south Polar Stereographic, the signs of E, N, *0, *,  must be reversed to be used in the
 equations and * will be negative anyway as a southerly latitude.
 
 For Projected Coordinate System RD / Netherlands New<p>
@@ -241,7 +241,7 @@ Scale factor k0                 0.9999079
 False Eastings FE             155000.00 m
 False Northings FN           463000.00 m
 
-Forward calculation for: 
+Forward calculation for:
 
 Latitude    53oN = 0.925024504 rad
 Longitude   6oE = 0.104719755 rad
@@ -254,7 +254,7 @@ R = 6382644.571    n = 1.000475857    c  = 1.007576465
 where S1 = 8.509582274  S2 = 0.878790173  w1 = 8.428769183
 sin chi0 = 0.787883237
 
-w   = 8.492629457   chi0 = 0.909684757      D0 = d0 
+w   = 8.492629457   chi0 = 0.909684757      D0 = d0
 
 for the point  chi  = 0.924394997    D = 0.104724841
 

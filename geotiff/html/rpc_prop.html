@@ -5,17 +5,17 @@
 <body>
 <h1>RPCs in GeoTIFF</h1>
 
-This technical note is a proposed extension to the GeoTIFF 1.0 
+This technical note is a proposed extension to the GeoTIFF 1.0
 specification to incorporate support for a ratio of polynomials to
 relate (lat,long,height) locations with (row,column) locations in the
 image.  This geometric model is often referred to as RPCs.<p>
 
 This extension proposes to stored essentially the same information as
 is stored in the RPC00B segment of an NITF file, but within a GeoTIFF
-tag.  The RPC00B elment of NITF is defined in the 
+tag.  The RPC00B elment of NITF is defined in the
 <a href="STDI-0002_v2.1.pdf">STDI-0002 2.1 (16Nov2000)</a>
 specification document.  The mathematical model is defined in 8.2.4 of
-that document, and the disk layout of the information is defined in 
+that document, and the disk layout of the information is defined in
 8.3.12 of that document.<p>
 
 This proposal is being developed in cooperation with the ASPRS
@@ -28,24 +28,24 @@ discussion of RPCs.<p>
 
 The following is adapted closely from STDI-0002 2.1 (8.2.4).<p>
 
-The geometric sensor model describing the physical relationship between 
-image coordinates and ground coordinate is known as a Rigorous Projection 
-Model. A Rigorous Projection Model expresses the mapping of the image space 
-coordinates of rows and columns (r,c) onto the object space reference surface 
+The geometric sensor model describing the physical relationship between
+image coordinates and ground coordinate is known as a Rigorous Projection
+Model. A Rigorous Projection Model expresses the mapping of the image space
+coordinates of rows and columns (r,c) onto the object space reference surface
 geodetic coordinates ( &phi;, &lambda;, h ).<p>
 
-RPC supports a generic description of the Rigorous Projection Models. The 
-approximation used by RPC00 is a set of rational polynomials exp ressing the 
-normalized row and column values, (r<sub>n</sub> , c<sub>n</sub>), as a 
-function of normalized geodetic latitude, longitude, and height, (P, L, H), 
-given a set of normalized polynomial coefficients (LINE_NUM_COEF_n, 
-LINE_DEN_COEF_n, SAMP_NUM_COEF_n, SAMP_DEN_COEF_n). Normalized values, rather 
-than actual values are used in order to minimize introduction of errors during 
-the calculations. The transformation between row and column values (r,c), and 
-normalized row and column values (r<sub>n</sub>, c<sub>n</sub>), and between 
-the geodetic latitude, longitude, and height ( &phi;, &lambda;, h ), and 
-normalized geodetic latitude, longitude, and height (P, L, H), is defined by a 
-set of normalizing translations (offsets) and scales that ensure all values 
+RPC supports a generic description of the Rigorous Projection Models. The
+approximation used by RPC00 is a set of rational polynomials exp ressing the
+normalized row and column values, (r<sub>n</sub> , c<sub>n</sub>), as a
+function of normalized geodetic latitude, longitude, and height, (P, L, H),
+given a set of normalized polynomial coefficients (LINE_NUM_COEF_n,
+LINE_DEN_COEF_n, SAMP_NUM_COEF_n, SAMP_DEN_COEF_n). Normalized values, rather
+than actual values are used in order to minimize introduction of errors during
+the calculations. The transformation between row and column values (r,c), and
+normalized row and column values (r<sub>n</sub>, c<sub>n</sub>), and between
+the geodetic latitude, longitude, and height ( &phi;, &lambda;, h ), and
+normalized geodetic latitude, longitude, and height (P, L, H), is defined by a
+set of normalizing translations (offsets) and scales that ensure all values
 are contained i the range -1 to +1.<p>
 
 <pre>
@@ -60,22 +60,22 @@ The rational function polynomial equations are defined as:<p>
 
 <img src="rpc_eq1.gif"><p>
 
-The rational function polynomial equation numerators and denominators each 
+The rational function polynomial equation numerators and denominators each
 are 20-term cubic polynomial functions of the form:<p>
 
 <img src="rpc_eq2.gif"><p>
 
-where coefficients C<SUB>1</SUB> ... C<SUB>20</SUB> represent the following 
+where coefficients C<SUB>1</SUB> ... C<SUB>20</SUB> represent the following
 sets of coefficients:
 LINE_NUM_COEF_n, LINE_DEN_COEF_n, SAMP_NUM_COEF_n, SAMP_DEN_COEF_n<p>
 
-The image coordinates are in units of pixels. The ground coordinates are 
+The image coordinates are in units of pixels. The ground coordinates are
 latitude and longitude in units of decimal degrees and the height above
-ellipsoid in units of meters. The ground coordinates are referenced to 
+ellipsoid in units of meters. The ground coordinates are referenced to
 WGS84.<p>
 
 Note: The order of terms differs between different applications. This order is
-used with RPC00B and the Digital Point Positioning Data Base. 
+used with RPC00B and the Digital Point Positioning Data Base.
 RPC00A uses a different term order.<p>
 
 <h2>Encoding in GeoTIFF</h2>
@@ -159,7 +159,7 @@ horizontal axis of each point in the image (-1.0 if unknown)
 </tr>
 
 <tr>
-  <td> LINE_SCALE 
+  <td> LINE_SCALE
   </td><td> Line Scale
   </td><td> > 0
   </td><td> pixels
@@ -167,7 +167,7 @@ horizontal axis of each point in the image (-1.0 if unknown)
 </tr>
 
 <tr>
-  <td> SAMP_SCALE 
+  <td> SAMP_SCALE
   </td><td> Sample Scale
   </td><td> > 0
   </td><td> pixels
@@ -176,7 +176,7 @@ horizontal axis of each point in the image (-1.0 if unknown)
 
 <tr>
   <td> LAT_SCALE
-  </td><td> Geodetic Latitude Scale 
+  </td><td> Geodetic Latitude Scale
   </td><td> 0 < LAT_SCALE <= 90
   </td><td> degrees
   </td>
@@ -184,7 +184,7 @@ horizontal axis of each point in the image (-1.0 if unknown)
 
 <tr>
   <td> LONG_SCALE
-  </td><td> Geodetic Longitude Scale 
+  </td><td> Geodetic Longitude Scale
   </td><td> 0 < LONG_SCALE <= 180
   </td><td> degrees
   </td>
@@ -193,44 +193,44 @@ horizontal axis of each point in the image (-1.0 if unknown)
 <tr>
   <td> HEIGHT_SCALE
   </td><td> Geodetic Height Scale
-  </td><td> HEIGHT_SCALE > 0 
+  </td><td> HEIGHT_SCALE > 0
   </td><td> meters
   </td>
 </tr>
 
 <tr>
   <td> LINE_NUM_COEFF (1-20)
-  </td><td>Line Numerator Coefficients. Twenty coefficients for the 
+  </td><td>Line Numerator Coefficients. Twenty coefficients for the
 polynomial in the Numerator of the r<sub>n</sub> equation.
   </td><td> unlimited
-  </td><td> 
+  </td><td>
   </td>
 </tr>
 
 <tr>
   <td> LINE_DEN_COEFF (1-20)
-  </td><td>Line Denominator Coefficients. Twenty coefficients for the 
+  </td><td>Line Denominator Coefficients. Twenty coefficients for the
 polynomial in the Denominator of the r<sub>n</sub> equation.
   </td><td> unlimited
-  </td><td> 
+  </td><td>
   </td>
 </tr>
 
 <tr>
   <td> SAMP_NUM_COEFF (1-20)
-  </td><td>Sample Numerator Coefficients. Twenty coefficients for the 
+  </td><td>Sample Numerator Coefficients. Twenty coefficients for the
 polynomial in the Numerator of the c<sub>n</sub> equation.
   </td><td> unlimited
-  </td><td> 
+  </td><td>
   </td>
 </tr>
 
 <tr>
   <td> SAMP_DEN_COEFF (1-20)
-  </td><td>Sample Denominator Coefficients. Twenty coefficients for the 
+  </td><td>Sample Denominator Coefficients. Twenty coefficients for the
 polynomial in the Denominator of the c<sub>n</sub> equation.
   </td><td> unlimited
-  </td><td> 
+  </td><td>
   </td>
 </tr>
 
@@ -240,36 +240,36 @@ polynomial in the Denominator of the c<sub>n</sub> equation.
 
 The RPC model allows a row/column location to be computed for a given
 lat, long and height value.  It is not inherently invertable, though it
-is usually possible to compute at lat,long location from a row, column 
+is usually possible to compute at lat,long location from a row, column
 and height value using iterative methods. <p>
 
 The RPC model in a GeoTIFF file is suplimentary to all other GeoTIFF tags
 and not directly related.  That is, it is possible to have a conventional
 set of GeoTIFF tags (such as a tiepoint + pixel scale + projected coordinate
 system description) along with the RPCCoefficientTag.  The RPCCoefficientTag
-is always describing a transformation to WGS84, regardless of what 
+is always describing a transformation to WGS84, regardless of what
 geographic coordinate system might be described in the coordinate system
 description tags of the GeoTIFF file.  It is also possible to have only
 the RPCCoefficientTag tag and no other GeoTIFF tags.<p>
 
 The NITF RPC00B format uses limited prevision ascii encoded numbers for
 coefficients.  Serializing internal "double precision IEEE" values to this
-format can result in a number of precision problems.  The GeoTIFF 
+format can result in a number of precision problems.  The GeoTIFF
 representation stores all values as 64 bit IEEE double precision floating
-point values in the file, and should be more compatible with internal 
+point values in the file, and should be more compatible with internal
 software representations of the model.<p>
 
 <h2>Error Bias And Error Random</h2>
 
-The STDI-0002 describes ERR_BIAS as "Error - Bias. 68% non time-varying error 
-estimate assumes correlated images." and ERR_RAND as "Error - Random. 68% 
+The STDI-0002 describes ERR_BIAS as "Error - Bias. 68% non time-varying error
+estimate assumes correlated images." and ERR_RAND as "Error - Random. 68%
 time-varying error estimate assumes uncorrelated images."  It is the intent
 that the ERR_BIAS and ERR_RAND fields in GeoTIFF should be the same as
 the values in the NITF; however, a more detailed explanation of the
 meaning, and rules for populating these fields would be very desirable.<p>
 
-If no ERR_BIAS or ERR_RAND values are available, the special value of -999.0 
-will be used.  Any negative value should be interpreted as "no error estimates 
+If no ERR_BIAS or ERR_RAND values are available, the special value of -999.0
+will be used.  Any negative value should be interpreted as "no error estimates
 available". <p>
 
 <h2>Outstanding Issues</h2>
@@ -287,7 +287,7 @@ happy to translate it into GeoTIFF format as a demonstrator.<p>
 along as well, and allow selection of either RPC00A or RPC00B coefficient
 ordering (by Albert Zobrista / JPL) but I don't see much point in supporting
 both options.  Instead I have tried to specifically select the ordering
-of RPC00B and stick with just that.  It is trivial for a translator to 
+of RPC00B and stick with just that.  It is trivial for a translator to
 reorder coefficients if needed internally but having two orders in the file
 seems unnecessary.<p>
 </ol>

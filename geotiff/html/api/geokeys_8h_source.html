@@ -34,7 +34,7 @@
 <a name="l00009"></a>00009 <span class="comment"> *  Permission granted to use this software, so long as this copyright</span>
 <a name="l00010"></a>00010 <span class="comment"> *  notice accompanies any products derived therefrom.</span>
 <a name="l00011"></a>00011 <span class="comment"> **********************************************************************/</span>
-<a name="l00012"></a>00012 
+<a name="l00012"></a>00012
 <a name="l00013"></a>00013 <span class="preprocessor">#ifndef __geokeys_h_</span>
 <a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define __geokeys_h_</span>
 <a name="l00015"></a>00015 <span class="preprocessor"></span>
@@ -52,7 +52,7 @@
 <a name="l00027"></a>00027 <span class="comment"> *</span>
 <a name="l00028"></a>00028 <span class="comment"> */</span>
 <a name="l00029"></a>00029 <span class="preprocessor">#define GvCurrentRevision  1  </span><span class="comment">/* Final 1.0 Release */</span>
-<a name="l00030"></a>00030 
+<a name="l00030"></a>00030
 <a name="l00031"></a>00031 <span class="preprocessor">#ifdef ValuePair</span>
 <a name="l00032"></a>00032 <span class="preprocessor"></span><span class="preprocessor">#  undef ValuePair</span>
 <a name="l00033"></a>00033 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
@@ -60,19 +60,19 @@
 <a name="l00035"></a>00035 <span class="preprocessor"></span>
 <a name="l00036"></a>00036 <span class="keyword">typedef</span> <span class="keyword">enum</span> {
 <a name="l00037"></a>00037    BaseGeoKey   =  1024,               <span class="comment">/* First valid code */</span>
-<a name="l00038"></a>00038 
+<a name="l00038"></a>00038
 <a name="l00039"></a>00039 <span class="preprocessor">#  include &quot;geokeys.inc&quot;</span>         <span class="comment">/* geokey database */</span>
-<a name="l00040"></a>00040 
+<a name="l00040"></a>00040
 <a name="l00041"></a>00041    ReservedEndGeoKey  =  32767,
-<a name="l00042"></a>00042    
+<a name="l00042"></a>00042
 <a name="l00043"></a>00043    <span class="comment">/* Key space available for Private or internal use */</span>
 <a name="l00044"></a>00044    PrivateBaseGeoKey = 32768,    <span class="comment">/* Consistent with TIFF Private tags */</span>
-<a name="l00045"></a>00045    PrivateEndGeoKey  = 65535,    
-<a name="l00046"></a>00046    
+<a name="l00045"></a>00045    PrivateEndGeoKey  = 65535,
+<a name="l00046"></a>00046
 <a name="l00047"></a>00047    EndGeoKey = 65535             <span class="comment">/* Largest Possible GeoKey ID */</span>
 <a name="l00048"></a>00048 } geokey_t;
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 
+<a name="l00049"></a>00049
+<a name="l00050"></a>00050
 <a name="l00051"></a>00051 <span class="preprocessor">#endif </span><span class="comment">/* __geokeys_h_ */</span>
 </pre></div></div>
 <hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Mar 6 15:25:15 2012 for libgeotiff by&nbsp;

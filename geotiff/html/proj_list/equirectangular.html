@@ -102,28 +102,28 @@
 
 <h3>Notes</h3>
 
-There are two latitudes that can be important for this projection. 
+There are two latitudes that can be important for this projection.
 
-The latitude of true scale (lat_ts in PROJ.4, Standard_Parallel_1 in ESRI PE, 
-PSEUDO_STD_PARALLEL_1 in OGR (1.6.0beta), unavailable in EPSG, 6th parm in 
-GCTP) and the latitude of origin (lat_0 in PROJ.4, latitude_of_origin in OGR 
-WKT, unavailable in ESRI PE, unavailable in GCTP).   The latitude of origin is 
+The latitude of true scale (lat_ts in PROJ.4, Standard_Parallel_1 in ESRI PE,
+PSEUDO_STD_PARALLEL_1 in OGR (1.6.0beta), unavailable in EPSG, 6th parm in
+GCTP) and the latitude of origin (lat_0 in PROJ.4, latitude_of_origin in OGR
+WKT, unavailable in ESRI PE, unavailable in GCTP).   The latitude of origin is
 just an alternate origin and has no other effect on the equations.   Often both
 are zero.<p>
 
 Generally speaking, if you only have one of these latitudes
 provided, it is likely the latitude of true scale.<p>
 
-For a period OGR used the name "latitude_of_origin" for the latitude of 
+For a period OGR used the name "latitude_of_origin" for the latitude of
 true scale, in error resulting in much confusion. <p>
 
-Most libraries only implement the spherical version this projection.  The 
+Most libraries only implement the spherical version this projection.  The
 rules for deriving a spherical radius from the ellipsoid defined for a
 coordinate system vary between libraries, causing some confusion and mixed
 results.<p>
 
-Plate Caree is an alias, but generally implies that the latitude of true 
-scale, and latitude of natural origin are zero.  Simple Cylindrical is also 
+Plate Caree is an alias, but generally implies that the latitude of true
+scale, and latitude of natural origin are zero.  Simple Cylindrical is also
 an alias with the same assumptions.<p>
 
 </body>

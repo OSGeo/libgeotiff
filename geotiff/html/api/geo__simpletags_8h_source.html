@@ -51,12 +51,12 @@
 <a name="l00026"></a>00026 <span class="comment"> * as an alternative to accessing a real tiff file using libtiff.</span>
 <a name="l00027"></a>00027 <span class="comment"> *</span>
 <a name="l00028"></a>00028 <span class="comment"> ****************************************************************************/</span>
-<a name="l00029"></a>00029 
+<a name="l00029"></a>00029
 <a name="l00030"></a>00030 <span class="preprocessor">#ifndef __geo_simpletags_h_</span>
 <a name="l00031"></a>00031 <span class="preprocessor"></span><span class="preprocessor">#define __geo_simpletags_h_</span>
 <a name="l00032"></a>00032 <span class="preprocessor"></span>
 <a name="l00033"></a>00033 <span class="preprocessor">#include &quot;<a class="code" href="geotiff_8h.html">geotiff.h</a>&quot;</span>
-<a name="l00034"></a>00034 
+<a name="l00034"></a>00034
 <a name="l00035"></a>00035 <span class="preprocessor">#if defined(__cplusplus)</span>
 <a name="l00036"></a>00036 <span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {
 <a name="l00037"></a>00037 <span class="preprocessor">#endif</span>
@@ -71,28 +71,28 @@
 <a name="l00046"></a>00046     <span class="keywordtype">int</span> type;
 <a name="l00047"></a>00047     <span class="keywordtype">void</span> *data;
 <a name="l00048"></a>00048 } <a class="code" href="structST__KEY.html">ST_KEY</a>;
-<a name="l00049"></a>00049 
+<a name="l00049"></a>00049
 <a name="l00050"></a><a class="code" href="structST__TIFF.html">00050</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
 <a name="l00051"></a>00051     <span class="keywordtype">int</span> key_count;
 <a name="l00052"></a>00052     <a class="code" href="structST__KEY.html">ST_KEY</a> *key_list;
 <a name="l00053"></a>00053 } <a class="code" href="structST__TIFF.html">ST_TIFF</a>;
-<a name="l00054"></a>00054 
+<a name="l00054"></a>00054
 <a name="l00055"></a>00055 <span class="keyword">typedef</span> <span class="keywordtype">void</span> *STIFF;
-<a name="l00056"></a>00056 
+<a name="l00056"></a>00056
 <a name="l00057"></a>00057 <span class="keywordtype">void</span> CPL_DLL GTIFSetSimpleTagsMethods(<a class="code" href="struct__TIFFMethod.html">TIFFMethod</a> *method);
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 <span class="keywordtype">int</span> CPL_DLL ST_SetKey( <a class="code" href="structST__TIFF.html">ST_TIFF</a> *, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> count, 
+<a name="l00058"></a>00058
+<a name="l00059"></a>00059 <span class="keywordtype">int</span> CPL_DLL ST_SetKey( <a class="code" href="structST__TIFF.html">ST_TIFF</a> *, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> count,
 <a name="l00060"></a>00060                        <span class="keywordtype">int</span> st_type, <span class="keywordtype">void</span> *data );
-<a name="l00061"></a>00061 <span class="keywordtype">int</span> CPL_DLL ST_GetKey( <a class="code" href="structST__TIFF.html">ST_TIFF</a> *, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> *count, 
+<a name="l00061"></a>00061 <span class="keywordtype">int</span> CPL_DLL ST_GetKey( <a class="code" href="structST__TIFF.html">ST_TIFF</a> *, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> *count,
 <a name="l00062"></a>00062                        <span class="keywordtype">int</span> *st_type, <span class="keywordtype">void</span> **data_ptr );
-<a name="l00063"></a>00063 
+<a name="l00063"></a>00063
 <a name="l00064"></a>00064 <a class="code" href="structST__TIFF.html">ST_TIFF</a> CPL_DLL *ST_Create();
 <a name="l00065"></a>00065 <span class="keywordtype">void</span> CPL_DLL ST_Destroy( <a class="code" href="structST__TIFF.html">ST_TIFF</a> * );
-<a name="l00066"></a>00066 
+<a name="l00066"></a>00066
 <a name="l00067"></a>00067 <span class="keywordtype">int</span> CPL_DLL ST_TagType( <span class="keywordtype">int</span> tag );
-<a name="l00068"></a>00068 
+<a name="l00068"></a>00068
 <a name="l00069"></a>00069 <span class="preprocessor">#if defined(__cplusplus)</span>
-<a name="l00070"></a>00070 <span class="preprocessor"></span>} 
+<a name="l00070"></a>00070 <span class="preprocessor"></span>}
 <a name="l00071"></a>00071 <span class="preprocessor">#endif</span>
 <a name="l00072"></a>00072 <span class="preprocessor"></span>
 <a name="l00073"></a>00073 <span class="preprocessor">#endif </span><span class="comment">/* __geo_simpletags_h_ */</span>

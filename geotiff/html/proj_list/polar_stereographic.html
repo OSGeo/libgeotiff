@@ -103,7 +103,7 @@ Scale factor at natural origin: 1.0<p>
 North Pole (NatOriginLat > 0):
 <b>
 <pre>
-  +proj=stere +lat_ts=<i>Latitude at natural origin</i> 
+  +proj=stere +lat_ts=<i>Latitude at natural origin</i>
               +lat_0=90
               +lon_0=<i>Longitude at natural origin</i>
 	      +k_0=<i>Scale factor at natural origin</i> (normally 1.0)
@@ -115,7 +115,7 @@ North Pole (NatOriginLat > 0):
 South Pole (NatOriginLat < 0):
 <b>
 <pre>
-  +proj=stere +lat_ts=<i>Latitude at natural origin</i> 
+  +proj=stere +lat_ts=<i>Latitude at natural origin</i>
               +lat_0=-90
               +lon_0=<i>Longitude at natural origin</i>
 	      +k_0=<i>Scale factor at natural origin</i> (normally 1.0)
@@ -137,7 +137,7 @@ t = tan (pi/4 - lat/2) / [(1-esin(lat) ) / (1 + e sin(lat))]^(e/2)
 
 For the reverse transformation:<p>
 <pre>
-lat = chi+ (e^2/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2 chi) 
+lat = chi+ (e^2/2 + 5e^4/24 + e^6/12 + 13e^8/360) sin(2 chi)
 + (7e^4/48 + 29e^6/240 + 811e^8/11520) sin(4 chi)
 + (7e^6/120 +  81e^8/1120) sin(6 chi)  + (4279e^8/161280) sin(8 chi)
 

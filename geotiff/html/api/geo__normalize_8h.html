@@ -85,10 +85,10 @@ Geotiff_Information:
    Key_Revision: 1.0
    Tagged_Information:
       ModelTiepointTag (2,3):
-         0                0                0                
-         1577139.71       634349.176       0                
+         0                0                0
+         1577139.71       634349.176       0
       ModelPixelScaleTag (1,3):
-         195.509321       198.32184        0                
+         195.509321       198.32184        0
       End_Of_Tags.
    Keyed_Information:
       GTModelTypeGeoKey (Short,1): ModelTypeProjected
@@ -239,11 +239,11 @@ When reading projection parameters a variety of differences between different Ge
 <pre></pre><pre>    ...</pre><pre>    SetCSVFilenameHook( CSVFileOverride );</pre><pre>    ...</pre><pre>static const char *CSVFileOverride( const char * pszInput )</pre><pre>{
     static char         szPath[1024];</pre><pre>ifdef WIN32
     sprintf( szPath, "%s\\%s", CSVDirName, pszInput );
-else    
+else
     sprintf( szPath, "%s/%s", CSVDirName, pszInput );
 endif</pre><pre>    return( szPath );
 }
-</pre> 
+</pre>
 </div>
 </div>
 </div>

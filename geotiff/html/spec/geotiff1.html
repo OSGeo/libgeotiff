@@ -160,9 +160,9 @@ Revision 1.0.1:
 
 Revision 1.0:
  o The former ModelTransformationTag (33920) conflicts with
-   an internal Intergraph implementation and is being deprecated, 
+   an internal Intergraph implementation and is being deprecated,
    in favor of a new tag (34264, registered to JPL).
- o The "Origin" keys have been renamed with "Natural" or "Nat" 
+ o The "Origin" keys have been renamed with "Natural" or "Nat"
    prefixes, to distinguish from "False" origins, and to have
    a closer match to EPSG/POSC terminology. All Revision 0.2
    names shall be recognized in a backward-compatible fashion.
@@ -182,13 +182,13 @@ Revision 0.1:
  o The third value "ScaleZ" in ModelPixelScaleTag = (ScaleX, ScaleY,
    ScaleZ) shall by default be set to 0, not 1, as suggested in preliminary
    discussions. This is because most standard model spaces are
-   2-dimensional (flat), and therefore its vertical shape is 
+   2-dimensional (flat), and therefore its vertical shape is
    independent of the pixel-value.
- 
+
  o The code 32767 shall be used to imply "user-defined", rather than
    16384. This avoids breaking up the reserved public GeoKey code space
    into two discontiguous ranges, 0-16383 and 16385-32767.
- 
+
  o If a GeoKey is coded "undefined", then it is exactly that; no
    parameters should be provided (e.g. EllipsoidSemiMajorAxis, etc).
    To provide parameters for a non-coded attribute, use "user-defined".

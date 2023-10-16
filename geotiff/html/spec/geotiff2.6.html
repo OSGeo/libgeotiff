@@ -11,10 +11,10 @@ points on the earth.<p>
 The three tags defined below may be used for defining the relationship between
 R and M, and the relationship may be diagrammed as:<p>
 </tt>
-<pre>           ModelPixelScaleTag 
-           ModelTiepointTag         
+<pre>           ModelPixelScaleTag
+           ModelTiepointTag
     R  ------------ OR --------------&gt; M
-  (I,J,K)  ModelTransformationTag   (X,Y,Z) 
+  (I,J,K)  ModelTransformationTag   (X,Y,Z)
                   </pre><tt><p>
 The next section describes these Baseline georeferencing tags in detail.<p>
 <p>
@@ -26,7 +26,7 @@ space may be defined with a set of raster-to-model tiepoints and scaling
 parameters. The following two tags may be used for this purpose:<p>
 </tt>
 <pre>ModelTiepointTag:
-      Tag = 33922 (8482.H) 
+      Tag = 33922 (8482.H)
       Type = DOUBLE (IEEE Double precision)
       N = 6*K,  K = number of tiepoints
       Alias: GeoreferenceTag
@@ -106,8 +106,8 @@ place it into the standard model space. In such cases the transformation shall
 be defined with the more general ModelTransformationTag, defined below. <p>
 </tt>
 <pre>ModelTransformationTag
-      Tag  =  34264  (85D8.H) 
-      Type =  DOUBLE    
+      Tag  =  34264  (85D8.H)
+      Type =  DOUBLE
       N    =  16
       Owner: JPL Cartographic Applications Group</pre><tt><p>
 This tag may be used to specify the transformation matrix between the raster
@@ -159,14 +159,14 @@ ModelPixelScaleTag are already defined. If only a single tiepoint (I,J,K,X,Y,Z)
 is specified, and the ModelPixelScale = (Sx, Sy, Sz) is specified, then the
 corresponding transformation matrix may be computed from them as:<p>
 </tt>
-<pre>        |-                         -| 
-        |   Sx    0.0   0.0   Tx    | 
+<pre>        |-                         -|
+        |   Sx    0.0   0.0   Tx    |
         |                           |      Tx = X - I*Sx
         |   0.0  -Sy    0.0   Ty    |      Ty = Y + J*Sy
         |                           |      Tz = Z - K*Sz
-        |   0.0   0.0   Sz    Tz    | 
-        |                           | 
-        |   0.0   0.0   0.0   1.0   | 
+        |   0.0   0.0   Sz    Tz    |
+        |                           |
+        |   0.0   0.0   0.0   1.0   |
         |-                         -| </pre><tt><p>
 where the -Sy is due the reversal of direction from J increasing- down in
 raster space to Y increasing-up in model space.<p>
@@ -176,8 +176,8 @@ YPosition, and Orientation tags of the standard TIFF 6.0 spec.<p>
 Note: In Revision 0.2 and earlier, another tag was used for this matrix, which
 has been renamed as follows:</tt>
 <pre>IntergraphMatrixTag
-      Tag  =  33920  (8480.H) 
-      Type =  DOUBLE    
+      Tag  =  33920  (8480.H)
+      Type =  DOUBLE
       N    =  17 (Intergraph implementation) or 16 (GeoTIFF 0.2 impl.)
       Owner: Intergraph</pre><tt><p>
 This tag conflicts with an internal software implementation at Intergraph, and
@@ -192,7 +192,7 @@ information if the tag-count is 16; the Intergraph version uses 17 values.<p>
 <tt></tt>
 <pre>The dataflow of the various GeoTIFF parameter datasets is based upon the EPSG/POSC configuration. Here is the text of the description accompanying the EPSG parameter tables:
 The data files (.CSV) have a hierarchical structure:
- 
+
  +---------------------------+   +----------------------------+
  |           VERTCS          |   |           PROJCS           |
  +---------------------------+   +----------------------------+
@@ -213,7 +213,7 @@ The data files (.CSV) have a hierarchical structure:
       |            |            +-------------+---------------+
       |            |                          |
       |            |                 +--------+-------+
-      |            |                 |                |    
+      |            |                 |                |
       |     +------+-----+    +------+-----+   +------+-------+
       |     |    PROJ    |    |   ELLIPS   |   |    PMERID    |
       |     +------------+    +------------+   +--------------+
@@ -221,19 +221,19 @@ The data files (.CSV) have a hierarchical structure:
       |     | Parameters |    | Parameters |   |  Parameters  |
       |     +------+-----+    +------+-----+   +------+-------+
       |            |                 |                |
-      +------------+-----------+-----+----------------+         
-                               |                          
+      +------------+-----------+-----+----------------+
+                               |
                  +-------------+------------+
                  |           UNITS          |
                  +--------------------------+
                  | Linear and Angular Units |
                  +--------------------------+
- 
- 
+
+
  The parameter listings are "living documents" and will be
  updated by the EPSG from time to time. Any comment or
  suggestions for improvements should be directed to:
- 
+
    Jean-Patrick Girbig,      or   Roger Lott,
    Manager Cartography,           Head of Survey,
    Petroconsultants S.A.,         BP Exploration,
@@ -242,12 +242,12 @@ The data files (.CSV) have a hierarchical structure:
    1258 Perly-Geneva,             Uxbridge,
    Switzerland.                   Middlesex UB8 1PD,
                                   England.
-                                 
+
                                   Internet:
                                    lottrj@txpcap.hou.xwh.bp.com
- 
- Requests for the inclusion of new data should include supporting 
- documentation.  Requests for changing existing data should include 
+
+ Requests for the inclusion of new data should include supporting
+ documentation.  Requests for changing existing data should include
  reference to both the name and code of the item.
  </pre><tt>
 <p>
@@ -255,50 +255,50 @@ The data files (.CSV) have a hierarchical structure:
 <img src="gifs/clrbar_half.gif">
  <h4><a name="2.6.3">2.6.3 Cookbook for Defining Transformations</a></h4>
 <pre>
-Here is a 4-step guide to producing a set of Baseline GeoTIFF tags for defining coordinate transformation information of a raster dataset. 
-  
-  Step 1: Establish the Raster Space coordinate system used: 
+Here is a 4-step guide to producing a set of Baseline GeoTIFF tags for defining coordinate transformation information of a raster dataset.
+
+  Step 1: Establish the Raster Space coordinate system used:
           RasterPixelIsArea or RasterPixelIsPoint.
-  
+
   Step 2: Establish/define the model space Type in which the image is
-          to be georeferenced. Usually this will be a Projected 
+          to be georeferenced. Usually this will be a Projected
           Coordinate system (PCS). If you are geocoding this data
           set, then the model space is defined to be the corresponding
-          geographic, geocentric or Projected coordinate system (skip 
+          geographic, geocentric or Projected coordinate system (skip
           to the "Cookbook"  <a href="geotiff2.7.html#2.7.3">section 2.7.3</a> first to do determine this).
-          
+
   Step 3: Identify the nature of the transformations needed to tie
           the raster data down to the model space coordinate system:
-          
+
      Case 1: The model-location of a raster point (x,y) is known, but not
           the scale or orientations:
-     
+
             Use the ModelTiepointTag to define the (X,Y,Z) coordinates
             of the known raster point.
-     
-     
+
+
      Case 2: The location of three non-collinear raster points are known
           exactly, but the linearity of the transformation is not known.
-         
+
           Use the ModelTiepointTag to define the (X,Y,Z) coordinates
-          of all three known raster points. Do not compute or define the 
+          of all three known raster points. Do not compute or define the
           ModelPixelScale or ModelTransformation tag.
-         
+
      Case 3: The position and scale of the data is known exactly, and
           no rotation or shearing is needed to fit into the model space.
-          
+
           Use the ModelTiepointTag to define the (X,Y,Z) coordinates
           of the known raster point, and the ModelPixelScaleTag to
           specify the scale.
-          
+
      Case 4: The raster data requires rotation and/or lateral shearing to
           fit into the defined model space:
-          
+
           Use the ModelTransformation matrix to define the transformation.
-          
+
      Case 5: The raster data cannot be fit into the model space with a
           simple affine transformation (rubber-sheeting required).
-          
+
           Use only the ModelTiepoint tag, and specify as many
           tiepoints as your application requires. Note, however, that
           this is not a Baseline GeoTIFF implementation, and should
