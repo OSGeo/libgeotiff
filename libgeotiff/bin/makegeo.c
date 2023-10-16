@@ -26,13 +26,18 @@ int main()
 	const char *fname = "newgeo.tif";
 
 	TIFF *tif=XTIFFOpen(fname,"w");  /* TIFF-level descriptor */
-	if (!tif) goto failure;
+	if (!tif) {
+		printf("failure in makegeo\n");
+		return -1;
+	}
 
 	GTIF *gtif = GTIFNew(tif);  /* GeoKey-level descriptor */
 	if (!gtif)
 	{
+		printf("failure in makegeo\n");
 		printf("failed in GTIFNew\n");
-		goto failure;
+		TIFFClose(tif);
+		return -1;
 	}
 
 	SetUpTIFFDirectory(tif);
@@ -43,12 +48,6 @@ int main()
 	GTIFFree(gtif);
 	XTIFFClose(tif);
 	return 0;
-
-failure:
-	printf("failure in makegeo\n");
-	if (tif) TIFFClose(tif);
-	if (gtif) GTIFFree(gtif);
-	return -1;
 }
 
 
