@@ -13,7 +13,7 @@ of outstanding issues.<p>
 <h2><a name="stereographic">Stereographic</a></h2>
 
 <ol>
-<li> Are Stereographic, Polar Stereographic, and Oblique Stereographic 
+<li> Are Stereographic, Polar Stereographic, and Oblique Stereographic
 really all the same projection?
 
 <li> Is the latitute of natural origin for Polar Stereographic required
@@ -26,12 +26,12 @@ origin?
 the (old) GeoTIFF definition doesn't?
 
 <li> Why do the GeoTIFF parameters have such variable names for the different
-stereographic projections?  PS uses StraightVertPoleLong and NatOriginLat, 
-OS uses NatOrigin, and Stereographic uses ProjCenterLat/Long. 
+stereographic projections?  PS uses StraightVertPoleLong and NatOriginLat,
+OS uses NatOrigin, and Stereographic uses ProjCenterLat/Long.
 
 <li> In PJ_stere.c for PROJ.4 in function INVERSE(e_inverse) the calculation
 of phi_l should likely test for a rho of zero (at the origin when xy.x and xy.y
-are zero. Verify doing an inverse translation of position (0,0) with 
+are zero. Verify doing an inverse translation of position (0,0) with
 pci_eg/sg.tif.
 
 <pre>
@@ -43,8 +43,8 @@ pci_eg/sg.tif.
 
 <li> The PCI ps.tif file has a ProjNatOriginLatGeoKey.  In PCI's PROJ.HLP
 this number is called the latitude of true scale, but it carried through
-to PROJ.4 as the +lat_0 value, not as +lat_ts (which it should perhaps be). 
-The Intergraph stereo_np.tif file has two lattitudes.  One is the 
+to PROJ.4 as the +lat_0 value, not as +lat_ts (which it should perhaps be).
+The Intergraph stereo_np.tif file has two lattitudes.  One is the
 ProjNatOriginLatGeoKey and the other is ProjCenterLatGeoKey.  I imagine
 that the ProjScaleAtNatOriginGeoKey and ProjNatOriginLatGeoKey are really
 supposed to be equivelent to giving a latitude of true scale that isn't
@@ -53,8 +53,8 @@ the north pole (necessarily) if the scale is 1.0.<p>
 The current formulation includes a scale at the origin, but suggests
 that the origin must be either the north or south pole.  Perhaps this is
 mixing up use of ProjCenterLatGeoKey to mark the pole with the use of
-an origin to establish the position of true scale (or alternatively to 
-just give the scale at the origin).  Is the solution to provide two 
+an origin to establish the position of true scale (or alternatively to
+just give the scale at the origin).  Is the solution to provide two
 formulations of polar stereographic, or to expect translators to boil
 their internal forumulations down to a pole indicator, and scale at the
 pole?<p>
@@ -64,7 +64,7 @@ pole?<p>
 <h2>ObliqueMercator</h2>
 
 The EPSG definition of Oblique Mercator includes an angle from rectified
-to skewed grid.  This isn't included for GeoTIFF, and doesn't appear to 
+to skewed grid.  This isn't included for GeoTIFF, and doesn't appear to
 be supported by any system I have seen.  Is this equivelent to what Peter
 Laskowski calls pre or post transformation rotation (that could be applied
 to most projections)?<p>
@@ -90,8 +90,8 @@ gdalinfo:
 Origin (long/lat) = (-117.641,33.904) (117d38'26.91"W,  33d54'14.34"N)
 </pre>
 
-This amounts to approximately sixty meters of error in about 20000 meters. 
-I don't know if this is a fundamental difference between GCTP and PROJ.4 
+This amounts to approximately sixty meters of error in about 20000 meters.
+I don't know if this is a fundamental difference between GCTP and PROJ.4
 or what.  This should be reviewed at some point.<p>
 
 <h2>Miller Cylindrical</h2>

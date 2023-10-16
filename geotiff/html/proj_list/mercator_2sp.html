@@ -81,7 +81,7 @@
 
 From the EPSG notes:<p>
 <i>
-The difference between 1SP and 2SP formulations is that the initial 
+The difference between 1SP and 2SP formulations is that the initial
 parameters are different: in 1SP
 you start from the longitude of natural origin and the scale factor,
 while in 2SP you start from the longitude of natural origin and the
@@ -94,7 +94,7 @@ datum.</i><p>
 
 <h3>PROJ.4 Organization</h3>
 
-PROJ.4 does not support a latitude of natural origin other than the equator.   
+PROJ.4 does not support a latitude of natural origin other than the equator.
 <b>
 <pre>
   +proj=merc  +lat_ts=<i>Latitude of first standard parallel</i>
@@ -107,20 +107,20 @@ PROJ.4 does not support a latitude of natural origin other than the equator.
 <h3>EPSG Notes</h3>
 
 Mercator<p>
-	
-The Mercator projection is a special case of the Lambert Conic Conformal projection  
-with the equator as the single standard parallel. All other parallels of latitude are straight 
-lines and the meridians are also straight lines at right angles to the equator, equally spaced. 
-It is little used for land mapping purposes but is in universal use for navigation charts and 
-is the basis for the transverse and oblique forms of the Mercator. As well as being 
-conformal, it has the particular property that straight lines drawn on it are lines of constant 
-bearing. Thus navigators may derive their course  from the angle the straight course line 
+
+The Mercator projection is a special case of the Lambert Conic Conformal projection
+with the equator as the single standard parallel. All other parallels of latitude are straight
+lines and the meridians are also straight lines at right angles to the equator, equally spaced.
+It is little used for land mapping purposes but is in universal use for navigation charts and
+is the basis for the transverse and oblique forms of the Mercator. As well as being
+conformal, it has the particular property that straight lines drawn on it are lines of constant
+bearing. Thus navigators may derive their course  from the angle the straight course line
 makes with the meridians.<p>
 
-In the few cases in which the Mercator projection is used for terrestrial applications or 
-land mapping, such as in Indonesia prior to the introduction of the Universal Transverse 
-Mercator, a scale factor may be applied to the projection. This has the same effect as 
-choosing two standard parallels on which the true scale is maintained at equal north and 
+In the few cases in which the Mercator projection is used for terrestrial applications or
+land mapping, such as in Indonesia prior to the introduction of the Universal Transverse
+Mercator, a scale factor may be applied to the projection. This has the same effect as
+choosing two standard parallels on which the true scale is maintained at equal north and
 south latitudes either side of the equator.<p>
 
 The formulas to derive projected Easting and Northing coordinates are:
@@ -129,28 +129,28 @@ The formulas to derive projected Easting and Northing coordinates are:
 <pre>
 For the two standard parallel case, k0 is first calculated from
 
-k0 = cos*1/(1 - e2sin2*1)1/2 
- 
-where *1 is the absolute value of the first standard parallel (i.e. positive).  
+k0 = cos*1/(1 - e2sin2*1)1/2
 
-Then, for both one and two standard parallel cases, 
+where *1 is the absolute value of the first standard parallel (i.e. positive).
 
-	E = FE + ak0(* - *0)              
-	N = FN + ak0 logn{tan(*/4 + */2)[(1 - esin*) / (1 + esin*)]e/2 }                    
+Then, for both one and two standard parallel cases,
+
+	E = FE + ak0(* - *0)
+	N = FN + ak0 logn{tan(*/4 + */2)[(1 - esin*) / (1 + esin*)]e/2 }
            		where symbols are as listed above and logarithms are natural.
-	
+
 The reverse formulas to derive latitude and longitude from E and N values are:
-	
-	* = * + (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*) 
+
+	* = * + (e2/2 + 5e4/24 + e6/12 + 13e8/360) sin(2*)
 		+ (7e4/48 + 29e6/240 + 811e8/11520) sin(4*)
 		+ (7e6/120 +  81e8/1120) sin(6*)  + (4279e8/161280) sin(8*)
 
 where 		* = */2 - 2 arctan t
-		t = B (FN-N)/(ak0)   	
+		t = B (FN-N)/(ak0)
 		B = base of the natural logarithm, 2.7182818...
-		and  for the 2 SP Case, k0 is calculated as for the forward transformation 
+		and  for the 2 SP Case, k0 is calculated as for the forward transformation
 above.
- 
+
 	* =  ((E - FE)/ak0)  + *0","For Projected Coordinate System Pulkovo 1942 / Mercator Caspian Sea
 
 Parameters:
@@ -161,14 +161,14 @@ Latitude first SP                             42o00'00""N = 0.73303829 rad
 Longitude Natural Origin                51o00'00""E = 0.89011792 rad
 False Eastings FE                          0.00 m
 False Northings (at equator) FN     0.00 m
-  
+
 then natural origin at latitude of 0oN has scale factor k0=  0.74426089
 
-Forward calculation for: 
+Forward calculation for:
 Latitude        53o00'00.00""N = 0.9250245 rad
 Longitude     53o00'00.00""E  = 0.9250245 rad
 
-gives Easting E   =     165704.29 m 
+gives Easting E   =     165704.29 m
           Northing N =   5171848.07 m
 
 Reverse calculation for same easting and northing first gives :

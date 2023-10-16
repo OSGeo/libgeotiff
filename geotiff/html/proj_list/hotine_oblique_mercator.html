@@ -104,15 +104,15 @@
 
 <h3>Notes</h3>
 
-The EPSG Projection <a href="oblique_mercator.html">Oblique Mercator</a> 
+The EPSG Projection <a href="oblique_mercator.html">Oblique Mercator</a>
 with code 9815 indicates that
-it's formula is really just that of Hotine Oblique Mercator despite the 
+it's formula is really just that of Hotine Oblique Mercator despite the
 slightly different naming of the false easting and northing.  I am treating
 that projection as an alias for this one, but with a page of it's own since
 it has it's own codes, at least in EPSG.<p>
 
 Most packages do not support the angle from rectified to skewed grid, and
-GeoTIFF didn't used to have a tag to carry it (I have added it for 
+GeoTIFF didn't used to have a tag to carry it (I have added it for
 libgeotiff 1.1.2).  90 degrees seems to be the default value (removing
 it's effect in the equations below).<p>
 
@@ -123,10 +123,10 @@ I think the +no_rot flag is related to this parameter.<p>
 
 <b>
 <pre>
-  +proj=omerc +lat_0=<i>Latitude of projection center</i> 
+  +proj=omerc +lat_0=<i>Latitude of projection center</i>
               +lonc=<i>Longitude of projection center</i>
               +alpha=<i>Azimuth of initial line</i>
-              +k_0=<i>Scale factor on initial line</i> 
+              +k_0=<i>Scale factor on initial line</i>
               +x_0=<i>False Easting</i>
               +y_0=<i>False Northing</i>
 </pre>
@@ -134,7 +134,7 @@ I think the +no_rot flag is related to this parameter.<p>
 
 The PROJ.4 initialization function fails if Azimuth is zero (or 90 degrees).
 I am not clear if this is fundamental to the oblique mercator projection
-or a peculiarity of PROJ.4.  It is inconvenient because some of the 
+or a peculiarity of PROJ.4.  It is inconvenient because some of the
 GeotIFF sample files have an azimuth of zero.<p>
 
 <h3>Clarification From the EPSG</h3>
@@ -178,7 +178,7 @@ In applying the formulae for the Hotine Oblique Mercator the first set of co-ord
 
 To ensure that all co-ordinates in the map area have positive grid values, false co-ordinates are applied. These may be given values (Ec , Nc) if applied at the projection centre or be applied as false easting (FE) and false northing (FN) at the natural origin.
 <p>
-	
+
 Formulas for the oblique Mercator, involving hyperbolic functions, were derived by Hotine. Snyder adapted these formula using exponential functions, thus avoiding use of Hotine's hyperbolic expressions. As in the case of the several varieties of Transverse Mercator, the choice of the co-ordinate transformation parameters distinguish the co-ordinate transformation within the Oblique Mercator Co-ordinate Transformation method. The formulae can be used for  the following cases:
 <p>
 
@@ -187,9 +187,9 @@ Formulas for the oblique Mercator, involving hyperbolic functions, were derived 
 	Hungary EOV
 	Madagascar
 	East and West Malaysia
-	Switzerland 
+	Switzerland
 </pre>
-	
+
 The Swiss and Hungarian systems are a special case where the azimuth of the line through the projection centre is 90 degrees. This therefore gives similar but not exactly the same results as a conventional transverse mercator. <p>
 
 Epicentre supports the formulae to cover the co-ordinate transformation methods for the following versions of the Oblique Mercator:
@@ -201,7 +201,7 @@ Epicentre supports the formulae to cover the co-ordinate transformation methods 
 <li>	Swiss Oblique Cylindrical, using polynomial equations developed by Bolliger.
 </ol>
 
-The two versions of the Snyder formulae could be unified by introducing an extra parameter to define which origin is used for the application of false co-ordinates. The Swiss Oblique Cylindrical is a special case, as the equations given by Bolliger may deviate from the rigorous formulae for points at some distance from the origin.  Throughout Switzerland the differences are always less than one metre. 
+The two versions of the Snyder formulae could be unified by introducing an extra parameter to define which origin is used for the application of false co-ordinates. The Swiss Oblique Cylindrical is a special case, as the equations given by Bolliger may deviate from the rigorous formulae for points at some distance from the origin.  Throughout Switzerland the differences are always less than one metre.
 <p>
 
 Specific references for the formulae originally used in the individual cases of these projections are:
@@ -256,11 +256,11 @@ uc	=	(A / B) atan((Dsq - 1)0.5 / cos (ac) ). SIGN(fc)
 vc	=	0
 </pre>
 
-But note that for the special cases where ac = 90 degrees (e.g. Hungary, Switzerland) then 
+But note that for the special cases where ac = 90 degrees (e.g. Hungary, Switzerland) then
 <p>
 
 <pre>
-uc	=	A (lc - l0 )  
+uc	=	A (lc - l0 )
 vc	=	0
 </pre>
 
@@ -284,7 +284,7 @@ The value of u from the above equation assumes that  the FE and FN values have b
 For projection parameters where the false easting and northing values (Ec , Nc) have been specified with respect to the centre of the projection (fc , lc) then :<p>
 
 <pre>
-u = u - uc   
+u = u - uc
 </pre>
 For the special cases where   ac = 90 degrees care must be taken with the sign of uc in this formula because the centre of the projection is equidistant from the two points at which the centre line cuts the equator on the aposphere.
 
@@ -318,7 +318,7 @@ t'	=	(H / ((1 + U') / (1 - U'))0.5)1 / B
 
 c	= p / 2 - 2 atan(t')
 
-f	= c + sin(2c).( e2 / 2 + 5 e4 / 24 + e6 / 12 + 13 e8 / 360) + 
+f	= c + sin(2c).( e2 / 2 + 5 e4 / 24 + e6 / 12 + 13 e8 / 360) +
 	   sin(4c).( 7 e4 /48 + 29 e6 / 240 + 811 e8 / 11520) +  sin(6c).( 7 e6 / 120 + 81 e8 / 1120) + 	   sin(8c).(4279 e8 / 161280)
 
 l	=  l0  - atan ((S' cos(gc) - V' sin(gc)) / cos(B u' / A)) / B","For Projected Coordinate System  Timbalai 1948 / R.S.O. Borneo (m)
@@ -327,7 +327,7 @@ Parameters:
 	Ellipsoid:  Everest 1830 (1967 Definition)
 				a = 6377298.556 metres 	1/f = 300.8017
 				then	e = 0.081472981	e2 = 0.006637847
-					
+
 	Latitude Projection Centre	fc  	4o00'00""N		=	0.069813170 rad
 	Longitude Projection Centre	lc  	115o00'00""E	=	2.007128640 rad
 	Azimuth of central line	ac	53o18'56.9537""	=	0.930536611 rad
@@ -336,16 +336,16 @@ Parameters:
 	False Eastings	FE	 0.00 m
 	False Northings	FN	 0.00 m
 
-Forward calculation for: 
+Forward calculation for:
 	Latitude		f	4o39'20.783""N		=	0.081258569 rad
 	Longitude		l	114o28'10.539""E	=	1.997871312 rad
-		
+
 B = 	1.003303209		F =	1.07212156
 A =	6376278.686		H = 	1.00000299
 		to = 	0.932946976		g0 = 	0.92729522
 		D = 	1.002425787		l0 = 	1.91437347
 		D2 =	1.004857458
-	
+
 		uc =	738096.09		vc =	0.00
 		t =	0.922369529		Q =	1.084456854
 		S =	0.081168129		T = 	1.003288725
@@ -359,11 +359,11 @@ A =	6376278.686		H = 	1.00000299
 Reverse calculations for same easting and northing first gives :
 		v' =   	-93307.40		u' =	734236.558
 		u'+uc = 1472332.652		Q' =	1.014790165
-		S'  =	0.014682385		T' =	1.000107780	
+		S'  =	0.014682385		T' =	1.000107780
 		V' =	0.115274794		U' = 	0.080902065
-		t' = 	0.922369529		c =	0.080721539		
-				
-Then	Latitude    	 f  =	4o39'20.783""N		
+		t' = 	0.922369529		c =	0.080721539
+
+Then	Latitude    	 f  =	4o39'20.783""N
 	Longitude	l   =	114o28'10.539""E"
 </pre>
 

@@ -83,14 +83,14 @@ can handle a scale parameter, you should look for ScaleAtNatOrigin. <p>
 
 <b>
 <pre>
-  +proj=cass +lat_0=<i>Latitude of natural origin</i> 
+  +proj=cass +lat_0=<i>Latitude of natural origin</i>
              +lon_0=<i>Longitude of natural origin</i>
              +x_0=<i>False Easting</i>
              +y_0=<i>False Northing</i>
 </pre>
 </b>
 
-There does not appear to be any scaling support with PROJ.4's Cassini.  
+There does not appear to be any scaling support with PROJ.4's Cassini.
 The documentation for PROJ.4 just calls the projection Cassini, but does
 indicate support for ellipical as well as spherical forms so I presume it
 is the same as Cassini-Soldner.<p>
@@ -99,36 +99,36 @@ is the same as Cassini-Soldner.<p>
 
 Cassini-Soldner Formula<p>
 
-The Cassini-Soldner projection is the ellipsoidal version of the Cassini projection for the 
-sphere. It is not conformal but as it is relatively simple to construct it was extensively used 
-in the last century and is still useful for mapping areas with limited longitudinal extent. It 
-has now largely been replaced by the conformal Transverse Mercator which it resembles. 
-Like this, it has a straight central meridian along which the scale is true, all other meridians 
-and parallels are curved, and the scale distortion increases rapidly with increasing distance 
+The Cassini-Soldner projection is the ellipsoidal version of the Cassini projection for the
+sphere. It is not conformal but as it is relatively simple to construct it was extensively used
+in the last century and is still useful for mapping areas with limited longitudinal extent. It
+has now largely been replaced by the conformal Transverse Mercator which it resembles.
+Like this, it has a straight central meridian along which the scale is true, all other meridians
+and parallels are curved, and the scale distortion increases rapidly with increasing distance
 from the central meridian.<p>
 
 The formulas to derive projected Easting and Northing coordinates are:<p>
 <pre>
 	Easting, E = FE + *[A - TA3/6 -(8 - T + 8C)TA5/120]
 
-	Northing, N = FN + M - M0 + *tan*[A2/2 + (5 - T + 6C)A4/24]		
+	Northing, N = FN + M - M0 + *tan*[A2/2 + (5 - T + 6C)A4/24]
 
 where	A = (* - *0)cos*
 	T = tan2*
-	C = e2 cos2*/(1 - e2) 
+	C = e2 cos2*/(1 - e2)
 and M, the distance along the meridian from equator to latitude *, is given by
-	M = a[1 - e2/4 - 3e4/64 - 5e6/256 -....)* - (3e2/8 + 3e4/32 + 45e6/1024 +....)sin2* 
+	M = a[1 - e2/4 - 3e4/64 - 5e6/256 -....)* - (3e2/8 + 3e4/32 + 45e6/1024 +....)sin2*
 		+ (15e4/256 + 45e6/1024 +.....)sin4* - (35e6/3072 + ....)sin6* + .....]
 with * in radians.
 
-M0 is the value of M calculated for the latitude of the chosen origin. This may not 
+M0 is the value of M calculated for the latitude of the chosen origin. This may not
 necessarily be chosen as the equator.
 
 To compute latitude and longitude from Easting and Northing the reverse formulas are:
 	* = *1 - (*1tan*1/*1)[D2/2 - (1 + 3T1)D4/24]
 	* =  *0 + [D - T1D3/3 + (1 + 3T1)T1D5/15]/cos*1
 
-where	*1 is the latitude of the point on the central meridian which has the same Northing 
+where	*1 is the latitude of the point on the central meridian which has the same Northing
 as the point whose coordinates are sought, and is found from:
 
 	*1 = *1 + (3e1/2 - 27e13/32 +.....)sin2*1 + (21e12/16 - 55e14/32 + ....)sin4*1
@@ -138,7 +138,7 @@ where
 	*1 = M1/[a(1 - e2/4 - 3e4/64 - 5e6/256 - ....)]
 	M1 = M0 + (N - FN)
 	T1 = tan2*1
-	D = (E - FE)/*1","For Projected Coordinate System Trinidad 1903 / Trinidad Grid 
+	D = (E - FE)/*1","For Projected Coordinate System Trinidad 1903 / Trinidad Grid
 Parameters:
 Ellipsoid   Clarke 1858     a = 20926348 ft    = 31706587.88 links
                                         b = 20855233 ft
@@ -150,7 +150,7 @@ Longitude Natural Origin    61o20'00""W = -1.07046861 rad
 False Eastings FE              430000.00 links
 False Northings FN            325000.00 links
 
-Forward calculation for: 
+Forward calculation for:
 Latitude       10o00'00.00"" N = 0.17453293 rad
 Longitude    62o00'00.00""W = -1.08210414 rad
 

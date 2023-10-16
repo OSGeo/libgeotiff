@@ -32,7 +32,7 @@ The Keys in GeoTIFF (also call "GeoKeys") are all referenced from the
 GeoKeyDirectoryTag, which defined as follows: </tt>
 <pre>
 GeoKeyDirectoryTag:
-      Tag = 34735 (87AF.H) 
+      Tag = 34735 (87AF.H)
       Type = SHORT (2-byte unsigned short)
       N = variable, &gt;= 4
       Alias: ProjectionInfoTag, CoordSystemInfoTag
@@ -46,18 +46,18 @@ header information. The header values consist of the following information, in
 order:<p>
 </tt>
 <pre>  Header={KeyDirectoryVersion, KeyRevision, MinorRevision, NumberOfKeys}
-  where 
+  where
      "KeyDirectoryVersion" indicates the current version of Key
-     implementation, and will only change if this Tag's Key 
+     implementation, and will only change if this Tag's Key
      structure is changed. (Similar to the TIFFVersion (42)).
      The current DirectoryVersion number is 1. This value will
      most likely never change, and may be used to ensure that
      this is a valid Key-implementation.
-   
+
      "KeyRevision" indicates what revision of Key-Sets are used.
      "MinorRevision" indicates what set of Key-codes are used. The
      complete revision number is denoted &lt;KeyRevision&gt;.&lt;MinorRevision&gt;
-          
+
      "NumberOfKeys" indicates how many Keys are defined by the rest
      of this Tag.</pre><tt>
     <p>
@@ -66,18 +66,18 @@ KeyEntry sets, each of which is also 4-SHORTS long. Each KeyEntry is modeled on
 the "TIFFEntry" format of the TIFF directory header, and is of the form:<p>
 </tt>
 <pre>   KeyEntry = { KeyID, TIFFTagLocation, Count, Value_Offset }
-   where 
+   where
      "KeyID" gives the key-ID value of the Key (identical in function
      to TIFF tag ID, but completely independent of TIFF tag-space),
-     
+
      "TIFFTagLocation" indicates which TIFF tag contains the value(s)
       of the Key: if TIFFTagLocation is 0, then the value is SHORT,
       and is contained in the "Value_Offset" entry. Otherwise, the type
       (format) of the value is implied by the TIFF-Type of the tag
       containing the value.
-  
+
      "Count" indicates the number of values in this key.
-   
+
       "Value_Offset" Value_Offset indicates the index-
       offset *into* the TagArray indicated by TIFFTagLocation, if
       it is nonzero. If TIFFTagLocation=0, then Value_Offset
@@ -95,7 +95,7 @@ All key-values which are not of type SHORT are to be stored in one of the
 following two tags, based on their format:<p>
 </tt>
 <pre>GeoDoubleParamsTag:
-      Tag = 34736 (87BO.H) 
+      Tag = 34736 (87BO.H)
       Type = DOUBLE (IEEE Double precision)
       N = variable
       Owner: SPOT Image, Inc.</pre><tt><p>
@@ -105,7 +105,7 @@ from the GeoKeyDirectoryTag reference pointing to it. FLOAT values should first
 be converted to DOUBLE and stored here.<p>
 </tt>
 <pre>GeoAsciiParamsTag:
-      Tag = 34737 (87B1.H)  
+      Tag = 34737 (87B1.H)
       Type = ASCII
       Owner: SPOT Image, Inc.
       N = variable</pre><tt><p>

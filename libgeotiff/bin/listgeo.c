@@ -21,8 +21,8 @@ static TIFF *st_setup_test_info();
 
 void Usage()
 {
-    printf( 
-        "%s", 
+    printf(
+        "%s",
         "Usage: listgeo [-d] [-tfw] [-proj4] [-no_norm] [-t tabledir] filename\n"
         "\n"
         "  -d: report lat/long corners in decimal degrees instead of DMS.\n"
@@ -31,7 +31,7 @@ void Usage()
         "  -no_norm: Don't report 'normalized' parameter values.\n"
         "  -no_corners: Don't report corner coordinates.\n"
         "  filename: Name of the GeoTIFF file to report on.\n" );
-        
+
     exit( 1 );
 }
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
         Usage();
 
     /*
-     * Open the file, read the GeoTIFF information, and print to stdout. 
+     * Open the file, read the GeoTIFF information, and print to stdout.
      */
 
     if( st_test_flag )
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     {
         tif=XTIFFOpen(fname,"r");
         if (!tif) goto failure;
-	
+
         gtif = GTIFNew(tif);
         if (!gtif)
         {
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 
         goto Success;
     }
-	
+
     /* dump the GeoTIFF metadata to std out */
 
     GTIFPrint(gtif,0,0);
@@ -118,11 +118,11 @@ int main(int argc, char *argv[])
     if( norm_print_flag )
     {
         GTIFDefn	defn;
-        
+
         if( GTIFGetDefn( gtif, &defn ) )
         {
             int		xsize, ysize;
-            
+
             printf( "\n" );
             GTIFPrintDefnEx( gtif, &defn, stdout );
 
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
                 printf( "\n" );
                 printf( "PROJ.4 Definition: %s\n", GTIFGetProj4Defn(&defn));
             }
-            
+
             TIFFGetField( tif, TIFFTAG_IMAGEWIDTH, &xsize );
             TIFFGetField( tif, TIFFTAG_IMAGELENGTH, &ysize );
             if( corners )
@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
     else
         XTIFFClose(tif);
     return 0;
-		
+
   failure:
     fprintf(stderr,"failure in listgeo\n");
     if (tif) XTIFFClose(tif);
@@ -170,7 +170,7 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     /* Try to transform the coordinate into PCS space */
     if( !GTIFImageToPCS( gtif, &x, &y ) )
         return FALSE;
-    
+
     x_saved = x;
     y_saved = y;
 
@@ -178,12 +178,12 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
 
     if( defn->Model == ModelTypeGeographic )
     {
-	if (dec_flag) 
+	if (dec_flag)
 	{
 	    fprintf( fp_out, "(%.7f,", x );
 	    fprintf( fp_out, "%.7f)\n", y );
-	} 
-	else 
+	}
+	else
 	{
 	    fprintf( fp_out, "(%s,", GTIFDecToDMS( x, "Long", 2 ) );
 	    fprintf( fp_out, "%s)\n", GTIFDecToDMS( y, "Lat", 2 ) );
@@ -195,12 +195,12 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
 
         if( GTIFProj4ToLatLong( defn, 1, &x, &y ) )
         {
-	    if (dec_flag) 
+	    if (dec_flag)
 	    {
                 fprintf( fp_out, "  (%.7f,", x );
                 fprintf( fp_out, "%.7f)", y );
-	    } 
-	    else 
+	    }
+	    else
 	    {
                 const char* pszLong = GTIFDecToDMS( x, "Long", 2 );
                 if( pszLong[0] == 0 )
@@ -222,7 +222,7 @@ static int GTIFReportACorner( GTIF *gtif, GTIFDefn *defn, FILE * fp_out,
     {
         fprintf( fp_out, "      inverse (%11.3f,%11.3f)\n", x_saved, y_saved );
     }
-    
+
     return TRUE;
 }
 
@@ -330,7 +330,7 @@ static void WriteTFWFile( GTIF * gtif, const char * tif_filename )
 
     fclose( fp );
 
-    fprintf( stderr, "World file written to '%s'.\n", tfw_filename); 
+    fprintf( stderr, "World file written to '%s'.\n", tfw_filename);
 }
 
 /************************************************************************/
@@ -345,7 +345,7 @@ static TIFF *st_setup_test_info()
 {
     ST_TIFF *st;
     double dbl_data[100];
-    unsigned short  shrt_data[] = 
+    unsigned short  shrt_data[] =
         { 1,1,0,6,1024,0,1,1,1025,0,1,1,1026,34737,17,0,2052,0,1,9001,2054,0,1,9102,3072,0,1,26711 };
     char *ascii_data = "UTM    11 S E000|";
 
@@ -354,7 +354,7 @@ static TIFF *st_setup_test_info()
     dbl_data[0] = 60;
     dbl_data[1] = 60;
     dbl_data[2] = 0;
-    
+
     ST_SetKey( st, 33550, 3, STT_DOUBLE, dbl_data );
 
     dbl_data[0] = 0;
@@ -367,6 +367,6 @@ static TIFF *st_setup_test_info()
 
     ST_SetKey( st, 34735, sizeof(shrt_data)/2, STT_SHORT, shrt_data );
     ST_SetKey( st, 34737, strlen(ascii_data)+1, STT_ASCII, ascii_data );
-    
+
     return (TIFF *) st;
 }

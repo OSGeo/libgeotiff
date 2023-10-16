@@ -6,7 +6,7 @@
  * Author:   Andrey Kiselev, dron@ak4719.spb.edu.
  *           Frank Warmerdam, warmerdam@pobox.com
  *
- * This file is derived from GDAL's port/cpl_strtod.cpp. 
+ * This file is derived from GDAL's port/cpl_strtod.cpp.
  *
  ******************************************************************************
  * Copyright (c) 2006, Andrey Kiselev

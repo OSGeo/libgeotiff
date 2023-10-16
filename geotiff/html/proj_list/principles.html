@@ -6,7 +6,7 @@
 <h1>Projections Documentation Principles</h1>
 
 This page is intended to explain the meaning of the different fields in
-the standard projection documentation tables, and the principles behind 
+the standard projection documentation tables, and the principles behind
 the organization of the information.  In addition to making it easier to
 interprete the projection documents, it is primarily intended to guide those
 writing up new projections and to ensure some uniformity.<p>
@@ -19,8 +19,8 @@ table.  It will contain the following fields.  <p>
 
 <ul>
 
-<li> <b>Name</b>: 
-This is the name of the projection.  If the projection exists in 
+<li> <b>Name</b>:
+This is the name of the projection.  If the projection exists in
 EPSG, then it should be the exact EPSG name for the projection.  This name
 should exactly match the title of the document, and the entry in the list
 in index.html.<p>
@@ -32,14 +32,14 @@ a separate row in the table.<p>
 If the projection method is documented by EPSG, this will be the EPSG
 code number (the index in the TRF_METHOD table). <p>
 
-<li> <b>GeoTIFF Code</b>: 
+<li> <b>GeoTIFF Code</b>:
 If this projection method is supported in GeoTIFF this will be the GeoTIFF
 projection code number (CT_* code) from geo_ctrans.inc.  The symbolic GeoTIFF
-name should be provided with the number in brackets. 
+name should be provided with the number in brackets.
 eg. CT_TransverseMercator(1)<p>
 
 <li> <b>OGC WKT Name</b>:
-The name used in the PROJECTION[] keyword for OpenGIS Well 
+The name used in the PROJECTION[] keyword for OpenGIS Well
 Known Text format SRS definitions. <p>
 
 </ul>
@@ -55,9 +55,9 @@ The name of this parameter.  If the projection is supported by EPSG, then
 this should be EPSG parameter name.<p>
 
 <li> <b>EPSG #</b>:
-The EPSG parameter number (if applicable).  For instance Longitude of 
+The EPSG parameter number (if applicable).  For instance Longitude of
 projection center is PARAM_2_NAME in the TRF_METHOD table, so it would have
-an EPSG # of 2.  If the projection is not listed in the EPSG database, 
+an EPSG # of 2.  If the projection is not listed in the EPSG database,
 try to assign parameter numbers that would be suitable if it were to be
 incorporated.<p>
 
@@ -68,13 +68,13 @@ This is the GeoTIFF Parameter name, for instance CenterLong. <p>
 This is the Open GIS Well Known Text keyword for the parameter.<p>
 
 
-<li> <b>Units</b>: 
+<li> <b>Units</b>:
 This is one of "Angular", "Linear" or "Unitless".  It indicates the general
-nature of the parameter.  How this is encoded may vary from format to 
+nature of the parameter.  How this is encoded may vary from format to
 format.  For instance, if Units is "Angular" in GeoTIFF, then GeogAngularUnits
 should be used to interprete it as decimal degrees, radians or whatever.<p>
 
-<li> <b>Notes</b>: 
+<li> <b>Notes</b>:
 Free form notes on the parameter.
 
 </ul>

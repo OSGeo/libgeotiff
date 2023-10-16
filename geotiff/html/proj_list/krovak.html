@@ -16,7 +16,7 @@
 <tr>
 
 <td>GeoTIFF Code
-<td> 
+<td>
 <tr>
 
 <td> OGC WKT Name
@@ -127,7 +127,7 @@ PROJCS["S-JTSK (Ferro) / Krovak",
 </pre>
 
 The point <tt>(16d50'59.17"E,50d12'32.44"N)</tt> relative to greenwich maps
-to <tt>(568991.18mE, 1050538.67mN)</tt> in the projected coordinate system. 
+to <tt>(568991.18mE, 1050538.67mN)</tt> in the projected coordinate system.
 To avoid the issue of prime meridian add the prime meridian offset to the
 longitude_of_center.<p>
 
@@ -136,13 +136,13 @@ longitude_of_center.<p>
 PROJ.4 has the azimuth, and pseudo standard parallel "hardcoded" to match
 the common use of Krovak (azimuth = 30.28813972222222, pseudo standard
 parallel 78.5).  Other parameters default to the values in the above
-test point (with longitude_of_center adjusted for prime meridian).<P>  
+test point (with longitude_of_center adjusted for prime meridian).<P>
 
 <b>
 <pre>
-  +proj=krovak +lat_0=<i>Latitude of projection center</i> 
+  +proj=krovak +lat_0=<i>Latitude of projection center</i>
                +lon_0=<i>Longitude of projection center</i>
-               +k_0=<i>Scale factor on initial line</i> 
+               +k_0=<i>Scale factor on initial line</i>
                +x_0=<i>False Easting</i>
                +y_0=<i>False Northing</i>
 </pre>

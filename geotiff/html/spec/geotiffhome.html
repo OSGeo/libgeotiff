@@ -1,4 +1,4 @@
-<html><head><!-- This document was created from RTF source by rtftohtml version 
+<html><head><!-- This document was created from RTF source by rtftohtml version
 2.5 --><title>GeoTIFF Spec</title></head><body><h1>
 GeoTIFF Format Specification<br>
 GeoTIFF Revision 1.0</h1>
@@ -11,8 +11,8 @@ GeoTIFF Revision 1.0</h1>
 <tt></tt>
 <pre>   Dr. Niles Ritter
    (formerly of Jet Propulsion Laboratory)
-   email:ritter@earthlink.net      
-   
+   email:ritter@earthlink.net
+
    Mike Ruth, SPOT Image Corp
    Product Development Group
    1897 Preston White Dr.
@@ -22,45 +22,45 @@ GeoTIFF Revision 1.0</h1>
 <tt></tt>
 <pre>GeoTIFF Working Group:
     Mike Ruth, Niles Ritter, Ed Grissom, Brett Borup, George Galang,
-    John Haller, Gary Stephenson, Steve Covington, Tim Nagy, 
-    Jamie Moyers, Jim Stickley,Joe Messina, Yves Somer. 
-Additional advice from discussions with Tom Lane, Sam Leffler regarding      
-TIFF implementations. 
-Roger Lott, Fredrik Lundh, and Jarle Land provided valuable information    
+    John Haller, Gary Stephenson, Steve Covington, Tim Nagy,
+    Jamie Moyers, Jim Stickley,Joe Messina, Yves Somer.
+Additional advice from discussions with Tom Lane, Sam Leffler regarding
+TIFF implementations.
+Roger Lott, Fredrik Lundh, and Jarle Land provided valuable information
 regarding projections, projection code databases and geodetics.
-   
-GeoTIFF Mailing list:  
+
+GeoTIFF Mailing list:
     Posting: geotiff@remotesensing.org
     Subscription: majordomo@remotesensing.org
        (send message "subscribe geotiff").</pre><tt>
   </tt>
  <h2>Disclaimers and Notes for This Version:</h2>
 <tt><p>
-This proposal has not been approved by SPOT, JPL, or any other organization. 
-This represents a proposal, which derives from many discussions between an 
+This proposal has not been approved by SPOT, JPL, or any other organization.
+This represents a proposal, which derives from many discussions between an
 international body of TIFF users and developers.<p>
  <p>
-The authors and their sponsors assume no liability for any special, incidental, 
-indirect or consequences of any kind, or any damages whatsoever resulting from 
-loss of use, data or profits, whether or not advised of the possibility of 
-damage, and on any theory of liability, arising out of or in connection with 
+The authors and their sponsors assume no liability for any special, incidental,
+indirect or consequences of any kind, or any damages whatsoever resulting from
+loss of use, data or profits, whether or not advised of the possibility of
+damage, and on any theory of liability, arising out of or in connection with
 the use of this specification.<p>
 </tt>
  <h2>Copyright</h2>
 <tt><p>
-Portions of this specification are copyrighted by Niles Ritter and Mike Ruth. 
-Permission to copy without fee all or part of this material is granted provided 
-that the copies are not made or distributed for direct or commercial advantage 
+Portions of this specification are copyrighted by Niles Ritter and Mike Ruth.
+Permission to copy without fee all or part of this material is granted provided
+that the copies are not made or distributed for direct or commercial advantage
 and this copyright notice appears.<p>
   </tt>
  <h2>Licenses and Trademarks</h2>
 <tt><p>
-Aldus and Adobe are registered trademarks, and TIFF is a registered trademark 
-of Aldus Corp., now owned by Adobe. SPOT Image, ESRI, ERDAS, ARC/Info, 
+Aldus and Adobe are registered trademarks, and TIFF is a registered trademark
+of Aldus Corp., now owned by Adobe. SPOT Image, ESRI, ERDAS, ARC/Info,
 Intergraph and Softdesk are registered trademarks. </tt>
  <h2>Concurrence</h2>
 <tt><p>
-  The following members of the GeoTIFF working group have reviewed and approved 
+  The following members of the GeoTIFF working group have reviewed and approved
 of this revision. <p>
    </tt>
 <pre>   Name                   Organization              Representing

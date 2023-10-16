@@ -210,7 +210,7 @@ ValuePair(  ProjStraightVertPoleLongGeoKey,	3095)     -- GeogAngularUnit --</pre
 ValuePair(  VerticalCitationGeoKey,	4097)  -- documentation --
 ValuePair(  VerticalDatumGeoKey,	4098)  -- Section 6.3.4.2 codes   --
 ValuePair(  VerticalUnitsGeoKey,	4099)  -- Section 6.3.1 (.x) codes   --
-</pre> 
+</pre>
 </div>
 </div>
 <a class="anchor" id="a642241ece835de8b4dd1be0a656df8a5"></a><!-- doxytag: member="geotiff.h::GTIFKeySet" ref="a642241ece835de8b4dd1be0a656df8a5" args="(GTIF *gtif, geokey_t keyID, tagtype_t type, int count,...)" -->
@@ -272,11 +272,11 @@ ValuePair(  VerticalUnitsGeoKey,	4099)  -- Section 6.3.1 (.x) codes   --
 <p>Note that key values aren't actually flushed to the file until <a class="el" href="geotiff_8h.html#a3fa3e3e55cf8ddb6aa035b8f17a25f35">GTIFWriteKeys()</a> is called. Till then the new values are just kept with the GTIF structure.</p>
 <p><b>Example:</b></p>
 <pre>
-    GTIFKeySet(gtif, GTRasterTypeGeoKey, TYPE_SHORT, 1, 
+    GTIFKeySet(gtif, GTRasterTypeGeoKey, TYPE_SHORT, 1,
                RasterPixelIsArea);
-    GTIFKeySet(gtif, GTCitationGeoKey, TYPE_ASCII, 0, 
+    GTIFKeySet(gtif, GTCitationGeoKey, TYPE_ASCII, 0,
                "UTM 11 North / NAD27" );
-</pre> 
+</pre>
 </div>
 </div>
 <a class="anchor" id="a67d3b43f2a73c0129f8346804e2d038c"></a><!-- doxytag: member="geotiff.h::GTIFNew" ref="a67d3b43f2a73c0129f8346804e2d038c" args="(void *tif)" -->
