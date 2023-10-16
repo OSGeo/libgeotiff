@@ -104,12 +104,9 @@ main(int argc, char* argv[])
 	uint32_t deftilelength = (uint32_t) -1;
 	uint32_t defrowsperstrip = (uint32_t) -1;
 	uint32_t diroff = 0;
-	TIFF* in;
-	TIFF* out;
 	char mode[10];
 	char* mp = mode;
 	int c;
-	extern int optind;
 	extern char* optarg;
 
 	*mp++ = 'w';
@@ -197,14 +194,16 @@ main(int argc, char* argv[])
 			usage();
 			/*NOTREACHED*/
 		}
+
+	extern int optind;
 	if (argc - optind < 2)
 		usage();
         printf( "mode=%s\n", mode);
-	out = TIFFOpen(argv[argc-1], mode);
+	TIFF *out = TIFFOpen(argv[argc-1], mode);
 	if (out == NULL)
 		return (-2);
 	for (; optind < argc-1 ; optind++) {
-		in = TIFFOpen(argv[optind], "r");
+		TIFF *in = TIFFOpen(argv[optind], "r");
 		if (in == NULL)
 			return (-3);
 		if (diroff != 0 && !TIFFSetSubDirectory(in, diroff)) {
