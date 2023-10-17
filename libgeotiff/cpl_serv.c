@@ -32,14 +32,11 @@
 /************************************************************************/
 
 void *CPLCalloc( int nCount, int nSize )
-
 {
-    void	*pReturn;
-
     if( nSize == 0 )
         return NULL;
 
-    pReturn = VSICalloc( nCount, nSize );
+    void *pReturn = VSICalloc( nCount, nSize );
     if( pReturn == NULL )
     {
         CPLError( CE_Fatal, CPLE_OutOfMemory,
@@ -55,14 +52,11 @@ void *CPLCalloc( int nCount, int nSize )
 /************************************************************************/
 
 void *CPLMalloc( int nSize )
-
 {
-    void	*pReturn;
-
     if( nSize == 0 )
         return NULL;
 
-    pReturn = VSIMalloc( nSize );
+    void *pReturn = VSIMalloc( nSize );
     if( pReturn == NULL )
     {
         CPLError( CE_Fatal, CPLE_OutOfMemory,
@@ -78,7 +72,6 @@ void *CPLMalloc( int nSize )
 /************************************************************************/
 
 void * CPLRealloc( void * pData, int nNewSize )
-
 {
     void	*pReturn;
 
@@ -102,21 +95,17 @@ void * CPLRealloc( void * pData, int nNewSize )
 /************************************************************************/
 
 char *CPLStrdup( const char * pszString )
-
 {
-    char	*pszReturn;
-
     if( pszString == NULL )
         pszString = "";
 
-    pszReturn = VSIMalloc( strlen(pszString)+1 );
+    char *pszReturn = VSIMalloc( strlen(pszString)+1 );
 
     if( pszReturn == NULL )
     {
         CPLError( CE_Fatal, CPLE_OutOfMemory,
                   "CPLStrdup(): Out of memory allocating %d bytes.\n",
                   strlen(pszString) );
-
     }
 
     strcpy( pszReturn, pszString );
@@ -135,15 +124,12 @@ char *CPLStrdup( const char * pszString )
 /************************************************************************/
 
 const char *CPLReadLine( FILE * fp )
-
 {
-    static char	*pszRLBuffer = NULL;
-    static int	nRLBufferSize = 0;
-    int		nLength, nReadSoFar = 0;
-
 /* -------------------------------------------------------------------- */
 /*      Cleanup case.                                                   */
 /* -------------------------------------------------------------------- */
+    static char	*pszRLBuffer = NULL;
+    static int	nRLBufferSize = 0;
     if( fp == NULL )
     {
         CPLFree( pszRLBuffer );
@@ -156,6 +142,7 @@ const char *CPLReadLine( FILE * fp )
 /*      Loop reading chunks of the line till we get to the end of       */
 /*      the line.                                                       */
 /* -------------------------------------------------------------------- */
+    int nReadSoFar = 0;
     do {
 /* -------------------------------------------------------------------- */
 /*      Grow the working buffer if we have it nearly full.  Fail out    */
@@ -198,7 +185,7 @@ const char *CPLReadLine( FILE * fp )
 /* -------------------------------------------------------------------- */
 /*      Clear CR and LF off the end.                                    */
 /* -------------------------------------------------------------------- */
-    nLength = strlen(pszRLBuffer);
+    int nLength = strlen(pszRLBuffer);
     if( nLength > 0
         && (pszRLBuffer[nLength-1] == 10 || pszRLBuffer[nLength-1] == 13) )
     {
@@ -228,10 +215,10 @@ const char *CPLReadLine( FILE * fp )
  **********************************************************************/
 char **CSLAddString(char **papszStrList, const char *pszNewString)
 {
-    int nItems=0;
-
     if (pszNewString == NULL)
         return papszStrList;    /* Nothing to do!*/
+
+    int nItems = 0;
 
     /* Allocate room for the new string */
     if (papszStrList == NULL)
@@ -282,14 +269,11 @@ int CSLCount(char **papszStrList)
 /************************************************************************/
 
 const char * CSLGetField( char ** papszStrList, int iField )
-
 {
-    int         i;
-
     if( papszStrList == NULL || iField < 0 )
         return( "" );
 
-    for( i = 0; i < iField+1; i++ )
+    for( int i = 0; i < iField+1; i++ )
     {
         if( papszStrList[i] == NULL )
             return "";
@@ -305,19 +289,16 @@ const char * CSLGetField( char ** papszStrList, int iField )
  **********************************************************************/
 void CSLDestroy(char **papszStrList)
 {
-    char **papszPtr;
+    if (!papszStrList) return;
 
-    if (papszStrList)
+    char **papszPtr = papszStrList;
+    while(*papszPtr != NULL)
     {
-        papszPtr = papszStrList;
-        while(*papszPtr != NULL)
-        {
-            CPLFree(*papszPtr);
-            papszPtr++;
-        }
-
-        CPLFree(papszStrList);
+        CPLFree(*papszPtr);
+        papszPtr++;
     }
+
+    CPLFree(papszStrList);
 }
 
 
@@ -328,17 +309,14 @@ void CSLDestroy(char **papszStrList)
  **********************************************************************/
 char    **CSLDuplicate(char **papszStrList)
 {
-    char **papszNewList, **papszSrc, **papszDst;
-    int  nLines;
-
-    nLines = CSLCount(papszStrList);
+    const int nLines = CSLCount(papszStrList);
 
     if (nLines == 0)
         return NULL;
 
-    papszNewList = (char **)CPLMalloc((nLines+1)*sizeof(char*));
-    papszSrc = papszStrList;
-    papszDst = papszNewList;
+    char **papszNewList = (char **)CPLMalloc((nLines+1)*sizeof(char*));
+    char **papszSrc = papszStrList;
+    char **papszDst = papszNewList;
 
     while(*papszSrc != NULL)
     {
@@ -374,18 +352,15 @@ char ** CSLTokenizeStringComplex( const char * pszString,
                                   int bHonourStrings, int bAllowEmptyTokens )
 
 {
-    char	**papszRetList = NULL;
-    char 	*pszToken;
-    int		nTokenMax, nTokenLen;
-
-    pszToken = (char *) CPLCalloc(10,1);
-    nTokenMax = 10;
+    char **papszRetList = NULL;
+    char *pszToken = (char *) CPLCalloc(10,1);
+    int nTokenMax = 10;
 
     while( pszString != NULL && *pszString != '\0' )
     {
         int	bInString = FALSE;
 
-        nTokenLen = 0;
+        int nTokenLen = 0;
 
         /* Try to find the next delimeter, marking end of token */
         for( ; *pszString != '\0'; pszString++ )
