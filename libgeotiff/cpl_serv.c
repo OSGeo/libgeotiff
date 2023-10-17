@@ -106,11 +106,12 @@ char *CPLStrdup( const char * pszString )
         CPLError( CE_Fatal, CPLE_OutOfMemory,
                   "CPLStrdup(): Out of memory allocating %d bytes.\n",
                   strlen(pszString) );
+        return pszReturn;
     }
 
     strcpy( pszReturn, pszString );
 
-    return( pszReturn );
+    return pszReturn;
 }
 
 /************************************************************************/
