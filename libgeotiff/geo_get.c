@@ -38,11 +38,10 @@ void GTIFDirectoryInfo(GTIF *gtif, int version[3], int *keycount)
 int GTIFKeyInfo(GTIF *gtif, geokey_t key, int *size, tagtype_t* type)
 {
         int nIndex = gtif->gt_keyindex[ key ];
-        GeoKey *keyptr;
 
         if (!nIndex) return 0;
 
-        keyptr = gtif->gt_keys + nIndex;
+        GeoKey *keyptr = gtif->gt_keys + nIndex;
         if (size) *size = (int) keyptr->gk_size;
         if (type) *type = keyptr->gk_type;
 
@@ -152,21 +151,18 @@ ValuePair(  CoordinateEpochGeoKey, 5120)  -- GeoKey of type double
 
 int GTIFKeyGet(GTIF *gtif, geokey_t thekey, void *val, int nIndex, int count)
 {
-        int kindex = gtif->gt_keyindex[ thekey ];
-        GeoKey *key;
-        gsize_t size;
-        char *data;
-        tagtype_t type;
+        const int kindex = gtif->gt_keyindex[ thekey ];
 
         if (!kindex) return 0;
 
-        key = gtif->gt_keys+kindex;
+        GeoKey *key = gtif->gt_keys+kindex;
         if (!count) count = (int) (key->gk_count - nIndex);
         if (count <=0) return 0;
         if (count > key->gk_count) count = (int) key->gk_count;
-        size = key->gk_size;
-        type = key->gk_type;
+        const gsize_t size = key->gk_size;
+        const tagtype_t type = key->gk_type;
 
+        char *data;
         if (count==1 && type==TYPE_SHORT) data = (char *)&key->gk_data;
         else data = key->gk_data;
 

@@ -44,7 +44,7 @@
 static float CPLNaN(void)
 {
     float fNan;
-    int nNan = 0x7FC00000;
+    const int nNan = 0x7FC00000;
     memcpy(&fNan, &nNan, 4);
     return fNan;
 }
@@ -88,7 +88,7 @@ static void _ReplacePointByLocalePoint(char* pszNumber, char point)
          && strlen(poLconv->decimal_point) > 0 )
     {
         int     i = 0;
-        char    byPoint = poLconv->decimal_point[0];
+        const char    byPoint = poLconv->decimal_point[0];
 
         if (point != byPoint)
         {
@@ -123,13 +123,11 @@ static double _StrtodDelim(const char *nptr, char **endptr, char point)
 /*  on that buffer.                                                     */
 /* -------------------------------------------------------------------- */
     char        *pszNumber = CPLStrdup( nptr );
-    double      dfValue;
-    int         nError;
 
     _ReplacePointByLocalePoint(pszNumber, point);
 
-    dfValue = strtod( pszNumber, endptr );
-    nError = errno;
+    const double dfValue = strtod( pszNumber, endptr );
+    const int nError = errno;
 
     if ( endptr )
         *endptr = (char *)nptr + (*endptr - pszNumber);

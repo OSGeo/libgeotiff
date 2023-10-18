@@ -7,14 +7,7 @@
 static int
 InstallGeoTIFF(const char *geofile, const char *tiffile)
 {
-    TIFF *tif; /* TIFF-level descriptor */
-    GTIF *gtif; /* GeoKey-level descriptor */
-    FILE *fp;
-
-    uint16_t *panVI = NULL;
-    uint16_t nKeyCount;
-
-    tif = XTIFFOpen(tiffile, "r+");
+    TIFF *tif = XTIFFOpen(tiffile, "r+");  /* TIFF-level descriptor */
     if (!tif)
     {
         perror(tiffile);
@@ -25,7 +18,8 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
     /* If we have existing geokeys, try to wipe them
     by writing a dummy geokey directory. (#2546) */
 
-
+    uint16_t *panVI = NULL;
+    uint16_t nKeyCount;
     if( TIFFGetField( tif, TIFFTAG_GEOKEYDIRECTORY,
                       &nKeyCount, &panVI ) )
     {
@@ -39,7 +33,7 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
         TIFFSetField( tif, TIFFTAG_GEOASCIIPARAMS, "" );
     }
 
-    gtif = GTIFNew(tif);
+    GTIF *gtif = GTIFNew(tif);  /* GeoKey-level descriptor */
     if (!gtif)
     {
         fprintf(stderr, "Internal error (GTIFNew)\n");
@@ -47,7 +41,7 @@ InstallGeoTIFF(const char *geofile, const char *tiffile)
     }
 
     /* Read GeoTIFF projection information from geofile */
-    fp = fopen(geofile, "r");
+    FILE *fp = fopen(geofile, "r");
     if( fp == NULL )
     {
         perror( geofile );
@@ -77,20 +71,15 @@ main(int argc, char *argv[])
     char *usage = "usage: %s file.geo file.tiff\n"
         "geo\tfile containing projection (eg. from listgeo)\n"
         "tiff\tTIFF file into which the projection is written\n";
-    char *prog;
-    char *geofile;
-    char *tiffile;
-    int rc;
-
     if( argc != 3 )
     {
         fprintf(stderr, usage, "applygeo");
         exit(1);
     }
 
-    prog = argv[0];
-    geofile = argv[1];
-    tiffile = argv[2];
+    char *prog = argv[0];
+    char *geofile = argv[1];
+    char *tiffile = argv[2];
 
     if (!geofile || !tiffile)
     {
@@ -98,7 +87,7 @@ main(int argc, char *argv[])
         exit(1);
     }
 
-    rc = InstallGeoTIFF(geofile, tiffile);
+    const int rc = InstallGeoTIFF(geofile, tiffile);
     if (rc)
     {
         fprintf(stderr, "%s: error %d applying projection from %s into TIFF %s\n", prog, rc, geofile, tiffile);
