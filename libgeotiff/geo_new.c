@@ -110,8 +110,12 @@ GTIF* GTIFNewWithMethods(void *tif, TIFFMethod* methods)
 GTIF* GTIFNewWithMethodsEx(void *tif, TIFFMethod* methods,
                            GTErrorCallback error_callback, void* user_data)
 {
+    TempKeyData tempData;
+    memset( &tempData, 0, sizeof(tempData) );
+
     GTIF* gt = (GTIF*)_GTIFcalloc( sizeof(GTIF));
     if (!gt) goto failure;
+
     gt->gt_error_callback = error_callback;
     gt->gt_user_data = user_data;
 
@@ -176,9 +180,6 @@ GTIF* GTIFNewWithMethodsEx(void *tif, TIFFMethod* methods,
         gt->gt_double = (double*) _GTIFrealloc(gt->gt_double,
                                                (MAX_VALUES)*sizeof(double));
     }
-
-    TempKeyData tempData;
-    memset( &tempData, 0, sizeof(tempData) );
 
     if ( tif == NULL
          || !(gt->gt_methods.get)(tif, GTIFF_ASCIIPARAMS,
