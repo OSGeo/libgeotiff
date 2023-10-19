@@ -29,6 +29,7 @@
  *****************************************************************************/
 
 #include <assert.h>
+#include <stdio.h>
 
 #include "cpl_serv.h"
 #include "geo_tiffp.h"
@@ -155,8 +156,10 @@ int GTIFGetPCSInfoEx( void* ctxIn,
             if (ppszEPSGName)
             {
                 char szEPSGName[64];
-                sprintf(szEPSGName, "%s / UTM zone %d%c",
-                        pszDatumName, nZone, (Proj == MapSys_UTM_North) ? 'N' : 'S');
+                snprintf(
+                    szEPSGName, sizeof(szEPSGName), "%s / UTM zone %d%c",
+                    pszDatumName, nZone,
+                    (Proj == MapSys_UTM_North) ? 'N' : 'S');
                 *ppszEPSGName = CPLStrdup(szEPSGName);
             }
 
@@ -180,7 +183,7 @@ int GTIFGetPCSInfoEx( void* ctxIn,
     {
         char szCode[12];
 
-        sprintf(szCode, "%d", nPCSCode);
+        snprintf(szCode, sizeof(szCode), "%d", nPCSCode);
         PJ* proj_crs = proj_create_from_database(
             ctx, "EPSG", szCode, PJ_CATEGORY_CRS, 0, NULL);
         if( !proj_crs )
@@ -310,7 +313,7 @@ double GTIFAngleToDD( double dfAngle, int nUOMAngle )
         {
             char	szAngleString[32];
 
-            sprintf( szAngleString, "%12.7f", dfAngle );
+            snprintf(szAngleString, sizeof(szAngleString), "%12.7f", dfAngle);
             dfAngle = GTIFAngleStringToDD( szAngleString, nUOMAngle );
         }
     }
@@ -472,7 +475,7 @@ int GTIFGetGCSInfoEx( void* ctxIn,
     {
         char szCode[12];
 
-        sprintf(szCode, "%d", nGCSCode);
+        snprintf(szCode, sizeof(szCode), "%d", nGCSCode);
         PJ* geod_crs = proj_create_from_database(
             ctx, "EPSG", szCode, PJ_CATEGORY_CRS, 0, NULL);
         if( !geod_crs )
@@ -665,7 +668,7 @@ int GTIFGetEllipsoidInfoEx( void* ctxIn,
     {
         char szCode[12];
 
-        sprintf(szCode, "%d", nEllipseCode);
+        snprintf(szCode, sizeof(szCode), "%d", nEllipseCode);
         PJ* ellipsoid = proj_create_from_database(
             ctx, "EPSG", szCode, PJ_CATEGORY_ELLIPSOID, 0, NULL);
         if( !ellipsoid )
@@ -739,7 +742,7 @@ int GTIFGetPMInfoEx( void* ctxIn,
     {
         char szCode[12];
 
-        sprintf(szCode, "%d", nPMCode);
+        snprintf(szCode, sizeof(szCode), "%d", nPMCode);
         PJ* pm = proj_create_from_database(
             ctx, "EPSG", szCode, PJ_CATEGORY_PRIME_MERIDIAN, 0, NULL);
         if( !pm )
@@ -840,7 +843,7 @@ int GTIFGetDatumInfoEx( void* ctxIn,
     {
         char szCode[12];
 
-        sprintf(szCode, "%d", nDatumCode);
+        snprintf(szCode, sizeof(szCode), "%d", nDatumCode);
         PJ* datum = proj_create_from_database(
             ctx, "EPSG", szCode, PJ_CATEGORY_DATUM, 0, NULL);
         if( !datum )
@@ -959,7 +962,7 @@ int GTIFGetUOMLengthInfoEx( void* ctxIn,
     char szCode[12];
     const char* pszName = NULL;
 
-    sprintf(szCode, "%d", nUOMLengthCode);
+    snprintf(szCode, sizeof(szCode), "%d", nUOMLengthCode);
     PJ_CONTEXT* ctx = (PJ_CONTEXT*)ctxIn;
     if( !proj_uom_get_info_from_database(
         ctx, "EPSG", szCode, &pszName, pdfInMeters,  NULL) )
@@ -1067,7 +1070,7 @@ int GTIFGetUOMAngleInfoEx( void* ctxIn,
     const char* pszName = NULL;
     double dfConvFactorToRadians = 0;
 
-    sprintf(szCode, "%d", nUOMAngleCode);
+    snprintf(szCode, sizeof(szCode), "%d", nUOMAngleCode);
     PJ_CONTEXT* ctx = (PJ_CONTEXT*)ctxIn;
     if( !proj_uom_get_info_from_database(
         ctx, "EPSG", szCode, &pszName, &dfConvFactorToRadians, NULL) )
@@ -1436,8 +1439,8 @@ int GTIFGetProjTRFInfoEx( void* ctxIn,
         if (ppszProjTRFName)
         {
             char szProjTRFName[64];
-            sprintf(szProjTRFName, "UTM zone %d%c",
-                    nZone, (bNorth) ? 'N' : 'S');
+            snprintf(szProjTRFName, sizeof(szProjTRFName), "UTM zone %d%c",
+                     nZone, (bNorth) ? 'N' : 'S');
             *ppszProjTRFName = CPLStrdup(szProjTRFName);
         }
 
@@ -1463,7 +1466,7 @@ int GTIFGetProjTRFInfoEx( void* ctxIn,
 
     {
         char    szCode[12];
-        sprintf(szCode, "%d", nProjTRFCode);
+        snprintf(szCode, sizeof(szCode), "%d", nProjTRFCode);
         PJ_CONTEXT* ctx = (PJ_CONTEXT*)ctxIn;
         PJ *transf = proj_create_from_database(
             ctx, "EPSG", szCode, PJ_CATEGORY_COORDINATE_OPERATION, 0, NULL);
@@ -2720,10 +2723,11 @@ const char *GTIFDecToDMS( double dfAngle, const char * pszAxis,
         pszHemisphere = "N";
 
     char szFormat[30];
-    sprintf( szFormat, "%%3dd%%2d\'%%%d.%df\"%s",
-             nPrecision+3, nPrecision, pszHemisphere );
+    snprintf(szFormat, sizeof(szFormat), "%%3dd%%2d\'%%%d.%df\"%s",
+             nPrecision+3, nPrecision, pszHemisphere);
     static char szBuffer[50];
-    sprintf( szBuffer, szFormat, nDegrees, nMinutes, dfSeconds );
+    snprintf(
+        szBuffer, sizeof(szBuffer), szFormat, nDegrees, nMinutes, dfSeconds);
 
     return szBuffer;
 }
