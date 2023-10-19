@@ -7,8 +7,6 @@
 /* the macro ValuePair() must be defined   */
 /* by the enclosing include file           */
 
-/*  Revised 28 Sep 1995   NDR -- Added Rev. 1.0 aliases. */
-
 /* 6.2.1 GeoTIFF Configuration Keys */
 
 ValuePair(  GTModelTypeGeoKey,	1024) /* Section 6.3.1.1 Codes       */

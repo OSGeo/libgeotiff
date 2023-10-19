@@ -27,12 +27,6 @@
  * DEALINGS IN THE SOFTWARE.
  *****************************************************************************/
 
-/*
-#include "geotiff.h"
-#include "geo_tiffp.h"
-#include "geo_keyp.h"
-*/
-
 #include "geo_normalize.h"
 #include "geovalues.h"
 

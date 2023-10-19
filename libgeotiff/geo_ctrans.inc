@@ -26,21 +26,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  ******************************************************************************
- *
- * $Log$
- * Revision 1.3  2005/03/04 03:59:11  fwarmerdam
- * Added header.
- *
  */
 
 /* C database for Geotiff include files.   */
 /* the macro ValuePair() must be defined   */
 /* by the enclosing include file           */
-
-/*
- *  Revised 12 Jul 1995   NDR -- changed South Oriented to a code
- *  Revised 28 Sep 1995   NDR -- Added Rev. 1.0 aliases.
- */
 
 ValuePair(CT_TransverseMercator,	1)
 ValuePair(CT_TransvMercator_Modified_Alaska, 2)
