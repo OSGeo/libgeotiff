@@ -9,9 +9,6 @@
  *  Permission granted to use this software, so long as this copyright
  *  notice accompanies any products derived therefrom.
  *
- *    20 June, 1995      Niles D. Ritter         New
- *    7 July,  1995      Greg Martin             Fix index
- *
  **********************************************************************/
 
 #include <stdarg.h>

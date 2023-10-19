@@ -9,14 +9,6 @@
  *  Permission granted to use this software, so long as this copyright
  *  notice accompanies any products derived therefrom.
  *
- *  Revision History;
- *
- *    20 June,  1995      Niles D. Ritter      New
- *     7 July,  1995      NDR                  Fix indexing
- *    27 July,  1995      NDR                  Added Import utils
- *    28 July,  1995      NDR                  Made parser more strict.
- *    29  Sep,  1995      NDR                  Fixed matrix printing.
- *
  **********************************************************************/
 
 #include "geotiff.h"   /* public interface        */

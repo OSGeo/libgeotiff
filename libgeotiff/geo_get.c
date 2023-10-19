@@ -9,12 +9,6 @@
  *  Permission granted to use this software, so long as this copyright
  *  notice accompanies any products derived therefrom.
  *
- *  Revision History;
- *
- *    20 June, 1995      Niles D. Ritter         New
- *    3 July,  1995      Greg Martin             Fix strings and index
- *    6 July,  1995      Niles D. Ritter         Unfix indexing.
- *
  **********************************************************************/
 
 #include "geotiff.h"   /* public interface        */
