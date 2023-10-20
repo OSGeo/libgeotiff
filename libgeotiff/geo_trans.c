@@ -28,6 +28,9 @@
  * DEALINGS IN THE SOFTWARE.
  *****************************************************************************/
 
+#include <math.h>
+#include <stddef.h>
+
 #include "geotiff.h"
 #include "geo_tiffp.h" /* external TIFF interface */
 #include "geo_keyp.h"  /* private interface       */

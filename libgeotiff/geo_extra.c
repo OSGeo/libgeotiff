@@ -27,6 +27,8 @@
  * DEALINGS IN THE SOFTWARE.
  *****************************************************************************/
 
+#include <stddef.h>
+
 #include "geo_normalize.h"
 #include "geovalues.h"
 

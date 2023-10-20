@@ -29,6 +29,10 @@
  ******************************************************************************
  */
 
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "cpl_serv.h"
 #include "geotiff.h"
 #include "geo_normalize.h"

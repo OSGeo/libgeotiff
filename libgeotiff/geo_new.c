@@ -12,6 +12,8 @@
  **********************************************************************/
 
 #include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "geotiffio.h"   /* public interface        */
 #include "geo_tiffp.h" /* external TIFF interface */
