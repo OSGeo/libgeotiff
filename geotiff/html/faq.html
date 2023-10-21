@@ -183,7 +183,7 @@ the geographic data management products which they sell.
 <P>
 Many systems today can read GeoTIFF files into correct geographic position in a variety
 of Geographic Information Systems (GIS), Image Processors (IP) and Computer Aided Design (CAD)
-softwares.  You need to check with your system provider to find out if they have written the
+software.  You need to check with your system provider to find out if they have written the
 software module to read/write GeoTIFF imagery in the software version which you use.
 
 <!--------------------------------------------------------------------------->
@@ -254,7 +254,7 @@ Vargis Aerial and others).
 A TIFF tag conveys information about the imagery.  It is TIFF's
 version of metadata (data about data).  TIFF Tags are the only
 way that a TIFF reading software can obtain fundamental information
-about the TIFF image. TIFF reading softwares all implement TIFF tags
+about the TIFF image. TIFF reading software all implement TIFF tags
 to control the display and printing of TIFF images.
 <P></P>
 
@@ -344,18 +344,18 @@ to support the loading of the image.
 The TIFF structure is the only image format which is extensible, allows
 private implementations and has the flexibility to support geographic
 information.  For users, GeoTIFF files provide the possibility of
-a single image format compatible with all GIS vendor softwares.
-At present, many GIS softwares do implement the ability to read the
+a single image format compatible with all GIS vendor software.
+At present, many GIS software do implement the ability to read the
 exact same GeoTIFF specification for any compliant image file.   This means
-that users of different softwares can now exchange and share raster files
+that users of different software can now exchange and share raster files
 without needing to run translators, assuming they are exchanging between
-softwares that read GeoTIFF format.
+software that read GeoTIFF format.
      <P></P>
 The TIFF tag structure is designed to be simple
 and platform independent, so any GIS software developer can make
 use of the tags in just a few hours of program development.  TIFF
 files which use the proposed GeoTIFF tagset can be transported from
-one display environment to another, provided both system softwares
+one display environment to another, provided both system software
 support the GeoTIFF spec.  For the user, this means greater ease of use of
 images, less hassle importing and exporting raster formats, and less
 duplication of images in everyone's proprietary format in a single
@@ -387,7 +387,7 @@ raster/vector processes supported by the GIS.
 <H3><A NAME="Doesn't anyone else have TIFF tags for geographic information?">Doesn't anyone else have TIFF tags for geographic information?</A></H3>
 
 Both ESRI and Intergraph have been involved in the GeoTIFF definition
-since the inception of GeoTIFF and have released softwares which support
+since the inception of GeoTIFF and have released software which support
 the open GeoTIFF tag structure.
 <P></P>
 ESRI has a history of using a private tag which Arc/Info uses to
@@ -399,7 +399,7 @@ everything ESRI's tag could do and a lot more.
   <P></P>
 Intergraph also has a tag set which they have used for
 several years to support their raster geographic
-softwares.  This set is completely private since they reserve
+software.  This set is completely private since they reserve
 the right to change any of its structure at any time without
 review or notification outside of their user base.
 There are many many other TIFF private
@@ -414,13 +414,13 @@ and supports geographic parameters.
 <H3><A NAME="WorldFile1">Is GeoTIFF based on the world reference files that ESRI uses?</A></H3>
 
 ESRI's world file is a separate file with limited metadata content
-designed only for use in Arc/Info and other ESRI softwares, though widely
+designed only for use in Arc/Info and other ESRI software, though widely
 supported by other software.  The world reference file only contains the
 coefficients for an affine transformation between raster coordinates, and
 world coordinates, but no definition of the coordinate system.<p>
 
 The GeoTIFF structure, by comparison, is rich in content and
-packs everything into a single file.   The GeoTIFF tag stucture
+packs everything into a single file.   The GeoTIFF tag structure
 covers more diverse options for projection spaces, datums,
 ellipsoids, coordinate types, and related geographic features
 than the ESRI tag.  And the GeoTIFF structure is intended to
@@ -559,19 +559,19 @@ PixelIsPoint treats pixels as point samples with empty space between the
 raster pixel.<p>
 
 The net effect is a half pixel offset when interpreting PixelIsPoint vs.
-PixelIsArea images.  There has been some confusion on the intepretation of
+PixelIsArea images.  There has been some confusion on the interpretation of
 this value in the GeoTIFF community for some time and some held the opinion
 that this parameter should have no effect on the georeferencing of the image.
 While this matter has been settled, the result is that some software packages,
-particularly those built on GDAL 1.7.x or older incorrectly interprete the
+particularly those built on GDAL 1.7.x or older incorrectly interpret the
 georeferenced location of PixelIsPoint images - placing them offset by half
-a pixel.  One way of avoiding compatability problems is to produce GeoTIFF
+a pixel.  One way of avoiding compatibility problems is to produce GeoTIFF
 files with the default PixelIsArea interpretation.<p>
 
 <!--------------------------------------------------------------------------->
 <H3><A NAME="AxisOrder">What is the Axis Order in GeoTIFF?</A></H3>
 
-The axis order of a coordinate system is used to interprete coordinates.  For
+The axis order of a coordinate system is used to interpret coordinates.  For
 instance should (-5,45) in EPSG:4326 be interpreted as -5 degrees longitude, and
 45 degrees latitude or -5 degrees latitude and 45 degrees longitude?<p>
 
@@ -627,7 +627,7 @@ of cartographic inforamation available in the public domain today.
 
 The GeoTIFF 1.0 Specification references the EPSG 2.1 database.  Without
 a specification revision this remains the case; however, it is common practice
-amoung vendors producing and consuming GeoTIFF files to support recent
+among vendors producing and consuming GeoTIFF files to support recent
 versions of the EPSG database, currently 6.4 or higher.  The libgeotiff
 reference implementation is distributed with .csv files from a recent release
 of the EPSG database (used by normalization code); however, the names

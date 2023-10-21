@@ -17,8 +17,3 @@ fi
 
 cp $LIBGEOTIFF_DIR/docs/api/* api
 cp $LIBGEOTIFF_DIR/docs/*.html . 
-
-
-
-
-
