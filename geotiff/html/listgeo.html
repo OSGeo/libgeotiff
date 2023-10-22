@@ -21,7 +21,7 @@ file as well as the metadata file.  The ESRI world file is always given
 the same basename as the input file, with the extension .tfw.  If one
 exists already it will be overwritten.<p>
 
-The <b>-no_norm</b> flag will supress reporting of normalized parameters, and
+The <b>-no_norm</b> flag will suppress reporting of normalized parameters, and
 reporting of corner points. <p>
 
 The <b>-proj4</b> flag forces listgeo to report the PROJ.4 projection
@@ -91,7 +91,7 @@ And for the pedantic:
 </pre>
 
 Following the formal metadata report, there is an optional (use -no_norm
-to supress) report on the <i>normalized</i> projection parameters for the
+to suppress) report on the <i>normalized</i> projection parameters for the
 file.  This is an attempt to lookup PCS and GCS definitions to get detailed
 datum, ellipsoid, and projection definitions for the file.  In general it
 requires access to the EPSG CSV files to work properly.  The GEOTIFF_CSV
@@ -103,7 +103,7 @@ also be used to indicate where the CSV files are located.<p>
 
 Following the normalized projection information listgeo will report the
 positions of the four corner coordinates, and if possible their lat/long
-equivelents.  The corner coordinates are reported for tiepoint+scale and
+equivalents.  The corner coordinates are reported for tiepoint+scale and
 transformation matrix formulations of GeoTIFF files, but not for multiple
 tiepoint formulations.  The lat/long coordinates are only available if
 listgeo is compiled with PROJ.4, if the projection definition can be
