@@ -11,6 +11,8 @@
  *
  **********************************************************************/
 
+#include <stddef.h>
+
 #include "geotiff.h"   /* public interface        */
 #include "geo_tiffp.h" /* external TIFF interface */
 #include "geo_keyp.h"  /* private interface       */

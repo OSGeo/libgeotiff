@@ -30,6 +30,8 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "cpl_serv.h"
 #include "geo_tiffp.h"
