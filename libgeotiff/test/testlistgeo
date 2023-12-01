@@ -222,6 +222,8 @@ sed "s/Projection = 15914 (BLM zone 14N (US survey .*))/Projection = 15914 (BLM 
 mv ${OUT}.tmp ${OUT}
 sed "s/Projection = 6753 (Oregon Columbia River West zone (.*))/Projection = 6753 (Oregon Columbia River West zone)/" < ${OUT} > ${OUT}.tmp
 mv ${OUT}.tmp ${OUT}
+sed "s/ProjCenterLongGeoKey: 46.437229 ( 46d26'14.02\"E)/ProjCenterLongGeoKey: 46.437229 ( 46d26'14.03\"E)/" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
 
 sed "s/ETRS89-extended/ETRS89/g" < ${TEST_CLI_DIR}/testlistgeo_out.dist > testlistgeo_out.dist.normalized
 
@@ -238,6 +240,8 @@ mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 sed "s/Projection = 15914 (BLM zone 14N (US survey .*))/Projection = 15914 (BLM zone 14N)/" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
 mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 sed "s/Projection = 6753 (Oregon Columbia River West zone (.*))/Projection = 6753 (Oregon Columbia River West zone)/" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
+mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
+sed "s/ProjCenterLongGeoKey: 46.437229 ( 46d26'14.02\"E)/ProjCenterLongGeoKey: 46.437229 ( 46d26'14.03\"E)/" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
 mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 
 # do 'diff' with distribution results
