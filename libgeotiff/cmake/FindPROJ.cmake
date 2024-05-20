@@ -24,7 +24,7 @@ IF(WIN32)
     ENDIF()
 ENDIF(WIN32)
 
-FIND_PATH(PROJ_INCLUDE_DIR proj.h proj_experimental;h
+FIND_PATH(PROJ_INCLUDE_DIR proj.h proj_experimental.h
     PATHS ${PROJ_OSGEO4W_HOME}/include
     DOC "Path to PROJ library include directory")
 
