@@ -6,11 +6,12 @@ matrix:
       compiler: gcc
       language: cpp
       sudo: required
+      dist: jammy
       env:
         - BUILD_NAME=linux
 
     - os: osx
-      osx_image: xcode13.1
+      osx_image: xcode14.2
       compiler: clang
       cache:
         apt: true
@@ -43,8 +44,9 @@ install:
   - ./autogen.sh
   - ./configure
   - make dist
-  - tar xvzf libgeotiff*.tar.gz
-  - cd libgeotiff*
+  - mkdir libgeotiff
+  - cat libgeotiff*.tar.gz | tar xz -C libgeotiff --strip-components=1
+  - cd libgeotiff
   - mkdir build_autoconf
   - cd build_autoconf
   - CFLAGS="-Wall -Wextra -Werror" ../configure
