@@ -5,7 +5,7 @@
 # Author: Mateusz Loskot <mateusz@loskot.net>
 #
 ###############################################################################
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.13)
 
 PROJECT(GeoTIFF)
 
@@ -73,33 +73,7 @@ SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 # SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${GEOTIFF_BUILD_OUTPUT_DIRECTORY})
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
-###############################################################################
-# Platform and compiler specific settings
 
-IF(WIN32)
-    IF(BUILD_SHARED_LIBS)
-        ADD_DEFINITIONS(-DBUILD_AS_DLL=1)
-    ENDIF()
-    IF(MSVC)
-        ADD_DEFINITIONS(/DW4)
-        if (NOT (MSVC_VERSION VERSION_LESS 1400))
-            ADD_DEFINITIONS(-D_CRT_SECURE_NO_DEPRECATE)
-            ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
-            ADD_DEFINITIONS(-D_CRT_NONSTDC_NO_WARNING)
-            ADD_DEFINITIONS(-D_SCL_SECURE_NO_WARNINGS)
-        endif()
-    ENDIF(MSVC)
-ENDIF()
-
-IF(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    SET(COMPILE_FLAGS "-fPIC -Wall -Wno-long-long")
-    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMPILE_FLAGS} -std=c99")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPILE_FLAGS} -std=c++98")
-    IF(GEOTIFF_BUILD_PEDANTIC)
-        SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic")
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
-    ENDIF()
-ENDIF()
 
 # Check required standard headers
 INCLUDE(CheckIncludeFiles)
@@ -113,82 +87,18 @@ SET(WITH_UTILITIES TRUE CACHE BOOL "Choose if GeoTIFF utilities should be built"
 ###############################################################################
 # Search for dependencies
 
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/libxtiff)
 
 # TIFF support - required, default=ON
 SET(WITH_TIFF TRUE CACHE BOOL "Choose if TIFF support should be built")
 
-FIND_PACKAGE(PROJ NO_MODULE QUIET)
-if (NOT PROJ_FOUND)
-    FIND_PACKAGE(PROJ)
-endif ()
-
-IF(PROJ_FOUND)
-    INCLUDE_DIRECTORIES(${PROJ_INCLUDE_DIR})
-ELSE()
-    MESSAGE(FATAL_ERROR "Failed to detect PROJ >= 6")
-ENDIF()
+FIND_PACKAGE(PROJ NO_MODULE REQUIRED)
 
 # Zlib support - optional, default=OFF
 SET(WITH_ZLIB FALSE CACHE BOOL "Choose if zlib support should be built")
 
-IF(WITH_ZLIB)
-    FIND_PACKAGE(ZLIB NO_MODULE QUIET)
-    if (NOT ZLIB_FOUND)
-      FIND_PACKAGE(ZLIB)
-    endif ()
-
-    IF(ZLIB_FOUND)
-        SET(HAVE_ZIP 1)
-        INCLUDE_DIRECTORIES(${ZLIB_INCLUDE_DIR})
-        ADD_DEFINITIONS(-DHAVE_ZIP=${HAVE_ZIP})
-    ENDIF()
-ENDIF()
-
 # JPEG support - optional, default=OFF
 SET(WITH_JPEG FALSE CACHE BOOL "Choose if JPEG support should be built")
 
-IF(WITH_JPEG)
-    FIND_PACKAGE(JPEG NO_MODULE QUIET)
-    if (NOT JPEG_FOUND)
-      FIND_PACKAGE(JPEG)
-    endif ()
-
-    IF(JPEG_FOUND)
-        SET(HAVE_JPEG 1)
-        INCLUDE_DIRECTORIES(${JPEG_INCLUDE_DIR})
-        ADD_DEFINITIONS(-DHAVE_JPEG=${HAVE_JPEG})
-    ENDIF()
-ENDIF()
-
-IF(WITH_TIFF)
-    FIND_PACKAGE(TIFF NO_MODULE QUIET)
-    if (NOT TIFF_FOUND)
-      FIND_PACKAGE(TIFF REQUIRED)
-    endif ()
-
-    IF(TIFF_FOUND)
-        # Confirm required API is available
-        INCLUDE(CheckFunctionExists)
-        SET(CMAKE_REQUIRED_LIBRARIES ${TIFF_LIBRARIES})
-
-        CHECK_FUNCTION_EXISTS(TIFFOpen HAVE_TIFFOPEN)
-        IF(NOT HAVE_TIFFOPEN)
-            SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
-            MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFOpen function not found")
-        ENDIF()
-
-        CHECK_FUNCTION_EXISTS(TIFFMergeFieldInfo HAVE_TIFFMERGEFIELDINFO)
-        IF(NOT HAVE_TIFFMERGEFIELDINFO)
-            SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
-            MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFMergeFieldInfo function not found. libtiff 3.6.0 Beta or later required. Please upgrade or use an older version of libgeotiff")
-        ENDIF()
-
-        INCLUDE_DIRECTORIES(${TIFF_INCLUDE_DIR})
-        ADD_DEFINITIONS(-DHAVE_TIFF=1)
-    ENDIF(TIFF_FOUND)
-ENDIF(WITH_TIFF)
 
 # Turn off TOWGS84 support
 SET(WITH_TOWGS84 TRUE CACHE BOOL "Build with TOWGS84 support")
@@ -255,10 +165,6 @@ INSTALL(FILES ${GEOTIFF_MAN_PAGES} DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 # Install header files for development distribution
 INSTALL(FILES ${GEOTIFF_LIB_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-###############################################################################
-# Build libxtiff library
-
-ADD_SUBDIRECTORY(libxtiff)
 
 ###############################################################################
 # Build libgeotiff library
@@ -290,6 +196,66 @@ endif ()
 ADD_LIBRARY(${GEOTIFF_LIBRARY_TARGET}
     ${GEOTIFF_LIB_SOURCES} ${XTIFF_SOURCES})
 
+set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY CXX_STANDARD 98)
+set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY C_STANDARD 99)
+set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY OUTPUT_NAME ${GEOTIFF_LIB_NAME})
+
+IF(WITH_JPEG)
+    FIND_PACKAGE(JPEG NO_MODULE QUIET CONFIG)
+    if (NOT JPEG_FOUND)
+      FIND_PACKAGE(JPEG CONFIG)
+    endif ()
+
+    IF(JPEG_FOUND)
+        SET(HAVE_JPEG 1)
+        TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${JPEG_INCLUDE_DIR})
+        target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_JPEG=${HAVE_JPEG})
+    ENDIF()
+ENDIF()
+
+
+IF(WITH_TIFF)
+    FIND_PACKAGE(TIFF NO_MODULE QUIET)
+    if (NOT TIFF_FOUND)
+      FIND_PACKAGE(TIFF REQUIRED)
+    endif ()
+
+    IF(TIFF_FOUND)
+        # Confirm required API is available
+        INCLUDE(CheckFunctionExists)
+        SET(CMAKE_REQUIRED_LIBRARIES ${TIFF_LIBRARIES})
+
+        CHECK_FUNCTION_EXISTS(TIFFOpen HAVE_TIFFOPEN)
+        IF(NOT HAVE_TIFFOPEN)
+            SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
+            MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFOpen function not found")
+        ENDIF()
+
+        CHECK_FUNCTION_EXISTS(TIFFMergeFieldInfo HAVE_TIFFMERGEFIELDINFO)
+        IF(NOT HAVE_TIFFMERGEFIELDINFO)
+            SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
+            MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFMergeFieldInfo function not found. libtiff 3.6.0 Beta or later required. Please upgrade or use an older version of libgeotiff")
+        ENDIF()
+
+        TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${TIFF_INCLUDE_DIR})
+        TARGET_COMPILE_DEFINITIONS(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_TIFF=1)
+    ENDIF(TIFF_FOUND)
+ENDIF(WITH_TIFF)
+
+IF(WITH_ZLIB)
+    FIND_PACKAGE(ZLIB REQUIRED )
+    IF(ZLIB_FOUND)
+        SET(HAVE_ZIP 1)
+        TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${ZLIB_INCLUDE_DIR})
+        TARGET_COMPILE_DEFINITIONS(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_ZIP=${HAVE_ZIP})
+    ENDIF()
+ENDIF()
+
+TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PUBLIC
+                            $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/>
+                            $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/libxtiff>
+                            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 IF(WIN32 AND MSVC)
     SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES IMPORT_SUFFIX "_i.lib")
 ENDIF(WIN32 AND MSVC)
@@ -310,8 +276,31 @@ if(UNIX)
    endif()
 endif()
 
-SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES
-   OUTPUT_NAME ${GEOTIFF_LIB_NAME})
+###############################################################################
+# Platform and compiler specific settings
+
+IF(WIN32)
+    IF(BUILD_SHARED_LIBS)
+        target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DBUILD_AS_DLL=1)
+    ENDIF()
+    IF(MSVC)
+        target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE /DW4)
+        if (NOT (MSVC_VERSION VERSION_LESS 1400))
+            target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -D_CRT_SECURE_NO_DEPRECATE)
+            target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -D_CRT_SECURE_NO_WARNINGS)
+            target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -D_CRT_NONSTDC_NO_WARNING)
+            target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -D_SCL_SECURE_NO_WARNINGS)
+        endif()
+    ENDIF(MSVC)
+ENDIF()
+
+IF(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+    target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -Wall -Wno-long-long )
+    IF(GEOTIFF_BUILD_PEDANTIC)
+        target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -pedantic)
+    ENDIF()
+ENDIF()
+
 
 set(CONFIG_PUBLIC_DEPENDENCIES "")
 set(CONFIG_PRIVATE_DEPENDENCIES "")
@@ -324,15 +313,22 @@ target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PUBLIC
 
 if(TARGET PROJ::proj)
     set(PROJ_LIBRARIES PROJ::proj)
-    string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(PROJ CONFIG)\n")
+    string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(PROJ)\n")
 endif()
-target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
-    ${PROJ_LIBRARIES})
 
-target_include_directories(
-  ${GEOTIFF_LIBRARY_TARGET}
-  PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
-         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+if(TARGET ZLIB::zlib)
+    set(ZLIB_LIBRARIES ZLIB::zlib)
+    string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(ZLIB)\n")
+endif()
+
+target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
+                      ${PROJ_LIBRARIES}
+                      ${TIFF_LIBRARIES}
+                      ${ZLIB_LIBRARIES})
+
+target_include_directories( ${GEOTIFF_LIBRARY_TARGET} PUBLIC
+            $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
+            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 INSTALL( TARGETS ${GEOTIFF_LIBRARY_TARGET}
      EXPORT depends
