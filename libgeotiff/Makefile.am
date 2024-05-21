@@ -69,7 +69,6 @@ EXTRA_DIST =    autogen.sh \
                 README.WIN \
                 README_BIN \
                 LICENSE \
-                INSTALL \
                 CMakeLists.txt \
                 libxtiff/CMakeLists.txt \
                 bin/CMakeLists.txt \

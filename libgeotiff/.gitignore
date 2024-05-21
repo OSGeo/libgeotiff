@@ -8,6 +8,8 @@ config.guess
 config.sub
 configure
 depcomp
+INSTALL
+install-sh
 libxtiff/Makefile.in
 ltmain.sh
 m4/libtool.m4
