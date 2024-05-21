@@ -1,3 +1,23 @@
+libgeotiff 1.7.2
+----------------
+
+* GTIFGetDatumInfoEx(): handle dynamic datums
+* CMake: adopt GNUInstallDirs
+* CMake: export TIFF as a public dependency
+* Add XTIFFClientOpenExt() with re-entrant error callbacks
+* listgeo: add a -no_corners option to avoid printing corner
+  coordinates which might be PROJ version sensitive (refs #81)
+* Fix test failures with PROJ 9.1.1 and 9.3
+* Remove trailing spaces from many files.
+* Localize variables and add const when possible in a number of files
+* geo_normalize.c: sprintf --> snprintf
+* Add missing includes
+* Fix -Werror=calloc-transposed-args with gcc 14
+* FindPROJ.cmake: proj_experimental;h -> proj_experimental.h
+* CMake: add a BUILD_SHARED_LIBS option, and make it default to ON
+* autoconf/CMake: add generation of libgeotiff.pc
+* Remove INSTALL and install-sh autoconf-generated files
+
 libgeotiff 1.7.1
 ----------------
 
