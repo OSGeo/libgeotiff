@@ -341,6 +341,27 @@ INSTALL( TARGETS ${GEOTIFF_LIBRARY_TARGET}
      PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
      ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} )
 
+# Install libgeotiff.pc
+set(prefix "${CMAKE_INSTALL_PREFIX}")
+set(exec_prefix "\${prefix}")
+if(IS_ABSOLUTE "${CMAKE_INSTALL_LIBDIR}")
+    set(libdir "${CMAKE_INSTALL_LIBDIR}")
+else()
+    set(libdir "\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}")
+endif()
+if(IS_ABSOLUTE "${CMAKE_INSTALL_INCLUDEDIR}")
+    set(includedir "${CMAKE_INSTALL_INCLUDEDIR}")
+else()
+    set(includedir "\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}")
+endif()
+SET(PACKAGE_NAME ${PROJECT_NAME})
+SET(VERSION ${PROJECT_VERSION})
+configure_file(libgeotiff.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libgeotiff.pc @ONLY)
+
+INSTALL(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/libgeotiff.pc
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+
 # Define grouping of source files in PROJECT file (e.g. Visual Studio)
 SOURCE_GROUP("CMake Files" FILES CMakeLists.txt)
 SOURCE_GROUP("Header Files" FILES ${GEOTIFF_LIB_HEADERS})
