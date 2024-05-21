@@ -295,9 +295,9 @@ IF(WIN32)
 ENDIF()
 
 IF(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -Wall -Wno-long-long )
+    target_compile_options(${GEOTIFF_LIBRARY_TARGET} PRIVATE -Wall -Wno-long-long )
     IF(GEOTIFF_BUILD_PEDANTIC)
-        target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -pedantic)
+        target_compile_options(${GEOTIFF_LIBRARY_TARGET} PRIVATE -pedantic)
     ENDIF()
 ENDIF()
 
