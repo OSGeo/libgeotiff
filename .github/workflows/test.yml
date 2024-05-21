@@ -53,6 +53,12 @@ jobs:
               -DBUILD_SHARED_LIBS=$BUILD_SHARED_LIBS \
               -DBUILD_TESTING=ON \
               -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+              -DWITH_ZLIB=ON \
+              -DWITH_JPEG=ON \
+              -DWITH_TIFF=ON \
+              -DTIFF_NAMES=tiff \
+              -DPROJ_NAMES=proj \
+              -DJPEG_NAMES=libjpeg \
               ..
 
 

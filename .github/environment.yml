@@ -10,4 +10,6 @@ dependencies:
   - proj
   - ccache
   - libtiff
+  - zlib
+  - libjpeg-turbo
 
