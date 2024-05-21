@@ -25,7 +25,7 @@ jobs:
      - uses: mamba-org/setup-micromamba@v1
        with:
            init-shell: bash
-           environment-file: ./github/environment.yml
+           environment-file: ./.github/environment.yml
            environment-name: "build"
            cache-environment: true
            cache-downloads: true
