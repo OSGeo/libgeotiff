@@ -1,4 +1,4 @@
-name: Windows CI
+name: Windows VCPKG
 
 on:
   push:
@@ -14,10 +14,10 @@ jobs:
         ARCH: x64
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cache
         with:
             path: |
@@ -36,7 +36,7 @@ jobs:
           Invoke-WebRequest -Uri https://sqlite.org/2018/sqlite-tools-win32-x86-3250100.zip -OutFile sqlite-tools-win32-x86-3250100.zip
           7z x sqlite-tools-win32-x86-3250100.zip
           Copy-Item sqlite-tools-win32-x86-3250100/sqlite3.exe .
-          
+
       - name: Build PROJ
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
@@ -51,7 +51,7 @@ jobs:
           cmake -G "Visual Studio 16 2019" -A ${{ env.ARCH }} .. -DCMAKE_BUILD_TYPE=Release -DPROJ_TESTS=OFF -DBUILD_LIBPROJ_SHARED=ON -DCMAKE_TOOLCHAIN_FILE="$vcpkgPath/scripts/buildsystems/vcpkg.cmake" -DCMAKE_INSTALL_PREFIX="$buildRoot/install-proj"
           cmake --build . --config Release --target install
           Pop-Location
-          
+
       - name: Build
         run: |
           $buildRoot = "${{ github.workspace }}".Replace("\", "/")
