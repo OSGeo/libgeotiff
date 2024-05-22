@@ -78,6 +78,6 @@ jobs:
          name: source-package-${{matrix.os}}
          if-no-files-found: error
          path: |
-          ./build/libgeotiff-*
+          ./libgeotiff/build/libgeotiff-*
 
 
