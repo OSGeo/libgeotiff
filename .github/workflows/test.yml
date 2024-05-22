@@ -68,5 +68,16 @@ jobs:
        shell: bash -l {0}
        run: |
           ninja
+          cmake --build .  --config Release --target package_source
        working-directory: ./libgeotiff/build
+
+     - uses: actions/upload-artifact@v4
+       if: matrix.os == 'ubuntu-latest' && matrix.shared == 'ON'
+       name: Gather source distribution artifact
+       with:
+         name: source-package-${{matrix.os}}
+         if-no-files-found: error
+         path: |
+          ./build/libgeotiff-*
+
 
