@@ -1,0 +1,72 @@
+matrix:
+  fast_finish: true
+  include:
+
+    - os: linux
+      compiler: gcc
+      language: cpp
+      sudo: required
+      dist: jammy
+      env:
+        - BUILD_NAME=linux
+
+    - os: osx
+      osx_image: xcode14.2
+      compiler: clang
+      cache:
+        apt: true
+        directories:
+          - $HOME/.ccache
+      env:
+        - BUILD_NAME=osx
+        - CC=clang
+        - CXX=clang++
+      addons:
+        homebrew:
+            packages:
+            - ccache
+
+cache:
+    directories:
+        - $HOME/.ccache
+
+before_install:
+  - if test "$TRAVIS_OS_NAME" = "linux"; then sudo apt install g++ libjpeg-dev libz-dev libtiff-dev libsqlite3-dev; fi
+  - if test "$TRAVIS_OS_NAME" = "osx"; then brew update; brew install ccache; fi
+
+install:
+  - git clone --depth=1 https://github.com/OSGeo/PROJ proj
+  - export CC="ccache $CC"
+  - export CXX="ccache $CXX"
+  - $CC --version
+  - (cd proj && cmake . -DBUILD_APPS=OFF -DPROJ_TESTS=OFF && make -j3 && sudo make install && (if test "$TRAVIS_OS_NAME" = "linux"; then sudo ldconfig; fi))
+  - cd libgeotiff
+  - ./autogen.sh
+  - ./configure
+  - make dist
+  - mkdir libgeotiff
+  - cat libgeotiff*.tar.gz | tar xz -C libgeotiff --strip-components=1
+  - cd libgeotiff
+  - mkdir build_autoconf
+  - cd build_autoconf
+  - CFLAGS="-Wall -Wextra -Werror" ../configure
+  - make -j3
+  - make check
+  - cd ..
+  - mkdir build_cmake
+  - cd build_cmake
+  - cmake .. -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_C_FLAGS="-Wall -Wextra -Werror"
+  - make -j3
+
+script:
+  - echo "done"
+
+notifications:
+  #email:
+  #  recipients:
+  #    - gdal-commits@lists.osgeo.org
+
+  irc:
+    channels:
+      - "irc.freenode.org#gdal"
+    use_notice: true
