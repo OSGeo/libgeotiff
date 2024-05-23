@@ -78,11 +78,21 @@ jobs:
        if: matrix.os == 'ubuntu-latest'
        run: |
           cmake --build .  --config Release --target package_source
+          extensions=".tar.gz .tar.bz2"
+          for ext in $extensions
+          do
+              for filename in $(ls *$ext)
+              do
+
+                  `md5sum $filename > $filename.md5`
+                  `sha256sum $filename > $filename.sha256sum`
+                  `sha512sum $filename > $filename.sha512sum`
+              done
+          done
        working-directory: ./libgeotiff/build
      - name: Attest
        uses: actions/attest-build-provenance@v1
-       if: matrix.os == 'ubuntu-latest' && matrix.shared == 'ON' && startsWith(github.ref, 'refs/tags/')
-       #&& github.repository_owner == 'OSGeo'
+       if: matrix.os == 'ubuntu-latest' && matrix.shared == 'ON' && startsWith(github.ref, 'refs/tags/') && github.repository_owner == 'OSGeo'
        with:
           subject-path: './libgeotiff/build/libgeotiff-*'
      - uses: actions/upload-artifact@v4
