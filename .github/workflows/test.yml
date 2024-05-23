@@ -1,5 +1,5 @@
 
-name: Test
+name: Build
 on: [push, pull_request]
 
 concurrency:
@@ -8,7 +8,7 @@ concurrency:
 
 jobs:
   build:
-    name: OS ${{ matrix.os }} with BUILD_SHARED_LIBS=${{matrix.shared}}
+    name: ${{ matrix.os }} with BUILD_SHARED_LIBS=${{matrix.shared}}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
