@@ -1,3 +1,9 @@
+libgeotiff 1.7.3
+----------------
+
+* CMake: fix typo in CMAKE_INSTALL_BINDIR install target that affects
+  location of geotiff.dll (#117)
+
 libgeotiff 1.7.2
 ----------------
 
