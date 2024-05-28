@@ -46,6 +46,8 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 # General build settings
 
 option(BUILD_SHARED_LIBS "Set ON to build shared library" ON)
+option(BUILD_MAN "Set ON to build man pages" ON)
+option(BUILD_DOC "Set ON to build doc files" ON)
 
 IF(NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Debug CACHE STRING
@@ -82,26 +84,33 @@ CHECK_INCLUDE_FILES(strings.h GEOTIFF_HAVE_STRINGS_H)
 ###############################################################################
 # User-defined build settings
 
-SET(WITH_UTILITIES TRUE CACHE BOOL "Choose if GeoTIFF utilities should be built")
+option(WITH_UTILITIES "Choose if GeoTIFF utilities should be built" ON)
+
+if (MSVC)
+    SET(INTERFACE_LIB_PREFIX _i CACHE STRING "Windows interface library suffix")
+endif (MSVC)
 
 ###############################################################################
 # Search for dependencies
 
 
 # TIFF support - required, default=ON
-SET(WITH_TIFF TRUE CACHE BOOL "Choose if TIFF support should be built")
+option(WITH_TIFF "Choose if TIFF support should be built" ON)
 
-FIND_PACKAGE(PROJ NO_MODULE REQUIRED)
+FIND_PACKAGE(PROJ NO_MODULE QUIET)
+if (NOT PROJ_FOUND)
+  FIND_PACKAGE(PROJ REQUIRED)
+endif ()
 
 # Zlib support - optional, default=OFF
-SET(WITH_ZLIB FALSE CACHE BOOL "Choose if zlib support should be built")
+option(WITH_ZLIB "Choose if zlib support should be built" OFF)
 
 # JPEG support - optional, default=OFF
-SET(WITH_JPEG FALSE CACHE BOOL "Choose if JPEG support should be built")
+option(WITH_JPEG  "Choose if JPEG support should be built" OFF)
 
 
 # Turn off TOWGS84 support
-SET(WITH_TOWGS84 TRUE CACHE BOOL "Build with TOWGS84 support")
+option(WITH_TOWGS84 "Build with TOWGS84 support" ON)
 IF (NOT WITH_TOWGS84)
    SET(GEO_NORMALIZE_DISABLE_TOWGS84 1)
 endif()
@@ -154,13 +163,16 @@ SET(GEOTIFF_MAN_PAGES
 #    ${PROJECT_BINARY_DIR}/geotiff_version.h
 
 # Install doc files
-INSTALL(FILES
+if(BUILD_DOC)
+  INSTALL(FILES
     AUTHORS ChangeLog COPYING LICENSE README README_BIN README.WIN
     DESTINATION ${CMAKE_INSTALL_DOCDIR})
+endif ()
 
 # Install man pages
-INSTALL(FILES ${GEOTIFF_MAN_PAGES} DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
-
+if(BUILD_MAN)
+  INSTALL(FILES ${GEOTIFF_MAN_PAGES} DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+endif ()
 
 # Install header files for development distribution
 INSTALL(FILES ${GEOTIFF_LIB_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -202,9 +214,9 @@ set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY POSITION_INDEPENDENT_CODE
 set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY OUTPUT_NAME ${GEOTIFF_LIB_NAME})
 
 IF(WITH_JPEG)
-    FIND_PACKAGE(JPEG NO_MODULE QUIET CONFIG)
+    FIND_PACKAGE(JPEG NO_MODULE QUIET)
     if (NOT JPEG_FOUND)
-      FIND_PACKAGE(JPEG CONFIG)
+      FIND_PACKAGE(JPEG)
     endif ()
 
     IF(JPEG_FOUND)
@@ -257,7 +269,7 @@ TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PUBLIC
                             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/libxtiff>
                             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 IF(WIN32 AND MSVC)
-    SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES IMPORT_SUFFIX "_i.lib")
+    SET_TARGET_PROPERTIES(${GEOTIFF_LIBRARY_TARGET} PROPERTIES IMPORT_SUFFIX "${INTERFACE_LIB_PREFIX}.lib")
 ENDIF(WIN32 AND MSVC)
 
 # Unix, linux:
@@ -332,10 +344,14 @@ target_include_directories( ${GEOTIFF_LIBRARY_TARGET} PUBLIC
 
 INSTALL( TARGETS ${GEOTIFF_LIBRARY_TARGET}
      EXPORT depends
-     RUNTIME DESTINATION ${CMAKE_INSTALLL_BINDIR}
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
      LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
      PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
      ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} )
+
+IF (MSVC)
+    INSTALL(FILES $<TARGET_PDB_FILE:${GEOTIFF_LIBRARY_TARGET}> DESTINATION ${CMAKE_INSTALL_BINDIR} OPTIONAL)
+ENDIF (MSVC)
 
 # Install libgeotiff.pc
 set(prefix "${CMAKE_INSTALL_PREFIX}")
@@ -371,3 +387,16 @@ IF(WITH_UTILITIES)
 ENDIF()
 
 ADD_SUBDIRECTORY(cmake)
+
+message(STATUS "
+################################
+Summary of build options:
+   Build shared library:     ${BUILD_SHARED_LIBS}
+   Build man pages:          ${BUILD_MAN}
+   Build doc files:          ${BUILD_DOC}
+   Build GeoTIFF utilities:  ${WITH_UTILITIES}
+   Build TIFF support:       ${WITH_TIFF}
+   Build zlib support:       ${WITH_ZLIB}
+   Build JPEG support:       ${WITH_JPEG}
+   Build TOWGS84 support:    ${WITH_TOWGS84}
+################################")
