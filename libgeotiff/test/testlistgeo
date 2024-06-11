@@ -244,6 +244,14 @@ mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 sed "s/ProjCenterLongGeoKey: 46.437229 ( 46d26'14.02\"E)/ProjCenterLongGeoKey: 46.437229 ( 46d26'14.03\"E)/" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
 mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 
+echo "Testing listgeo epsg_27563_only_pcs_code.tif" >> ${OUT}
+$EXE ${DATA_DIR}/epsg_27563_only_pcs_code.tif >>${OUT}
+echo "" >>${OUT}
+
+echo "Testing listgeo epsg_27563_allgeokeys.tif" >> ${OUT}
+$EXE ${DATA_DIR}/epsg_27563_allgeokeys.tif >>${OUT}
+echo "" >>${OUT}
+
 # do 'diff' with distribution results
 # after cleaning for avoid spurios result due 
 # to different build dir
