@@ -10,21 +10,22 @@ matrix:
       env:
         - BUILD_NAME=linux
 
-    - os: osx
-      osx_image: xcode14.2
-      compiler: clang
-      cache:
-        apt: true
-        directories:
-          - $HOME/.ccache
-      env:
-        - BUILD_NAME=osx
-        - CC=clang
-        - CXX=clang++
-      addons:
-        homebrew:
-            packages:
-            - ccache
+    # Causes "Owner OSGeo does not have enough credits" since we downgraded our Travis plan
+    #- os: osx
+    #  osx_image: xcode14.2
+    #  compiler: clang
+    #  cache:
+    #    apt: true
+    #    directories:
+    #      - $HOME/.ccache
+    #  env:
+    #    - BUILD_NAME=osx
+    #    - CC=clang
+    #    - CXX=clang++
+    #  addons:
+    #    homebrew:
+    #        packages:
+    #        - ccache
 
 cache:
     directories:
