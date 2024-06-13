@@ -17,7 +17,7 @@
  4) 
     a) Update the LIBGEOTIFF_MAJOR_VERSION/LIBGEOTIFF_MINOR_VERSION/
        LIBGEOTIFF_PATCH_VERSION/LIBGEOTIFF_REV_VERSION variables in CMakeLists
-^
+
     b) Update SO_VERSION in CMakeLists.txt
 
  5) Update NEWS
