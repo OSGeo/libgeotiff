@@ -40,7 +40,7 @@ install:
   - export CC="ccache $CC"
   - export CXX="ccache $CXX"
   - $CC --version
-  - (cd proj && cmake . -DBUILD_APPS=OFF -DPROJ_TESTS=OFF && make -j3 && sudo make install && (if test "$TRAVIS_OS_NAME" = "linux"; then sudo ldconfig; fi))
+  - (cd proj && cmake . -DBUILD_APPS=OFF -DBUILD_TESTING=OFF && make -j3 && sudo make install && (if test "$TRAVIS_OS_NAME" = "linux"; then sudo ldconfig; fi))
   - cd libgeotiff
   - ./autogen.sh
   - ./configure
