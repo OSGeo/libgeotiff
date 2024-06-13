@@ -44,7 +44,7 @@ install:
   - cd libgeotiff
   - ./autogen.sh
   - ./configure
-  - make dist
+  - make distcheck
   - mkdir libgeotiff
   - cat libgeotiff*.tar.gz | tar xz -C libgeotiff --strip-components=1
   - cd libgeotiff
