@@ -225,11 +225,6 @@ IF(NOT HAVE_TIFFOPEN)
     MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFOpen function not found")
 ENDIF()
 
-CHECK_FUNCTION_EXISTS(TIFFMergeFieldInfo HAVE_TIFFMERGEFIELDINFO)
-IF(NOT HAVE_TIFFMERGEFIELDINFO)
-    SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
-    MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFMergeFieldInfo function not found. libtiff 3.6.0 Beta or later required. Please upgrade or use an older version of libgeotiff")
-ENDIF()
 
 TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${TIFF_INCLUDE_DIR})
 
