@@ -102,13 +102,6 @@ endif (MSVC)
 ###############################################################################
 # Optionnal supports
 
-# Zlib support - optional, default=OFF
-option(WITH_ZLIB "Choose if zlib support should be built" OFF)
-
-# JPEG support - optional, default=OFF
-option(WITH_JPEG  "Choose if JPEG support should be built" OFF)
-
-
 # Turn off TOWGS84 support
 option(WITH_TOWGS84 "Build with TOWGS84 support" ON)
 IF (NOT WITH_TOWGS84)
@@ -234,22 +227,6 @@ ENDIF()
 TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${TIFF_INCLUDE_DIR})
 TARGET_COMPILE_DEFINITIONS(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_TIFF=1)
 
-# optionnal
-
-IF(WITH_JPEG)
-    FIND_PACKAGE(JPEG REQUIRED)
-    SET(HAVE_JPEG 1)
-    TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${JPEG_INCLUDE_DIR})
-    target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_JPEG=${HAVE_JPEG})
-ENDIF()
-
-IF(WITH_ZLIB)
-    FIND_PACKAGE(ZLIB REQUIRED)
-    SET(HAVE_ZIP 1)
-    TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${ZLIB_INCLUDE_DIR})
-    TARGET_COMPILE_DEFINITIONS(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_ZIP=${HAVE_ZIP})
-ENDIF()
-
 TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PUBLIC
                             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/>
                             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/libxtiff>
@@ -314,15 +291,9 @@ if(TARGET PROJ::proj)
     string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(PROJ)\n")
 endif()
 
-if(TARGET ZLIB::zlib)
-    set(ZLIB_LIBRARIES ZLIB::zlib)
-    string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(ZLIB)\n")
-endif()
-
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
                       ${PROJ_LIBRARIES}
-                      ${TIFF_LIBRARIES}
-                      ${ZLIB_LIBRARIES})
+                      ${TIFF_LIBRARIES})
 
 target_include_directories( ${GEOTIFF_LIBRARY_TARGET} PUBLIC
             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
@@ -385,7 +356,5 @@ Summary of build options:
    Build GeoTIFF utilities:  ${WITH_UTILITIES}
    PROJ version:             ${PROJ_VERSION_STRING}
    TIFF version:	     ${TIFF_VERSION_STRING}
-   Build zlib support:       ${WITH_ZLIB} ${ZLIB_VERSION}
-   Build JPEG support:       ${WITH_JPEG} ${JPEG_VERSION}
    Build TOWGS84 support:    ${WITH_TOWGS84}
 ################################")
