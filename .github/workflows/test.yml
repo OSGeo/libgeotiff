@@ -47,8 +47,8 @@ jobs:
        run: |
 
         if [ "$RUNNER_OS" == "Windows" ]; then
-        export CC=cl.exe
-        export CXX=cl.exe
+            export CC=cl.exe
+            export CXX=cl.exe
         fi
 
         cmake   -G "Ninja"  \
@@ -71,6 +71,7 @@ jobs:
        shell: bash -l {0}
        run: |
           ninja
+          DESTDIR=tmp-install ninja install
        working-directory: ./libgeotiff/build
 
      - name: Generate source distribution

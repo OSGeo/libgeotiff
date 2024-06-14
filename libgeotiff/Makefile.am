@@ -13,8 +13,7 @@ endif
 
 AM_CFLAGS = -I$(srcdir)/libxtiff $(PROJ_CFLAGS) $(TIFF_CFLAGS)
 
-include_HEADERS =   geotiff.h \
-                    geotiffio.h \
+include_HEADERS =   geotiffio.h \
                     geovalues.h \
                     geonames.h \
                     geokeys.h \
@@ -35,7 +34,8 @@ include_HEADERS =   geotiff.h \
                     geokeys.inc \
                     geokeys_v1_1.inc
 
-nodist_include_HEADERS = geo_config.h
+nodist_include_HEADERS = geotiff.h \
+                         geo_config.h
 
 libgeotiff_la_SOURCES = cpl_serv.c \
                         geo_extra.c \
