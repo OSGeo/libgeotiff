@@ -100,23 +100,7 @@ if (MSVC)
 endif (MSVC)
 
 ###############################################################################
-# Search for dependencies
-
-
-# TIFF support - required, default=ON
-option(WITH_TIFF "Choose if TIFF support should be built" ON)
-
-FIND_PACKAGE(PROJ NO_MODULE QUIET)
-if (NOT PROJ_FOUND)
-  FIND_PACKAGE(PROJ REQUIRED)
-endif ()
-
-# Zlib support - optional, default=OFF
-option(WITH_ZLIB "Choose if zlib support should be built" OFF)
-
-# JPEG support - optional, default=OFF
-option(WITH_JPEG  "Choose if JPEG support should be built" OFF)
-
+# Optionnal supports
 
 # Turn off TOWGS84 support
 option(WITH_TOWGS84 "Build with TOWGS84 support" ON)
@@ -134,7 +118,6 @@ CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/cmake/geo_config.h.in
 INCLUDE_DIRECTORIES(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 
 MESSAGE(STATUS "Generating geo_config.h header - done")
-
 
 ###############################################################################
 # Installation settings
@@ -220,56 +203,23 @@ set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY C_STANDARD 99)
 set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY POSITION_INDEPENDENT_CODE ON)
 set_property(TARGET ${GEOTIFF_LIBRARY_TARGET} PROPERTY OUTPUT_NAME ${GEOTIFF_LIB_NAME})
 
-IF(WITH_JPEG)
-    FIND_PACKAGE(JPEG NO_MODULE QUIET)
-    if (NOT JPEG_FOUND)
-      FIND_PACKAGE(JPEG)
-    endif ()
+# mandatory
 
-    IF(JPEG_FOUND)
-        SET(HAVE_JPEG 1)
-        TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${JPEG_INCLUDE_DIR})
-        target_compile_definitions(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_JPEG=${HAVE_JPEG})
-    ENDIF()
+FIND_PACKAGE(PROJ REQUIRED)
+
+FIND_PACKAGE(TIFF REQUIRED)
+# Confirm required API is available
+INCLUDE(CheckFunctionExists)
+SET(CMAKE_REQUIRED_LIBRARIES ${TIFF_LIBRARIES})
+
+CHECK_FUNCTION_EXISTS(TIFFOpen HAVE_TIFFOPEN)
+IF(NOT HAVE_TIFFOPEN)
+    SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
+    MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFOpen function not found")
 ENDIF()
 
 
-IF(WITH_TIFF)
-    FIND_PACKAGE(TIFF NO_MODULE QUIET)
-    if (NOT TIFF_FOUND)
-      FIND_PACKAGE(TIFF REQUIRED)
-    endif ()
-
-    IF(TIFF_FOUND)
-        # Confirm required API is available
-        INCLUDE(CheckFunctionExists)
-        SET(CMAKE_REQUIRED_LIBRARIES ${TIFF_LIBRARIES})
-
-        CHECK_FUNCTION_EXISTS(TIFFOpen HAVE_TIFFOPEN)
-        IF(NOT HAVE_TIFFOPEN)
-            SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
-            MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFOpen function not found")
-        ENDIF()
-
-        CHECK_FUNCTION_EXISTS(TIFFMergeFieldInfo HAVE_TIFFMERGEFIELDINFO)
-        IF(NOT HAVE_TIFFMERGEFIELDINFO)
-            SET(TIFF_FOUND) # ReSET to NOT found for TIFF library
-            MESSAGE(FATAL_ERROR "Failed to link with libtiff - TIFFMergeFieldInfo function not found. libtiff 3.6.0 Beta or later required. Please upgrade or use an older version of libgeotiff")
-        ENDIF()
-
-        TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${TIFF_INCLUDE_DIR})
-        TARGET_COMPILE_DEFINITIONS(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_TIFF=1)
-    ENDIF(TIFF_FOUND)
-ENDIF(WITH_TIFF)
-
-IF(WITH_ZLIB)
-    FIND_PACKAGE(ZLIB REQUIRED )
-    IF(ZLIB_FOUND)
-        SET(HAVE_ZIP 1)
-        TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${ZLIB_INCLUDE_DIR})
-        TARGET_COMPILE_DEFINITIONS(${GEOTIFF_LIBRARY_TARGET} PRIVATE -DHAVE_ZIP=${HAVE_ZIP})
-    ENDIF()
-ENDIF()
+TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PRIVATE ${TIFF_INCLUDE_DIR})
 
 TARGET_INCLUDE_DIRECTORIES(${GEOTIFF_LIBRARY_TARGET} PUBLIC
                             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/>
@@ -335,15 +285,9 @@ if(TARGET PROJ::proj)
     string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(PROJ)\n")
 endif()
 
-if(TARGET ZLIB::zlib)
-    set(ZLIB_LIBRARIES ZLIB::zlib)
-    string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(ZLIB)\n")
-endif()
-
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
                       ${PROJ_LIBRARIES}
-                      ${TIFF_LIBRARIES}
-                      ${ZLIB_LIBRARIES})
+                      ${TIFF_LIBRARIES})
 
 target_include_directories( ${GEOTIFF_LIBRARY_TARGET} PUBLIC
             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
@@ -404,8 +348,7 @@ Summary of build options:
    Build man pages:          ${BUILD_MAN}
    Build doc files:          ${BUILD_DOC}
    Build GeoTIFF utilities:  ${WITH_UTILITIES}
-   Build TIFF support:       ${WITH_TIFF}
-   Build zlib support:       ${WITH_ZLIB}
-   Build JPEG support:       ${WITH_JPEG}
+   PROJ version:             ${PROJ_VERSION_STRING}
+   TIFF version:	     ${TIFF_VERSION_STRING}
    Build TOWGS84 support:    ${WITH_TOWGS84}
 ################################")
