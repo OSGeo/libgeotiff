@@ -39,7 +39,4 @@ MESSAGE(STATUS "Adding GeoTIFF utilities to build - done: ${GEOTIFF_UTILITIES}")
 ###############################################################################
 # Targets installation
 
-INSTALL(TARGETS ${GEOTIFF_UTILITIES}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+INSTALL(TARGETS ${GEOTIFF_UTILITIES})
