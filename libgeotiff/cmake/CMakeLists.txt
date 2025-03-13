@@ -2,33 +2,28 @@
 # Config file generation and installation
 #############################################################################
 
-# geotiff-config.cmake for the install tree.  It's installed in
-# ${INSTALL_CMAKE_DIR} and @PROJECT_ROOT_DIR@ is the relative
-# path to the root from there.  (Note that the whole install tree can
-# be relocated.)
-if (NOT WIN32)
-  set (INSTALL_CMAKE_DIR "share/cmake/${PROJECT_NAME}")
-  set (PROJECT_ROOT_DIR "../../..")
-else ()
-  set (INSTALL_CMAKE_DIR "cmake")
-  set (PROJECT_ROOT_DIR "..")
-endif ()
 
-configure_file (project-config.cmake.in project-config.cmake @ONLY)
-configure_file (project-config-version.cmake.in
-  project-config-version.cmake @ONLY)
+set (INSTALL_CMAKE_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    project-config.cmake.in
+    ${PROJECT_NAME_LOWER}Config.cmake
+    PATH_VARS CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_INCLUDEDIR CMAKE_INSTALL_BINDIR
+    INSTALL_DESTINATION ${INSTALL_CMAKE_DIR}
+)
+write_basic_package_version_file(
+    ${PROJECT_NAME_LOWER}ConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
 install (FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/project-config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}Config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}ConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}"
-  RENAME "${PROJECT_NAME_LOWER}-config.cmake")
-install (FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/project-config-version.cmake"
-  DESTINATION "${INSTALL_CMAKE_DIR}"
-  RENAME "${PROJECT_NAME_LOWER}-config-version.cmake")
-# Make information about the cmake targets (the library and the tools)
-# available.
+)
 install (EXPORT depends
-  FILE ${PROJECT_NAME_LOWER}-depends.cmake
+  FILE ${PROJECT_NAME_LOWER}Targets.cmake
   DESTINATION "${INSTALL_CMAKE_DIR}")
 
 
