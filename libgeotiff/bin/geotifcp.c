@@ -37,7 +37,7 @@
 #define	TRUE	1
 #define	FALSE	0
 
-int getopt();
+int getopt(int nargc, char** nargv, char* ostr);
 
 static  int outtiled = -1;
 static  uint32_t tilewidth;

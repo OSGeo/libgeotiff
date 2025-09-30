@@ -1,3 +1,34 @@
+libgeotiff 1.7.4
+----------------
+
+* CMake modernization, automate release generation from tags and refactor CI (#115)
+  - CMake: Bumps the minimum CMake version to 3.13
+  - CMake: Add BUILD_SHARED_LIBS matrix for ON and OFF using similar config for macos-latest, windows-latest, and ubuntu-latest
+  - CMake: Modernize CMake configuration to prevent flag/feature leaking
+  - CMake: Adds CPack configuration so `package_source` target is available for dist generation
+  - CMake: Updates FindPROJ.cmake with GDAL's recent version
+  - CMake: add BUILD_MAN and BUILD_DOC options
+  - CMake: Windows PDB install with BUILD_SHARED_LIBS
+  - CMake: Remove FindGeoTIFF.cmake
+  - Removes 16 year old dead `makefile.mpw`
+  - Removes 6 year old dead `makefile.vc`
+  - CI: Generates release artifacts and attaches them to every build
+  - CI: Creates a release and attaches release artifacts for every tag of the OSGeo/libgeotiff repository
+  - CI: [Attests](https://github.com/actions/attest-build-provenance) the release artifacts if the `github.repository_owner == OSGeo`
+  - CI: Remove Appveyor config
+
+* GTIFGetDefn(): add missing normalization of angular units to degree
+
+  Contrary to what the documentation of GTIFDefn::ProjParm[] mentionned,
+  we failed to normalize angular measures to degrees when reading them
+  from projection parameters (ProjXXXXXGeoKey's) when ProjCoordTransGeoKey
+  was present (but we did normalize them when reading them from the PROJ
+  database when there were was only a EPSG PCS code)
+
+  Relates to https://github.com/OSGeo/gdal/issues/10154 and https://github.com/OSGeo/gdal/pull/10158
+
+* Fix build with GCC 15 (#131)
+
 libgeotiff 1.7.3
 ----------------
 

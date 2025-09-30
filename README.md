@@ -1,4 +1,4 @@
-![Windows CI](https://github.com/OSGeo/libgeotiff/workflows/Windows%20CI/badge.svg)
+[![Windows CI](https://github.com/OSGeo/libgeotiff/workflows/Windows%20CI/badge.svg)](https://github.com/OSGeo/libgeotiff/actions)
 [![Travis Status](https://travis-ci.org/OSGeo/libgeotiff.svg?branch=master)](https://travis-ci.org/OSGeo/libgeotiff)
 [![Release Version](https://img.shields.io/github/release/OSGeo/libgeotiff)](https://github.com/OSGeo/libgeotiff/releases)
 

@@ -26,10 +26,10 @@ set(LIBGEOTIFF_REV_VERSION 0)
 
 # Set library version to match that of autoconf:
 # libgeotiff.so -> libgeotiff.so.5
-# libgeotiff.so.5 -> libgeotiff.so.5.3.2
-# libgeotiff.so.5.3.2
+# libgeotiff.so.5 -> libgeotiff.so.5.2.4
+# libgeotiff.so.5.2.4
 set(LINK_SOVERSION "5")
-set(LINK_VERSION "5.3.2")
+set(LINK_VERSION "5.2.4")
 
 set(PROJECT_VERSION_MAJOR ${LIBGEOTIFF_MAJOR_VERSION})
 set(PROJECT_VERSION_MINOR ${LIBGEOTIFF_MINOR_VERSION})
