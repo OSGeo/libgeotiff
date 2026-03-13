@@ -13,12 +13,6 @@ INCLUDE_DIRECTORIES(
 IF(WIN32 AND MSVC)
     SET(GETOPT_SOURCE getopt.c)
 ENDIF()
-
-# avoid warnings of "This function or variable may be unsafe"
-if(MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
-
 ###############################################################################
 # Collect programs to build
 
