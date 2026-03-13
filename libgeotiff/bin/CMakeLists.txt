@@ -23,21 +23,10 @@ MESSAGE(STATUS "Adding GeoTIFF utilities to build")
 FOREACH(utility ${GEOTIFF_UTILITIES})
     ADD_EXECUTABLE(${utility} ${utility}.c ${GETOPT_SOURCE})
     TARGET_LINK_LIBRARIES(${utility} PRIVATE ${GEOTIFF_LIBRARY_TARGET})
-
-###############################################################################
-# Collect programs to build
-
-SET(GEOTIFF_UTILITIES makegeo listgeo applygeo)
-
-MESSAGE(STATUS "Adding GeoTIFF utilities to build")
-
-FOREACH(utility ${GEOTIFF_UTILITIES})
-   ADD_EXECUTABLE(${utility} ${utility}.c ${GETOPT_SOURCE})
-   TARGET_LINK_LIBRARIES(${utility} PRIVATE ${GEOTIFF_LIBRARY_TARGET})
-   # avoid warnings of "This function or variable may be unsafe"
-   if(MSVC)
+    # avoid warnings of "This function or variable may be unsafe"
+    if(MSVC)
         target_compile_definitions(${utility} PRIVATE -D_CRT_SECURE_NO_WARNINGS)
-   endif()
+    endif()
 ENDFOREACH()
 
 ADD_EXECUTABLE(geotifcp geotifcp.c ${GETOPT_SOURCE})
