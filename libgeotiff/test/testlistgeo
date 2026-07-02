@@ -232,6 +232,24 @@ mv ${OUT}.tmp ${OUT}
 sed "s/Datum: 6053\/Not specified (based on International 1924 Authalic Sphere)/Datum: 1360\/NSIDC International 1924 Authalic Sphere/g" < ${OUT} > ${OUT}.tmp
 mv ${OUT}.tmp ${OUT}
 
+sed "s/ETRS89-BEL \[BEREF2002\]/ETRS89/g" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed "s/GCS: 11063\/ETRS89/GCS: 4258\/ETRS89/g" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed "s/Datum: 1432\/Belgian Reference Frame 2002/Datum: 6258\/European Terrestrial Reference System 1989/g" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+
+sed -E "s/\(  3d57'32\.60\"E, 33d53'19\.45\"N\)/(  3d57'32.60\"E, 33d41'55.25\"N)/" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed -E "s/\(  3d57'32\.60\"E, 33d53'17\.51\"N\)/(  3d57'32.60\"E, 33d41'53.31\"N)/" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed -E "s/\(  3d57'34\.54\"E, 33d53'19\.45\"N\)/(  3d57'34.54\"E, 33d41'55.25\"N)/" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed -E "s/\(  3d57'34\.54\"E, 33d53'17\.51\"N\)/(  3d57'34.54\"E, 33d41'53.31\"N)/" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+sed -E "s/\(  3d57'33\.57\"E, 33d53'18\.48\"N\)/(  3d57'33.57\"E, 33d41'54.28\"N)/" < ${OUT} > ${OUT}.tmp
+mv ${OUT}.tmp ${OUT}
+
 sed "s/GCS: 4053\/Unspecified datum based upon the International 1924 Authalic Sphere/GCS: 10346\/NSIDC Authalic Sphere/g" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp
 mv testlistgeo_out.dist.normalized.tmp testlistgeo_out.dist.normalized
 sed "s/Datum: 6053\/Not specified (based on International 1924 Authalic Sphere)/Datum: 1360\/NSIDC International 1924 Authalic Sphere/g" < testlistgeo_out.dist.normalized > testlistgeo_out.dist.normalized.tmp

@@ -23,6 +23,10 @@ MESSAGE(STATUS "Adding GeoTIFF utilities to build")
 FOREACH(utility ${GEOTIFF_UTILITIES})
     ADD_EXECUTABLE(${utility} ${utility}.c ${GETOPT_SOURCE})
     TARGET_LINK_LIBRARIES(${utility} PRIVATE ${GEOTIFF_LIBRARY_TARGET})
+    # avoid warnings of "This function or variable may be unsafe"
+    if(MSVC)
+        target_compile_definitions(${utility} PRIVATE -D_CRT_SECURE_NO_WARNINGS)
+    endif()
 ENDFOREACH()
 
 ADD_EXECUTABLE(geotifcp geotifcp.c ${GETOPT_SOURCE})
@@ -32,6 +36,9 @@ TARGET_LINK_LIBRARIES(geotifcp
     ${JPEG_LIBRARIES}
     ${ZLIB_LIBRARIES})
 target_include_directories(geotifcp PRIVATE $<TARGET_PROPERTY:${PROJ_LIBRARIES},INTERFACE_INCLUDE_DIRECTORIES>)
+if(MSVC)
+    target_compile_definitions(geotifcp PRIVATE -D_CRT_SECURE_NO_WARNINGS)
+endif()
 
 SET(GEOTIFF_UTILITIES ${GEOTIFF_UTILITIES} geotifcp )
 
