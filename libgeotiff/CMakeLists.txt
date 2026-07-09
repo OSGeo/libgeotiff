@@ -340,8 +340,8 @@ if(TARGET ZLIB::zlib)
     string(APPEND CONFIG_PRIVATE_DEPENDENCIES "  find_dependency(ZLIB)\n")
 endif()
 
+target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PUBLIC ${PROJ_LIBRARIES})
 target_link_libraries(${GEOTIFF_LIBRARY_TARGET} PRIVATE
-                      ${PROJ_LIBRARIES}
                       ${TIFF_LIBRARIES}
                       ${ZLIB_LIBRARIES})
 
