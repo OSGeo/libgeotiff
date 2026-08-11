@@ -1,10 +1,10 @@
-# Configure @PROJECT_NAME@
-#
+@PACKAGE_INIT@
+
 # Set
 #  @PROJECT_NAME@_FOUND = 1
-#  @PROJECT_NAME@_INCLUDE_DIRS = /usr/local/include
-#  @PROJECT_NAME@_LIBRARY_DIRS = /usr/local/lib
-#  @PROJECT_NAME@_BINARY_DIRS = /usr/local/bin
+#  @PROJECT_NAME@_INCLUDE_DIRS = ${CMAKE_INSTALL_INCLUDEDIR}
+#  @PROJECT_NAME@_LIBRARY_DIRS = ${CMAKE_INSTALL_LIBDIR}
+#  @PROJECT_NAME@_BINARY_DIRS = ${CMAKE_INSTALL_BINDIR}
 #  @PROJECT_NAME@_VERSION = 1.4.1 (for example)
 
 # For compatibility with FindGeoTIFF.cmake, also set
@@ -14,13 +14,9 @@
 # @PROJECT_NAME_UPPER@_LIBRARIES
 
 # Tell the user project where to find our headers and libraries
-get_filename_component (_DIR ${CMAKE_CURRENT_LIST_FILE} PATH)
-get_filename_component (_ROOT "${_DIR}/@PROJECT_ROOT_DIR@" ABSOLUTE)
-set (@PROJECT_NAME@_INCLUDE_DIRS "${_ROOT}/include")
-set (@PROJECT_NAME@_LIBRARY_DIRS "${_ROOT}/lib")
-set (@PROJECT_NAME@_BINARY_DIRS "${_ROOT}/bin")
-unset (_ROOT)
-unset (_DIR)
+set (@PROJECT_NAME@_INCLUDE_DIRS @PACKAGE_CMAKE_INSTALL_INCLUDEDIR@)
+set (@PROJECT_NAME@_LIBRARY_DIRS @PACKAGE_CMAKE_INSTALL_LIBDIR@)
+set (@PROJECT_NAME@_BINARY_DIRS @PACKAGE_CMAKE_INSTALL_BINDIR@)
 
 include(CMakeFindDependencyMacro)
 @CONFIG_PUBLIC_DEPENDENCIES@
@@ -46,7 +42,7 @@ if(NOT @PROJECT_NAME@_FIND_QUIETLY)
 endif()
 
 # Read in the exported definition of the library
-include ("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME_LOWER@-depends.cmake")
+include ("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME_LOWER@Targets.cmake")
 
 # For compatibility with FindGeoTIFF.cmake
 set (@PROJECT_NAME_UPPER@_FOUND 1)
