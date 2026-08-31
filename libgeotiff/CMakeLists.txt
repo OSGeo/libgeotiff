@@ -5,7 +5,7 @@
 # Author: Mateusz Loskot <mateusz@loskot.net>
 #
 ###############################################################################
-CMAKE_MINIMUM_REQUIRED(VERSION 3.13)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16...3.29)
 
 PROJECT(GeoTIFF)
 
